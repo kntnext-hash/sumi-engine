@@ -1,0 +1,1212 @@
+{
+  "classification": "Standalone C# simulation, PowerShell Add-Type; not Unity or player testing",
+  "sourceSha256": "37D2014C6B7FB19321055590164EC61CC071F73026C2D8962BE17688F634DD8D",
+  "generatedAtUtc": "2026-10-21T23:29:20.8664666Z",
+  "config": "v2 experimental hypotheses; 3 enemy types, no bosses or splitting enemies",
+  "limits": {
+    "maxWave": 60,
+    "maxTicks": 21600,
+    "tickRate": 30,
+    "maxEnemies": 96,
+    "maxTips": 12,
+    "maxNodes": 64
+  },
+  "sharedTuning": {
+    "baseAttackDamage": 8,
+    "baseAttackRange": 150,
+    "growthRadius": 150,
+    "growthThreshold": "4+growthEventCount, before meta discount"
+  },
+  "unchanged": [
+    "Wave HP and spawn equations",
+    "Enemy HP/speed/type multipliers",
+    "Kill rewards and crystal formula",
+    "Upgrade cost equations",
+    "Supply and pressure equations"
+  ],
+  "buildRules": {
+    "Manual": "No automatic purchases",
+    "Farming": "Every 30 ticks; reserve branch cost toward branchLv6 when damage+speed+supply >= branchLv*2. Otherwise cycle Supply,Speed,Width,Damage,Bleed using total purchased levels as index; wait for chosen item.",
+    "Record": "Every 30 ticks; reserve branch cost toward branchLv9 when damage+speed+supply >= branchLv*1. Otherwise cycle Damage,Supply,Speed,Damage,Width using total purchased levels as index; wait for chosen item."
+  },
+  "rewardDifferences": "None; build only selects purchases. No build-specific attack, supply, reward, or enemy multipliers.",
+  "conditionCount": 30,
+  "independentSeeds": 10,
+  "summaries": [
+    {
+      "build": "Manual",
+      "conditions": 10,
+      "durationSeconds": {
+        "min": 129.63333333333333,
+        "median": 141.46666666666667,
+        "max": 152.06666666666666
+      },
+      "tips": {
+        "min": 3,
+        "median": 3,
+        "max": 3
+      },
+      "incomePerMinute": {
+        "min": 120.33941887374647,
+        "median": 125.69897665145403,
+        "max": 130.3240223463687
+      },
+      "wave": {
+        "min": 11,
+        "median": 12,
+        "max": 13
+      },
+      "inFiveToEightMinutes": 0,
+      "defeated": 10
+    },
+    {
+      "build": "Farming",
+      "conditions": 10,
+      "durationSeconds": {
+        "min": 441.8333333333333,
+        "median": 502.51666666666665,
+        "max": 529.4
+      },
+      "tips": {
+        "min": 9,
+        "median": 9,
+        "max": 9
+      },
+      "incomePerMinute": {
+        "min": 394.4926442851754,
+        "median": 470.82098404631427,
+        "max": 509.21798262183603
+      },
+      "wave": {
+        "min": 37,
+        "median": 42.5,
+        "max": 45
+      },
+      "inFiveToEightMinutes": 2,
+      "defeated": 10
+    },
+    {
+      "build": "Record",
+      "conditions": 10,
+      "durationSeconds": {
+        "min": 472.3,
+        "median": 505.04999999999995,
+        "max": 530.0666666666667
+      },
+      "tips": {
+        "min": 12,
+        "median": 12,
+        "max": 12
+      },
+      "incomePerMinute": {
+        "min": 438.2807537582045,
+        "median": 472.52732727210037,
+        "max": 510.7282102880141
+      },
+      "wave": {
+        "min": 40,
+        "median": 43,
+        "max": 45
+      },
+      "inFiveToEightMinutes": 1,
+      "defeated": 10
+    }
+  ],
+  "pairedLongerRunCounts": {
+    "Farming": 1,
+    "Record": 8,
+    "ties": 1
+  },
+  "limitations": [
+    "Presets are candidate purchasing strategies, not proven farming/record optima",
+    "Income/min means gross kill rewards divided by entire run duration, not retained currency",
+    "Five-to-eight-minute target remains a hypothesis; see per-build counts",
+    "Manual is a control with no purchases, not an automatically balanced baseline",
+    "10 shared seeds are a small paired sample; no statistical generalization",
+    "No Unity visual/device performance or five-enemy game acceptance claimed"
+  ],
+  "runs": [
+    {
+      "seed": 1,
+      "build": "Manual",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 3957,
+      "durationSeconds": 131.9,
+      "wave": 11,
+      "completedWave": 10,
+      "kills": 58,
+      "leaks": 7,
+      "maxTips": 3,
+      "finalTips": 3,
+      "nodes": 11,
+      "incomeEarned": 281,
+      "inkRemaining": 281,
+      "incomePerMinute": 127.82410917361638,
+      "crystals": 10,
+      "crystalsPerMinute": 4.548900682335102,
+      "upgradeLevels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 1,
+      "build": "Farming",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15531,
+      "durationSeconds": 517.7,
+      "wave": 44,
+      "completedWave": 43,
+      "kills": 582,
+      "leaks": 6,
+      "maxTips": 9,
+      "finalTips": 9,
+      "nodes": 21,
+      "incomeEarned": 4151,
+      "inkRemaining": 238,
+      "incomePerMinute": 481.0894340351555,
+      "crystals": 52,
+      "crystalsPerMinute": 6.026656364689974,
+      "upgradeLevels": [
+        15,
+        11,
+        15,
+        6,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 1,
+      "build": "Record",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15572,
+      "durationSeconds": 519.0666666666667,
+      "wave": 44,
+      "completedWave": 43,
+      "kills": 586,
+      "leaks": 6,
+      "maxTips": 12,
+      "finalTips": 12,
+      "nodes": 25,
+      "incomeEarned": 4188,
+      "inkRemaining": 107,
+      "incomePerMinute": 484.0996660673003,
+      "crystals": 52,
+      "crystalsPerMinute": 6.010788594913947,
+      "upgradeLevels": [
+        19,
+        11,
+        9,
+        9,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 2,
+      "build": "Manual",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 4210,
+      "durationSeconds": 140.33333333333334,
+      "wave": 12,
+      "completedWave": 11,
+      "kills": 61,
+      "leaks": 8,
+      "maxTips": 3,
+      "finalTips": 3,
+      "nodes": 11,
+      "incomeEarned": 291,
+      "inkRemaining": 291,
+      "incomePerMinute": 124.41805225653206,
+      "crystals": 11,
+      "crystalsPerMinute": 4.703087885985748,
+      "upgradeLevels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 2,
+      "build": "Farming",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15521,
+      "durationSeconds": 517.3666666666667,
+      "wave": 44,
+      "completedWave": 43,
+      "kills": 577,
+      "leaks": 7,
+      "maxTips": 9,
+      "finalTips": 9,
+      "nodes": 22,
+      "incomeEarned": 4154,
+      "inkRemaining": 241,
+      "incomePerMinute": 481.74731009599896,
+      "crystals": 52,
+      "crystalsPerMinute": 6.030539269376973,
+      "upgradeLevels": [
+        15,
+        11,
+        15,
+        6,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 2,
+      "build": "Record",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15561,
+      "durationSeconds": 518.7,
+      "wave": 44,
+      "completedWave": 43,
+      "kills": 580,
+      "leaks": 7,
+      "maxTips": 12,
+      "finalTips": 12,
+      "nodes": 26,
+      "incomeEarned": 4181,
+      "inkRemaining": 100,
+      "incomePerMinute": 483.63215731636785,
+      "crystals": 52,
+      "crystalsPerMinute": 6.015037593984962,
+      "upgradeLevels": [
+        19,
+        11,
+        9,
+        9,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 3,
+      "build": "Manual",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 3889,
+      "durationSeconds": 129.63333333333333,
+      "wave": 11,
+      "completedWave": 10,
+      "kills": 56,
+      "leaks": 6,
+      "maxTips": 3,
+      "finalTips": 3,
+      "nodes": 10,
+      "incomeEarned": 260,
+      "inkRemaining": 260,
+      "incomePerMinute": 120.33941887374647,
+      "crystals": 10,
+      "crystalsPerMinute": 4.628439187451788,
+      "upgradeLevels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 3,
+      "build": "Farming",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15141,
+      "durationSeconds": 504.7,
+      "wave": 43,
+      "completedWave": 42,
+      "kills": 552,
+      "leaks": 6,
+      "maxTips": 9,
+      "finalTips": 9,
+      "nodes": 21,
+      "incomeEarned": 3909,
+      "inkRemaining": 92,
+      "incomePerMinute": 464.71170992668914,
+      "crystals": 50,
+      "crystalsPerMinute": 5.944125222904696,
+      "upgradeLevels": [
+        15,
+        10,
+        15,
+        6,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 3,
+      "build": "Record",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15141,
+      "durationSeconds": 504.7,
+      "wave": 43,
+      "completedWave": 42,
+      "kills": 552,
+      "leaks": 6,
+      "maxTips": 12,
+      "finalTips": 12,
+      "nodes": 25,
+      "incomeEarned": 3912,
+      "inkRemaining": 522,
+      "incomePerMinute": 465.0683574400634,
+      "crystals": 50,
+      "crystalsPerMinute": 5.944125222904696,
+      "upgradeLevels": [
+        18,
+        10,
+        8,
+        9,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 4,
+      "build": "Manual",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 4142,
+      "durationSeconds": 138.06666666666666,
+      "wave": 12,
+      "completedWave": 11,
+      "kills": 61,
+      "leaks": 7,
+      "maxTips": 3,
+      "finalTips": 3,
+      "nodes": 11,
+      "incomeEarned": 289,
+      "inkRemaining": 289,
+      "incomePerMinute": 125.59150169000483,
+      "crystals": 11,
+      "crystalsPerMinute": 4.780299372283921,
+      "upgradeLevels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 4,
+      "build": "Farming",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 14967,
+      "durationSeconds": 498.9,
+      "wave": 42,
+      "completedWave": 41,
+      "kills": 540,
+      "leaks": 6,
+      "maxTips": 9,
+      "finalTips": 9,
+      "nodes": 20,
+      "incomeEarned": 3915,
+      "inkRemaining": 2,
+      "incomePerMinute": 470.83583884546,
+      "crystals": 49,
+      "crystalsPerMinute": 5.8929645219482865,
+      "upgradeLevels": [
+        15,
+        11,
+        15,
+        6,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 4,
+      "build": "Record",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15096,
+      "durationSeconds": 503.2,
+      "wave": 42,
+      "completedWave": 41,
+      "kills": 551,
+      "leaks": 7,
+      "maxTips": 12,
+      "finalTips": 12,
+      "nodes": 24,
+      "incomeEarned": 4009,
+      "inkRemaining": 24,
+      "incomePerMinute": 478.0206677265501,
+      "crystals": 49,
+      "crystalsPerMinute": 5.842607313195549,
+      "upgradeLevels": [
+        19,
+        10,
+        9,
+        9,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 5,
+      "build": "Manual",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 4475,
+      "durationSeconds": 149.16666666666666,
+      "wave": 13,
+      "completedWave": 12,
+      "kills": 70,
+      "leaks": 7,
+      "maxTips": 3,
+      "finalTips": 3,
+      "nodes": 10,
+      "incomeEarned": 324,
+      "inkRemaining": 324,
+      "incomePerMinute": 130.3240223463687,
+      "crystals": 12,
+      "crystalsPerMinute": 4.826815642458101,
+      "upgradeLevels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 5,
+      "build": "Farming",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 14518,
+      "durationSeconds": 483.93333333333334,
+      "wave": 41,
+      "completedWave": 40,
+      "kills": 507,
+      "leaks": 5,
+      "maxTips": 9,
+      "finalTips": 9,
+      "nodes": 21,
+      "incomeEarned": 3611,
+      "inkRemaining": 102,
+      "incomePerMinute": 447.7062956330073,
+      "crystals": 47,
+      "crystalsPerMinute": 5.827248932359829,
+      "upgradeLevels": [
+        15,
+        10,
+        14,
+        6,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 5,
+      "build": "Record",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 14629,
+      "durationSeconds": 487.6333333333333,
+      "wave": 41,
+      "completedWave": 40,
+      "kills": 516,
+      "leaks": 5,
+      "maxTips": 12,
+      "finalTips": 12,
+      "nodes": 25,
+      "incomeEarned": 3709,
+      "inkRemaining": 319,
+      "incomePerMinute": 456.36748923371385,
+      "crystals": 47,
+      "crystalsPerMinute": 5.783033700184565,
+      "upgradeLevels": [
+        18,
+        10,
+        8,
+        9,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 6,
+      "build": "Manual",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 4278,
+      "durationSeconds": 142.6,
+      "wave": 12,
+      "completedWave": 11,
+      "kills": 64,
+      "leaks": 6,
+      "maxTips": 3,
+      "finalTips": 3,
+      "nodes": 12,
+      "incomeEarned": 299,
+      "inkRemaining": 299,
+      "incomePerMinute": 125.80645161290323,
+      "crystals": 11,
+      "crystalsPerMinute": 4.628330995792426,
+      "upgradeLevels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 6,
+      "build": "Farming",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15010,
+      "durationSeconds": 500.3333333333333,
+      "wave": 42,
+      "completedWave": 41,
+      "kills": 542,
+      "leaks": 5,
+      "maxTips": 9,
+      "finalTips": 9,
+      "nodes": 21,
+      "incomeEarned": 3926,
+      "inkRemaining": 13,
+      "incomePerMinute": 470.80612924716854,
+      "crystals": 49,
+      "crystalsPerMinute": 5.876082611592272,
+      "upgradeLevels": [
+        15,
+        11,
+        15,
+        6,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 6,
+      "build": "Record",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15162,
+      "durationSeconds": 505.4,
+      "wave": 43,
+      "completedWave": 42,
+      "kills": 551,
+      "leaks": 6,
+      "maxTips": 12,
+      "finalTips": 12,
+      "nodes": 25,
+      "incomeEarned": 3997,
+      "inkRemaining": 12,
+      "incomePerMinute": 474.51523545706374,
+      "crystals": 50,
+      "crystalsPerMinute": 5.935892362485161,
+      "upgradeLevels": [
+        19,
+        10,
+        9,
+        9,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 7,
+      "build": "Manual",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 4562,
+      "durationSeconds": 152.06666666666666,
+      "wave": 13,
+      "completedWave": 12,
+      "kills": 69,
+      "leaks": 7,
+      "maxTips": 3,
+      "finalTips": 3,
+      "nodes": 12,
+      "incomeEarned": 325,
+      "inkRemaining": 325,
+      "incomePerMinute": 128.23323103901797,
+      "crystals": 12,
+      "crystalsPerMinute": 4.734765453748356,
+      "upgradeLevels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 7,
+      "build": "Farming",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 13837,
+      "durationSeconds": 461.23333333333335,
+      "wave": 39,
+      "completedWave": 38,
+      "kills": 463,
+      "leaks": 5,
+      "maxTips": 9,
+      "finalTips": 9,
+      "nodes": 21,
+      "incomeEarned": 3241,
+      "inkRemaining": 181,
+      "incomePerMinute": 421.6087302160873,
+      "crystals": 44,
+      "crystalsPerMinute": 5.7237840572378405,
+      "upgradeLevels": [
+        14,
+        10,
+        13,
+        6,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 7,
+      "build": "Record",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 14169,
+      "durationSeconds": 472.3,
+      "wave": 40,
+      "completedWave": 39,
+      "kills": 488,
+      "leaks": 5,
+      "maxTips": 12,
+      "finalTips": 12,
+      "nodes": 25,
+      "incomeEarned": 3450,
+      "inkRemaining": 60,
+      "incomePerMinute": 438.2807537582045,
+      "crystals": 46,
+      "crystalsPerMinute": 5.843743383442727,
+      "upgradeLevels": [
+        18,
+        10,
+        8,
+        9,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 8,
+      "build": "Manual",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 4464,
+      "durationSeconds": 148.8,
+      "wave": 13,
+      "completedWave": 12,
+      "kills": 65,
+      "leaks": 8,
+      "maxTips": 3,
+      "finalTips": 3,
+      "nodes": 12,
+      "incomeEarned": 311,
+      "inkRemaining": 311,
+      "incomePerMinute": 125.40322580645162,
+      "crystals": 12,
+      "crystalsPerMinute": 4.838709677419354,
+      "upgradeLevels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 8,
+      "build": "Farming",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 13255,
+      "durationSeconds": 441.8333333333333,
+      "wave": 37,
+      "completedWave": 36,
+      "kills": 427,
+      "leaks": 6,
+      "maxTips": 9,
+      "finalTips": 9,
+      "nodes": 22,
+      "incomeEarned": 2905,
+      "inkRemaining": 7,
+      "incomePerMinute": 394.4926442851754,
+      "crystals": 41,
+      "crystalsPerMinute": 5.567710298000755,
+      "upgradeLevels": [
+        13,
+        10,
+        13,
+        6,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 8,
+      "build": "Record",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15117,
+      "durationSeconds": 503.9,
+      "wave": 42,
+      "completedWave": 41,
+      "kills": 551,
+      "leaks": 9,
+      "maxTips": 12,
+      "finalTips": 12,
+      "nodes": 26,
+      "incomeEarned": 3927,
+      "inkRemaining": 17,
+      "incomePerMinute": 467.5927763445128,
+      "crystals": 49,
+      "crystalsPerMinute": 5.834490970430641,
+      "upgradeLevels": [
+        19,
+        10,
+        8,
+        9,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 9,
+      "build": "Manual",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 4040,
+      "durationSeconds": 134.66666666666666,
+      "wave": 12,
+      "completedWave": 11,
+      "kills": 60,
+      "leaks": 6,
+      "maxTips": 3,
+      "finalTips": 3,
+      "nodes": 12,
+      "incomeEarned": 280,
+      "inkRemaining": 280,
+      "incomePerMinute": 124.75247524752476,
+      "crystals": 11,
+      "crystalsPerMinute": 4.900990099009901,
+      "upgradeLevels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 9,
+      "build": "Farming",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15882,
+      "durationSeconds": 529.4,
+      "wave": 45,
+      "completedWave": 44,
+      "kills": 606,
+      "leaks": 6,
+      "maxTips": 9,
+      "finalTips": 9,
+      "nodes": 22,
+      "incomeEarned": 4493,
+      "inkRemaining": 320,
+      "incomePerMinute": 509.21798262183603,
+      "crystals": 53,
+      "crystalsPerMinute": 6.0068001511144695,
+      "upgradeLevels": [
+        16,
+        11,
+        15,
+        6,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 9,
+      "build": "Record",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15902,
+      "durationSeconds": 530.0666666666667,
+      "wave": 45,
+      "completedWave": 44,
+      "kills": 608,
+      "leaks": 6,
+      "maxTips": 12,
+      "finalTips": 12,
+      "nodes": 26,
+      "incomeEarned": 4512,
+      "inkRemaining": 431,
+      "incomePerMinute": 510.7282102880141,
+      "crystals": 53,
+      "crystalsPerMinute": 5.999245377939881,
+      "upgradeLevels": [
+        19,
+        11,
+        9,
+        9,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 10,
+      "build": "Manual",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 4443,
+      "durationSeconds": 148.1,
+      "wave": 13,
+      "completedWave": 12,
+      "kills": 68,
+      "leaks": 7,
+      "maxTips": 3,
+      "finalTips": 3,
+      "nodes": 12,
+      "incomeEarned": 312,
+      "inkRemaining": 312,
+      "incomePerMinute": 126.40108035111412,
+      "crystals": 12,
+      "crystalsPerMinute": 4.861580013504389,
+      "upgradeLevels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 10,
+      "build": "Farming",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15511,
+      "durationSeconds": 517.0333333333333,
+      "wave": 44,
+      "completedWave": 43,
+      "kills": 579,
+      "leaks": 6,
+      "maxTips": 9,
+      "finalTips": 9,
+      "nodes": 21,
+      "incomeEarned": 4149,
+      "inkRemaining": 236,
+      "incomePerMinute": 481.4776610147637,
+      "crystals": 52,
+      "crystalsPerMinute": 6.0344271807104635,
+      "upgradeLevels": [
+        15,
+        11,
+        15,
+        6,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 10,
+      "build": "Record",
+      "policy": "Balanced",
+      "metaLevels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "status": "Defeated",
+      "ticks": 15183,
+      "durationSeconds": 506.1,
+      "wave": 43,
+      "completedWave": 42,
+      "kills": 556,
+      "leaks": 6,
+      "maxTips": 12,
+      "finalTips": 12,
+      "nodes": 26,
+      "incomeEarned": 3969,
+      "inkRemaining": 59,
+      "incomePerMinute": 470.53941908713693,
+      "crystals": 50,
+      "crystalsPerMinute": 5.927682276229993,
+      "upgradeLevels": [
+        19,
+        10,
+        8,
+        9,
+        10,
+        0
+      ]
+    }
+  ],
+  "finiteCandidateExperiment": {
+    "description": "Three Record purchase candidates, seeds1..10, other coefficients fixed; before blocked-growth bugfix. Final runs include bugfix.",
+    "candidates": [
+      {
+        "branchTargetLevel": 6,
+        "cycle": "Damage,Supply,Speed,Damage,Width",
+        "name": "A",
+        "milestone": 2,
+        "waves": [
+          42,
+          42,
+          42,
+          40,
+          40,
+          42,
+          39,
+          42,
+          43,
+          41
+        ]
+      },
+      {
+        "branchTargetLevel": 9,
+        "cycle": "Damage,Supply,Speed,Damage,Width",
+        "name": "B",
+        "milestone": 1,
+        "waves": [
+          43,
+          44,
+          43,
+          42,
+          41,
+          43,
+          40,
+          42,
+          45,
+          43
+        ]
+      },
+      {
+        "branchTargetLevel": 9,
+        "cycle": "Supply,Speed,Damage,Speed,Width,Bleed",
+        "name": "C",
+        "milestone": 1,
+        "waves": [
+          40,
+          41,
+          42,
+          38,
+          38,
+          41,
+          38,
+          37,
+          40,
+          39
+        ]
+      }
+    ],
+    "selected": "B",
+    "bugfix": "Blocked growth retains charge and event count.",
+    "interpretation": "Record candidate improves Wave, farming income specialization remains unproven."
+  }
+}

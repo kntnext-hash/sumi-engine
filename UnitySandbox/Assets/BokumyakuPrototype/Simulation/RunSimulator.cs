@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Bokumyaku.Simulation
 {
+    public enum BuildPreset { Manual, Farming, Record }
     public enum RunStatus { Running, Defeated, TestCompleted, CapacityExceeded }
     public enum UpgradeKind { Damage, Speed, Supply, Branch, Width, Bleed }
     public enum GrowthPolicy { Balanced, Intercept, Focus }
@@ -71,7 +72,12 @@ namespace Bokumyaku.Simulation
     public sealed class RunSimulator
     {
         public const int TickRate = 30;
-        public const int MaxTicks = 7200;
+        public const int WaveLimit = 60;
+        public const int MaxTicks = WaveLimit * 360;
+        // v2 experimental tuning: shared by all builds, with original Wave/reward formulas retained.
+        public const double BaseAttackDamage = 8;
+        public const double BaseAttackRange = 150;
+        public const double GrowthRadius = 150;
         public const int EnemyLimit = 96;
         readonly MetaProgress meta;
         readonly List<EnemyState> enemies = new List<EnemyState>();
@@ -84,6 +90,10 @@ namespace Bokumyaku.Simulation
         bool rewardClaimed;
         readonly int[] levels = new int[6];
         public int[] UpgradeLevels { get { return (int[])levels.Clone(); } }
+        public BuildPreset Build { get; private set; }
+        public int IncomeEarned { get; private set; }
+        public double ElapsedSeconds { get { return TickCount / 30.0; } }
+        public double IncomePerMinute { get { return TickCount == 0 ? 0 : IncomeEarned * 1800.0 / TickCount; } }
         public int Seed { get; private set; }
         public RunStatus State { get; private set; }
         public GrowthPolicy Policy { get; private set; }
@@ -130,6 +140,32 @@ namespace Bokumyaku.Simulation
             if (!Enum.IsDefined(typeof(GrowthPolicy), policy)) throw new ArgumentOutOfRangeException("policy");
             if (State == RunStatus.Running) Policy = policy;
         }
+        public void SetBuild(BuildPreset build)
+        {
+            if (!Enum.IsDefined(typeof(BuildPreset), build)) throw new ArgumentOutOfRangeException("build");
+            if (State == RunStatus.Running) Build = build;
+        }
+        void AutoBuy()
+        {
+            if (Build == BuildPreset.Manual) return;
+            // Reserve the entire balance for planned branches; no cheaper fallback can consume it.
+            int targetBranches = Build == BuildPreset.Farming ? 6 : 9;
+            int milestones = Build == BuildPreset.Farming ? 2 : 1;
+            if (levels[3] < targetBranches && levels[0] + levels[1] + levels[2] >= levels[3] * milestones)
+            { TryBuy(UpgradeKind.Branch); return; }
+            UpgradeKind[] cycle = Build == BuildPreset.Farming
+                ? new[] { UpgradeKind.Supply, UpgradeKind.Speed, UpgradeKind.Width, UpgradeKind.Damage, UpgradeKind.Bleed }
+                : new[] { UpgradeKind.Damage, UpgradeKind.Supply, UpgradeKind.Speed, UpgradeKind.Damage, UpgradeKind.Width };
+            int count = 0; foreach (int level in levels) count += level;
+            // Wait for the selected upgrade rather than buying every affordable low-cost option.
+            for (int offset = 0; offset < cycle.Length; offset++)
+            {
+                UpgradeKind kind = cycle[(count + offset) % cycle.Length];
+                int[] caps = { 30, 25, 25, 9, 10, 10 };
+                if (levels[(int)kind] >= caps[(int)kind]) continue;
+                TryBuy(kind); return;
+            }
+        }
         public bool ClaimReward(MetaProgress target)
         {
             if (target == null) throw new ArgumentNullException("target");
@@ -141,7 +177,7 @@ namespace Bokumyaku.Simulation
         public void Tick()
         {
             attacks.Clear(); if (State != RunStatus.Running) return;
-            TickCount++; Wave = Math.Min(20, (TickCount - 1) / 360 + 1);
+            TickCount++; if (TickCount % 30 == 0) AutoBuy(); Wave = Math.Min(WaveLimit, (TickCount - 1) / 360 + 1);
             int phase = (TickCount - 1) % 360;
             if (phase < 270)
             {
@@ -160,7 +196,7 @@ namespace Bokumyaku.Simulation
             {
                 if (!b.IsTip || b.NextAttack > TickCount) continue;
                 EnemyState target = null; double eta = double.MaxValue;
-                double range = 65 + 4 * levels[4];
+                double range = BaseAttackRange + 4 * levels[4];
                 foreach (var e in enemies)
                 {
                     double dx = e.X - b.X, dy = e.Y - b.Y;
@@ -169,7 +205,7 @@ namespace Bokumyaku.Simulation
                     if (target == null || candidate < eta || (candidate == eta && (e.Hp < target.Hp || (e.Hp == target.Hp && e.Id < target.Id)))) { target = e; eta = candidate; }
                 }
                 if (target == null) continue;
-                double pressure = Pressure(b), baseDamage = 4 * Math.Pow(1.10, levels[0]) * (1 + .025 * meta.Damage);
+                double pressure = Pressure(b), baseDamage = BaseAttackDamage * Math.Pow(1.10, levels[0]) * (1 + .025 * meta.Damage);
                 double damage = baseDamage * pressure;
                 attacks.Add(new AttackEvent { BranchId = b.Id, EnemyId = target.Id, X = b.X, Y = b.Y, TargetX = target.X, TargetY = target.Y, Damage = damage, Pressure = pressure });
                 b.NextAttack = TickCount + (int)Math.Ceiling(TickRate / Math.Min(4.5, 1.25 * Math.Pow(1.07, levels[1])));
@@ -184,8 +220,8 @@ namespace Bokumyaku.Simulation
                 foreach (var f in fields) { double dx = f.X - e.X, dy = f.Y - e.Y; if (dx * dx + dy * dy <= f.Radius * f.Radius) { damage += f.Damage; if (++stacks == 2) break; } }
                 if (damage > 0) Hurt(e, damage);
             }
-            double threshold = (6 + 2 * growthCount) * (1 - Math.Min(.35, .02 * meta.Growth));
-            if (growthCharge >= threshold && branches.Count < 64) { growthCharge -= threshold; Grow(); growthCount++; }
+            double threshold = (4 + growthCount) * (1 - Math.Min(.35, .02 * meta.Growth));
+            if (growthCharge >= threshold && branches.Count < 64 && Grow()) { growthCharge -= threshold; growthCount++; }
             CompletedWave = TickCount / 360;
             if (TickCount >= MaxTicks) Finish(RunStatus.TestCompleted);
         }
@@ -210,14 +246,16 @@ namespace Bokumyaku.Simulation
             if (enemy.Hp > 0) return;
             Kills++; growthCharge++; enemies.Remove(enemy);
             double yield = enemy.Kind == EnemyKind.Heavy ? 2 : enemy.Kind == EnemyKind.Fast ? 1.1 : 1;
-            RunInk += (int)Math.Round(4 * yield * (1 + .018 * enemy.SpawnWave) * (1 + .03 * meta.Harvest), MidpointRounding.ToEven);
+            int reward = (int)Math.Round(4 * yield * (1 + .018 * enemy.SpawnWave) * (1 + .03 * meta.Harvest), MidpointRounding.ToEven);
+            RunInk += reward; IncomeEarned += reward;
         }
-        void Grow()
+        bool Grow()
         {
             BranchState chosen = null; double best = double.NegativeInfinity;
             foreach (var b in branches)
             {
                 if (!b.IsTip) continue;
+                if (Math.Sqrt(b.X * b.X + b.Y * b.Y) >= GrowthRadius - 1 && TipCount >= Math.Min(12, 3 + levels[3])) continue;
                 double threat = 0;
                 foreach (var e in enemies) { double dx = e.X - b.X, dy = e.Y - b.Y; threat += (1 + e.Hp / e.MaxHp) / (30 + Math.Sqrt(dx * dx + dy * dy)); }
                 // Bounded prototype candidate scoring; full GDD 12-sector threat remains future work.
@@ -225,18 +263,21 @@ namespace Bokumyaku.Simulation
                 score += Random01(ref growthRng) * .001;
                 if (score > best) { best = score; chosen = b; }
             }
-            if (chosen == null) return;
+            if (chosen == null) return false;
             double angle = Math.Atan2(chosen.Y, chosen.X);
             bool split = TipCount < Math.Min(12, 3 + levels[3]) && branches.Count <= 62;
             chosen.IsTip = false;
             double length = 25 + Random01(ref growthRng) * 30;
             AddBranch(chosen, angle + (split ? -.35 : (Random01(ref growthRng) - .5) * .5), length);
             if (split) AddBranch(chosen, angle + .35, length);
+            return true;
         }
         void AddBranch(BranchState parent, double angle, double length)
         {
             double x = parent.X + Math.Cos(angle) * length, y = parent.Y + Math.Sin(angle) * length;
-            double r = Math.Sqrt(x * x + y * y); if (r > 330) { x *= 330 / r; y *= 330 / r; }
+            if (Math.Sqrt(parent.X * parent.X + parent.Y * parent.Y) >= GrowthRadius - 1)
+            { x = GrowthRadius * Math.Cos(angle); y = GrowthRadius * Math.Sin(angle); }
+            double r = Math.Sqrt(x * x + y * y); if (r > GrowthRadius) { x *= GrowthRadius / r; y *= GrowthRadius / r; }
             double dx = x - parent.X, dy = y - parent.Y;
             branches.Add(new BranchState { Id = branches.Count, ParentId = parent.Id, X = x, Y = y, PathLength = parent.PathLength + Math.Sqrt(dx * dx + dy * dy), IsTip = true });
         }

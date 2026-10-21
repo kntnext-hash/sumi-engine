@@ -10,7 +10,7 @@ function Check([string]$name, [scriptblock]$body) {
     catch { $script:failed++; Write-Output "FAIL ${name}: $_" }
 }
 function Finish($run) {
-    while ($run.State -eq 'Running' -and $run.TickCount -le 7200) { $run.Tick() }
+    while ($run.State -eq 'Running' -and $run.TickCount -le [Bokumyaku.Simulation.RunSimulator]::MaxTicks) { $run.Tick() }
     Assert ($run.State -ne 'Running') 'Run did not terminate'
 }
 try {
@@ -22,7 +22,7 @@ try {
     Check 'fixed seeds replay state and enemies at every tick' {
         foreach ($seed in @(0,42,-17)) {
             $a=[Bokumyaku.Simulation.RunSimulator]::new($seed); $b=[Bokumyaku.Simulation.RunSimulator]::new($seed)
-            while ($a.State -eq 'Running' -and $a.TickCount -le 7200) {
+            while ($a.State -eq 'Running' -and $a.TickCount -le [Bokumyaku.Simulation.RunSimulator]::MaxTicks) {
                 $a.Tick(); $b.Tick()
                 Assert ($a.CoreHp -eq $b.CoreHp -and $a.Kills -eq $b.Kills -and $a.RunInk -eq $b.RunInk -and $a.Enemies.Count -eq $b.Enemies.Count) 'Score mismatch'
                 for ($i=0;$i -lt $a.Enemies.Count;$i++) { Assert ($a.Enemies[$i].X -eq $b.Enemies[$i].X -and $a.Enemies[$i].Y -eq $b.Enemies[$i].Y -and $a.Enemies[$i].Hp -eq $b.Enemies[$i].Hp) 'Enemy mismatch' }
@@ -74,6 +74,31 @@ try {
             Assert ($m.Crystals -eq $earned-$spent) 'Meta accounting mismatch'
         }
         Assert ($m.Damage -gt 0) 'Three runs did not fund permanent upgrade'
+    }
+    Check 'auto builds replay purchases, retain branch budget, and terminate' {
+        foreach ($build in @('Farming','Record')) {
+            $a=[Bokumyaku.Simulation.RunSimulator]::new(42); $b=[Bokumyaku.Simulation.RunSimulator]::new(42)
+            $a.SetBuild($build); $b.SetBuild($build); $tips=3
+            while ($a.State -eq 'Running' -and $a.TickCount -le [Bokumyaku.Simulation.RunSimulator]::MaxTicks) {
+                $a.Tick(); $b.Tick(); $tips=[Math]::Max($tips,$a.TipCount)
+                Assert ($a.CoreHp -eq $b.CoreHp -and $a.RunInk -eq $b.RunInk -and $a.Kills -eq $b.Kills) 'Automatic replay mismatch'
+                Assert (($a.UpgradeLevels -join ',') -eq ($b.UpgradeLevels -join ',')) 'Automatic purchases differ'
+                Assert ($a.RunInk -ge 0 -and $a.TipCount -le 12 -and $a.Branches.Count -le 64 -and $a.Enemies.Count -le 96) 'State bound violated'
+                foreach ($branch in $a.Branches) { if ($branch.Id -ne 0) { Assert ($branch.ParentId -ge 0 -and $branch.ParentId -lt $branch.Id) 'Graph cycle or invalid parent' } }
+            }
+            Assert ($a.State -ne 'Running' -and $a.State -ne 'CapacityExceeded') 'No valid finite terminal state'
+            Assert ($a.UpgradeLevels[3] -gt 0 -and $tips -gt 3) 'Branch starved by cheaper upgrades'
+            Write-Output "  $build tick=$($a.TickCount) state=$($a.State) wave=$($a.CompletedWave) tips=$tips levels=$($a.UpgradeLevels -join ',')"
+        }
+    }
+    Check 'switching to Manual halts automatic spending' {
+        $r=[Bokumyaku.Simulation.RunSimulator]::new(42); $r.SetBuild('Farming')
+        for ($i=0;$i -lt 600;$i++) { $r.Tick() }
+        Assert ($r.State -eq 'Running') 'Fixture ended before switching'
+        $r.SetBuild('Record'); for ($i=0;$i -lt 600;$i++) { $r.Tick() }
+        Assert ($r.State -eq 'Running') 'Fixture ended before Manual'
+        $r.SetBuild('Manual'); $levels=$r.UpgradeLevels -join ','; $ink=$r.RunInk
+        Finish $r; Assert (($r.UpgradeLevels -join ',') -eq $levels -and $r.RunInk -ge $ink) 'Manual build spent automatically'
     }
     Write-Output "TOTAL $script:passed passed / $script:failed failed"
     if ($script:failed -gt 0) { exit 1 }; exit 0
