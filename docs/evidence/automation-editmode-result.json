@@ -1,0 +1,143 @@
+{
+  "Summary": {
+    "Total": 18,
+    "Passed": 18,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.BeginStrokeDepositsPigment",
+      "Status": "Passed",
+      "Duration": 0.0071319,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.ClearRestoresFreshBrushOrientation",
+      "Status": "Passed",
+      "Duration": 0.0171389,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.DiffusionPreservesPigmentWithinTolerance",
+      "Status": "Passed",
+      "Duration": 0.0039621,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.DryingCannotCreateNegativePigment",
+      "Status": "Passed",
+      "Duration": 0.0031078,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.EndStoresReplayableCommands",
+      "Status": "Passed",
+      "Duration": 0.000577,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.ExtremeFiniteRadiusDepositsWithoutOverflow",
+      "Status": "Passed",
+      "Duration": 0.0005265,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.InvalidBeginAndAppendPreserveActiveStrokeAndPixels",
+      "Status": "Passed",
+      "Duration": 0.0019618,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.InvalidDirectBrushCommandPreservesActiveBrush",
+      "Status": "Passed",
+      "Duration": 0.0009187,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.InvalidReplayAndBezierPreserveHistoryAndPixels",
+      "Status": "Passed",
+      "Duration": 0.0016904,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.NegativeSimulationRateIsRejectedBeforeMutation",
+      "Status": "Passed",
+      "Duration": 0.0003569,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.NegativeWaterIsClampedBeforeDeposit",
+      "Status": "Passed",
+      "Duration": 0.0015915,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.NonfiniteInputsAndExcessiveStepAreRejected",
+      "Status": "Passed",
+      "Duration": 0.0005295,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.OutsideCanvasDoesNotThrow",
+      "Status": "Passed",
+      "Duration": 0.000858,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.ReplayOwnSessionDoesNotEraseStrokes",
+      "Status": "Passed",
+      "Duration": 0.0008053,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.ReplayOwnSessionReproducesPixelsAfterVerticalStroke",
+      "Status": "Passed",
+      "Duration": 0.011488,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.SameSeedAndPointsReproducePixelBuffer(32)",
+      "Status": "Passed",
+      "Duration": 0.0275026,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.SameSeedAndPointsReproducePixelBuffer(-17)",
+      "Status": "Passed",
+      "Duration": 0.0167059,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ConnectPiece.SumiEngine.Tests.InkCoreTests.SameSeedAndPointsReproducePixelBuffer(int.MaxValue)",
+      "Status": "Passed",
+      "Duration": 0.0166626,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 0.37,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: ConnectPiece.SumiEngine.Tests",
+  "success": true,
+  "result": null
+}

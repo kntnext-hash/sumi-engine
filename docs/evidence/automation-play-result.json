@@ -1,0 +1,20 @@
+{
+  "status": "completed",
+  "duration": 0.07,
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Sumi.Automation.Tests.AutomationPlayTests.CubeAdvancesAndRotates",
+      "Status": "Passed",
+      "Duration": 0.0402637,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

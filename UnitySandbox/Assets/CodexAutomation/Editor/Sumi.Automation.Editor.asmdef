@@ -1,0 +1,5 @@
+{
+  "name": "Sumi.Automation.Editor",
+  "references": ["Sumi.Automation"],
+  "includePlatforms": ["Editor"]
+}

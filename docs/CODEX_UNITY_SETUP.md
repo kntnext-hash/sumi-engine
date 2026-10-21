@@ -1,6 +1,32 @@
 # Codex × Unity ローカル構築
 
-更新: 2026-10-21 JST。状態: **部分構築、Editor導入でBLOCKED**。
+更新: 2026-10-21〜22 JST。状態: **公式ツール・Editor接続・操作試験完了**。描画P0の実マウス入力/preset比較は別途未合格。
+
+## 最新の実測と通常操作
+
+- Editor実体: `C:\Program Files\Unity 6000.3.26f1\Editor\Unity.exe`。ProjectVersion.txt: 6000.3.26f1 (de8167e7440c)。CLIへ登録済み。併存6000.6.7f1は本プロジェクトでは使わない。
+- UnitySandbox生成済み。Test Framework 1.6.0、Pipeline 0.9.0-exp.1。Editorでライセンス解決、CLIのCloudサインインとは区別する。
+- CLI ready、MCP 166ツール公開とEditor版/Scene読取成功。MCPの短いツール名には重複があるので、操作はCLIのグループ形式を優先する。
+- `unity command script eval` のようにグループと動詞を別引数にする。`"script eval"`を1引数にするとCommand Not Foundになる。旧スキルの`editor_play`ではなく、現版は`editor.playmode start`。
+- 実試験: EditMode 18 PASS、PlayMode 1 PASS。CS1519を2件検出→一時ソース除去→再コンパイルerror/warning 0。Consoleの現在件数0、過去の診断/意図的エラー履歴は証拠に保存。
+- Scene生成で未保存初期Sceneの追加作成例外を修正。バッチ時は初期Sceneをユニーク名で保存し保護する。対話時は未保存Sceneの保存を要求する。
+
+```powershell
+$u = 'C:\Users\che22\AppData\Local\Microsoft\WindowsApps\unity.exe'
+$p = 'C:\Users\che22\Desktop\SUMI_ENGINE_Codex_Starter\UnitySandbox'
+& $u status --project-path $p --format json
+& $u command test run --caller plugin --skill unity-cli --project-path $p --format json -- --mode editor --filter ConnectPiece.SumiEngine.Tests --timeout 60
+& $u command test run --caller plugin --skill unity-cli --project-path $p --format json -- --mode playmode --filter Sumi.Automation.Tests --async_tests true --timeout 60
+& $u status --until-ready --timeout 60 --project-path $p --format json
+& $u command test status --caller plugin --skill unity-cli --project-path $p --format json
+& $u command console status --caller plugin --skill unity-cli --project-path $p --format json
+node scripts/Test-UnityMcp.cjs $u --editor-probe
+```
+
+画像は`docs/evidence/automation-cube.png`、`automation-brush-lab-view.png`、`brush-lab.png`。検証JSONも同ディレクトリ。PNG生成はAPI駆動であり、実マウス入力合格とはしない。
+初回失敗後はTemp/UnityLockfileだけ残った。Editorプロセス不存在とファイル排他オープンを確認した後、当該ファイルのみ削除して再試行した。実行中Editorのロックを削除しない。
+
+以下は初回構築時の経緯と、別PC向け手順。
 
 ## 実測した環境
 

@@ -1,0 +1,31 @@
+{
+  "status": "completed",
+  "compiling": false,
+  "failed": true,
+  "compilationFailed": true,
+  "errors": [
+    {
+      "type": "compile-error",
+      "raw": "Assets\\CodexAutomation\\Runtime\\RepairProbe.cs(1,56): error CS1519: Invalid token 'this' in class, record, struct, or interface member declaration",
+      "file": "Assets\\CodexAutomation\\Runtime\\RepairProbe.cs",
+      "line": 1,
+      "column": 56,
+      "code": "CS1519",
+      "message": "Invalid token 'this' in class, record, struct, or interface member declaration"
+    },
+    {
+      "type": "compile-error",
+      "raw": "Assets\\CodexAutomation\\Runtime\\RepairProbe.cs(1,71): error CS1519: Invalid token ';' in class, record, struct, or interface member declaration",
+      "file": "Assets\\CodexAutomation\\Runtime\\RepairProbe.cs",
+      "line": 1,
+      "column": 71,
+      "code": "CS1519",
+      "message": "Invalid token ';' in class, record, struct, or interface member declaration"
+    }
+  ],
+  "warnings": [],
+  "summary": {
+    "errors": 2,
+    "warnings": 0
+  }
+}

@@ -16,6 +16,19 @@ namespace ConnectPiece.SumiEngine.Editor
             // Additive creation leaves all existing scenes, including unsaved work, open.
             EnsureFolder("Assets", "BrushLab");
             EnsureFolder("Assets/BrushLab", "Scenes");
+            // A newly created batch project starts with an untitled scene. Unity
+            // refuses additive NewScene in that state. Preserve it under a unique
+            // path; in an interactive session let the user choose where to save.
+            for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
+            {
+                var open = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
+                if (!string.IsNullOrEmpty(open.path)) continue;
+                if (!Application.isBatchMode)
+                    throw new System.InvalidOperationException("Save untitled scenes before generating sample scenes.");
+                var initialPath = AssetDatabase.GenerateUniqueAssetPath("Assets/BrushLab/Scenes/SetupInitial.unity");
+                if (!EditorSceneManager.SaveScene(open, initialPath))
+                    throw new System.IO.IOException("Could not preserve initial scene: " + initialPath);
+            }
             GenerateScene("Assets/BrushLab/Scenes/BrushLab.unity", false);
             GenerateScene("Assets/BrushLab/Scenes/BranchGrowth.unity", true);
             AssetDatabase.SaveAssets();

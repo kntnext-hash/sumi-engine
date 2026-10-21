@@ -72,3 +72,10 @@
 - 既存APIを維持し、まずP0実動、その後Seed比較/質感/乾燥停止/完全再生/性能の順。ゲームファイルと実装コードは変更なし。
 - 検証: 計画と現ソースの照合、git diff --check。Unityと既存純C#試験は未実行。P0〜P2の合格状態は変更なし。
 - 次: Unity利用可能後に開始票R0〜R2を実施。計画完成をエンジン完成と扱わない。
+
+## 最新: Unity操作環境の実動確認（2026-10-21〜22 JST）
+- 6000.3.26f1 (de8167e7440c)をC:/Program Files/Unity 6000.3.26f1/Editor/Unity.exeで確認しCLI登録。6000.6.7f1も併存するが未使用。Editor側ライセンス解決成功。
+- UnitySandboxを実生成。未保存初期Sceneによる追加生成例外を修正し、BrushLab/BranchGrowth/ConnectionTestを保存。Pipeline 0.9.0-exp.1 ready、MCP166ツールとeval実読取、CLIでScene/GameObject/Play/Console操作成功。
+- Unity EditMode18 PASS、隔離PlayMode1 PASS。意図的CS1519を2件検出後に除去し、再compile error/warning0。最終Console現在件数もerror/warning0。履歴の診断・試験エラーは残して分類。
+- Brush LabはAPI入力で描画しPNG384x512出力、Game View確認。実マウス入力、3preset比較、紙面レイアウト/濃度品質は未合格。P0全体を完成扱いしない。
+- 続きの一文: 環境ブロッカー解消。P0-03の実入力/preset比較と画面改善を描画担当が進める。Editor操作は同時に複数チャットから行わず、最新状態を確認して着手する。

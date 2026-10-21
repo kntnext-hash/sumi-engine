@@ -10,7 +10,7 @@ function finish(ok, message) {
   if (finished) return;
   finished = true;
   clearTimeout(timer);
-  console.log(JSON.stringify({ success: ok, scope: 'MCP protocol only', message }));
+  console.log(JSON.stringify({ success: ok, scope: process.argv.includes('--editor-probe') ? 'MCP Editor read probe' : 'MCP protocol only', message }));
   child.kill();
   process.exitCode = ok ? 0 : 1;
 }
@@ -38,8 +38,20 @@ child.stdout.on('data', data => {
     }
     if (response.id === 2 && initialized) {
       if (!Array.isArray(response.result?.tools)) return finish(false, 'Invalid tools/list response');
-      console.log(JSON.stringify({ tools: response.result.tools.map(tool => tool.name) }));
-      finish(true, 'initialize and tools/list completed; Editor operations must be verified separately');
+      console.log(JSON.stringify({ toolCount: response.result.tools.length }));
+      if (process.argv.includes('--editor-probe')) {
+        if (!response.result.tools.some(tool => tool.name === 'eval')) return finish(false, 'Editor eval unavailable');
+        send({ jsonrpc: '2.0', id: 3, method: 'tools/call', params: { name: 'eval', arguments: {
+          code: 'return new { version = UnityEngine.Application.unityVersion, scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().path };'
+        } } });
+      } else finish(true, 'initialize and tools/list completed; Editor operations must be verified separately');
+    }
+    if (response.id === 3) {
+      console.log(JSON.stringify({ editorProbe: response.result }));
+      let payload;
+      try { payload = JSON.parse(response.result.content.find(item => item.type === 'text').text); } catch {}
+      const ok = !response.result?.isError && payload?.success === true && typeof payload?.result?.version === 'string';
+      finish(ok, ok ? 'Editor version and scene read through MCP' : 'Editor read probe failed');
     }
   }
 });

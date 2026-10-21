@@ -89,3 +89,12 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - 既存APIを維持し、まずP0実動、その後Seed比較/質感/乾燥停止/完全再生/性能の順。ゲームファイルと実装コードは変更なし。
 - 検証: 計画と現ソースの照合、git diff --check。Unityと既存純C#試験は未実行。P0〜P2の合格状態は変更なし。
 - 次: Unity利用可能後に開始票R0〜R2を実施。計画完成をエンジン完成と扱わない。
+
+## Unity実動証拠（2026-10-21〜22 JST）
+- Unity: 6000.3.26f1 (de8167e7440c)、Windows。Test Framework1.6.0、Pipeline0.9.0-exp.1。実体・プロジェクト版固定、ライセンス解決。
+- A: [EditMode18件](evidence/automation-editmode-result.json)、[PlayMode1件](evidence/automation-play-result.json) 全件PASS。Unity Editor内のTest Runner経由。XMLではなくPipelineの構造化JSONを保存。
+- A: [意図的compile失敗](evidence/repair-failure.json)でCS1519×2、[修復後](evidence/repair-success.json) error/warning0。専用RepairProbe.csとmeta残存なし。Scene生成の実例外も修正して成功。
+- Console: [最終状態](evidence/automation-console-final.json)のgroundTruthはcompile失敗false、errors0、warnings0。buffer countsは過去履歴を含む。[履歴](evidence/automation-console-history.json): 呼出しの引用符誤り、意図的コンパイルエラー、Input Manager非推奨、重複Play/Stop、削除後meta警告。復旧後に現症はなし。Input Manager移行は未実施。
+- CLI: 専用Sceneの4ルート読み戻し、Cube UpdateCount1787→4025と回転変化を観測。別途PlayModeテストで3フレーム以上/角度1度超を検証。MCP:166ツール、evalでEditor版とScene実取得。ツール短縮名重複があるため全ツール互換は未保証。
+- R画像: [Cube](evidence/automation-cube.png)、[Brush Lab画面](evidence/automation-brush-lab-view.png)、[出力PNG384x512](evidence/brush-lab.png)を実取得し目視。筆跡はAPIで入力。人のドラッグ/PNGボタン/3preset比較は未検証。小さなGame Viewで紙面が狭く、筆跡が薄い品質課題あり。
+- D/H: 未実行。P0全体未合格。環境構築ENVゲートは合格。

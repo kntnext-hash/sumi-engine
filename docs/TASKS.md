@@ -5,10 +5,10 @@
 |ID|優先|成果物|受入条件|状態|
 |---|---|---|---|---|
 |P0-01|P0|Repo/Code監査|Git状態、v0.1ソース、Unity有無、既存契約の監査記録|合格（2026-10-21、STATE参照）|
-|P0-02|P0|Compile|Unityに読み込ませConsole error 0、asmdef/testの互換性|BLOCKED（Unity未検出、ソース準備済）|
-|P0-03|P0|Brush Lab|入力→筆跡変化→PNG、3 preset、2サンプルシーン|BLOCKED（Unity未検出、ソース準備済）|
-|P0-04|P0|Test/Replay|EditMode NUnit、同seed同条件で決定的、範囲外/負値/極端入力テスト|BLOCKED（Unity未検出、ソース準備済）|
-|P0-05|P0|証拠採取|Unityバージョン/実行方法/スクリーンショット/QA表|BLOCKED（Unity未検出、ソース準備済）|
+|P0-02|P0|Compile|Unityに読み込ませConsole error 0、asmdef/testの互換性|合格（6000.3.26f1、復旧後compile error/warning 0）|
+|P0-03|P0|Brush Lab|入力→筆跡変化→PNG、3 preset、2サンプルシーン|進行中（2シーン/API描画/PNG確認、実入力と3 preset比較は未合格）|
+|P0-04|P0|Test/Replay|EditMode NUnit、同seed同条件で決定的、範囲外/負値/極端入力テスト|合格（Unity EditMode 18/18、v1のStep時系列再生は対象外）|
+|P0-05|P0|証拠採取|Unityバージョン/実行方法/スクリーンショット/QA表|進行中（A/R画像取得済み、実マウス操作確認待ち）|
 |P1-01|P1|筆先品質|入り止め払い・追従・毛先割れ比較画像を採取|未着手|
 |P1-02|P1|乾湿プリセット|Dry / Dense / Wet の定量差と画質レビュー|未着手|
 |P1-03|P1|紙・滲み|筆跡の周囲でのみ滲み、乾燥後は固定化|未着手|
@@ -43,11 +43,11 @@
 |ID|受入条件|状態|
 |---|---|---|
 |ENV-01|Unity公式Plugin installed/enabled、CLI起動|合格: 0.1.8-beta / 1.0.0-beta.13|
-|ENV-02|MCP設定・initialize/tools/list|プロトコルのみ合格、ツール0件。Editor操作は未合格|
-|ENV-03|Unity 6.3 LTS導入・ライセンス・Pipeline接続|BLOCKED: ELEVATION_REQUIRED、認証未確認|
-|ENV-04|専用Scene/4 GameObject/C# compile/Play進行/Console/修正ループ|BLOCKED: Editor未導入。試験ソース準備済み|
+|ENV-02|MCP設定・initialize/tools/list|合格: 166ツール公開、MCP evalで版/Scene実取得。重複名あり、CLIグループ呼出しを優先|
+|ENV-03|Unity 6.3 LTS導入・ライセンス・Pipeline接続|合格: 6000.3.26f1 / Pipeline 0.9.0-exp.1 ready。Editorライセンス解決、Cloudログインは未実施|
+|ENV-04|専用Scene/4 GameObject/C# compile/Play進行/Console/修正ループ|合格: 4オブジェクト/PlayMode 1 PASS/CS1519検出→復旧、最終Console 0|
 |ENV-05|AGENTSと再構築/有限ループ手順|合格: CODEX_UNITY_SETUP.md|
-P0-02〜05を合格に変更しない。ENV-03解消後、ENV-04と既存Brush Lab受入を実行する。
+ENVの構築検証は完了。描画P0全体は未合格で、次はP0-03の実入力・preset比較と画面配置確認。
 
 ## ゲーム準備ゲート（描画とは独立）
 |ID|成果物|状態|

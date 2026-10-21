@@ -1,0 +1,57 @@
+[
+  {
+    "seq": 1,
+    "level": "warn",
+    "message": "This project uses Input Manager, which is marked for deprecation. To manage input in your project, use the <a href=\"https://docs.unity3d.com/Packages/com.unity.inputsystem@latest\">Input System package</a> instead."
+  },
+  {
+    "seq": 2,
+    "level": "error",
+    "message": "ExecuteCommandByName: No command named 'script eval' is available. Did you mean 'script eval'?"
+  },
+  {
+    "seq": 4,
+    "level": "error",
+    "message": "ExecuteCommandByName: No command named 'test run' is available. Did you mean 'test run'?"
+  },
+  {
+    "seq": 5,
+    "level": "error",
+    "message": "ExecuteCommandByName: No command named 'console status' is available. Did you mean 'console status'?"
+  },
+  {
+    "seq": 6,
+    "level": "warn",
+    "message": "Editor is already in edit mode"
+  },
+  {
+    "seq": 9,
+    "level": "error",
+    "message": "ExecuteCommandByName: No command named 'console --level' is available. Run 'unity command' to list the commands this instance exposes."
+  },
+  {
+    "seq": 10,
+    "level": "warn",
+    "message": "Editor is already in play mode"
+  },
+  {
+    "seq": 11,
+    "level": "warn",
+    "message": "Editor is already in edit mode"
+  },
+  {
+    "seq": 12,
+    "level": "error",
+    "message": "Assets\\CodexAutomation\\Runtime\\RepairProbe.cs(1,56): error CS1519: Invalid token 'this' in class, record, struct, or interface member declaration"
+  },
+  {
+    "seq": 13,
+    "level": "error",
+    "message": "Assets\\CodexAutomation\\Runtime\\RepairProbe.cs(1,71): error CS1519: Invalid token ';' in class, record, struct, or interface member declaration"
+  },
+  {
+    "seq": 14,
+    "level": "warn",
+    "message": "A meta data file (.meta) exists but its asset 'Assets/CodexAutomation/Runtime/RepairProbe.cs' can't be found. When moving or deleting files outside of Unity, please ensure that the corresponding .meta file is moved or deleted along with it."
+  }
+]

@@ -66,3 +66,11 @@
 - 既存APIを維持し、まずP0実動、その後Seed比較/質感/乾燥停止/完全再生/性能の順。ゲームファイルと実装コードは変更なし。
 - 検証: 計画と現ソースの照合、git diff --check。Unityと既存純C#試験は未実行。P0〜P2の合格状態は変更なし。
 - 次: Unity利用可能後に開始票R0〜R2を実施。計画完成をエンジン完成と扱わない。
+
+## 2026-10-21〜22 — Unity構築・操作試験完了
+- 開始0b498a5 clean。ユーザーによるインストール完了後、6.3.26f1実体を検出して登録。Hub経由6.6.7f1は使用せず。
+- Setup実行で初めてのUnity compile成功、未保存SceneによるInvalidOperationExceptionを検出。バッチ時に初期Sceneを別名保存する修正を加え、残存ロックの無使用を確認して除去し、再実行成功。
+- 実UnitySandbox/2サンプルScene/専用Cube Sceneを生成。Pipeline導入、CLI/MCP接続とPlay/PNG/画像確認。MCPスモークに実Editor読取オプションを追加。
+- 実Unity試験: EditMode18/18、PlayMode1/1 PASS。復旧試験で2 compile errors→除去→0 errors/0 warnings、最終Console0。証拠JSON・PNGをdocs/evidenceに保存。
+- 並行する描画室のEditMode証拠ファイル出現を確認し、そのファイルは今回のstage対象から除外。こちらは復旧後に18件を独立再実行。共有Editorの状態変化は同時操作の可能性があり、以後は所有を分ける。
+- 環境受入ENV-01〜05合格。P0-02/04合格、P0-03/05は実入力・preset/画面確認残。今回の変更コミットをGit履歴で参照。

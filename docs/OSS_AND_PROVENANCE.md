@@ -31,3 +31,7 @@ v0.1の初期ソースはこの会話で生成した独立実装であり、下�
 
 ## 2026-10-21 公開データ参照先の追加
 TheTowerSDKのREADME/LICENSE/NOTICEを読取。MIT表記に加えて由来別の条件未確定部分を確認し、直接取込みは行わない。Towerstatsの大会/Workshopは非公式参考資料。URL・blob SHA・不一致はresearch/THE_TOWER_DATA_ADDENDUM.md。ゲームコード・表・素材・個人セーブの取り込みなし。
+
+## Unity公式UPM依存（実導入）
+- UnitySandboxにcom.unity.pipeline 0.9.0-exp.1とTest Framework1.6.0を導入。解決版はPackages/packages-lock.json。第三者実体はLibrary/PackageCache内（Git除外）。レジストリ依存として利用しパッケージソースを転載しない。
+- docs/evidenceのCube/Brush Lab画像は本プロジェクトをUnityで実行して取得したもの。外部ゲーム画像を使用していない。

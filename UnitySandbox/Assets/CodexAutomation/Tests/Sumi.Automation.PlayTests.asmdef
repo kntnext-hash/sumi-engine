@@ -1,0 +1,6 @@
+{
+  "name": "Sumi.Automation.PlayTests",
+  "references": ["Sumi.Automation"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "defineConstraints": ["UNITY_INCLUDE_TESTS"]
+}
