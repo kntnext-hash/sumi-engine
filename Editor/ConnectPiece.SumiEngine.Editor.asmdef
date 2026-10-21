@@ -1,0 +1,12 @@
+{
+  "name": "ConnectPiece.SumiEngine.Editor",
+  "rootNamespace": "ConnectPiece.SumiEngine.Editor",
+  "references": [
+    "ConnectPiece.SumiEngine"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false
+}

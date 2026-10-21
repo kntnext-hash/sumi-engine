@@ -1,0 +1,9 @@
+{
+  "name": "ConnectPiece.SumiEngine",
+  "rootNamespace": "ConnectPiece.SumiEngine",
+  "references": [],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "autoReferenced": true
+}

@@ -1,0 +1,37 @@
+# Unity generated / machine-specific
+Library/
+Temp/
+Obj/
+Logs/
+UserSettings/
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.VC.opendb
+# Bundle/build outputs
+Build/
+Builds/
+build/
+builds/
+*.apk
+*.aab
+*.unitypackage
+# Keep tracked Unity assets and .meta files
+# local inspection artifacts
+coverage/
+TestResults/
+*.tmp
+.DS_Store
+Thumbs.db
