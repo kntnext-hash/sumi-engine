@@ -27,3 +27,7 @@ v0.1の初期ソースはこの会話で生成した独立実装であり、下�
 - docs/research/THE_TOWER_SYSTEMS.mdに公式App Store商品説明、開発元v29/v29.1パッチ、Premium Pass/購入FAQ等への出所リンクを記録。
 - 参考範囲は成長・課金区分・大会設計。コード/アセット/数値テーブルの直接取込みなし。APKや通信の解析なし。
 - ゲーム数式検証は既存BOKUMYAKU GDDの独自仮説式を使用し、The Towerの数値移植ではない。
+
+
+## 2026-10-21 公開データ参照先の追加
+TheTowerSDKのREADME/LICENSE/NOTICEを読取。MIT表記に加えて由来別の条件未確定部分を確認し、直接取込みは行わない。Towerstatsの大会/Workshopは非公式参考資料。URL・blob SHA・不一致はresearch/THE_TOWER_DATA_ADDENDUM.md。ゲームコード・表・素材・個人セーブの取り込みなし。
