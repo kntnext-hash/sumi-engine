@@ -110,3 +110,11 @@ $project = (Resolve-Path ./UnitySandbox).Path
 - 毎回4台帳を読み直して追記。並行作業の未追跡ファイルも保護し、明示したファイルだけstageする。
 
 公式出典（2026-10-21参照）: [Unity公式Plugin](https://github.com/Unity-Technologies/unity-agent-plugin)、[Unity CLI](https://docs.unity.com/en-us/unity-cli/use-unity-cli)、[OpenAI Plugin packaging](https://developers.openai.com/plugins/build/plugins)。導入済みPluginのunity-cliスキルと実CLI helpを併用した。
+
+### INSTALL_FAILED / インストーラ終了コード2の場合
+2026-10-21はCLIログでサイレント起動3.4秒後の終了コード2を確認。コードだけで原因を断定しない。キャッシュ済みEXEの公式サイズと署名Valid、C空き約672GBを確認済み。ログ実体はMSIXのLocalCache配下だった。
+通常フォルダlogs/installersへコピー済み（Git除外）。人が次を実行し、対話式の具体的エラーを確認する。再ダウンロードやセキュリティ設定の無効化は不要。
+```powershell
+& 'C:\Users\che22\Desktop\SUMI_ENGINE_Codex_Starter\logs\installers\UnitySetup64-6000.3.26f1.exe'
+```
+CLI経由でない導入が成功したら、実在するEditorパスを`unity editors add`で登録し、`unity editors --installed`で確認する。
