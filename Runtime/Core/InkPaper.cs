@@ -49,17 +49,25 @@ namespace ConnectPiece.SumiEngine.Core
         /// <summary>A single soft deposited bristle. Clipped to canvas; coordinates may be outside.</summary>
         public void Deposit(float px, float py, float radius, float pigment, float water, float roughness, int seed)
         {
+            RequireFinite(px, nameof(px)); RequireFinite(py, nameof(py));
+            RequireFinite(radius, nameof(radius)); RequireFinite(pigment, nameof(pigment));
+            RequireFinite(water, nameof(water)); RequireFinite(roughness, nameof(roughness));
             if (radius <= 0f || pigment <= 0f) return;
-            int x0 = Math.Max(0, (int)Math.Floor(px - radius));
-            int x1 = Math.Min(Width - 1, (int)Math.Ceiling(px + radius));
-            int y0 = Math.Max(0, (int)Math.Floor(py - radius));
-            int y1 = Math.Min(Height - 1, (int)Math.Ceiling(py + radius));
-            float invR2 = 1f / (radius * radius);
+            water = InkMath.Clamp01(water); roughness = InkMath.Clamp01(roughness);
+            // Clip in double precision before converting to int: large finite coordinates
+            // and radii must not overflow bounds or turn squared distances into NaN.
+            double left = (double)px - radius, right = (double)px + radius;
+            double bottom = (double)py - radius, top = (double)py + radius;
+            if (right < 0 || top < 0 || left > Width || bottom > Height) return;
+            int x0 = (int)Math.Floor(Math.Max(0, left));
+            int x1 = (int)Math.Ceiling(Math.Min(Width - 1, right));
+            int y0 = (int)Math.Floor(Math.Max(0, bottom));
+            int y1 = (int)Math.Ceiling(Math.Min(Height - 1, top));
             for (int y = y0; y <= y1; y++)
                 for (int x = x0; x <= x1; x++)
                 {
-                    float dx = x + .5f - px, dy = y + .5f - py;
-                    float d2 = (dx * dx + dy * dy) * invR2;
+                    double dx = (x + .5 - px) / radius, dy = (y + .5 - py) / radius;
+                    float d2 = (float)(dx * dx + dy * dy);
                     if (d2 >= 1f) continue;
                     int i = y * Width + x;
                     float edge = (1f - d2); edge *= edge;
@@ -75,9 +83,16 @@ namespace ConnectPiece.SumiEngine.Core
 
         public void Step(float dt)
         {
+            RequireFinite(dt, nameof(dt));
             if (dt <= 0f) return;
-            // Substeps keep a positive 4-neighbour explicit diffusion stencil.
-            int n = Math.Max(1, (int)Math.Ceiling(dt * Math.Max(Diffusion, WaterDiffusion) * 5f));
+            RequireRate(Diffusion, nameof(Diffusion)); RequireRate(WaterDiffusion, nameof(WaterDiffusion));
+            RequireRate(Evaporation, nameof(Evaporation)); RequireRate(Binding, nameof(Binding));
+            // Include evaporation in the positivity bound for the water stencil.
+            double rate = Math.Max(4.0 * Diffusion, 4.0 * WaterDiffusion + Evaporation);
+            double required = Math.Ceiling(dt * rate / .8);
+            // Reject impractical requests before mutating paper or overflowing an int.
+            if (required > 65536) throw new ArgumentOutOfRangeException(nameof(dt), "Step requires more than 65536 substeps; use smaller intervals or rates.");
+            int n = Math.Max(1, (int)required);
             float h = dt / n;
             int len = Width * Height;
             for (int sub = 0; sub < n; sub++)
@@ -100,7 +115,7 @@ namespace ConnectPiece.SumiEngine.Core
                                     + .5f * (water + moisture[d]) * (wetPigment[d] - p);
                         float newWater = InkMath.Max(0f, water + h * (WaterDiffusion * lapW - Evaporation * water));
                         float newPigment = InkMath.Max(0f, p + h * Diffusion * fluxP);
-                        float bind = InkMath.Min(newPigment, h * Binding * (0.18f + water) * newPigment);
+                        float bind = (float)Math.Min(newPigment, (double)h * Binding * (0.18f + water) * newPigment);
                         nextPigment[i] = newPigment - bind;
                         nextWater[i] = newWater;
                         fixedPigment[i] += bind;
@@ -109,6 +124,18 @@ namespace ConnectPiece.SumiEngine.Core
                 Array.Copy(nextWater, moisture, len);
             }
             IsDirty = true;
+        }
+
+        static void RequireFinite(float value, string name)
+        {
+            if (float.IsNaN(value) || float.IsInfinity(value))
+                throw new ArgumentOutOfRangeException(name, "Value must be finite.");
+        }
+
+        static void RequireRate(float value, string name)
+        {
+            RequireFinite(value, name);
+            if (value < 0f) throw new ArgumentOutOfRangeException(name, "Rate must be nonnegative.");
         }
 
         public float PigmentAt(int x, int y)

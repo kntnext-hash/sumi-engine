@@ -1,0 +1,76 @@
+2026-10-21 JST independent QA
+Baseline: original commit 1a4419a, extracted Core only into temporary directory; working sources unchanged.
+Command: pwsh -NoProfile -File scripts/Test-Core.ps1 -SourceRoot <temporary baseline root>
+PowerShell 7.6.5 / .NET 10.0.11
+Classification: S + standalone .NET execution. Unity Editor/NUnit/visual/device NOT RUN.
+FAIL self Replay exact pixels seed=0: Pixels differ
+FAIL Clear fresh-state exact pixels seed=0: Pixels differ
+FAIL self Replay exact pixels seed=32: Pixels differ
+FAIL Clear fresh-state exact pixels seed=32: Pixels differ
+FAIL self Replay exact pixels seed=-17: Pixels differ
+FAIL Clear fresh-state exact pixels seed=-17: Pixels differ
+FAIL self Replay exact pixels seed=2147483647: Pixels differ
+FAIL Clear fresh-state exact pixels seed=2147483647: Pixels differ
+FAIL negative water clamps: Negative moisture
+FAIL negative simulation rates reject before mutation: Expected argument rejection
+FAIL nonfinite deposit fields reject: Expected argument rejection
+FAIL nonfinite and excessive step reject: Expected argument rejection
+PASS negative time safe no-op
+PASS drying conserves pigment and remains finite/nonnegative
+PASS outside and extreme finite deposits bounded
+PASS invalid dimensions and render buffers reject
+TOTAL 4 passed / 12 failed
+Baseline exit code: 1
+
+Final updated Core working tree:
+Command: pwsh -NoProfile -File scripts/Test-Core.ps1
+PowerShell 7.6.5 / .NET 10.0.11
+Classification: S + standalone .NET execution. Unity Editor/NUnit/visual/device NOT RUN.
+PASS self Replay exact pixels seed=0
+PASS Clear fresh-state exact pixels seed=0
+PASS self Replay exact pixels seed=32
+PASS Clear fresh-state exact pixels seed=32
+PASS self Replay exact pixels seed=-17
+PASS Clear fresh-state exact pixels seed=-17
+PASS self Replay exact pixels seed=2147483647
+PASS Clear fresh-state exact pixels seed=2147483647
+PASS invalid stroke inputs reject without changing history or pixels
+PASS extreme movement rejects before recording or rendering
+PASS negative water clamps
+PASS negative simulation rates reject before mutation
+PASS nonfinite deposit fields reject
+PASS nonfinite and excessive step reject
+PASS negative time safe no-op
+PASS drying conserves pigment and remains finite/nonnegative
+PASS outside and extreme finite deposits bounded
+PASS invalid dimensions and render buffers reject
+TOTAL 18 passed / 0 failed
+Updated Core exit code: 0
+
+Final same 18-check runner against original baseline 1a4419a:
+Test-Core.ps1: Missing an argument for parameter 'SourceRoot'. Specify a parameter of type 'System.String' and try again.
+Final baseline exit code: 1
+Previous rerun failed to locate ephemeral temp directory; this was a runner invocation failure, not a Core test result.
+Fresh extraction, final same 18-check baseline rerun:
+PowerShell 7.6.5 / .NET 10.0.11
+Classification: S + standalone .NET execution. Unity Editor/NUnit/visual/device NOT RUN.
+FAIL self Replay exact pixels seed=0: Pixels differ
+FAIL Clear fresh-state exact pixels seed=0: Pixels differ
+FAIL self Replay exact pixels seed=32: Pixels differ
+FAIL Clear fresh-state exact pixels seed=32: Pixels differ
+FAIL self Replay exact pixels seed=-17: Pixels differ
+FAIL Clear fresh-state exact pixels seed=-17: Pixels differ
+FAIL self Replay exact pixels seed=2147483647: Pixels differ
+FAIL Clear fresh-state exact pixels seed=2147483647: Pixels differ
+FAIL invalid stroke inputs reject without changing history or pixels: Expected argument rejection
+FAIL extreme movement rejects before recording or rendering: Expected argument rejection
+FAIL negative water clamps: Negative moisture
+FAIL negative simulation rates reject before mutation: Expected argument rejection
+FAIL nonfinite deposit fields reject: Expected argument rejection
+FAIL nonfinite and excessive step reject: Expected argument rejection
+PASS negative time safe no-op
+PASS drying conserves pigment and remains finite/nonnegative
+PASS outside and extreme finite deposits bounded
+PASS invalid dimensions and render buffers reject
+TOTAL 4 passed / 14 failed
+Final baseline exit code: 1

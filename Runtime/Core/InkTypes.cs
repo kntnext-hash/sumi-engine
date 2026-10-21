@@ -51,6 +51,49 @@ namespace ConnectPiece.SumiEngine.Core
         public List<InkStrokeRecord> strokes = new List<InkStrokeRecord>();
     }
 
+    /// <summary>CPU brush input limits. Invalid commands are rejected before drawing or recording.</summary>
+    public static class InkInput
+    {
+        public const float MaxCoordinate = 8192f;
+        public const float MaxRadius = 256f;
+        public const float MaxSegmentLength = 4096f;
+
+        public static void ValidatePoint(InkPoint point)
+        {
+            Finite(point.x, "point.x"); Finite(point.y, "point.y");
+            Finite(point.time, "point.time"); Finite(point.pressure, "point.pressure");
+            if (point.pressure < 0f || point.pressure > 1f)
+                throw new ArgumentOutOfRangeException(nameof(point), "Stored pressure must be within 0..1.");
+            if (Math.Abs(point.x) > MaxCoordinate || Math.Abs(point.y) > MaxCoordinate)
+                throw new ArgumentOutOfRangeException(nameof(point), "Coordinates must be within +/-8192 canvas pixels.");
+            if (Math.Abs(point.time) > 1e9f)
+                throw new ArgumentOutOfRangeException(nameof(point), "Time must be within +/-1e9 seconds.");
+        }
+
+        public static void ValidateSettings(InkBrushSettings settings)
+        {
+            Finite(settings.radius, "settings.radius"); Finite(settings.pigment, "settings.pigment");
+            Finite(settings.water, "settings.water"); Finite(settings.roughness, "settings.roughness");
+            Finite(settings.depletion, "settings.depletion"); Finite(settings.bristleSpread, "settings.bristleSpread");
+            if (settings.radius > MaxRadius)
+                throw new ArgumentOutOfRangeException(nameof(settings), "CPU brush radius must not exceed 256 pixels.");
+        }
+
+        public static void ValidateSegment(InkPoint from, InkPoint to)
+        {
+            ValidatePoint(to);
+            double dx = (double)to.x - from.x, dy = (double)to.y - from.y;
+            if (dx * dx + dy * dy > MaxSegmentLength * MaxSegmentLength)
+                throw new ArgumentOutOfRangeException(nameof(to), "Split brush segments longer than 4096 pixels.");
+        }
+
+        static void Finite(float value, string name)
+        {
+            if (float.IsNaN(value) || float.IsInfinity(value))
+                throw new ArgumentOutOfRangeException(name, "Value must be finite.");
+        }
+    }
+
     public static class InkMath
     {
         public static float Clamp01(float a) => a < 0f ? 0f : a > 1f ? 1f : a;

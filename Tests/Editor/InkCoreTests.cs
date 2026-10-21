@@ -6,6 +6,127 @@ namespace ConnectPiece.SumiEngine.Tests
     public class InkCoreTests
     {
         [Test]
+        public void InvalidBeginAndAppendPreserveActiveStrokeAndPixels()
+        {
+            var engine = new SumiEngineCore(64, 64);
+            engine.BeginStroke(new InkPoint(32, 32, 0), InkBrushSettings.Vein, 1);
+            float before = engine.Paper.TotalPigment();
+            var bad = new InkPoint { x = float.NaN, y = 32, time = 0, pressure = 1 };
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => engine.BeginStroke(bad, InkBrushSettings.Vein, 2));
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => engine.AppendPoint(bad));
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => engine.AppendPoint(new InkPoint(float.MaxValue, 0, 0)));
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => engine.AppendPoint(new InkPoint(8192, 0, 0)));
+            var settings = InkBrushSettings.Vein; settings.radius = float.PositiveInfinity;
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => engine.BeginStroke(new InkPoint(1, 1, 0), settings, 2));
+            Assert.AreEqual(before, engine.Paper.TotalPigment());
+            Assert.AreEqual(0, engine.Session.strokes.Count);
+            engine.AppendPoint(new InkPoint(40, 32, .1f)); engine.EndStroke();
+            Assert.AreEqual(1, engine.Session.strokes.Count);
+            Assert.AreEqual(1, engine.Session.strokes[0].seed);
+            Assert.AreEqual(2, engine.Session.strokes[0].points.Count);
+        }
+
+        [Test]
+        public void InvalidDirectBrushCommandPreservesActiveBrush()
+        {
+            var paper = new InkPaper(64, 64);
+            var brush = new InkBrush(paper);
+            brush.Begin(new InkPoint(32, 32, 0), InkBrushSettings.Vein, 1);
+            float before = paper.TotalPigment();
+            var bad = new InkPoint { x = 32, y = 32, time = float.NaN, pressure = 1 };
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => brush.Begin(bad, InkBrushSettings.Vein, 2));
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => brush.Move(bad));
+            Assert.IsTrue(brush.Active);
+            Assert.AreEqual(before, paper.TotalPigment());
+            brush.Move(new InkPoint(40, 32, .1f));
+            Assert.Greater(paper.TotalPigment(), before);
+        }
+
+        [Test]
+        public void InvalidReplayAndBezierPreserveHistoryAndPixels()
+        {
+            var engine = new SumiEngineCore(64, 64);
+            engine.BeginStroke(new InkPoint(32, 32, 0), InkBrushSettings.Vein, 1); engine.EndStroke();
+            float before = engine.Paper.TotalPigment();
+            var invalid = new InkSession { width = 64, height = 64, paperSeed = 2026 };
+            invalid.strokes.Add(new InkStrokeRecord { brush = InkBrushSettings.Vein });
+            invalid.strokes[0].points.Add(new InkPoint(float.MaxValue, 0, 0));
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => engine.Replay(invalid));
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => engine.DrawBezier(new InkPoint(0, 0, 0), new InkPoint(float.MaxValue, 0, 0), new InkPoint(0, 0, 0), new InkPoint(0, 0, 0), InkBrushSettings.Vein, 1));
+            Assert.AreEqual(before, engine.Paper.TotalPigment());
+            Assert.AreEqual(1, engine.Session.strokes.Count);
+        }
+
+        [Test]
+        public void ReplayOwnSessionReproducesPixelsAfterVerticalStroke()
+        {
+            var engine = new SumiEngineCore(64, 64);
+            engine.BeginStroke(new InkPoint(32, 10, 0), InkBrushSettings.Slash, 100);
+            engine.AppendPoint(new InkPoint(32, 50, .2f)); engine.EndStroke();
+            var before = new byte[64 * 64 * 4]; var after = new byte[before.Length];
+            engine.Paper.RenderRgba(before);
+            engine.Replay(engine.Session);
+            engine.Paper.RenderRgba(after);
+            CollectionAssert.AreEqual(before, after);
+        }
+
+        [Test]
+        public void ClearRestoresFreshBrushOrientation()
+        {
+            var used = new SumiEngineCore(64, 64);
+            used.BeginStroke(new InkPoint(32, 10, 0), InkBrushSettings.Slash, 100);
+            used.AppendPoint(new InkPoint(32, 50, .2f)); used.EndStroke(); used.Clear();
+            var fresh = new SumiEngineCore(64, 64);
+            foreach (var engine in new[] { used, fresh })
+            {
+                engine.BeginStroke(new InkPoint(32, 32, 0), InkBrushSettings.Slash, 100);
+                engine.EndStroke();
+            }
+            var a = new byte[64 * 64 * 4]; var b = new byte[a.Length];
+            used.Paper.RenderRgba(a); fresh.Paper.RenderRgba(b);
+            CollectionAssert.AreEqual(a, b);
+        }
+
+        [Test]
+        public void NegativeWaterIsClampedBeforeDeposit()
+        {
+            var paper = new InkPaper(32, 32);
+            paper.Deposit(16, 16, 8, .8f, -10, .2f, 3);
+            for (int y = 0; y < 32; y++)
+                for (int x = 0; x < 32; x++) Assert.AreEqual(0f, paper.MoistureAt(x, y));
+        }
+
+        [Test]
+        public void NegativeSimulationRateIsRejectedBeforeMutation()
+        {
+            var paper = new InkPaper(32, 32);
+            paper.Deposit(16, 16, 8, .8f, .8f, .2f, 3);
+            float before = paper.TotalPigment();
+            paper.Binding = -1;
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => paper.Step(.1f));
+            Assert.AreEqual(before, paper.TotalPigment());
+        }
+
+        [Test]
+        public void NonfiniteInputsAndExcessiveStepAreRejected()
+        {
+            var paper = new InkPaper(32, 32);
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => paper.Deposit(float.NaN, 16, 8, .8f, .8f, .2f, 3));
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => paper.Step(float.PositiveInfinity));
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => paper.Step(float.MaxValue));
+            Assert.AreEqual(0f, paper.TotalPigment());
+        }
+
+        [Test]
+        public void ExtremeFiniteRadiusDepositsWithoutOverflow()
+        {
+            var paper = new InkPaper(32, 32);
+            paper.Deposit(16, 16, float.MaxValue, .8f, .8f, .2f, 3);
+            Assert.Greater(paper.TotalPigment(), 0f);
+            Assert.IsFalse(float.IsNaN(paper.TotalPigment()));
+        }
+
+        [Test]
         public void BeginStrokeDepositsPigment()
         {
             var e = new SumiEngineCore(64, 64);
@@ -23,8 +144,10 @@ namespace ConnectPiece.SumiEngine.Tests
                 for (int x = 0; x < paper.Width; x++)
                     Assert.GreaterOrEqual(paper.PigmentAt(x, y), 0f);
         }
-        [Test]
-        public void SameSeedAndPointsReproducePixelBuffer()
+        [TestCase(32)]
+        [TestCase(-17)]
+        [TestCase(int.MaxValue)]
+        public void SameSeedAndPointsReproducePixelBuffer(int strokeSeed)
         {
             var a = new SumiEngineCore(64, 64, 5);
             var b = new SumiEngineCore(64, 64, 5);
@@ -32,7 +155,7 @@ namespace ConnectPiece.SumiEngine.Tests
             {
                 engine.DrawBezier(new InkPoint(4, 8, 0f, .4f),
                   new InkPoint(15, 40, .1f, .9f), new InkPoint(45, 55, .2f, .8f),
-                  new InkPoint(60, 10, .3f, .2f), InkBrushSettings.Slash, 32);
+                  new InkPoint(60, 10, .3f, .2f), InkBrushSettings.Slash, strokeSeed);
                 engine.Step(.2f);
             }
             var ab = new byte[64*64*4]; var bb = new byte[ab.Length];

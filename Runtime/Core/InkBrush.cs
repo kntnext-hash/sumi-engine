@@ -20,6 +20,8 @@ namespace ConnectPiece.SumiEngine.Core
 
         public void Begin(InkPoint start, InkBrushSettings brush, int strokeSeed)
         {
+            InkInput.ValidatePoint(start);
+            InkInput.ValidateSettings(brush);
             if (Active) End();
             settings = brush; settings.bristleCount = Math.Max(3, Math.Min(31, brush.bristleCount));
             settings.radius = Math.Max(.6f, brush.radius);
@@ -27,6 +29,9 @@ namespace ConnectPiece.SumiEngine.Core
             settings.water = InkMath.Clamp01(brush.water);
             settings.roughness = InkMath.Clamp01(brush.roughness);
             settings.bristleSpread = InkMath.Clamp01(brush.bristleSpread);
+            settings.depletion = InkMath.Clamp01(brush.depletion);
+            // Each stroke starts from the same head orientation, including after Clear/Replay.
+            normalX = 0f; normalY = 1f;
             seed = strokeSeed; last = start;
             reservoir = new float[settings.bristleCount];
             wobble = new float[settings.bristleCount];
@@ -42,7 +47,9 @@ namespace ConnectPiece.SumiEngine.Core
 
         public void Move(InkPoint next)
         {
+            InkInput.ValidatePoint(next);
             if (!Active) return;
+            InkInput.ValidateSegment(last, next);
             float dx = next.x - last.x, dy = next.y - last.y;
             float dist = InkMath.Sqrt(dx * dx + dy * dy);
             if (dist < .0001f) { last = next; return; }
