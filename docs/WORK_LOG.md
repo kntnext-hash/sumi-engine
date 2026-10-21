@@ -44,3 +44,9 @@
 - CSV1-60の5数値列300値と60ボス指定を独立再計算。一致、最大絶対誤差4.966580036125379e-7（6桁丸め範囲）。連番と仮説ラベルも確認。
 - 実装開始票の120条件を3方針×4購入戦略×10seedへ更新。実効DPS/カバー/漏敵率/周回効率を追加。ASSUMPTIONS.md作成。
 - 原本の構成例/Sealは現実装とは区別。描画コード変更なし。Unity/ゲーム実走なし。
+## 2026-10-21 描画完成依頼の環境再確認
+- 開始HEAD: 38e6a6c、作業ツリーclean。最新の指定文書、ソース/テスト一覧、CODEX_UNITY_SETUPを確認。
+- 実ユーザー側の公式CLIでstatus（UnitySandbox絶対パス指定）: STATUS_NO_INSTANCES。pipeline list: totalInstances/runningInstances/reachableServersすべて0。editors --installed: data=[]。
+- sandbox内LOCALAPPDATAは別配置のためCLIを解決できず、実ユーザーのWindowsApps/unity.exeを指定して上記を取得。CLI不在とEditor不在を区別した。
+- P0-02〜05はBLOCKED継続。Unity compile/EditMode/PlayMode/画面/PNGはNOT RUN。純C#の既存合格テストは再実行していない。
+- 次: 人がUnity 6.3 LTS Editor導入とログイン/ライセンス有効化を完了後、実在EditorパスでSetup-UnitySandboxを実行し、コンパイル→EditMode→Brush Lab入力/PNG/Consoleを確認する。管理者操作・認証で停止する規約に従い導入の再試行なし。

@@ -67,3 +67,9 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - 対象: BOKUMYAKU_WAVE_BASELINE_v0.2.csv、Wave1-60/60行。原本SHA256はevidence/wave-baseline-review.json。
 - S/独立数式計算: HP/出現率/9秒期待数/基本HP流入/速度の300値、ボス指定60件、Wave連番/仮説ラベルが一致。許容差5.01e-7、最大絶対誤差4.966580036125379e-7。
 - 原本CSV・引継ぎMDは変更なし。式への一致であり、The Tower実測や墨脈バランス/120走/Unity試験ではない。
+## 2026-10-21 描画完成依頼の環境再確認
+- 開始HEAD: 38e6a6c、作業ツリーclean。最新の指定文書、ソース/テスト一覧、CODEX_UNITY_SETUPを確認。
+- 実ユーザー側の公式CLIでstatus（UnitySandbox絶対パス指定）: STATUS_NO_INSTANCES。pipeline list: totalInstances/runningInstances/reachableServersすべて0。editors --installed: data=[]。
+- sandbox内LOCALAPPDATAは別配置のためCLIを解決できず、実ユーザーのWindowsApps/unity.exeを指定して上記を取得。CLI不在とEditor不在を区別した。
+- P0-02〜05はBLOCKED継続。Unity compile/EditMode/PlayMode/画面/PNGはNOT RUN。純C#の既存合格テストは再実行していない。
+- 次: 人がUnity 6.3 LTS Editor導入とログイン/ライセンス有効化を完了後、実在EditorパスでSetup-UnitySandboxを実行し、コンパイル→EditMode→Brush Lab入力/PNG/Consoleを確認する。管理者操作・認証で停止する規約に従い導入の再試行なし。

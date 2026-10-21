@@ -64,3 +64,9 @@ P0-02〜05を合格に変更しない。ENV-03解消後、ENV-04と既存Brush L
 - G5は10seed×3成長方針×4購入戦略=120条件へ更新（再走による水増しではない）。恒久設定5種の比較は後続600条件。
 - 5敵/自然敗北までのGate A/B評価を完了前提とする。3敵/20Waveの中間増分だけでは達成としない。
 - 仕様未確定点はASSUMPTIONS.md。CSV1-60の数値照合合格は戦闘・経済の合格を意味しない。
+## 2026-10-21 描画完成依頼の環境再確認
+- 開始HEAD: 38e6a6c、作業ツリーclean。最新の指定文書、ソース/テスト一覧、CODEX_UNITY_SETUPを確認。
+- 実ユーザー側の公式CLIでstatus（UnitySandbox絶対パス指定）: STATUS_NO_INSTANCES。pipeline list: totalInstances/runningInstances/reachableServersすべて0。editors --installed: data=[]。
+- sandbox内LOCALAPPDATAは別配置のためCLIを解決できず、実ユーザーのWindowsApps/unity.exeを指定して上記を取得。CLI不在とEditor不在を区別した。
+- P0-02〜05はBLOCKED継続。Unity compile/EditMode/PlayMode/画面/PNGはNOT RUN。純C#の既存合格テストは再実行していない。
+- 次: 人がUnity 6.3 LTS Editor導入とログイン/ライセンス有効化を完了後、実在EditorパスでSetup-UnitySandboxを実行し、コンパイル→EditMode→Brush Lab入力/PNG/Consoleを確認する。管理者操作・認証で停止する規約に従い導入の再試行なし。
