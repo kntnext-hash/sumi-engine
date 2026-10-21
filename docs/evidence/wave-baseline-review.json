@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-21 JST",
+  "classification": "CSV versus BOKUMYAKU GDD equations; not game or Unity validation",
+  "rows": 60,
+  "range": [
+    1,
+    60
+  ],
+  "numericComparisons": 300,
+  "tolerance": 5.01e-7,
+  "maxAbsoluteError": 4.966580036125379e-7,
+  "bossFlagComparisons": 60,
+  "failures": [],
+  "sourceHashes": [
+    {
+      "Path": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\THE_TOWER_TO_BOKUMYAKU_REVERSE_ENGINEERING_HANDOFF.md",
+      "Hash": "27C0699A808BE9A174A3B29477E552DF38780BA35E3F3907E905986D49DA797B"
+    },
+    {
+      "Path": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\BOKUMYAKU_WAVE_BASELINE_v0.2.csv",
+      "Hash": "F62D6989A9F946012D597B24694CE48E569B4A516848D301BA5645A7B5725D42"
+    }
+  ]
+}

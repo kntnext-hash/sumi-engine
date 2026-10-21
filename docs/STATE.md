@@ -43,3 +43,10 @@
 - [The Tower分析](research/THE_TOWER_SYSTEMS.md): 公式情報から成長、課金、大会の循環を分析。収益や継続の因果は仮説。アプリ/バイナリ/通信解析はしていない。
 - scripts/Test-GameBalance.ps1を実行、421数式検査PASS。docs/evidence/game-balance.jsonへWave/供給表を保存。戦闘シミュレーション・GDD Gate A・P3は未合格。
 - 次のゲーム作業: UnitySandbox作成確認後にG1（Pure C# RunSimulator/出現/敗北）、続いてG2供給・戦闘。描画Coreは別室所有を維持。
+
+## 追加資料確認（2026-10-21）
+- ルートのTHE_TOWER_TO_BOKUMYAKU_REVERSE_ENGINEERING_HANDOFF.mdとBOKUMYAKU_WAVE_BASELINE_v0.2.csvを読取照合、原本維持。
+- CSV Wave1-60、300数値・60ボス指定がGDD式に一致（小数6桁許容差）。docs/evidence/wave-baseline-review.json。
+- 実験計画は10seed×3成長方針×4購入戦略=120条件へ更新。追加資料の90条件を包含。実走は未実施。
+- docs/ASSUMPTIONS.mdへ未知仕様を集約。3敵/20Waveは中間増分、5敵/自然敗北までの本来ゲートは未合格。
+- 次: 未確定な敵構成・成長候補等をbalance.jsonへ明示し、描画から独立したRunSimulatorの実装へ進む。
