@@ -1,0 +1,17 @@
+[
+  {
+    "path": "Builds/BrushLab/SumiBrushLab.exe",
+    "bytes": 667136,
+    "sha256": "EB143EAD6441B6DD9D7D145ADB85410E9389FB3878899AE537E8C9869CCE38FA"
+  },
+  {
+    "path": "Builds/BrushLab/SumiBrushLab_Data/Managed/ConnectPiece.SumiEngine.dll",
+    "bytes": 37888,
+    "sha256": "C668528589BA8E49160CBCE1A2BE1680E1003B7FA19CADF59F63483A9D337841"
+  },
+  {
+    "path": "Builds/SumiBrushLab-v0.2-Windows.zip",
+    "bytes": 34275057,
+    "sha256": "1632DA7240D6949FEC667A61237500460B9FF508CD62755C3E7F2FFC6BD64482"
+  }
+]

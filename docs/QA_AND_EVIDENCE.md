@@ -127,3 +127,15 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - Console: ink-effects-console.json groundTruth consoleErrors0/consoleWarnings0/compilationFailed=false。履歴の以前のテスト失敗/意図的診断エラーは消していない。
 - 指標: ink-effects-preset-metrics.json。単一Editor内の1回の描画17.9〜21.3ms（192x256、1stroke、描画のみ）。包括性能ベンチマークやFPS合格ではない。768x1024の全見本生成+PNGは1回3472ms。
 - 限界: 輪郭/縁は視覚近似、多色混合なし、v1はStep経過を保存しない。モバイル未検証。新UI全slider/旧preset全ボタン/物理フォーカス移動未検証。
+
+## 2026-10-22 v0.2最終QA
+- Compile: Unity6000.3.26f1、最後の背景Camera追加もfailed=false/errors=[]。
+- A: release-editmode.xml total42/pass42/fail0。途中の微小移動試験41/42失敗はrelease-jitter-first-failure.xmlに保存。原因は長い末尾保持と始筆減衰により短線が見えないこと。短線は元圧力で保持点を放出して修正。
+- 追加テストAssetのGUIDが33桁だったため初回34件しか発見されず、32桁GUIDへ修正して全件実行を確認。単なる成功フラグだけで受け入れていない。
+- R/UI: release-ui.json 30/30 PASS。全10preset、Pressure/Radius/Pigment/Water/Roughness/Bristles、紙RGB/色preset/濃度、筆変更の色保持、Clear、実経路内払い、紙外Up、PNG読戻し、15/50stroke見本。GameView.SendEvent使用。focus-lossはhandler直接呼出しでOSフォーカス移動とは異なる。
+- R: release-effects.pngは768x1024のCore出力。release-editor-screen.pngはEditor画面。windows-player/player-screen.pngは実Windows Playerの1280x900画面。画面拡大は出力PNGの解像度を増やさない。
+- Build: release-build.json Succeeded/error0/warning0/90188222 bytes。Windows64、BrushLabシーンのみ。
+- Player: windows-player/player-smoke.json、exit0、frame1→139、50stroke、PNG384x512一致、通常Replay一致。player-paper.pngとplayer-screen.pngを目視。非表示起動のキャプチャは黒画面だったため通常ウィンドウ起動で再検証。画像が黒い状態を成功画面として扱わない。
+- Console: release-console.json groundTruth consoleErrors0/consoleWarnings0/compilationFailed=false。過去の失敗履歴は消していない。
+- Player probeは--sumi-smoke-outputを明示した時だけ起動する検証コード。通常起動では自動描画/終了しない。
+- 未実施: 人による物理マウス長時間操作、モバイル、全解像度性能、別プロジェクトUPM導入。完成範囲はPC描画初版。

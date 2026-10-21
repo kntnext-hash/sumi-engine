@@ -106,3 +106,15 @@
 - 実GameViewへの合成Mouseイベントで新4preset切替、Splatterの1stroke/3points入力、朱色BE3023切替、PNGボタン保存を確認。保存PNG384x512は表示Textureと全画素一致。人の物理マウス・全sliderの手動評価とは区別。
 - 現在Console error/warning0。フレーム1→3021。EditorはBrushLab Play・12セル見本表示、GameView倍率1、背景override解除。元のユーザー描画はlogs/pre-texture-change/painting.pngとstrokes.jsonに保護。
 - 今回の描画機能追加は完了。今後の別ゲート: ユーザーによる筆感レビュー、全物理入力QA、v2時系列再生、性能・モバイル・別プロジェクトUPM配布。ゲームには変更なし。
+
+## 最新: Brush Lab v0.2 Windows初版完成（2026-10-22）
+- 今回の完成範囲はPCで毛筆/淡墨を描き、色・濃さを調整してPNG保存できるBrush Lab。v0.2.0へ更新。Windows実行ファイルとZIPをBuilds/へ生成（Git対象外）。
+- 自動払いは実入力経路内で始終端を細くする。2px未満の手ぶれはタップを維持し、短い線の始終筆が相殺される問題を補正。末尾32点、始筆判定最大201点。記録済みセッション全体の履歴上限は別増分。
+- Dry/Splitの紙面接触と連続毛束を改善。Poolは均一な灰色円と黒縁から、内部濃淡と不均一な縁へ改善。Legacy筆の圧力0描画を修正。
+- 筆を替えても色と表示濃度を保持。PNG保存前に筆を終了し、出力フォルダーを開く操作を追加。Standalone用の背景Cameraも自動生成。
+- Unity6000.3.26f1 compile成功。正式NUnit42/42、実GameView合成イベントのUI30/30。全10preset・全調整slider・色保持・紙外Up・focus-loss handler・PNG読戻し・見本を確認。
+- Windows build Succeeded、error/warning0、約90.19MB。実Player起動でframe1→139、50stroke、Seed Replay/PNG384x512全画素一致、1280x900の実Playerスクリーンショットを目視確認。通常ウィンドウで合格、非表示起動の画面キャプチャは黒くなるため証拠に使わない。
+- 成果物: Builds/BrushLab/SumiBrushLab.exe、Builds/SumiBrushLab-v0.2-Windows.zip。SHA256はdocs/evidence/release-artifacts.json。
+- P0とP1のPC初版受入を合格へ更新。物理マウスによる人の操作は実施したと記録せず、実画面合成入力と手動確認手順を根拠に初版を受け入れる。
+- 今回の対象外: モバイル実機、P2全般（性能保証/別プロジェクトGit導入）、v2拡散時系列再生、ゲームP3。画像の完全一致や物理流体の校正は主張しない。
+- 再開時は機能追加の依頼がなければP2の計測から。元描画はlogs/pre-release-changeにPNG/点列を保護。Editorは非Play、背景override解除済み。

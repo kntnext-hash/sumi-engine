@@ -97,3 +97,11 @@
 - 再compile初回HTTP400はリロード中の応答。statusはcompleted/failed=false、後続compileも成功。コンパイルエラー修正の捏造なし。
 - UIの横幅超過とカメラなし時の文字残像を画像検査で修正。GameView倍率5→1に調整。見本表示で終了、背景override解除。
 - OSS新規コード/画像取り込みなし。ゲーム側ファイル変更なし。証拠はQA_AND_EVIDENCE参照。
+
+## 2026-10-22 v0.2完成作業
+- fc3c90f/cleanから開始。Core入力とRenderingをファイル所有で分担、統合担当が全Unity操作と最終QAを実施。
+- 自動払いと手ぶれ・短線の保持、圧力0、毛束、墨だまり、色保持を仕上げ。42 NUnit PASS。描画対象Cameraを追加してPC実行用の描画先を用意。
+- 全10preset/全sliderほか30項目の実画面合成入力を通した。動的scriptのJsonUtilityがListを省略したためNewtonsoftへ修正し、保持中の実結果を完全保存。
+- Windows64ビルドと実起動、PNG一致・Replay・フレーム進行・画面目視。非表示ウィンドウでは画面が黒くなるため通常ウィンドウで検証完了。失敗を合格に偽装しない。
+- PlayerSettingsはEditor APIでproductName/windowed1280x900/resizableを設定。保存時のUnityによる他プラットフォーム既定値正規化も差分に含むが、それらの実機合格を意味しない。Scene/Prefab YAML直接編集なし。
+- 現在の作品をlogs/pre-release-changeに退避。ゲーム側変更なし。v0.2、README、CHANGELOG、手動確認手順、4台帳を更新。Buildsの実行ファイルとZIPはコミットせずSHA256を証拠に保存。

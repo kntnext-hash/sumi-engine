@@ -1,8 +1,20 @@
 # SUMI ENGINE — Procedural Japanese Ink / Unity UPM
 
-独立した毛筆演算コア（C#）とUnity描画アダプタ。筆圧、速度、仮想毛束、顔料、水分、紙の滲み、乾燥を扱う**開発中の試作コード**です。最初の利用先はゲーム『墨脈 — BOKUMYAKU』ですが、このPackageに敵Waveやゲーム内経済は含めません。
+独立した毛筆演算コア（C#）とUnity描画アダプタ。筆圧、速度、毛束、顔料、水分、紙の滲み、乾燥を扱う **Brush Lab v0.2** です。最初の利用先はゲーム『墨脈 — BOKUMYAKU』ですが、このPackageに敵Waveやゲーム内経済は含めません。
 
-> **status 2026-10-21:** GitHub初期登録済み。純C#の実コンパイル・回帰検証を実施。Unity Editorが未検出のため、Unityコンパイル/PlayMode/実画面/実機は未検証。P0全体は未合格です。
+> **2026-10-22:** Unity 6000.3.26f1でコンパイル・EditMode試験・画面描画を確認。検証結果は [QA台帳](docs/QA_AND_EVIDENCE.md) を参照してください。モバイル実機、ゲーム本体、物理流体の再現は今回の完成範囲に含めません。
+
+## すぐ描く
+
+ローカルWindows版は `Builds/BrushLab/SumiBrushLab.exe`。同じフォルダーのDLLと`SumiBrushLab_Data`も必要です（生成物はGit対象外）。Unityでは `UnitySandbox/Assets/BrushLab/Scenes/BrushLab.unity` を開きPlayしてください。
+
+- 紙をドラッグして描画。Dense＝濃墨、Dry＝乾筆、Split＝割れ筆、Bleed＝滲み、Pool＝墨だまり、Mist＝煙状淡墨、Splatter＝飛沫。
+- Mouse taperはDense/Dry/Splitの始終端を入力経路内で細くします。切るとPressureの指定をそのまま使います。
+- Colors +から墨色・紙色・RGB・表示濃度を変更。既存線も一括再着色します。筆を切り替えても色は維持します。
+- PNGで保存し、Open exported PNG folderで保存先を開きます。
+- Stroke study / Effects studyは現在の紙を置換する比較見本です。必要な絵は先にPNGで保存してください。
+
+表示する滲みや墨だまりは手続き的な視覚表現です。点列v1のReplayは筆設定とSeedを再現しますが、描画間の拡散時間は記録しません。
 
 - 新規Codexセッション: [START_CODEX.md](START_CODEX.md)
 - 完全な引継ぎ: [docs/HANDOFF_CODEX.md](docs/HANDOFF_CODEX.md)
@@ -15,4 +27,4 @@ Unity Package ManagerからGitURLで使用できるよう、`package.json` は**
 
 他リポジトリの素材/コードは同梱していません。公開ライセンスは未決定のため、独断でオープンソースライセンスを付与しないでください。
 
-PowerShell 7で `pwsh -NoProfile -File scripts/Test-Core.ps1` を実行すると、Unityに依存しないCore検証を再実行できます（Unity NUnit試験とは別）。Unity導入後は `scripts/Setup-UnitySandbox.ps1 -UnityEditor '<実在するUnity.exeの絶対パス>'` を実行してください。[Brush Lab手動QA](docs/BRUSH_LAB_MANUAL_QA.md)にセットアップと実画面の受入手順があります。保存シーンはUnityが生成する方式で、現時点では未生成です。
+PowerShell 7で `pwsh -NoProfile -File scripts/Test-Core.ps1` を実行すると、Unityに依存しないCore検証を再実行できます（Unity NUnit試験とは別）。新しい環境では `scripts/Setup-UnitySandbox.ps1 -UnityEditor '<実在するUnity.exeの絶対パス>'` を実行してください。[Brush Lab手動QA](docs/BRUSH_LAB_MANUAL_QA.md)にセットアップと画面の確認手順があります。保存シーンはUnityが生成する方式です。

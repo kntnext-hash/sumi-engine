@@ -46,3 +46,9 @@ Unityを閉じて正確なEditorパスで実行する。テストXMLの失敗件
 - Effects studyの順序は左→右、上→下: 乾筆・割れ・払い／滲み・墨だまり・飛沫／淡墨・煙・円相／枝・垂れ・渦。
 - Colors +のInk/Paperで編集対象を切替。RGB、色プリセット、Display densityは既存線にも適用。PNG保存先は上部表示。
 - 合成入力で新筆切替・ドラッグ・朱色・PNG保存は合格。人の全項目確認は引き続きこの手順で行う。
+
+## v0.2受入済みの確認方法
+- ローカルWindows版: Builds/BrushLab/SumiBrushLab.exe。フォルダー内の関連ファイルも必要。ZIPもBuildsに生成済み。
+- 2026-10-22にGameView合成イベントで30項目を確認。これは人の物理操作結果ではない。手動手順は上記を引き続き利用する。
+- Mouse taperを有効にしてDense/Dry/Splitを描くと、経路内で始筆・終筆が細くなる。微小な手ぶれはタップとして保持。Pressure0は旧3presetを含め無描画。
+- プリセット変更では色/表示濃度を保持する。PNG保存前に現在の筆を終了。Open exported PNG folderで保存先を開く。

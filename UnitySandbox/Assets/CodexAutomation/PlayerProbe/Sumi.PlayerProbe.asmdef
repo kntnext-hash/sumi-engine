@@ -1,0 +1,4 @@
+{
+  "name": "Sumi.PlayerProbe",
+  "references": ["ConnectPiece.SumiEngine"]
+}

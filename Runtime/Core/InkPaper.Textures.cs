@@ -26,25 +26,38 @@ namespace ConnectPiece.SumiEngine.Core
                     float medium = InkMath.SmoothNoise(x / 6f, y / 6f, seed + 11);
                     float fine = InkMath.SmoothNoise(x / 1.7f, y / 1.7f, seed + 19);
                     float cloud = .55f * coarse + .3f * medium + .15f * fine;
-                    float boundary = fiber ? 1f + .08f * (medium - .5f) : .72f + .65f * cloud;
+                    float boundary = fiber ? .94f + .12f * medium + .06f * (fine - .5f) : .72f + .65f * cloud;
                     float q = r / boundary;
                     if (q >= 1f) continue;
                     float coverage;
                     if (fiber)
                     {
                         float across = (dx * nx + dy * ny) / radius;
-                        float along = (-x * ny + y * nx) / 55f;
-                        float hairs = InkMath.SmoothNoise(across * 24f, along, seed + 41);
+                        float along = (-x * ny + y * nx) / 32f;
+                        float hairs = InkMath.SmoothNoise(across * 34f, along, seed + 41);
                         float bundles = InkMath.SmoothNoise(across * style.bristleCount, along * .3f, seed + 73);
-                        coverage = InkMath.Clamp01((hairs - dry * .65f) * 3.5f);
+                        coverage = InkMath.Clamp01((hairs - dry * .73f) * 3.5f);
                         if (style.bristleCount <= 5)
                             coverage *= InkMath.Clamp01((bundles - .36f) * 5f);
-                        coverage *= InkMath.Clamp01((1f - q) * 12f);
+                        // Contact belongs to the paper, so overlapping dabs cannot fill all
+                        // dry gaps. An anisotropic field makes fine longitudinal breaks,
+                        // while the isotropic field leaves irregular exposed paper islands.
+                        float strands = InkMath.SmoothNoise((x * nx + y * ny) / 1.3f,
+                            (-x * ny + y * nx) / 17f, seed + 89);
+                        float contact = .65f * strands + .35f * fine;
+                        float threshold = .08f + .67f * dry;
+                        coverage *= InkMath.Clamp01((contact - threshold) * 7f);
+                        coverage *= InkMath.Clamp01((1f - q) * (7f + 5f * medium));
                     }
                     else if (style.texture == InkTexture.Pool)
                     {
-                        float rim = InkMath.Clamp01(1f - Math.Abs(q - .82f) / .13f);
-                        coverage = (.24f + rim * .75f) * InkMath.Clamp01((1f - q) * 22f);
+                        // A broad, interrupted accumulation band avoids a uniform drawn
+                        // outline. Uneven interior deposits remain visible under layering.
+                        float rimPosition = .77f + .1f * medium;
+                        float rim = InkMath.Clamp01(1f - Math.Abs(q - rimPosition) / .2f);
+                        float interior = .2f + .85f * cloud * cloud + .22f * medium;
+                        float rimLoad = rim * (.12f + .38f * coarse);
+                        coverage = (interior + rimLoad) * InkMath.Clamp01((1f - q) * 13f);
                     }
                     else
                     {

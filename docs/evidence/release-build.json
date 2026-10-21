@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "buildId": "build_0eee0594186d",
+  "result": "Succeeded",
+  "platform": "StandaloneWindows64",
+  "outputPath": "C:/Users/che22/Desktop/SUMI_ENGINE_Codex_Starter/Builds/BrushLab/SumiBrushLab.exe",
+  "totalSizeBytes": 90188222,
+  "buildTimeMs": 6745,
+  "totalErrors": 0,
+  "totalWarnings": 0
+}

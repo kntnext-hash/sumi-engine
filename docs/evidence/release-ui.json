@@ -1,0 +1,158 @@
+{
+  "method": "GameView.SendEvent",
+  "passed": true,
+  "startFrame": 2920,
+  "endFrame": 7428,
+  "checks": [
+    {
+      "name": "Vein",
+      "detail": "Legacy",
+      "passed": true
+    },
+    {
+      "name": "Slash",
+      "detail": "Legacy",
+      "passed": true
+    },
+    {
+      "name": "Bloom",
+      "detail": "Legacy",
+      "passed": true
+    },
+    {
+      "name": "Dense",
+      "detail": "Fiber",
+      "passed": true
+    },
+    {
+      "name": "Dry",
+      "detail": "Fiber",
+      "passed": true
+    },
+    {
+      "name": "Split",
+      "detail": "Fiber",
+      "passed": true
+    },
+    {
+      "name": "Bleed",
+      "detail": "Bleed",
+      "passed": true
+    },
+    {
+      "name": "Pool",
+      "detail": "Pool",
+      "passed": true
+    },
+    {
+      "name": "Mist",
+      "detail": "Mist",
+      "passed": true
+    },
+    {
+      "name": "Splatter",
+      "detail": "Splatter",
+      "passed": true
+    },
+    {
+      "name": "Paper preset",
+      "detail": "FFFFFF",
+      "passed": true
+    },
+    {
+      "name": "Paper R slider",
+      "detail": "0.4354839",
+      "passed": true
+    },
+    {
+      "name": "Paper G slider",
+      "detail": "0.4354839",
+      "passed": true
+    },
+    {
+      "name": "Paper B slider",
+      "detail": "0.4354839",
+      "passed": true
+    },
+    {
+      "name": "Density slider",
+      "detail": "3.322917",
+      "passed": true
+    },
+    {
+      "name": "Vermilion",
+      "detail": "BE3023",
+      "passed": true
+    },
+    {
+      "name": "Preset preserves palette",
+      "detail": "BE3023",
+      "passed": true
+    },
+    {
+      "name": "Clear",
+      "detail": "paper and history",
+      "passed": true
+    },
+    {
+      "name": "Pressure slider",
+      "detail": "0.2539063",
+      "passed": true
+    },
+    {
+      "name": "Radius slider",
+      "detail": "10.37891",
+      "passed": true
+    },
+    {
+      "name": "Pigment slider",
+      "detail": "0.375",
+      "passed": true
+    },
+    {
+      "name": "Water slider",
+      "detail": "0.4083333",
+      "passed": true
+    },
+    {
+      "name": "Roughness slider",
+      "detail": "0.375",
+      "passed": true
+    },
+    {
+      "name": "Bristles slider",
+      "detail": "12",
+      "passed": true
+    },
+    {
+      "name": "Mouse taper path",
+      "detail": "strokes=1, active=False",
+      "passed": true
+    },
+    {
+      "name": "Release outside paper",
+      "detail": "input ended",
+      "passed": true
+    },
+    {
+      "name": "Focus-loss handler",
+      "detail": "handler invoked; not OS focus simulation",
+      "passed": true
+    },
+    {
+      "name": "PNG button round trip",
+      "detail": "Saved: C:/Users/che22/AppData/LocalLow/DefaultCompany/SUMI Brush Lab\\SUMI_20261022_010502_767_5bdf0036640e40179956723b9f242a06.png",
+      "passed": true
+    },
+    {
+      "name": "Stroke study",
+      "detail": "count=15",
+      "passed": true
+    },
+    {
+      "name": "Effects study",
+      "detail": "count=50",
+      "passed": true
+    }
+  ]
+}

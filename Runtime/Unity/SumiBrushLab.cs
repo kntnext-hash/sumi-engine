@@ -13,6 +13,7 @@ namespace ConnectPiece.SumiEngine
     public sealed class SumiBrushLab : MonoBehaviour
     {
         SumiCanvas canvas;
+        InkPointerStroke pointer;
         InkBrushSettings current;
         bool drawing;
         int nextSeed = 100;
@@ -21,11 +22,27 @@ namespace ConnectPiece.SumiEngine
         string status = "Drag on the paper to paint";
         Vector2 controlsScroll;
         bool showColors, editPaper;
+        bool autoTaper = true;
         Rect paperRect;
         void Start()
         {
             canvas = GetComponent<SumiCanvas>();
             canvas.Initialize();
+            // A standalone Player needs a render surface even in this IMGUI-only demo.
+            if (Camera.allCamerasCount == 0)
+            {
+                var background = new GameObject("SUMI Brush Lab Camera");
+                background.transform.SetParent(transform, false);
+                var camera = background.AddComponent<Camera>();
+                camera.clearFlags = CameraClearFlags.SolidColor;
+                camera.backgroundColor = new Color(.055f, .06f, .065f, 1f);
+                camera.cullingMask = 0;
+                camera.orthographic = true;
+                camera.depth = -100f;
+            }
+            pointer = new InkPointerStroke(canvas.Core);
+            canvas.displayDensity = 7f;
+            canvas.inkColor = new Color32(12, 12, 13, 255);
             SelectStudyBrush(InkBrushSettings.Dense);
         }
         void Update() { clock += Time.unscaledDeltaTime; }
@@ -40,7 +57,7 @@ namespace ConnectPiece.SumiEngine
             GUI.color = previousColor;
             GUI.skin.label.fontSize = 13;
             int margin = 16;
-            GUI.Label(new Rect(margin, 10, Screen.width - 32, 24), "SUMI ENGINE / BRUSH LAB  v0.1");
+            GUI.Label(new Rect(margin, 10, Screen.width - 32, 24), "SUMI ENGINE / BRUSH LAB  v0.2");
             GUI.Label(new Rect(margin, 33, Screen.width - 32, 20), status);
             float controlsHeight = Mathf.Min(222f, Screen.height * .45f);
             float controlsTop = Screen.height - controlsHeight - 10f;
@@ -61,9 +78,9 @@ namespace ConnectPiece.SumiEngine
             GUILayout.BeginArea(controls, GUI.skin.box);
             controlsScroll = GUILayout.BeginScrollView(controlsScroll);
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Vein")) current = InkBrushSettings.Vein;
-            if (GUILayout.Button("Slash")) current = InkBrushSettings.Slash;
-            if (GUILayout.Button("Bloom")) current = InkBrushSettings.Bloom;
+            if (GUILayout.Button("Vein")) SelectStudyBrush(InkBrushSettings.Vein);
+            if (GUILayout.Button("Slash")) SelectStudyBrush(InkBrushSettings.Slash);
+            if (GUILayout.Button("Bloom")) SelectStudyBrush(InkBrushSettings.Bloom);
             GUILayout.EndHorizontal();
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Dense")) SelectStudyBrush(InkBrushSettings.Dense);
@@ -76,10 +93,10 @@ namespace ConnectPiece.SumiEngine
             if (GUILayout.Button("Mist")) SelectStudyBrush(InkBrushSettings.Mist);
             if (GUILayout.Button("Splatter")) SelectStudyBrush(InkBrushSettings.Splatter);
             GUILayout.EndHorizontal();
-            if (GUILayout.Button("Stroke study (replaces paper)")) { StopDrawing(); InkStudy.Draw(canvas.Core); canvas.displayDensity = 7f; canvas.inkColor = new Color32(12, 12, 13, 255); canvas.Upload(); }
+            if (GUILayout.Button("Stroke study (replaces paper)")) { StopDrawing(); InkStudy.Draw(canvas.Core); canvas.Upload(); }
             if (GUILayout.Button("Effects study (replaces paper)"))
             {
-                StopDrawing(); InkStudy.DrawEffects(canvas.Core); canvas.displayDensity = 7f;
+                StopDrawing(); InkStudy.DrawEffects(canvas.Core);
                 canvas.Upload(); status = "Dry / Split / Taper | Bleed / Pool / Splatter | Wash / Mist / Enso | Branch / Drips / Spiral";
             }
             GUILayout.BeginHorizontal();
@@ -88,6 +105,7 @@ namespace ConnectPiece.SumiEngine
             if (GUILayout.Button(showColors ? "Colors -" : "Colors +")) showColors = !showColors;
             GUILayout.EndHorizontal();
             if (showColors) DrawColorControls();
+            autoTaper = GUILayout.Toggle(autoTaper, "Mouse taper (within drawn path)");
             GUILayout.Label($"Pressure: {pressure:0.00}");
             pressure = GUILayout.HorizontalSlider(pressure, 0f, 1f);
             GUILayout.Label($"Brush radius: {current.radius:0.0}");
@@ -102,6 +120,8 @@ namespace ConnectPiece.SumiEngine
             current.roughness = GUILayout.HorizontalSlider(current.roughness, 0f, 1f);
             current.bristleCount = Mathf.RoundToInt(GUILayout.HorizontalSlider(current.bristleCount, 3f, 25f));
             GUILayout.EndHorizontal();
+            if (GUILayout.Button("Open exported PNG folder"))
+                Application.OpenURL(new Uri(Application.persistentDataPath + Path.DirectorySeparatorChar).AbsoluteUri);
             GUILayout.EndScrollView();
             GUILayout.EndArea();
 
@@ -111,17 +131,17 @@ namespace ConnectPiece.SumiEngine
                 if (e.type == EventType.MouseDown && e.button == 0 && paperRect.Contains(e.mousePosition))
                 {
                     drawing = true;
-                    canvas.Begin(MapPoint(e.mousePosition), current, nextSeed++);
+                    pointer.Begin(MapPoint(e.mousePosition), current, nextSeed++, autoTaper && current.texture == InkTexture.Fiber);
                     e.Use();
                 }
                 else if (e.type == EventType.MouseDrag && drawing)
                 {
-                    canvas.Move(MapPoint(e.mousePosition));
+                    pointer.Move(MapPoint(e.mousePosition));
                     e.Use();
                 }
                 else if (e.type == EventType.MouseUp && drawing && e.button == 0)
                 {
-                    canvas.Move(MapPoint(e.mousePosition));
+                    pointer.Move(MapPoint(e.mousePosition));
                     StopDrawing(); e.Use();
                 }
             }
@@ -132,12 +152,10 @@ namespace ConnectPiece.SumiEngine
             float y = (1f - Mathf.Clamp01((position.y - paperRect.y) / paperRect.height)) * (canvas.height - 1);
             return new InkPoint(x, y, clock, pressure);
         }
-        void StopDrawing() { canvas?.End(); drawing = false; }
+        void StopDrawing() { pointer?.End(); canvas?.End(); drawing = false; }
         void SelectStudyBrush(InkBrushSettings brush)
         {
             current = brush;
-            canvas.displayDensity = 7f;
-            canvas.inkColor = new Color32(12, 12, 13, 255);
             status = current.texture + ": drag to paint; Colors controls the whole paper";
         }
         void DrawColorControls()
@@ -188,6 +206,7 @@ namespace ConnectPiece.SumiEngine
         void OnApplicationFocus(bool focused) { if (!focused) StopDrawing(); }
         void SavePng()
         {
+            StopDrawing();
             string name = $"SUMI_{DateTime.Now:yyyyMMdd_HHmmss_fff}_{Guid.NewGuid():N}.png";
             string path = Path.Combine(Application.persistentDataPath, name);
             try { File.WriteAllBytes(path, canvas.ExportPng()); status = $"Saved: {path}"; }

@@ -1,6 +1,6 @@
 {
   "name": "com.connectpiece.sumi-engine",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "displayName": "SUMI ENGINE - Procedural Calligraphy",
   "description": "Reusable CPU brush and paper simulation for Unity. Brush Lab included. No external runtime dependencies.",
   "unity": "6000.0",

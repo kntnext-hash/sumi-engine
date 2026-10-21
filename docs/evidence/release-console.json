@@ -1,0 +1,444 @@
+{
+  "success": true,
+  "command": "command console",
+  "data": {
+    "command": "console",
+    "parameters": {},
+    "result": {
+      "entries": [
+        {
+          "seq": 1,
+          "timestampUtc": "2026-10-21T14:55:08.0352902Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "This project uses Input Manager, which is marked for deprecation. To manage input in your project, use the <a href=\"https://docs.unity3d.com/Packages/com.unity.inputsystem@latest\">Input System package</a> instead.",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 2,
+          "timestampUtc": "2026-10-21T14:55:57.9920128Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "ExecuteCommandByName: No command named 'script eval' is available. Did you mean 'script eval'?",
+          "stackTrace": "UnityEngine.Debug:LogError (object)\nUnity.Pipeline.BasePipelineServer:CommandNotFound (Unity.Pipeline.BasePipelineServer/RawCommandMiss) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:3034)\nUnity.Pipeline.BasePipelineServer:ResolveRawCommand (System.Collections.Generic.IReadOnlyList`1<string>,Unity.Pipeline.Commands.CommandIndex) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2971)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Bind (Unity.Pipeline.Commands.CommandRequest,Newtonsoft.Json.Linq.JObject&) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:61)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Execute (Unity.Pipeline.Commands.CommandRequest) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:27)\nUnity.Pipeline.BasePipelineServer/<HandleExecRequest>d__148:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2462)\nSystem.Threading._ThreadPoolWaitCallback:PerformWaitCallback ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 3,
+          "timestampUtc": "2026-10-21T14:56:39.0833845Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "SUMI_AUTOMATION_SCENE_CREATED: Assets/CodexAutomation/Scenes/ConnectionTest.unity roots=4",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nSumi.Automation.Editor.AutomationScene:Generate () (at Assets/CodexAutomation/Editor/AutomationScene.cs:40)\nPipelineEvaluation.PipelineEval_8fe71c94:Execute ()\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Compilation.EvalCodeCompiler:ExecuteCompiledAssembly (System.Reflection.Assembly) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Compilation/EvalCodeCompiler.cs:190)\nUnity.Pipeline.Compilation.EvalCodeCompiler:CompileAndExecuteOnMainThread (string,System.TimeSpan,System.Diagnostics.Stopwatch) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Compilation/EvalCodeCompiler.cs:54)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:EvaluateSource (string,System.TimeSpan,string) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Commands/CodeEvalCommand.cs:97)\nUnity.Pipeline.Runtime.Commands.CodeEvalCommand:Eval (string,double) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Commands/CodeEvalCommand.cs:26)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 4,
+          "timestampUtc": "2026-10-21T14:57:35.771197Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "ExecuteCommandByName: No command named 'test run' is available. Did you mean 'test run'?",
+          "stackTrace": "UnityEngine.Debug:LogError (object)\nUnity.Pipeline.BasePipelineServer:CommandNotFound (Unity.Pipeline.BasePipelineServer/RawCommandMiss) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:3034)\nUnity.Pipeline.BasePipelineServer:ResolveRawCommand (System.Collections.Generic.IReadOnlyList`1<string>,Unity.Pipeline.Commands.CommandIndex) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2971)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Bind (Unity.Pipeline.Commands.CommandRequest,Newtonsoft.Json.Linq.JObject&) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:61)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Execute (Unity.Pipeline.Commands.CommandRequest) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:27)\nUnity.Pipeline.BasePipelineServer/<HandleExecRequest>d__148:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2462)\nSystem.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<int>:SetResult (int)\nUnity.Pipeline.MaxLengthStream/<ReadAsync>d__6:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/MaxLengthStream.cs:46)\nSystem.Threading._ThreadPoolWaitCallback:PerformWaitCallback ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 5,
+          "timestampUtc": "2026-10-21T14:57:36.538318Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "ExecuteCommandByName: No command named 'console status' is available. Did you mean 'console status'?",
+          "stackTrace": "UnityEngine.Debug:LogError (object)\nUnity.Pipeline.BasePipelineServer:CommandNotFound (Unity.Pipeline.BasePipelineServer/RawCommandMiss) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:3034)\nUnity.Pipeline.BasePipelineServer:ResolveRawCommand (System.Collections.Generic.IReadOnlyList`1<string>,Unity.Pipeline.Commands.CommandIndex) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2971)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Bind (Unity.Pipeline.Commands.CommandRequest,Newtonsoft.Json.Linq.JObject&) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:61)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Execute (Unity.Pipeline.Commands.CommandRequest) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:27)\nUnity.Pipeline.BasePipelineServer/<HandleExecRequest>d__148:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2462)\nSystem.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<int>:SetResult (int)\nUnity.Pipeline.MaxLengthStream/<ReadAsync>d__6:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/MaxLengthStream.cs:46)\nSystem.Threading._ThreadPoolWaitCallback:PerformWaitCallback ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 6,
+          "timestampUtc": "2026-10-21T14:57:38.2008725Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Editor is already in edit mode",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nUnity.Pipeline.Editor.Commands.PlayModeCommands:Stop () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Commands/PlayModeCommands.cs:73)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 7,
+          "timestampUtc": "2026-10-21T14:57:43.8815351Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 18 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 8,
+          "timestampUtc": "2026-10-21T14:57:44.0315633Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 18 total, 18 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Testing/TestResultCollector.cs:106)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 9,
+          "timestampUtc": "2026-10-21T14:57:53.6798138Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "ExecuteCommandByName: No command named 'console --level' is available. Run 'unity command' to list the commands this instance exposes.",
+          "stackTrace": "UnityEngine.Debug:LogError (object)\nUnity.Pipeline.BasePipelineServer:CommandNotFound (Unity.Pipeline.BasePipelineServer/RawCommandMiss) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:3034)\nUnity.Pipeline.BasePipelineServer:ResolveRawCommand (System.Collections.Generic.IReadOnlyList`1<string>,Unity.Pipeline.Commands.CommandIndex) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2971)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Bind (Unity.Pipeline.Commands.CommandRequest,Newtonsoft.Json.Linq.JObject&) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:61)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Execute (Unity.Pipeline.Commands.CommandRequest) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:27)\nUnity.Pipeline.BasePipelineServer/<HandleExecRequest>d__148:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2462)\nSystem.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<int>:SetResult (int)\nUnity.Pipeline.MaxLengthStream/<ReadAsync>d__6:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/MaxLengthStream.cs:46)\nSystem.Threading._ThreadPoolWaitCallback:PerformWaitCallback ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 10,
+          "timestampUtc": "2026-10-21T14:58:23.4118303Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Editor is already in play mode",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nUnity.Pipeline.Editor.Commands.PlayModeCommands:Start () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Commands/PlayModeCommands.cs:22)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 11,
+          "timestampUtc": "2026-10-21T14:58:33.5881693Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "Editor is already in edit mode",
+          "stackTrace": "UnityEngine.Debug:LogWarning (object)\nUnity.Pipeline.Editor.Commands.PlayModeCommands:Stop () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Commands/PlayModeCommands.cs:73)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 12,
+          "timestampUtc": "2026-10-21T14:58:49.6660114Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\CodexAutomation\\Runtime\\RepairProbe.cs(1,56): error CS1519: Invalid token 'this' in class, record, struct, or interface member declaration",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 13,
+          "timestampUtc": "2026-10-21T14:58:49.6660114Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\CodexAutomation\\Runtime\\RepairProbe.cs(1,71): error CS1519: Invalid token ';' in class, record, struct, or interface member declaration",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 14,
+          "timestampUtc": "2026-10-21T14:58:50.9451466Z",
+          "level": "warn",
+          "logType": "Warning",
+          "message": "A meta data file (.meta) exists but its asset 'Assets/CodexAutomation/Runtime/RepairProbe.cs' can't be found. When moving or deleting files outside of Unity, please ensure that the corresponding .meta file is moved or deleted along with it.",
+          "stackTrace": "UnityEditor.AssetDatabase:Refresh ()\nUnity.Pipeline.Editor.Commands.RecompileCommand:Recompile (bool) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Commands/RecompileCommand.cs:99)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 15,
+          "timestampUtc": "2026-10-21T14:59:42.3382052Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Reattaching result collector after domain reload",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner:CheckForPendingTests () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Testing/PipelineTestRunner.cs:508)\nUnity.Pipeline.Editor.Testing.PipelineTestReloader:ResumePendingTests () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Testing/PipelineTestReloader.cs:60)\nUnity.Pipeline.Editor.Testing.PipelineTestReloader:CheckForPendingTests () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Testing/PipelineTestReloader.cs:34)\nUnityEditor.EditorApplication:Internal_CallDelayFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 16,
+          "timestampUtc": "2026-10-21T14:59:42.3847022Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 1 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Testing/TestResultCollector.cs:54)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 17,
+          "timestampUtc": "2026-10-21T14:59:42.4667615Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 1 total, 1 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Testing/TestResultCollector.cs:106)\nUnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)\n",
+          "seeded": false
+        },
+        {
+          "seq": 18,
+          "timestampUtc": "2026-10-21T15:00:22.7270762Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[PipelineTestRunner] Running 18 tests (explicit tests excluded)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.PipelineTestRunner/<>c__DisplayClass9_0:<ExecuteTestsInternal>b__0 (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Testing/PipelineTestRunner.cs:359)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 19,
+          "timestampUtc": "2026-10-21T15:00:22.8571577Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 18 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 20,
+          "timestampUtc": "2026-10-21T15:00:23.0001406Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 18 total, 18 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Testing/TestResultCollector.cs:106)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 21,
+          "timestampUtc": "2026-10-21T15:03:41.636086Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run started: 18 test(s)",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Testing/TestResultCollector.cs:54)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 22,
+          "timestampUtc": "2026-10-21T15:03:42.1043126Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "[TestResultCollector] Run finished: 18 total, 18 passed, 0 failed",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.Testing.TestResultCollector:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Testing/TestResultCollector.cs:106)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 23,
+          "timestampUtc": "2026-10-21T15:06:37.3787473Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/rendering-editmode.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 24,
+          "timestampUtc": "2026-10-21T15:06:37.401312Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "SUMI XML: 18 passed / 0 failed -> C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/rendering-editmode.xml",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nRenderingEvidence/Recorder:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at Assets/CodexAutomation/Evidence~/RenderingEvidence.cs:38)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 25,
+          "timestampUtc": "2026-10-21T15:35:12.7974464Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/rendering-color-editmode.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 26,
+          "timestampUtc": "2026-10-21T15:35:12.8215473Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "SUMI XML: 21 passed / 1 failed -> C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/rendering-color-editmode.xml",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nRenderingEvidence/Recorder:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at Assets/CodexAutomation/Evidence~/RenderingEvidence.cs:38)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 27,
+          "timestampUtc": "2026-10-21T15:38:23.4706538Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/rendering-color-editmode.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 28,
+          "timestampUtc": "2026-10-21T15:38:23.495628Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "SUMI XML: 22 passed / 0 failed -> C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/rendering-color-editmode.xml",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nRenderingEvidence/Recorder:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at Assets/CodexAutomation/Evidence~/RenderingEvidence.cs:38)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 29,
+          "timestampUtc": "2026-10-21T15:39:07.1936245Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/rendering-color-editmode.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 30,
+          "timestampUtc": "2026-10-21T15:39:07.2164246Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "SUMI XML: 23 passed / 0 failed -> C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/rendering-color-editmode.xml",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nRenderingEvidence/Recorder:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at Assets/CodexAutomation/Evidence~/RenderingEvidence.cs:38)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 31,
+          "timestampUtc": "2026-10-21T15:44:17.1013728Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/rendering-effects-editmode.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 32,
+          "timestampUtc": "2026-10-21T15:44:17.1225793Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "SUMI XML: 31 passed / 0 failed -> C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/rendering-effects-editmode.xml",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nRenderingEvidence/Recorder:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at Assets/CodexAutomation/Evidence~/RenderingEvidence.cs:38)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 33,
+          "timestampUtc": "2026-10-21T15:56:01.0061313Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "ExecuteCommandByName: No command named 'run' is available. 'run' names several commands; run one of: build run, script run, test run.",
+          "stackTrace": "UnityEngine.Debug:LogError (object)\nUnity.Pipeline.BasePipelineServer:CommandNotFound (Unity.Pipeline.BasePipelineServer/RawCommandMiss) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:3034)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Bind (Unity.Pipeline.Commands.CommandRequest,Newtonsoft.Json.Linq.JObject&) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:78)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Execute (Unity.Pipeline.Commands.CommandRequest) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:27)\nUnity.Pipeline.BasePipelineServer/<HandleExecRequest>d__148:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2462)\nSystem.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<int>:SetResult (int)\nUnity.Pipeline.MaxLengthStream/<ReadAsync>d__6:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/MaxLengthStream.cs:46)\nSystem.Threading._ThreadPoolWaitCallback:PerformWaitCallback ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 34,
+          "timestampUtc": "2026-10-21T15:57:35.8585004Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "The .meta file Packages/com.connectpiece.sumi-engine/Tests/Editor/InkPointerStrokeTests.cs.meta does not have a valid GUID and its corresponding Asset file will be ignored. If this file is not malformed, please add a GUID, or delete the .meta file and it will be recreated correctly",
+          "stackTrace": "UnityEditor.AssetDatabase:Refresh ()\nUnity.Pipeline.Editor.Commands.RecompileCommand:Recompile (bool) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Commands/RecompileCommand.cs:99)\nSystem.Reflection.MethodBase:Invoke (object,object[])\nUnity.Pipeline.Commands.DefaultCommandQueue:InvokeDirect (Unity.Pipeline.Commands.CommandContext,Unity.Pipeline.Commands.CommandInfo,object[]) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:487)\nUnity.Pipeline.Commands.DefaultCommandQueue/<>c__DisplayClass19_0:<Invoke>b__1 () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandQueue/DefaultCommandQueue.cs:409)\nUnity.Pipeline.Threading.Dispatcher/WorkItem`1<object>:ExecuteCore () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:342)\nUnity.Pipeline.Threading.Dispatcher/WorkItem:Execute () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:285)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue (int) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:251)\nUnity.Pipeline.Threading.Dispatcher:ProcessWorkQueue () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/Dispatcher.cs:266)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 35,
+          "timestampUtc": "2026-10-21T15:57:58.2766575Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/release-editmode.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 36,
+          "timestampUtc": "2026-10-21T15:57:58.340344Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "SUMI XML: 34 passed / 0 failed -> C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/release-editmode.xml",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nRenderingEvidence/Recorder:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at Assets/CodexAutomation/Evidence~/RenderingEvidence.cs:38)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 37,
+          "timestampUtc": "2026-10-21T15:58:50.547098Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/release-editmode.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 38,
+          "timestampUtc": "2026-10-21T15:58:50.5744139Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "SUMI XML: 38 passed / 0 failed -> C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/release-editmode.xml",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nRenderingEvidence/Recorder:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at Assets/CodexAutomation/Evidence~/RenderingEvidence.cs:38)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 39,
+          "timestampUtc": "2026-10-21T15:59:13.9260013Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Pipeline: this build does not include the Pipeline (Project Settings > Pipeline > Runtime), so its assemblies and settings are excluded from it.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.BuildProcessors.PipelineRuntimeBuildProcessor:Preprocess (UnityEditor.Build.NamedBuildTarget,System.Nullable`1<UnityEditor.BuildOptions>) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/BuildProcessors/PipelineRuntimeBuildProcessor.cs:94)\nUnity.Pipeline.Editor.BuildProcessors.PipelineRuntimeBuildProcessor:OnPreprocessBuild (UnityEditor.Build.BuildCallbackContext) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/BuildProcessors/PipelineRuntimeBuildProcessor.cs:68)\nUnityEditor.BuildPipeline:BuildPlayer (UnityEditor.BuildPlayerOptions)\nUnity.Pipeline.Editor.Commands.Build.BuildCommand:RunBuild (string,UnityEditor.BuildTarget,string,UnityEditor.BuildOptions,string[],string) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Commands/Build/BuildCommand.cs:337)\nUnity.Pipeline.Editor.Commands.Build.BuildCommand:OnUpdate () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Commands/Build/BuildCommand.cs:289)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 40,
+          "timestampUtc": "2026-10-21T16:01:52.5114876Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/release-editmode.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 41,
+          "timestampUtc": "2026-10-21T16:01:52.5591993Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "SUMI XML: 41 passed / 1 failed -> C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/release-editmode.xml",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nRenderingEvidence/Recorder:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at Assets/CodexAutomation/Evidence~/RenderingEvidence.cs:38)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 42,
+          "timestampUtc": "2026-10-21T16:04:18.2166836Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Saving results to: C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/release-editmode.xml",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 43,
+          "timestampUtc": "2026-10-21T16:04:18.2377736Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "SUMI XML: 42 passed / 0 failed -> C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\docs/evidence/release-editmode.xml",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nRenderingEvidence/Recorder:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at Assets/CodexAutomation/Evidence~/RenderingEvidence.cs:38)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 44,
+          "timestampUtc": "2026-10-21T16:05:47.8541511Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Pipeline: this build does not include the Pipeline (Project Settings > Pipeline > Runtime), so its assemblies and settings are excluded from it.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.BuildProcessors.PipelineRuntimeBuildProcessor:Preprocess (UnityEditor.Build.NamedBuildTarget,System.Nullable`1<UnityEditor.BuildOptions>) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/BuildProcessors/PipelineRuntimeBuildProcessor.cs:94)\nUnity.Pipeline.Editor.BuildProcessors.PipelineRuntimeBuildProcessor:OnPreprocessBuild (UnityEditor.Build.BuildCallbackContext) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/BuildProcessors/PipelineRuntimeBuildProcessor.cs:68)\nUnityEditor.BuildPipeline:BuildPlayer (UnityEditor.BuildPlayerOptions)\nUnity.Pipeline.Editor.Commands.Build.BuildCommand:RunBuild (string,UnityEditor.BuildTarget,string,UnityEditor.BuildOptions,string[],string) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Commands/Build/BuildCommand.cs:337)\nUnity.Pipeline.Editor.Commands.Build.BuildCommand:OnUpdate () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Commands/Build/BuildCommand.cs:289)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 45,
+          "timestampUtc": "2026-10-21T16:07:36.3818539Z",
+          "level": "log",
+          "logType": "Log",
+          "message": "Pipeline: this build does not include the Pipeline (Project Settings > Pipeline > Runtime), so its assemblies and settings are excluded from it.",
+          "stackTrace": "UnityEngine.Debug:Log (object)\nUnity.Pipeline.Editor.BuildProcessors.PipelineRuntimeBuildProcessor:Preprocess (UnityEditor.Build.NamedBuildTarget,System.Nullable`1<UnityEditor.BuildOptions>) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/BuildProcessors/PipelineRuntimeBuildProcessor.cs:94)\nUnity.Pipeline.Editor.BuildProcessors.PipelineRuntimeBuildProcessor:OnPreprocessBuild (UnityEditor.Build.BuildCallbackContext) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/BuildProcessors/PipelineRuntimeBuildProcessor.cs:68)\nUnityEditor.BuildPipeline:BuildPlayer (UnityEditor.BuildPlayerOptions)\nUnity.Pipeline.Editor.Commands.Build.BuildCommand:RunBuild (string,UnityEditor.BuildTarget,string,UnityEditor.BuildOptions,string[],string) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Commands/Build/BuildCommand.cs:337)\nUnity.Pipeline.Editor.Commands.Build.BuildCommand:OnUpdate () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Editor/Commands/Build/BuildCommand.cs:289)\nUnityEditor.EditorApplication:Internal_CallUpdateFunctions ()\n",
+          "seeded": false
+        }
+      ],
+      "cursor": 45,
+      "session": "bf67ed35296a497e9aeca4756eed4c39",
+      "returned": 45,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 8,
+        "warn": 5,
+        "log": 32
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-10-21T16:09:11.0300961Z",
+        "ageMs": 96,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 0,
+        "consoleWarnings": 0,
+        "consoleLogs": 1,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\UnitySandbox"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

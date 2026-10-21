@@ -1,0 +1,12 @@
+{
+    "unityVersion": "6000.3.26f1",
+    "error": "",
+    "passed": true,
+    "pngMatches": true,
+    "replayMatches": true,
+    "startFrame": 1,
+    "endFrame": 139,
+    "width": 384,
+    "height": 512,
+    "studyStrokes": 50
+}

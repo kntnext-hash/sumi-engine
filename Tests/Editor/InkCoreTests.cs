@@ -5,6 +5,17 @@ namespace ConnectPiece.SumiEngine.Tests
 {
     public class InkCoreTests
     {
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        public void LegacyBrushWithZeroPressureDoesNotDeposit(int preset)
+        {
+            var brush = preset == 0 ? InkBrushSettings.Vein : preset == 1 ? InkBrushSettings.Slash : InkBrushSettings.Bloom;
+            var core = new SumiEngineCore(64,64);
+            core.BeginStroke(new InkPoint(10,10,0,0),brush,1);
+            core.AppendPoint(new InkPoint(50,50,1,0));core.EndStroke();
+            Assert.AreEqual(0,core.Paper.TotalPigment());
+        }
         [TestCase(InkTexture.Fiber)]
         [TestCase(InkTexture.Bleed)]
         [TestCase(InkTexture.Pool)]

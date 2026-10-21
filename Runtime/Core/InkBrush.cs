@@ -77,6 +77,7 @@ namespace ConnectPiece.SumiEngine.Core
 
         void DrawDab(float x, float y, float pressure, float speed, int step)
         {
+            if (pressure <= 0f) return;
             if (settings.texture != InkTexture.Legacy)
             {
                 DrawTexturedDab(x, y, pressure, speed);
