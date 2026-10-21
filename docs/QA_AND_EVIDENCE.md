@@ -48,3 +48,11 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - 確認対象HEAD: b8bfd528af671022a5ede4e7e0021ca52b933fb6。開始時clean。最新台帳、Brush Lab、シーン生成、セットアップと手動QA手順を読取確認。
 - 環境確認: Get-Command Unity,Unity.exeは検出なし。C:\Program Files\Unity\Hub\Editorは存在しない。新規テスト実行なし、既存18 PASSの再認定なし。
 - Unity import/EditMode/実画面/PNG: NOT RUN。Editor導入・ライセンス有効化待ち。
+
+## 2026-10-21 — 公式Plugin / CLI / MCP実測
+- 証拠: [unity-automation-setup.txt](evidence/unity-automation-setup.txt)。baseline c17d8aa。
+- S/ローカルCLI: Plugin installed/enabled 0.1.8-beta、CLI 1.0.0-beta.13。MCP initializeとtools/list成功、ツール0件。Editorに到達した証拠ではない。
+- S/独立.NET: Core18 PASS / 0 FAILを再実行。probe PowerShell構文、3 asmdef JSON、Node構文PASS。未生成プロジェクトへのprobeインストールは拒否、UnitySandboxを作らないことを確認。
+- BLOCKED: Editor install ELEVATION_REQUIRED、license LICENSING_CLIENT_UNAVAILABLE、Pipeline install COMMAND_FAILED（プロジェクト不在）。statusはSTATUS_NO_INSTANCES、SafeMode検出0。
+- A: Unity compile/EditMode/PlayMode/Scene生成/Console/意図的エラー修正ループすべてNOT RUN。新規C#はソース準備のみ。
+- R/D: Game View、Brush Lab入力、PNG、実機すべてNOT RUN。P0全体はBLOCKED。

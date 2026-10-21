@@ -17,3 +17,8 @@ v0.1の初期ソースはこの会話で生成した独立実装であり、下�
 - 権限のあるGitHub接続でnyanstarの `docs/development/TEAM_WORKFLOW.md` を参照。責務分担、独立QA、証拠と再開記録の運用のみ参考とし、文書本文・コード・素材は転載していない。
 - 今回のCore修正、入力UI、セットアップスクリプト、回帰検証は本リポジトリ内で実装。外部コード・画像の直接取込みなし。
 - The Towerを調査・分析する手法の利用許可をユーザーから受領。今回のP0では未着手。将来のゲーム調査は挙動・設計の分析結果を独立実装へつなぐ。対象版・観察条件・出所・利用範囲をここへ追記する。
+
+## 2026-10-21 — 開発用Unity公式ツール
+- Unity-Technologies/unity-agent-plugin 0.1.8-betaをユーザーのCodexへ導入。LICENSE.mdはUnity Companion License for Unity-dependent projects。開発手順のみ参照し、Pluginコードは本リポジトリへ同梱しない。
+- Unity CLI 1.0.0-beta.13（winget 1.0.0.20013）はUnity Technologies公式MSIX、Proprietary。外部開発ツールとして導入、再配布しない。
+- scripts/UnityAutomation~/とMCPスモークは今回の独立実装。外部画像/モデル/ゲームAssetの取込みなし。

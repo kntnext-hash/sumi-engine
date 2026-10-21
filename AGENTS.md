@@ -31,3 +31,9 @@
 ## Definition of Done
 - 起動可能な **UnitySandbox Brush Lab**、入力による毛筆描画、PNG出力、複数Seedの再現性、Editor Tests、Unity Consoleのエラーなし、少なくとも手動確認手順、成果物とコミットSHA。
 - モバイル実機は実機でテストするまで未合格。墨脈プロトタイプはWave/枝供給/敗北/周回の主要ゲームループがプレイできるまで未合格。
+
+## ローカルUnity操作環境
+- 構築と有限リトライ手順は `docs/CODEX_UNITY_SETUP.md`。公式Plugin/CLI/MCPを使い、Editor接続とMCP起動成功を区別する。
+- 接続前に `unity status` / `unity pipeline list`、操作前に `unity list` で実コマンドを発見する。対象はUnitySandboxの絶対パスで指定する。
+- Scene/PrefabはEditor APIで編集し、既存の未保存Sceneを保護する。操作試験用Assetは `Assets/CodexAutomation/` に隔離する。
+- 修正は最大3回。実コンパイル、テストXML、フレーム進行、Console、画面確認を別々に記録する。管理者操作/認証で停止し、合格を捏造しない。

@@ -38,3 +38,13 @@
 
 ## 描画室再開点（2026-10-21）
 - P0-02から再開。Unity Editor導入・ライセンス有効化が前提。セットアップ後にコンパイル、EditMode、Brush Lab入力・PNG・Consoleの順で証拠を取得する。今回ゲート状態の変更なし。
+
+## Unity自律操作環境ゲート（2026-10-21）
+|ID|受入条件|状態|
+|---|---|---|
+|ENV-01|Unity公式Plugin installed/enabled、CLI起動|合格: 0.1.8-beta / 1.0.0-beta.13|
+|ENV-02|MCP設定・initialize/tools/list|プロトコルのみ合格、ツール0件。Editor操作は未合格|
+|ENV-03|Unity 6.3 LTS導入・ライセンス・Pipeline接続|BLOCKED: ELEVATION_REQUIRED、認証未確認|
+|ENV-04|専用Scene/4 GameObject/C# compile/Play進行/Console/修正ループ|BLOCKED: Editor未導入。試験ソース準備済み|
+|ENV-05|AGENTSと再構築/有限ループ手順|合格: CODEX_UNITY_SETUP.md|
+P0-02〜05を合格に変更しない。ENV-03解消後、ENV-04と既存Brush Lab受入を実行する。

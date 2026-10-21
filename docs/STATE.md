@@ -29,3 +29,10 @@
 - b8bfd52のcleanな作業ツリーからCore/Unityアダプタ/Editor/Brush Lab/描画QAの責任を引継ぎ。ゲームファイルは対象外。
 - 最新ソース・セットアップ・手動QAを読取確認。PATHとC標準配置でEditorなし。既存の純C#18検証は再実行していない。
 - 次の未達はP0-02。Unity 6.3 LTS Editorの導入とライセンス有効化後、実在Unity.exeを指定してSetup-UnitySandbox.ps1を実行する。P0-02〜05はBLOCKEDのまま。
+
+## 2026-10-21 Codex × Unity 操作環境（最新追記）
+- Unity公式Plugin 0.1.8-betaとUnity CLI 1.0.0-beta.13を新規導入。MCPをUnitySandbox指定で登録、initialize/tools/list成功。ただしツール0件、Editor操作は未達。
+- Editor 6000.3.26f1導入はELEVATION_REQUIREDで停止。導入済みEditorは0件。Hub未検出、ライセンスクライアント未接続。
+- 専用Scene生成/回転/PlayMode試験のソースとインストーラをscriptsに準備。UnitySandboxは未生成。Core独立18検証再実行PASS、Unityコンパイル/画面/PNGは未実行。
+- 手順: docs/CODEX_UNITY_SETUP.md。証拠: docs/evidence/unity-automation-setup.txt。P0-02〜05はBLOCKEDを維持。
+- 続きの一文: 人がEditor導入と認証を終えたらSetup-UnitySandbox→操作probe→Pipeline→CLI/MCP実操作→EditMode/PlayMode→Brush Lab画面確認から再開する。
