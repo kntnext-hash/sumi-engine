@@ -6,6 +6,89 @@ namespace ConnectPiece.SumiEngine.Tests
     public class InkCoreTests
     {
         [Test]
+        public void StudyReplaysExactlyAndSeedChangesTexture()
+        {
+            var a = new SumiEngineCore(192, 256);
+            var b = new SumiEngineCore(192, 256);
+            InkStudy.Draw(a, 731); b.Replay(a.Session);
+            var first = new byte[192 * 256 * 4]; var replay = new byte[first.Length];
+            a.Paper.RenderRgba(first); b.Paper.RenderRgba(replay);
+            Assert.AreEqual(15, a.Session.strokes.Count);
+            CollectionAssert.AreEqual(first, replay);
+            InkStudy.Draw(b, 732); b.Paper.RenderRgba(replay);
+            CollectionAssert.AreNotEqual(first, replay);
+        }
+
+        [Test]
+        public void PaletteRecolorsWithoutChangingPigmentAndDefaultRemainsCompatible()
+        {
+            var paper = new InkPaper(32, 32);
+            paper.Deposit(16, 16, 8, .8f, .8f, .2f, 3);
+            float pigment = paper.TotalPigment();
+            var original = new byte[32 * 32 * 4]; var explicitDefault = new byte[original.Length];
+            var red = new byte[original.Length];
+            paper.RenderRgba(original);
+            paper.RenderRgba(explicitDefault, 29, 30, 31, 243, 240, 231, .9f);
+            paper.RenderRgba(red, 220, 10, 10, 243, 240, 231, 8f);
+            CollectionAssert.AreEqual(original, explicitDefault);
+            Assert.AreEqual(pigment, paper.TotalPigment());
+            int center = 0;
+            float maximum = 0f;
+            for (int y = 0; y < 32; y++)
+                for (int x = 0; x < 32; x++)
+                    if (paper.PigmentAt(x, y) > maximum)
+                    { maximum = paper.PigmentAt(x, y); center = (y * 32 + x) * 4; }
+            Assert.Greater(maximum, 0f);
+            Assert.Greater(red[center] - red[center + 1], original[center] - original[center + 1]);
+            CollectionAssert.AreEqual(new[] {original[0], original[1], original[2]}, new[] {red[0], red[1], red[2]});
+            Assert.AreEqual(255, red[center + 3]);
+        }
+
+        [Test]
+        public void PaletteSupportsLightInkOnDarkPaperAndRejectsBadDensity()
+        {
+            var paper = new InkPaper(32, 32);
+            paper.Deposit(16, 16, 8, 1f, 0f, 0f, 3);
+            var pixels = new byte[32 * 32 * 4];
+            paper.RenderRgba(pixels, 255, 255, 255, 0, 0, 0, 12f);
+            Assert.Greater(pixels[(16 * 32 + 16) * 4], pixels[0]);
+            var before = (byte[])pixels.Clone();
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => paper.RenderRgba(pixels, 0, 0, 0, 255, 255, 255, float.NaN));
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => paper.RenderRgba(pixels, 0, 0, 0, 255, 255, 255, -1));
+            CollectionAssert.AreEqual(before, pixels);
+        }
+
+        [Test]
+        public void BlankPaperDoesNotBecomeDirtyOnSimulationStep()
+        {
+            var paper = new InkPaper(32, 32);
+            paper.RenderRgba(new byte[32 * 32 * 4]);
+            paper.Step(.1f);
+            Assert.IsFalse(paper.HasActiveInk);
+            Assert.IsFalse(paper.IsDirty);
+        }
+
+        [Test]
+        public void SettledPaperConservesPigmentStopsAndReactivates()
+        {
+            var paper = new InkPaper(32, 32);
+            paper.Deposit(16, 16, 5, .7f, .8f, .2f, 3);
+            float before = paper.TotalPigment();
+            int steps = 0;
+            while (paper.HasActiveInk && steps++ < 2000) paper.Step(.1f);
+            Assert.IsFalse(paper.HasActiveInk, "Must settle within 200 simulated seconds");
+            Assert.That(paper.TotalPigment(), Is.EqualTo(before).Within(before * .002f + .01f));
+            var a = new byte[32 * 32 * 4]; var b = new byte[a.Length];
+            paper.RenderRgba(a);
+            for (int i = 0; i < 100; i++) paper.Step(.1f);
+            Assert.IsFalse(paper.IsDirty);
+            paper.RenderRgba(b); CollectionAssert.AreEqual(a, b);
+            paper.Deposit(16, 16, 5, .7f, .8f, .2f, 4);
+            Assert.IsTrue(paper.HasActiveInk);
+            paper.Clear(); Assert.IsFalse(paper.HasActiveInk);
+        }
+
+        [Test]
         public void InvalidBeginAndAppendPreserveActiveStrokeAndPixels()
         {
             var engine = new SumiEngineCore(64, 64);

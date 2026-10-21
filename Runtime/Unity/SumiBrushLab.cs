@@ -20,6 +20,7 @@ namespace ConnectPiece.SumiEngine
         float pressure = 1f;
         string status = "Drag on the paper to paint";
         Vector2 controlsScroll;
+        bool showColors, editPaper;
         Rect paperRect;
         void Start()
         {
@@ -52,9 +53,17 @@ namespace ConnectPiece.SumiEngine
             if (GUILayout.Button("Bloom")) current = InkBrushSettings.Bloom;
             GUILayout.EndHorizontal();
             GUILayout.BeginHorizontal();
+            if (GUILayout.Button("Dense")) SelectStudyBrush(InkBrushSettings.Dense);
+            if (GUILayout.Button("Dry")) SelectStudyBrush(InkBrushSettings.Dry);
+            if (GUILayout.Button("Split")) SelectStudyBrush(InkBrushSettings.Split);
+            if (GUILayout.Button("Study (replaces paper)")) { StopDrawing(); InkStudy.Draw(canvas.Core); canvas.displayDensity = 7f; canvas.inkColor = new Color32(12, 12, 13, 255); canvas.Upload(); }
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
             if (GUILayout.Button("Clear")) { StopDrawing(); canvas.Clear(); }
             if (GUILayout.Button("PNG")) SavePng();
+            if (GUILayout.Button(showColors ? "Colors -" : "Colors +")) showColors = !showColors;
             GUILayout.EndHorizontal();
+            if (showColors) DrawColorControls();
             GUILayout.Label($"Pressure: {pressure:0.00}");
             pressure = GUILayout.HorizontalSlider(pressure, 0f, 1f);
             GUILayout.Label($"Brush radius: {current.radius:0.0}");
@@ -100,6 +109,57 @@ namespace ConnectPiece.SumiEngine
             return new InkPoint(x, y, clock, pressure);
         }
         void StopDrawing() { canvas?.End(); drawing = false; }
+        void SelectStudyBrush(InkBrushSettings brush)
+        {
+            current = brush;
+            canvas.displayDensity = 7f;
+            canvas.inkColor = new Color32(12, 12, 13, 255);
+            status = "Dense / Dry / Split: drag to paint; Colors controls the whole paper";
+        }
+        void DrawColorControls()
+        {
+            GUILayout.Label("Global palette: recolors existing strokes too");
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button(editPaper ? "Ink" : "[Ink]")) editPaper = false;
+            if (GUILayout.Button(editPaper ? "[Paper]" : "Paper")) editPaper = true;
+            GUILayout.EndHorizontal();
+            Color selected = editPaper ? canvas.paperColor : canvas.inkColor;
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("Sumi")) selected = new Color32(29, 30, 31, 255);
+            if (GUILayout.Button("Vermilion")) selected = new Color32(190, 48, 35, 255);
+            if (GUILayout.Button("Indigo")) selected = new Color32(30, 66, 119, 255);
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("Washi")) selected = new Color32(243, 240, 231, 255);
+            if (GUILayout.Button("White")) selected = Color.white;
+            if (GUILayout.Button("Black")) selected = Color.black;
+            GUILayout.EndHorizontal();
+            selected.r = ColorChannel("R", selected.r);
+            selected.g = ColorChannel("G", selected.g);
+            selected.b = ColorChannel("B", selected.b);
+            selected.a = 1f;
+            var swatch = GUILayoutUtility.GetRect(24f, 18f);
+            var previous = GUI.color; GUI.color = selected;
+            GUI.DrawTexture(swatch, Texture2D.whiteTexture); GUI.color = previous;
+            GUILayout.Label("#" + ColorUtility.ToHtmlStringRGB(selected));
+            if (editPaper) canvas.paperColor = selected; else canvas.inkColor = selected;
+            GUILayout.Label($"Display density: {canvas.displayDensity:0.00} (all strokes)");
+            canvas.displayDensity = GUILayout.HorizontalSlider(canvas.displayDensity, .1f, 12f);
+            if (GUILayout.Button("Reset palette"))
+            {
+                canvas.inkColor = new Color32(29, 30, 31, 255);
+                canvas.paperColor = new Color32(243, 240, 231, 255);
+                canvas.displayDensity = .9f;
+            }
+        }
+        static float ColorChannel(string label, float value)
+        {
+            GUILayout.BeginHorizontal();
+            GUILayout.Label($"{label} {Mathf.RoundToInt(value * 255f)}", GUILayout.Width(50));
+            value = GUILayout.HorizontalSlider(value, 0f, 1f);
+            GUILayout.EndHorizontal();
+            return value;
+        }
         void OnDisable() => StopDrawing();
         void OnApplicationFocus(bool focused) { if (!focused) StopDrawing(); }
         void SavePng()

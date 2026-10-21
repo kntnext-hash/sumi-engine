@@ -35,3 +35,9 @@ TheTowerSDKのREADME/LICENSE/NOTICEを読取。MIT表記に加えて由来別の
 ## Unity公式UPM依存（実導入）
 - UnitySandboxにcom.unity.pipeline 0.9.0-exp.1とTest Framework1.6.0を導入。解決版はPackages/packages-lock.json。第三者実体はLibrary/PackageCache内（Git除外）。レジストリ依存として利用しパッケージソースを転載しない。
 - docs/evidenceのCube/Brush Lab画像は本プロジェクトをUnityで実行して取得したもの。外部ゲーム画像を使用していない。
+
+## 2026-10-22 色・濃墨・参照筆見本
+- MIT確認: https://github.com/msurguy/watercolor-playground （LICENSE・THIRD_PARTY_NOTICES）、https://github.com/komietty/unity-moxi-ink （LICENSE.md）、https://github.com/EsProgram/InkPainter （README内ライセンス）、https://github.com/sighack/watercolor-simulation （LICENSEとwatercolor.pde）。
+- 直接取り込みはゼロ。watercolor-playground READMEの「乾燥後停止」を参考に独自CPU実装。微小残留顔料をfixedへ移して質量を保持し、描画再開時に活性化。スペクトルデータ・フォント・画像・第三者コードは取り込まない。
+- MoxiのGPU/LBM、sighackの多層不規則ポリゴンは将来候補。今回採用済みと扱わない。InkPainterはUnityアダプタ分離の比較参考。
+- ユーザー添付の墨表現シートは見た目の目標のみ。素材としてリポジトリへ複製しない。InkStudyは独自の点列による15ストローク。

@@ -18,6 +18,9 @@ namespace ConnectPiece.SumiEngine.Core
         public float Evaporation = .18f;     // 1 / second
         public float Binding = .75f;         // 1 / second
         public bool IsDirty { get; private set; } = true;
+        public bool HasActiveInk { get; private set; }
+        // Numerical settling threshold; residual pigment is conserved, not discarded.
+        const float SettlingThreshold = 0.00001f;
 
         public InkPaper(int width, int height, int paperSeed = 2026)
         {
@@ -44,6 +47,7 @@ namespace ConnectPiece.SumiEngine.Core
             Array.Clear(nextPigment, 0, nextPigment.Length);
             Array.Clear(nextWater, 0, nextWater.Length);
             IsDirty = true;
+            HasActiveInk = false;
         }
 
         /// <summary>A single soft deposited bristle. Clipped to canvas; coordinates may be outside.</summary>
@@ -77,6 +81,7 @@ namespace ConnectPiece.SumiEngine.Core
                     float amount = pigment * edge * coverage * grain[i];
                     wetPigment[i] = InkMath.Min(8f, wetPigment[i] + amount);
                     moisture[i] = InkMath.Min(1f, moisture[i] + water * edge * .17f);
+                    if (wetPigment[i] > 0f || moisture[i] > 0f) HasActiveInk = true;
                 }
             IsDirty = true;
         }
@@ -92,11 +97,13 @@ namespace ConnectPiece.SumiEngine.Core
             double required = Math.Ceiling(dt * rate / .8);
             // Reject impractical requests before mutating paper or overflowing an int.
             if (required > 65536) throw new ArgumentOutOfRangeException(nameof(dt), "Step requires more than 65536 substeps; use smaller intervals or rates.");
+            if (!HasActiveInk) return;
             int n = Math.Max(1, (int)required);
             float h = dt / n;
             int len = Width * Height;
             for (int sub = 0; sub < n; sub++)
             {
+                bool active = false;
                 for (int y = 0; y < Height; y++)
                     for (int x = 0; x < Width; x++)
                     {
@@ -119,9 +126,18 @@ namespace ConnectPiece.SumiEngine.Core
                         nextPigment[i] = newPigment - bind;
                         nextWater[i] = newWater;
                         fixedPigment[i] += bind;
+                        if (nextWater[i] <= SettlingThreshold && nextPigment[i] <= SettlingThreshold)
+                        {
+                            fixedPigment[i] += nextPigment[i];
+                            nextPigment[i] = 0f;
+                            nextWater[i] = 0f;
+                        }
+                        else active = true;
                     }
                 Array.Copy(nextPigment, wetPigment, len);
                 Array.Copy(nextWater, moisture, len);
+                HasActiveInk = active;
+                if (!active) break;
             }
             IsDirty = true;
         }
@@ -156,18 +172,25 @@ namespace ConnectPiece.SumiEngine.Core
 
         /// <summary>RGBA pixels on an ivory paper surface. Caller owns output buffer.</summary>
         public void RenderRgba(byte[] output)
+            => RenderRgba(output, 29, 30, 31, 243, 240, 231, .9f);
+
+        /// <summary>Global palette; recolors all deposited ink without changing simulation/history.</summary>
+        public void RenderRgba(byte[] output, byte inkR, byte inkG, byte inkB,
+            byte paperR, byte paperG, byte paperB, float density)
         {
             if (output == null || output.Length != Width * Height * 4)
                 throw new ArgumentException("Required RGBA8888 byte buffer of Width*Height*4.");
+            RequireFinite(density, nameof(density));
+            if (density <= 0f || density > 32f) throw new ArgumentOutOfRangeException(nameof(density));
             for (int i = 0; i < fixedPigment.Length; i++)
             {
                 float ink = fixedPigment[i] + wetPigment[i];
-                float a = 1f - InkMath.Exp(-.9f * ink);
+                float a = 1f - InkMath.Exp(-density * ink);
                 float brightness = (grain[i] - .75f) * 13f;
                 int p = i * 4;
-                output[p] = (byte)Math.Max(0, Math.Min(255, (int)(243f + brightness - 214f * a)));
-                output[p + 1] = (byte)Math.Max(0, Math.Min(255, (int)(240f + brightness - 210f * a)));
-                output[p + 2] = (byte)Math.Max(0, Math.Min(255, (int)(231f + brightness - 200f * a)));
+                output[p] = (byte)Math.Max(0, Math.Min(255, (int)(paperR + brightness - (paperR - inkR) * a)));
+                output[p + 1] = (byte)Math.Max(0, Math.Min(255, (int)(paperG + brightness - (paperG - inkG) * a)));
+                output[p + 2] = (byte)Math.Max(0, Math.Min(255, (int)(paperB + brightness - (paperB - inkB) * a)));
                 output[p + 3] = 255;
             }
             IsDirty = false;

@@ -24,6 +24,16 @@ namespace ConnectPiece.SumiEngine.Core
         public float bristleSpread;
         public int bristleCount;
 
+        public static InkBrushSettings Dense => new InkBrushSettings
+        { radius = 24f, pigment = 1f, water = .22f, roughness = .25f,
+          depletion = .002f, bristleSpread = .65f, bristleCount = 25 };
+        public static InkBrushSettings Dry => new InkBrushSettings
+        { radius = 19f, pigment = 1f, water = .08f, roughness = .58f,
+          depletion = .07f, bristleSpread = 1f, bristleCount = 5 };
+        public static InkBrushSettings Split => new InkBrushSettings
+        { radius = 25f, pigment = 1f, water = .08f, roughness = .48f,
+          depletion = .025f, bristleSpread = 1f, bristleCount = 3 };
+
         public static InkBrushSettings Vein => new InkBrushSettings
         { radius = 9f, pigment = .72f, water = .42f, roughness = .42f,
           depletion = .005f, bristleSpread = .9f, bristleCount = 11 };

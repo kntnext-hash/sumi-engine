@@ -12,10 +12,15 @@ namespace ConnectPiece.SumiEngine
         public int paperSeed = 2026;
         [Range(2, 30)] public int uploadFps = 15;
         [Range(0, 30)] public int diffusionFps = 10;
+        public Color inkColor = new Color32(29, 30, 31, 255);
+        public Color paperColor = new Color32(243, 240, 231, 255);
+        [Range(.1f, 12f)] public float displayDensity = .9f;
         public SumiEngineCore Core { get; private set; }
         public Texture2D Texture { get; private set; }
         byte[] pixels;
         float uploadClock, simClock;
+        Color renderedInk, renderedPaper;
+        float renderedDensity;
 
         void Awake() => Initialize();
         public void Initialize()
@@ -42,15 +47,19 @@ namespace ConnectPiece.SumiEngine
                 { Core.Step(step); simClock -= step; }
                 simClock = Mathf.Min(simClock, step * 3f);
             }
-            if (uploadClock >= 1f / Mathf.Max(1, uploadFps) && Core.Paper.IsDirty)
+            bool paletteChanged = inkColor != renderedInk || paperColor != renderedPaper || displayDensity != renderedDensity;
+            if (paletteChanged || (uploadClock >= 1f / Mathf.Max(1, uploadFps) && Core.Paper.IsDirty))
             { uploadClock = 0f; Upload(); }
         }
         public void Upload()
         {
             if (Core == null) Initialize();
-            Core.Paper.RenderRgba(pixels);
+            Color32 ink = inkColor, paper = paperColor;
+            Core.Paper.RenderRgba(pixels, ink.r, ink.g, ink.b, paper.r, paper.g, paper.b,
+                Mathf.Clamp(displayDensity, .1f, 12f));
             Texture.LoadRawTextureData(pixels);
             Texture.Apply(false, false);
+            renderedInk = inkColor; renderedPaper = paperColor; renderedDensity = displayDensity;
         }
         public void Begin(InkPoint point, InkBrushSettings settings, int seed)
         { if (Core == null) Initialize(); Core.BeginStroke(point, settings, seed); }

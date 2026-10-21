@@ -108,3 +108,13 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - R: [枝画面](evidence/rendering-branch-growth.png)、69→72ストローク、frame6643→13481。別waitでもframe4979→5036。枝画面の伸張表示は既存制約として残る。
 - Console: [取得結果](evidence/rendering-console.json)groundTruth.errors0/warnings0/compilationFailed=false。履歴には以前のCLI指定誤りと別工程の意図的CS1519が残る。消去による合格化なし。
 - 未確認: 人の物理マウス、全preset/slider、Clear/フォーカス復帰の一連の手動QA、モバイル、性能、主観品質。P0-03/05は進行中。
+
+## 2026-10-22 描画室: 色変更と参照筆の第一段階
+- 墨色/紙色RGB・色プリセット・表示濃度をColorsパネルに追加。既存線も一括再着色。多色顔料混合ではない。
+- Dense/Dry/SplitプリセットとStudyボタン（紙面置換）を追加。濃墨/乾筆/割れ筆を直線・円相・曲線で比較。docs/evidence/ink-study.pngはUnityで実Coreから生成した768x1024画像。
+- OSS調査と採用範囲はOSS_AND_PROVENANCE.md。乾燥停止を独自実装。物理的な滲み拡大・煙・飛沫・筆文字全体の参考画像品質は未達。P1/P2は未合格を維持。
+- Unity6000.3.26f1再compile成功。EditMode23/23 PASS（rendering-color-editmode.xml）。初回の色テストは乾いた中心点を誤って選び失敗、最大顔料画素へ修正。失敗XMLも保持。Seed731のReplay画素一致、Seed732の差を検証。
+- 目視でPNGの濃墨・掠れ・割れを確認。新UIの全ボタン実マウス操作は未検証。以前の手動QA未達も維持。
+- 元の10stroke描画はlogs/pre-color-change/painting.pngとstrokes.jsonに退避し、Editor Playへ点列を復元。v1は拡散時間を記録しないため元PNGと完全一致する湿潤状態復元ではない。背景実行override解除。
+- 確認方法: UnityのBrushLab Gameビューで描画、Dense/Dry/Splitで筆切替、Colors +でInk/Paper/RGB/Display density。Studyは現在の紙を置換するため先にPNG保存。PNGボタンの保存先は画面上部に表示。
+- 次: 筆に沿う不均一な毛束と鋭い終端、濡れ境界の多尺度表現、UI手動QA。参考画像全体の達成と誤認しない。
