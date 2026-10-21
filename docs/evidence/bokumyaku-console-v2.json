@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "command": "command console",
+  "data": {
+    "command": "console",
+    "parameters": {},
+    "result": {
+      "entries": [],
+      "cursor": 63,
+      "session": "bf67ed35296a497e9aeca4756eed4c39",
+      "returned": 0,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 12,
+        "warn": 9,
+        "log": 42
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-10-21T23:38:09.1997109Z",
+        "ageMs": 201,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 0,
+        "consoleWarnings": 0,
+        "consoleLogs": 1,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\UnitySandbox"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

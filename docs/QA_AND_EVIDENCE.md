@@ -150,3 +150,15 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - 手順 docs/BOKUMYAKU_PROTOTYPE.md。証拠 docs/evidence/bokumyaku-{editmode.xml,play.json,balance.csv,gameplay.png}。
 - Windows Player build Succeeded、90,233,387 bytes、11.433秒、error/warning0。Builds/Bokumyaku/Bokumyaku.exe（Git対象外）。Player起動ログで6000.3.26f1/描画初期化を確認、Player上の操作・長時間フレーム進行は未検証。EditorのPlay/操作試験と区別。
 - 初回ビルド予約の報告が取得できず、公式Pipeline build runで成果を確認。CLI beta.14公開を検出したが環境変更は行わず既存beta.13で検証。初期編集途中コンパイルエラーと修正済みテスト失敗は履歴へ保持。
+
+## 墨脈 v0.2検証（2026-10-22）
+- Compile: Unity6000.3.26f1、最終SelectedPolicy修正後もcompleted/failed=false/errors=[]。その後のWindows PlayerビルドもSucceeded。ゲームのみ変更し、描画42試験は再実行していない。
+- A: bokumyaku-editmode-v2.xml 39/39 PASS（36.32秒）。seed毎tick再現、費用/報酬/保存、手動停止、自動分岐、グラフ/敵上限、最高恒久Lvでの終了を含む。最終UIの方針保持修正は次のR/UIで確認。
+- A: scripts/Test-Bokumyaku.ps1、PowerShell7.6.5/.NET10.0.11、9 PASS/0 FAIL。Unity NUnitとは別。3周の恒久進行、2自動構成の終端、切替を確認。
+- R/UI: bokumyaku-play-v2.json 15/15 PASS。GameView.SendEventと実Updateによりframe778→10018、3610tick・59撃破・14枝ノード。出撃前の集中保持、一時停止、2倍速、均衡へ変更、自動購入、多枝/手動切替、手動90tickの購入停止、公開API再出撃時の選択保持。最後の再出撃は自然敗北後ではない。人の物理マウスとは区別。
+- R/UI: bokumyaku-scroll-v2.json、合成ScrollWheelで操作欄y=99へ移動。bokumyaku-gameplay-v2.pngは実GameView1536x672、Wave8の戦闘中の画面。縦長レイアウト・各端末・全手動操作は未検証。
+- Balance: bokumyaku-build-comparison-v2.jsonは10独立seed×3構成=30条件。sourceSha256と現RunSimulator.cs一致。全Defeated。手動群は無購入対照。広域の生存441.83〜529.40秒/中央値502.52秒、多枝472.30〜530.07秒/中央値505.05秒。全seedで各9/12末端。墨/分の中央値470.82/472.53。多枝の生存8勝1敗1同点、Wave3勝7同点、広域の墨/分優位1件。役割分担と5〜8分目標は未合格。初版の120条件CSVは別バージョンの証拠として保持。
+- Build: bokumyaku-build-v2.json、StandaloneWindows64、Bokumyakuシーンのみ、90,245,041 bytes、36.369秒、errors0/warnings0。exeのSHA256はbokumyaku-artifact-v2.json。同梱Data/DLLが必要。
+- Player: bokumyaku-player-v2.json。--bokumyaku-smoke-output明示時だけQAを起動し専用保存先へ隔離。exit0、frame2→132572、1200tick、8ノード、15撃破、4購入、顔料2204.4077。非表示起動の実行検査であり画面/物理操作/完走/性能保証ではない。通常起動では自動操作も自動終了もしない。
+- Console: bokumyaku-console-v2.json、groundTruth compilationFailed=false/consoleErrors0/consoleWarnings0。過去の診断/失敗履歴は保持。Player.logにはException/Error/Failedの一致なし。
+- 未達: 周回/記録の経済的差別化、5敵版、武器別戦闘、モバイル、物理入力と長時間手動評価、オフライン収益。今回の増分合格と全体完成を区別する。

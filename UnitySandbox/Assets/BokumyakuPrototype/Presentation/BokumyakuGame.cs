@@ -18,6 +18,8 @@ namespace Bokumyaku.Presentation
         public bool IsPaused { get; private set; }
         public int Speed { get; private set; } = 1;
         public bool AwaitingStart { get; private set; } = true;
+        public BuildPreset SelectedBuild { get; private set; } = BuildPreset.Manual;
+        public GrowthPolicy SelectedPolicy { get; private set; } = GrowthPolicy.Balanced;
         public event Action ProgressChanged;
         string saveWarning = "";
         bool progressLoaded;
@@ -32,6 +34,9 @@ namespace Bokumyaku.Presentation
         float tickClock;
         int drawnBranches;
         bool metaTab, rewarded;
+        Vector2 panelScroll;
+        readonly int[] observedLevels = new int[6];
+        readonly float[] levelChangedAt = new float[6];
         string notice = "核を守り、墨の枝を育てる。";
         readonly Color ink = new Color(.13f, .15f, .14f);
         readonly Color muted = new Color(.43f, .44f, .40f);
@@ -42,6 +47,12 @@ namespace Bokumyaku.Presentation
         static readonly string[] UpgradeNotes = { "一撃の威力を高める", "攻撃間隔を短くする", "末端へ分配する墨量を増やす", "成長できる末端数を増やす", "敵へ届く範囲を広げる", "着弾後も墨が敵を削る" };
         static readonly string[] MetaNames = { "祖墨", "深根", "生脈", "豊穣" };
         static readonly string[] MetaNotes = { "基礎攻撃力を永続強化", "基礎流墨を永続強化", "枝の成長を早める", "撃破で得る墨を増やす" };
+        static readonly string[] BuildNames = { "手動", "広域・滲み", "多枝・火力" };
+        static readonly string[] BuildNotes = {
+            "購入は自分で選ぶ。墨を貯めて好きな強化へ投資。",
+            "9末端を目安に流墨・筆幅・滲みへ自動投資。周回用の候補。",
+            "12末端へ分岐を優先し、筆撃と流墨を強化。記録用の候補。"
+        };
 
         void Start()
         {
@@ -50,6 +61,8 @@ namespace Bokumyaku.Presentation
             if (Run == null)
             {
                 Run = new RunSimulator(InitialSeed, Meta);
+                Run.SetBuild(SelectedBuild);
+                Run.SetPolicy(SelectedPolicy);
                 DrawNewBranches();
             }
         }
@@ -81,9 +94,13 @@ namespace Bokumyaku.Presentation
             EnsureCanvas();
             LoadProgress();
             Run = new RunSimulator(seed, Meta);
+            Run.SetBuild(SelectedBuild);
+            Run.SetPolicy(SelectedPolicy);
             AwaitingStart = false; IsPaused = false; Speed = 1;
             tickClock = 0; drawnBranches = 0; rewarded = false;
             flashes.Clear(); growth.Clear(); canvas.Clear();
+            Array.Clear(observedLevels, 0, observedLevels.Length);
+            Array.Clear(levelChangedAt, 0, levelChangedAt.Length);
             notice = "撃破で得た墨で強化。枝が増えるほど末端の墨圧は分散する。";
             DrawNewBranches();
         }
@@ -92,6 +109,7 @@ namespace Bokumyaku.Presentation
             if (Run == null || AwaitingStart) return false;
             bool bought = Run.TryBuy(kind);
             notice = bought ? UpgradeNames[(int)kind] + "を強化しました。" : "墨が不足、または強化上限に達しています。";
+            if (bought) ObserveUpgrades();
             return bought;
         }
         public bool BuyMeta(MetaUpgrade kind)
@@ -104,7 +122,19 @@ namespace Bokumyaku.Presentation
         }
         public void SetSpeed(int speed) { Speed = Mathf.Clamp(speed, 1, 2); }
         public void SetPaused(bool paused) { IsPaused = paused; }
-        public void SetPolicy(GrowthPolicy policy) { Run?.SetPolicy(policy); }
+        public void SetPolicy(GrowthPolicy policy)
+        {
+            if (!Enum.IsDefined(typeof(GrowthPolicy), policy)) throw new ArgumentOutOfRangeException(nameof(policy));
+            SelectedPolicy = policy;
+            Run?.SetPolicy(policy);
+        }
+        public void SetBuild(BuildPreset build)
+        {
+            if (!Enum.IsDefined(typeof(BuildPreset), build)) throw new ArgumentOutOfRangeException(nameof(build));
+            SelectedBuild = build;
+            Run?.SetBuild(build);
+            notice = BuildNotes[(int)build];
+        }
         void Update()
         {
             for (int i = flashes.Count - 1; i >= 0; i--)
@@ -126,11 +156,25 @@ namespace Bokumyaku.Presentation
                 }
                 DrawNewBranches();
             }
+            ObserveUpgrades();
             if (Run.State != RunStatus.Running && !rewarded)
             {
                 rewarded = Run.ClaimReward(Meta);
                 if (rewarded) { SaveProgress(); ProgressChanged?.Invoke(); }
-                notice = Run.State == RunStatus.CapacityExceeded ? "試作版の処理上限 No reward claimed." : "結晶で永続強化して、次の周回へ。";
+                notice = Run.State == RunStatus.CapacityExceeded ? "試作版の処理上限。報酬は付与されません。" : "結晶で永続強化して、次の周回へ。";
+            }
+        }
+        void ObserveUpgrades()
+        {
+            int[] levels = Run.UpgradeLevels;
+            for (int i = 0; i < levels.Length; i++)
+            {
+                if (levels[i] > observedLevels[i])
+                {
+                    levelChangedAt[i] = Time.unscaledTime;
+                    notice = (SelectedBuild == BuildPreset.Manual ? "強化: " : "自動購入: ") + UpgradeNames[i] + " Lv." + levels[i];
+                }
+                observedLevels[i] = levels[i];
             }
         }
         void DrawNewBranches()
@@ -205,7 +249,7 @@ namespace Bokumyaku.Presentation
                 if (portrait) DrawPanel(new Rect(24, 648, 392, 388), true);
                 else DrawPanel(new Rect(558, 110, 494, 616), false);
                 GUI.Label(new Rect(field.x, field.yMax + 7, field.width, 18), "墨の枝  ／  金の末端  ／  朱の敵", small);
-                GUI.Label(new Rect(width - 170, 42, 146, 25), "縦切り試作  0.1", small);
+                GUI.Label(new Rect(width - 170, 42, 146, 25), "縦切り試作  0.2", small);
             }
             finally { GUI.matrix = oldMatrix; GUI.color = oldColor; GUI.backgroundColor = oldBackground; GUI.enabled = oldEnabled; }
         }
@@ -250,18 +294,22 @@ namespace Bokumyaku.Presentation
             }
             GUI.Label(new Rect(field.x + 12, field.yMax - 30, field.width - 24, 22),
                 "流墨 Q " + Run.RootSupply.ToString("0.0") + "  ／  末端墨圧 P " + minPressure.ToString("0.00") + "–" + maxPressure.ToString("0.00"), small);
-            GUI.Label(new Rect(field.x + 12, field.y + 8, field.width - 24, 25), "波 " + Run.Wave.ToString("00") + "  /  20", heading);
+            GUI.Label(new Rect(field.x + 12, field.y + 8, field.width - 24, 25), "波 " + Run.Wave.ToString("00") + "  /  " + RunSimulator.WaveLimit, heading);
             GUI.Label(new Rect(field.x + 12, field.y + 35, 240, 22), "核 " + Run.CoreHp + "/10   ·   " + Run.TipCount + " 末端", small);
             Fill(new Rect(field.x + 12, field.y + 60, 100, 3), new Color(0, 0, 0, .10f));
             Fill(new Rect(field.x + 12, field.y + 60, 10 * Run.CoreHp, 3), gold);
             if (AwaitingStart || Run.State != RunStatus.Running)
             {
-                var box = new Rect(field.x + 22, field.center.y - 77, field.width - 44, 154);
+                var box = new Rect(field.x + 22, field.center.y - 108, field.width - 44, 216);
                 Fill(box, new Color(.96f, .95f, .91f, .96f));
-                string status = AwaitingStart ? "一滴から、命が芽吹く。" : Run.State == RunStatus.Defeated ? "墨が静まり、核が砕けた。" : Run.State == RunStatus.TestCompleted ? "二十の波を、耐え抜いた。" : "試作版の処理上限";
+                string status = AwaitingStart ? "一滴から、命が芽吹く。" : Run.State == RunStatus.Defeated ? "墨が静まり、核が砕けた。" : Run.State == RunStatus.TestCompleted ? RunSimulator.WaveLimit + "の波を、耐え抜いた。" : "試作版の処理上限";
                 GUI.Label(new Rect(box.x + 14, box.y + 12, box.width - 28, 35), status, heading);
-                GUI.Label(new Rect(box.x + 14, box.y + 48, box.width - 28, 48), AwaitingStart ? "核を守る墨の枝。敵を倒すと枝が伸びる。六つの強化で、生き方を選ぶ。" : "到達 " + Run.CompletedWave + " 波突破  ·  " + Run.Kills + " 撃破\n獲得結晶: " + Run.CrystalsReward, body);
-                if (Button(new Rect(box.x + 14, box.y + 108, box.width - 28, 32), AwaitingStart ? "出撃する" : "再び芽吹く", true)) StartRun(unchecked(InitialSeed + (AwaitingStart ? 0 : Run.Seed - InitialSeed + 1)));
+                GUI.Label(new Rect(box.x + 14, box.y + 48, box.width - 28, 108), AwaitingStart
+                    ? "核を守る墨の枝。敵を倒すと枝が伸びる。\n操作欄で投資方針を選び、出撃する。\n選択中: " + BuildNames[(int)SelectedBuild]
+                    : "到達 " + Run.CompletedWave + " 波突破  ·  " + Run.Kills + " 撃破\n生存 " + FormatTime(Run.ElapsedSeconds)
+                        + "  ／  獲得墨 " + Run.IncomeEarned + "\n獲得墨/分 " + Run.IncomePerMinute.ToString("0.0")
+                        + "  ／  結晶 " + Run.CrystalsReward, body);
+                if (Button(new Rect(box.x + 14, box.y + 170, box.width - 28, 32), AwaitingStart ? "出撃する" : "再び芽吹く", true)) StartRun(unchecked(InitialSeed + (AwaitingStart ? 0 : Run.Seed - InitialSeed + 1)));
             }
         }
         void DrawPanel(Rect panel, bool compact)
@@ -271,61 +319,77 @@ namespace Bokumyaku.Presentation
             GUI.Label(new Rect(x, y + 16, w * .48f, 33), Run.RunInk.ToString(), number);
             GUI.Label(new Rect(x + w * .50f, y, w * .5f, 17), "結晶  ／  永続強化", small);
             GUI.Label(new Rect(x + w * .50f, y + 16, w * .5f, 33), Meta.Crystals.ToString(), number);
-            y += compact ? 53 : 65;
+            y += 54;
             float bw = (w - 16) / 3;
-            if (Button(new Rect(x, y, bw, 27), IsPaused ? "再開" : "一時停止", IsPaused)) IsPaused = !IsPaused;
-            if (Button(new Rect(x + bw + 8, y, bw, 27), Speed == 1 ? "速度  1倍" : "速度  2倍", Speed == 2)) SetSpeed(Speed == 1 ? 2 : 1);
-            if (Button(new Rect(x + (bw + 8) * 2, y, bw, 27), metaTab ? "周回強化へ" : "永続強化へ", metaTab)) metaTab = !metaTab;
-            y += compact ? 34 : 44;
+            if (Button(new Rect(x, y, bw, 29), IsPaused ? "再開" : "一時停止", IsPaused)) IsPaused = !IsPaused;
+            if (Button(new Rect(x + bw + 8, y, bw, 29), Speed == 1 ? "速度  1倍" : "速度  2倍", Speed == 2)) SetSpeed(Speed == 1 ? 2 : 1);
+            if (Button(new Rect(x + (bw + 8) * 2, y, bw, 29), metaTab ? "周回強化へ" : "永続強化へ", metaTab))
+            { metaTab = !metaTab; panelScroll = Vector2.zero; }
+            y += 38;
+            float footerHeight = string.IsNullOrEmpty(saveWarning) ? 29 : 48;
+            Rect viewport = new Rect(x, y, w, panel.yMax - y - footerHeight);
+            float contentWidth = w - 20;
+            // The battlefield and pause/speed controls stay visible while the upgrade list scrolls.
+            panelScroll = GUI.BeginScrollView(viewport, panelScroll, new Rect(0, 0, contentWidth, metaTab ? 348 : 594), false, true);
+            try { DrawUpgradeContent(contentWidth); }
+            finally { GUI.EndScrollView(); }
+            if (!string.IsNullOrEmpty(saveWarning))
+            {
+                GUI.Label(new Rect(x, panel.yMax - 46, w - 105, 44), saveWarning, small);
+                if (Button(new Rect(x + w - 100, panel.yMax - 41, 100, 30), "保存再試行", true)) SaveProgress();
+            }
+            else
+                GUI.Label(new Rect(x, panel.yMax - 25, w, 24), FormatTime(Run.ElapsedSeconds) + " 生存  /  墨 " + Run.IncomePerMinute.ToString("0.0") + "/分  /  " + Run.Kills + " 撃破", small);
+        }
+        void DrawUpgradeContent(float w)
+        {
+            float y = 0, bw = (w - 16) / 3;
             if (metaTab)
             {
-                GUI.Label(new Rect(x, y, w, 26), "命をつなぐ研究", heading); y += 29;
-                GUI.Label(new Rect(x, y, w, compact ? 27 : 40), "周回の合間に購入。次の出撃から永続的に働く。", small); y += compact ? 30 : 49;
+                GUI.Label(new Rect(0, y, w, 27), "命をつなぐ研究", heading); y += 32;
+                GUI.Label(new Rect(0, y, w, 39), "周回の合間に購入。次の出撃から永続的に働く。", small); y += 43;
                 for (int i = 0; i < 4; i++)
                 {
                     var kind = (MetaUpgrade)i;
-                    float rowHeight = compact ? 38 : 65;
-                    GUI.Label(new Rect(x, y, w - 104, 21), MetaNames[i] + "  " + Meta.Level(kind), body);
-                    if (!compact) GUI.Label(new Rect(x, y + 23, w - 104, 24), MetaNotes[i], small);
-                    bool canBuy = (AwaitingStart || Run.State != RunStatus.Running) && Meta.Crystals >= Meta.Cost(kind) && Meta.Level(kind) < 20;
-                    GUI.enabled = canBuy;
-                    if (Button(new Rect(x + w - 96, y, 96, 29), Meta.Level(kind) >= 20 ? "MAX" : Meta.Cost(kind) + " 結晶", canBuy)) BuyMeta(kind);
-                    GUI.enabled = true; y += rowHeight;
+                    GUI.Label(new Rect(0, y, w - 110, 23), MetaNames[i] + "  Lv." + Meta.Level(kind), body);
+                    GUI.Label(new Rect(0, y + 24, w - 110, 24), MetaNotes[i], small);
+                    GUI.enabled = (AwaitingStart || Run.State != RunStatus.Running) && Meta.Crystals >= Meta.Cost(kind) && Meta.Level(kind) < 20;
+                    if (Button(new Rect(w - 104, y + 4, 104, 32), Meta.Level(kind) >= 20 ? "MAX" : Meta.Cost(kind) + " 結晶", GUI.enabled)) BuyMeta(kind);
+                    GUI.enabled = true; y += 56;
                 }
             }
             else
             {
-                GUI.Label(new Rect(x, y, w, 21), "枝の成長方針", compact ? body : heading); y += compact ? 23 : 30;
+                GUI.Label(new Rect(0, y, w, 26), "墨の投資方針", heading); y += 30;
+                for (int i = 0; i < 3; i++)
+                    if (Button(new Rect((bw + 8) * i, y, bw, 30), BuildNames[i], SelectedBuild == (BuildPreset)i)) SetBuild((BuildPreset)i);
+                y += 34;
+                GUI.Label(new Rect(0, y, w, 42), BuildNotes[(int)SelectedBuild], small); y += 44;
+                GUI.Label(new Rect(0, y, w, 23), "枝の成長方針", body); y += 26;
                 var names = new[] { "均衡", "迎撃", "集中" };
-                for (int i = 0; i < 3; i++) if (Button(new Rect(x + (bw + 8) * i, y, bw, 26), names[i], Run.Policy == (GrowthPolicy)i)) SetPolicy((GrowthPolicy)i);
-                y += compact ? 31 : 44;
+                for (int i = 0; i < 3; i++) if (Button(new Rect((bw + 8) * i, y, bw, 28), names[i], SelectedPolicy == (GrowthPolicy)i)) SetPolicy((GrowthPolicy)i);
+                y += 34;
+                GUI.Label(new Rect(0, y, w, 23), SelectedBuild == BuildPreset.Manual ? "手動購入  ／  六つの強化" : AwaitingStart || Run.State != RunStatus.Running ? "次の出撃で自動購入  ／  手動購入も可能" : "自動購入中  ／  貯蓄して順番に購入", small); y += 26;
                 int[] levels = Run.UpgradeLevels;
                 int[] caps = { 30, 25, 25, 9, 10, 10 };
                 for (int i = 0; i < 6; i++)
                 {
                     var kind = (UpgradeKind)i;
-                    float rowHeight = compact ? 29 : 53;
-                    GUI.Label(new Rect(x, y, w - 100, 23), UpgradeNames[i] + "  " + levels[i], body);
-                    if (!compact) GUI.Label(new Rect(x, y + 23, w - 104, 20), UpgradeNotes[i], small);
-                    bool canBuy = !AwaitingStart && Run.State == RunStatus.Running && Run.RunInk >= Run.UpgradeCost(kind) && levels[i] < caps[i];
-                    GUI.enabled = canBuy;
-                    if (Button(new Rect(x + w - 94, y, 94, compact ? 25 : 31), levels[i] >= caps[i] ? "MAX" : Run.UpgradeCost(kind) + " 墨", canBuy)) BuyUpgrade(kind);
-                    GUI.enabled = true; y += rowHeight;
+                    bool changed = levelChangedAt[i] > 0 && Time.unscaledTime - levelChangedAt[i] < 2;
+                    if (changed) Fill(new Rect(0, y, w, 49), new Color(gold.r, gold.g, gold.b, .13f));
+                    GUI.Label(new Rect(4, y, w - 112, 24), UpgradeNames[i] + "  Lv." + levels[i] + (changed ? "  ↑" : ""), body);
+                    GUI.Label(new Rect(4, y + 24, w - 112, 24), UpgradeNotes[i], small);
+                    GUI.enabled = !AwaitingStart && Run.State == RunStatus.Running && Run.RunInk >= Run.UpgradeCost(kind) && levels[i] < caps[i];
+                    if (Button(new Rect(w - 104, y + 7, 104, 32), levels[i] >= caps[i] ? "MAX" : Run.UpgradeCost(kind) + " 墨", GUI.enabled)) BuyUpgrade(kind);
+                    GUI.enabled = true; y += 52;
                 }
             }
-            if (compact && string.IsNullOrEmpty(saveWarning))
-                GUI.Label(new Rect(x, panel.yMax - 36, w, 34), notice, small);
-            if (!compact)
-            {
-                y += 8; Fill(new Rect(x, y, w, 1), new Color(.76f, .73f, .66f)); y += 10;
-                GUI.Label(new Rect(x, y, w, 42), notice, small);
-                GUI.Label(new Rect(x, panel.yMax - 22, w, 22), "SEED " + Run.Seed + "   /   " + (Run.TickCount / 30f).ToString("0.0") + "s   /   " + Run.Kills + " 撃破", small);
-            }
-            if (!string.IsNullOrEmpty(saveWarning))
-            {
-                GUI.Label(new Rect(x, panel.yMax - 44, w - 100, 42), saveWarning, small);
-                if (Button(new Rect(x + w - 96, panel.yMax - 41, 96, 27), "保存再試行", true)) SaveProgress();
-            }
+            GUI.Label(new Rect(0, y + 4, w, 43), notice, small);
+        }
+        static string FormatTime(double seconds)
+        {
+            int whole = (int)Math.Max(0, seconds);
+            return (whole / 60).ToString("00") + ":" + (whole % 60).ToString("00");
         }
         bool Button(Rect rect, string label, bool selected)
         {
@@ -358,6 +422,3 @@ namespace Bokumyaku.Presentation
         sealed class Flash { public Vector2 A, B; public float Life; }
     }
 }
-
-
-

@@ -23,6 +23,10 @@
 - 運用規約: [AGENTS.md](AGENTS.md)
 - 初版旧API説明: [Documentation~/CHANGELOG.md](Documentation~/CHANGELOG.md)
 
+## 墨脈のゲーム試作
+
+ゲームは `UnitySandbox/Assets/BokumyakuPrototype/` に分離しています。ローカルWindows版は `Builds/Bokumyaku-v0.2/Bokumyaku.exe`。出撃前に「広域・滲み」「多枝・火力」の自動投資候補を選べます。3敵・60Wave上限の比較用試作で、役割ごとの経済バランスは調整中です。[操作と検証範囲](docs/BOKUMYAKU_PROTOTYPE.md)を参照してください。
+
 Unity Package ManagerからGitURLで使用できるよう、`package.json` は**レポジトリルート**に設置しています。例：`https://github.com/kntnext-hash/sumi-engine.git`（GitHubへpush後）。
 
 他リポジトリの素材/コードは同梱していません。公開ライセンスは未決定のため、独断でオープンソースライセンスを付与しないでください。

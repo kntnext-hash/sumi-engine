@@ -1,0 +1,6 @@
+{
+  "method": "GameView synthesized ScrollWheel, read UI offset",
+  "passed": true,
+  "scrollX": 0.0,
+  "scrollY": 99.0
+}

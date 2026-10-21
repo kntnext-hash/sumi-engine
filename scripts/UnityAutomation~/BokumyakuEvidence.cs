@@ -22,7 +22,7 @@ public static class BokumyakuEvidence
             testMode = TestMode.EditMode,
             assemblyNames = new[] { "Bokumyaku.Tests" }
         }));
-        return "Started BOKUMYAKU EditMode; await docs/evidence/bokumyaku-editmode.xml.";
+        return "Started BOKUMYAKU EditMode; await docs/evidence/bokumyaku-editmode-v2.xml.";
     }
 
     sealed class Recorder : ICallbacks
@@ -33,7 +33,7 @@ public static class BokumyakuEvidence
         public void RunFinished(ITestResultAdaptor result)
         {
             var root = Path.GetFullPath(Path.Combine(Application.dataPath, "../.."));
-            var path = Path.Combine(root, "docs/evidence/bokumyaku-editmode.xml");
+            var path = Path.Combine(root, "docs/evidence/bokumyaku-editmode-v2.xml");
             TestRunnerApi.SaveResultToFile(result, path);
             Debug.Log($"BOKUMYAKU XML: {result.PassCount} passed / {result.FailCount} failed -> {path}");
             api.UnregisterCallbacks(this);
@@ -43,4 +43,3 @@ public static class BokumyakuEvidence
         }
     }
 }
-

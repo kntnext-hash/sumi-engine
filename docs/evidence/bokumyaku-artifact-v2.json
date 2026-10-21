@@ -1,0 +1,8 @@
+{
+  "path": "Builds/Bokumyaku-v0.2/Bokumyaku.exe",
+  "bytes": 667136,
+  "sha256": "EB143EAD6441B6DD9D7D145ADB85410E9389FB3878899AE537E8C9869CCE38FA",
+  "unity": "6000.3.26f1",
+  "scene": "Assets/BokumyakuPrototype/Scenes/Bokumyaku.unity",
+  "note": "Executable must stay with accompanying Data, UnityPlayer and MonoBleedingEdge files."
+}

@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "method": "GameView.SendEvent + live Update + public restart API; QA isolated save. No physical input or complete defeat loop.",
+  "checks": [
+    {
+      "name": "出撃前ビルド選択",
+      "passed": true,
+      "detail": "Farming"
+    },
+    {
+      "name": "出撃前成長方針",
+      "passed": true,
+      "detail": "Focus"
+    },
+    {
+      "name": "出撃と選択保持",
+      "passed": true,
+      "detail": {
+        "build": "Farming",
+        "policy": "Focus"
+      }
+    },
+    {
+      "name": "一時停止",
+      "passed": true,
+      "detail": 16
+    },
+    {
+      "name": "停止中tick維持",
+      "passed": true,
+      "detail": 16
+    },
+    {
+      "name": "再開と2倍速",
+      "passed": true,
+      "detail": 2
+    },
+    {
+      "name": "実行中成長方針変更",
+      "passed": true,
+      "detail": "Balanced"
+    },
+    {
+      "name": "実Updateで周回継続",
+      "passed": true,
+      "detail": {
+        "TickCount": 3610,
+        "Kills": 59,
+        "Wave": 11
+      }
+    },
+    {
+      "name": "自動分岐購入",
+      "passed": true,
+      "detail": [
+        3,
+        2,
+        2,
+        4,
+        2,
+        1
+      ]
+    },
+    {
+      "name": "枝の実成長",
+      "passed": true,
+      "detail": 14
+    },
+    {
+      "name": "多枝火力へ切替",
+      "passed": true,
+      "detail": "Record"
+    },
+    {
+      "name": "手動へ切替",
+      "passed": true,
+      "detail": 14
+    },
+    {
+      "name": "手動時は自動購入停止",
+      "passed": true,
+      "detail": 14
+    },
+    {
+      "name": "再出撃でも方針保持",
+      "passed": true,
+      "detail": {
+        "build": "Record",
+        "policy": "Focus"
+      }
+    },
+    {
+      "name": "フレーム進行",
+      "passed": true,
+      "detail": {
+        "firstFrame": 778,
+        "endFrame": 10018
+      }
+    }
+  ]
+}

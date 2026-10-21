@@ -116,3 +116,13 @@
 - 手順 docs/BOKUMYAKU_PROTOTYPE.md。証拠 docs/evidence/bokumyaku-{editmode.xml,play.json,balance.csv,gameplay.png}。
 - Windows Player build Succeeded、90,233,387 bytes、11.433秒、error/warning0。Builds/Bokumyaku/Bokumyaku.exe（Git対象外）。Player起動ログで6000.3.26f1/描画初期化を確認、Player上の操作・長時間フレーム進行は未検証。EditorのPlay/操作試験と区別。
 - 初回ビルド予約の報告が取得できず、公式Pipeline build runで成果を確認。CLI beta.14公開を検出したが環境変更は行わず既存beta.13で検証。初期編集途中コンパイルエラーと修正済みテスト失敗は履歴へ保持。
+
+## 2026-10-22 墨脈v0.2の継続開発
+- 8032784/cleanから開始し指定文書とCLI status/pipeline/listを確認。Core/Demo/Independent QAを分担。CoreはSimulationと測定、DemoはPresentation、QAはテスト、統合担当はUnityと台帳/commitを所有。
+- 仕様: 枝へ投資できる初期戦闘、2つの自動購入候補、手動停止、選択保持、比較指標、実Player進行を今回の有限受入範囲とした。元Wave CSV、敵成長式/報酬式は変更なし。
+- 実装: 初期攻撃/射程/成長を調整、分岐貯蓄と外周末端維持、60Wave上限、自動投資、収入指標、スクロールUI、任意指定時だけ動くPlayer診断。QA指摘の成長不能時の資源消費と、出撃で成長方針が戻る問題を修正。
+- 品質評価: 記録用購入順を有限3候補で比較しBを採用。最終版は10seed×3構成を測定。9/12末端は実現したが、稼ぎ/記録の役割差と5〜8分目標を満たさず、UIは構成名を採用。利益倍率による見かけ上の優位は追加していない。
+- 検証: 39NUnit、9独立C#、実UI15項目+スクロール、実Player1200tickに合格。初回test起動後の追加修正によるreloadでXMLが出なかったため、最終compile後に実行して正式XMLを採取。実行中の結果を成功扱いしていない。
+- ツール: CLI self-update --yesは成功応答だったが--versionがbeta.13のまま。beta.14導入済みとは記録せず、公式MCPを併用。MCP runは名前衝突（build/script/test）で400となり、CLIの明示したbuild runで実ビルド成功。有限のフォールバックのみ実施。
+- Windows出力はBuilds/Bokumyaku-v0.2へ分離して旧版を保持。生成バイナリ/ログ/キャッシュはGit対象外、結果JSON/XML/PNGとコード/手順を保存。新外部コード/画像/フォントの取込みなし。Engineソース変更なし。
+- Editorを非Play、runInBackground=falseへ復元。最終Console現在error/warning0。次回はTASKSのG-V2-04/05から再開する。

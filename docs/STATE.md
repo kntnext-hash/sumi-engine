@@ -1,6 +1,15 @@
 # 現在の開発状態
 
-更新: 2026-10-21 JST。
+更新: 2026-10-22 JST。以下の現行要約と末尾の最新記録を優先する。
+
+## 現行要約 — ゲーム試作 v0.2
+- Unity 6000.3.26f1 / Pipeline 0.9.0-exp.1を利用可能。描画PC初版v0.2は受入済み。この部屋はゲームのみを変更する。
+- 墨脈は3敵、60Wave上限、枝成長/供給/迎撃、6周回強化、4恒久強化、保存/敗北/再出撃を実装済み。
+- 今回は自動投資「広域・滲み」「多枝・火力」、手動への切替、成長可能範囲/初期攻撃調整、結果の収入/分表示、スクロールUIを追加。出撃前・再出撃の成長方針保持も修正。
+- 次の主課題は周回効率と到達記録の役割差。10seedの中央値は約8分23秒/8分25秒で、5〜8分目標も未達。点墨/貫筆/滲墨、分裂/ボス、背景演出は後続。ゲーム全体の完成とはしない。
+- 操作手順: BOKUMYAKU_PROTOTYPE.md。実行証拠と残件は本書末尾、TASKS.md、QA_AND_EVIDENCE.mdを参照。
+
+以下は経緯を保管した記録。初期の「Editor不在」「ゲーム未実装」は現在の状態ではない。
 
 ## 担当する部屋
 - この初期セットアップのチャットは今後『墨脈 — BOKUMYAKU』のゲーム制作担当。Wave、敵、墨供給、強化、敗北・周回、ゲーム統合を扱う。
@@ -129,3 +138,12 @@
 - 手順 docs/BOKUMYAKU_PROTOTYPE.md。証拠 docs/evidence/bokumyaku-{editmode.xml,play.json,balance.csv,gameplay.png}。
 - Windows Player build Succeeded、90,233,387 bytes、11.433秒、error/warning0。Builds/Bokumyaku/Bokumyaku.exe（Git対象外）。Player起動ログで6000.3.26f1/描画初期化を確認、Player上の操作・長時間フレーム進行は未検証。EditorのPlay/操作試験と区別。
 - 初回ビルド予約の報告が取得できず、公式Pipeline build runで成果を確認。CLI beta.14公開を検出したが環境変更は行わず既存beta.13で検証。初期編集途中コンパイルエラーと修正済みテスト失敗は履歴へ保持。
+
+## 最新: 墨脈 v0.2 — 自動投資と成長の調整（2026-10-22）
+- 開始HEAD 8032784、main/clean。Core・Presentation・独立QAをファイル分担し、Unity操作は統合担当のみ実施。SUMIのRuntime/Editor/Brush Labは変更なし。
+- 分岐費用を貯める2つの自動投資を追加。広域・滲みは9末端、多枝・火力は12末端の候補。手動へ切替可能。基礎攻撃/射程/成長半径と成長閾値を調整し、成長不能時の資源消費を修正。60Wave上限へ延長。
+- Unity EditMode39/39、独立C#9/9、GameView合成入力15/15とスクロール確認に合格。出撃前/再出撃で成長方針が失われる不具合をレビューで発見し、保持処理を追加して実UI再検証。Console現在error/warning0。
+- Windows build Succeeded、90,245,041 bytes、36.369秒、error/warning0。Builds/Bokumyaku-v0.2/Bokumyaku.exe。実Playerはexit0、1200tick、枝8ノード、自動購入4回、顔料2204.4077を確認。物理マウスやPlayerの周回完走試験ではない。
+- 新30条件（10seed×3構成、未強化・均衡）では全自然敗北。自動構成の生存中央値502.52/505.05秒、最終末端9/12。記録候補の生存時間は8勝1敗1同点、到達Waveは3勝7同点。周回候補の墨/分優位は1/10のみ。5〜8分目標と周回/記録の役割差は未合格。
+- 今回の有限増分は受入済み。P3/G5全体は進行中。次は周回効率の指標（永続結晶/分も含む）を決め、点墨/貫筆/滲墨の第一弾を段階実装し、同seedでビルドの得意条件を検証。分裂/ボスを足す前に現3敵の比較を残す。
+- EditorはBokumyakuシーンの非Play、背景実行falseへ復元。手順BOKUMYAKU_PROTOTYPE.md、証拠docs/evidence/bokumyaku-*-v2.*。初版証拠と元CSVを保持。今回の画面は実GameViewで、参考画像素材の貼り付けなし。
