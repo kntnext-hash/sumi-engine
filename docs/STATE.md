@@ -24,3 +24,8 @@
 - ゲーム本体のコードは未実装。The Tower分析手法の許可は受領、今回調査/コード/素材取込みは未実施。
 - 続きの一文: ゲームはこの部屋、描画は専用室。git statusと最新台帳を読んで担当範囲から再開する。
 - 引継ぎ実装SHA: Core `2cca288`、セットアップ/Brush Lab `d46ca04`。
+
+## 描画室の引継ぎ確認（2026-10-21）
+- b8bfd52のcleanな作業ツリーからCore/Unityアダプタ/Editor/Brush Lab/描画QAの責任を引継ぎ。ゲームファイルは対象外。
+- 最新ソース・セットアップ・手動QAを読取確認。PATHとC標準配置でEditorなし。既存の純C#18検証は再実行していない。
+- 次の未達はP0-02。Unity 6.3 LTS Editorの導入とライセンス有効化後、実在Unity.exeを指定してSetup-UnitySandbox.ps1を実行する。P0-02〜05はBLOCKEDのまま。
