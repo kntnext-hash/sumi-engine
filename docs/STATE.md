@@ -21,7 +21,7 @@
 - P0-01監査は合格。P0-02〜05はUnity実行が必要なためBLOCKED、P0全体未合格。P1以降とモバイルは未合格。
 - 描画室の次: Unity 6.3 LTS実行ファイルを検出/導入後、セットアップ→EditMode→実画面・PNG確認。導入・ライセンスはユーザー環境で必要。
 - このゲーム部屋の次: docs/specs/BOKUMYAKU_GDD_v0.2_Unity.mdをもとに、描画に依存しないWave/枝供給/敵/強化/敗北・周回の最小仕様と数値検証を進める。完成した描画を使う実プレイ統合の合格は描画ゲート通過後。
-- ゲーム本体のコードは未実装。The Tower分析手法の許可は受領、今回調査/コード/素材取込みは未実施。
+- ゲーム本体のコードは未実装。The Tower公開資料の分析を実施（下段のゲーム実装準備参照）。コード/素材取込みは未実施。
 - 続きの一文: ゲームはこの部屋、描画は専用室。git statusと最新台帳を読んで担当範囲から再開する。
 - 引継ぎ実装SHA: Core `2cca288`、セットアップ/Brush Lab `d46ca04`。
 
@@ -36,3 +36,10 @@
 - 専用Scene生成/回転/PlayMode試験のソースとインストーラをscriptsに準備。UnitySandboxは未生成。Core独立18検証再実行PASS、Unityコンパイル/画面/PNGは未実行。
 - 手順: docs/CODEX_UNITY_SETUP.md。証拠: docs/evidence/unity-automation-setup.txt。P0-02〜05はBLOCKEDを維持。
 - 続きの一文: 人がEditor導入と認証を終えたらSetup-UnitySandbox→操作probe→Pipeline→CLI/MCP実操作→EditMode/PlayMode→Brush Lab画面確認から再開する。
+
+## ゲーム実装準備（2026-10-21）
+- ユーザーがUnity導入中。WindowsAppsのunity.exeエイリアスは検出したが、6000.3系Editor実体/ProjectVersionは未確認。インストールは操作していない。
+- [GAME_IMPLEMENTATION_READY.md](GAME_IMPLEMENTATION_READY.md)にG1〜G5の実装順、3敵/Wave1-20の初回範囲、描画との契約、保存/順位/課金の後続工程を準備。
+- [The Tower分析](research/THE_TOWER_SYSTEMS.md): 公式情報から成長、課金、大会の循環を分析。収益や継続の因果は仮説。アプリ/バイナリ/通信解析はしていない。
+- scripts/Test-GameBalance.ps1を実行、421数式検査PASS。docs/evidence/game-balance.jsonへWave/供給表を保存。戦闘シミュレーション・GDD Gate A・P3は未合格。
+- 次のゲーム作業: UnitySandbox作成確認後にG1（Pure C# RunSimulator/出現/敗北）、続いてG2供給・戦闘。描画Coreは別室所有を維持。

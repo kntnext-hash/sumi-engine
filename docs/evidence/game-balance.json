@@ -1,0 +1,3755 @@
+{
+  "classification": "Standalone PowerShell formula checks; NOT Unity tests or combat simulation",
+  "designStatus": "All balance coefficients are initial hypotheses, not playtested or balanced.",
+  "source": "docs/specs/BOKUMYAKU_GDD_v0.2_Unity.md",
+  "sourceSha256": "208966c3063ac6bde3f893e7ff8f136898832e9b0bad12e3d51d592411d5768a",
+  "sourceSections": [
+    "4.4 supply",
+    "6.2 HP",
+    "6.3 density",
+    "6.4 speed",
+    "7 supply upgrades and kill rewards",
+    "8.1 crystals"
+  ],
+  "evaluatedAtUtc": "2026-10-21T06:17:07.1895311Z",
+  "powerShellVersion": "7.6.5",
+  "assumptions": [
+    "Kill-reward round uses midpoint-to-even; GDD does not specify tie-breaking. No meta reward multiplier is applied.",
+    "Crystal table holds bosses_defeated at zero; boss kill counts require a combat simulation.",
+    "Expected regular spawn count is 9 times spawn rate, not an integer schedule; separate bosses are excluded.",
+    "Pressure is clamped: tip supply decreases strictly with branch count, but pressure can plateau at either clamp.",
+    "Supply recovery compares initial 3 tips to 12 tips at equal path length; affordability is not checked.",
+    "GDD section 6.5 is an approximate table. Values here are recomputed from the equations, not copied from that table."
+  ],
+  "formulas": {
+    "hp": "16 * 1.072^(w-1) * (1 + 0.12 * floor((w-1)/10))",
+    "spawnPerSecond": "min(4.8, 0.50 + 0.027*w + 0.0007*w*w)",
+    "killReward": "round(4 * enemy_yield_multiplier * (1 + 0.018*w))",
+    "rootSupply": "12 * 1.09^supply_lv",
+    "tipSupply": "(Q0/n) * exp(-0.0013*L)",
+    "pressure": "clamp(sqrt(Qi/3.0), 0.45, 1.65)"
+  },
+  "passed": true,
+  "checkCount": 421,
+  "failureCount": 0,
+  "checks": [
+    {
+      "name": "wave.1.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.2.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.3.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.4.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.5.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.6.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.7.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.8.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.9.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.10.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.11.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.12.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.13.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.14.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.15.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.16.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.17.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.18.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.19.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.20.baseEnemyHp.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.1.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.2.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.3.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.4.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.5.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.6.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.7.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.8.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.9.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.10.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.11.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.12.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.13.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.14.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.15.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.16.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.17.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.18.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.19.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.20.spawnPerSecond.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.1.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.2.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.3.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.4.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.5.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.6.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.7.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.8.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.9.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.10.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.11.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.12.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.13.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.14.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.15.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.16.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.17.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.18.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.19.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.20.expectedRegularSpawns.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.1.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.2.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.3.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.4.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.5.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.6.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.7.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.8.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.9.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.10.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.11.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.12.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.13.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.14.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.15.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.16.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.17.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.18.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.19.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.20.baseEnemySpeed.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.1.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.2.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.3.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.4.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.5.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.6.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.7.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.8.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.9.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.10.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.11.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.12.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.13.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.14.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.15.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.16.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.17.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.18.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.19.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.20.crystalsWithZeroBossKills.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.1.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.2.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.3.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.4.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.5.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.6.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.7.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.8.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.9.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.10.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.11.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.12.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.13.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.14.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.15.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.16.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.17.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.18.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.19.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.20.reward.normal.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.1.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.2.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.3.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.4.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.5.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.6.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.7.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.8.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.9.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.10.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.11.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.12.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.13.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.14.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.15.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.16.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.17.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.18.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.19.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.20.reward.fast.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.1.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.2.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.3.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.4.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.5.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.6.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.7.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.8.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.9.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.10.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.11.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.12.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.13.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.14.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.15.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.16.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.17.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.18.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.19.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.20.reward.heavy.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.1.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.2.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.3.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.4.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.5.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.6.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.7.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.8.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.9.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.10.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.11.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.12.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.13.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.14.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.15.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.16.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.17.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.18.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.19.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.20.reward.split.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.1.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.2.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.3.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.4.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.5.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.6.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.7.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.8.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.9.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.10.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.11.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.12.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.13.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.14.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.15.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.16.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.17.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.18.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.19.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave.20.reward.boss.finite_nonnegative_monotone",
+      "passed": true
+    },
+    {
+      "name": "wave1.hp_anchor_16",
+      "passed": true
+    },
+    {
+      "name": "wave1.spawn_anchor_0.5277",
+      "passed": true
+    },
+    {
+      "name": "wave11.band_multiplier_begins",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv0.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv1.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv2.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv3.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv4.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv5.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv6.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv7.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv8.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv9.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv10.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv11.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv12.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv13.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv14.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv15.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv16.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv17.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv18.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv19.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv20.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv21.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv22.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv23.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv24.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L100.lv25.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv0.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv1.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv2.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv3.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv4.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv5.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv6.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv7.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv8.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv9.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv10.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv11.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv12.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv13.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv14.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv15.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv16.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv17.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv18.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv19.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv20.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv21.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv22.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv23.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv24.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L100.lv25.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv0.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv1.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv2.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv3.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv4.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv5.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv6.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv7.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv8.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv9.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv10.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv11.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv12.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv13.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv14.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv15.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv16.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv17.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv18.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv19.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv20.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv21.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv22.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv23.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv24.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L100.lv25.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv0.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv1.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv2.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv3.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv4.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv5.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv6.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv7.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv8.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv9.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv10.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv11.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv12.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv13.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv14.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv15.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv16.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv17.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv18.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv19.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv20.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv21.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv22.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv23.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv24.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L100.lv25.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "branch_dilution.n1.L100",
+      "passed": true
+    },
+    {
+      "name": "branch_dilution.n3.L100",
+      "passed": true
+    },
+    {
+      "name": "branch_dilution.n6.L100",
+      "passed": true
+    },
+    {
+      "name": "branch_dilution.n12.L100",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv0.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv1.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv2.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv3.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv4.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv5.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv6.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv7.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv8.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv9.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv10.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv11.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv12.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv13.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv14.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv15.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv16.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv17.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv18.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv19.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv20.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv21.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv22.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv23.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv24.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n1.L300.lv25.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv0.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv1.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv2.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv3.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv4.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv5.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv6.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv7.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv8.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv9.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv10.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv11.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv12.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv13.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv14.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv15.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv16.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv17.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv18.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv19.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv20.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv21.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv22.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv23.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv24.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n3.L300.lv25.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv0.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv1.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv2.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv3.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv4.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv5.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv6.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv7.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv8.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv9.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv10.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv11.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv12.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv13.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv14.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv15.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv16.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv17.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv18.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv19.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv20.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv21.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv22.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv23.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv24.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n6.L300.lv25.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv0.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv1.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv2.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv3.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv4.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv5.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv6.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv7.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv8.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv9.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv10.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv11.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv12.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv13.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv14.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv15.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv16.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv17.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv18.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv19.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv20.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv21.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv22.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv23.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv24.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "supply.n12.L300.lv25.finite_monotone",
+      "passed": true
+    },
+    {
+      "name": "branch_dilution.n1.L300",
+      "passed": true
+    },
+    {
+      "name": "branch_dilution.n3.L300",
+      "passed": true
+    },
+    {
+      "name": "branch_dilution.n6.L300",
+      "passed": true
+    },
+    {
+      "name": "branch_dilution.n12.L300",
+      "passed": true
+    },
+    {
+      "name": "supply_upgrade_restores_3_to_12_tips.L100",
+      "passed": true
+    },
+    {
+      "name": "supply_upgrade_restores_3_to_12_tips.L300",
+      "passed": true
+    }
+  ],
+  "waves": [
+    {
+      "wave": 1,
+      "baseEnemyHp": 16.0,
+      "spawnPerSecond": 0.5277000000000001,
+      "expectedRegularSpawns": 4.749300000000001,
+      "baseEnemySpeed": 35.0,
+      "killRewards": {
+        "normal": 4.0,
+        "fast": 4.0,
+        "heavy": 8.0,
+        "split": 6.0,
+        "boss": 49.0
+      },
+      "crystalsWithZeroBossKills": 4.0
+    },
+    {
+      "wave": 2,
+      "baseEnemyHp": 17.152,
+      "spawnPerSecond": 0.5568000000000001,
+      "expectedRegularSpawns": 5.0112000000000005,
+      "baseEnemySpeed": 35.21,
+      "killRewards": {
+        "normal": 4.0,
+        "fast": 5.0,
+        "heavy": 8.0,
+        "split": 6.0,
+        "boss": 50.0
+      },
+      "crystalsWithZeroBossKills": 4.0
+    },
+    {
+      "wave": 3,
+      "baseEnemyHp": 18.386944000000003,
+      "spawnPerSecond": 0.5872999999999999,
+      "expectedRegularSpawns": 5.285699999999999,
+      "baseEnemySpeed": 35.42,
+      "killRewards": {
+        "normal": 4.0,
+        "fast": 5.0,
+        "heavy": 8.0,
+        "split": 6.0,
+        "boss": 51.0
+      },
+      "crystalsWithZeroBossKills": 5.0
+    },
+    {
+      "wave": 4,
+      "baseEnemyHp": 19.710803968000004,
+      "spawnPerSecond": 0.6192,
+      "expectedRegularSpawns": 5.5728,
+      "baseEnemySpeed": 35.63,
+      "killRewards": {
+        "normal": 4.0,
+        "fast": 5.0,
+        "heavy": 9.0,
+        "split": 6.0,
+        "boss": 51.0
+      },
+      "crystalsWithZeroBossKills": 5.0
+    },
+    {
+      "wave": 5,
+      "baseEnemyHp": 21.129981853696005,
+      "spawnPerSecond": 0.6525,
+      "expectedRegularSpawns": 5.8725,
+      "baseEnemySpeed": 35.84,
+      "killRewards": {
+        "normal": 4.0,
+        "fast": 5.0,
+        "heavy": 9.0,
+        "split": 6.0,
+        "boss": 52.0
+      },
+      "crystalsWithZeroBossKills": 6.0
+    },
+    {
+      "wave": 6,
+      "baseEnemyHp": 22.651340547162118,
+      "spawnPerSecond": 0.6872,
+      "expectedRegularSpawns": 6.1848,
+      "baseEnemySpeed": 36.050000000000004,
+      "killRewards": {
+        "normal": 4.0,
+        "fast": 5.0,
+        "heavy": 9.0,
+        "split": 6.0,
+        "boss": 53.0
+      },
+      "crystalsWithZeroBossKills": 7.0
+    },
+    {
+      "wave": 7,
+      "baseEnemyHp": 24.282237066557794,
+      "spawnPerSecond": 0.7233,
+      "expectedRegularSpawns": 6.5097000000000005,
+      "baseEnemySpeed": 36.26,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 5.0,
+        "heavy": 9.0,
+        "split": 6.0,
+        "boss": 54.0
+      },
+      "crystalsWithZeroBossKills": 7.0
+    },
+    {
+      "wave": 8,
+      "baseEnemyHp": 26.030558135349956,
+      "spawnPerSecond": 0.7607999999999999,
+      "expectedRegularSpawns": 6.847199999999999,
+      "baseEnemySpeed": 36.47,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 5.0,
+        "heavy": 9.0,
+        "split": 6.0,
+        "boss": 55.0
+      },
+      "crystalsWithZeroBossKills": 8.0
+    },
+    {
+      "wave": 9,
+      "baseEnemyHp": 27.904758321095155,
+      "spawnPerSecond": 0.7997,
+      "expectedRegularSpawns": 7.197299999999999,
+      "baseEnemySpeed": 36.68,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 5.0,
+        "heavy": 9.0,
+        "split": 7.0,
+        "boss": 56.0
+      },
+      "crystalsWithZeroBossKills": 9.0
+    },
+    {
+      "wave": 10,
+      "baseEnemyHp": 29.913900920214008,
+      "spawnPerSecond": 0.8400000000000001,
+      "expectedRegularSpawns": 7.5600000000000005,
+      "baseEnemySpeed": 36.89,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 5.0,
+        "heavy": 9.0,
+        "split": 7.0,
+        "boss": 57.0
+      },
+      "crystalsWithZeroBossKills": 10.0
+    },
+    {
+      "wave": 11,
+      "baseEnemyHp": 35.91582600084575,
+      "spawnPerSecond": 0.8816999999999999,
+      "expectedRegularSpawns": 7.9353,
+      "baseEnemySpeed": 37.1,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 5.0,
+        "heavy": 10.0,
+        "split": 7.0,
+        "boss": 58.0
+      },
+      "crystalsWithZeroBossKills": 11.0
+    },
+    {
+      "wave": 12,
+      "baseEnemyHp": 38.50176547290664,
+      "spawnPerSecond": 0.9248000000000001,
+      "expectedRegularSpawns": 8.3232,
+      "baseEnemySpeed": 37.31,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 5.0,
+        "heavy": 10.0,
+        "split": 7.0,
+        "boss": 58.0
+      },
+      "crystalsWithZeroBossKills": 12.0
+    },
+    {
+      "wave": 13,
+      "baseEnemyHp": 41.273892586955924,
+      "spawnPerSecond": 0.9692999999999999,
+      "expectedRegularSpawns": 8.7237,
+      "baseEnemySpeed": 37.52,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 5.0,
+        "heavy": 10.0,
+        "split": 7.0,
+        "boss": 59.0
+      },
+      "crystalsWithZeroBossKills": 13.0
+    },
+    {
+      "wave": 14,
+      "baseEnemyHp": 44.245612853216755,
+      "spawnPerSecond": 1.0152,
+      "expectedRegularSpawns": 9.136800000000001,
+      "baseEnemySpeed": 37.730000000000004,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 6.0,
+        "heavy": 10.0,
+        "split": 7.0,
+        "boss": 60.0
+      },
+      "crystalsWithZeroBossKills": 14.0
+    },
+    {
+      "wave": 15,
+      "baseEnemyHp": 47.43129697864836,
+      "spawnPerSecond": 1.0625,
+      "expectedRegularSpawns": 9.5625,
+      "baseEnemySpeed": 37.940000000000005,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 6.0,
+        "heavy": 10.0,
+        "split": 7.0,
+        "boss": 61.0
+      },
+      "crystalsWithZeroBossKills": 15.0
+    },
+    {
+      "wave": 16,
+      "baseEnemyHp": 50.84635036111105,
+      "spawnPerSecond": 1.1112,
+      "expectedRegularSpawns": 10.0008,
+      "baseEnemySpeed": 38.150000000000006,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 6.0,
+        "heavy": 10.0,
+        "split": 7.0,
+        "boss": 62.0
+      },
+      "crystalsWithZeroBossKills": 16.0
+    },
+    {
+      "wave": 17,
+      "baseEnemyHp": 54.50728758711105,
+      "spawnPerSecond": 1.1613,
+      "expectedRegularSpawns": 10.4517,
+      "baseEnemySpeed": 38.36,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 6.0,
+        "heavy": 10.0,
+        "split": 7.0,
+        "boss": 63.0
+      },
+      "crystalsWithZeroBossKills": 17.0
+    },
+    {
+      "wave": 18,
+      "baseEnemyHp": 58.431812293383054,
+      "spawnPerSecond": 1.2128,
+      "expectedRegularSpawns": 10.9152,
+      "baseEnemySpeed": 38.57,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 6.0,
+        "heavy": 11.0,
+        "split": 7.0,
+        "boss": 64.0
+      },
+      "crystalsWithZeroBossKills": 18.0
+    },
+    {
+      "wave": 19,
+      "baseEnemyHp": 62.63890277850663,
+      "spawnPerSecond": 1.2656999999999998,
+      "expectedRegularSpawns": 11.391299999999998,
+      "baseEnemySpeed": 38.78,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 6.0,
+        "heavy": 11.0,
+        "split": 8.0,
+        "boss": 64.0
+      },
+      "crystalsWithZeroBossKills": 19.0
+    },
+    {
+      "wave": 20,
+      "baseEnemyHp": 67.14890377855912,
+      "spawnPerSecond": 1.32,
+      "expectedRegularSpawns": 11.88,
+      "baseEnemySpeed": 38.99,
+      "killRewards": {
+        "normal": 5.0,
+        "fast": 6.0,
+        "heavy": 11.0,
+        "split": 8.0,
+        "boss": 65.0
+      },
+      "crystalsWithZeroBossKills": 20.0
+    }
+  ],
+  "supplyTable": [
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 0,
+      "rootSupply": 12.0,
+      "tipSupply": 10.537145171046735,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 1,
+      "rootSupply": 13.080000000000002,
+      "tipSupply": 11.485488236440943,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 2,
+      "rootSupply": 14.257200000000001,
+      "tipSupply": 12.519182177720628,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 3,
+      "rootSupply": 15.540348000000002,
+      "tipSupply": 13.645908573715484,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 4,
+      "rootSupply": 16.938979320000005,
+      "tipSupply": 14.874040345349881,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 5,
+      "rootSupply": 18.463487458800007,
+      "tipSupply": 16.21270397643137,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 6,
+      "rootSupply": 20.125201330092008,
+      "tipSupply": 17.671847334310193,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 7,
+      "rootSupply": 21.936469449800292,
+      "tipSupply": 19.262313594398115,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 8,
+      "rootSupply": 23.91075170028232,
+      "tipSupply": 20.995921817893947,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 9,
+      "rootSupply": 26.06271935330773,
+      "tipSupply": 22.885554781504403,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 10,
+      "rootSupply": 28.40836409510543,
+      "tipSupply": 24.945254711839805,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 11,
+      "rootSupply": 30.965116863664917,
+      "tipSupply": 27.190327635905387,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 12,
+      "rootSupply": 33.75197738139477,
+      "tipSupply": 29.637457123136876,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 13,
+      "rootSupply": 36.78965534572029,
+      "tipSupply": 32.30482826421919,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 14,
+      "rootSupply": 40.10072432683513,
+      "tipSupply": 35.212262807998925,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 15,
+      "rootSupply": 43.70978951625029,
+      "tipSupply": 38.38136646071883,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 16,
+      "rootSupply": 47.64367057271282,
+      "tipSupply": 41.83568944218353,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 17,
+      "rootSupply": 51.931600924256976,
+      "tipSupply": 45.600901491980046,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 18,
+      "rootSupply": 56.60544500744011,
+      "tipSupply": 49.70498262625826,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 19,
+      "rootSupply": 61.69993505810972,
+      "tipSupply": 54.178431062621506,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 20,
+      "rootSupply": 67.2529292133396,
+      "tipSupply": 59.05448985825744,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 21,
+      "rootSupply": 73.30569284254017,
+      "tipSupply": 64.36939394550062,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 22,
+      "rootSupply": 79.9032051983688,
+      "tipSupply": 70.16263940059568,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 23,
+      "rootSupply": 87.094493666222,
+      "tipSupply": 76.4772769466493,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 24,
+      "rootSupply": 94.93299809618198,
+      "tipSupply": 83.36023187184774,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 100.0,
+      "supplyLevel": 25,
+      "rootSupply": 103.47696792483836,
+      "tipSupply": 90.86265274031405,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 0,
+      "rootSupply": 12.0,
+      "tipSupply": 3.512381723682245,
+      "pressure": 1.0820323044595672
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 1,
+      "rootSupply": 13.080000000000002,
+      "tipSupply": 3.8284960788136475,
+      "pressure": 1.1296748911100702
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 2,
+      "rootSupply": 14.257200000000001,
+      "tipSupply": 4.173060725906876,
+      "pressure": 1.1794152118609285
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 3,
+      "rootSupply": 15.540348000000002,
+      "tipSupply": 4.548636191238495,
+      "pressure": 1.2313456313099767
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 4,
+      "rootSupply": 16.938979320000005,
+      "tipSupply": 4.958013448449961,
+      "pressure": 1.2855625809284121
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 5,
+      "rootSupply": 18.463487458800007,
+      "tipSupply": 5.404234658810457,
+      "pressure": 1.3421667381278746
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 6,
+      "rootSupply": 20.125201330092008,
+      "tipSupply": 5.890615778103398,
+      "pressure": 1.4012632132119691
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 7,
+      "rootSupply": 21.936469449800292,
+      "tipSupply": 6.420771198132705,
+      "pressure": 1.4629617445593837
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 8,
+      "rootSupply": 23.91075170028232,
+      "tipSupply": 6.998640605964648,
+      "pressure": 1.5273769024010466
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 9,
+      "rootSupply": 26.06271935330773,
+      "tipSupply": 7.628518260501468,
+      "pressure": 1.5946283015697282
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 10,
+      "rootSupply": 28.40836409510543,
+      "tipSupply": 8.315084903946602,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 11,
+      "rootSupply": 30.965116863664917,
+      "tipSupply": 9.063442545301795,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 12,
+      "rootSupply": 33.75197738139477,
+      "tipSupply": 9.87915237437896,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 13,
+      "rootSupply": 36.78965534572029,
+      "tipSupply": 10.768276088073064,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 14,
+      "rootSupply": 40.10072432683513,
+      "tipSupply": 11.737420935999642,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 15,
+      "rootSupply": 43.70978951625029,
+      "tipSupply": 12.79378882023961,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 16,
+      "rootSupply": 47.64367057271282,
+      "tipSupply": 13.945229814061177,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 17,
+      "rootSupply": 51.931600924256976,
+      "tipSupply": 15.200300497326683,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 18,
+      "rootSupply": 56.60544500744011,
+      "tipSupply": 16.568327542086088,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 19,
+      "rootSupply": 61.69993505810972,
+      "tipSupply": 18.059477020873835,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 20,
+      "rootSupply": 67.2529292133396,
+      "tipSupply": 19.68482995275248,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 21,
+      "rootSupply": 73.30569284254017,
+      "tipSupply": 21.456464648500205,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 22,
+      "rootSupply": 79.9032051983688,
+      "tipSupply": 23.387546466865228,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 23,
+      "rootSupply": 87.094493666222,
+      "tipSupply": 25.4924256488831,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 24,
+      "rootSupply": 94.93299809618198,
+      "tipSupply": 27.786743957282578,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 100.0,
+      "supplyLevel": 25,
+      "rootSupply": 103.47696792483836,
+      "tipSupply": 30.287550913438015,
+      "pressure": 1.65
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 0,
+      "rootSupply": 12.0,
+      "tipSupply": 1.7561908618411226,
+      "pressure": 0.765112379946267
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 1,
+      "rootSupply": 13.080000000000002,
+      "tipSupply": 1.9142480394068238,
+      "pressure": 0.7988007760401054
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 2,
+      "rootSupply": 14.257200000000001,
+      "tipSupply": 2.086530362953438,
+      "pressure": 0.8339724941414312
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 3,
+      "rootSupply": 15.540348000000002,
+      "tipSupply": 2.2743180956192477,
+      "pressure": 0.870692845883715
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 4,
+      "rootSupply": 16.938979320000005,
+      "tipSupply": 2.4790067242249805,
+      "pressure": 0.9090300186141601
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 5,
+      "rootSupply": 18.463487458800007,
+      "tipSupply": 2.7021173294052283,
+      "pressure": 0.9490552020132493
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 6,
+      "rootSupply": 20.125201330092008,
+      "tipSupply": 2.945307889051699,
+      "pressure": 0.9908427202894344
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 7,
+      "rootSupply": 21.936469449800292,
+      "tipSupply": 3.2103855990663526,
+      "pressure": 1.0344701701944419
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 8,
+      "rootSupply": 23.91075170028232,
+      "tipSupply": 3.499320302982324,
+      "pressure": 1.0800185651154837
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 9,
+      "rootSupply": 26.06271935330773,
+      "tipSupply": 3.814259130250734,
+      "pressure": 1.1275724855119418
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 10,
+      "rootSupply": 28.40836409510543,
+      "tipSupply": 4.157542451973301,
+      "pressure": 1.1772202359758774
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 11,
+      "rootSupply": 30.965116863664917,
+      "tipSupply": 4.5317212726508975,
+      "pressure": 1.2290540092080164
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 12,
+      "rootSupply": 33.75197738139477,
+      "tipSupply": 4.93957618718948,
+      "pressure": 1.2831700572137064
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 13,
+      "rootSupply": 36.78965534572029,
+      "tipSupply": 5.384138044036532,
+      "pressure": 1.339668870036738
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 14,
+      "rootSupply": 40.10072432683513,
+      "tipSupply": 5.868710467999821,
+      "pressure": 1.39865536236294
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 15,
+      "rootSupply": 43.70978951625029,
+      "tipSupply": 6.396894410119805,
+      "pressure": 1.4602390683400446
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 16,
+      "rootSupply": 47.64367057271282,
+      "tipSupply": 6.9726149070305885,
+      "pressure": 1.5245343449756046
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 17,
+      "rootSupply": 51.931600924256976,
+      "tipSupply": 7.600150248663342,
+      "pressure": 1.5916605844906488
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 18,
+      "rootSupply": 56.60544500744011,
+      "tipSupply": 8.284163771043044,
+      "pressure": 1.65
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 19,
+      "rootSupply": 61.69993505810972,
+      "tipSupply": 9.029738510436918,
+      "pressure": 1.65
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 20,
+      "rootSupply": 67.2529292133396,
+      "tipSupply": 9.84241497637624,
+      "pressure": 1.65
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 21,
+      "rootSupply": 73.30569284254017,
+      "tipSupply": 10.728232324250103,
+      "pressure": 1.65
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 22,
+      "rootSupply": 79.9032051983688,
+      "tipSupply": 11.693773233432614,
+      "pressure": 1.65
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 23,
+      "rootSupply": 87.094493666222,
+      "tipSupply": 12.74621282444155,
+      "pressure": 1.65
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 24,
+      "rootSupply": 94.93299809618198,
+      "tipSupply": 13.893371978641289,
+      "pressure": 1.65
+    },
+    {
+      "tips": 6,
+      "pathLength": 100.0,
+      "supplyLevel": 25,
+      "rootSupply": 103.47696792483836,
+      "tipSupply": 15.143775456719007,
+      "pressure": 1.65
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 0,
+      "rootSupply": 12.0,
+      "tipSupply": 0.8780954309205613,
+      "pressure": 0.5410161522297836
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 1,
+      "rootSupply": 13.080000000000002,
+      "tipSupply": 0.9571240197034119,
+      "pressure": 0.5648374455550351
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 2,
+      "rootSupply": 14.257200000000001,
+      "tipSupply": 1.043265181476719,
+      "pressure": 0.5897076059304642
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 3,
+      "rootSupply": 15.540348000000002,
+      "tipSupply": 1.1371590478096238,
+      "pressure": 0.6156728156549883
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 4,
+      "rootSupply": 16.938979320000005,
+      "tipSupply": 1.2395033621124902,
+      "pressure": 0.6427812904642061
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 5,
+      "rootSupply": 18.463487458800007,
+      "tipSupply": 1.3510586647026142,
+      "pressure": 0.6710833690639373
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 6,
+      "rootSupply": 20.125201330092008,
+      "tipSupply": 1.4726539445258495,
+      "pressure": 0.7006316066059846
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 7,
+      "rootSupply": 21.936469449800292,
+      "tipSupply": 1.6051927995331763,
+      "pressure": 0.7314808722796918
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 8,
+      "rootSupply": 23.91075170028232,
+      "tipSupply": 1.749660151491162,
+      "pressure": 0.7636884512005233
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 9,
+      "rootSupply": 26.06271935330773,
+      "tipSupply": 1.907129565125367,
+      "pressure": 0.7973141507848641
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 10,
+      "rootSupply": 28.40836409510543,
+      "tipSupply": 2.0787712259866504,
+      "pressure": 0.8324204118085705
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 11,
+      "rootSupply": 30.965116863664917,
+      "tipSupply": 2.2658606363254488,
+      "pressure": 0.8690724243555019
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 12,
+      "rootSupply": 33.75197738139477,
+      "tipSupply": 2.46978809359474,
+      "pressure": 0.907338248871342
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 13,
+      "rootSupply": 36.78965534572029,
+      "tipSupply": 2.692069022018266,
+      "pressure": 0.9472889425474971
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 14,
+      "rootSupply": 40.10072432683513,
+      "tipSupply": 2.9343552339999106,
+      "pressure": 0.9889986912697628
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 15,
+      "rootSupply": 43.70978951625029,
+      "tipSupply": 3.1984472050599027,
+      "pressure": 1.032544947376772
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 16,
+      "rootSupply": 47.64367057271282,
+      "tipSupply": 3.4863074535152943,
+      "pressure": 1.0780085734840414
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 17,
+      "rootSupply": 51.931600924256976,
+      "tipSupply": 3.800075124331671,
+      "pressure": 1.1254739926406816
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 18,
+      "rootSupply": 56.60544500744011,
+      "tipSupply": 4.142081885521522,
+      "pressure": 1.1750293450976055
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 19,
+      "rootSupply": 61.69993505810972,
+      "tipSupply": 4.514869255218459,
+      "pressure": 1.2267666519783431
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 20,
+      "rootSupply": 67.2529292133396,
+      "tipSupply": 4.92120748818812,
+      "pressure": 1.2807819861563898
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 21,
+      "rootSupply": 73.30569284254017,
+      "tipSupply": 5.364116162125051,
+      "pressure": 1.3371756506563939
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 22,
+      "rootSupply": 79.9032051983688,
+      "tipSupply": 5.846886616716307,
+      "pressure": 1.396052364910465
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 23,
+      "rootSupply": 87.094493666222,
+      "tipSupply": 6.373106412220775,
+      "pressure": 1.4575214592154695
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 24,
+      "rootSupply": 94.93299809618198,
+      "tipSupply": 6.9466859893206445,
+      "pressure": 1.521697077752407
+    },
+    {
+      "tips": 12,
+      "pathLength": 100.0,
+      "supplyLevel": 25,
+      "rootSupply": 103.47696792483836,
+      "tipSupply": 7.571887728359504,
+      "pressure": 1.588698390544862
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 0,
+      "rootSupply": 12.0,
+      "tipSupply": 8.124682493977977,
+      "pressure": 1.6456693161120368
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 1,
+      "rootSupply": 13.080000000000002,
+      "tipSupply": 8.855903918435997,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 2,
+      "rootSupply": 14.257200000000001,
+      "tipSupply": 9.652935271095235,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 3,
+      "rootSupply": 15.540348000000002,
+      "tipSupply": 10.521699445493807,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 4,
+      "rootSupply": 16.938979320000005,
+      "tipSupply": 11.468652395588252,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 5,
+      "rootSupply": 18.463487458800007,
+      "tipSupply": 12.500831111191195,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 6,
+      "rootSupply": 20.125201330092008,
+      "tipSupply": 13.625905911198403,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 7,
+      "rootSupply": 21.936469449800292,
+      "tipSupply": 14.852237443206262,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 8,
+      "rootSupply": 23.91075170028232,
+      "tipSupply": 16.188938813094826,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 9,
+      "rootSupply": 26.06271935330773,
+      "tipSupply": 17.645943306273363,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 10,
+      "rootSupply": 28.40836409510543,
+      "tipSupply": 19.234078203837967,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 11,
+      "rootSupply": 30.965116863664917,
+      "tipSupply": 20.965145242183382,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 12,
+      "rootSupply": 33.75197738139477,
+      "tipSupply": 22.85200831397989,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 13,
+      "rootSupply": 36.78965534572029,
+      "tipSupply": 24.90868906223808,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 14,
+      "rootSupply": 40.10072432683513,
+      "tipSupply": 27.150471077839512,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 15,
+      "rootSupply": 43.70978951625029,
+      "tipSupply": 29.59401347484507,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 16,
+      "rootSupply": 47.64367057271282,
+      "tipSupply": 32.25747468758113,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 17,
+      "rootSupply": 51.931600924256976,
+      "tipSupply": 35.16064740946343,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 18,
+      "rootSupply": 56.60544500744011,
+      "tipSupply": 38.32510567631515,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 19,
+      "rootSupply": 61.69993505810972,
+      "tipSupply": 41.77436518718351,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 20,
+      "rootSupply": 67.2529292133396,
+      "tipSupply": 45.53405805403003,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 21,
+      "rootSupply": 73.30569284254017,
+      "tipSupply": 49.632123278892735,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 22,
+      "rootSupply": 79.9032051983688,
+      "tipSupply": 54.099014373993086,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 23,
+      "rootSupply": 87.094493666222,
+      "tipSupply": 58.96792566765247,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 24,
+      "rootSupply": 94.93299809618198,
+      "tipSupply": 64.27503897774119,
+      "pressure": 1.65
+    },
+    {
+      "tips": 1,
+      "pathLength": 300.0,
+      "supplyLevel": 25,
+      "rootSupply": 103.47696792483836,
+      "tipSupply": 70.0597924857379,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 0,
+      "rootSupply": 12.0,
+      "tipSupply": 2.708227497992659,
+      "pressure": 0.9501276226543918
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 1,
+      "rootSupply": 13.080000000000002,
+      "tipSupply": 2.9519679728119987,
+      "pressure": 0.9919623603094354
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 2,
+      "rootSupply": 14.257200000000001,
+      "tipSupply": 3.2176450903650786,
+      "pressure": 1.035639108693287
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 3,
+      "rootSupply": 15.540348000000002,
+      "tipSupply": 3.507233148497936,
+      "pressure": 1.0812389727372846
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 4,
+      "rootSupply": 16.938979320000005,
+      "tipSupply": 3.8228841318627507,
+      "pressure": 1.128846628475683
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 5,
+      "rootSupply": 18.463487458800007,
+      "tipSupply": 4.166943703730398,
+      "pressure": 1.1785504802836404
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 6,
+      "rootSupply": 20.125201330092008,
+      "tipSupply": 4.541968637066135,
+      "pressure": 1.2304428250384947
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 7,
+      "rootSupply": 21.936469449800292,
+      "tipSupply": 4.9507458144020875,
+      "pressure": 1.2846200235091683
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 8,
+      "rootSupply": 23.91075170028232,
+      "tipSupply": 5.396312937698275,
+      "pressure": 1.3411826792919592
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 9,
+      "rootSupply": 26.06271935330773,
+      "tipSupply": 5.881981102091121,
+      "pressure": 1.4002358256249934
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 10,
+      "rootSupply": 28.40836409510543,
+      "tipSupply": 6.411359401279323,
+      "pressure": 1.4618891204282358
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 11,
+      "rootSupply": 30.965116863664917,
+      "tipSupply": 6.988381747394461,
+      "pressure": 1.526257049931243
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 12,
+      "rootSupply": 33.75197738139477,
+      "tipSupply": 7.617336104659964,
+      "pressure": 1.5934591412667771
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 13,
+      "rootSupply": 36.78965534572029,
+      "tipSupply": 8.30289635407936,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 14,
+      "rootSupply": 40.10072432683513,
+      "tipSupply": 9.050157025946504,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 15,
+      "rootSupply": 43.70978951625029,
+      "tipSupply": 9.864671158281691,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 16,
+      "rootSupply": 47.64367057271282,
+      "tipSupply": 10.752491562527043,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 17,
+      "rootSupply": 51.931600924256976,
+      "tipSupply": 11.720215803154478,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 18,
+      "rootSupply": 56.60544500744011,
+      "tipSupply": 12.775035225438382,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 19,
+      "rootSupply": 61.69993505810972,
+      "tipSupply": 13.924788395727838,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 20,
+      "rootSupply": 67.2529292133396,
+      "tipSupply": 15.178019351343343,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 21,
+      "rootSupply": 73.30569284254017,
+      "tipSupply": 16.544041092964246,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 22,
+      "rootSupply": 79.9032051983688,
+      "tipSupply": 18.033004791331027,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 23,
+      "rootSupply": 87.094493666222,
+      "tipSupply": 19.655975222550822,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 24,
+      "rootSupply": 94.93299809618198,
+      "tipSupply": 21.4250129925804,
+      "pressure": 1.65
+    },
+    {
+      "tips": 3,
+      "pathLength": 300.0,
+      "supplyLevel": 25,
+      "rootSupply": 103.47696792483836,
+      "tipSupply": 23.353264161912637,
+      "pressure": 1.65
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 0,
+      "rootSupply": 12.0,
+      "tipSupply": 1.3541137489963295,
+      "pressure": 0.6718416849715736
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 1,
+      "rootSupply": 13.080000000000002,
+      "tipSupply": 1.4759839864059994,
+      "pressure": 0.7014233116566152
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 2,
+      "rootSupply": 14.257200000000001,
+      "tipSupply": 1.6088225451825393,
+      "pressure": 0.7323074366190153
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 3,
+      "rootSupply": 15.540348000000002,
+      "tipSupply": 1.753616574248968,
+      "pressure": 0.7645514097057106
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 4,
+      "rootSupply": 16.938979320000005,
+      "tipSupply": 1.9114420659313753,
+      "pressure": 0.7982151059147268
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 5,
+      "rootSupply": 18.463487458800007,
+      "tipSupply": 2.083471851865199,
+      "pressure": 0.8333610365792246
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 6,
+      "rootSupply": 20.125201330092008,
+      "tipSupply": 2.2709843185330674,
+      "pressure": 0.8700544654470522
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 7,
+      "rootSupply": 21.936469449800292,
+      "tipSupply": 2.4753729072010437,
+      "pressure": 0.9083635298713549
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 8,
+      "rootSupply": 23.91075170028232,
+      "tipSupply": 2.6981564688491373,
+      "pressure": 0.9483593673372869
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 9,
+      "rootSupply": 26.06271935330773,
+      "tipSupply": 2.9409905510455605,
+      "pressure": 0.990116247559777
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 10,
+      "rootSupply": 28.40836409510543,
+      "tipSupply": 3.2056797006396613,
+      "pressure": 1.033711710397643
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 11,
+      "rootSupply": 30.965116863664917,
+      "tipSupply": 3.4941908736972307,
+      "pressure": 1.079226709840157
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 12,
+      "rootSupply": 33.75197738139477,
+      "tipSupply": 3.808668052329982,
+      "pressure": 1.1267457643334309
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 13,
+      "rootSupply": 36.78965534572029,
+      "tipSupply": 4.15144817703968,
+      "pressure": 1.1763571137257711
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 14,
+      "rootSupply": 40.10072432683513,
+      "tipSupply": 4.525078512973252,
+      "pressure": 1.2281528831234396
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 15,
+      "rootSupply": 43.70978951625029,
+      "tipSupply": 4.932335579140846,
+      "pressure": 1.2822292539610907
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 16,
+      "rootSupply": 47.64367057271282,
+      "tipSupply": 5.376245781263521,
+      "pressure": 1.3386866426045494
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 17,
+      "rootSupply": 51.931600924256976,
+      "tipSupply": 5.860107901577239,
+      "pressure": 1.397629886817589
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 18,
+      "rootSupply": 56.60544500744011,
+      "tipSupply": 6.387517612719191,
+      "pressure": 1.4591684404389589
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 19,
+      "rootSupply": 61.69993505810972,
+      "tipSupply": 6.962394197863919,
+      "pressure": 1.523416576631172
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 20,
+      "rootSupply": 67.2529292133396,
+      "tipSupply": 7.589009675671671,
+      "pressure": 1.5904936000784653
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 21,
+      "rootSupply": 73.30569284254017,
+      "tipSupply": 8.272020546482123,
+      "pressure": 1.65
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 22,
+      "rootSupply": 79.9032051983688,
+      "tipSupply": 9.016502395665514,
+      "pressure": 1.65
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 23,
+      "rootSupply": 87.094493666222,
+      "tipSupply": 9.827987611275411,
+      "pressure": 1.65
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 24,
+      "rootSupply": 94.93299809618198,
+      "tipSupply": 10.7125064962902,
+      "pressure": 1.65
+    },
+    {
+      "tips": 6,
+      "pathLength": 300.0,
+      "supplyLevel": 25,
+      "rootSupply": 103.47696792483836,
+      "tipSupply": 11.676632080956319,
+      "pressure": 1.65
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 0,
+      "rootSupply": 12.0,
+      "tipSupply": 0.6770568744981648,
+      "pressure": 0.4750638113271959
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 1,
+      "rootSupply": 13.080000000000002,
+      "tipSupply": 0.7379919932029997,
+      "pressure": 0.4959811801547177
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 2,
+      "rootSupply": 14.257200000000001,
+      "tipSupply": 0.8044112725912697,
+      "pressure": 0.5178195543466435
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 3,
+      "rootSupply": 15.540348000000002,
+      "tipSupply": 0.876808287124484,
+      "pressure": 0.5406194863686423
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 4,
+      "rootSupply": 16.938979320000005,
+      "tipSupply": 0.9557210329656877,
+      "pressure": 0.5644233142378415
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 5,
+      "rootSupply": 18.463487458800007,
+      "tipSupply": 1.0417359259325996,
+      "pressure": 0.5892752401418202
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 6,
+      "rootSupply": 20.125201330092008,
+      "tipSupply": 1.1354921592665337,
+      "pressure": 0.6152214125192473
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 7,
+      "rootSupply": 21.936469449800292,
+      "tipSupply": 1.2376864536005219,
+      "pressure": 0.6423100117545841
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 8,
+      "rootSupply": 23.91075170028232,
+      "tipSupply": 1.3490782344245686,
+      "pressure": 0.6705913396459796
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 9,
+      "rootSupply": 26.06271935330773,
+      "tipSupply": 1.4704952755227803,
+      "pressure": 0.7001179128124967
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 10,
+      "rootSupply": 28.40836409510543,
+      "tipSupply": 1.6028398503198307,
+      "pressure": 0.7309445602141179
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 11,
+      "rootSupply": 30.965116863664917,
+      "tipSupply": 1.7470954368486153,
+      "pressure": 0.7631285249656214
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 12,
+      "rootSupply": 33.75197738139477,
+      "tipSupply": 1.904334026164991,
+      "pressure": 0.7967295706333886
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 13,
+      "rootSupply": 36.78965534572029,
+      "tipSupply": 2.07572408851984,
+      "pressure": 0.8318100922125274
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 14,
+      "rootSupply": 40.10072432683513,
+      "tipSupply": 2.262539256486626,
+      "pressure": 0.8684352319903935
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 15,
+      "rootSupply": 43.70978951625029,
+      "tipSupply": 2.466167789570423,
+      "pressure": 0.906673000511655
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 16,
+      "rootSupply": 47.64367057271282,
+      "tipSupply": 2.6881228906317607,
+      "pressure": 0.946594402869529
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 17,
+      "rootSupply": 51.931600924256976,
+      "tipSupply": 2.9300539507886194,
+      "pressure": 0.9882735705577039
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 18,
+      "rootSupply": 56.60544500744011,
+      "tipSupply": 3.1937588063595954,
+      "pressure": 1.0317878991277867
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 19,
+      "rootSupply": 61.69993505810972,
+      "tipSupply": 3.4811970989319594,
+      "pressure": 1.0772181919078974
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 20,
+      "rootSupply": 67.2529292133396,
+      "tipSupply": 3.7945048378358357,
+      "pressure": 1.1246488100492875
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 21,
+      "rootSupply": 73.30569284254017,
+      "tipSupply": 4.1360102732410615,
+      "pressure": 1.1741678291796083
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 22,
+      "rootSupply": 79.9032051983688,
+      "tipSupply": 4.508251197832757,
+      "pressure": 1.2258672029537236
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 23,
+      "rootSupply": 87.094493666222,
+      "tipSupply": 4.9139938056377055,
+      "pressure": 1.279842933805773
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 24,
+      "rootSupply": 94.93299809618198,
+      "tipSupply": 5.3562532481451,
+      "pressure": 1.3361952512195587
+    },
+    {
+      "tips": 12,
+      "pathLength": 300.0,
+      "supplyLevel": 25,
+      "rootSupply": 103.47696792483836,
+      "tipSupply": 5.838316040478159,
+      "pressure": 1.395028797848293
+    }
+  ],
+  "supplyRecovery": [
+    {
+      "pathLength": 100,
+      "baseline": {
+        "tips": 3,
+        "pathLength": 100.0,
+        "supplyLevel": 0,
+        "rootSupply": 12.0,
+        "tipSupply": 3.512381723682245,
+        "pressure": 1.0820323044595672
+      },
+      "diluted": {
+        "tips": 12,
+        "pathLength": 100.0,
+        "supplyLevel": 0,
+        "rootSupply": 12.0,
+        "tipSupply": 0.8780954309205613,
+        "pressure": 0.5410161522297836
+      },
+      "restored": {
+        "tips": 12,
+        "pathLength": 100.0,
+        "supplyLevel": 17,
+        "rootSupply": 51.931600924256976,
+        "tipSupply": 3.800075124331671,
+        "pressure": 1.1254739926406816
+      },
+      "requiredSupplyLevel": 17
+    },
+    {
+      "pathLength": 300,
+      "baseline": {
+        "tips": 3,
+        "pathLength": 300.0,
+        "supplyLevel": 0,
+        "rootSupply": 12.0,
+        "tipSupply": 2.708227497992659,
+        "pressure": 0.9501276226543918
+      },
+      "diluted": {
+        "tips": 12,
+        "pathLength": 300.0,
+        "supplyLevel": 0,
+        "rootSupply": 12.0,
+        "tipSupply": 0.6770568744981648,
+        "pressure": 0.4750638113271959
+      },
+      "restored": {
+        "tips": 12,
+        "pathLength": 300.0,
+        "supplyLevel": 17,
+        "rootSupply": 51.931600924256976,
+        "tipSupply": 2.9300539507886194,
+        "pressure": 0.9882735705577039
+      },
+      "requiredSupplyLevel": 17
+    }
+  ],
+  "notVerified": [
+    "Combat, enemies, targeting, branch geometry, damage and DPS",
+    "Spawn RNG and seed replay",
+    "Upgrade affordability and income over time",
+    "Survival waves, defeat, retry, save, and permanent progression",
+    "Unity scenes, visual quality, device performance",
+    "GDD Gate A: requires full runs to death for 10 seeds; not met by formula checks"
+  ]
+}

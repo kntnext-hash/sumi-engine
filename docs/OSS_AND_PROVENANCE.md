@@ -22,3 +22,8 @@ v0.1の初期ソースはこの会話で生成した独立実装であり、下�
 - Unity-Technologies/unity-agent-plugin 0.1.8-betaをユーザーのCodexへ導入。LICENSE.mdはUnity Companion License for Unity-dependent projects。開発手順のみ参照し、Pluginコードは本リポジトリへ同梱しない。
 - Unity CLI 1.0.0-beta.13（winget 1.0.0.20013）はUnity Technologies公式MSIX、Proprietary。外部開発ツールとして導入、再配布しない。
 - scripts/UnityAutomation~/とMCPスモークは今回の独立実装。外部画像/モデル/ゲームAssetの取込みなし。
+
+## 2026-10-21 The Tower公開情報の分析
+- docs/research/THE_TOWER_SYSTEMS.mdに公式App Store商品説明、開発元v29/v29.1パッチ、Premium Pass/購入FAQ等への出所リンクを記録。
+- 参考範囲は成長・課金区分・大会設計。コード/アセット/数値テーブルの直接取込みなし。APKや通信の解析なし。
+- ゲーム数式検証は既存BOKUMYAKU GDDの独自仮説式を使用し、The Towerの数値移植ではない。

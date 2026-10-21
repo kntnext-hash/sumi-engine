@@ -56,3 +56,9 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - BLOCKED: Editor install ELEVATION_REQUIRED、license LICENSING_CLIENT_UNAVAILABLE、Pipeline install COMMAND_FAILED（プロジェクト不在）。statusはSTATUS_NO_INSTANCES、SafeMode検出0。
 - A: Unity compile/EditMode/PlayMode/Scene生成/Console/意図的エラー修正ループすべてNOT RUN。新規C#はソース準備のみ。
 - R/D: Game View、Brush Lab入力、PNG、実機すべてNOT RUN。P0全体はBLOCKED。
+
+## 2026-10-21 ゲーム準備の検証
+- 実行: scripts/Test-GameBalance.ps1（PowerShell 7.6.5）。421数式検査PASS / 0 FAIL。証拠: docs/evidence/game-balance.json（GDDのSHA256、式、仮定、全判定と生成表）。
+- 範囲: Wave1-20の有限性/非負/単調性、式の基準値、先端供給と圧の変化。供給Lv17の回復は同経路長での数式上の結果。
+- NOT RUN: ゲームC#、戦闘/経済/再現性シミュレーション、Unity、実画面、120走、ランキング/課金効果。G-PREPのみ合格、GDD Gate A/P3は未合格。
+- 独立文書QA: tick7200での20Wave終了、残敵/敗北優先、3成長方針と4購入戦略の区別を修正。
