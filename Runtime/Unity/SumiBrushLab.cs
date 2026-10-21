@@ -17,6 +17,7 @@ namespace ConnectPiece.SumiEngine
         bool drawing;
         int nextSeed = 100;
         float clock;
+        float pressure = 1f;
         string status = "Drag on the paper to paint | Drag to paint";
         Rect paperRect;
         void Start()
@@ -34,18 +35,20 @@ namespace ConnectPiece.SumiEngine
             GUI.Label(new Rect(margin, 10, Screen.width - 32, 24), "SUMI ENGINE / BRUSH LAB  v0.1");
             GUI.Label(new Rect(margin, 33, Screen.width - 32, 20), status);
             paperRect = new Rect(margin, 60, Screen.width - 2 * margin,
-                Mathf.Max(60, Screen.height - 258));
+                Mathf.Max(60, Screen.height - 300));
             GUI.DrawTexture(paperRect, canvas.Texture, ScaleMode.StretchToFill);
-            Rect controls = new Rect(margin, Screen.height - 190, Screen.width - 2 * margin, 180);
+            Rect controls = new Rect(margin, Screen.height - 232, Screen.width - 2 * margin, 222);
             GUILayout.BeginArea(controls, GUI.skin.box);
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Vein")) current = InkBrushSettings.Vein;
             if (GUILayout.Button("Slash")) current = InkBrushSettings.Slash;
             if (GUILayout.Button("Bloom")) current = InkBrushSettings.Bloom;
-            if (GUILayout.Button("Clear")) canvas.Clear();
+            if (GUILayout.Button("Clear")) { StopDrawing(); canvas.Clear(); }
             if (GUILayout.Button("PNG")) SavePng();
             GUILayout.EndHorizontal();
-            GUILayout.Label($"Pressure / Width: {current.radius:0.0}");
+            GUILayout.Label($"Pressure: {pressure:0.00}");
+            pressure = GUILayout.HorizontalSlider(pressure, 0f, 1f);
+            GUILayout.Label($"Brush radius: {current.radius:0.0}");
             current.radius = GUILayout.HorizontalSlider(current.radius, 2f, 35f);
             GUILayout.Label($"Pigment: {current.pigment:0.00}       Water: {current.water:0.00}");
             GUILayout.BeginHorizontal();
@@ -75,7 +78,8 @@ namespace ConnectPiece.SumiEngine
                 }
                 else if (e.type == EventType.MouseUp && drawing && e.button == 0)
                 {
-                    canvas.End(); drawing = false; e.Use();
+                    canvas.Move(MapPoint(e.mousePosition));
+                    StopDrawing(); e.Use();
                 }
             }
         }
@@ -83,8 +87,11 @@ namespace ConnectPiece.SumiEngine
         {
             float x = Mathf.Clamp01((position.x - paperRect.x) / paperRect.width) * (canvas.width - 1);
             float y = (1f - Mathf.Clamp01((position.y - paperRect.y) / paperRect.height)) * (canvas.height - 1);
-            return new InkPoint(x, y, clock, 1f);
+            return new InkPoint(x, y, clock, pressure);
         }
+        void StopDrawing() { canvas?.End(); drawing = false; }
+        void OnDisable() => StopDrawing();
+        void OnApplicationFocus(bool focused) { if (!focused) StopDrawing(); }
         void SavePng()
         {
             string name = $"SUMI_{DateTime.Now:yyyyMMdd_HHmmss}.png";

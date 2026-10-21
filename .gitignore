@@ -35,3 +35,5 @@ TestResults/
 *.tmp
 .DS_Store
 Thumbs.db
+UnitySandbox/LocalPackages~/
+*.sumi-backup
