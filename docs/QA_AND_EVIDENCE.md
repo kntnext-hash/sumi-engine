@@ -139,3 +139,14 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - Console: release-console.json groundTruth consoleErrors0/consoleWarnings0/compilationFailed=false。過去の失敗履歴は消していない。
 - Player probeは--sumi-smoke-outputを明示した時だけ起動する検証コード。通常起動では自動描画/終了しない。
 - 未実施: 人による物理マウス長時間操作、モバイル、全解像度性能、別プロジェクトUPM導入。完成範囲はPC描画初版。
+
+## 最新: 墨脈ゲーム縦切りの初回実装（2026-10-22）
+- 開始HEAD 7524efb、作業ツリーclean。Unity6000.3.26f1/Pipeline ready、BrushLab未保存変更なしを確認。完成済SUMIコードを変更せず、Assets/BokumyakuPrototypeへSimulation/Presentation/Persistence/Tests/Editor/Sceneを追加。
+- 固定30Hz、seed分離、3敵、枝成長/供給分散/自動迎撃、6周回強化、3成長方針、4恒久強化、敗北/報酬/保存/再出撃。濃墨筆による枝描画、日本語UI、速度1/2倍と一時停止。
+- Unity EditMode30/30 PASS。初回27/30で未知版/不正セーブの例外捕捉漏れ3件を検出、修正して全件再合格。初回XMLを保持。独立.NET7検査PASS。
+- 実GameView合成クリック＋Update進行で15項目PASS。出撃/一時停止/2倍速/方針変更、実時間2周敗北、分岐購入、報酬保存、恒久購入と読戻し、再出撃。frame1580→11254。QA保存はlogsへ隔離。人の物理マウス試験とは区別。
+- 120条件（10seed×3方針×4仮購入戦略）比較済。全敗北、最長71.83秒。供給+範囲が30対応条件中23で単独最長。全120で分岐購入0のため成長/供給トレードオフのバランス受入は未達。操作試験では分岐用に貯蓄して購入できた。
+- 次: 枝へ投資する余裕と成長量、初回5〜8分目標を調整。放置/記録プリセット、点墨/貫筆/滲墨、分裂/ボスを段階追加。現3敵/20Wave試作を5敵版GDD完了とはしない。P3/G5全体未合格、モバイル未検証。
+- 手順 docs/BOKUMYAKU_PROTOTYPE.md。証拠 docs/evidence/bokumyaku-{editmode.xml,play.json,balance.csv,gameplay.png}。
+- Windows Player build Succeeded、90,233,387 bytes、11.433秒、error/warning0。Builds/Bokumyaku/Bokumyaku.exe（Git対象外）。Player起動ログで6000.3.26f1/描画初期化を確認、Player上の操作・長時間フレーム進行は未検証。EditorのPlay/操作試験と区別。
+- 初回ビルド予約の報告が取得できず、公式Pipeline build runで成果を確認。CLI beta.14公開を検出したが環境変更は行わず既存beta.13で検証。初期編集途中コンパイルエラーと修正済みテスト失敗は履歴へ保持。

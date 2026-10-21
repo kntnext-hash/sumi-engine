@@ -1,0 +1,92 @@
+{
+  "passed": true,
+  "method": "GameView.SendEvent + live Update + public gameplay API; QA isolated save",
+  "checks": [
+    {
+      "name": "出撃ボタン",
+      "passed": true,
+      "detail": 5
+    },
+    {
+      "name": "一時停止",
+      "passed": true,
+      "detail": 16
+    },
+    {
+      "name": "停止中tick維持",
+      "passed": true,
+      "detail": 16
+    },
+    {
+      "name": "再開と2倍速",
+      "passed": true,
+      "detail": 2
+    },
+    {
+      "name": "集中方針",
+      "passed": true,
+      "detail": "Focus"
+    },
+    {
+      "name": "周回分岐購入",
+      "passed": true,
+      "detail": 2
+    },
+    {
+      "name": "実時間敗北周回0",
+      "passed": true,
+      "detail": {
+        "TickCount": 1420,
+        "Kills": 6,
+        "Crystals": 5
+      }
+    },
+    {
+      "name": "報酬保存0",
+      "passed": true,
+      "detail": 5
+    },
+    {
+      "name": "周回分岐購入",
+      "passed": true,
+      "detail": 2
+    },
+    {
+      "name": "実時間敗北周回1",
+      "passed": true,
+      "detail": {
+        "TickCount": 1468,
+        "Kills": 7,
+        "Crystals": 10
+      }
+    },
+    {
+      "name": "報酬保存1",
+      "passed": true,
+      "detail": 10
+    },
+    {
+      "name": "恒久強化購入",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "恒久保存読戻し",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "再出撃",
+      "passed": true,
+      "detail": 44
+    },
+    {
+      "name": "フレーム進行",
+      "passed": true,
+      "detail": {
+        "firstFrame": 1580,
+        "endFrame": 11254
+      }
+    }
+  ]
+}

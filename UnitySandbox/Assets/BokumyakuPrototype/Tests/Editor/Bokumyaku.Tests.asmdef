@@ -1,0 +1,10 @@
+{
+  "name": "Bokumyaku.Tests",
+  "rootNamespace": "Bokumyaku.Tests",
+  "references": ["Bokumyaku.Simulation", "Bokumyaku.Persistence"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "includePlatforms": ["Editor"],
+  "defineConstraints": ["UNITY_INCLUDE_TESTS"],
+  "overrideReferences": true,
+  "precompiledReferences": ["nunit.framework.dll"]
+}

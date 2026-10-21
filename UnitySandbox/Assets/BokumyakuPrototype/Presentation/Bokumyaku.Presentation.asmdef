@@ -1,0 +1,7 @@
+{
+  "name": "Bokumyaku.Presentation",
+  "rootNamespace": "Bokumyaku.Presentation",
+  "references": ["Bokumyaku.Simulation", "Bokumyaku.Persistence", "ConnectPiece.SumiEngine"],
+  "autoReferenced": true
+}
+

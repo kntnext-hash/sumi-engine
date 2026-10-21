@@ -1,0 +1,7 @@
+{
+  "name": "Bokumyaku.Simulation",
+  "rootNamespace": "Bokumyaku.Simulation",
+  "references": [],
+  "autoReferenced": true,
+  "noEngineReferences": true
+}

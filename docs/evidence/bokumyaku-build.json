@@ -1,0 +1,10 @@
+{
+  "status": "completed",
+  "result": "Succeeded",
+  "platform": "StandaloneWindows64",
+  "outputPath": "C:/Users/che22/Desktop/SUMI_ENGINE_Codex_Starter/Builds/Bokumyaku/Bokumyaku.exe",
+  "totalSizeBytes": 90233387,
+  "buildTimeMs": 11433,
+  "totalWarnings": 0,
+  "totalErrors": 0
+}
