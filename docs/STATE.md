@@ -79,3 +79,10 @@
 - Unity EditMode18 PASS、隔離PlayMode1 PASS。意図的CS1519を2件検出後に除去し、再compile error/warning0。最終Console現在件数もerror/warning0。履歴の診断・試験エラーは残して分類。
 - Brush LabはAPI入力で描画しPNG384x512出力、Game View確認。実マウス入力、3preset比較、紙面レイアウト/濃度品質は未合格。P0全体を完成扱いしない。
 - 続きの一文: 環境ブロッカー解消。P0-03の実入力/preset比較と画面改善を描画担当が進める。Editor操作は同時に複数チャットから行わず、最新状態を確認して着手する。
+## 最新: 描画室の入力・PNG検証（2026-10-22 JST）
+- ユーザーがこの描画室でのEditor操作継続を指定。34253a9の環境構築を保持し、Brush Labを修正。
+- 紙面を384:512の比率で表示し入力矩形と一致。操作欄をスクロール対応・ボタン2段にし、小さいViewでの重なりを改善。PNG名はミリ秒/UUIDで衝突防止。
+- Unity再コンパイル成功、EditMode18/18を正式XMLに保存。GameView.SendEventによるMouseDown/Drag/Upで1ストローク3点、紙外解放後drawing=false。PNGボタン操作による保存384x512はTextureと全画素一致。
+- 3presetを同入力/Seed32でAPI比較、筆圧0.2/0.6/1.0の断面幅9/16/20画素。枝デモ69→72ストローク、フレーム進行確認。Console現在error/warning0、過去履歴は保存。
+- 未達: 人の物理マウスによる全手順、3preset各ボタン/sliderの一通りの操作、フォーカス復帰等の手動QA、淡い画質の改善。P0-03/05は進行中を維持、P1/P2未合格。
+- 次: BRUSH_LAB_MANUAL_QAの未確認操作を埋めてP0を閉じ、R3固定入力比較へ進む。EditorはBrushLabを開いた非Play状態、背景実行overrideは復元済み。

@@ -1,0 +1,96 @@
+{
+  "success": true,
+  "command": "command console",
+  "data": {
+    "command": "console",
+    "parameters": {
+      "level": "error",
+      "tail": "20"
+    },
+    "result": {
+      "entries": [
+        {
+          "seq": 2,
+          "timestampUtc": "2026-10-21T14:55:57.9920128Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "ExecuteCommandByName: No command named 'script eval' is available. Did you mean 'script eval'?",
+          "stackTrace": "UnityEngine.Debug:LogError (object)\nUnity.Pipeline.BasePipelineServer:CommandNotFound (Unity.Pipeline.BasePipelineServer/RawCommandMiss) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:3034)\nUnity.Pipeline.BasePipelineServer:ResolveRawCommand (System.Collections.Generic.IReadOnlyList`1<string>,Unity.Pipeline.Commands.CommandIndex) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2971)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Bind (Unity.Pipeline.Commands.CommandRequest,Newtonsoft.Json.Linq.JObject&) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:61)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Execute (Unity.Pipeline.Commands.CommandRequest) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:27)\nUnity.Pipeline.BasePipelineServer/<HandleExecRequest>d__148:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2462)\nSystem.Threading._ThreadPoolWaitCallback:PerformWaitCallback ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 4,
+          "timestampUtc": "2026-10-21T14:57:35.771197Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "ExecuteCommandByName: No command named 'test run' is available. Did you mean 'test run'?",
+          "stackTrace": "UnityEngine.Debug:LogError (object)\nUnity.Pipeline.BasePipelineServer:CommandNotFound (Unity.Pipeline.BasePipelineServer/RawCommandMiss) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:3034)\nUnity.Pipeline.BasePipelineServer:ResolveRawCommand (System.Collections.Generic.IReadOnlyList`1<string>,Unity.Pipeline.Commands.CommandIndex) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2971)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Bind (Unity.Pipeline.Commands.CommandRequest,Newtonsoft.Json.Linq.JObject&) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:61)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Execute (Unity.Pipeline.Commands.CommandRequest) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:27)\nUnity.Pipeline.BasePipelineServer/<HandleExecRequest>d__148:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2462)\nSystem.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<int>:SetResult (int)\nUnity.Pipeline.MaxLengthStream/<ReadAsync>d__6:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/MaxLengthStream.cs:46)\nSystem.Threading._ThreadPoolWaitCallback:PerformWaitCallback ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 5,
+          "timestampUtc": "2026-10-21T14:57:36.538318Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "ExecuteCommandByName: No command named 'console status' is available. Did you mean 'console status'?",
+          "stackTrace": "UnityEngine.Debug:LogError (object)\nUnity.Pipeline.BasePipelineServer:CommandNotFound (Unity.Pipeline.BasePipelineServer/RawCommandMiss) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:3034)\nUnity.Pipeline.BasePipelineServer:ResolveRawCommand (System.Collections.Generic.IReadOnlyList`1<string>,Unity.Pipeline.Commands.CommandIndex) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2971)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Bind (Unity.Pipeline.Commands.CommandRequest,Newtonsoft.Json.Linq.JObject&) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:61)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Execute (Unity.Pipeline.Commands.CommandRequest) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:27)\nUnity.Pipeline.BasePipelineServer/<HandleExecRequest>d__148:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2462)\nSystem.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<int>:SetResult (int)\nUnity.Pipeline.MaxLengthStream/<ReadAsync>d__6:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/MaxLengthStream.cs:46)\nSystem.Threading._ThreadPoolWaitCallback:PerformWaitCallback ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 9,
+          "timestampUtc": "2026-10-21T14:57:53.6798138Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "ExecuteCommandByName: No command named 'console --level' is available. Run 'unity command' to list the commands this instance exposes.",
+          "stackTrace": "UnityEngine.Debug:LogError (object)\nUnity.Pipeline.BasePipelineServer:CommandNotFound (Unity.Pipeline.BasePipelineServer/RawCommandMiss) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:3034)\nUnity.Pipeline.BasePipelineServer:ResolveRawCommand (System.Collections.Generic.IReadOnlyList`1<string>,Unity.Pipeline.Commands.CommandIndex) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2971)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Bind (Unity.Pipeline.Commands.CommandRequest,Newtonsoft.Json.Linq.JObject&) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:61)\nUnity.Pipeline.Commands.DefaultCommandExecutor:Execute (Unity.Pipeline.Commands.CommandRequest) (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/CommandExecution/CommandExecutor/DefaultCommandExecutor.cs:27)\nUnity.Pipeline.BasePipelineServer/<HandleExecRequest>d__148:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/BasePipelineServer.cs:2462)\nSystem.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<int>:SetResult (int)\nUnity.Pipeline.MaxLengthStream/<ReadAsync>d__6:MoveNext () (at ./Library/PackageCache/com.unity.pipeline@f311b58065e4/Runtime/Common/MaxLengthStream.cs:46)\nSystem.Threading._ThreadPoolWaitCallback:PerformWaitCallback ()\n",
+          "seeded": false
+        },
+        {
+          "seq": 12,
+          "timestampUtc": "2026-10-21T14:58:49.6660114Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\CodexAutomation\\Runtime\\RepairProbe.cs(1,56): error CS1519: Invalid token 'this' in class, record, struct, or interface member declaration",
+          "stackTrace": "",
+          "seeded": false
+        },
+        {
+          "seq": 13,
+          "timestampUtc": "2026-10-21T14:58:49.6660114Z",
+          "level": "error",
+          "logType": "Error",
+          "message": "Assets\\CodexAutomation\\Runtime\\RepairProbe.cs(1,71): error CS1519: Invalid token ';' in class, record, struct, or interface member declaration",
+          "stackTrace": "",
+          "seeded": false
+        }
+      ],
+      "cursor": 24,
+      "session": "bf67ed35296a497e9aeca4756eed4c39",
+      "returned": 6,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 6,
+        "warn": 5,
+        "log": 13
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-10-21T15:07:53.474433Z",
+        "ageMs": 31,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 0,
+        "consoleWarnings": 0,
+        "consoleLogs": 0,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\UnitySandbox"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

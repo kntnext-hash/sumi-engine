@@ -1,0 +1,10 @@
+{
+  "width": 384,
+  "height": 512,
+  "pixelEqual": true,
+  "strokes": 1,
+  "points": 3,
+  "exportBytes": 49559,
+  "button": "GameView MouseDown/MouseUp",
+  "diffusionPausedForComparison": true
+}

@@ -18,7 +18,8 @@ namespace ConnectPiece.SumiEngine
         int nextSeed = 100;
         float clock;
         float pressure = 1f;
-        string status = "Drag on the paper to paint | Drag to paint";
+        string status = "Drag on the paper to paint";
+        Vector2 controlsScroll;
         Rect paperRect;
         void Start()
         {
@@ -34,15 +35,23 @@ namespace ConnectPiece.SumiEngine
             int margin = 16;
             GUI.Label(new Rect(margin, 10, Screen.width - 32, 24), "SUMI ENGINE / BRUSH LAB  v0.1");
             GUI.Label(new Rect(margin, 33, Screen.width - 32, 20), status);
-            paperRect = new Rect(margin, 60, Screen.width - 2 * margin,
-                Mathf.Max(60, Screen.height - 300));
+            float controlsHeight = Mathf.Min(222f, Screen.height * .45f);
+            float controlsTop = Screen.height - controlsHeight - 10f;
+            float availableWidth = Mathf.Max(1f, Screen.width - 2 * margin);
+            float availableHeight = Mathf.Max(1f, controlsTop - 76f);
+            float scale = Mathf.Min(availableWidth / canvas.width, availableHeight / canvas.height);
+            paperRect = new Rect((Screen.width - canvas.width * scale) * .5f, 60f,
+                canvas.width * scale, canvas.height * scale);
             GUI.DrawTexture(paperRect, canvas.Texture, ScaleMode.StretchToFill);
-            Rect controls = new Rect(margin, Screen.height - 232, Screen.width - 2 * margin, 222);
+            Rect controls = new Rect(margin, controlsTop, availableWidth, controlsHeight);
             GUILayout.BeginArea(controls, GUI.skin.box);
+            controlsScroll = GUILayout.BeginScrollView(controlsScroll);
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Vein")) current = InkBrushSettings.Vein;
             if (GUILayout.Button("Slash")) current = InkBrushSettings.Slash;
             if (GUILayout.Button("Bloom")) current = InkBrushSettings.Bloom;
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
             if (GUILayout.Button("Clear")) { StopDrawing(); canvas.Clear(); }
             if (GUILayout.Button("PNG")) SavePng();
             GUILayout.EndHorizontal();
@@ -60,6 +69,7 @@ namespace ConnectPiece.SumiEngine
             current.roughness = GUILayout.HorizontalSlider(current.roughness, 0f, 1f);
             current.bristleCount = Mathf.RoundToInt(GUILayout.HorizontalSlider(current.bristleCount, 3f, 25f));
             GUILayout.EndHorizontal();
+            GUILayout.EndScrollView();
             GUILayout.EndArea();
 
             Event e = Event.current;
@@ -94,7 +104,7 @@ namespace ConnectPiece.SumiEngine
         void OnApplicationFocus(bool focused) { if (!focused) StopDrawing(); }
         void SavePng()
         {
-            string name = $"SUMI_{DateTime.Now:yyyyMMdd_HHmmss}.png";
+            string name = $"SUMI_{DateTime.Now:yyyyMMdd_HHmmss_fff}_{Guid.NewGuid():N}.png";
             string path = Path.Combine(Application.persistentDataPath, name);
             try { File.WriteAllBytes(path, canvas.ExportPng()); status = $"Saved: {path}"; }
             catch (Exception e) { status = "PNG export failed: " + e.Message; }

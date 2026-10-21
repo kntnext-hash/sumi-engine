@@ -98,3 +98,13 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - CLI: 専用Sceneの4ルート読み戻し、Cube UpdateCount1787→4025と回転変化を観測。別途PlayModeテストで3フレーム以上/角度1度超を検証。MCP:166ツール、evalでEditor版とScene実取得。ツール短縮名重複があるため全ツール互換は未保証。
 - R画像: [Cube](evidence/automation-cube.png)、[Brush Lab画面](evidence/automation-brush-lab-view.png)、[出力PNG384x512](evidence/brush-lab.png)を実取得し目視。筆跡はAPIで入力。人のドラッグ/PNGボタン/3preset比較は未検証。小さなGame Viewで紙面が狭く、筆跡が薄い品質課題あり。
 - D/H: 未実行。P0全体未合格。環境構築ENVゲートは合格。
+## 描画室の検証（2026-10-22 JST）
+- Unity 6000.3.26f1 / Windows / Pipeline0.9.0-exp.1、対象ルートのSumiBrushLabを管理コピーへ同期後、再compile failed=false/errors=[]。
+- A: [正式XML](evidence/rendering-editmode.xml) total18/passed18/failed0/skipped0。標準TestRunnerApi出力。先行JSONはrendering-room-editmode-18.json。
+- R/自動操作: GameView.SendEventのMouseDown/Drag/Upで描画、紙外Upで終了。物理マウス操作とは区別。[画面](evidence/rendering-input-gameview.png)。
+- R/A: PNGボタンをSendEventで操作。[PNG](evidence/rendering-input-export.png)は384x512、LoadImage後のColor32配列が表示Textureと一致。[結果](evidence/rendering-input-export.json)。比較中はdiffusionFps=0。向きも紙面表示と整合。
+- R: [3preset画像](evidence/rendering-three-presets.png)左からVein/Slash/Bloom、同Bezier入力/Seed32、Stepなし。これはAPI比較で各ボタン操作試験の代用ではない。顔料量251.761429/453.33847/338.54303。[条件値](evidence/rendering-three-presets.json)。全体に淡く質感未合格。
+- A: [筆圧](evidence/rendering-pressure.json)同じ直線/Seed32/Vein、中央断面Pigment>.001の画素数9/16/20。筆圧sliderの全操作は未検証。
+- R: [枝画面](evidence/rendering-branch-growth.png)、69→72ストローク、frame6643→13481。別waitでもframe4979→5036。枝画面の伸張表示は既存制約として残る。
+- Console: [取得結果](evidence/rendering-console.json)groundTruth.errors0/warnings0/compilationFailed=false。履歴には以前のCLI指定誤りと別工程の意図的CS1519が残る。消去による合格化なし。
+- 未確認: 人の物理マウス、全preset/slider、Clear/フォーカス復帰の一連の手動QA、モバイル、性能、主観品質。P0-03/05は進行中。

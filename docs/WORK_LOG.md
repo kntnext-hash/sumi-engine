@@ -74,3 +74,9 @@
 - 実Unity試験: EditMode18/18、PlayMode1/1 PASS。復旧試験で2 compile errors→除去→0 errors/0 warnings、最終Console0。証拠JSON・PNGをdocs/evidenceに保存。
 - 並行する描画室のEditMode証拠ファイル出現を確認し、そのファイルは今回のstage対象から除外。こちらは復旧後に18件を独立再実行。共有Editorの状態変化は同時操作の可能性があり、以後は所有を分ける。
 - 環境受入ENV-01〜05合格。P0-02/04合格、P0-03/05は実入力・preset/画面確認残。今回の変更コミットをGit履歴で参照。
+## 2026-10-22 — Brush Lab表示修正とUnity入力QA
+- 34253a9の環境変更を保護。SumiBrushLabのみ修正: 紙面の縦横比、scroll、ボタン行、PNG名。
+- スキルunity-cli/ui-imguiを使用。Unity 6000.3.26f1再compile成功、18 EditMode PASSのXMLを標準TestRunnerApi.SaveResultToFileで取得。再利用runnerはscripts/UnityAutomation~/RenderingEvidence.cs。
+- 合成マウスイベントをGameViewへ投入し、描画→紙外Up→PNGボタンを検証。画像読戻しと表示Textureの全画素一致。3preset/API、筆圧幅9/16/20、枝69→72とフレーム進行、Console現在error/warning0。
+- TestRunner内部collectorからのXML読取はnullで失敗したため、公開TestRunnerApiのcallbackへ変更。成功記録は実XMLだけを根拠にする。
+- 物理マウスの手動QA/質感は未合格。Play停止、背景実行override復元、試験コピー除去。次はP0残操作確認。
