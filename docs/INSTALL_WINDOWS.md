@@ -7,6 +7,8 @@
 4. iOSへのビルドは通常 macOS/Xcodeが必要。WindowsだけでiPhoneのネイティブ実機ビルドを完了したと見なさない。
 
 ## このZIPの投入（最短）
+2026-10-21実行更新: この作業フォルダはGit初期化済み、`origin` は指定リポジトリ、初期コミット `1a4419a` をmainへpush済み。ここでは再clone・再コピーせず、`git status -sb` から再開する。
+
 このスターターZIPには初版パッケージ、AGENTS.md、Codex用指示、設計書が一体化している。**既にGitHubにREADME等が存在するときは履歴を消さずに同期**。
 
 ### 手作業で安全に入れる場合
@@ -26,6 +28,8 @@
 
 ### Unityについて
 Codexは `UnitySandbox` のUnityプロジェクトを自動生成/構成し、同じRepoルートのUPMパッケージを参照させる。必要ならUnity HubでBlank 2Dの `UnitySandbox` を先に作る。**Unity Sandboxを別Gitリポジトリにしない**。実験シーンとEditor Testの両方が使えることを確認する。
+
+実行するセットアップは `scripts/Setup-UnitySandbox.ps1 -UnityEditor '<実在する6000.3系Unity.exe>'`。実在Editorのバージョンを検査してUnity自身にプロジェクトと2シーンを生成させる。パッケージはホスト再帰取込みを防ぐため、配布ファイルのみを無視対象の `UnitySandbox/LocalPackages~/` に同期する。正本はルートRuntime/Editor/Testsで、変更後はUnityを閉じて再同期する。詳細は [BRUSH_LAB_MANUAL_QA.md](BRUSH_LAB_MANUAL_QA.md)。現在この環境ではUnityを検出できず、ProjectVersion.txtの正確なパッチ固定とプロジェクト生成はBLOCKED。
 
 ## GitHub URLから他プロジェクトへ導入する将来の形
 Unity Package Manager `+` → `Install package from git URL` →

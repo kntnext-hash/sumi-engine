@@ -1,13 +1,26 @@
 # 現在の開発状態
 
-更新: 2026-10-21 JST。新たなCodexセッションはここを最新の実測値へ更新すること。
+更新: 2026-10-21 JST。
 
-- GitHub: `kntnext-hash/sumi-engine`。この引き継ぎ資料作成時、GitHubレポジトリは存在するが **空**（`main`, public）。このZIPを初期コミットするまではGitHub上に開発コードはない。
-- ソース: 会話で生成した v0.1 Unity Package のC#実装がスターターZIPに同梱されている（レポジトリルートに再配置）。
-- コード検証: ZIPの内容・JSONは確認可能だが、Unity Editorでのコンパイル・描画・端末試験は **未検証**。
-- 最初の工程: P0-01 / P0-02。`package.json`, asmdef, C#のUnity importから確認。
-- 実装済みとされるもの: 毛束筆/紙面拡散/BrushLab/枝描画デモ/一部NUnitテスト（実動は未認定）。
-- **未実装**: 実際の墨脈ゲーム（Wave/敵/戦闘/周回）、本格GPU墨演算、Android/iOSビルド。
-- 参照したにゃんスター: private `kntnext-hash/nyanstar` の `AGENTS.md`、開発引継ぎプロンプト、WORK_LOG、発売ゲートを運用設計に反映。コード・素材は取り込んでいない。
-- 下一手: Unityを検出 → 初期コンパイル失敗を特定・修正 → UnitySandboxのBrush Lab動作とEditModeテストを確定 → 証拠を採取する。
-- 目標: ユーザー対応なく可能な作業はCodexが続ける。Unityアカウント/実端末など必要なことだけ、人に要求する。
+## 担当する部屋
+- この初期セットアップのチャットは今後『墨脈 — BOKUMYAKU』のゲーム制作担当。Wave、敵、墨供給、強化、敗北・周回、ゲーム統合を扱う。
+- 同じ「水墨」プロジェクト内の「SUMI ENGINE 水墨描画エンジン開発室」が描画専任。Core、Unity描画アダプタ、Brush Lab、描画QAを扱う。
+- このセッションで着手済みの描画修正は保存して引き継ぐ。以降、ゲーム側から描画ファイルを並行修正しない。共通台帳は同時編集せず、開始時に最新状態を読む。
+
+## 実測と成果物
+- origin: https://github.com/kntnext-hash/sumi-engine.git 。空であることをGitHub接続とgit ls-remoteで確認し、元36ファイルを初期コミット `1a4419a` としてmainへpush済み。履歴の上書きなし。
+- Unity Editor/Hub: PATH、C/Eの標準配置先、Hub設定、インストール登録で未検出。実在パッチ番号は未確定。UnitySandboxと保存シーンは未生成。
+- .NET SDK: 未検出。PowerShell 7.6.5 / .NET 10.0.11のAdd-TypeでCoreを実コンパイルし、独立runnerで18検証PASS。Unity NUnit合格を意味しない。
+- Core: ストローク間の筆先方向漏れを修正。負水分、非有限値、過大入力、負シミュレーション係数の検証と回帰テスト追加。NUnitは18ケースを用意、未実行。
+- Brush Lab: 実筆圧slider、入力終了処理、保存2シーン生成メニュー、固定.metaを追加。Unity画面では未確認。
+- セットアップ: scripts/Setup-UnitySandbox.ps1。実在6000.3系Editorからプロジェクト・BrushLab/BranchGrowthシーンを生成する。配布ソースだけLocalPackages~へ同期し、ホストの再帰取込みを防ぐ。正本はルート。
+- scripts/Import-Starter.ps1: 既存ファイル差異・dirty状態・誤originを検出して停止するよう修正。
+- 証拠: docs/evidence/core-checks.txt、docs/QA_AND_EVIDENCE.md。手動手順: docs/BRUSH_LAB_MANUAL_QA.md。
+
+## 未達と次の一手
+- P0-01監査は合格。P0-02〜05はUnity実行が必要なためBLOCKED、P0全体未合格。P1以降とモバイルは未合格。
+- 描画室の次: Unity 6.3 LTS実行ファイルを検出/導入後、セットアップ→EditMode→実画面・PNG確認。導入・ライセンスはユーザー環境で必要。
+- このゲーム部屋の次: docs/specs/BOKUMYAKU_GDD_v0.2_Unity.mdをもとに、描画に依存しないWave/枝供給/敵/強化/敗北・周回の最小仕様と数値検証を進める。完成した描画を使う実プレイ統合の合格は描画ゲート通過後。
+- ゲーム本体のコードは未実装。The Tower分析手法の許可は受領、今回調査/コード/素材取込みは未実施。
+- 続きの一文: ゲームはこの部屋、描画は専用室。git statusと最新台帳を読んで担当範囲から再開する。
+- 引継ぎ実装SHA: Core `2cca288`、セットアップ/Brush Lab `d46ca04`。
