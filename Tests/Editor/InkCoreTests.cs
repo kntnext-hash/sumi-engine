@@ -5,6 +5,73 @@ namespace ConnectPiece.SumiEngine.Tests
 {
     public class InkCoreTests
     {
+        [TestCase(InkTexture.Fiber)]
+        [TestCase(InkTexture.Bleed)]
+        [TestCase(InkTexture.Pool)]
+        [TestCase(InkTexture.Mist)]
+        [TestCase(InkTexture.Splatter)]
+        public void TexturedBrushReplaysAndConservesPigment(InkTexture texture)
+        {
+            var a=new SumiEngineCore(64,64);var b=new SumiEngineCore(64,64);
+            var brush=InkBrushSettings.Bleed;brush.texture=texture;brush.radius=9;
+            a.BeginStroke(new InkPoint(8,12,0,.4f),brush,-17);
+            a.AppendPoint(new InkPoint(48,44,.5f,1));a.EndStroke();
+            b.Replay(a.Session);
+            var first=new byte[64*64*4];var second=new byte[first.Length];
+            a.Paper.RenderRgba(first);b.Paper.RenderRgba(second);
+            CollectionAssert.AreEqual(first,second);
+            float before=a.Paper.TotalPigment();Assert.Greater(before,0);
+            for(int i=0;i<20;i++)a.Step(.1f);
+            Assert.That(a.Paper.TotalPigment(),Is.EqualTo(before).Within(before*.002f+.01f));
+            for(int y=0;y<64;y++)for(int x=0;x<64;x++)
+                Assert.That(a.Paper.PigmentAt(x,y),Is.GreaterThanOrEqualTo(0));
+        }
+
+        [Test]
+        public void EffectsStudyReplaysAndDifferentSeedsDiffer()
+        {
+            var a=new SumiEngineCore(192,256);var b=new SumiEngineCore(192,256);
+            InkStudy.DrawEffects(a,731);b.Replay(a.Session);
+            var first=new byte[192*256*4];var second=new byte[first.Length];
+            a.Paper.RenderRgba(first);b.Paper.RenderRgba(second);
+            Assert.AreEqual(50,a.Session.strokes.Count);CollectionAssert.AreEqual(first,second);
+            InkStudy.DrawEffects(b,732);b.Paper.RenderRgba(second);
+            CollectionAssert.AreNotEqual(first,second);
+        }
+
+        [Test]
+        public void TexturedZeroPressureLeavesNoInkAndInvalidModePreservesCanvas()
+        {
+            var core=new SumiEngineCore(64,64);var brush=InkBrushSettings.Dense;
+            core.BeginStroke(new InkPoint(16,16,0,0),brush,7);
+            core.AppendPoint(new InkPoint(40,40,1,0));core.EndStroke();
+            Assert.AreEqual(0,core.Paper.TotalPigment());
+            brush.texture=(InkTexture)999;
+            Assert.Throws<System.ArgumentOutOfRangeException>(()=>core.BeginStroke(new InkPoint(20,20,0),brush,7));
+            Assert.AreEqual(1,core.Session.strokes.Count);
+        }
+
+        [Test]
+        public void PoolHasDenserRimAndSplatterHasSatelliteDroplets()
+        {
+            var core=new SumiEngineCore(128,128);var brush=InkBrushSettings.Pool;brush.radius=30;
+            core.BeginStroke(new InkPoint(64,64,0),brush,731);core.EndStroke();
+            float inner=0,outer=0;int ni=0,no=0;
+            for(int y=0;y<128;y++)for(int x=0;x<128;x++)
+            {
+                float r=(float)System.Math.Sqrt((x-64)*(x-64)+(y-64)*(y-64));
+                if(r<10){inner+=core.Paper.PigmentAt(x,y);ni++;}
+                if(r>22&&r<27){outer+=core.Paper.PigmentAt(x,y);no++;}
+            }
+            Assert.Greater(outer/no,inner/ni);
+            core.Clear();brush=InkBrushSettings.Splatter;brush.radius=20;
+            core.BeginStroke(new InkPoint(64,64,0),brush,731);core.EndStroke();
+            float satellites=0;
+            for(int y=0;y<128;y++)for(int x=0;x<128;x++)
+                if((x-64)*(x-64)+(y-64)*(y-64)>25*25)satellites+=core.Paper.PigmentAt(x,y);
+            Assert.Greater(satellites,0);
+        }
+
         [Test]
         public void StudyReplaysExactlyAndSeedChangesTexture()
         {

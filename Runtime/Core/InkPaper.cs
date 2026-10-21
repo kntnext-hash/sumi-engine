@@ -6,7 +6,7 @@ namespace ConnectPiece.SumiEngine.Core
     /// Fixed-size CPU wet-paper simulation, a visual approximation (not real fluid mechanics).
     /// Mutable arrays stay private, with fixed/dry and suspended/wet pigment conserved up to clamping.
     /// </summary>
-    public sealed class InkPaper
+    public sealed partial class InkPaper
     {
         public int Width { get; }
         public int Height { get; }

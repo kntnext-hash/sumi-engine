@@ -26,12 +26,18 @@ namespace ConnectPiece.SumiEngine
         {
             canvas = GetComponent<SumiCanvas>();
             canvas.Initialize();
-            current = InkBrushSettings.Vein;
+            SelectStudyBrush(InkBrushSettings.Dense);
         }
         void Update() { clock += Time.unscaledDeltaTime; }
         void OnGUI()
         {
             if (canvas == null || canvas.Texture == null) return;
+            // Brush Lab may have no clearing camera: repaint the backdrop to avoid
+            // previous status text and controls remaining in the Game View buffer.
+            var previousColor = GUI.color;
+            GUI.color = new Color(.055f, .06f, .065f, 1f);
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
+            GUI.color = previousColor;
             GUI.skin.label.fontSize = 13;
             int margin = 16;
             GUI.Label(new Rect(margin, 10, Screen.width - 32, 24), "SUMI ENGINE / BRUSH LAB  v0.1");
@@ -40,11 +46,18 @@ namespace ConnectPiece.SumiEngine
             float controlsTop = Screen.height - controlsHeight - 10f;
             float availableWidth = Mathf.Max(1f, Screen.width - 2 * margin);
             float availableHeight = Mathf.Max(1f, controlsTop - 76f);
+            bool wide = Screen.width >= 720;
+            if (wide)
+            {
+                availableWidth = Screen.width - 332f;
+                availableHeight = Screen.height - 84f;
+            }
             float scale = Mathf.Min(availableWidth / canvas.width, availableHeight / canvas.height);
-            paperRect = new Rect((Screen.width - canvas.width * scale) * .5f, 60f,
+            paperRect = new Rect((wide ? margin : 0) + ((wide ? availableWidth : Screen.width) - canvas.width * scale) * .5f, 60f,
                 canvas.width * scale, canvas.height * scale);
             GUI.DrawTexture(paperRect, canvas.Texture, ScaleMode.StretchToFill);
-            Rect controls = new Rect(margin, controlsTop, availableWidth, controlsHeight);
+            Rect controls = wide ? new Rect(Screen.width - 300f, 60f, 284f, Screen.height - 76f)
+                : new Rect(margin, controlsTop, availableWidth, controlsHeight);
             GUILayout.BeginArea(controls, GUI.skin.box);
             controlsScroll = GUILayout.BeginScrollView(controlsScroll);
             GUILayout.BeginHorizontal();
@@ -56,8 +69,19 @@ namespace ConnectPiece.SumiEngine
             if (GUILayout.Button("Dense")) SelectStudyBrush(InkBrushSettings.Dense);
             if (GUILayout.Button("Dry")) SelectStudyBrush(InkBrushSettings.Dry);
             if (GUILayout.Button("Split")) SelectStudyBrush(InkBrushSettings.Split);
-            if (GUILayout.Button("Study (replaces paper)")) { StopDrawing(); InkStudy.Draw(canvas.Core); canvas.displayDensity = 7f; canvas.inkColor = new Color32(12, 12, 13, 255); canvas.Upload(); }
             GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("Bleed")) SelectStudyBrush(InkBrushSettings.Bleed);
+            if (GUILayout.Button("Pool")) SelectStudyBrush(InkBrushSettings.Pool);
+            if (GUILayout.Button("Mist")) SelectStudyBrush(InkBrushSettings.Mist);
+            if (GUILayout.Button("Splatter")) SelectStudyBrush(InkBrushSettings.Splatter);
+            GUILayout.EndHorizontal();
+            if (GUILayout.Button("Stroke study (replaces paper)")) { StopDrawing(); InkStudy.Draw(canvas.Core); canvas.displayDensity = 7f; canvas.inkColor = new Color32(12, 12, 13, 255); canvas.Upload(); }
+            if (GUILayout.Button("Effects study (replaces paper)"))
+            {
+                StopDrawing(); InkStudy.DrawEffects(canvas.Core); canvas.displayDensity = 7f;
+                canvas.Upload(); status = "Dry / Split / Taper | Bleed / Pool / Splatter | Wash / Mist / Enso | Branch / Drips / Spiral";
+            }
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Clear")) { StopDrawing(); canvas.Clear(); }
             if (GUILayout.Button("PNG")) SavePng();
@@ -114,11 +138,11 @@ namespace ConnectPiece.SumiEngine
             current = brush;
             canvas.displayDensity = 7f;
             canvas.inkColor = new Color32(12, 12, 13, 255);
-            status = "Dense / Dry / Split: drag to paint; Colors controls the whole paper";
+            status = current.texture + ": drag to paint; Colors controls the whole paper";
         }
         void DrawColorControls()
         {
-            GUILayout.Label("Global palette: recolors existing strokes too");
+            GUILayout.Label("Palette recolors all strokes");
             GUILayout.BeginHorizontal();
             if (GUILayout.Button(editPaper ? "Ink" : "[Ink]")) editPaper = false;
             if (GUILayout.Button(editPaper ? "[Paper]" : "Paper")) editPaper = true;
@@ -143,7 +167,7 @@ namespace ConnectPiece.SumiEngine
             GUI.DrawTexture(swatch, Texture2D.whiteTexture); GUI.color = previous;
             GUILayout.Label("#" + ColorUtility.ToHtmlStringRGB(selected));
             if (editPaper) canvas.paperColor = selected; else canvas.inkColor = selected;
-            GUILayout.Label($"Display density: {canvas.displayDensity:0.00} (all strokes)");
+            GUILayout.Label($"Display density: {canvas.displayDensity:0.00}");
             canvas.displayDensity = GUILayout.HorizontalSlider(canvas.displayDensity, .1f, 12f);
             if (GUILayout.Button("Reset palette"))
             {

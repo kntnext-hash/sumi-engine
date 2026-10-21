@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace ConnectPiece.SumiEngine.Core
 {
+    public enum InkTexture { Legacy, Fiber, Bleed, Pool, Mist, Splatter }
     /// <summary>Screen-independent coordinates in canvas pixels, origin bottom-left.</summary>
     [Serializable]
     public struct InkPoint
@@ -23,16 +24,30 @@ namespace ConnectPiece.SumiEngine.Core
         public float depletion;
         public float bristleSpread;
         public int bristleCount;
+        // Zero preserves the original session appearance when this field is absent.
+        public InkTexture texture;
 
         public static InkBrushSettings Dense => new InkBrushSettings
         { radius = 24f, pigment = 1f, water = .22f, roughness = .25f,
-          depletion = .002f, bristleSpread = .65f, bristleCount = 25 };
+          depletion = .002f, bristleSpread = .65f, bristleCount = 25, texture = InkTexture.Fiber };
         public static InkBrushSettings Dry => new InkBrushSettings
         { radius = 19f, pigment = 1f, water = .08f, roughness = .58f,
-          depletion = .07f, bristleSpread = 1f, bristleCount = 5 };
+          depletion = .07f, bristleSpread = 1f, bristleCount = 5, texture = InkTexture.Fiber };
         public static InkBrushSettings Split => new InkBrushSettings
         { radius = 25f, pigment = 1f, water = .08f, roughness = .48f,
-          depletion = .025f, bristleSpread = 1f, bristleCount = 3 };
+          depletion = .025f, bristleSpread = 1f, bristleCount = 3, texture = InkTexture.Fiber };
+        public static InkBrushSettings Bleed => new InkBrushSettings
+        { radius = 30f, pigment = .55f, water = 1f, roughness = .65f,
+          bristleCount = 11, texture = InkTexture.Bleed };
+        public static InkBrushSettings Pool => new InkBrushSettings
+        { radius = 32f, pigment = .9f, water = .8f, roughness = .3f,
+          bristleCount = 11, texture = InkTexture.Pool };
+        public static InkBrushSettings Mist => new InkBrushSettings
+        { radius = 40f, pigment = .13f, water = 1f, roughness = .8f,
+          bristleCount = 11, texture = InkTexture.Mist };
+        public static InkBrushSettings Splatter => new InkBrushSettings
+        { radius = 26f, pigment = .9f, water = .55f, roughness = .7f,
+          bristleCount = 11, texture = InkTexture.Splatter };
 
         public static InkBrushSettings Vein => new InkBrushSettings
         { radius = 9f, pigment = .72f, water = .42f, roughness = .42f,
@@ -82,6 +97,8 @@ namespace ConnectPiece.SumiEngine.Core
 
         public static void ValidateSettings(InkBrushSettings settings)
         {
+            if (settings.texture < InkTexture.Legacy || settings.texture > InkTexture.Splatter)
+                throw new ArgumentOutOfRangeException(nameof(settings), "Unknown ink texture.");
             Finite(settings.radius, "settings.radius"); Finite(settings.pigment, "settings.pigment");
             Finite(settings.water, "settings.water"); Finite(settings.roughness, "settings.roughness");
             Finite(settings.depletion, "settings.depletion"); Finite(settings.bristleSpread, "settings.bristleSpread");
@@ -125,5 +142,13 @@ namespace ConnectPiece.SumiEngine.Core
             }
         }
         public static float Noise01(int x, int y, int seed) => Hash(x, y, seed) / 2147483647f;
+        public static float SmoothNoise(float x, float y, int seed)
+        {
+            int ix = (int)Math.Floor(x), iy = (int)Math.Floor(y);
+            float u = x - ix, v = y - iy;
+            u *= u * (3f - 2f * u); v *= v * (3f - 2f * v);
+            return Lerp(Lerp(Noise01(ix, iy, seed), Noise01(ix + 1, iy, seed), u),
+                Lerp(Noise01(ix, iy + 1, seed), Noise01(ix + 1, iy + 1, seed), u), v);
+        }
     }
 }

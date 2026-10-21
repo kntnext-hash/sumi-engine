@@ -118,3 +118,12 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - 元の10stroke描画はlogs/pre-color-change/painting.pngとstrokes.jsonに退避し、Editor Playへ点列を復元。v1は拡散時間を記録しないため元PNGと完全一致する湿潤状態復元ではない。背景実行override解除。
 - 確認方法: UnityのBrushLab Gameビューで描画、Dense/Dry/Splitで筆切替、Colors +でInk/Paper/RGB/Display density。Studyは現在の紙を置換するため先にPNG保存。PNGボタンの保存先は画面上部に表示。
 - 次: 筆に沿う不均一な毛束と鋭い終端、濡れ境界の多尺度表現、UI手動QA。参考画像全体の達成と誤認しない。
+
+## 2026-10-22 Effects検証
+- A: evidence/rendering-effects-editmode.xml total31/pass31/fail0。最終UI背景修正もその後再compile successful。
+- R: evidence/ink-effects.pngは768x1024、Seed731、Step前50strokeのCore出力。evidence/ink-effects-gameview.pngは実GameView1536x672・384x512紙面、Play中拡散後。画像を同条件と混同しない。
+- UI: Unity GameView.SendEventでBleed/Pool/Mist/Splatter切替と各settings読戻し成功。Splatter紙上Down/Drag/Upで1stroke/3points。Colors→VermilionでBE3023。PNG保存はdiffusionFps=0に止めて全画素一致。ink-effects-ui.jsonとink-effects-input-color.png参照。
+- UI操作の初回不一致はGameView倍率5とウィンドウ原点の違い。倍率1にしてtargetInParentを読み、画面座標に49pxを加えたイベントで成功。人の物理マウス検証ではない。
+- Console: ink-effects-console.json groundTruth consoleErrors0/consoleWarnings0/compilationFailed=false。履歴の以前のテスト失敗/意図的診断エラーは消していない。
+- 指標: ink-effects-preset-metrics.json。単一Editor内の1回の描画17.9〜21.3ms（192x256、1stroke、描画のみ）。包括性能ベンチマークやFPS合格ではない。768x1024の全見本生成+PNGは1回3472ms。
+- 限界: 輪郭/縁は視覚近似、多色混合なし、v1はStep経過を保存しない。モバイル未検証。新UI全slider/旧preset全ボタン/物理フォーカス移動未検証。

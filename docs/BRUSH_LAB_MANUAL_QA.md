@@ -38,3 +38,11 @@ Unityを閉じて正確なEditorパスで実行する。テストXMLの失敗件
 7. 各シーン終了時Console error数を記録。Unityバージョン、画面寸法、CPU/GPU、操作時間、ログと画像の所在をQA台帳に残す。
 
 結果はPASS/FAIL/NOT RUNで項目別に記録する。実画面の未確認、モバイル実機、FPS/メモリ測定をこの手順の存在だけで合格にしない。
+
+## 現行UI（2026-10-22）
+- GameビューのScaleを1にし、Play。横長画面は右側に操作欄。
+- Dense/Dry/SplitとBleed/Pool/Mist/Splatterを選び紙上をドラッグ。Pressure/Radius/Pigment/Water/Roughnessで調整。
+- Stroke study / Effects studyは現在の紙を置換。先にPNGで保存する。
+- Effects studyの順序は左→右、上→下: 乾筆・割れ・払い／滲み・墨だまり・飛沫／淡墨・煙・円相／枝・垂れ・渦。
+- Colors +のInk/Paperで編集対象を切替。RGB、色プリセット、Display densityは既存線にも適用。PNG保存先は上部表示。
+- 合成入力で新筆切替・ドラッグ・朱色・PNG保存は合格。人の全項目確認は引き続きこの手順で行う。

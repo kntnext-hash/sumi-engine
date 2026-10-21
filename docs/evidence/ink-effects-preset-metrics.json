@@ -1,0 +1,23 @@
+[
+  {
+    "texture": "Fiber",
+    "roughness": 0.25,
+    "pigment": 2521.70679,
+    "occupied": 3659,
+    "drawMs": 20.9408
+  },
+  {
+    "texture": "Fiber",
+    "roughness": 0.58,
+    "pigment": 751.683655,
+    "occupied": 2133,
+    "drawMs": 21.21
+  },
+  {
+    "texture": "Bleed",
+    "roughness": 0.65,
+    "pigment": 639.266663,
+    "occupied": 3851,
+    "drawMs": 17.886100000000003
+  }
+]

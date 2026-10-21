@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="31" result="Passed" total="31" passed="31" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-21 15:44:13Z" end-time="2026-10-21 15:44:17Z" duration="3.1407219">
+  <test-suite type="TestSuite" id="1000" name="UnitySandbox" fullname="UnitySandbox" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-10-21 15:44:13Z" end-time="2026-10-21 15:44:17Z" duration="3.140722" total="31" passed="31" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1035" name="ConnectPiece.SumiEngine.Tests.dll" fullname="C:/Users/che22/Desktop/SUMI_ENGINE_Codex_Starter/UnitySandbox/Library/ScriptAssemblies/ConnectPiece.SumiEngine.Tests.dll" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-10-21 15:44:13Z" end-time="2026-10-21 15:44:17Z" duration="3.130978" total="31" passed="31" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="4892" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1036" name="ConnectPiece" fullname="ConnectPiece" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-10-21 15:44:14Z" end-time="2026-10-21 15:44:17Z" duration="3.030331" total="31" passed="31" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1037" name="SumiEngine" fullname="ConnectPiece.SumiEngine" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-10-21 15:44:14Z" end-time="2026-10-21 15:44:17Z" duration="3.030030" total="31" passed="31" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1038" name="Tests" fullname="ConnectPiece.SumiEngine.Tests" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-10-21 15:44:14Z" end-time="2026-10-21 15:44:17Z" duration="2.917731" total="31" passed="31" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="InkCoreTests" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-10-21 15:44:14Z" end-time="2026-10-21 15:44:17Z" duration="2.915085" total="31" passed="31" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1025" name="BeginStrokeDepositsPigment" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.BeginStrokeDepositsPigment" methodname="BeginStrokeDepositsPigment" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1411601556" result="Passed" start-time="2026-10-21 15:44:14Z" end-time="2026-10-21 15:44:14Z" duration="0.045043" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1014" name="BlankPaperDoesNotBecomeDirtyOnSimulationStep" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.BlankPaperDoesNotBecomeDirtyOnSimulationStep" methodname="BlankPaperDoesNotBecomeDirtyOnSimulationStep" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="313320424" result="Passed" start-time="2026-10-21 15:44:14Z" end-time="2026-10-21 15:44:14Z" duration="0.002155" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1020" name="ClearRestoresFreshBrushOrientation" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.ClearRestoresFreshBrushOrientation" methodname="ClearRestoresFreshBrushOrientation" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="653271572" result="Passed" start-time="2026-10-21 15:44:14Z" end-time="2026-10-21 15:44:14Z" duration="0.035358" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1031" name="DiffusionPreservesPigmentWithinTolerance" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.DiffusionPreservesPigmentWithinTolerance" methodname="DiffusionPreservesPigmentWithinTolerance" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="131699022" result="Passed" start-time="2026-10-21 15:44:14Z" end-time="2026-10-21 15:44:14Z" duration="0.008294" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1026" name="DryingCannotCreateNegativePigment" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.DryingCannotCreateNegativePigment" methodname="DryingCannotCreateNegativePigment" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="668108169" result="Passed" start-time="2026-10-21 15:44:14Z" end-time="2026-10-21 15:44:14Z" duration="0.006655" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1008" name="EffectsStudyReplaysAndDifferentSeedsDiffer" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.EffectsStudyReplaysAndDifferentSeedsDiffer" methodname="EffectsStudyReplaysAndDifferentSeedsDiffer" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="610755132" result="Passed" start-time="2026-10-21 15:44:14Z" end-time="2026-10-21 15:44:15Z" duration="1.118372" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1034" name="EndStoresReplayableCommands" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.EndStoresReplayableCommands" methodname="EndStoresReplayableCommands" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="786185032" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.000517" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1024" name="ExtremeFiniteRadiusDepositsWithoutOverflow" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.ExtremeFiniteRadiusDepositsWithoutOverflow" methodname="ExtremeFiniteRadiusDepositsWithoutOverflow" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="147133695" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.000275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1016" name="InvalidBeginAndAppendPreserveActiveStrokeAndPixels" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.InvalidBeginAndAppendPreserveActiveStrokeAndPixels" methodname="InvalidBeginAndAppendPreserveActiveStrokeAndPixels" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="739754647" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.002349" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1017" name="InvalidDirectBrushCommandPreservesActiveBrush" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.InvalidDirectBrushCommandPreservesActiveBrush" methodname="InvalidDirectBrushCommandPreservesActiveBrush" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1158535365" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.000958" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1018" name="InvalidReplayAndBezierPreserveHistoryAndPixels" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.InvalidReplayAndBezierPreserveHistoryAndPixels" methodname="InvalidReplayAndBezierPreserveHistoryAndPixels" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="497894565" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.001106" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1022" name="NegativeSimulationRateIsRejectedBeforeMutation" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.NegativeSimulationRateIsRejectedBeforeMutation" methodname="NegativeSimulationRateIsRejectedBeforeMutation" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1437363741" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.000340" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1021" name="NegativeWaterIsClampedBeforeDeposit" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.NegativeWaterIsClampedBeforeDeposit" methodname="NegativeWaterIsClampedBeforeDeposit" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="981336" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.001515" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1023" name="NonfiniteInputsAndExcessiveStepAreRejected" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.NonfiniteInputsAndExcessiveStepAreRejected" methodname="NonfiniteInputsAndExcessiveStepAreRejected" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="478866735" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.000411" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1033" name="OutsideCanvasDoesNotThrow" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.OutsideCanvasDoesNotThrow" methodname="OutsideCanvasDoesNotThrow" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="439535949" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.000784" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1012" name="PaletteRecolorsWithoutChangingPigmentAndDefaultRemainsCompatible" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.PaletteRecolorsWithoutChangingPigmentAndDefaultRemainsCompatible" methodname="PaletteRecolorsWithoutChangingPigmentAndDefaultRemainsCompatible" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1160325462" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.002810" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1013" name="PaletteSupportsLightInkOnDarkPaperAndRejectsBadDensity" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.PaletteSupportsLightInkOnDarkPaperAndRejectsBadDensity" methodname="PaletteSupportsLightInkOnDarkPaperAndRejectsBadDensity" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1695684372" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.002636" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1010" name="PoolHasDenserRimAndSplatterHasSatelliteDroplets" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.PoolHasDenserRimAndSplatterHasSatelliteDroplets" methodname="PoolHasDenserRimAndSplatterHasSatelliteDroplets" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1958959773" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.005185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1032" name="ReplayOwnSessionDoesNotEraseStrokes" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.ReplayOwnSessionDoesNotEraseStrokes" methodname="ReplayOwnSessionDoesNotEraseStrokes" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1762665784" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.000626" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1019" name="ReplayOwnSessionReproducesPixelsAfterVerticalStroke" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.ReplayOwnSessionReproducesPixelsAfterVerticalStroke" methodname="ReplayOwnSessionReproducesPixelsAfterVerticalStroke" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1759553426" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.017816" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1030" name="SameSeedAndPointsReproducePixelBuffer" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.SameSeedAndPointsReproducePixelBuffer" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.087286" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1027" name="SameSeedAndPointsReproducePixelBuffer(32)" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.SameSeedAndPointsReproducePixelBuffer(32)" methodname="SameSeedAndPointsReproducePixelBuffer" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="51717439" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.024060" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1028" name="SameSeedAndPointsReproducePixelBuffer(-17)" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.SameSeedAndPointsReproducePixelBuffer(-17)" methodname="SameSeedAndPointsReproducePixelBuffer" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1982935033" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.029110" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1029" name="SameSeedAndPointsReproducePixelBuffer(int.MaxValue)" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.SameSeedAndPointsReproducePixelBuffer(int.MaxValue)" methodname="SameSeedAndPointsReproducePixelBuffer" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="348769463" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.031040" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1015" name="SettledPaperConservesPigmentStopsAndReactivates" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.SettledPaperConservesPigmentStopsAndReactivates" methodname="SettledPaperConservesPigmentStopsAndReactivates" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="2120409561" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:15Z" duration="0.068874" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1011" name="StudyReplaysExactlyAndSeedChangesTexture" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.StudyReplaysExactlyAndSeedChangesTexture" methodname="StudyReplaysExactlyAndSeedChangesTexture" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1386581512" result="Passed" start-time="2026-10-21 15:44:15Z" end-time="2026-10-21 15:44:16Z" duration="1.170023" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1007" name="TexturedBrushReplaysAndConservesPigment" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.TexturedBrushReplaysAndConservesPigment" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-21 15:44:16Z" end-time="2026-10-21 15:44:17Z" duration="0.205216" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1002" name="TexturedBrushReplaysAndConservesPigment(Fiber)" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.TexturedBrushReplaysAndConservesPigment(Fiber)" methodname="TexturedBrushReplaysAndConservesPigment" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="2057595798" result="Passed" start-time="2026-10-21 15:44:16Z" end-time="2026-10-21 15:44:16Z" duration="0.042281" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1003" name="TexturedBrushReplaysAndConservesPigment(Bleed)" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.TexturedBrushReplaysAndConservesPigment(Bleed)" methodname="TexturedBrushReplaysAndConservesPigment" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1616550502" result="Passed" start-time="2026-10-21 15:44:16Z" end-time="2026-10-21 15:44:16Z" duration="0.045698" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1004" name="TexturedBrushReplaysAndConservesPigment(Pool)" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.TexturedBrushReplaysAndConservesPigment(Pool)" methodname="TexturedBrushReplaysAndConservesPigment" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1160455793" result="Passed" start-time="2026-10-21 15:44:16Z" end-time="2026-10-21 15:44:17Z" duration="0.044252" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1005" name="TexturedBrushReplaysAndConservesPigment(Mist)" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.TexturedBrushReplaysAndConservesPigment(Mist)" methodname="TexturedBrushReplaysAndConservesPigment" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1488283459" result="Passed" start-time="2026-10-21 15:44:17Z" end-time="2026-10-21 15:44:17Z" duration="0.026895" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1006" name="TexturedBrushReplaysAndConservesPigment(Splatter)" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.TexturedBrushReplaysAndConservesPigment(Splatter)" methodname="TexturedBrushReplaysAndConservesPigment" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="200358408" result="Passed" start-time="2026-10-21 15:44:17Z" end-time="2026-10-21 15:44:17Z" duration="0.043379" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1009" name="TexturedZeroPressureLeavesNoInkAndInvalidModePreservesCanvas" fullname="ConnectPiece.SumiEngine.Tests.InkCoreTests.TexturedZeroPressureLeavesNoInkAndInvalidModePreservesCanvas" methodname="TexturedZeroPressureLeavesNoInkAndInvalidModePreservesCanvas" classname="ConnectPiece.SumiEngine.Tests.InkCoreTests" runstate="Runnable" seed="1293066848" result="Passed" start-time="2026-10-21 15:44:17Z" end-time="2026-10-21 15:44:17Z" duration="0.001031" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:\Users\che22\Desktop\SUMI_ENGINE_Codex_Starter\docs/evidence/rendering-effects-editmode.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

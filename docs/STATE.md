@@ -96,3 +96,13 @@
 - 元の10stroke描画はlogs/pre-color-change/painting.pngとstrokes.jsonに退避し、Editor Playへ点列を復元。v1は拡散時間を記録しないため元PNGと完全一致する湿潤状態復元ではない。背景実行override解除。
 - 確認方法: UnityのBrushLab Gameビューで描画、Dense/Dry/Splitで筆切替、Colors +でInk/Paper/RGB/Display density。Studyは現在の紙を置換するため先にPNG保存。PNGボタンの保存先は画面上部に表示。
 - 次: 筆に沿う不均一な毛束と鋭い終端、濡れ境界の多尺度表現、UI手動QA。参考画像全体の達成と誤認しない。
+
+## 2026-10-22 描画表現の追加完了
+- 未実装だったBleed（滲み）、Pool（縁に墨が溜まる表現）、Mist（煙状の淡墨）、Splatter（飛沫）をCoreの入力可能な筆として実装。Dense/Dry/Splitは連続毛束と筆圧による尖端へ更新。既存texture省略のv1記録はLegacyとして維持。
+- Effects studyは50ストローク・12セル。乾筆/割れ/払い、滲み/墨だまり/飛沫、淡墨/煙/円相、枝/垂れ/渦。全部独自手続き描画で参照画像の貼り付けなし。
+- 滲み輪郭・墨だまりの縁は多尺度ノイズと堆積プロファイルによる表現。その後既存保存的拡散が作用。物理流体や参照写真との同一画質を達成したとは主張しない。
+- 横長画面で操作欄を右側に配置。背景再描画で文字残像を修正。Colors表示の横スクロールも解消。
+- Unity6000.3.26f1 compile成功、EditMode31/31 PASS。新筆5種のReplay/保存性、0圧無描画、異常mode拒否、墨だまり縁/飛沫衛星、12セルSeed差を検証。
+- 実GameViewへの合成Mouseイベントで新4preset切替、Splatterの1stroke/3points入力、朱色BE3023切替、PNGボタン保存を確認。保存PNG384x512は表示Textureと全画素一致。人の物理マウス・全sliderの手動評価とは区別。
+- 現在Console error/warning0。フレーム1→3021。EditorはBrushLab Play・12セル見本表示、GameView倍率1、背景override解除。元のユーザー描画はlogs/pre-texture-change/painting.pngとstrokes.jsonに保護。
+- 今回の描画機能追加は完了。今後の別ゲート: ユーザーによる筆感レビュー、全物理入力QA、v2時系列再生、性能・モバイル・別プロジェクトUPM配布。ゲームには変更なし。

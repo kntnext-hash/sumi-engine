@@ -14,6 +14,7 @@ namespace ConnectPiece.SumiEngine.Core
         float[] reservoir, wobble, bristleLag;
         float normalX = 0f, normalY = 1f;
         int seed;
+        int dabIndex;
         public bool Active { get; private set; }
 
         public InkBrush(InkPaper paper) { this.paper = paper ?? throw new ArgumentNullException(nameof(paper)); }
@@ -32,7 +33,7 @@ namespace ConnectPiece.SumiEngine.Core
             settings.depletion = InkMath.Clamp01(brush.depletion);
             // Each stroke starts from the same head orientation, including after Clear/Replay.
             normalX = 0f; normalY = 1f;
-            seed = strokeSeed; last = start;
+            seed = strokeSeed; last = start; dabIndex = 0;
             reservoir = new float[settings.bristleCount];
             wobble = new float[settings.bristleCount];
             bristleLag = new float[settings.bristleCount];
@@ -76,6 +77,11 @@ namespace ConnectPiece.SumiEngine.Core
 
         void DrawDab(float x, float y, float pressure, float speed, int step)
         {
+            if (settings.texture != InkTexture.Legacy)
+            {
+                DrawTexturedDab(x, y, pressure, speed);
+                return;
+            }
             float radius = settings.radius * (.17f + .83f * InkMath.Sqrt(InkMath.Clamp01(pressure)));
             int n = reservoir.Length;
             float velocityStress = InkMath.Clamp01(speed / 1400f);
@@ -98,5 +104,34 @@ namespace ConnectPiece.SumiEngine.Core
         }
 
         public void End() { Active = false; }
+
+        void DrawTexturedDab(float x, float y, float pressure, float speed)
+        {
+            if (pressure <= .001f) return;
+            float radius = settings.radius * (.015f + .985f * pressure);
+            float load = settings.pigment * reservoir[0];
+            if (settings.texture == InkTexture.Splatter)
+            {
+                // Recorded dab index and stroke seed define every satellite droplet.
+                int stampSeed = unchecked(seed + dabIndex * 101);
+                var droplet = settings; droplet.texture = InkTexture.Bleed;
+                paper.DepositTexture(x, y, radius * .6f, load, droplet, normalX, normalY, stampSeed);
+                for (int i = 0; i < 22; i++)
+                {
+                    float a = InkMath.Noise01(i, 1, stampSeed) * 6.283185f;
+                    float distance = radius * (.6f + 2f * InkMath.Noise01(i, 2, stampSeed));
+                    float size = radius * (.025f + .16f * (float)Math.Pow(InkMath.Noise01(i, 3, stampSeed), 3));
+                    paper.DepositTexture(x + (float)Math.Cos(a) * distance,
+                        y + (float)Math.Sin(a) * distance, size, load, droplet, normalX, normalY, stampSeed + i);
+                }
+            }
+            else
+            {
+                float amount = load * (settings.texture == InkTexture.Fiber ? .24f : .18f);
+                paper.DepositTexture(x, y, radius, amount, settings, normalX, normalY, seed);
+            }
+            reservoir[0] = InkMath.Max(.12f, reservoir[0] - settings.depletion * .02f);
+            dabIndex++;
+        }
     }
 }

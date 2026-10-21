@@ -90,3 +90,10 @@
 - 元の10stroke描画はlogs/pre-color-change/painting.pngとstrokes.jsonに退避し、Editor Playへ点列を復元。v1は拡散時間を記録しないため元PNGと完全一致する湿潤状態復元ではない。背景実行override解除。
 - 確認方法: UnityのBrushLab Gameビューで描画、Dense/Dry/Splitで筆切替、Colors +でInk/Paper/RGB/Display density。Studyは現在の紙を置換するため先にPNG保存。PNGボタンの保存先は画面上部に表示。
 - 次: 筆に沿う不均一な毛束と鋭い終端、濡れ境界の多尺度表現、UI手動QA。参考画像全体の達成と誤認しない。
+
+## 2026-10-22 描画室
+- c56ad51から開始、clean確認。接続/CLI最新beta.13/Unity6000.3.26f1を確認。元描画を退避してPlay停止。
+- 連続ノイズ毛束・Bleed/Pool/Mist/Splatter・12セル点列を実装。31試験合格、実画面・合成入力・朱色・PNG一致・Console確認。
+- 再compile初回HTTP400はリロード中の応答。statusはcompleted/failed=false、後続compileも成功。コンパイルエラー修正の捏造なし。
+- UIの横幅超過とカメラなし時の文字残像を画像検査で修正。GameView倍率5→1に調整。見本表示で終了、背景override解除。
+- OSS新規コード/画像取り込みなし。ゲーム側ファイル変更なし。証拠はQA_AND_EVIDENCE参照。

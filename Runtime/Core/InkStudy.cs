@@ -4,7 +4,7 @@ namespace ConnectPiece.SumiEngine.Core
 {
     /// <summary>Original deterministic stroke study, not a reproduction of reference artwork.
     /// All marks are recorded brush input, so the study can be replayed before diffusion.</summary>
-    public static class InkStudy
+    public static partial class InkStudy
     {
         public static void Draw(SumiEngineCore core, int seed = 731)
         {
