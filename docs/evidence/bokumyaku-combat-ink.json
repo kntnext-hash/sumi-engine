@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "ObservedInkBursts": 2,
+  "activeBursts": 2,
+  "activeAttacks": 5,
+  "killDelta": 2,
+  "frameDelta": 66,
+  "method": "Natural Update after accelerated fixture; transient held for screenshot; limited check",
+  "expiredBurstsAfterWait": 0
+}
