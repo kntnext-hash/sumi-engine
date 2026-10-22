@@ -14,9 +14,16 @@ namespace Bokumyaku.Diagnostics
         string output;
         [Serializable] sealed class Report
         {
-            public string version, error, build;
+            public string version, error;
             public bool passed;
-            public int startFrame, endFrame, ticks, branches, kills, purchases;
+            public int startFrame, endFrame;
+            public WeaponReport[] runs;
+        }
+        [Serializable] sealed class WeaponReport
+        {
+            public string requestedWeapon, weapon, build;
+            public bool passed, sawAttack, weaponMatches;
+            public int ticks, branches, kills, purchases, peakFields, peakWeaponFields;
             public float pigment;
         }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -34,7 +41,7 @@ namespace Bokumyaku.Diagnostics
         IEnumerator Start()
         {
             yield return null;
-            var report = new Report { version = Application.unityVersion, startFrame = Time.frameCount };
+            var report = new Report { version = Application.unityVersion, startFrame = Time.frameCount, passed = true, runs = new WeaponReport[3] };
             BokumyakuGame game = null;
             try
             {
@@ -43,30 +50,48 @@ namespace Bokumyaku.Diagnostics
                 if (game == null) throw new InvalidOperationException("Game scene missing.");
                 game.SavePathOverride = Path.Combine(output, "qa-progress.json");
                 game.Meta = new MetaProgress();
-                game.SetBuild(BuildPreset.Farming);
-                game.StartRun(42); game.SetSpeed(2);
-            }
-            catch (Exception e) { report.error = e.ToString(); }
-            float deadline = Time.realtimeSinceStartup + 35;
-            while (report.error == null && game.Run.TickCount < 1200 && Time.realtimeSinceStartup < deadline)
-                yield return null;
-            try
-            {
-                if (report.error == null)
-                {
-                    game.SetPaused(true);
-                    report.endFrame = Time.frameCount;
-                    report.ticks = game.Run.TickCount;
-                    report.branches = game.Run.Branches.Count;
-                    report.kills = game.Run.Kills;
-                    foreach (int level in game.Run.UpgradeLevels) report.purchases += level;
-                    report.build = game.Run.Build.ToString();
-                    report.pigment = game.GetComponent<SumiCanvas>().Core.Paper.TotalPigment();
-                    report.passed = report.endFrame > report.startFrame && report.ticks >= 1200 &&
-                        report.branches > 4 && report.purchases > 0 && report.pigment > 0;
-                }
             }
             catch (Exception e) { report.error = e.ToString(); report.passed = false; }
+            for (int i = 0; i < report.runs.Length && report.error == null; i++)
+            {
+                var row = new WeaponReport { requestedWeapon = ((WeaponKind)i).ToString() };
+                report.runs[i] = row;
+                try
+                {
+                    game.SetBuild(BuildPreset.Farming); game.SetWeapon((WeaponKind)i);
+                    game.StartRun(42); game.SetSpeed(2);
+                }
+                catch (Exception e) { report.error = e.ToString(); report.passed = false; break; }
+                float deadline = Time.realtimeSinceStartup + 25;
+                while (game.Run.TickCount < 900 && Time.realtimeSinceStartup < deadline)
+                {
+                    foreach (var hit in game.Run.Attacks) row.sawAttack |= hit.Weapon == (WeaponKind)i;
+                    row.peakFields = Math.Max(row.peakFields, game.Run.Fields.Count);
+                    int matchingFields = 0;
+                    foreach (var field in game.Run.Fields) if (field.Weapon == (WeaponKind)i) matchingFields++;
+                    row.peakWeaponFields = Math.Max(row.peakWeaponFields, matchingFields);
+                    yield return null;
+                }
+                try
+                {
+                    game.SetPaused(true);
+                    row.ticks = game.Run.TickCount;
+                    row.branches = game.Run.Branches.Count;
+                    row.kills = game.Run.Kills;
+                    foreach (int level in game.Run.UpgradeLevels) row.purchases += level;
+                    row.build = game.Run.Build.ToString();
+                    row.weapon = game.Run.Weapon.ToString();
+                    row.weaponMatches = game.Run.Weapon == (WeaponKind)i;
+                    row.pigment = game.GetComponent<SumiCanvas>().Core.Paper.TotalPigment();
+                    row.passed = row.ticks >= 900 && row.branches > 4 && row.purchases > 0 &&
+                        row.pigment > 0 && row.sawAttack && row.weaponMatches &&
+                        (i != (int)WeaponKind.Bleed || row.peakWeaponFields > 0);
+                    report.passed &= row.passed;
+                }
+                catch (Exception e) { report.error = e.ToString(); report.passed = false; }
+            }
+            report.endFrame = Time.frameCount;
+            report.passed &= report.endFrame > report.startFrame;
             File.WriteAllText(Path.Combine(output, "player-report.json"), JsonUtility.ToJson(report, true));
             Application.Quit(report.passed ? 0 : 1);
         }

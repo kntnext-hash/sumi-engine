@@ -126,3 +126,14 @@
 - ツール: CLI self-update --yesは成功応答だったが--versionがbeta.13のまま。beta.14導入済みとは記録せず、公式MCPを併用。MCP runは名前衝突（build/script/test）で400となり、CLIの明示したbuild runで実ビルド成功。有限のフォールバックのみ実施。
 - Windows出力はBuilds/Bokumyaku-v0.2へ分離して旧版を保持。生成バイナリ/ログ/キャッシュはGit対象外、結果JSON/XML/PNGとコード/手順を保存。新外部コード/画像/フォントの取込みなし。Engineソース変更なし。
 - Editorを非Play、runInBackground=falseへ復元。最終Console現在error/warning0。次回はTASKSのG-V2-04/05から再開する。
+
+## 2026-10-22 墨脈 v0.3の3武器増分
+- d39db32/cleanから開始。指定文書とUnity status/pipeline/listを確認し、Core/Demo/Independent QAを分担。ゲームSimulation/Presentation/Testsを各担当、Unity操作/診断/記録は統合担当が所有。
+- 仕様→実装: 点墨の既存戦闘を基準として、前方3体の貫筆と48tickの滲墨を追加。武器と投資を分離、切替でクールダウン/既存領域を消さない。武器保持と結果の結晶/分、領域可視化を実装。
+- テスト→品質評価→改善: 90条件の初期候補で滲墨が弱いことを確認し、2候補目で直接倍率/領域半径/DPSを調整。両結果を保存。固定配置試験で得意不得意、自然seed比較で投資との相性を確認。報酬式の連動による経済役割差は未解決として残した。
+- Unity51NUnitと独立10件に合格。実UI18項目で自然敗北・報酬保存・再出撃まで通過。縦画面で版表記の重なりと白くなるラベルを検出し、配置と全GUIStyle状態色を修正して画像を再採取。
+- Windows最終ビルド成功、実Player3武器各900tick・実攻撃・購入・枝描画・滲墨領域を確認してexit0。QAは通常セーブと分離。証拠と手順、STATE/TASKS/QAを更新。
+- 最終縦画面検証でCLIの未対応--type/--method引数が拒否されたため、公開listの--entryへ修正。これはツール引数エラーでありゲームのコンパイル失敗ではない。sandboxからMSIX呼出し不可は通常権限の実ユーザーCLIへ切替。更新済みCLIを装わず公式MCPを併用。
+- Scene/Prefab YAMLや描画エンジンを変更せず、新しい外部コード/画像/フォントの取込みなし。Player生成物/キャッシュ/ログはGit対象外。Bokumyaku非Play/背景実行false、一時GameViewサイズ削除で終了。
+- 次: 経済役割差の報酬曲線/Tier候補評価、分裂/ボス、現行5敵版の120条件。今回の受入範囲は3武器の実装とPC動作で閉じる。
+- 戦闘/テスト/測定をf4d84e2に分割コミット。UI/Player/画面証拠/台帳は後続コミット。

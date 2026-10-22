@@ -20,6 +20,7 @@ namespace Bokumyaku.Presentation
         public bool AwaitingStart { get; private set; } = true;
         public BuildPreset SelectedBuild { get; private set; } = BuildPreset.Manual;
         public GrowthPolicy SelectedPolicy { get; private set; } = GrowthPolicy.Balanced;
+        public WeaponKind SelectedWeapon { get; private set; } = WeaponKind.Point;
         public event Action ProgressChanged;
         string saveWarning = "";
         bool progressLoaded;
@@ -48,6 +49,12 @@ namespace Bokumyaku.Presentation
         static readonly string[] MetaNames = { "祖墨", "深根", "生脈", "豊穣" };
         static readonly string[] MetaNotes = { "基礎攻撃力を永続強化", "基礎流墨を永続強化", "枝の成長を早める", "撃破で得る墨を増やす" };
         static readonly string[] BuildNames = { "手動", "広域・滲み", "多枝・火力" };
+        static readonly string[] WeaponNames = { "点墨", "貫筆", "滲墨" };
+        static readonly string[] WeaponNotes = {
+            "単体へ素早く連射。狙った敵を一体ずつ削る。",
+            "直線上の最大3体を貫く払い。攻撃間隔は長い。",
+            "紙面に残る範囲攻撃。速い敵は範囲から抜けやすい。"
+        };
         static readonly string[] BuildNotes = {
             "購入は自分で選ぶ。墨を貯めて好きな強化へ投資。",
             "9末端を目安に流墨・筆幅・滲みへ自動投資。周回用の候補。",
@@ -63,6 +70,7 @@ namespace Bokumyaku.Presentation
                 Run = new RunSimulator(InitialSeed, Meta);
                 Run.SetBuild(SelectedBuild);
                 Run.SetPolicy(SelectedPolicy);
+                Run.SetWeapon(SelectedWeapon);
                 DrawNewBranches();
             }
         }
@@ -96,6 +104,7 @@ namespace Bokumyaku.Presentation
             Run = new RunSimulator(seed, Meta);
             Run.SetBuild(SelectedBuild);
             Run.SetPolicy(SelectedPolicy);
+            Run.SetWeapon(SelectedWeapon);
             AwaitingStart = false; IsPaused = false; Speed = 1;
             tickClock = 0; drawnBranches = 0; rewarded = false;
             flashes.Clear(); growth.Clear(); canvas.Clear();
@@ -135,6 +144,13 @@ namespace Bokumyaku.Presentation
             Run?.SetBuild(build);
             notice = BuildNotes[(int)build];
         }
+        public void SetWeapon(WeaponKind weapon)
+        {
+            if (!Enum.IsDefined(typeof(WeaponKind), weapon)) throw new ArgumentOutOfRangeException(nameof(weapon));
+            SelectedWeapon = weapon;
+            Run?.SetWeapon(weapon);
+            notice = WeaponNotes[(int)weapon];
+        }
         void Update()
         {
             for (int i = flashes.Count - 1; i >= 0; i--)
@@ -152,7 +168,7 @@ namespace Bokumyaku.Presentation
                 foreach (var hit in Run.Attacks)
                 {
                     if (flashes.Count >= 96) flashes.RemoveAt(0);
-                    flashes.Add(new Flash { A = new Vector2((float)hit.X, (float)hit.Y), B = new Vector2((float)hit.TargetX, (float)hit.TargetY), Life = .20f });
+                    flashes.Add(new Flash { A = new Vector2((float)hit.X, (float)hit.Y), B = new Vector2((float)hit.TargetX, (float)hit.TargetY), Life = .20f, Weapon = hit.Weapon });
                 }
                 DrawNewBranches();
             }
@@ -211,8 +227,8 @@ namespace Bokumyaku.Presentation
             body = new GUIStyle(GUI.skin.label) { fontSize = 16, wordWrap = true, alignment = TextAnchor.MiddleLeft };
             japaneseFont = Font.CreateDynamicFontFromOSFont(new[] { "Yu Gothic", "Meiryo", "Noto Sans CJK JP", "Arial" }, 16);
             if (japaneseFont != null) body.font = japaneseFont;
-            body.normal.textColor = ink;
-            small = new GUIStyle(body) { fontSize = 13 }; small.normal.textColor = muted;
+            SetLabelColor(body, ink);
+            small = new GUIStyle(body) { fontSize = 13 }; SetLabelColor(small, muted);
             heading = new GUIStyle(body) { fontSize = 19, fontStyle = FontStyle.Bold };
             title = new GUIStyle(body) { fontSize = 32, fontStyle = FontStyle.Bold };
             number = new GUIStyle(body) { fontSize = 26, fontStyle = FontStyle.Bold };
@@ -249,7 +265,7 @@ namespace Bokumyaku.Presentation
                 if (portrait) DrawPanel(new Rect(24, 648, 392, 388), true);
                 else DrawPanel(new Rect(558, 110, 494, 616), false);
                 GUI.Label(new Rect(field.x, field.yMax + 7, field.width, 18), "墨の枝  ／  金の末端  ／  朱の敵", small);
-                GUI.Label(new Rect(width - 170, 42, 146, 25), "縦切り試作  0.2", small);
+                GUI.Label(new Rect(width - 170, portrait ? 20 : 42, 146, 25), "縦切り試作  0.3", small);
             }
             finally { GUI.matrix = oldMatrix; GUI.color = oldColor; GUI.backgroundColor = oldBackground; GUI.enabled = oldEnabled; }
         }
@@ -261,6 +277,17 @@ namespace Bokumyaku.Presentation
             var center = View(field, 192, 256);
             Ring(center, field.width * .45f, new Color(.58f, .53f, .42f, .17f));
             Ring(center, field.width * .25f, new Color(.58f, .53f, .42f, .10f));
+            // Read the simulation's active fields; visual rings never create gameplay damage.
+            foreach (var area in Run.Fields)
+            {
+                var position = Logical(field, new Vector2((float)area.X, (float)area.Y));
+                float radius = (float)area.Radius * .48f * field.width / 384f;
+                bool bleed = area.Weapon == WeaponKind.Bleed;
+                Color tint = bleed ? ink : gold;
+                Dot(position, radius, new Color(tint.r, tint.g, tint.b, bleed ? .16f : .09f));
+                Ring(position, radius, new Color(tint.r, tint.g, tint.b, .35f));
+                if (bleed) Ring(position, radius * .78f, new Color(tint.r, tint.g, tint.b, .12f));
+            }
             foreach (var b in Run.Branches)
             {
                 if (!b.IsTip) continue;
@@ -281,8 +308,20 @@ namespace Bokumyaku.Presentation
             foreach (var flash in flashes)
             {
                 float alpha = Mathf.Clamp01(flash.Life / .20f);
-                Line(Logical(field, flash.A), Logical(field, flash.B), 1.6f, new Color(ink.r, ink.g, ink.b, alpha));
-                Ring(Logical(field, flash.B), 3 + 10 * (1 - alpha), new Color(gold.r, gold.g, gold.b, alpha));
+                Vector2 from = Logical(field, flash.A), to = Logical(field, flash.B);
+                if (flash.Weapon == WeaponKind.Pierce)
+                {
+                    // A broad tapered stroke distinguishes the slower piercing brush.
+                    Line(from, Vector2.Lerp(from, to, .7f), 5f * alpha + 1, new Color(ink.r, ink.g, ink.b, alpha));
+                    Line(Vector2.Lerp(from, to, .7f), to, 2.2f * alpha, new Color(ink.r, ink.g, ink.b, alpha));
+                }
+                else if (flash.Weapon == WeaponKind.Point)
+                {
+                    Line(from, to, .9f, new Color(ink.r, ink.g, ink.b, alpha * .45f));
+                    Dot(to, 3 + 3 * alpha, new Color(ink.r, ink.g, ink.b, alpha));
+                    Ring(to, 3 + 8 * (1 - alpha), new Color(gold.r, gold.g, gold.b, alpha));
+                }
+                else Dot(to, 4 + 8 * (1 - alpha), new Color(ink.r, ink.g, ink.b, alpha * .25f));
             }
             Dot(center, 14, ink); Dot(center, 5, gold);
             double minPressure = double.MaxValue, maxPressure = 0;
@@ -300,16 +339,17 @@ namespace Bokumyaku.Presentation
             Fill(new Rect(field.x + 12, field.y + 60, 10 * Run.CoreHp, 3), gold);
             if (AwaitingStart || Run.State != RunStatus.Running)
             {
-                var box = new Rect(field.x + 22, field.center.y - 108, field.width - 44, 216);
+                var box = new Rect(field.x + 22, field.center.y - 126, field.width - 44, 252);
                 Fill(box, new Color(.96f, .95f, .91f, .96f));
                 string status = AwaitingStart ? "一滴から、命が芽吹く。" : Run.State == RunStatus.Defeated ? "墨が静まり、核が砕けた。" : Run.State == RunStatus.TestCompleted ? RunSimulator.WaveLimit + "の波を、耐え抜いた。" : "試作版の処理上限";
                 GUI.Label(new Rect(box.x + 14, box.y + 12, box.width - 28, 35), status, heading);
-                GUI.Label(new Rect(box.x + 14, box.y + 48, box.width - 28, 108), AwaitingStart
-                    ? "核を守る墨の枝。敵を倒すと枝が伸びる。\n操作欄で投資方針を選び、出撃する。\n選択中: " + BuildNames[(int)SelectedBuild]
+                GUI.Label(new Rect(box.x + 14, box.y + 48, box.width - 28, 146), AwaitingStart
+                    ? "核を守る墨の枝。敵を倒すと枝が伸びる。\n操作欄で武器と投資方針を選び、出撃する。\n武器: " + WeaponNames[(int)SelectedWeapon] + "\n投資: " + BuildNames[(int)SelectedBuild]
                     : "到達 " + Run.CompletedWave + " 波突破  ·  " + Run.Kills + " 撃破\n生存 " + FormatTime(Run.ElapsedSeconds)
                         + "  ／  獲得墨 " + Run.IncomeEarned + "\n獲得墨/分 " + Run.IncomePerMinute.ToString("0.0")
-                        + "  ／  結晶 " + Run.CrystalsReward, body);
-                if (Button(new Rect(box.x + 14, box.y + 170, box.width - 28, 32), AwaitingStart ? "出撃する" : "再び芽吹く", true)) StartRun(unchecked(InitialSeed + (AwaitingStart ? 0 : Run.Seed - InitialSeed + 1)));
+                        + "  ／  結晶 " + Run.CrystalsReward + "\n武器: " + WeaponNames[(int)Run.Weapon]
+                        + "  ／  結晶/分 " + (Run.ElapsedSeconds > 0 ? Run.CrystalsReward * 60.0 / Run.ElapsedSeconds : 0).ToString("0.00"), body);
+                if (Button(new Rect(box.x + 14, box.y + 206, box.width - 28, 32), AwaitingStart ? "出撃する" : "再び芽吹く", true)) StartRun(unchecked(InitialSeed + (AwaitingStart ? 0 : Run.Seed - InitialSeed + 1)));
             }
         }
         void DrawPanel(Rect panel, bool compact)
@@ -330,7 +370,7 @@ namespace Bokumyaku.Presentation
             Rect viewport = new Rect(x, y, w, panel.yMax - y - footerHeight);
             float contentWidth = w - 20;
             // The battlefield and pause/speed controls stay visible while the upgrade list scrolls.
-            panelScroll = GUI.BeginScrollView(viewport, panelScroll, new Rect(0, 0, contentWidth, metaTab ? 348 : 594), false, true);
+            panelScroll = GUI.BeginScrollView(viewport, panelScroll, new Rect(0, 0, contentWidth, metaTab ? 348 : 702), false, true);
             try { DrawUpgradeContent(contentWidth); }
             finally { GUI.EndScrollView(); }
             if (!string.IsNullOrEmpty(saveWarning))
@@ -360,6 +400,11 @@ namespace Bokumyaku.Presentation
             }
             else
             {
+                GUI.Label(new Rect(0, y, w, 26), "武器  ／  投資方針とは独立", heading); y += 30;
+                for (int i = 0; i < 3; i++)
+                    if (Button(new Rect((bw + 8) * i, y, bw, 30), WeaponNames[i], SelectedWeapon == (WeaponKind)i)) SetWeapon((WeaponKind)i);
+                y += 34;
+                GUI.Label(new Rect(0, y, w, 42), WeaponNotes[(int)SelectedWeapon], small); y += 44;
                 GUI.Label(new Rect(0, y, w, 26), "墨の投資方針", heading); y += 30;
                 for (int i = 0; i < 3; i++)
                     if (Button(new Rect((bw + 8) * i, y, bw, 30), BuildNames[i], SelectedBuild == (BuildPreset)i)) SetBuild((BuildPreset)i);
@@ -391,6 +436,12 @@ namespace Bokumyaku.Presentation
             int whole = (int)Math.Max(0, seconds);
             return (whole / 60).ToString("00") + ":" + (whole % 60).ToString("00");
         }
+        static void SetLabelColor(GUIStyle style, Color color)
+        {
+            // Dark Editor skin hover colors must not turn paper-screen labels white.
+            foreach (var state in new[] { style.normal, style.hover, style.active, style.focused,
+                style.onNormal, style.onHover, style.onActive, style.onFocused }) state.textColor = color;
+        }
         bool Button(Rect rect, string label, bool selected)
         {
             Color before = GUI.backgroundColor;
@@ -419,6 +470,6 @@ namespace Bokumyaku.Presentation
             }
         }
         void OnDestroy() { if (disc != null) Destroy(disc); if (japaneseFont != null) Destroy(japaneseFont); }
-        sealed class Flash { public Vector2 A, B; public float Life; }
+        sealed class Flash { public Vector2 A, B; public float Life; public WeaponKind Weapon; }
     }
 }

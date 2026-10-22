@@ -1,0 +1,7 @@
+{
+  "exitCode": 0,
+  "report": "bokumyaku-player-v3.json",
+  "logErrorPattern": "Exception|Error|Failed",
+  "logErrorMatches": 0,
+  "mode": "Hidden Windows Player; simulation and rendering data smoke, not visible screen or physical input validation"
+}

@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "method": "GameView.SendEvent + live Update; isolated save; public API sets natural-defeat fixture and purchases meta; physical mouse not tested",
+  "checks": [
+    {
+      "name": "出撃前の武器と構成",
+      "passed": true,
+      "detail": {
+        "weapon": "Bleed",
+        "build": "Farming",
+        "policy": "Focus"
+      }
+    },
+    {
+      "name": "出撃後も選択保持",
+      "passed": true,
+      "detail": "Bleed"
+    },
+    {
+      "name": "一時停止",
+      "passed": true,
+      "detail": 13
+    },
+    {
+      "name": "停止中tick維持",
+      "passed": true,
+      "detail": 13
+    },
+    {
+      "name": "再開と2倍速",
+      "passed": true,
+      "detail": 2
+    },
+    {
+      "name": "滲墨の攻撃と実領域",
+      "passed": true,
+      "detail": {
+        "attack": true,
+        "field": true,
+        "tick": 904
+      }
+    },
+    {
+      "name": "貫筆へ切替",
+      "passed": true,
+      "detail": "Pierce"
+    },
+    {
+      "name": "貫筆の実攻撃",
+      "passed": true,
+      "detail": 1505
+    },
+    {
+      "name": "点墨へ切替",
+      "passed": true,
+      "detail": "Point"
+    },
+    {
+      "name": "点墨の実攻撃",
+      "passed": true,
+      "detail": 2133
+    },
+    {
+      "name": "自動購入と枝成長",
+      "passed": true,
+      "detail": {
+        "levels": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          0
+        ],
+        "branches": 11
+      }
+    },
+    {
+      "name": "下部強化へスクロール",
+      "passed": true,
+      "detail": "(0.00, 207.00)"
+    },
+    {
+      "name": "実時間の自然敗北",
+      "passed": true,
+      "detail": {
+        "TickCount": 4529,
+        "CompletedWave": 12,
+        "CrystalsReward": 12
+      }
+    },
+    {
+      "name": "自然敗北の報酬保存",
+      "passed": true,
+      "detail": 12
+    },
+    {
+      "name": "恒久強化購入API",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "恒久強化読戻し",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "再出撃ボタンと選択保持",
+      "passed": true,
+      "detail": {
+        "TickCount": 0,
+        "weapon": "Point",
+        "policy": "Focus"
+      }
+    },
+    {
+      "name": "フレーム進行",
+      "passed": true,
+      "detail": {
+        "firstFrame": 192,
+        "endFrame": 16427
+      }
+    }
+  ]
+}

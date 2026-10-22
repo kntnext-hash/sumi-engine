@@ -162,3 +162,17 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - Player: bokumyaku-player-v2.json。--bokumyaku-smoke-output明示時だけQAを起動し専用保存先へ隔離。exit0、frame2→132572、1200tick、8ノード、15撃破、4購入、顔料2204.4077。非表示起動の実行検査であり画面/物理操作/完走/性能保証ではない。通常起動では自動操作も自動終了もしない。
 - Console: bokumyaku-console-v2.json、groundTruth compilationFailed=false/consoleErrors0/consoleWarnings0。過去の診断/失敗履歴は保持。Player.logにはException/Error/Failedの一致なし。
 - 未達: 周回/記録の経済的差別化、5敵版、武器別戦闘、モバイル、物理入力と長時間手動評価、オフライン収益。今回の増分合格と全体完成を区別する。
+
+## 墨脈 v0.3検証（2026-10-22）
+- Compile: Unity6000.3.26f1で最終UI色修正もcompleted/failed=false/errors=[]。Bokumyakuのみ変更、エンジン42試験は再実行していない。
+- A: bokumyaku-editmode-v3.xml 51/51 PASS、37.4557秒。貫通の前方/幅/距離/3体制限/同位置順、滲墨の48tick寿命/圧力/重複2/領域96上限、切替クールダウン、二重撃破報酬防止を含む。遅い密集5体では貫筆/滲墨、孤立した高速1体では点墨が有利になる同費用の固定配置試験。自然seedのバランス証拠とは区別。
+- A: bokumyaku-standalone-v3.txt、PowerShell7.6.5/.NET10.0.11の純C#実コンパイル、10 PASS/0 FAIL。再現Snapshotは武器/AttackEvent/領域も含む。
+- R/UI: bokumyaku-play-v3.json 18/18 PASS。GameView.SendEventと実Update、frame192→16427。3武器の攻撃、滲墨の実領域、保持、一時停止/2倍速、自動購入/成長、スクロール207px、自然敗北4529tick/W12/結晶12、保存、恒久購入/読戻し、実再出撃ボタン。自然敗北の初期化と恒久購入は公開API、他の記載ボタンは合成イベント。物理マウスとは異なる。
+- R/UI: bokumyaku-portrait-v3.json、440×1060固定GameView、滲墨ボタン選択とScrollWheelで435px。portrait-top/bottom-v3.pngを目視。重なっていた版表記と暗色Editor skinの白いhoverラベルを修正して再確認。これは縦レイアウト試験でありモバイル実機ではない。
+- R: bokumyaku-bleed-v3.pngは実GameViewの持続領域、bokumyaku-result-v3.pngは実自然敗北。領域画像はシミュレーションのFieldsをそのまま可視化。参考画像相当の完成美術の達成とはしない。
+- Balance: bokumyaku-weapons-v3-initial.jsonに初期候補、bokumyaku-weapons-v3.jsonに最終候補を保存。各10seed×3投資×3武器=90条件、恒久0/成長Balanced/武器固定、手動群は無購入対照。sourceSha256と測定時ソース一致。全Defeated、最大領域42、最大末端12、容量終了0。
+- Balance: 広域の点墨/貫筆/滲墨の生存中央値502.52/426.88/516.62秒、結晶/分5.92/5.60/5.92。多枝505.05/492.80/249.88秒、5.93/5.91/4.87。役割差と5〜8分目標は未合格。報酬式/敵式/供給式の変更や武器固有報酬倍率はなし。
+- Build: bokumyaku-build-v3.json、build_d3d50cdd3530、StandaloneWindows64/Bokumyakuシーン、Succeeded、90,251,697 bytes/12.446秒、errors0/warnings0。Builds/Bokumyaku-v0.3/Bokumyaku.exeと同梱Data/DLLが必要。ハッシュはbokumyaku-artifact-v3.json。
+- Player: bokumyaku-player-v3.jsonとplayer-launch-v3.json。明示--bokumyaku-smoke-output時だけ動作、QA保存先隔離、exit0、frame2→291212。3武器とも900tick/7枝ノード/9撃破/2購入/顔料1891.2052、実武器とAttackEventの種別一致。滲墨で最大4領域を観測。非表示起動のデータ検査であり、画面/物理入力/完走/FPS計測とは異なる。通常起動では自動操作/終了なし。
+- Console: bokumyaku-console-v3.json、現在compilationFailed=false/consoleErrors0/consoleWarnings0。過去履歴は保持。最終Player.logのException/Error/Failed一致0。
+- 未達: 経済役割差、5敵、正式120条件、全武器/装備進行、オフライン収益、モバイル、物理入力、長時間手動評価。実装増分の合格とゲーム全体完成を区別する。
