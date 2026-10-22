@@ -12,6 +12,7 @@ namespace Bokumyaku.Presentation
             enemyInk=new Texture2D[5];
             for(int i=0;i<enemyInk.Length;i++)enemyInk[i]=ProceduralInkMotifs.CreateEnemy((EnemyKind)i);
             coreInk=ProceduralInkMotifs.CreateCore();
+            EnsureCombatInk();
         }
         void InkStamp(Texture2D mask,Vector2 center,float size,Color tint)
         {
@@ -36,6 +37,9 @@ namespace Bokumyaku.Presentation
         {
             if(enemyInk!=null)foreach(var texture in enemyInk)if(texture!=null)Destroy(texture);
             if(coreInk!=null)Destroy(coreInk);
+            if(slashInk!=null)Destroy(slashInk);
+            if(burstInk!=null)Destroy(burstInk);
+            slashInk=null;burstInk=null;
             enemyInk=null;coreInk=null;
         }
     }

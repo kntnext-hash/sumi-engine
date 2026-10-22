@@ -242,7 +242,7 @@ namespace Bokumyaku.Presentation
         }
         void ResetInk()
         {
-            drawnBranches = 0; flashes.Clear(); growth.Clear(); canvas.Clear();
+            drawnBranches = 0; inkBursts.Clear(); watchedEnemies.Clear(); ObservedInkBursts = 0; flashes.Clear(); growth.Clear(); canvas.Clear();
             Array.Clear(observedLevels, 0, observedLevels.Length);
             Array.Clear(levelChangedAt, 0, levelChangedAt.Length);
             DrawNewBranches();
@@ -343,6 +343,7 @@ namespace Bokumyaku.Presentation
         }
         void Update()
         {
+            AgeBursts();
             for (int i = flashes.Count - 1; i >= 0; i--)
             {
                 flashes[i].Life -= Time.unscaledDeltaTime;
@@ -365,7 +366,9 @@ namespace Bokumyaku.Presentation
             while (tickClock >= 1f / RunSimulator.TickRate && budget-- > 0 && Run.State == RunStatus.Running)
             {
                 tickClock -= 1f / RunSimulator.TickRate;
+                WatchEnemies();
                 Run.Tick();
+                ObserveDefeats();
                 foreach (var hit in Run.Attacks)
                 {
                     if (flashes.Count >= 96) flashes.RemoveAt(0);
@@ -581,12 +584,12 @@ namespace Bokumyaku.Presentation
                 if (flash.Weapon == WeaponKind.Pierce)
                 {
                     // A broad tapered stroke distinguishes the slower piercing brush.
-                    Line(from, Vector2.Lerp(from, to, .7f), 5f * alpha + 1, new Color(ink.r, ink.g, ink.b, alpha));
-                    Line(Vector2.Lerp(from, to, .7f), to, 2.2f * alpha, new Color(ink.r, ink.g, ink.b, alpha));
+                    BrushBeam(from, to, 38, alpha);
+
                 }
                 else if (flash.Weapon == WeaponKind.Point)
                 {
-                    Line(from, to, .9f, new Color(ink.r, ink.g, ink.b, alpha * .45f));
+                    BrushBeam(from, to, 14, alpha * .65f);
                     Dot(to, 3 + 3 * alpha, new Color(ink.r, ink.g, ink.b, alpha));
                     Ring(to, 3 + 8 * (1 - alpha), new Color(gold.r, gold.g, gold.b, alpha));
                 }
@@ -597,18 +600,19 @@ namespace Bokumyaku.Presentation
                     {
                         float angle = i * .18f;
                         Vector2 turned = new Vector2(direction.x * Mathf.Cos(angle) - direction.y * Mathf.Sin(angle), direction.x * Mathf.Sin(angle) + direction.y * Mathf.Cos(angle));
-                        Line(from, from + turned * Vector2.Distance(from, to), 2 * alpha, new Color(ink.r, ink.g, ink.b, alpha * .5f));
+                        BrushBeam(from, from + turned * Vector2.Distance(from, to), 24, alpha * .5f);
                     }
                 }
                 else if (flash.Weapon == WeaponKind.Enso)
-                    Ring(from, 8 + 26 * (1 - alpha), new Color(ink.r, ink.g, ink.b, alpha));
+                    InkStamp(coreInk, from, 28 + 65 * (1-alpha), new Color(ink.r, ink.g, ink.b, alpha));
                 else if (flash.Weapon == WeaponKind.Resonance)
                 {
-                    Line(from, to, 2, new Color(gold.r, gold.g, gold.b, alpha));
+                    BrushBeam(from, to, 20, alpha);
                     Ring(to, 5 + 8 * (1 - alpha), new Color(ink.r, ink.g, ink.b, alpha));
                 }
-                else Dot(to, 4 + 8 * (1 - alpha), new Color(ink.r, ink.g, ink.b, alpha * .25f));
+                else InkStamp(burstInk, to, 26 + 16 * (1-alpha), new Color(ink.r, ink.g, ink.b, alpha * .4f));
             }
+            DrawInkBursts(field);
             DrawInkCore(center);
             double minPressure = double.MaxValue, maxPressure = 0;
             foreach (var branch in Run.Branches)
