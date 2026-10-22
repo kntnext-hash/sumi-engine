@@ -7,6 +7,7 @@ namespace Bokumyaku.Simulation
         public RunSnapshot CaptureState()
         {
             var s = new RunSnapshot {
+                schemaVersion = 2, rulesVersion = RulesVersion, autoPurchaseCursor = autoPurchaseCursor,
                 seed = Seed,
                 tickCount = TickCount,
                 wave = Wave,
@@ -37,7 +38,12 @@ namespace Bokumyaku.Simulation
         {
             if(s==null) throw new ArgumentNullException(nameof(s));
             s = DecodeExactDoubles(s);
-            Check(s.schemaVersion==1,"schemaVersion");
+            Check(s.schemaVersion==1 || s.schemaVersion==2,"schemaVersion");
+            int rules = s.schemaVersion == 1 ? LegacyRulesVersion : s.rulesVersion;
+            Check(rules==1 || rules==2,"rulesVersion");
+            Check(s.schemaVersion!=1 || (s.rulesVersion==0 && s.autoPurchaseCursor==0),"legacy metadata");
+            Range(s.autoPurchaseCursor,0,5,"purchase cursor");
+            Check(rules!=1 || s.autoPurchaseCursor==0,"legacy cursor");
             Range(s.tickCount,0,MaxTicks,"tickCount"); Range(s.wave,1,WaveLimit,"wave"); Range(s.completedWave,0,WaveLimit,"completedWave");
             Check(s.wave==Math.Min(WaveLimit,Math.Max(1,(s.tickCount-1)/360+1)),"wave/tick mismatch");
             Check(s.completedWave==(s.status==RunStatus.Defeated?Math.Max(0,s.tickCount-1)/360:s.tickCount/360),"completedWave/tick mismatch");
@@ -53,7 +59,7 @@ namespace Bokumyaku.Simulation
             int expectedReward=(s.status==RunStatus.Defeated || s.status==RunStatus.TestCompleted)?(int)Math.Floor(s.rewardPoints*.08):0;
             Check(s.crystalsReward==expectedReward,"crystalsReward");
             Check(s.meta!=null,"meta"); s.meta.Snapshot();
-            Check(s.levels!=null && s.levels.Length==6,"levels"); int[] caps={30,25,25,9,10,10}; for(int i=0;i<6;i++)Range(s.levels[i],0,caps[i],"level");
+            Check(s.levels!=null && s.levels.Length==(rules==1?6:7),"levels"); int[] caps={30,25,25,9,10,10,HarvestMaxLevel}; for(int i=0;i<s.levels.Length;i++)Range(s.levels[i],0,caps[i],"level");
             Check(s.enemies!=null&&s.enemies.Length<=EnemyLimit&&s.branches!=null&&s.branches.Length>=4&&s.branches.Length<=64&&s.fields!=null&&s.fields.Length<=FieldLimit&&s.attacks!=null&&s.attacks.Length<=96,"array bounds");
             Check(s.spawnedByType!=null&&s.spawnedByType.Length==5&&s.killedByType!=null&&s.killedByType.Length==5&&s.leakedByType!=null&&s.leakedByType.Length==5,"type counters");
             int sk=0,sl=0,ss=0; var active=new int[5]; var ids=new HashSet<int>();
@@ -62,13 +68,14 @@ namespace Bokumyaku.Simulation
             for(int i=0;i<5;i++) { Range(s.spawnedByType[i],0,100000,"spawn count"); Range(s.killedByType[i],0,100000,"kill count"); Range(s.leakedByType[i],0,100000,"leak count"); Check(s.spawnedByType[i]==s.killedByType[i]+s.leakedByType[i]+active[i],"type counter balance"); ss+=s.spawnedByType[i];sk+=s.killedByType[i];sl+=s.leakedByType[i]; }
             Check(ss==s.nextEnemyId&&sk==s.kills&&sl==s.leaks,"total counters");
             double minimumPoints=s.killedByType[0]+1.1*s.killedByType[1]+2.0*s.killedByType[2]+12.0*s.killedByType[4];
-            Number(s.rewardPoints,Math.Max(0,minimumPoints-1e-6),minimumPoints+1.4*s.killedByType[3]+1e-6,"reward point counters");
+            Number(s.rewardPoints,Math.Max(0,minimumPoints-1e-6),(minimumPoints+1.4*s.killedByType[3])*(rules==1?1:1+HarvestGainPerLevel*s.levels[6])+1e-6,"reward point counters");
             int tips=0; var hasChild=new bool[s.branches.Length];
             for(int i=0;i<s.branches.Length;i++) {var b=s.branches[i];Check(b!=null&&b.id==i,"branch id"); Check(i==0?b.parentId==-1:b.parentId>=0&&b.parentId<i,"branch parent"); Number(b.x,-GrowthRadius,GrowthRadius,"branch x"); Number(b.y,-GrowthRadius,GrowthRadius,"branch y");Number(b.pathLength,0,10000,"pathLength");Range(b.nextAttack,0,MaxTicks+1000,"cooldown");if(i>0){hasChild[b.parentId]=true;var p=s.branches[b.parentId];double dx=b.x-p.x,dy=b.y-p.y;Check(Math.Abs(b.pathLength-p.pathLength-Math.Sqrt(dx*dx+dy*dy))<1e-6,"path geometry");} if(b.isTip)tips++; }
             Check(tips>=3&&tips<=Math.Min(12,3+s.levels[3]),"tip count"); for(int i=0;i<hasChild.Length;i++)Check(s.branches[i].isTip!=hasChild[i],"tip topology");
             foreach(var f in s.fields){Check(f!=null&&Enum.IsDefined(typeof(WeaponKind),f.weapon),"field");Number(f.x,-1024,1024,"field x");Number(f.y,-1024,1024,"field y");Number(f.radius,0,1000,"field radius");Number(f.damagePerTick,0,1e9,"field damage");Range(f.untilTick,0,MaxTicks+1000,"field time");}
             foreach(var a in s.attacks){Check(a!=null&&Enum.IsDefined(typeof(WeaponKind),a.weapon),"attack");Range(a.branchId,1,s.branches.Length-1,"attack branch");Range(a.enemyId,1,s.nextEnemyId,"attack enemy");Number(a.x,-1024,1024,"attack x");Number(a.y,-1024,1024,"attack y");Number(a.targetX,-1024,1024,"target x");Number(a.targetY,-1024,1024,"target y");Number(a.damage,0,1e9,"attack damage");Number(a.pressure,.45,1.65,"pressure");}
             var r=new RunSimulator(s.seed,s.meta);
+            r.RulesVersion=rules; r.autoPurchaseCursor=s.autoPurchaseCursor; r.levels=new int[s.levels.Length];
             r.Seed = s.seed;
             r.TickCount = s.tickCount;
             r.Wave = s.wave;
@@ -85,7 +92,7 @@ namespace Bokumyaku.Simulation
             r.Weapon = s.weapon;
             r.EffectiveDamage = s.effectiveDamage;
             r.nextEnemyId = s.nextEnemyId; r.growthCount = s.growthCount; r.repairCount = s.repairCount; r.lastBossWave = s.lastBossWave; r.spawnRng = s.spawnRng; r.growthRng = s.growthRng; r.spawnCredit = s.spawnCredit; r.growthCharge = s.growthCharge; r.rewardPoints = s.rewardPoints; r.rewardClaimed = s.rewardClaimed;
-            Array.Copy(s.levels,r.levels,6);Array.Copy(s.spawnedByType,r.spawnedByType,5);Array.Copy(s.killedByType,r.killedByType,5);Array.Copy(s.leakedByType,r.leakedByType,5);
+            Array.Copy(s.levels,r.levels,s.levels.Length);Array.Copy(s.spawnedByType,r.spawnedByType,5);Array.Copy(s.killedByType,r.killedByType,5);Array.Copy(s.leakedByType,r.leakedByType,5);
             r.enemies.Clear();foreach(var e in s.enemies)r.enemies.Add(new EnemyState{Id=e.id,Kind=e.kind,X=e.x,Y=e.y,Hp=e.hp,MaxHp=e.maxHp,Speed=e.speed,SpawnWave=e.spawnWave,IsSplitChild=e.isSplitChild});
             r.branches.Clear();foreach(var b in s.branches)r.branches.Add(new BranchState{Id=b.id,ParentId=b.parentId,X=b.x,Y=b.y,PathLength=b.pathLength,IsTip=b.isTip,NextAttack=b.nextAttack});
             foreach(var f in s.fields)r.fields.Add(new InkFieldState{X=f.x,Y=f.y,Radius=f.radius,DamagePerTick=f.damagePerTick,UntilTick=f.untilTick,Weapon=f.weapon});

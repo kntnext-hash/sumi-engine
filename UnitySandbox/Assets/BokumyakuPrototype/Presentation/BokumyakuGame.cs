@@ -56,7 +56,8 @@ namespace Bokumyaku.Presentation
                 Page = GamePage.Home; saveWarning = "";
             }
         }
-        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v2.json");
+        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v3.json");
+        public string PreviousCampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v2.json") : SavePathOverride + ".v2";
         string LegacySavePath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-prototype-v1.json") : SavePathOverride + ".legacy";
         SumiCanvas canvas;
         Texture2D disc;
@@ -73,19 +74,19 @@ namespace Bokumyaku.Presentation
         bool loadBlocked, abandonConfirmation, storageFailed;
         float checkpointClock;
         Vector2 panelScroll;
-        readonly int[] observedLevels = new int[6];
-        readonly float[] levelChangedAt = new float[6];
+        readonly int[] observedLevels = new int[7];
+        readonly float[] levelChangedAt = new float[7];
         string notice = "核を守り、墨の枝を育てる。";
         readonly Color ink = new Color(.13f, .15f, .14f);
         readonly Color muted = new Color(.43f, .44f, .40f);
         readonly Color gold = new Color(.65f, .47f, .19f);
         readonly Color red = new Color(.69f, .22f, .16f);
         readonly Color paper = new Color(.95f, .94f, .90f);
-        static readonly string[] UpgradeNames = { "筆撃", "筆速", "流墨", "分岐", "筆幅", "滲み" };
-        static readonly string[] UpgradeNotes = { "一撃の威力を高める", "攻撃間隔を短くする", "末端へ分配する墨量を増やす", "成長できる末端数を増やす", "敵へ届く範囲を広げる", "着弾後も墨が敵を削る" };
+        static readonly string[] UpgradeNames = { "筆撃", "筆速", "流墨", "分岐", "筆幅", "滲み", "採墨" };
+        static readonly string[] UpgradeNotes = { "一撃の威力を高める", "攻撃間隔を短くする", "末端へ分配する墨量を増やす", "成長できる末端数を増やす", "敵へ届く範囲を広げる", "着弾後も墨が敵を削る", "購入後の有効撃破で通常結晶を増やす" };
         static readonly string[] MetaNames = { "祖墨", "深根", "生脈", "豊穣" };
         static readonly string[] MetaNotes = { "基礎攻撃力を永続強化", "基礎流墨を永続強化", "枝の成長を早める", "撃破で得る墨を増やす" };
-        static readonly string[] BuildNames = { "手動", "広域・滲み", "多枝・火力" };
+        static readonly string[] BuildNames = { "手動", "採墨・周回", "供給・記録" };
         static readonly string[] WeaponNames = { "点墨", "貫筆", "滲墨", "払い", "円相", "共鳴" };
         static readonly string[] WeaponNotes = {
             "単体へ素早く連射。狙った敵を一体ずつ削る。",
@@ -97,9 +98,18 @@ namespace Bokumyaku.Presentation
         };
         static readonly string[] BuildNotes = {
             "購入は自分で選ぶ。墨を貯めて好きな強化へ投資。",
-            "9末端を目安に流墨・筆幅・滲みへ自動投資。周回用の候補。",
-            "12末端へ分岐を優先し、筆撃と流墨を強化。記録用の候補。"
+            "採墨にも墨を使い、火力との配分を選ぶ。周回用の候補。",
+            "流墨を先に整え、攻撃へ投資する。記録用の候補。"
         };
+        string BuildDescription(BuildPreset build)
+        {
+            if (Run != null && Run.RulesVersion == 1)
+                return "旧ルールの投資順で続行。採墨は次の新規出撃から利用できます。";
+            if (build == BuildPreset.Farming)
+                return "採墨は通常結晶 +" + (RunSimulator.HarvestGainPerLevel * 100).ToString("0.#")
+                    + "%/Lv（最大" + RunSimulator.HarvestMaxLevel + "）。火力への投資を抑える周回候補。";
+            return BuildNotes[(int)build];
+        }
 
         void Start()
         {
@@ -123,8 +133,10 @@ namespace Bokumyaku.Presentation
             EnsureCanvas();
             try
             {
+                bool firstNewCampaign = !progressLoaded && !SaveFamilyExists(SavePath) && !SaveFamilyExists(PreviousCampaignPath) && !SaveFamilyExists(LegacySavePath);
                 string warning;
-                var loaded = CampaignSaveStore.Load(SavePath, LegacySavePath, out warning);
+                var loaded = CampaignSaveStore.Load(SavePath, PreviousCampaignPath, LegacySavePath, out warning);
+                if (firstNewCampaign) SelectedBuild = BuildPreset.Farming;
                 var restored = loaded.HasActiveRun ? RunSimulator.Restore(loaded.ActiveRun) : new RunSimulator(InitialSeed, loaded.Meta);
                 ApplyCampaign(loaded); Run = restored; progressLoaded = true; loadBlocked = false;
                 saveWarning = warning; AwaitingStart = !loaded.HasActiveRun; IsPaused = true;
@@ -134,7 +146,7 @@ namespace Bokumyaku.Presentation
                 }
                 else { Run.SetBuild(SelectedBuild); Run.SetPolicy(SelectedPolicy); Run.SetWeapon(SelectedWeapon); }
                 rewarded = rewardSaved = endHandled = false; tickClock = 0; Page = GamePage.Home;
-                ResetInk(); notice = loaded.HasActiveRun ? "途中の状態を読み込みました。続行を押すまで時間は進みません。" : "武器と構成を選び、出撃してください。";
+                ResetInk(); notice = loaded.HasActiveRun ? (Run.RulesVersion == 1 ? "旧ルールで続行。採墨は次の新規出撃から利用できます。" : "途中の状態を読み込みました。続行を押すまで時間は進みません。") : "武器と構成を選び、出撃してください。";
                 return true;
             }
             catch (Exception e) when (IsSaveException(e))
@@ -148,6 +160,7 @@ namespace Bokumyaku.Presentation
         {
             return e is System.IO.IOException || e is System.IO.InvalidDataException || e is UnauthorizedAccessException || e is ArgumentException || e is InvalidOperationException || e is OverflowException;
         }
+        static bool SaveFamilyExists(string path) => System.IO.File.Exists(path) || System.IO.File.Exists(path + ".bak");
         void SaveFailed(Exception e)
         {
             rewardSaved = false; autoRepeat.Cancel(); IsPaused = true; storageFailed = true;
@@ -314,7 +327,7 @@ namespace Bokumyaku.Presentation
             if (!Enum.IsDefined(typeof(BuildPreset), build)) throw new ArgumentOutOfRangeException(nameof(build));
             SelectedBuild = build;
             Run?.SetBuild(build);
-            notice = BuildNotes[(int)build];
+            notice = BuildDescription(build);
         }
         public void SetWeapon(WeaponKind weapon)
         {
@@ -482,7 +495,7 @@ namespace Bokumyaku.Presentation
                 if (portrait) DrawPanel(new Rect(24, 584, 392, 452), true);
                 else DrawPanel(new Rect(558, 110, 494, 616), false);
                 GUI.Label(new Rect(field.x, field.yMax + 7, field.width, 18), "墨の枝  ／  金の末端  ／  朱の敵", small);
-                GUI.Label(new Rect(width - 185, portrait ? 20 : 42, 162, 25), "システム α  0.5", small);
+                GUI.Label(new Rect(width - 185, portrait ? 20 : 42, 162, 25), "システム α  0.6", small);
             }
             finally { GUI.matrix = oldMatrix; GUI.color = oldColor; GUI.backgroundColor = oldBackground; GUI.enabled = oldEnabled; }
         }
@@ -609,7 +622,7 @@ namespace Bokumyaku.Presentation
             GUI.Label(new Rect(field.x + 12, field.yMax - 30, field.width - 24, 22),
                 "流墨 Q " + Run.RootSupply.ToString("0.0") + "  ／  末端墨圧 P " + minPressure.ToString("0.00") + "–" + maxPressure.ToString("0.00"), small);
             GUI.Label(new Rect(field.x + 12, field.y + 8, field.width - 24, 25), "波 " + Run.Wave.ToString("00") + "  /  " + RunSimulator.WaveLimit, heading);
-            GUI.Label(new Rect(field.x + 12, field.y + 35, 240, 22), "核 " + Run.CoreHp + "/10   ·   " + Run.TipCount + " 末端", small);
+            GUI.Label(new Rect(field.x + 12, field.y + 35, field.width - 24, 22), "核 " + Run.CoreHp + "/10 · " + Run.TipCount + " 末端 · 規則" + Run.RulesVersion + (Run.RulesVersion == 1 ? "（旧）" : ""), small);
             Fill(new Rect(field.x + 12, field.y + 60, 100, 3), new Color(0, 0, 0, .10f));
             Fill(new Rect(field.x + 12, field.y + 60, 10 * Run.CoreHp, 3), gold);
             if (AwaitingStart || Run.State != RunStatus.Running)
@@ -660,7 +673,7 @@ namespace Bokumyaku.Presentation
             Rect viewport = new Rect(x, y, w, panel.yMax - y - footerHeight);
             float contentWidth = w - 20;
             // The battlefield and pause/speed controls stay visible while the upgrade list scrolls.
-            float contentHeight = Page == GamePage.Research ? 348 : Page == GamePage.Records ? 180 + (campaign == null ? 0 : campaign.History.Count) * 62 : 1130;
+            float contentHeight = Page == GamePage.Research ? 348 : Page == GamePage.Records ? 180 + (campaign == null ? 0 : campaign.History.Count) * 62 : 1182;
             panelScroll = GUI.BeginScrollView(viewport, panelScroll, new Rect(0, 0, contentWidth, contentHeight), false, true);
             try { if (Page == GamePage.Records) DrawRecords(contentWidth); else DrawUpgradeContent(contentWidth); }
             finally { GUI.EndScrollView(); }
@@ -700,7 +713,7 @@ namespace Bokumyaku.Presentation
                 for (int i = 0; i < 3; i++)
                     if (Button(new Rect((bw + 8) * i, y, bw, 30), BuildNames[i], SelectedBuild == (BuildPreset)i)) SetBuild((BuildPreset)i);
                 y += 34;
-                GUI.Label(new Rect(0, y, w, 42), BuildNotes[(int)SelectedBuild], small); y += 44;
+                GUI.Label(new Rect(0, y, w, 42), BuildDescription(SelectedBuild), small); y += 44;
                 GUI.Label(new Rect(0, y, w, 23), "枝の成長方針", body); y += 26;
                 var names = new[] { "均衡", "迎撃", "集中" };
                 for (int i = 0; i < 3; i++) if (Button(new Rect((bw + 8) * i, y, bw, 28), names[i], SelectedPolicy == (GrowthPolicy)i)) SetPolicy((GrowthPolicy)i);
@@ -708,18 +721,24 @@ namespace Bokumyaku.Presentation
                 GUI.enabled = !loadBlocked && !storageFailed && !AwaitingStart && Run.State == RunStatus.Running && Run.CoreHp < 10 && Run.RepairCount < 5 && Run.RunInk >= Run.RepairCost;
                 if (Button(new Rect(0, y, w, 32), "核を修復 +2  ／  " + Run.RepairCost + " 墨  ／  " + Run.RepairCount + "/5回", GUI.enabled)) TryRepair();
                 GUI.enabled = true; y += 40;
-                GUI.Label(new Rect(0, y, w, 23), SelectedBuild == BuildPreset.Manual ? "手動購入  ／  六つの強化" : AwaitingStart || Run.State != RunStatus.Running ? "次の出撃で自動購入  ／  手動購入も可能" : "自動購入中  ／  貯蓄して順番に購入", small); y += 26;
+                GUI.Label(new Rect(0, y, w, 23), Run.RulesVersion == 1 ? "旧ルールで続行 ／ 採墨は次の出撃から" : SelectedBuild == BuildPreset.Manual ? "手動購入  ／  七つの強化" : AwaitingStart || Run.State != RunStatus.Running ? "次の出撃で自動購入 ／ 手動購入も可能" : "自動購入中 ／ 貯蓄して順番に購入", small); y += 26;
                 int[] levels = Run.UpgradeLevels;
-                int[] caps = { 30, 25, 25, 9, 10, 10 };
-                for (int i = 0; i < 6; i++)
+                int[] caps = { 30, 25, 25, 9, 10, 10, RunSimulator.HarvestMaxLevel };
+                for (int i = 0; i < UpgradeNames.Length; i++)
                 {
                     var kind = (UpgradeKind)i;
-                    bool changed = levelChangedAt[i] > 0 && Time.unscaledTime - levelChangedAt[i] < 2;
+                    bool supported = i < levels.Length;
+                    int level = supported ? levels[i] : 0;
+                    int cost = supported ? Run.UpgradeCost(kind) : 0;
+                    bool changed = supported && levelChangedAt[i] > 0 && Time.unscaledTime - levelChangedAt[i] < 2;
                     if (changed) Fill(new Rect(0, y, w, 49), new Color(gold.r, gold.g, gold.b, .13f));
-                    GUI.Label(new Rect(4, y, w - 112, 24), UpgradeNames[i] + "  Lv." + levels[i] + (changed ? "  ↑" : ""), body);
-                    GUI.Label(new Rect(4, y + 24, w - 112, 24), UpgradeNotes[i], small);
-                    GUI.enabled = !loadBlocked && !storageFailed && !AwaitingStart && Run.State == RunStatus.Running && Run.RunInk >= Run.UpgradeCost(kind) && levels[i] < caps[i];
-                    if (Button(new Rect(w - 104, y + 7, 104, 32), levels[i] >= caps[i] ? "MAX" : Run.UpgradeCost(kind) + " 墨", GUI.enabled)) BuyUpgrade(kind);
+                    GUI.Label(new Rect(4, y, w - 112, 24), UpgradeNames[i] + (supported ? "  Lv." + level : "  旧規則対象外") + (changed ? "  ↑" : ""), body);
+                    string detail = kind == UpgradeKind.Harvest && supported
+                        ? "以後の結晶×" + Run.HarvestMultiplier.ToString("0.00") + "・分裂子除外"
+                        : supported ? UpgradeNotes[i] : "次の新規出撃から利用できます";
+                    GUI.Label(new Rect(4, y + 24, w - 112, 24), detail, small);
+                    GUI.enabled = supported && !loadBlocked && !storageFailed && !AwaitingStart && Run.State == RunStatus.Running && Run.RunInk >= cost && level < caps[i];
+                    if (Button(new Rect(w - 104, y + 7, 104, 32), !supported ? "旧規則" : level >= caps[i] ? "MAX" : cost + " 墨", GUI.enabled)) BuyUpgrade(kind);
                     GUI.enabled = true; y += 52;
                 }
                 y += 12; GUI.Label(new Rect(0, y, w, 27), "構成を保存・呼出", heading); y += 32;
@@ -745,7 +764,7 @@ namespace Bokumyaku.Presentation
             for (int i = campaign.History.Count - 1; i >= 0; i--)
             {
                 var result = campaign.History[i];
-                GUI.Label(new Rect(0, y, width, 52), result.CompletedWave + " 波 / " + WeaponNames[(int)result.Weapon] + " / " + FormatTime(result.Ticks / 30.0)
+                    GUI.Label(new Rect(0, y, width, 52), result.CompletedWave + " 波 / " + WeaponNames[(int)result.Weapon] + " / " + FormatTime(result.Ticks / 30.0) + " / 規則" + result.RulesVersion
                     + "\n結晶 " + result.Crystals + " + 初達成 " + result.MilestoneCrystals + "  / Seed " + result.Seed, small);
                 y += 62;
             }

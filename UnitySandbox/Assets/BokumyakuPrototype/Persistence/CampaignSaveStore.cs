@@ -23,13 +23,13 @@ namespace Bokumyaku.Persistence
         }
         static void ResultValid(CampaignResult r)
         {
-            Require(r != null && Id(r.RunId) && r.Ticks >= 0 && r.Ticks <= RunSimulator.MaxTicks && r.CompletedWave >= 0 && r.CompletedWave <= RunSimulator.WaveLimit && r.Crystals >= 0 && r.Crystals <= 80000 && r.MilestoneCrystals >= 0 && r.MilestoneCrystals <= RunSimulator.WaveLimit, "Invalid result.");
+            Require(r != null && (r.RulesVersion == 1 || r.RulesVersion == 2) && Id(r.RunId) && r.Ticks >= 0 && r.Ticks <= RunSimulator.MaxTicks && r.CompletedWave >= 0 && r.CompletedWave <= RunSimulator.WaveLimit && r.Crystals >= 0 && r.Crystals <= 80000 && r.MilestoneCrystals >= 0 && r.MilestoneCrystals <= RunSimulator.WaveLimit, "Invalid result.");
             Require(r.Status == RunStatus.Defeated || r.Status == RunStatus.TestCompleted || r.Status == RunStatus.CapacityExceeded, "Result must be terminal.");
             Require(Enum.IsDefined(typeof(WeaponKind), r.Weapon) && Enum.IsDefined(typeof(BuildPreset), r.Build) && Enum.IsDefined(typeof(GrowthPolicy), r.Policy), "Invalid result configuration.");
         }
         public static void Validate(CampaignProgress c)
         {
-            Require(c != null && c.SchemaVersion == 2 && c.Config == "bokumyaku-campaign-v2", "Unsupported campaign schema/config.");
+            Require(c != null && c.SchemaVersion == 3 && c.Config == "bokumyaku-campaign-v3", "Unsupported campaign schema/config.");
             Require(c.Revision >= 0 && c.Revision < long.MaxValue && MetaValid(c.Meta), "Invalid campaign progress.");
             Require(c.ActiveSpeed == 1 || c.ActiveSpeed == 2, "Invalid active speed.");
             Require(c.BestWave >= 0 && c.BestWave <= RunSimulator.WaveLimit && c.TotalRuns >= 0 && c.TotalCrystals >= 0 && c.ClaimedMilestoneWave >= 0 && c.ClaimedMilestoneWave <= c.BestWave && c.ClaimedMilestoneWave % 5 == 0, "Invalid cumulative progress.");
@@ -62,7 +62,7 @@ namespace Bokumyaku.Persistence
             else Require(string.IsNullOrEmpty(c.ActiveRunId), "Inactive run has an ID.");
         }
         static CampaignProgress Clone(CampaignProgress c) => JsonUtility.FromJson<CampaignProgress>(JsonUtility.ToJson(c));
-        static CampaignProgress Read(string path)
+        static CampaignProgress Read(string path, bool previous = false)
         {
             Require(new FileInfo(path).Length <= MaxFileBytes, "Campaign exceeds size limit.");
             CampaignProgress c;
@@ -70,21 +70,45 @@ namespace Bokumyaku.Persistence
             {
                 string json = File.ReadAllText(path);
                 var header = JsonUtility.FromJson<Header>(json);
-                Require(header != null && header.SchemaVersion == 2 && header.Config == "bokumyaku-campaign-v2", "Missing or unsupported campaign header.");
+                Require(header != null && header.SchemaVersion == (previous ? 2 : 3) && header.Config == (previous ? "bokumyaku-campaign-v2" : "bokumyaku-campaign-v3"), "Missing or unsupported campaign header.");
                 c = JsonUtility.FromJson<CampaignProgress>(json);
+                if (previous)
+                {
+                    c.SchemaVersion = 3; c.Config = "bokumyaku-campaign-v3";
+                    if (c.HasActiveRun) Require(c.ActiveRun != null && c.ActiveRun.schemaVersion == 1 && c.ActiveRun.rulesVersion == 0 && c.ActiveRun.autoPurchaseCursor == 0 && c.ActiveRun.levels != null && c.ActiveRun.levels.Length == 6, "Previous campaign requires an original v5 snapshot.");
+                    if (c.LastResult != null) { Require(c.LastResult.RulesVersion == 0 || c.LastResult.RulesVersion == 1, "Invalid previous result rules."); c.LastResult.RulesVersion = 1; }
+                    if (c.History != null) foreach (var result in c.History) if (result != null) { Require(result.RulesVersion == 0 || result.RulesVersion == 1, "Invalid previous history rules."); result.RulesVersion = 1; }
+                }
             }
             catch (ArgumentException e) { throw new InvalidDataException("Malformed campaign JSON.", e); }
             Validate(c); return c;
         }
-        static CampaignProgress ReadRecover(string path, out string warning)
+        static CampaignProgress ReadRecover(string path, out string warning, bool previous = false)
         {
             warning = "";
-            try { return Read(path); }
+            try { return Read(path, previous); }
             catch (Exception e) when (e is IOException || e is InvalidDataException)
             {
-                try { var c = Read(path + ".bak"); warning = "Campaign recovered from backup; original preserved."; return c; }
+                try { var c = Read(path + ".bak", previous); warning = "Campaign recovered from backup; original preserved."; return c; }
                 catch (Exception backup) when (backup is IOException || backup is InvalidDataException)
                 { throw new InvalidDataException("Campaign and backup are unreadable; no data was replaced.", new AggregateException(e, backup)); }
+            }
+        }
+        public static CampaignProgress Load(string path, string previousCampaignPath, string legacyMetaPath, out string warning)
+        {
+            lock (Gate)
+            {
+                // An existing new save is authoritative, even when corrupt. Never roll progress back.
+                if (File.Exists(path) || File.Exists(path + ".bak")) return ReadRecover(path, out warning);
+                if (!string.IsNullOrEmpty(previousCampaignPath) && (File.Exists(previousCampaignPath) || File.Exists(previousCampaignPath + ".bak")))
+                {
+                    Require(!string.Equals(Path.GetFullPath(path), Path.GetFullPath(previousCampaignPath), StringComparison.OrdinalIgnoreCase), "Migration destination must differ from previous campaign.");
+                    var c = ReadRecover(previousCampaignPath, out warning, true);
+                    Write(path, c);
+                    warning = "Previous campaign copied to v3; original and backup preserved. " + warning;
+                    return c;
+                }
+                return Load(path, legacyMetaPath, out warning);
             }
         }
         public static CampaignProgress Load(string path, string legacyPath, out string warning)
@@ -148,6 +172,7 @@ namespace Bokumyaku.Persistence
         static void MatchRun(CampaignProgress c, RunSimulator run)
         {
             Require(c.HasActiveRun && c.ActiveRun != null && run != null, "No active run to update.");
+            Require(RunSimulator.Restore(c.ActiveRun).RulesVersion == run.RulesVersion, "Active run rules changed.");
             Require(c.ActiveRun.seed == run.Seed && run.TickCount >= c.ActiveRun.tickCount, "Run identity or tick regressed.");
             Require(SameMeta(c.Meta, run.CaptureState().meta) && !run.CaptureState().rewardClaimed, "Run meta changed or reward already claimed.");
         }
@@ -180,7 +205,7 @@ namespace Bokumyaku.Persistence
                 next.ClaimedMilestoneWave = Math.Max(next.ClaimedMilestoneWave, milestone);
                 next.TotalRuns = checked(next.TotalRuns + 1); next.TotalCrystals = checked(next.TotalCrystals + baseReward + bonus);
                 next.LastSettledRunId = runId;
-                next.LastResult = new CampaignResult { RunId = runId, Seed = settled.Seed, CompletedWave = settled.CompletedWave, Ticks = settled.TickCount, Status = settled.State, Crystals = baseReward, MilestoneCrystals = bonus, Weapon = settled.Weapon, Build = settled.Build, Policy = settled.Policy };
+                next.LastResult = new CampaignResult { RunId = runId, RulesVersion = settled.RulesVersion, Seed = settled.Seed, CompletedWave = settled.CompletedWave, Ticks = settled.TickCount, Status = settled.State, Crystals = baseReward, MilestoneCrystals = bonus, Weapon = settled.Weapon, Build = settled.Build, Policy = settled.Policy };
                 next.History.Add(next.LastResult); if (next.History.Count > 20) next.History.RemoveAt(0);
                 next.HasActiveRun = false; next.ActiveRun = null; next.ActiveRunId = "";
                 return Commit(path, current, next);

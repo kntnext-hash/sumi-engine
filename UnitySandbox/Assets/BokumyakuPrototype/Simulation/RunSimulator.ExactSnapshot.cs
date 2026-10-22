@@ -23,7 +23,7 @@ namespace Bokumyaku.Simulation
         {
             // Bound arrays and payload before cloning/traversing any untrusted input.
             Check(source.enemies!=null&&source.enemies.Length<=EnemyLimit&&source.branches!=null&&source.branches.Length<=64&&source.fields!=null&&source.fields.Length<=FieldLimit&&source.attacks!=null&&source.attacks.Length<=96,"snapshot array bounds");
-            Check(source.levels!=null&&source.levels.Length==6&&source.spawnedByType!=null&&source.spawnedByType.Length==5&&source.killedByType!=null&&source.killedByType.Length==5&&source.leakedByType!=null&&source.leakedByType.Length==5,"snapshot integer arrays");
+            Check(source.levels!=null&&(source.levels.Length==6||source.levels.Length==7)&&source.spawnedByType!=null&&source.spawnedByType.Length==5&&source.killedByType!=null&&source.killedByType.Length==5&&source.leakedByType!=null&&source.leakedByType.Length==5,"snapshot integer arrays");
             Check(!string.IsNullOrEmpty(source.exactDoubleBits)&&source.exactDoubleBits.Length<=65536,"exactDoubleBits missing/oversized");
             byte[] bytes;
             try { bytes=Convert.FromBase64String(source.exactDoubleBits); }

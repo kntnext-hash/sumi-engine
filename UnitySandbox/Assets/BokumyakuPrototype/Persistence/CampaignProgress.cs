@@ -17,6 +17,7 @@ namespace Bokumyaku.Persistence
     public sealed class CampaignResult
     {
         public string RunId;
+        public int RulesVersion;
         public int Seed, CompletedWave, Ticks, Crystals, MilestoneCrystals;
         public RunStatus Status;
         public WeaponKind Weapon;
@@ -26,8 +27,8 @@ namespace Bokumyaku.Persistence
     [Serializable]
     public sealed class CampaignProgress
     {
-        public int SchemaVersion = 2;
-        public string Config = "bokumyaku-campaign-v2";
+        public int SchemaVersion = 3;
+        public string Config = "bokumyaku-campaign-v3";
         public long Revision;
         public MetaProgress Meta = new MetaProgress();
         public bool HasActiveRun;

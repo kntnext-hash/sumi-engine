@@ -6,7 +6,7 @@ namespace Bokumyaku.Simulation
     public enum WeaponKind { Point, Pierce, Bleed, Sweep, Enso, Resonance }
     public enum BuildPreset { Manual, Farming, Record }
     public enum RunStatus { Running, Defeated, TestCompleted, CapacityExceeded }
-    public enum UpgradeKind { Damage, Speed, Supply, Branch, Width, Bleed }
+    public enum UpgradeKind { Damage, Speed, Supply, Branch, Width, Bleed, Harvest }
     public enum GrowthPolicy { Balanced, Intercept, Focus }
     public enum EnemyKind { Normal, Fast, Heavy, Splitter, Boss }
     public enum MetaUpgrade { Damage, Supply, Growth, Harvest }
@@ -83,6 +83,15 @@ namespace Bokumyaku.Simulation
     // Fixed 30Hz three-enemy prototype. All balance and distribution choices remain hypotheses.
     public sealed partial class RunSimulator
     {
+        public const int LegacyRulesVersion = 1;
+        public const int CurrentRulesVersion = 2;
+        public const int HarvestMaxLevel = 10;
+        public const double HarvestGainPerLevel = 1.5;
+        public const double HarvestBaseCost = 30;
+        public const double HarvestCostGrowth = 1.25;
+        public int RulesVersion { get; private set; } = CurrentRulesVersion;
+        public double HarvestMultiplier { get { return RulesVersion == LegacyRulesVersion ? 1 : 1 + HarvestGainPerLevel * levels[6]; } }
+        int autoPurchaseCursor;
         public const int TickRate = 30;
         public const int WaveLimit = 60;
         public const int MaxTicks = WaveLimit * 360;
@@ -109,7 +118,7 @@ namespace Bokumyaku.Simulation
         public int RepairCost { get { return (int)Math.Ceiling(25 * Math.Pow(1.5, repairCount)); } }
         double spawnCredit, growthCharge;
         bool rewardClaimed;
-        readonly int[] levels = new int[6];
+        int[] levels = new int[7];
         public int[] UpgradeLevels { get { return (int[])levels.Clone(); } }
         public WeaponKind Weapon { get; private set; }
         public IReadOnlyList<InkFieldState> Fields { get { return fields.AsReadOnly(); } }
@@ -147,14 +156,15 @@ namespace Bokumyaku.Simulation
         public double Pressure(BranchState branch) { return Math.Min(1.65, Math.Max(.45, Math.Sqrt((RootSupply / TipCount) * Math.Exp(-.0013 * branch.PathLength) / 3))); }
         public int UpgradeCost(UpgradeKind kind)
         {
-            int index = (int)kind; if (index < 0 || index >= 6) throw new ArgumentOutOfRangeException("kind");
+            int index = (int)kind; if (index < 0 || index >= levels.Length) throw new ArgumentOutOfRangeException("kind");
+            if (kind == UpgradeKind.Harvest) return (int)Math.Ceiling(HarvestBaseCost * Math.Pow(HarvestCostGrowth, levels[6]));
             int[] costs = { 10, 12, 15, 22, 12, 18 }; int l = levels[index];
             return (int)Math.Ceiling(costs[index] * Math.Pow(1.16, l) * (1 + .008 * l * l));
         }
         public bool TryBuy(UpgradeKind kind)
         {
-            int i = (int)kind; if (i < 0 || i >= 6 || State != RunStatus.Running) return false;
-            int[] caps = { 30, 25, 25, 9, 10, 10 }; int cost = UpgradeCost(kind);
+            int i = (int)kind; if (i < 0 || i >= levels.Length || State != RunStatus.Running) return false;
+            int[] caps = { 30, 25, 25, 9, 10, 10, HarvestMaxLevel }; int cost = UpgradeCost(kind);
             if (levels[i] >= caps[i] || RunInk < cost) return false;
             RunInk -= cost; levels[i]++; return true;
         }
@@ -180,6 +190,28 @@ namespace Bokumyaku.Simulation
             if (State == RunStatus.Running) Weapon = weapon;
         }
         void AutoBuy()
+        {
+            if (RulesVersion == LegacyRulesVersion) { AutoBuyLegacy(); return; }
+            if (Build == BuildPreset.Manual) return;
+            if (Build == BuildPreset.Farming)
+            {
+                int harvestTarget = Math.Min(HarvestMaxLevel, Math.Max(0, Wave < 15 ? 0 : 1 + (Wave - 15) / 3));
+                if (levels[6] < harvestTarget) { TryBuy(UpgradeKind.Harvest); return; }
+                AutoBuyLegacy(); return;
+            }
+            int next = levels[3] + 1;
+            if (levels[3] < 6 && levels[2] >= 2 * next && levels[0] >= next) { TryBuy(UpgradeKind.Branch); return; }
+            UpgradeKind[] cycle = { UpgradeKind.Supply, UpgradeKind.Speed, UpgradeKind.Damage, UpgradeKind.Width, UpgradeKind.Bleed, UpgradeKind.Damage };
+            int[] caps = { 30, 25, 25, 9, 10, 10 };
+            for (int i = 0; i < cycle.Length; i++)
+            {
+                var kind = cycle[autoPurchaseCursor % cycle.Length];
+                if (levels[(int)kind] >= caps[(int)kind]) { autoPurchaseCursor = (autoPurchaseCursor + 1) % cycle.Length; continue; }
+                if (TryBuy(kind)) autoPurchaseCursor = (autoPurchaseCursor + 1) % cycle.Length;
+                return;
+            }
+        }
+        void AutoBuyLegacy()
         {
             if (Build == BuildPreset.Manual) return;
             // Reserve the entire balance for planned branches; no cheaper fallback can consume it.
@@ -303,7 +335,7 @@ namespace Bokumyaku.Simulation
             if (enemy.IsSplitChild) return;
             growthCharge++;
             double yield = enemy.Kind == EnemyKind.Boss ? 12 : enemy.Kind == EnemyKind.Splitter ? 1.4 : enemy.Kind == EnemyKind.Heavy ? 2 : enemy.Kind == EnemyKind.Fast ? 1.1 : 1;
-            rewardPoints += yield;
+            rewardPoints += yield * HarvestMultiplier;
             int reward = (int)Math.Round(4 * yield * (1 + .018 * enemy.SpawnWave) * (1 + .03 * meta.Harvest), MidpointRounding.ToEven);
             RunInk += reward; IncomeEarned += reward;
             if (enemy.Kind == EnemyKind.Splitter)

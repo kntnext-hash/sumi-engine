@@ -244,7 +244,7 @@ namespace Bokumyaku.Tests
         {
             var run = new RunSimulator(42); run.SetBuild(BuildPreset.Manual); Finish(run);
             Assert.Greater(run.Kills, 0); Assert.Greater(run.RunInk, 0);
-            CollectionAssert.AreEqual(new int[6], run.UpgradeLevels);
+            CollectionAssert.AreEqual(new int[7], run.UpgradeLevels);
         }
 
         [Test]

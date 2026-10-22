@@ -170,7 +170,8 @@ namespace Bokumyaku.Tests
             int ticks = dense ? 48 : 20; // Before the first scheduled spawn, and before fast contact.
             for (int i = 0; i < ticks; i++) run.Tick();
             Assert.AreEqual(0, run.Kills); Assert.AreEqual(0, run.Leaks);
-            CollectionAssert.AreEqual(new int[6], run.UpgradeLevels);
+            // Rules2 adds Harvest; all seven upgrades remain unpurchased for equal-cost comparison.
+            CollectionAssert.AreEqual(new int[7], run.UpgradeLevels);
             return run.EffectiveDamage;
         }
 
