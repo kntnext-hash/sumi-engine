@@ -1,0 +1,12 @@
+{
+  "passed": false,
+  "width": 540,
+  "height": 960,
+  "buy": false,
+  "speed": false,
+  "repeat": false,
+  "resume": false,
+  "pause": true,
+  "details": false,
+  "method": "Focused portrait GameView synthetic clicks, isolated save; no device test"
+}

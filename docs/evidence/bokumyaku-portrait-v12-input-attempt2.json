@@ -1,0 +1,32 @@
+{
+  "passed": false,
+  "width": 540,
+  "height": 960,
+  "checks": [
+    {
+      "name": "buy",
+      "passed": false
+    },
+    {
+      "name": "speed",
+      "passed": true
+    },
+    {
+      "name": "repeat",
+      "passed": true
+    },
+    {
+      "name": "resume",
+      "passed": false
+    },
+    {
+      "name": "pause",
+      "passed": true
+    },
+    {
+      "name": "details",
+      "passed": false
+    }
+  ],
+  "method": "GameView frame-separated synthetic clicks; isolated save; not device or full regression"
+}
