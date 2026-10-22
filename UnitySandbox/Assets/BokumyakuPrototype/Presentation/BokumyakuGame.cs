@@ -10,7 +10,7 @@ namespace Bokumyaku.Presentation
 {
     /// <summary>Game-only presentation. The reusable ink engine never knows about enemies or currency.</summary>
     [RequireComponent(typeof(SumiCanvas))]
-    public sealed class BokumyakuGame : MonoBehaviour
+    public sealed partial class BokumyakuGame : MonoBehaviour
     {
         public enum GamePage { Home, Battle, Research, Records }
         public GamePage Page { get; private set; } = GamePage.Home;
@@ -490,6 +490,14 @@ namespace Bokumyaku.Presentation
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - width * scale) / 2, (Screen.height - height * scale) / 2, 0), Quaternion.identity, Vector3.one * scale);
             try
             {
+                if (portrait)
+                {
+                    Rect safe = Screen.safeArea;
+                    float portraitScale = safe.width / 440f;
+                    GUI.matrix = Matrix4x4.TRS(new Vector3(safe.x, Screen.height - safe.yMax, 0), Quaternion.identity, Vector3.one * portraitScale);
+                    DrawPortrait(safe.height / portraitScale);
+                    return;
+                }
                 Fill(new Rect(0, 0, width, height), paper);
                 DrawArt(new Rect(0, 0, width, height), paperArt, .45f, ScaleMode.ScaleAndCrop);
                 GUI.Label(new Rect(24, 14, 300, 43), "墨 脈", title);
@@ -500,7 +508,7 @@ namespace Bokumyaku.Presentation
                 if (portrait) DrawPanel(new Rect(24, 584, 392, 452), true);
                 else DrawPanel(new Rect(558, 110, 494, 616), false);
                 GUI.Label(new Rect(field.x, field.yMax + 7, field.width, 18), "墨の枝  ／  金の末端  ／  朱の敵", small);
-                GUI.Label(new Rect(width - 185, portrait ? 20 : 42, 162, 25), "システム α  0.11", small);
+                GUI.Label(new Rect(width - 185, portrait ? 20 : 42, 162, 25), "システム α  0.12", small);
             }
             finally { GUI.matrix = oldMatrix; GUI.color = oldColor; GUI.backgroundColor = oldBackground; GUI.enabled = oldEnabled; }
         }
@@ -530,7 +538,7 @@ namespace Bokumyaku.Presentation
             else GUI.Label(new Rect(field.x + 20, field.y + 297, field.width - 40, 60), "六つの武器と投資方針を選ぶ。\n研究は周回の合間、記録はいつでも。", body);
             GUI.enabled = enabled;
         }
-        void DrawField(Rect field)
+        void DrawField(Rect field, bool minimalHud = false)
         {
             Fill(field, paper);
             DrawArt(field, paperArt, 1f, ScaleMode.ScaleAndCrop);
@@ -624,12 +632,15 @@ namespace Bokumyaku.Presentation
                 double pressure = Run.Pressure(branch);
                 minPressure = Math.Min(minPressure, pressure); maxPressure = Math.Max(maxPressure, pressure);
             }
-            GUI.Label(new Rect(field.x + 12, field.yMax - 30, field.width - 24, 22),
-                "流墨 Q " + Run.RootSupply.ToString("0.0") + "  ／  末端墨圧 P " + minPressure.ToString("0.00") + "–" + maxPressure.ToString("0.00"), small);
-            GUI.Label(new Rect(field.x + 12, field.y + 8, field.width - 24, 25), "波 " + Run.Wave.ToString("00") + "  /  " + Run.RunWaveLimit, heading);
-            GUI.Label(new Rect(field.x + 12, field.y + 35, field.width - 24, 22), "核 " + Run.CoreHp + "/10 · " + Run.TipCount + " 末端 · 規則" + Run.RulesVersion + (Run.RulesVersion == 1 ? "（旧）" : ""), small);
-            Fill(new Rect(field.x + 12, field.y + 60, 100, 3), new Color(0, 0, 0, .10f));
-            Fill(new Rect(field.x + 12, field.y + 60, 10 * Run.CoreHp, 3), gold);
+            if (!minimalHud)
+            {
+                GUI.Label(new Rect(field.x + 12, field.yMax - 30, field.width - 24, 22),
+                    "流墨 Q " + Run.RootSupply.ToString("0.0") + "  ／  末端墨圧 P " + minPressure.ToString("0.00") + "–" + maxPressure.ToString("0.00"), small);
+                GUI.Label(new Rect(field.x + 12, field.y + 8, field.width - 24, 25), "波 " + Run.Wave.ToString("00") + "  /  " + Run.RunWaveLimit, heading);
+                GUI.Label(new Rect(field.x + 12, field.y + 35, field.width - 24, 22), "核 " + Run.CoreHp + "/10 · " + Run.TipCount + " 末端 · 規則" + Run.RulesVersion + (Run.RulesVersion == 1 ? "（旧）" : ""), small);
+                Fill(new Rect(field.x + 12, field.y + 60, 100, 3), new Color(0, 0, 0, .10f));
+                Fill(new Rect(field.x + 12, field.y + 60, 10 * Run.CoreHp, 3), gold);
+            }
             if (AwaitingStart || Run.State != RunStatus.Running)
             {
                 var box = new Rect(field.x + 22, field.center.y - 126, field.width - 44, 252);
