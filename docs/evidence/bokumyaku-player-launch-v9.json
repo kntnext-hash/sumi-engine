@@ -1,0 +1,14 @@
+[
+  {
+    "name": "player",
+    "exitCode": 0,
+    "elapsedSeconds": 106.373,
+    "passed": true
+  },
+  {
+    "name": "player-resume",
+    "exitCode": 0,
+    "elapsedSeconds": 14.078,
+    "passed": true
+  }
+]

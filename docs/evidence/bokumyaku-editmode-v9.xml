@@ -1,0 +1,1251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="184" result="Passed" total="184" passed="184" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:35:56Z" duration="57.7711037">
+  <test-suite type="TestSuite" id="1283" name="SUMI Brush Lab" fullname="SUMI Brush Lab" runstate="Runnable" testcasecount="226" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:35:56Z" duration="57.771104" total="184" passed="184" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1226" name="Bokumyaku.Tests.dll" fullname="C:/Users/che22/Desktop/SUMI_ENGINE_Codex_Starter/UnitySandbox/Library/ScriptAssemblies/Bokumyaku.Tests.dll" runstate="Runnable" testcasecount="184" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:35:56Z" duration="57.655089" total="184" passed="184" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="4892" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1227" name="Bokumyaku" fullname="Bokumyaku" runstate="Runnable" testcasecount="184" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:35:56Z" duration="57.650345" total="184" passed="184" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1228" name="Tests" fullname="Bokumyaku.Tests" runstate="Runnable" testcasecount="184" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:35:56Z" duration="57.649715" total="184" passed="184" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="AutoRepeatControllerTests" fullname="Bokumyaku.Tests.AutoRepeatControllerTests" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.089248" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="DefaultOffCannotScheduleEvenSavedDefeat" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.DefaultOffCannotScheduleEvenSavedDefeat" methodname="DefaultOffCannotScheduleEvenSavedDefeat" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="194150044" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.037884" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="IdleStillRejectsInvalidDelta" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.IdleStillRejectsInvalidDelta" methodname="IdleStillRejectsInvalidDelta" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="1094832056" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.004590" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1016" name="InvalidDeltaRejectsWithoutChangingPendingState" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.InvalidDeltaRejectsWithoutChangingPendingState" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.008726" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1014" name="InvalidDeltaRejectsWithoutChangingPendingState(False)" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.InvalidDeltaRejectsWithoutChangingPendingState(False)" methodname="InvalidDeltaRejectsWithoutChangingPendingState" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="520743335" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.001529" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1015" name="InvalidDeltaRejectsWithoutChangingPendingState(True)" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.InvalidDeltaRejectsWithoutChangingPendingState(True)" methodname="InvalidDeltaRejectsWithoutChangingPendingState" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="2063024088" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.000148" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1004" name="LargeDeltaTriggersOnceWithoutResidualReservation" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.LargeDeltaTriggersOnceWithoutResidualReservation" methodname="LargeDeltaTriggersOnceWithoutResidualReservation" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="881195166" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.000186" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="ManualCancelKeepsPreferenceButPreventsStart" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.ManualCancelKeepsPreferenceButPreventsStart" methodname="ManualCancelKeepsPreferenceButPreventsStart" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="12545254" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.000166" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="OffCancelsAndTurningOnDoesNotReserve" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.OffCancelsAndTurningOnDoesNotReserve" methodname="OffCancelsAndTurningOnDoesNotReserve" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="309557912" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.000234" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1011" name="OtherStatusCannotReserveAndCancelsOldReservation" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.OtherStatusCannotReserveAndCancelsOldReservation" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.005550" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1007" name="OtherStatusCannotReserveAndCancelsOldReservation(Running)" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.OtherStatusCannotReserveAndCancelsOldReservation(Running)" methodname="OtherStatusCannotReserveAndCancelsOldReservation" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="2066536906" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.000801" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1008" name="OtherStatusCannotReserveAndCancelsOldReservation(CapacityExceeded)" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.OtherStatusCannotReserveAndCancelsOldReservation(CapacityExceeded)" methodname="OtherStatusCannotReserveAndCancelsOldReservation" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="62272558" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.000194" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1009" name="OtherStatusCannotReserveAndCancelsOldReservation(TestCompleted)" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.OtherStatusCannotReserveAndCancelsOldReservation(TestCompleted)" methodname="OtherStatusCannotReserveAndCancelsOldReservation" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="967708195" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.000096" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1010" name="OtherStatusCannotReserveAndCancelsOldReservation(999)" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.OtherStatusCannotReserveAndCancelsOldReservation(999)" methodname="OtherStatusCannotReserveAndCancelsOldReservation" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="953757142" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.000068" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1006" name="PausedCountdownDoesNotConsumeTime" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.PausedCountdownDoesNotConsumeTime" methodname="PausedCountdownDoesNotConsumeTime" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="325493028" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.000313" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="ReapplyingEnabledPreferenceAlsoCancelsPending" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.ReapplyingEnabledPreferenceAlsoCancelsPending" methodname="ReapplyingEnabledPreferenceAlsoCancelsPending" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="1367910987" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.000182" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="RescheduleRequiresFreshThreeSeconds" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.RescheduleRequiresFreshThreeSeconds" methodname="RescheduleRequiresFreshThreeSeconds" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="480023000" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.000186" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="ThreeRealSecondsTriggerExactlyOnce" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.ThreeRealSecondsTriggerExactlyOnce" methodname="ThreeRealSecondsTriggerExactlyOnce" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="1652548810" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.000322" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="UnsavedRewardCannotReserveAndCancelsOldReservation" fullname="Bokumyaku.Tests.AutoRepeatControllerTests.UnsavedRewardCannotReserveAndCancelsOldReservation" methodname="UnsavedRewardCannotReserveAndCancelsOldReservation" classname="Bokumyaku.Tests.AutoRepeatControllerTests" runstate="Runnable" seed="1364654664" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.000145" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1020" name="CampaignTests" fullname="Bokumyaku.Tests.CampaignTests" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:35:02Z" duration="3.055974" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1023" name="ActiveCheckpointRestoresSameTickAndContinuesDeterministically" fullname="Bokumyaku.Tests.CampaignTests.ActiveCheckpointRestoresSameTickAndContinuesDeterministically" methodname="ActiveCheckpointRestoresSameTickAndContinuesDeterministically" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="1131879383" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.142448" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="CapacityFailureCannotSetBestWaveOrGrantMilestone" fullname="Bokumyaku.Tests.CampaignTests.CapacityFailureCannotSetBestWaveOrGrantMilestone" methodname="CapacityFailureCannotSetBestWaveOrGrantMilestone" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="1170346466" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.052568" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="CorruptLegacyIsNotSilentlyMigratedAsZero" fullname="Bokumyaku.Tests.CampaignTests.CorruptLegacyIsNotSilentlyMigratedAsZero" methodname="CorruptLegacyIsNotSilentlyMigratedAsZero" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="1088101498" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.005763" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1028" name="CorruptPrimaryRecoversBackupAndKeepsCorruptOriginalOnNextSave" fullname="Bokumyaku.Tests.CampaignTests.CorruptPrimaryRecoversBackupAndKeepsCorruptOriginalOnNextSave" methodname="CorruptPrimaryRecoversBackupAndKeepsCorruptOriginalOnNextSave" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="1494358324" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.037393" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1031" name="DiscardAndThreeSlotsPersistWithoutGrantingRewards" fullname="Bokumyaku.Tests.CampaignTests.DiscardAndThreeSlotsPersistWithoutGrantingRewards" methodname="DiscardAndThreeSlotsPersistWithoutGrantingRewards" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="999029917" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:34:59Z" duration="0.112976" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1032" name="HistoryRetainsOnlyNewestTwentyWithoutRegrantingMilestones" fullname="Bokumyaku.Tests.CampaignTests.HistoryRetainsOnlyNewestTwentyWithoutRegrantingMilestones" methodname="HistoryRetainsOnlyNewestTwentyWithoutRegrantingMilestones" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="143760612" result="Passed" start-time="2026-10-22 10:34:59Z" end-time="2026-10-22 10:35:01Z" duration="1.861787" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1029" name="InvalidSchemaAndSlotAndSnapshotAreRejectedBeforeWrite" fullname="Bokumyaku.Tests.CampaignTests.InvalidSchemaAndSlotAndSnapshotAreRejectedBeforeWrite" methodname="InvalidSchemaAndSlotAndSnapshotAreRejectedBeforeWrite" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="2065442924" result="Passed" start-time="2026-10-22 10:35:01Z" end-time="2026-10-22 10:35:01Z" duration="0.105085" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1021" name="LegacyMigrationPreservesOriginalAndAllMetaFields" fullname="Bokumyaku.Tests.CampaignTests.LegacyMigrationPreservesOriginalAndAllMetaFields" methodname="LegacyMigrationPreservesOriginalAndAllMetaFields" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="806158020" result="Passed" start-time="2026-10-22 10:35:01Z" end-time="2026-10-22 10:35:01Z" duration="0.072796" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1027" name="SaveFailureDoesNotMutateMemoryOrConsumeReward" fullname="Bokumyaku.Tests.CampaignTests.SaveFailureDoesNotMutateMemoryOrConsumeReward" methodname="SaveFailureDoesNotMutateMemoryOrConsumeReward" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="1813488674" result="Passed" start-time="2026-10-22 10:35:01Z" end-time="2026-10-22 10:35:01Z" duration="0.077753" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1024" name="SettlementAndReplayCreditExactlyOnceAcrossReload" fullname="Bokumyaku.Tests.CampaignTests.SettlementAndReplayCreditExactlyOnceAcrossReload" methodname="SettlementAndReplayCreditExactlyOnceAcrossReload" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="500629763" result="Passed" start-time="2026-10-22 10:35:01Z" end-time="2026-10-22 10:35:01Z" duration="0.071306" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1026" name="StaleWriterCannotReplaceNewerCheckpoint" fullname="Bokumyaku.Tests.CampaignTests.StaleWriterCannotReplaceNewerCheckpoint" methodname="StaleWriterCannotReplaceNewerCheckpoint" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="1192225327" result="Passed" start-time="2026-10-22 10:35:01Z" end-time="2026-10-22 10:35:02Z" duration="0.073025" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1025" name="ThreeRunsRetainHistoryAndMilestoneDoesNotPayTwice" fullname="Bokumyaku.Tests.CampaignTests.ThreeRunsRetainHistoryAndMilestoneDoesNotPayTwice" methodname="ThreeRunsRetainHistoryAndMilestoneDoesNotPayTwice" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="1757294850" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.303921" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="WaveCapCompletionCanClaimFirstMilestones" fullname="Bokumyaku.Tests.CampaignTests.WaveCapCompletionCanClaimFirstMilestones" methodname="WaveCapCompletionCanClaimFirstMilestones" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="1193192673" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.072777" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1030" name="WrongRunIdAndUnfinishedRunCannotSettle" fullname="Bokumyaku.Tests.CampaignTests.WrongRunIdAndUnfinishedRunCannotSettle" methodname="WrongRunIdAndUnfinishedRunCannotSettle" classname="Bokumyaku.Tests.CampaignTests" runstate="Runnable" seed="1030436484" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.054580" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1035" name="EnemyAndSystemTests" fullname="Bokumyaku.Tests.EnemyAndSystemTests" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:04Z" duration="2.081789" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1055" name="AdditionalWeaponsHaveBoundedHits" fullname="Bokumyaku.Tests.EnemyAndSystemTests.AdditionalWeaponsHaveBoundedHits" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.019052" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1052" name="AdditionalWeaponsHaveBoundedHits(Sweep,5)" fullname="Bokumyaku.Tests.EnemyAndSystemTests.AdditionalWeaponsHaveBoundedHits(Sweep,5)" methodname="AdditionalWeaponsHaveBoundedHits" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="1766667725" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.009836" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1053" name="AdditionalWeaponsHaveBoundedHits(Enso,6)" fullname="Bokumyaku.Tests.EnemyAndSystemTests.AdditionalWeaponsHaveBoundedHits(Enso,6)" methodname="AdditionalWeaponsHaveBoundedHits" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="1786277632" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.000646" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1054" name="AdditionalWeaponsHaveBoundedHits(Resonance,4)" fullname="Bokumyaku.Tests.EnemyAndSystemTests.AdditionalWeaponsHaveBoundedHits(Resonance,4)" methodname="AdditionalWeaponsHaveBoundedHits" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="810244569" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.001541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1051" name="CapacityStopSnapshotRestoresWithoutReward" fullname="Bokumyaku.Tests.EnemyAndSystemTests.CapacityStopSnapshotRestoresWithoutReward" methodname="CapacityStopSnapshotRestoresWithoutReward" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="89825139" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.022532" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1048" name="ClaimedRewardRemainsClaimedAfterRestore" fullname="Bokumyaku.Tests.EnemyAndSystemTests.ClaimedRewardRemainsClaimedAfterRestore" methodname="ClaimedRewardRemainsClaimedAfterRestore" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="1647610355" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.013460" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1058" name="ExactPayloadPreservesSignedZero" fullname="Bokumyaku.Tests.EnemyAndSystemTests.ExactPayloadPreservesSignedZero" methodname="ExactPayloadPreservesSignedZero" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="2022554075" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.006243" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1057" name="ExactPayloadRejectsChangedNumbersOrCorruptBits" fullname="Bokumyaku.Tests.EnemyAndSystemTests.ExactPayloadRejectsChangedNumbersOrCorruptBits" methodname="ExactPayloadRejectsChangedNumbersOrCorruptBits" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="197143841" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.003582" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1056" name="ExactPayloadRestoresAdjacentDoubleWithoutMutatingInput" fullname="Bokumyaku.Tests.EnemyAndSystemTests.ExactPayloadRestoresAdjacentDoubleWithoutMutatingInput" methodname="ExactPayloadRestoresAdjacentDoubleWithoutMutatingInput" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="2097896036" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.002126" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1045" name="FiveEnemiesCountAndBossScheduleBalance" fullname="Bokumyaku.Tests.EnemyAndSystemTests.FiveEnemiesCountAndBossScheduleBalance" methodname="FiveEnemiesCountAndBossScheduleBalance" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="1318389315" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.132757" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="InitialSnapshotIsIndependentAndRestores" fullname="Bokumyaku.Tests.EnemyAndSystemTests.InitialSnapshotIsIndependentAndRestores" methodname="InitialSnapshotIsIndependentAndRestores" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="1166590960" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.002435" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="InvalidSnapshotsAreRejected" fullname="Bokumyaku.Tests.EnemyAndSystemTests.InvalidSnapshotsAreRejected" methodname="InvalidSnapshotsAreRejected" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="1306255888" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:02Z" duration="0.002012" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1043" name="JsonSnapshotRestoresExactFuture" fullname="Bokumyaku.Tests.EnemyAndSystemTests.JsonSnapshotRestoresExactFuture" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:04Z" duration="1.853472" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1037" name="JsonSnapshotRestoresExactFuture(Point)" fullname="Bokumyaku.Tests.EnemyAndSystemTests.JsonSnapshotRestoresExactFuture(Point)" methodname="JsonSnapshotRestoresExactFuture" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="484128268" result="Passed" start-time="2026-10-22 10:35:02Z" end-time="2026-10-22 10:35:03Z" duration="0.384691" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1038" name="JsonSnapshotRestoresExactFuture(Pierce)" fullname="Bokumyaku.Tests.EnemyAndSystemTests.JsonSnapshotRestoresExactFuture(Pierce)" methodname="JsonSnapshotRestoresExactFuture" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="321316677" result="Passed" start-time="2026-10-22 10:35:03Z" end-time="2026-10-22 10:35:03Z" duration="0.325065" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1039" name="JsonSnapshotRestoresExactFuture(Bleed)" fullname="Bokumyaku.Tests.EnemyAndSystemTests.JsonSnapshotRestoresExactFuture(Bleed)" methodname="JsonSnapshotRestoresExactFuture" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="1756710254" result="Passed" start-time="2026-10-22 10:35:03Z" end-time="2026-10-22 10:35:03Z" duration="0.288237" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1040" name="JsonSnapshotRestoresExactFuture(Sweep)" fullname="Bokumyaku.Tests.EnemyAndSystemTests.JsonSnapshotRestoresExactFuture(Sweep)" methodname="JsonSnapshotRestoresExactFuture" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="62742723" result="Passed" start-time="2026-10-22 10:35:03Z" end-time="2026-10-22 10:35:03Z" duration="0.097245" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1041" name="JsonSnapshotRestoresExactFuture(Enso)" fullname="Bokumyaku.Tests.EnemyAndSystemTests.JsonSnapshotRestoresExactFuture(Enso)" methodname="JsonSnapshotRestoresExactFuture" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="2134153432" result="Passed" start-time="2026-10-22 10:35:03Z" end-time="2026-10-22 10:35:04Z" duration="0.400015" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1042" name="JsonSnapshotRestoresExactFuture(Resonance)" fullname="Bokumyaku.Tests.EnemyAndSystemTests.JsonSnapshotRestoresExactFuture(Resonance)" methodname="JsonSnapshotRestoresExactFuture" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="2084172080" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:04Z" duration="0.350133" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1049" name="NewWeaponSwitchPreservesCooldown" fullname="Bokumyaku.Tests.EnemyAndSystemTests.NewWeaponSwitchPreservesCooldown" methodname="NewWeaponSwitchPreservesCooldown" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="407562114" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:04Z" duration="0.000811" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1047" name="RepairHasAtomicCostAndCaps" fullname="Bokumyaku.Tests.EnemyAndSystemTests.RepairHasAtomicCostAndCaps" methodname="RepairHasAtomicCostAndCaps" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="1804759820" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:04Z" duration="0.000787" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1046" name="SplitChildrenNeverSplitOrRewardAgain" fullname="Bokumyaku.Tests.EnemyAndSystemTests.SplitChildrenNeverSplitOrRewardAgain" methodname="SplitChildrenNeverSplitOrRewardAgain" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="820674271" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:04Z" duration="0.001053" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1050" name="TerminalBoundarySnapshotsRestore" fullname="Bokumyaku.Tests.EnemyAndSystemTests.TerminalBoundarySnapshotsRestore" methodname="TerminalBoundarySnapshotsRestore" classname="Bokumyaku.Tests.EnemyAndSystemTests" runstate="Runnable" seed="861990836" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:04Z" duration="0.005568" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1059" name="LongRunPersistenceTests" fullname="Bokumyaku.Tests.LongRunPersistenceTests" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:05Z" duration="1.437057" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1075" name="BrokenLatestNeverFallsBackAndSamePathIsRejected" fullname="Bokumyaku.Tests.LongRunPersistenceTests.BrokenLatestNeverFallsBackAndSamePathIsRejected" methodname="BrokenLatestNeverFallsBackAndSamePathIsRejected" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="1582021423" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:04Z" duration="0.020434" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1062" name="LongResultRoundTripsLargeWaveAndReward" fullname="Bokumyaku.Tests.LongRunPersistenceTests.LongResultRoundTripsLargeWaveAndReward" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:04Z" duration="0.049757" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1060" name="LongResultRoundTripsLargeWaveAndReward(30000)" fullname="Bokumyaku.Tests.LongRunPersistenceTests.LongResultRoundTripsLargeWaveAndReward(30000)" methodname="LongResultRoundTripsLargeWaveAndReward" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="1957609104" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:04Z" duration="0.024759" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1061" name="LongResultRoundTripsLargeWaveAndReward(100000)" fullname="Bokumyaku.Tests.LongRunPersistenceTests.LongResultRoundTripsLargeWaveAndReward(100000)" methodname="LongResultRoundTripsLargeWaveAndReward" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="1319558957" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:04Z" duration="0.019341" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1079" name="MissingV5FallsBackToExistingV4Migration" fullname="Bokumyaku.Tests.LongRunPersistenceTests.MissingV5FallsBackToExistingV4Migration" methodname="MissingV5FallsBackToExistingV4Migration" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="1903821728" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:04Z" duration="0.017937" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1071" name="OldRulesStillEndAtSixtyAfterFileGenerationMigration" fullname="Bokumyaku.Tests.LongRunPersistenceTests.OldRulesStillEndAtSixtyAfterFileGenerationMigration" methodname="OldRulesStillEndAtSixtyAfterFileGenerationMigration" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="1114244826" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:04Z" duration="0.223691" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1078" name="RepeatedLoadSaveKeepsExactActiveStateWithoutRelaxingValidation" fullname="Bokumyaku.Tests.LongRunPersistenceTests.RepeatedLoadSaveKeepsExactActiveStateWithoutRelaxingValidation" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:05Z" duration="0.878405" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1076" name="RepeatedLoadSaveKeepsExactActiveStateWithoutRelaxingValidation(&quot;v8-point-tick6000.json&quot;)" fullname="Bokumyaku.Tests.LongRunPersistenceTests.RepeatedLoadSaveKeepsExactActiveStateWithoutRelaxingValidation(&quot;v8-point-tick6000.json&quot;)" methodname="RepeatedLoadSaveKeepsExactActiveStateWithoutRelaxingValidation" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="23052776" result="Passed" start-time="2026-10-22 10:35:04Z" end-time="2026-10-22 10:35:05Z" duration="0.335131" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1077" name="RepeatedLoadSaveKeepsExactActiveStateWithoutRelaxingValidation(&quot;v8-enso-tick21599.json&quot;)" fullname="Bokumyaku.Tests.LongRunPersistenceTests.RepeatedLoadSaveKeepsExactActiveStateWithoutRelaxingValidation(&quot;v8-enso-tick21599.json&quot;)" methodname="RepeatedLoadSaveKeepsExactActiveStateWithoutRelaxingValidation" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="1051187713" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:05Z" duration="0.537867" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1074" name="SettlementOverflowLeavesDiskAndMemoryUnchanged" fullname="Bokumyaku.Tests.LongRunPersistenceTests.SettlementOverflowLeavesDiskAndMemoryUnchanged" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:05Z" duration="0.223198" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1072" name="SettlementOverflowLeavesDiskAndMemoryUnchanged(False)" fullname="Bokumyaku.Tests.LongRunPersistenceTests.SettlementOverflowLeavesDiskAndMemoryUnchanged(False)" methodname="SettlementOverflowLeavesDiskAndMemoryUnchanged" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="646237923" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:05Z" duration="0.118320" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1073" name="SettlementOverflowLeavesDiskAndMemoryUnchanged(True)" fullname="Bokumyaku.Tests.LongRunPersistenceTests.SettlementOverflowLeavesDiskAndMemoryUnchanged(True)" methodname="SettlementOverflowLeavesDiskAndMemoryUnchanged" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="1531756619" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:05Z" duration="0.085345" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1070" name="UnsupportedResultBoundsFailBeforeWrite" fullname="Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:05Z" duration="0.015594" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1063" name="UnsupportedResultBoundsFailBeforeWrite(5,100001,36000000,1)" fullname="Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(5,100001,36000000,1)" methodname="UnsupportedResultBoundsFailBeforeWrite" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="1429850042" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:05Z" duration="0.002095" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1064" name="UnsupportedResultBoundsFailBeforeWrite(5,100000,36000001,1)" fullname="Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(5,100000,36000001,1)" methodname="UnsupportedResultBoundsFailBeforeWrite" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="111273661" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:05Z" duration="0.001334" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1065" name="UnsupportedResultBoundsFailBeforeWrite(5,100000,36000000,12000001)" fullname="Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(5,100000,36000000,12000001)" methodname="UnsupportedResultBoundsFailBeforeWrite" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="874276447" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:05Z" duration="0.001464" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1066" name="UnsupportedResultBoundsFailBeforeWrite(4,61,21600,1)" fullname="Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(4,61,21600,1)" methodname="UnsupportedResultBoundsFailBeforeWrite" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="346192099" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:05Z" duration="0.001514" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1067" name="UnsupportedResultBoundsFailBeforeWrite(4,60,21601,1)" fullname="Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(4,60,21601,1)" methodname="UnsupportedResultBoundsFailBeforeWrite" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="269188328" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:05Z" duration="0.000998" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1068" name="UnsupportedResultBoundsFailBeforeWrite(4,60,21600,80001)" fullname="Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(4,60,21600,80001)" methodname="UnsupportedResultBoundsFailBeforeWrite" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="1647096835" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:05Z" duration="0.001342" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1069" name="UnsupportedResultBoundsFailBeforeWrite(6,60,21600,1)" fullname="Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(6,60,21600,1)" methodname="UnsupportedResultBoundsFailBeforeWrite" classname="Bokumyaku.Tests.LongRunPersistenceTests" runstate="Runnable" seed="1322777314" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:05Z" duration="0.000863" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1080" name="LongRunTests" fullname="Bokumyaku.Tests.LongRunTests" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:14Z" duration="8.098349" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1085" name="ActualRules4DllFixtureRetainsFutureAndTerminal" fullname="Bokumyaku.Tests.LongRunTests.ActualRules4DllFixtureRetainsFutureAndTerminal" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:05Z" end-time="2026-10-22 10:35:06Z" duration="0.629535" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1083" name="ActualRules4DllFixtureRetainsFutureAndTerminal(&quot;v8-point&quot;)" fullname="Bokumyaku.Tests.LongRunTests.ActualRules4DllFixtureRetainsFutureAndTerminal(&quot;v8-point&quot;)" methodname="ActualRules4DllFixtureRetainsFutureAndTerminal" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" seed="1182668701" result="Passed" start-time="2026-10-22 10:35:06Z" end-time="2026-10-22 10:35:06Z" duration="0.241388" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1084" name="ActualRules4DllFixtureRetainsFutureAndTerminal(&quot;v8-enso&quot;)" fullname="Bokumyaku.Tests.LongRunTests.ActualRules4DllFixtureRetainsFutureAndTerminal(&quot;v8-enso&quot;)" methodname="ActualRules4DllFixtureRetainsFutureAndTerminal" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" seed="1808192014" result="Passed" start-time="2026-10-22 10:35:06Z" end-time="2026-10-22 10:35:06Z" duration="0.281941" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1082" name="AllSupportedWavesAreFiniteMonotoneAndEarlyFormulaExact" fullname="Bokumyaku.Tests.LongRunTests.AllSupportedWavesAreFiniteMonotoneAndEarlyFormulaExact" methodname="AllSupportedWavesAreFiniteMonotoneAndEarlyFormulaExact" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" seed="1709084828" result="Passed" start-time="2026-10-22 10:35:06Z" end-time="2026-10-22 10:35:11Z" duration="4.505864" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1093" name="ExplicitCurrencyAndCounterBoundsFitIntWithoutSaturation" fullname="Bokumyaku.Tests.LongRunTests.ExplicitCurrencyAndCounterBoundsFitIntWithoutSaturation" methodname="ExplicitCurrencyAndCounterBoundsFitIntWithoutSaturation" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" seed="1530710130" result="Passed" start-time="2026-10-22 10:35:11Z" end-time="2026-10-22 10:35:11Z" duration="0.003952" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1091" name="HighWaveJsonRoundTripRetainsEveryFollowingTick" fullname="Bokumyaku.Tests.LongRunTests.HighWaveJsonRoundTripRetainsEveryFollowingTick" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-22 10:35:11Z" end-time="2026-10-22 10:35:14Z" duration="2.932470" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1087" name="HighWaveJsonRoundTripRetainsEveryFollowingTick(60)" fullname="Bokumyaku.Tests.LongRunTests.HighWaveJsonRoundTripRetainsEveryFollowingTick(60)" methodname="HighWaveJsonRoundTripRetainsEveryFollowingTick" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" seed="60604504" result="Passed" start-time="2026-10-22 10:35:11Z" end-time="2026-10-22 10:35:12Z" duration="0.937852" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1088" name="HighWaveJsonRoundTripRetainsEveryFollowingTick(999)" fullname="Bokumyaku.Tests.LongRunTests.HighWaveJsonRoundTripRetainsEveryFollowingTick(999)" methodname="HighWaveJsonRoundTripRetainsEveryFollowingTick" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" seed="387429182" result="Passed" start-time="2026-10-22 10:35:12Z" end-time="2026-10-22 10:35:12Z" duration="0.591114" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1089" name="HighWaveJsonRoundTripRetainsEveryFollowingTick(9999)" fullname="Bokumyaku.Tests.LongRunTests.HighWaveJsonRoundTripRetainsEveryFollowingTick(9999)" methodname="HighWaveJsonRoundTripRetainsEveryFollowingTick" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" seed="729973178" result="Passed" start-time="2026-10-22 10:35:12Z" end-time="2026-10-22 10:35:13Z" duration="0.618073" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1090" name="HighWaveJsonRoundTripRetainsEveryFollowingTick(99999)" fullname="Bokumyaku.Tests.LongRunTests.HighWaveJsonRoundTripRetainsEveryFollowingTick(99999)" methodname="HighWaveJsonRoundTripRetainsEveryFollowingTick" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" seed="2013958357" result="Passed" start-time="2026-10-22 10:35:13Z" end-time="2026-10-22 10:35:14Z" duration="0.775047" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1092" name="HundredThousandWaveBoundaryIsFiniteAndRestorable" fullname="Bokumyaku.Tests.LongRunTests.HundredThousandWaveBoundaryIsFiniteAndRestorable" methodname="HundredThousandWaveBoundaryIsFiniteAndRestorable" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" seed="1369180759" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.002656" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1086" name="Rules4StopsAt60AndRules5ContinuesSameState" fullname="Bokumyaku.Tests.LongRunTests.Rules4StopsAt60AndRules5ContinuesSameState" methodname="Rules4StopsAt60AndRules5ContinuesSameState" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" seed="852197432" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.017023" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1081" name="RulesHaveExplicitDifferentLimits" fullname="Bokumyaku.Tests.LongRunTests.RulesHaveExplicitDifferentLimits" methodname="RulesHaveExplicitDifferentLimits" classname="Bokumyaku.Tests.LongRunTests" runstate="Runnable" seed="400456926" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.000831" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1094" name="MetaSaveStoreTests" fullname="Bokumyaku.Tests.MetaSaveStoreTests" classname="Bokumyaku.Tests.MetaSaveStoreTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.102612" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1097" name="CorruptCurrentRecoversBackupAndPreservesOriginal" fullname="Bokumyaku.Tests.MetaSaveStoreTests.CorruptCurrentRecoversBackupAndPreservesOriginal" methodname="CorruptCurrentRecoversBackupAndPreservesOriginal" classname="Bokumyaku.Tests.MetaSaveStoreTests" runstate="Runnable" seed="2144077885" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.031601" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1098" name="InvalidMetaSaveRejectsWithoutOverwritingGoodData" fullname="Bokumyaku.Tests.MetaSaveStoreTests.InvalidMetaSaveRejectsWithoutOverwritingGoodData" methodname="InvalidMetaSaveRejectsWithoutOverwritingGoodData" classname="Bokumyaku.Tests.MetaSaveStoreTests" runstate="Runnable" seed="313512683" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.010014" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1095" name="MissingSaveCreatesZeroProgressWithoutWarning" fullname="Bokumyaku.Tests.MetaSaveStoreTests.MissingSaveCreatesZeroProgressWithoutWarning" methodname="MissingSaveCreatesZeroProgressWithoutWarning" classname="Bokumyaku.Tests.MetaSaveStoreTests" runstate="Runnable" seed="29619631" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.003000" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1096" name="SaveRoundTripsAllProgressAndKeepsPreviousVersion" fullname="Bokumyaku.Tests.MetaSaveStoreTests.SaveRoundTripsAllProgressAndKeepsPreviousVersion" methodname="SaveRoundTripsAllProgressAndKeepsPreviousVersion" classname="Bokumyaku.Tests.MetaSaveStoreTests" runstate="Runnable" seed="659242488" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.016866" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1102" name="UnsupportedOrInvalidDataDoesNotBecomePlayableProgress" fullname="Bokumyaku.Tests.MetaSaveStoreTests.UnsupportedOrInvalidDataDoesNotBecomePlayableProgress" classname="Bokumyaku.Tests.MetaSaveStoreTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.032789" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1099" name="UnsupportedOrInvalidDataDoesNotBecomePlayableProgress(&quot;{\&quot;schema\&quot;:99,\&quot;config\&quot;:\&quot;prototype-3enemy-v1\&quot;,\&quot;meta\&quot;:{\&quot;Crystals\&quot;:100}}&quot;)" fullname="Bokumyaku.Tests.MetaSaveStoreTests.UnsupportedOrInvalidDataDoesNotBecomePlayableProgress(&quot;{\&quot;schema\&quot;:99,\&quot;config\&quot;:\&quot;prototype-3enemy-v1\&quot;,\&quot;meta\&quot;:{\&quot;Crystals\&quot;:100}}&quot;)" methodname="UnsupportedOrInvalidDataDoesNotBecomePlayableProgress" classname="Bokumyaku.Tests.MetaSaveStoreTests" runstate="Runnable" seed="689630145" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.008138" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1100" name="UnsupportedOrInvalidDataDoesNotBecomePlayableProgress(&quot;{\&quot;schema\&quot;:1,\&quot;config\&quot;:\&quot;future\&quot;,\&quot;meta\&quot;:{\&quot;Crystals\&quot;:100}}&quot;)" fullname="Bokumyaku.Tests.MetaSaveStoreTests.UnsupportedOrInvalidDataDoesNotBecomePlayableProgress(&quot;{\&quot;schema\&quot;:1,\&quot;config\&quot;:\&quot;future\&quot;,\&quot;meta\&quot;:{\&quot;Crystals\&quot;:100}}&quot;)" methodname="UnsupportedOrInvalidDataDoesNotBecomePlayableProgress" classname="Bokumyaku.Tests.MetaSaveStoreTests" runstate="Runnable" seed="137992201" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.005866" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1101" name="UnsupportedOrInvalidDataDoesNotBecomePlayableProgress(&quot;{\&quot;schema\&quot;:1,\&quot;config\&quot;:\&quot;prototype-3enemy-v1\&quot;,\&quot;meta\&quot;:{\&quot;Crystals\&quot;:100,\&quot;Damage\&quot;:21}}&quot;)" fullname="Bokumyaku.Tests.MetaSaveStoreTests.UnsupportedOrInvalidDataDoesNotBecomePlayableProgress(&quot;{\&quot;schema\&quot;:1,\&quot;config\&quot;:\&quot;prototype-3enemy-v1\&quot;,\&quot;meta\&quot;:{\&quot;Crystals\&quot;:100,\&quot;Damage\&quot;:21}}&quot;)" methodname="UnsupportedOrInvalidDataDoesNotBecomePlayableProgress" classname="Bokumyaku.Tests.MetaSaveStoreTests" runstate="Runnable" seed="51505680" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.007718" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1103" name="MigrationTests" fullname="Bokumyaku.Tests.MigrationTests" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.653770" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1113" name="ActiveRunRejectsDifferentRulesWithoutChangingSave" fullname="Bokumyaku.Tests.MigrationTests.ActiveRunRejectsDifferentRulesWithoutChangingSave" methodname="ActiveRunRejectsDifferentRulesWithoutChangingSave" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="518670150" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.051739" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1106" name="CorruptNewSaveNeverRollsBackToPrevious" fullname="Bokumyaku.Tests.MigrationTests.CorruptNewSaveNeverRollsBackToPrevious" methodname="CorruptNewSaveNeverRollsBackToPrevious" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="286709452" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.008334" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1105" name="CorruptPreviousRecoversBackupWithoutChangingEitherSource" fullname="Bokumyaku.Tests.MigrationTests.CorruptPreviousRecoversBackupWithoutChangingEitherSource" methodname="CorruptPreviousRecoversBackupWithoutChangingEitherSource" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="1530096426" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.015784" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1111" name="ExistingNewProgressWinsOverPrevious" fullname="Bokumyaku.Tests.MigrationTests.ExistingNewProgressWinsOverPrevious" methodname="ExistingNewProgressWinsOverPrevious" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="1453256434" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.011321" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1119" name="FailedMigrationWriteDoesNotModifyPrevious" fullname="Bokumyaku.Tests.MigrationTests.FailedMigrationWriteDoesNotModifyPrevious" methodname="FailedMigrationWriteDoesNotModifyPrevious" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="461642868" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.011268" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1104" name="FullCampaignMigrationPreservesProgressSlotsHistoryAndSourceBytes" fullname="Bokumyaku.Tests.MigrationTests.FullCampaignMigrationPreservesProgressSlotsHistoryAndSourceBytes" methodname="FullCampaignMigrationPreservesProgressSlotsHistoryAndSourceBytes" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="1395417701" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.335318" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1116" name="NewCampaignRejectsMissingOrUnknownResultRules" fullname="Bokumyaku.Tests.MigrationTests.NewCampaignRejectsMissingOrUnknownResultRules" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.013329" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1114" name="NewCampaignRejectsMissingOrUnknownResultRules(0)" fullname="Bokumyaku.Tests.MigrationTests.NewCampaignRejectsMissingOrUnknownResultRules(0)" methodname="NewCampaignRejectsMissingOrUnknownResultRules" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="1409973106" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.003364" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1115" name="NewCampaignRejectsMissingOrUnknownResultRules(99)" fullname="Bokumyaku.Tests.MigrationTests.NewCampaignRejectsMissingOrUnknownResultRules(99)" methodname="NewCampaignRejectsMissingOrUnknownResultRules" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="1583625939" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.003850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1118" name="NewRulesSnapshotCannotMasqueradeAsPreviousCampaign" fullname="Bokumyaku.Tests.MigrationTests.NewRulesSnapshotCannotMasqueradeAsPreviousCampaign" methodname="NewRulesSnapshotCannotMasqueradeAsPreviousCampaign" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="1186520069" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.023390" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1112" name="OldActiveSnapshotKeepsIdentityAndFutureAfterMigration" fullname="Bokumyaku.Tests.MigrationTests.OldActiveSnapshotKeepsIdentityAndFutureAfterMigration" methodname="OldActiveSnapshotKeepsIdentityAndFutureAfterMigration" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="148816509" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.100349" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1117" name="PreviousCampaignDoesNotNormalizeUnknownRules" fullname="Bokumyaku.Tests.MigrationTests.PreviousCampaignDoesNotNormalizeUnknownRules" methodname="PreviousCampaignDoesNotNormalizeUnknownRules" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="804829828" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.024285" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1110" name="PreviousHeaderMustBeExactlyV2" fullname="Bokumyaku.Tests.MigrationTests.PreviousHeaderMustBeExactlyV2" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.036770" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1107" name="PreviousHeaderMustBeExactlyV2(1,&quot;bokumyaku-campaign-v2&quot;)" fullname="Bokumyaku.Tests.MigrationTests.PreviousHeaderMustBeExactlyV2(1,&quot;bokumyaku-campaign-v2&quot;)" methodname="PreviousHeaderMustBeExactlyV2" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="32105134" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.018084" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1108" name="PreviousHeaderMustBeExactlyV2(3,&quot;bokumyaku-campaign-v2&quot;)" fullname="Bokumyaku.Tests.MigrationTests.PreviousHeaderMustBeExactlyV2(3,&quot;bokumyaku-campaign-v2&quot;)" methodname="PreviousHeaderMustBeExactlyV2" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="1180839194" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.005558" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1109" name="PreviousHeaderMustBeExactlyV2(2,&quot;unknown&quot;)" fullname="Bokumyaku.Tests.MigrationTests.PreviousHeaderMustBeExactlyV2(2,&quot;unknown&quot;)" methodname="PreviousHeaderMustBeExactlyV2" classname="Bokumyaku.Tests.MigrationTests" runstate="Runnable" seed="1007424263" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:14Z" duration="0.006601" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1120" name="RecordSupplyTests" fullname="Bokumyaku.Tests.RecordSupplyTests" classname="Bokumyaku.Tests.RecordSupplyTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:15Z" duration="0.376566" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1123" name="ActualV7MatureRunPreservesFutureAndTerminal" fullname="Bokumyaku.Tests.RecordSupplyTests.ActualV7MatureRunPreservesFutureAndTerminal" classname="Bokumyaku.Tests.RecordSupplyTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:15Z" duration="0.363267" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1121" name="ActualV7MatureRunPreservesFutureAndTerminal(&quot;farming&quot;)" fullname="Bokumyaku.Tests.RecordSupplyTests.ActualV7MatureRunPreservesFutureAndTerminal(&quot;farming&quot;)" methodname="ActualV7MatureRunPreservesFutureAndTerminal" classname="Bokumyaku.Tests.RecordSupplyTests" runstate="Runnable" seed="549668255" result="Passed" start-time="2026-10-22 10:35:14Z" end-time="2026-10-22 10:35:15Z" duration="0.194352" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1122" name="ActualV7MatureRunPreservesFutureAndTerminal(&quot;record&quot;)" fullname="Bokumyaku.Tests.RecordSupplyTests.ActualV7MatureRunPreservesFutureAndTerminal(&quot;record&quot;)" methodname="ActualV7MatureRunPreservesFutureAndTerminal" classname="Bokumyaku.Tests.RecordSupplyTests" runstate="Runnable" seed="656263976" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.167474" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1126" name="DamageRequirementStillGatesSupplyPriority" fullname="Bokumyaku.Tests.RecordSupplyTests.DamageRequirementStillGatesSupplyPriority" methodname="DamageRequirementStillGatesSupplyPriority" classname="Bokumyaku.Tests.RecordSupplyTests" runstate="Runnable" seed="1737670714" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.001069" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1125" name="InsufficientSupplyBudgetCannotBuyCheaperFallback" fullname="Bokumyaku.Tests.RecordSupplyTests.InsufficientSupplyBudgetCannotBuyCheaperFallback" methodname="InsufficientSupplyBudgetCannotBuyCheaperFallback" classname="Bokumyaku.Tests.RecordSupplyTests" runstate="Runnable" seed="1761100492" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.001881" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1124" name="LateSupplyIsPaidAndBranchWaitsForIt" fullname="Bokumyaku.Tests.RecordSupplyTests.LateSupplyIsPaidAndBranchWaitsForIt" methodname="LateSupplyIsPaidAndBranchWaitsForIt" classname="Bokumyaku.Tests.RecordSupplyTests" runstate="Runnable" seed="1002905299" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.001015" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1127" name="Rules3BuildSwitchCannotEnableNewPriority" fullname="Bokumyaku.Tests.RecordSupplyTests.Rules3BuildSwitchCannotEnableNewPriority" methodname="Rules3BuildSwitchCannotEnableNewPriority" classname="Bokumyaku.Tests.RecordSupplyTests" runstate="Runnable" seed="1626885845" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.000726" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1128" name="ResultPresentationTests" fullname="Bokumyaku.Tests.ResultPresentationTests" classname="Bokumyaku.Tests.ResultPresentationTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.020812" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1135" name="InvasionCountsBodiesNotCoreDamage" fullname="Bokumyaku.Tests.ResultPresentationTests.InvasionCountsBodiesNotCoreDamage" methodname="InvasionCountsBodiesNotCoreDamage" classname="Bokumyaku.Tests.ResultPresentationTests" runstate="Runnable" seed="556982685" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.001843" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1133" name="NoInvasionHasNoMostCommonType" fullname="Bokumyaku.Tests.ResultPresentationTests.NoInvasionHasNoMostCommonType" methodname="NoInvasionHasNoMostCommonType" classname="Bokumyaku.Tests.ResultPresentationTests" runstate="Runnable" seed="1076414365" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.000221" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1132" name="NormalRateUsesOnlyNormalRewardAndBattleTime" fullname="Bokumyaku.Tests.ResultPresentationTests.NormalRateUsesOnlyNormalRewardAndBattleTime" classname="Bokumyaku.Tests.ResultPresentationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.010409" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1129" name="NormalRateUsesOnlyNormalRewardAndBattleTime(30,120,15)" fullname="Bokumyaku.Tests.ResultPresentationTests.NormalRateUsesOnlyNormalRewardAndBattleTime(30,120,15)" methodname="NormalRateUsesOnlyNormalRewardAndBattleTime" classname="Bokumyaku.Tests.ResultPresentationTests" runstate="Runnable" seed="350613888" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.001581" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1130" name="NormalRateUsesOnlyNormalRewardAndBattleTime(30,0,0)" fullname="Bokumyaku.Tests.ResultPresentationTests.NormalRateUsesOnlyNormalRewardAndBattleTime(30,0,0)" methodname="NormalRateUsesOnlyNormalRewardAndBattleTime" classname="Bokumyaku.Tests.ResultPresentationTests" runstate="Runnable" seed="262679059" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.000190" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1131" name="NormalRateUsesOnlyNormalRewardAndBattleTime(0,120,0)" fullname="Bokumyaku.Tests.ResultPresentationTests.NormalRateUsesOnlyNormalRewardAndBattleTime(0,120,0)" methodname="NormalRateUsesOnlyNormalRewardAndBattleTime" classname="Bokumyaku.Tests.ResultPresentationTests" runstate="Runnable" seed="220034413" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.000141" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1134" name="TieUsesFirstEnemyKindAndDoesNotMutateCounts" fullname="Bokumyaku.Tests.ResultPresentationTests.TieUsesFirstEnemyKindAndDoesNotMutateCounts" methodname="TieUsesFirstEnemyKindAndDoesNotMutateCounts" classname="Bokumyaku.Tests.ResultPresentationTests" runstate="Runnable" seed="1218071721" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.001055" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1136" name="Rules3MigrationTests" fullname="Bokumyaku.Tests.Rules3MigrationTests" classname="Bokumyaku.Tests.Rules3MigrationTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.504079" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1142" name="BrokenLatestDoesNotRollBackToPrevious" fullname="Bokumyaku.Tests.Rules3MigrationTests.BrokenLatestDoesNotRollBackToPrevious" methodname="BrokenLatestDoesNotRollBackToPrevious" classname="Bokumyaku.Tests.Rules3MigrationTests" runstate="Runnable" seed="895220857" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.011134" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1140" name="CorruptPreviousUsesItsBackupAndPreservesOriginal" fullname="Bokumyaku.Tests.Rules3MigrationTests.CorruptPreviousUsesItsBackupAndPreservesOriginal" methodname="CorruptPreviousUsesItsBackupAndPreservesOriginal" classname="Bokumyaku.Tests.Rules3MigrationTests" runstate="Runnable" seed="1014871264" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.020543" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1141" name="OldV2FallbackStillMigratesWithoutChangingSource" fullname="Bokumyaku.Tests.Rules3MigrationTests.OldV2FallbackStillMigratesWithoutChangingSource" methodname="OldV2FallbackStillMigratesWithoutChangingSource" classname="Bokumyaku.Tests.Rules3MigrationTests" runstate="Runnable" seed="923654837" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.009871" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1139" name="PreviousRules2ActivePreservesFutureAndAllSourceBytes" fullname="Bokumyaku.Tests.Rules3MigrationTests.PreviousRules2ActivePreservesFutureAndAllSourceBytes" classname="Bokumyaku.Tests.Rules3MigrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.415371" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1137" name="PreviousRules2ActivePreservesFutureAndAllSourceBytes(&quot;v6-run&quot;)" fullname="Bokumyaku.Tests.Rules3MigrationTests.PreviousRules2ActivePreservesFutureAndAllSourceBytes(&quot;v6-run&quot;)" methodname="PreviousRules2ActivePreservesFutureAndAllSourceBytes" classname="Bokumyaku.Tests.Rules3MigrationTests" runstate="Runnable" seed="1950659189" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.221367" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1138" name="PreviousRules2ActivePreservesFutureAndAllSourceBytes(&quot;v6-record&quot;)" fullname="Bokumyaku.Tests.Rules3MigrationTests.PreviousRules2ActivePreservesFutureAndAllSourceBytes(&quot;v6-record&quot;)" methodname="PreviousRules2ActivePreservesFutureAndAllSourceBytes" classname="Bokumyaku.Tests.Rules3MigrationTests" runstate="Runnable" seed="1968307929" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.186295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1146" name="ResultRulesHaveExplicitSupportedRange" fullname="Bokumyaku.Tests.Rules3MigrationTests.ResultRulesHaveExplicitSupportedRange" classname="Bokumyaku.Tests.Rules3MigrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.036435" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1144" name="ResultRulesHaveExplicitSupportedRange(3,True)" fullname="Bokumyaku.Tests.Rules3MigrationTests.ResultRulesHaveExplicitSupportedRange(3,True)" methodname="ResultRulesHaveExplicitSupportedRange" classname="Bokumyaku.Tests.Rules3MigrationTests" runstate="Runnable" seed="751302468" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.029051" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1145" name="ResultRulesHaveExplicitSupportedRange(6,False)" fullname="Bokumyaku.Tests.Rules3MigrationTests.ResultRulesHaveExplicitSupportedRange(6,False)" methodname="ResultRulesHaveExplicitSupportedRange" classname="Bokumyaku.Tests.Rules3MigrationTests" runstate="Runnable" seed="1889229388" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.001612" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1143" name="SameSourceAndDestinationIsRejected" fullname="Bokumyaku.Tests.Rules3MigrationTests.SameSourceAndDestinationIsRejected" methodname="SameSourceAndDestinationIsRejected" classname="Bokumyaku.Tests.Rules3MigrationTests" runstate="Runnable" seed="899470819" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.002892" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1147" name="Rules4MigrationTests" fullname="Bokumyaku.Tests.Rules4MigrationTests" classname="Bokumyaku.Tests.Rules4MigrationTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:16Z" duration="0.632037" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1153" name="BrokenLatestDoesNotRollBackToPrevious" fullname="Bokumyaku.Tests.Rules4MigrationTests.BrokenLatestDoesNotRollBackToPrevious" methodname="BrokenLatestDoesNotRollBackToPrevious" classname="Bokumyaku.Tests.Rules4MigrationTests" runstate="Runnable" seed="1412230932" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.010710" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1151" name="CorruptPreviousUsesItsBackupAndPreservesOriginal" fullname="Bokumyaku.Tests.Rules4MigrationTests.CorruptPreviousUsesItsBackupAndPreservesOriginal" methodname="CorruptPreviousUsesItsBackupAndPreservesOriginal" classname="Bokumyaku.Tests.Rules4MigrationTests" runstate="Runnable" seed="1312168563" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.025288" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1156" name="CorruptV4DoesNotFallBackToOlderV3" fullname="Bokumyaku.Tests.Rules4MigrationTests.CorruptV4DoesNotFallBackToOlderV3" methodname="CorruptV4DoesNotFallBackToOlderV3" classname="Bokumyaku.Tests.Rules4MigrationTests" runstate="Runnable" seed="384529857" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.026317" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1155" name="MissingV4FallsBackToV3WithoutChangingItsBytes" fullname="Bokumyaku.Tests.Rules4MigrationTests.MissingV4FallsBackToV3WithoutChangingItsBytes" methodname="MissingV4FallsBackToV3WithoutChangingItsBytes" classname="Bokumyaku.Tests.Rules4MigrationTests" runstate="Runnable" seed="855975122" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.029361" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1152" name="OldV2FallbackStillMigratesWithoutChangingSource" fullname="Bokumyaku.Tests.Rules4MigrationTests.OldV2FallbackStillMigratesWithoutChangingSource" methodname="OldV2FallbackStillMigratesWithoutChangingSource" classname="Bokumyaku.Tests.Rules4MigrationTests" runstate="Runnable" seed="801613282" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:15Z" duration="0.013144" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1150" name="PreviousRules3ActivePreservesFutureAndAllSourceBytes" fullname="Bokumyaku.Tests.Rules4MigrationTests.PreviousRules3ActivePreservesFutureAndAllSourceBytes" classname="Bokumyaku.Tests.Rules4MigrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:16Z" duration="0.469388" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1148" name="PreviousRules3ActivePreservesFutureAndAllSourceBytes(&quot;v7-farming&quot;)" fullname="Bokumyaku.Tests.Rules4MigrationTests.PreviousRules3ActivePreservesFutureAndAllSourceBytes(&quot;v7-farming&quot;)" methodname="PreviousRules3ActivePreservesFutureAndAllSourceBytes" classname="Bokumyaku.Tests.Rules4MigrationTests" runstate="Runnable" seed="593138948" result="Passed" start-time="2026-10-22 10:35:15Z" end-time="2026-10-22 10:35:16Z" duration="0.245224" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1149" name="PreviousRules3ActivePreservesFutureAndAllSourceBytes(&quot;v7-record&quot;)" fullname="Bokumyaku.Tests.Rules4MigrationTests.PreviousRules3ActivePreservesFutureAndAllSourceBytes(&quot;v7-record&quot;)" methodname="PreviousRules3ActivePreservesFutureAndAllSourceBytes" classname="Bokumyaku.Tests.Rules4MigrationTests" runstate="Runnable" seed="1262988841" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.215810" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1159" name="ResultRulesHaveExplicitSupportedRange" fullname="Bokumyaku.Tests.Rules4MigrationTests.ResultRulesHaveExplicitSupportedRange" classname="Bokumyaku.Tests.Rules4MigrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.043275" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1157" name="ResultRulesHaveExplicitSupportedRange(4,True)" fullname="Bokumyaku.Tests.Rules4MigrationTests.ResultRulesHaveExplicitSupportedRange(4,True)" methodname="ResultRulesHaveExplicitSupportedRange" classname="Bokumyaku.Tests.Rules4MigrationTests" runstate="Runnable" seed="1008010717" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.022419" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1158" name="ResultRulesHaveExplicitSupportedRange(6,False)" fullname="Bokumyaku.Tests.Rules4MigrationTests.ResultRulesHaveExplicitSupportedRange(6,False)" methodname="ResultRulesHaveExplicitSupportedRange" classname="Bokumyaku.Tests.Rules4MigrationTests" runstate="Runnable" seed="1263138965" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.002028" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1154" name="SameSourceAndDestinationIsRejected" fullname="Bokumyaku.Tests.Rules4MigrationTests.SameSourceAndDestinationIsRejected" methodname="SameSourceAndDestinationIsRejected" classname="Bokumyaku.Tests.Rules4MigrationTests" runstate="Runnable" seed="1566486594" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.002091" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1160" name="RulesVersionTests" fullname="Bokumyaku.Tests.RulesVersionTests" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:19Z" duration="3.453269" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1161" name="ActualV5AssemblyFixtureRetainsExactFuture" fullname="Bokumyaku.Tests.RulesVersionTests.ActualV5AssemblyFixtureRetainsExactFuture" methodname="ActualV5AssemblyFixtureRetainsExactFuture" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" seed="171797778" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.190911" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1165" name="ActualV6AssemblyFixtureRetainsExactFuture" fullname="Bokumyaku.Tests.RulesVersionTests.ActualV6AssemblyFixtureRetainsExactFuture" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.253158" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1163" name="ActualV6AssemblyFixtureRetainsExactFuture(&quot;v6-run&quot;)" fullname="Bokumyaku.Tests.RulesVersionTests.ActualV6AssemblyFixtureRetainsExactFuture(&quot;v6-run&quot;)" methodname="ActualV6AssemblyFixtureRetainsExactFuture" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" seed="376730293" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.172403" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1164" name="ActualV6AssemblyFixtureRetainsExactFuture(&quot;v6-record&quot;)" fullname="Bokumyaku.Tests.RulesVersionTests.ActualV6AssemblyFixtureRetainsExactFuture(&quot;v6-record&quot;)" methodname="ActualV6AssemblyFixtureRetainsExactFuture" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" seed="1893189905" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.074621" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1173" name="FullyCappedPurchaseLoopKeepsRestorableBoundedCursor" fullname="Bokumyaku.Tests.RulesVersionTests.FullyCappedPurchaseLoopKeepsRestorableBoundedCursor" methodname="FullyCappedPurchaseLoopKeepsRestorableBoundedCursor" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" seed="1597233154" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.076058" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1172" name="HarvestMultipliesOnlyFutureEligibleKillsNotInkOrChildren" fullname="Bokumyaku.Tests.RulesVersionTests.HarvestMultipliesOnlyFutureEligibleKillsNotInkOrChildren" methodname="HarvestMultipliesOnlyFutureEligibleKillsNotInkOrChildren" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" seed="77590345" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.001761" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1170" name="HarvestPurchaseIsPaidCappedAndNeverRetroactive" fullname="Bokumyaku.Tests.RulesVersionTests.HarvestPurchaseIsPaidCappedAndNeverRetroactive" methodname="HarvestPurchaseIsPaidCappedAndNeverRetroactive" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" seed="120296185" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.000479" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1171" name="InvalidRulesAndLevelShapeAreRejected" fullname="Bokumyaku.Tests.RulesVersionTests.InvalidRulesAndLevelShapeAreRejected" methodname="InvalidRulesAndLevelShapeAreRejected" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" seed="1870744402" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.001594" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1162" name="LegacyCannotPurchaseHarvestOrUpgradeItsRules" fullname="Bokumyaku.Tests.RulesVersionTests.LegacyCannotPurchaseHarvestOrUpgradeItsRules" methodname="LegacyCannotPurchaseHarvestOrUpgradeItsRules" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" seed="787280880" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:16Z" duration="0.002293" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1169" name="NewRulesJsonRoundTripPreservesPurchaseCursorAndFuture" fullname="Bokumyaku.Tests.RulesVersionTests.NewRulesJsonRoundTripPreservesPurchaseCursorAndFuture" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:19Z" duration="2.914690" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1167" name="NewRulesJsonRoundTripPreservesPurchaseCursorAndFuture(Farming)" fullname="Bokumyaku.Tests.RulesVersionTests.NewRulesJsonRoundTripPreservesPurchaseCursorAndFuture(Farming)" methodname="NewRulesJsonRoundTripPreservesPurchaseCursorAndFuture" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" seed="407311740" result="Passed" start-time="2026-10-22 10:35:16Z" end-time="2026-10-22 10:35:18Z" duration="1.633312" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1168" name="NewRulesJsonRoundTripPreservesPurchaseCursorAndFuture(Record)" fullname="Bokumyaku.Tests.RulesVersionTests.NewRulesJsonRoundTripPreservesPurchaseCursorAndFuture(Record)" methodname="NewRulesJsonRoundTripPreservesPurchaseCursorAndFuture" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" seed="573206973" result="Passed" start-time="2026-10-22 10:35:18Z" end-time="2026-10-22 10:35:19Z" duration="1.275167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1166" name="SwitchingBuildDoesNotUpgradeV6Rules" fullname="Bokumyaku.Tests.RulesVersionTests.SwitchingBuildDoesNotUpgradeV6Rules" methodname="SwitchingBuildDoesNotUpgradeV6Rules" classname="Bokumyaku.Tests.RulesVersionTests" runstate="Runnable" seed="1029886734" result="Passed" start-time="2026-10-22 10:35:19Z" end-time="2026-10-22 10:35:19Z" duration="0.004957" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1174" name="RunSimulatorTests" fullname="Bokumyaku.Tests.RunSimulatorTests" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-10-22 10:35:19Z" end-time="2026-10-22 10:35:56Z" duration="36.818963" total="32" passed="32" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1203" name="AutomaticBuildReplaysPurchasesAndCombatWithSameSeed" fullname="Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildReplaysPurchasesAndCombatWithSameSeed" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:19Z" end-time="2026-10-22 10:35:34Z" duration="14.883223" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1201" name="AutomaticBuildReplaysPurchasesAndCombatWithSameSeed(Farming)" fullname="Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildReplaysPurchasesAndCombatWithSameSeed(Farming)" methodname="AutomaticBuildReplaysPurchasesAndCombatWithSameSeed" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="1890298527" result="Passed" start-time="2026-10-22 10:35:19Z" end-time="2026-10-22 10:35:27Z" duration="8.035747" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1202" name="AutomaticBuildReplaysPurchasesAndCombatWithSameSeed(Record)" fullname="Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildReplaysPurchasesAndCombatWithSameSeed(Record)" methodname="AutomaticBuildReplaysPurchasesAndCombatWithSameSeed" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="503158018" result="Passed" start-time="2026-10-22 10:35:27Z" end-time="2026-10-22 10:35:34Z" duration="6.846312" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1212" name="AutomaticBuildRetainsGraphLimitsAndTerminates" fullname="Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildRetainsGraphLimitsAndTerminates" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:34Z" end-time="2026-10-22 10:35:42Z" duration="8.149437" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1210" name="AutomaticBuildRetainsGraphLimitsAndTerminates(Farming)" fullname="Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildRetainsGraphLimitsAndTerminates(Farming)" methodname="AutomaticBuildRetainsGraphLimitsAndTerminates" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="654547319" result="Passed" start-time="2026-10-22 10:35:34Z" end-time="2026-10-22 10:35:38Z" duration="3.745126" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1211" name="AutomaticBuildRetainsGraphLimitsAndTerminates(Record)" fullname="Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildRetainsGraphLimitsAndTerminates(Record)" methodname="AutomaticBuildRetainsGraphLimitsAndTerminates" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="1855523234" result="Passed" start-time="2026-10-22 10:35:38Z" end-time="2026-10-22 10:35:42Z" duration="4.395763" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1206" name="AutomaticBuildSavesForBranchAndProducesAdditionalTips" fullname="Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildSavesForBranchAndProducesAdditionalTips" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 10:35:42Z" end-time="2026-10-22 10:35:43Z" duration="0.237873" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1204" name="AutomaticBuildSavesForBranchAndProducesAdditionalTips(Farming)" fullname="Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildSavesForBranchAndProducesAdditionalTips(Farming)" methodname="AutomaticBuildSavesForBranchAndProducesAdditionalTips" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="1991918924" result="Passed" start-time="2026-10-22 10:35:42Z" end-time="2026-10-22 10:35:42Z" duration="0.108206" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1205" name="AutomaticBuildSavesForBranchAndProducesAdditionalTips(Record)" fullname="Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildSavesForBranchAndProducesAdditionalTips(Record)" methodname="AutomaticBuildSavesForBranchAndProducesAdditionalTips" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="148410120" result="Passed" start-time="2026-10-22 10:35:42Z" end-time="2026-10-22 10:35:43Z" duration="0.120489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1186" name="BranchPurchaseDilutesPressureAtTheSamePathLength" fullname="Bokumyaku.Tests.RunSimulatorTests.BranchPurchaseDilutesPressureAtTheSamePathLength" methodname="BranchPurchaseDilutesPressureAtTheSamePathLength" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="937914956" result="Passed" start-time="2026-10-22 10:35:43Z" end-time="2026-10-22 10:35:43Z" duration="0.002960" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1181" name="DifferentSeedsProduceDifferentEnemyPositions" fullname="Bokumyaku.Tests.RunSimulatorTests.DifferentSeedsProduceDifferentEnemyPositions" methodname="DifferentSeedsProduceDifferentEnemyPositions" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="106559253" result="Passed" start-time="2026-10-22 10:35:43Z" end-time="2026-10-22 10:35:43Z" duration="0.000975" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1191" name="GraphAndEnemyCapsHoldThroughoutRun" fullname="Bokumyaku.Tests.RunSimulatorTests.GraphAndEnemyCapsHoldThroughoutRun" methodname="GraphAndEnemyCapsHoldThroughoutRun" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="1322020624" result="Passed" start-time="2026-10-22 10:35:43Z" end-time="2026-10-22 10:35:45Z" duration="2.308317" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1209" name="InvalidBuildIsRejectedWithoutMutation" fullname="Bokumyaku.Tests.RunSimulatorTests.InvalidBuildIsRejectedWithoutMutation" methodname="InvalidBuildIsRejectedWithoutMutation" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="175647117" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.001387" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1199" name="InvalidMetaIsRejectedAtRunStart" fullname="Bokumyaku.Tests.RunSimulatorTests.InvalidMetaIsRejectedAtRunStart" methodname="InvalidMetaIsRejectedAtRunStart" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="464755302" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.001624" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1207" name="ManualBuildNeverSpendsAutomatically" fullname="Bokumyaku.Tests.RunSimulatorTests.ManualBuildNeverSpendsAutomatically" methodname="ManualBuildNeverSpendsAutomatically" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="278697699" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.009772" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1185" name="MetaIsSnapshottedAtRunStart" fullname="Bokumyaku.Tests.RunSimulatorTests.MetaIsSnapshottedAtRunStart" methodname="MetaIsSnapshottedAtRunStart" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="88491955" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.000364" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1198" name="MetaPurchaseCostsCapsAndInsufficientFunds" fullname="Bokumyaku.Tests.RunSimulatorTests.MetaPurchaseCostsCapsAndInsufficientFunds" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.010720" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1194" name="MetaPurchaseCostsCapsAndInsufficientFunds(Damage,8)" fullname="Bokumyaku.Tests.RunSimulatorTests.MetaPurchaseCostsCapsAndInsufficientFunds(Damage,8)" methodname="MetaPurchaseCostsCapsAndInsufficientFunds" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="66263176" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.002300" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1195" name="MetaPurchaseCostsCapsAndInsufficientFunds(Supply,10)" fullname="Bokumyaku.Tests.RunSimulatorTests.MetaPurchaseCostsCapsAndInsufficientFunds(Supply,10)" methodname="MetaPurchaseCostsCapsAndInsufficientFunds" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="910937975" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.000635" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1196" name="MetaPurchaseCostsCapsAndInsufficientFunds(Growth,8)" fullname="Bokumyaku.Tests.RunSimulatorTests.MetaPurchaseCostsCapsAndInsufficientFunds(Growth,8)" methodname="MetaPurchaseCostsCapsAndInsufficientFunds" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="1601158489" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.000537" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1197" name="MetaPurchaseCostsCapsAndInsufficientFunds(Harvest,12)" fullname="Bokumyaku.Tests.RunSimulatorTests.MetaPurchaseCostsCapsAndInsufficientFunds(Harvest,12)" methodname="MetaPurchaseCostsCapsAndInsufficientFunds" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="1710119577" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.000541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1190" name="NaturalDefeatIsBoundedAndStopsAllEconomy" fullname="Bokumyaku.Tests.RunSimulatorTests.NaturalDefeatIsBoundedAndStopsAllEconomy" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.023293" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1187" name="NaturalDefeatIsBoundedAndStopsAllEconomy(1)" fullname="Bokumyaku.Tests.RunSimulatorTests.NaturalDefeatIsBoundedAndStopsAllEconomy(1)" methodname="NaturalDefeatIsBoundedAndStopsAllEconomy" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="820216136" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.005034" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1188" name="NaturalDefeatIsBoundedAndStopsAllEconomy(42)" fullname="Bokumyaku.Tests.RunSimulatorTests.NaturalDefeatIsBoundedAndStopsAllEconomy(42)" methodname="NaturalDefeatIsBoundedAndStopsAllEconomy" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="1075537551" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.007167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1189" name="NaturalDefeatIsBoundedAndStopsAllEconomy(-17)" fullname="Bokumyaku.Tests.RunSimulatorTests.NaturalDefeatIsBoundedAndStopsAllEconomy(-17)" methodname="NaturalDefeatIsBoundedAndStopsAllEconomy" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="1196282814" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.004290" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1193" name="RewardOverflowRejectsWithoutConsumingClaim" fullname="Bokumyaku.Tests.RunSimulatorTests.RewardOverflowRejectsWithoutConsumingClaim" methodname="RewardOverflowRejectsWithoutConsumingClaim" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="999027400" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.008449" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1192" name="RunningRunCannotClaimAndFinishedRunCannotClaimTwice" fullname="Bokumyaku.Tests.RunSimulatorTests.RunningRunCannotClaimAndFinishedRunCannotClaimTwice" methodname="RunningRunCannotClaimAndFinishedRunCannotClaimTwice" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="1502451331" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:45Z" duration="0.006012" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1179" name="SameSeedAndCommandsReplayEveryTick" fullname="Bokumyaku.Tests.RunSimulatorTests.SameSeedAndCommandsReplayEveryTick" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:55Z" duration="9.682419" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1175" name="SameSeedAndCommandsReplayEveryTick(0)" fullname="Bokumyaku.Tests.RunSimulatorTests.SameSeedAndCommandsReplayEveryTick(0)" methodname="SameSeedAndCommandsReplayEveryTick" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="699040585" result="Passed" start-time="2026-10-22 10:35:45Z" end-time="2026-10-22 10:35:47Z" duration="2.290281" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1176" name="SameSeedAndCommandsReplayEveryTick(42)" fullname="Bokumyaku.Tests.RunSimulatorTests.SameSeedAndCommandsReplayEveryTick(42)" methodname="SameSeedAndCommandsReplayEveryTick" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="1096931526" result="Passed" start-time="2026-10-22 10:35:47Z" end-time="2026-10-22 10:35:50Z" duration="2.411440" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1177" name="SameSeedAndCommandsReplayEveryTick(-17)" fullname="Bokumyaku.Tests.RunSimulatorTests.SameSeedAndCommandsReplayEveryTick(-17)" methodname="SameSeedAndCommandsReplayEveryTick" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="667927217" result="Passed" start-time="2026-10-22 10:35:50Z" end-time="2026-10-22 10:35:52Z" duration="2.687498" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1178" name="SameSeedAndCommandsReplayEveryTick(int.MaxValue)" fullname="Bokumyaku.Tests.RunSimulatorTests.SameSeedAndCommandsReplayEveryTick(int.MaxValue)" methodname="SameSeedAndCommandsReplayEveryTick" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="810781895" result="Passed" start-time="2026-10-22 10:35:52Z" end-time="2026-10-22 10:35:55Z" duration="2.285169" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1183" name="SuccessfulPurchaseChargesExactCostAndOnlyOneLevel" fullname="Bokumyaku.Tests.RunSimulatorTests.SuccessfulPurchaseChargesExactCostAndOnlyOneLevel" methodname="SuccessfulPurchaseChargesExactCostAndOnlyOneLevel" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="1555670211" result="Passed" start-time="2026-10-22 10:35:55Z" end-time="2026-10-22 10:35:55Z" duration="0.000754" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1208" name="SwitchingBuildDuringRunIsDeterministicAndManualStopsPurchases" fullname="Bokumyaku.Tests.RunSimulatorTests.SwitchingBuildDuringRunIsDeterministicAndManualStopsPurchases" methodname="SwitchingBuildDuringRunIsDeterministicAndManualStopsPurchases" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="383860331" result="Passed" start-time="2026-10-22 10:35:55Z" end-time="2026-10-22 10:35:56Z" duration="1.070268" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1200" name="ThreeRunsRetainMetaAndResetRunCurrency" fullname="Bokumyaku.Tests.RunSimulatorTests.ThreeRunsRetainMetaAndResetRunCurrency" methodname="ThreeRunsRetainMetaAndResetRunCurrency" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="773218424" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.011153" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1180" name="TwoTicksPerFrameMatchesOneTickPerFrame" fullname="Bokumyaku.Tests.RunSimulatorTests.TwoTicksPerFrameMatchesOneTickPerFrame" methodname="TwoTicksPerFrameMatchesOneTickPerFrame" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="1094413405" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.396768" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1182" name="UnaffordableOrInvalidPurchaseDoesNotMutateState" fullname="Bokumyaku.Tests.RunSimulatorTests.UnaffordableOrInvalidPurchaseDoesNotMutateState" methodname="UnaffordableOrInvalidPurchaseDoesNotMutateState" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="1942123351" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.001167" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1184" name="UpgradeLevelArrayCannotMutateSimulation" fullname="Bokumyaku.Tests.RunSimulatorTests.UpgradeLevelArrayCannotMutateSimulation" methodname="UpgradeLevelArrayCannotMutateSimulation" classname="Bokumyaku.Tests.RunSimulatorTests" runstate="Runnable" seed="2086523330" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.000205" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1213" name="WeaponTests" fullname="Bokumyaku.Tests.WeaponTests" classname="Bokumyaku.Tests.WeaponTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.214704" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1218" name="BleedCreatesOnlyOneFieldAndExpiresAtItsDeclaredTick" fullname="Bokumyaku.Tests.WeaponTests.BleedCreatesOnlyOneFieldAndExpiresAtItsDeclaredTick" methodname="BleedCreatesOnlyOneFieldAndExpiresAtItsDeclaredTick" classname="Bokumyaku.Tests.WeaponTests" runstate="Runnable" seed="1741552415" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.002580" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1219" name="BleedDamageTracksTipPressureAndDoesNotDoubleSpawnLegacyField" fullname="Bokumyaku.Tests.WeaponTests.BleedDamageTracksTipPressureAndDoesNotDoubleSpawnLegacyField" methodname="BleedDamageTracksTipPressureAndDoesNotDoubleSpawnLegacyField" classname="Bokumyaku.Tests.WeaponTests" runstate="Runnable" seed="1894156597" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.001437" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1220" name="ExistingFieldPersistsAfterSwitchAndOnlyOldestTwoOverlap" fullname="Bokumyaku.Tests.WeaponTests.ExistingFieldPersistsAfterSwitchAndOnlyOldestTwoOverlap" methodname="ExistingFieldPersistsAfterSwitchAndOnlyOldestTwoOverlap" classname="Bokumyaku.Tests.WeaponTests" runstate="Runnable" seed="1995771472" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.001069" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1221" name="FieldCapacityDropsNewFieldsWithoutUnboundedGrowth" fullname="Bokumyaku.Tests.WeaponTests.FieldCapacityDropsNewFieldsWithoutUnboundedGrowth" methodname="FieldCapacityDropsNewFieldsWithoutUnboundedGrowth" classname="Bokumyaku.Tests.WeaponTests" runstate="Runnable" seed="87398574" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.004232" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1225" name="IsolatedFastGeometryRewardsPointAtEqualUpgradeCost" fullname="Bokumyaku.Tests.WeaponTests.IsolatedFastGeometryRewardsPointAtEqualUpgradeCost" methodname="IsolatedFastGeometryRewardsPointAtEqualUpgradeCost" classname="Bokumyaku.Tests.WeaponTests" runstate="Runnable" seed="1114046624" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.001701" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1216" name="PierceEqualProjectionUsesIdRatherThanInsertionOrder" fullname="Bokumyaku.Tests.WeaponTests.PierceEqualProjectionUsesIdRatherThanInsertionOrder" methodname="PierceEqualProjectionUsesIdRatherThanInsertionOrder" classname="Bokumyaku.Tests.WeaponTests" runstate="Runnable" seed="1901697847" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.001224" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1215" name="PierceHitsFirstThreeOnForwardLineButNotBehindSidewaysOrBeyondRange" fullname="Bokumyaku.Tests.WeaponTests.PierceHitsFirstThreeOnForwardLineButNotBehindSidewaysOrBeyondRange" methodname="PierceHitsFirstThreeOnForwardLineButNotBehindSidewaysOrBeyondRange" classname="Bokumyaku.Tests.WeaponTests" runstate="Runnable" seed="76008364" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.001582" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1217" name="PierceTradesSingleTargetDamageAndCooldownForRange" fullname="Bokumyaku.Tests.WeaponTests.PierceTradesSingleTargetDamageAndCooldownForRange" methodname="PierceTradesSingleTargetDamageAndCooldownForRange" classname="Bokumyaku.Tests.WeaponTests" runstate="Runnable" seed="723559896" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.001085" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1223" name="PiercingKillAwardsEachEnemyOnlyOnce" fullname="Bokumyaku.Tests.WeaponTests.PiercingKillAwardsEachEnemyOnlyOnce" methodname="PiercingKillAwardsEachEnemyOnlyOnce" classname="Bokumyaku.Tests.WeaponTests" runstate="Runnable" seed="1703692341" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.000489" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1214" name="PointRemainsDefaultAndHitsOnlyOneTarget" fullname="Bokumyaku.Tests.WeaponTests.PointRemainsDefaultAndHitsOnlyOneTarget" methodname="PointRemainsDefaultAndHitsOnlyOneTarget" classname="Bokumyaku.Tests.WeaponTests" runstate="Runnable" seed="1588169276" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.000416" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1224" name="SlowDenseGeometryRewardsPierceAndBleedAtEqualUpgradeCost" fullname="Bokumyaku.Tests.WeaponTests.SlowDenseGeometryRewardsPierceAndBleedAtEqualUpgradeCost" methodname="SlowDenseGeometryRewardsPierceAndBleedAtEqualUpgradeCost" classname="Bokumyaku.Tests.WeaponTests" runstate="Runnable" seed="1522756596" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.000699" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1222" name="WeaponChangesCannotResetCooldownOrChangeFinishedRun" fullname="Bokumyaku.Tests.WeaponTests.WeaponChangesCannotResetCooldownOrChangeFinishedRun" methodname="WeaponChangesCannotResetCooldownOrChangeFinishedRun" classname="Bokumyaku.Tests.WeaponTests" runstate="Runnable" seed="219607388" result="Passed" start-time="2026-10-22 10:35:56Z" end-time="2026-10-22 10:35:56Z" duration="0.001752" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\che22\Desktop\SUMI_ENGINE_Codex_Starter\docs/evidence/bokumyaku-editmode-v9.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,6 +1,6 @@
 # 墨脈 — 一人用システム完成チェック
 
-最新は末尾のv0.8増分判定。後半供給投資・旧ルール保存をPCα受入。初期役割比較G04は既定seed合格を維持し、追加seedでは未達。初回尺G05、育成後の記録構成、長期経済・美術/実機は未合格。
+最新は末尾のv0.9長期基盤の検証状況。v0.8までのPCα受入は履歴として保持し、v0.9のUnity/Player最終判定は未確定。初期役割比較G04は既定seed合格を維持し、追加seedでは未達。初回尺G05、育成後の記録構成、長期経済・美術/実機は未合格。
 
 2026-10-22 JST。ユーザーの「システム面完成まで」を受け、40bb883/v0.4から実装を継続。今回の対象はGDDの一人用MVPと既存の武器/放置ビルド案。状態は実検証後に更新する。
 
@@ -67,7 +67,7 @@
 - 6武器各900tick、攻撃/購入/checkpoint復帰、自動再出撃42→43を実Playerで確認。別プロセスで同checkpoint復帰＋600tick未来一致。両passed=true/exit0（105.811秒、14.209秒）。通常セーブは使用しない。PlayerログにException/Error/Failedなし。
 - 証拠: evidence/bokumyaku-player-v7.json、bokumyaku-player-resume-v7.json、bokumyaku-player-launch-v7.json、bokumyaku-artifact-v7.json。ビルドサイズ95,024,073bytes。エンジン/Scene/ProjectSettingsにコミット差分なし。
 
-## 2026-10-22 v0.8 記録構成の後半供給（最新）
+## 2026-10-22 v0.8 記録構成の後半供給（履歴）
 - 基点03628c2、main clean/同期。Unity6000.3.26f1/Pipeline0.9.0-exp.1。Core比較/QA永続化/Demo照合/親統合で所有分割し、Engine/Scene/BrushLabは変更なし。
 - 最大3案を比較。A枝上限のみは供給条件に届かず不変。B後半供給優先を採用。C滲墨を供給へ置換は初期から悪化し不採用。各480走＋B固定後480走＝1920走（反復基準含む、独立1920seedではない）。
 - rules4: Recordの枝Lv6以降、Damage条件が足りれば次枝のSupply>=2*nextまで有償供給を優先、枝上限9。既存の毎秒購入枠/費用/敵/報酬は不変。旧rules1〜3は従来処理。保存先v5、schema3/configv3、旧原本/bak保護。
@@ -80,3 +80,25 @@
 - 6武器各900tick・checkpoint・自動再出撃、別プロセスで保存復帰後600tick未来一致。2プロセスともpassed=true/exit0、105.917秒/14.320秒。PlayerログException/Error/Failedなし。
 - 証拠はbokumyaku-player-v8.json、player-resume-v8.json、player-launch-v8.json、artifact-v8.json。通常セーブは未使用。描画FPS/モバイル/物理入力/長時間放置の証明ではない。
 - 起動先Builds/Bokumyaku-v0.8/Bokumyaku.exe。実装bb9886f、今回の有限比較と機能回帰の増分を受入。G05/育成役割/追加seed初期役割の未達は維持。
+
+## 2026-10-22 v0.9 長期進行基盤（最新・確定結果は末尾）
+
+- 新規rules5は60Wave終了を外し、100000Wave/36000000tickを有限の安全上限とする。旧rules1〜4は60Wave/21600tickを保持する。UIは各周回の上限を表示し、長時間表示は64bit整数で整形する。これは完成コンテンツ10万面や無限進行の実装を意味しない。
+- Wave1〜60のHP/出現率/報酬係数/速度係数は旧式と厳密一致。61以降はHPを多項式、報酬係数を対数、速度を上限制にし、整数カウンタの保守上界を確認する。武器・成長コンテンツの追加や役割差の合格宣言は行わない。
+- 保存先はcampaign-v6。v5→v4→v3→v2→旧Metaの順で原本保護移行し、途中周回のrulesを維持する。保存互換とUnity実操作の最終結果はQA台帳へ確定後に記録する。
+- 独立C#検証: 全100000Waveの4式が有限・単調、Boss HP<=1e12、高速敵速度<=157.5、1〜60旧式厳密一致。整数の保守上界は公開検証限界とint32範囲内。Wave1000/10000/30000/99999/100000×6武器の30合成境界で、900tick以内の自然終端と毎tick JSON復帰後の未来一致を確認。最終Waveの終端後追加tick不変、旧Wave60直前fixtureを新rulesへ切り替えた継続も確認。
+- 自然進行の小標本: seed42、固定meta14/13/14/12、6武器×Farming/Recordの12条件をWave1から実行。全12条件が18731〜28468tickで自然敗北、5条件がWave60を越えた。最高はEnso/Recordの79Wave完了・80Wave敗北。最大同時敵37、墨場48、枝30。これは複数seedのバランス合格、恒久育成を含む長期経済、10万Wave自然到達、Unity描画性能の証明ではない。
+- 証拠: `evidence/longrun-v9-independent.json`、再実行: `scripts/Test-BokumyakuLongRunV9.ps1`。高Waveは状態注入による境界検証と自然進行を明確に分ける。Unity/Windowsの最終試験数・合格数は末尾の確定記録を参照。
+- 次工程: v0.9のUnity/Player/保存回帰を確定し、その後に上限打切りのない複数seed・同metaの役割比較と長期経済を進める。G05初回尺、追加seed初期役割、育成後役割の未達を維持する。美術・音・実機・長時間放置・物理操作は別の品質工程。
+### v0.9 Unity受入確定
+- 実装SHA dca9fb9。Unity184/184（57.7711037秒）、独立基礎12/12、長期独立検証PASS。Unity初回/2回目の失敗XMLも保持し、最終合格と区別。
+- 実画面44/44。旧v8保存原本保持・新周回rules5・七強化・3周・報酬・保存失敗再試行に加え、Wave60越え、注入Wave30000のlive Update進行/保存/復帰一致。highwave-v9.pngで30000/100000と5999:48表示を目視確認。合成入力/注入試験であり物理入力・自然高Wave到達・長時間実測ではない。
+- Windows64 build_6788b70521a9成功、95,027,145bytes、29,898ms、error/warning0。出力Builds/Bokumyaku-v0.9/Bokumyaku.exe。ツールの開始/終了時刻は返却値をそのまま保存し、検証時刻とは混同しない。
+- Unity現在Console error0/warning0・compilationFailed=false。過去buffer件数を現在エラー数と扱わない。Play停止、Scene dirty=false、背景実行false、QA保存キー解除。
+- Engine/BrushLab/Scene/ProjectSettingsの差分なし。旧Measure-BokumyakuSystems/Weaponsは歴史用で現行検証に使用しない。再現手順はTest-BokumyakuLongRunV9.ps1と今回UnityAutomation/PlayerV9スクリプト。
+
+### v0.9 Windows最終受入・再開点
+- Windows実行: 6武器各900tick、checkpoint、自動再出撃に合格。別プロセスから復帰し600tick後の未来一致。両passed=true/exit0、106.373秒と14.078秒。PlayerログのException/Error/Failedなし。
+- 証拠: bokumyaku-player-v9.json、player-resume-v9.json、player-launch-v9.json、artifact-v9.json。隔離セーブのみ使用。モバイル/長時間実測/描画FPSの合格ではない。
+- 起動先Builds/Bokumyaku-v0.9/Bokumyaku.exe（Data/UnityPlayer/MonoBleedingEdge同梱のまま使用）。実装dca9fb9。今回の長期基盤を受入し、システム全体完成とはしない。
+- 次: 強化上限と恒久成長を長期向けに拡張。複数seed・同metaで放置周回の収益と記録構成の到達を比較する。現状は最高79Wave完了の小標本、数万Wave攻略バランスは未達。初回尺G05/育成役割/実機/美術の残件も維持。

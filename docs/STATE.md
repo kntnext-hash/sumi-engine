@@ -2,7 +2,14 @@
 
 更新: 2026-10-22 JST。以下の現行要約と末尾の最新記録を優先する。
 
-## 現行要約 — ゲームシステム α v0.8
+## 現行要約 — ゲームシステム α v0.9（長期基盤）
+- 最新変更: 新規rules5を100,000Wave/36,000,000tickへ拡張。旧rules1〜4は60Waveのまま継続。数値上界・同時存在上限を検証し、保存先campaign-v6へ原本保護移行する。
+- 独立検証: 全100,000Wave数式、30高Wave注入条件、最終境界、JSON復帰一致に合格。自然進行12条件は全て敗北まで実行し、最高79Wave突破・80Wave敗北。数万Waveへ自然到達した記録ではない。
+- 次の実装は長期育成・周回強化の拡張と、放置周回/記録ビルドの調整。現行の強化上限は据置きであり、長期バランスは未完成。Unity/画面/Windowsの今回確定結果は末尾を参照。
+
+- 今回のUnity184/184、画面44/44に合格。実装SHA dca9fb9。Windows版はBuilds/Bokumyaku-v0.9へ生成済み。実Player確定結果は末尾。
+
+### 前版v0.8の受入と継続課題
 - Unity 6000.3.26f1 / Pipeline 0.9.0-exp.1を利用可能。描画PC初版v0.2は受入済み。この部屋はゲームのみを変更する。
 - 墨脈は5敵/6武器/60Wave上限、枝供給、7周回強化/4恒久強化、核修復、3構成、履歴、途中保存/復帰、自動再出撃を実装。完成美術やオンラインを含む製品完成ではない。
 - v0.7は3候補の有限比較から分岐角±0.65を採用。初期meta0の同seed/同武器60組で記録深度56勝、周回効率55勝。G-V2-04合格を維持。初回5〜8分は45/50、G-V2-05未合格。
@@ -237,3 +244,16 @@
 - 6武器各900tick・checkpoint・自動再出撃、別プロセスで保存復帰後600tick未来一致。2プロセスともpassed=true/exit0、105.917秒/14.320秒。PlayerログException/Error/Failedなし。
 - 証拠はbokumyaku-player-v8.json、player-resume-v8.json、player-launch-v8.json、artifact-v8.json。通常セーブは未使用。描画FPS/モバイル/物理入力/長時間放置の証明ではない。
 - 起動先Builds/Bokumyaku-v0.8/Bokumyaku.exe。実装bb9886f、今回の有限比較と機能回帰の増分を受入。G05/育成役割/追加seed初期役割の未達は維持。
+
+### v0.9 Unity受入確定
+- 実装SHA dca9fb9。Unity184/184（57.7711037秒）、独立基礎12/12、長期独立検証PASS。Unity初回/2回目の失敗XMLも保持し、最終合格と区別。
+- 実画面44/44。旧v8保存原本保持・新周回rules5・七強化・3周・報酬・保存失敗再試行に加え、Wave60越え、注入Wave30000のlive Update進行/保存/復帰一致。highwave-v9.pngで30000/100000と5999:48表示を目視確認。合成入力/注入試験であり物理入力・自然高Wave到達・長時間実測ではない。
+- Windows64 build_6788b70521a9成功、95,027,145bytes、29,898ms、error/warning0。出力Builds/Bokumyaku-v0.9/Bokumyaku.exe。ツールの開始/終了時刻は返却値をそのまま保存し、検証時刻とは混同しない。
+- Unity現在Console error0/warning0・compilationFailed=false。過去buffer件数を現在エラー数と扱わない。Play停止、Scene dirty=false、背景実行false、QA保存キー解除。
+- Engine/BrushLab/Scene/ProjectSettingsの差分なし。旧Measure-BokumyakuSystems/Weaponsは歴史用で現行検証に使用しない。再現手順はTest-BokumyakuLongRunV9.ps1と今回UnityAutomation/PlayerV9スクリプト。
+
+### v0.9 Windows最終受入・再開点
+- Windows実行: 6武器各900tick、checkpoint、自動再出撃に合格。別プロセスから復帰し600tick後の未来一致。両passed=true/exit0、106.373秒と14.078秒。PlayerログのException/Error/Failedなし。
+- 証拠: bokumyaku-player-v9.json、player-resume-v9.json、player-launch-v9.json、artifact-v9.json。隔離セーブのみ使用。モバイル/長時間実測/描画FPSの合格ではない。
+- 起動先Builds/Bokumyaku-v0.9/Bokumyaku.exe（Data/UnityPlayer/MonoBleedingEdge同梱のまま使用）。実装dca9fb9。今回の長期基盤を受入し、システム全体完成とはしない。
+- 次: 強化上限と恒久成長を長期向けに拡張。複数seed・同metaで放置周回の収益と記録構成の到達を比較する。現状は最高79Wave完了の小標本、数万Wave攻略バランスは未達。初回尺G05/育成役割/実機/美術の残件も維持。

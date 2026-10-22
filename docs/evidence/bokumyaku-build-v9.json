@@ -1,0 +1,15 @@
+{
+  "status": "completed",
+  "buildId": "build_6788b70521a9",
+  "result": "Succeeded",
+  "platform": "StandaloneWindows64",
+  "outputPath": "C:/Users/che22/Desktop/SUMI_ENGINE_Codex_Starter/Builds/Bokumyaku-v0.9/Bokumyaku.exe",
+  "totalSizeBytes": 95027145,
+  "buildTimeMs": 29898,
+  "buildStartedAt": "2026-10-22T01:37:30.7954859Z",
+  "buildEndedAt": "2026-10-22T01:38:00.6937741Z",
+  "totalWarnings": 0,
+  "totalErrors": 0,
+  "errors": [],
+  "warnings": []
+}

@@ -1,0 +1,272 @@
+{
+  "classification": "Standalone C# injected boundary tests; NOT naturally reached high waves or Unity verification",
+  "passed": true,
+  "rulesVersion": 5,
+  "sourceHashes": [
+    {
+      "path": "AutoRepeatController.cs",
+      "sha256": "D110E501CA532370504A4F5E1C09842769F0DE9CC4EA51DDAF1E640FE3B67ACE"
+    },
+    {
+      "path": "RunSimulator.cs",
+      "sha256": "4B08C49AD583C5D52960D34668CBD76DB8E6CF5270795BD63C03BFB092474797"
+    },
+    {
+      "path": "RunSimulator.ExactSnapshot.cs",
+      "sha256": "1D3DEC084E8811727E8DC333E7FB0937A3A06AC1CF4711F0CACA85D312CB4969"
+    },
+    {
+      "path": "RunSimulator.LongRunRules.cs",
+      "sha256": "ABE9696CB5182D7B17FF6C69EE7225C3373FA6EA0EF809BB989B21BDD31C574A"
+    },
+    {
+      "path": "RunSimulator.Snapshot.cs",
+      "sha256": "B77746B5B8CCF7392939A4A8D6DE831450BEEC238379287B21BE020BAEEA2E13"
+    },
+    {
+      "path": "RunSnapshot.cs",
+      "sha256": "21F9068A22BBDBCF877341E5B6459857F12164905971FA211F610AB429501FCB"
+    }
+  ],
+  "formulaWaves": 100000,
+  "legacyExactFormulaWaves": 60,
+  "maxBossHp": 240568425162.37854,
+  "maxSpawnRate": 4.8,
+  "maxRewardFactor": 9.498580902748127,
+  "maxFastSpeed": 157.5,
+  "integerBounds": {
+    "regularSpawns": 4320001,
+    "bossSpawns": 10000,
+    "enemyIds": 12970003,
+    "rewardPoints": 140160032,
+    "ink": 560640128,
+    "crystals": 11212802,
+    "growthCharge": 4330001,
+    "assumptions": "All regular spawns may split; regular yield<=2, boss12, Harvest16, metaHarvest20, rewardFactor<10; children give no income/reward/growth"
+  },
+  "boundaries": [
+    "1000/0:Defeated:188",
+    "1000/1:Defeated:188",
+    "1000/2:Defeated:188",
+    "1000/3:Defeated:188",
+    "1000/4:Defeated:188",
+    "1000/5:Defeated:188",
+    "10000/0:Defeated:188",
+    "10000/1:Defeated:188",
+    "10000/2:Defeated:188",
+    "10000/3:Defeated:188",
+    "10000/4:Defeated:188",
+    "10000/5:Defeated:188",
+    "30000/0:Defeated:188",
+    "30000/1:Defeated:188",
+    "30000/2:Defeated:188",
+    "30000/3:Defeated:188",
+    "30000/4:Defeated:188",
+    "30000/5:Defeated:188",
+    "99999/0:Defeated:190",
+    "99999/1:Defeated:190",
+    "99999/2:Defeated:190",
+    "99999/3:Defeated:190",
+    "99999/4:Defeated:190",
+    "99999/5:Defeated:190",
+    "100000/0:Defeated:188",
+    "100000/1:Defeated:188",
+    "100000/2:Defeated:188",
+    "100000/3:Defeated:188",
+    "100000/4:Defeated:188",
+    "100000/5:Defeated:188"
+  ],
+  "finalBoundary": "TestCompleted",
+  "old60BoundaryAfter900TicksWave": 63,
+  "jsonValidation": "Every simulated tick compare future against JSON restored copy; exactDoubleBits retained",
+  "naturalProgression": {
+    "classification": "Small natural progression sample, not balance acceptance or proof of reaching 100000 waves",
+    "seed": 42,
+    "meta": "14/13/14/12",
+    "tickBudgetPerRun": 200000,
+    "weaponOrder": [
+      "Point",
+      "Pierce",
+      "Bleed",
+      "Sweep",
+      "Enso",
+      "Resonance"
+    ],
+    "buildIds": {
+      "Record": 2,
+      "Farming": 1
+    },
+    "runs": [
+      {
+        "seed": 42,
+        "weapon": 0,
+        "build": 1,
+        "ticks": 18731,
+        "wave": 53,
+        "completedWave": 52,
+        "crystals": 998,
+        "maxEnemies": 27,
+        "maxFields": 21,
+        "maxBranches": 23,
+        "status": "Defeated",
+        "finished": true
+      },
+      {
+        "seed": 42,
+        "weapon": 0,
+        "build": 2,
+        "ticks": 19241,
+        "wave": 54,
+        "completedWave": 53,
+        "crystals": 97,
+        "maxEnemies": 27,
+        "maxFields": 24,
+        "maxBranches": 30,
+        "status": "Defeated",
+        "finished": true
+      },
+      {
+        "seed": 42,
+        "weapon": 1,
+        "build": 1,
+        "ticks": 18794,
+        "wave": 53,
+        "completedWave": 52,
+        "crystals": 1015,
+        "maxEnemies": 27,
+        "maxFields": 16,
+        "maxBranches": 23,
+        "status": "Defeated",
+        "finished": true
+      },
+      {
+        "seed": 42,
+        "weapon": 1,
+        "build": 2,
+        "ticks": 19203,
+        "wave": 54,
+        "completedWave": 53,
+        "crystals": 96,
+        "maxEnemies": 29,
+        "maxFields": 18,
+        "maxBranches": 30,
+        "status": "Defeated",
+        "finished": true
+      },
+      {
+        "seed": 42,
+        "weapon": 2,
+        "build": 1,
+        "ticks": 20469,
+        "wave": 57,
+        "completedWave": 56,
+        "crystals": 1308,
+        "maxEnemies": 33,
+        "maxFields": 43,
+        "maxBranches": 23,
+        "status": "Defeated",
+        "finished": true
+      },
+      {
+        "seed": 42,
+        "weapon": 2,
+        "build": 2,
+        "ticks": 20435,
+        "wave": 57,
+        "completedWave": 56,
+        "crystals": 110,
+        "maxEnemies": 32,
+        "maxFields": 48,
+        "maxBranches": 30,
+        "status": "Defeated",
+        "finished": true
+      },
+      {
+        "seed": 42,
+        "weapon": 3,
+        "build": 1,
+        "ticks": 21641,
+        "wave": 61,
+        "completedWave": 60,
+        "crystals": 1527,
+        "maxEnemies": 33,
+        "maxFields": 18,
+        "maxBranches": 23,
+        "status": "Defeated",
+        "finished": true
+      },
+      {
+        "seed": 42,
+        "weapon": 3,
+        "build": 2,
+        "ticks": 24813,
+        "wave": 69,
+        "completedWave": 68,
+        "crystals": 165,
+        "maxEnemies": 37,
+        "maxFields": 23,
+        "maxBranches": 30,
+        "status": "Defeated",
+        "finished": true
+      },
+      {
+        "seed": 42,
+        "weapon": 4,
+        "build": 1,
+        "ticks": 24450,
+        "wave": 68,
+        "completedWave": 67,
+        "crystals": 2135,
+        "maxEnemies": 30,
+        "maxFields": 18,
+        "maxBranches": 23,
+        "status": "Defeated",
+        "finished": true
+      },
+      {
+        "seed": 42,
+        "weapon": 4,
+        "build": 2,
+        "ticks": 28468,
+        "wave": 80,
+        "completedWave": 79,
+        "crystals": 212,
+        "maxEnemies": 28,
+        "maxFields": 24,
+        "maxBranches": 30,
+        "status": "Defeated",
+        "finished": true
+      },
+      {
+        "seed": 42,
+        "weapon": 5,
+        "build": 1,
+        "ticks": 21345,
+        "wave": 60,
+        "completedWave": 59,
+        "crystals": 1481,
+        "maxEnemies": 31,
+        "maxFields": 18,
+        "maxBranches": 23,
+        "status": "Defeated",
+        "finished": true
+      },
+      {
+        "seed": 42,
+        "weapon": 5,
+        "build": 2,
+        "ticks": 21754,
+        "wave": 61,
+        "completedWave": 60,
+        "crystals": 127,
+        "maxEnemies": 30,
+        "maxFields": 23,
+        "maxBranches": 30,
+        "status": "Defeated",
+        "finished": true
+      }
+    ],
+    "finished": 12,
+    "exceededWave60": 5
+  }
+}

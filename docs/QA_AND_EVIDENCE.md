@@ -285,3 +285,25 @@ CLI Consoleのbuffer累積error15/warn23と現在groundTruth error0/warn0を区�
 - 起動先Builds/Bokumyaku-v0.8/Bokumyaku.exe。実装bb9886f、今回の有限比較と機能回帰の増分を受入。G05/育成役割/追加seed初期役割の未達は維持。
 
 失敗XMLはGit登録時にstack-trace行末空白のみ除去（失敗本文・結果は保持）。
+
+## 2026-10-22 v0.9 長期進行基盤
+- 基点9639f7e、main clean/同期から開始。Core/QA/Demoの所有を分け、Engine/Scene/Brush Labは変更せず。新規rules5は100,000Wave/36,000,000tick、旧rules1〜4は60Wave/21,600tickを保持。
+- HP61以降を二次式、速度を有限上限、報酬Wave倍率を対数式へ変更。同時敵96/領域96/枝64を維持し、全100,000Wave数式と整数上界を独立検証。自然進行12条件は最高79Wave完了、80Wave敗北。高Wave注入30条件と自然到達を区別する。
+- 保存先v6へ原本保護コピー移行。実v0.8 DLLから変更前に採取したfixtureで旧ルール未来/終端を照合。途中状態のJsonUtilityコピーによる丸め累積を発見し、strict Restore/Captureで正確値を保つCloneへ修正。許容誤差幅は変更しない。
+- 初回Unity182件中178合格: 保存丸め3件と旧60Wave停止条件1件。2回目184件中180合格: 旧移行4件のraw JSON比較をexactDoubleBits一致＋厳密復元状態の全Campaign比較へ変更。900tick後旧DLL一致と原本/.bak bytes一致を保持。失敗XMLを保存。
+- Unity CLI更新beta14の案内のみ。承認前のself-updateは行わず、既存beta13/Editor6000.3.26f1で検証。接続消失は再コンパイルのドメイン再読込後に復帰、再導入は不要。
+- 強化上限/長期経済は今回未拡張。次は長期育成と周回強化、放置周回/記録ビルド。初回5〜8分45/50の未合格は残す。
+
+### v0.9 Unity受入確定
+- 実装SHA dca9fb9。Unity184/184（57.7711037秒）、独立基礎12/12、長期独立検証PASS。Unity初回/2回目の失敗XMLも保持し、最終合格と区別。
+- 実画面44/44。旧v8保存原本保持・新周回rules5・七強化・3周・報酬・保存失敗再試行に加え、Wave60越え、注入Wave30000のlive Update進行/保存/復帰一致。highwave-v9.pngで30000/100000と5999:48表示を目視確認。合成入力/注入試験であり物理入力・自然高Wave到達・長時間実測ではない。
+- Windows64 build_6788b70521a9成功、95,027,145bytes、29,898ms、error/warning0。出力Builds/Bokumyaku-v0.9/Bokumyaku.exe。ツールの開始/終了時刻は返却値をそのまま保存し、検証時刻とは混同しない。
+- Unity現在Console error0/warning0・compilationFailed=false。過去buffer件数を現在エラー数と扱わない。Play停止、Scene dirty=false、背景実行false、QA保存キー解除。
+- Engine/BrushLab/Scene/ProjectSettingsの差分なし。旧Measure-BokumyakuSystems/Weaponsは歴史用で現行検証に使用しない。再現手順はTest-BokumyakuLongRunV9.ps1と今回UnityAutomation/PlayerV9スクリプト。
+失敗XMLのstack-trace行末空白のみGit登録前に除去。失敗本文と結果は保持。
+
+### v0.9 Windows最終受入・再開点
+- Windows実行: 6武器各900tick、checkpoint、自動再出撃に合格。別プロセスから復帰し600tick後の未来一致。両passed=true/exit0、106.373秒と14.078秒。PlayerログのException/Error/Failedなし。
+- 証拠: bokumyaku-player-v9.json、player-resume-v9.json、player-launch-v9.json、artifact-v9.json。隔離セーブのみ使用。モバイル/長時間実測/描画FPSの合格ではない。
+- 起動先Builds/Bokumyaku-v0.9/Bokumyaku.exe（Data/UnityPlayer/MonoBleedingEdge同梱のまま使用）。実装dca9fb9。今回の長期基盤を受入し、システム全体完成とはしない。
+- 次: 強化上限と恒久成長を長期向けに拡張。複数seed・同metaで放置周回の収益と記録構成の到達を比較する。現状は最高79Wave完了の小標本、数万Wave攻略バランスは未達。初回尺G05/育成役割/実機/美術の残件も維持。
