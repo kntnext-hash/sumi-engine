@@ -12,6 +12,7 @@ namespace Bokumyaku.Diagnostics
     public sealed class BokumyakuPlayerProbe : MonoBehaviour
     {
         string output;
+        bool resumeOnly;
         [Serializable] sealed class Report
         {
             public string version, error;
@@ -22,48 +23,99 @@ namespace Bokumyaku.Diagnostics
             public int autoRepeatSeed, completedRuns, loadedArtCount, overlayTransparentPixels, overlayInkPixels;
             public long sessionCrystals;
             public string autoRepeatMethod;
+            public bool checkpointResumePassed, separateProcessResume;
         }
         [Serializable] sealed class WeaponReport
         {
             public string requestedWeapon, weapon, build;
-            public bool passed, sawAttack, weaponMatches;
+            public bool passed, sawAttack, weaponMatches, checkpointResumePassed;
             public int ticks, branches, kills, purchases, peakFields, peakWeaponFields;
             public float pigment;
         }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Boot()
         {
-            if (Application.isEditor) return;
+            if (Application.isEditor)
+            {
+#if UNITY_EDITOR
+                // Explicit, one-shot Editor QA isolation, applied before any Start migration.
+                const string key = "Bokumyaku.QaSavePath";
+                string isolated = UnityEditor.SessionState.GetString(key, "");
+                UnityEditor.SessionState.EraseString(key);
+                if (!string.IsNullOrEmpty(isolated))
+                {
+                    var editorGame = FindFirstObjectByType<BokumyakuGame>();
+                    if (editorGame != null) editorGame.SavePathOverride = isolated;
+                }
+#endif
+                return;
+            }
             var args = Environment.GetCommandLineArgs();
             int i = Array.IndexOf(args, "--bokumyaku-smoke-output");
             if (i < 0 || i + 1 >= args.Length) return;
             var probe = new GameObject("Bokumyaku explicit player probe").AddComponent<BokumyakuPlayerProbe>();
             probe.output = Path.GetFullPath(args[i + 1]);
+            probe.resumeOnly = Array.IndexOf(args, "--bokumyaku-resume-check") >= 0;
+            // Set the isolated save before the scene's Start can load normal progress.
+            var game = FindFirstObjectByType<BokumyakuGame>();
+            if (game != null) game.SavePathOverride = Path.Combine(probe.output, "qa-campaign.json");
             Application.runInBackground = true;
             Application.targetFrameRate = 60;
         }
         IEnumerator Start()
         {
             yield return null;
-            var report = new Report { version = Application.unityVersion, startFrame = Time.frameCount, passed = true, runs = new WeaponReport[3] };
+            var report = new Report { version = Application.unityVersion, startFrame = Time.frameCount, passed = true, runs = new WeaponReport[resumeOnly ? 0 : 6], separateProcessResume = resumeOnly };
             BokumyakuGame game = null;
             try
             {
                 Directory.CreateDirectory(output);
                 game = FindFirstObjectByType<BokumyakuGame>();
                 if (game == null) throw new InvalidOperationException("Game scene missing.");
-                game.SavePathOverride = Path.Combine(output, "qa-progress.json");
-                game.Meta = new MetaProgress();
+                if (!game.TryReloadProgress()) throw new InvalidOperationException("Isolated campaign load failed.");
             }
             catch (Exception e) { report.error = e.ToString(); report.passed = false; }
+            if (resumeOnly && report.error == null)
+            {
+                RunSimulator expected = null;
+                try
+                {
+                    string saved = File.ReadAllText(Path.Combine(output, "checkpoint-expected.json"));
+                    report.checkpointResumePassed = game.ResumeAvailable && game.IsPaused && game.Speed == 2 &&
+                        game.Campaign.TotalRuns == 1 && JsonUtility.ToJson(game.Run.CaptureState()) == saved;
+                    expected = RunSimulator.Restore(game.Run.CaptureState());
+                    if (!report.checkpointResumePassed || !game.ResumeRun()) throw new InvalidOperationException("Fresh-process resume differs from saved state.");
+                }
+                catch (Exception e) { report.error = e.ToString(); report.passed = false; }
+                int target = game.Run == null ? 0 : game.Run.TickCount + 600;
+                float resumeDeadline = Time.realtimeSinceStartup + 20;
+                while (report.error == null && game.Run.TickCount < target && game.Run.State == RunStatus.Running && Time.realtimeSinceStartup < resumeDeadline) yield return null;
+                if (report.error == null)
+                {
+                    try
+                    {
+                        game.SetPaused(true);
+                        while (expected.TickCount < game.Run.TickCount && expected.State == RunStatus.Running) expected.Tick();
+                        report.checkpointResumePassed &= game.Run.TickCount >= target &&
+                            JsonUtility.ToJson(expected.CaptureState()) == JsonUtility.ToJson(game.Run.CaptureState()) && game.SaveProgress();
+                        report.passed &= report.checkpointResumePassed;
+                    }
+                    catch (Exception e) { report.error = e.ToString(); report.passed = false; }
+                }
+                report.endFrame = Time.frameCount;
+                File.WriteAllText(Path.Combine(output, "player-resume-report.json"), JsonUtility.ToJson(report, true));
+                Application.Quit(report.passed ? 0 : 1); yield break;
+            }
             for (int i = 0; i < report.runs.Length && report.error == null; i++)
             {
                 var row = new WeaponReport { requestedWeapon = ((WeaponKind)i).ToString() };
                 report.runs[i] = row;
                 try
                 {
+                    if (game.ResumeAvailable && !game.AbandonRun()) throw new InvalidOperationException("Could not discard previous QA run.");
                     game.SetBuild(BuildPreset.Farming); game.SetWeapon((WeaponKind)i);
-                    game.StartRun(42); game.SetSpeed(2);
+                    if (!game.TryStartRun(42)) throw new InvalidOperationException("Could not persist new run.");
+                    game.SetSpeed(2);
                 }
                 catch (Exception e) { report.error = e.ToString(); report.passed = false; break; }
                 float deadline = Time.realtimeSinceStartup + 25;
@@ -87,8 +139,11 @@ namespace Bokumyaku.Diagnostics
                     row.weapon = game.Run.Weapon.ToString();
                     row.weaponMatches = game.Run.Weapon == (WeaponKind)i;
                     row.pigment = game.GetComponent<SumiCanvas>().Core.Paper.TotalPigment();
+                    string before = JsonUtility.ToJson(game.Run.CaptureState());
+                    row.checkpointResumePassed = game.SaveProgress() && game.TryReloadProgress() && game.IsPaused &&
+                        game.ResumeAvailable && game.Speed == 2 && JsonUtility.ToJson(game.Run.CaptureState()) == before;
                     row.passed = row.ticks >= 900 && row.branches > 4 && row.purchases > 0 &&
-                        row.pigment > 0 && row.sawAttack && row.weaponMatches &&
+                        row.pigment > 0 && row.sawAttack && row.weaponMatches && row.checkpointResumePassed &&
                         (i != (int)WeaponKind.Bleed || row.peakWeaponFields > 0);
                     report.passed &= row.passed;
                 }
@@ -98,6 +153,7 @@ namespace Bokumyaku.Diagnostics
             {
                 try
                 {
+                    if (game.ResumeAvailable && !game.AbandonRun()) throw new InvalidOperationException("Could not discard weapon fixture.");
                     game.SetBuild(BuildPreset.Manual); game.SetWeapon(WeaponKind.Point);
                     game.SetPolicy(GrowthPolicy.Focus); game.SetAutoRepeat(true);
                     game.StartRun(42); game.SetSpeed(2);
@@ -131,6 +187,9 @@ namespace Bokumyaku.Diagnostics
                         game.Run.Weapon == WeaponKind.Point && !game.AutoRepeatPending && game.Meta.Crystals == game.SessionCrystals;
                     report.passed &= report.autoRepeatPassed && report.loadedArtCount == 6 && report.overlayTransparentPixels > 0 && report.overlayInkPixels > 0;
                     game.SetAutoRepeat(false);
+                    report.checkpointResumePassed = game.SaveProgress();
+                    File.WriteAllText(Path.Combine(output, "checkpoint-expected.json"), JsonUtility.ToJson(game.Run.CaptureState()));
+                    report.passed &= report.checkpointResumePassed;
                 }
                 catch (Exception e) { report.error = e.ToString(); report.passed = false; }
             }

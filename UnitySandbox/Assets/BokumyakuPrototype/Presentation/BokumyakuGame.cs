@@ -12,6 +12,14 @@ namespace Bokumyaku.Presentation
     [RequireComponent(typeof(SumiCanvas))]
     public sealed class BokumyakuGame : MonoBehaviour
     {
+        public enum GamePage { Home, Battle, Research, Records }
+        public GamePage Page { get; private set; } = GamePage.Home;
+        CampaignProgress campaign;
+        public CampaignProgress Campaign => campaign == null ? null : JsonUtility.FromJson<CampaignProgress>(JsonUtility.ToJson(campaign));
+        public string ActiveRunId => campaign == null ? "" : campaign.ActiveRunId;
+        public bool ResumeAvailable => campaign != null && campaign.HasActiveRun && Run != null && Run.State == RunStatus.Running;
+        public int BestWave => campaign == null ? 0 : campaign.BestWave;
+        public CampaignResult LastResult => campaign == null || campaign.LastResult == null ? null : JsonUtility.FromJson<CampaignResult>(JsonUtility.ToJson(campaign.LastResult));
         public MetaProgress Meta = new MetaProgress();
         public RunSimulator Run { get; private set; }
         public int InitialSeed = 20261022;
@@ -34,20 +42,36 @@ namespace Bokumyaku.Presentation
         string saveWarning = "";
         bool progressLoaded;
         Font japaneseFont;
-        public string SavePathOverride { get; set; } // QA may isolate save writes from player progress.
-        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-prototype-v1.json");
+        string savePathOverride;
+        public string SavePathOverride
+        {
+            get => savePathOverride;
+            set
+            {
+                if (savePathOverride == value) return;
+                autoRepeat.SetEnabled(false); savePathOverride = value;
+                campaign = null; Run = null; Meta = new MetaProgress(); progressLoaded = false;
+                loadBlocked = storageFailed = false; rewarded = rewardSaved = endHandled = false;
+                CompletedRuns = 0; SessionCrystals = 0; AwaitingStart = true; IsPaused = true;
+                Page = GamePage.Home; saveWarning = "";
+            }
+        }
+        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v2.json");
+        string LegacySavePath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-prototype-v1.json") : SavePathOverride + ".legacy";
         SumiCanvas canvas;
         Texture2D disc;
         Texture2D paperArt, landscapeArt, ensoArt, branchOverlay;
-        readonly Texture2D[] weaponArt = new Texture2D[3];
+        readonly Texture2D[] weaponArt = new Texture2D[6];
         Color32[] branchPixels;
         GUIStyle title, heading, body, small, button, number, iconLabel;
         readonly List<Flash> flashes = new List<Flash>();
         readonly Dictionary<int, float> growth = new Dictionary<int, float>();
         float tickClock;
         int drawnBranches;
-        bool metaTab, rewarded;
+        bool rewarded;
         bool endHandled, rewardSaved;
+        bool loadBlocked, abandonConfirmation, storageFailed;
+        float checkpointClock;
         Vector2 panelScroll;
         readonly int[] observedLevels = new int[6];
         readonly float[] levelChangedAt = new float[6];
@@ -62,11 +86,14 @@ namespace Bokumyaku.Presentation
         static readonly string[] MetaNames = { "祖墨", "深根", "生脈", "豊穣" };
         static readonly string[] MetaNotes = { "基礎攻撃力を永続強化", "基礎流墨を永続強化", "枝の成長を早める", "撃破で得る墨を増やす" };
         static readonly string[] BuildNames = { "手動", "広域・滲み", "多枝・火力" };
-        static readonly string[] WeaponNames = { "点墨", "貫筆", "滲墨" };
+        static readonly string[] WeaponNames = { "点墨", "貫筆", "滲墨", "払い", "円相", "共鳴" };
         static readonly string[] WeaponNotes = {
             "単体へ素早く連射。狙った敵を一体ずつ削る。",
             "直線上の最大3体を貫く払い。攻撃間隔は長い。",
-            "紙面に残る範囲攻撃。速い敵は範囲から抜けやすい。"
+            "紙面に残る範囲攻撃。速い敵は範囲から抜けやすい。",
+            "前方へ扇状に払う。まとまった敵を迎え撃つ。",
+            "末端を囲む環状攻撃。至近距離には当たらない。",
+            "近くの敵へ連鎖する墨撃。敵の集まりを狙う。"
         };
         static readonly string[] BuildNotes = {
             "購入は自分で選ぶ。墨を貯めて好きな強化へ投資。",
@@ -76,40 +103,82 @@ namespace Bokumyaku.Presentation
 
         void Start()
         {
-            LoadProgress();
-            EnsureCanvas();
-            if (Run == null)
-            {
-                Run = new RunSimulator(InitialSeed, Meta);
-                Run.SetBuild(SelectedBuild);
-                Run.SetPolicy(SelectedPolicy);
-                Run.SetWeapon(SelectedWeapon);
-                DrawNewBranches();
-            }
+            if (!progressLoaded) TryReloadProgress();
         }
         void LoadProgress()
         {
-            if (progressLoaded) return;
-            Meta = MetaSaveStore.Load(SavePath, out saveWarning);
-            progressLoaded = true;
+            if (!progressLoaded) TryReloadProgress();
+        }
+        static MetaProgress CopyMeta(MetaProgress meta)
+        {
+            return new MetaProgress { Crystals = meta.Crystals, Damage = meta.Damage, Supply = meta.Supply, Growth = meta.Growth, Harvest = meta.Harvest };
+        }
+        void ApplyCampaign(CampaignProgress next)
+        {
+            campaign = next; Meta = CopyMeta(next.Meta); saveWarning = ""; checkpointClock = 0; storageFailed = false;
+        }
+        public bool TryReloadProgress()
+        {
+            autoRepeat.SetEnabled(false); IsPaused = true;
+            EnsureCanvas();
+            try
+            {
+                string warning;
+                var loaded = CampaignSaveStore.Load(SavePath, LegacySavePath, out warning);
+                var restored = loaded.HasActiveRun ? RunSimulator.Restore(loaded.ActiveRun) : new RunSimulator(InitialSeed, loaded.Meta);
+                ApplyCampaign(loaded); Run = restored; progressLoaded = true; loadBlocked = false;
+                saveWarning = warning; AwaitingStart = !loaded.HasActiveRun; IsPaused = true;
+                if (loaded.HasActiveRun)
+                {
+                    SelectedBuild = Run.Build; SelectedPolicy = Run.Policy; SelectedWeapon = Run.Weapon; Speed = loaded.ActiveSpeed;
+                }
+                else { Run.SetBuild(SelectedBuild); Run.SetPolicy(SelectedPolicy); Run.SetWeapon(SelectedWeapon); }
+                rewarded = rewardSaved = endHandled = false; tickClock = 0; Page = GamePage.Home;
+                ResetInk(); notice = loaded.HasActiveRun ? "途中の状態を読み込みました。続行を押すまで時間は進みません。" : "武器と構成を選び、出撃してください。";
+                return true;
+            }
+            catch (Exception e) when (IsSaveException(e))
+            {
+                loadBlocked = true; progressLoaded = false; saveWarning = "保存を読めません。原本を保護し、操作を停止しています。";
+                if (Run == null) { Run = new RunSimulator(InitialSeed); AwaitingStart = true; ResetInk(); }
+                Debug.LogWarning("Bokumyaku load: " + e.Message); return false;
+            }
+        }
+        static bool IsSaveException(Exception e)
+        {
+            return e is System.IO.IOException || e is System.IO.InvalidDataException || e is UnauthorizedAccessException || e is ArgumentException || e is InvalidOperationException || e is OverflowException;
+        }
+        void SaveFailed(Exception e)
+        {
+            rewardSaved = false; autoRepeat.Cancel(); IsPaused = true; storageFailed = true;
+            saveWarning = "保存に失敗。停止中です。再試行してください。";
+            Debug.LogWarning("Bokumyaku save: " + e.Message);
         }
         public bool SaveProgress()
         {
+            if (loadBlocked || !progressLoaded || campaign == null) return false;
             try
             {
-                MetaSaveStore.Save(SavePath, Meta); saveWarning = "";
-                // Repeated saves must not restart a countdown or duplicate a reward.
-                bool newlySavedReward = rewarded && !rewardSaved;
-                if (rewarded) rewardSaved = true;
-                if (newlySavedReward) autoRepeat.Schedule(Run.State, true);
+                if (!AwaitingStart && Run != null && Run.State != RunStatus.Running && !rewarded)
+                {
+                    int previousRuns = campaign.TotalRuns; long previousCrystals = campaign.TotalCrystals;
+                    var next = CampaignSaveStore.SettleRun(SavePath, campaign, campaign.ActiveRunId, Run);
+                    int runsAdded = next.TotalRuns - previousRuns; long crystalsAdded = next.TotalCrystals - previousCrystals;
+                    ApplyCampaign(next); CompletedRuns += runsAdded; SessionCrystals += crystalsAdded;
+                    rewarded = rewardSaved = endHandled = true;
+                    autoRepeat.Schedule(Run.State, true); ProgressChanged?.Invoke();
+                }
+                else if (campaign.HasActiveRun && Run != null)
+                    ApplyCampaign(CampaignSaveStore.SaveActive(SavePath, campaign, Run, Speed));
+                else
+                {
+                    ApplyCampaign(CampaignSaveStore.SaveMeta(SavePath, campaign, Meta));
+                    bool wasUnsaved = rewarded && !rewardSaved; if (rewarded) rewardSaved = true;
+                    if (wasUnsaved) autoRepeat.Schedule(Run.State, true);
+                }
                 return true;
             }
-            catch (Exception e) when (e is System.IO.IOException || e is UnauthorizedAccessException || e is ArgumentException)
-            {
-                rewardSaved = false; autoRepeat.Cancel();
-                saveWarning = "保存に失敗。自動周回を停止中。再試行してください。";
-                Debug.LogWarning("Bokumyaku save: " + e.Message); return false;
-            }
+            catch (Exception e) when (IsSaveException(e)) { SaveFailed(e); return false; }
         }
         void EnsureCanvas()
         {
@@ -134,41 +203,99 @@ namespace Bokumyaku.Presentation
             if (texture != null) LoadedArtCount++;
             return texture;
         }
-        public void StartRun(int seed)
+        public void StartRun(int seed) { TryStartRun(seed); }
+        public bool TryStartRun(int seed) { return BeginRun(seed, 1); }
+        bool BeginRun(int seed, int speed)
         {
             autoRepeat.Cancel();
             EnsureCanvas();
             LoadProgress();
-            Run = new RunSimulator(seed, Meta);
-            Run.SetBuild(SelectedBuild);
-            Run.SetPolicy(SelectedPolicy);
-            Run.SetWeapon(SelectedWeapon);
-            AwaitingStart = false; IsPaused = false; Speed = 1;
+            if (loadBlocked || campaign == null) return false;
+            if (Run != null && !AwaitingStart && Run.State != RunStatus.Running && !rewarded && !SaveProgress()) return false;
+            var nextRun = new RunSimulator(seed, campaign.Meta);
+            nextRun.SetBuild(SelectedBuild); nextRun.SetPolicy(SelectedPolicy); nextRun.SetWeapon(SelectedWeapon);
+            try { ApplyCampaign(CampaignSaveStore.BeginRun(SavePath, campaign, nextRun, speed)); }
+            catch (Exception e) when (IsSaveException(e)) { SaveFailed(e); return false; }
+            Run = nextRun; AwaitingStart = false; IsPaused = false; Speed = speed; Page = GamePage.Battle;
             tickClock = 0; drawnBranches = 0; rewarded = false; endHandled = false; rewardSaved = false;
-            flashes.Clear(); growth.Clear(); canvas.Clear();
+            ResetInk();
+            notice = "撃破で得た墨で強化。枝が増えるほど末端の墨圧は分散する。";
+            return true;
+        }
+        void ResetInk()
+        {
+            drawnBranches = 0; flashes.Clear(); growth.Clear(); canvas.Clear();
             Array.Clear(observedLevels, 0, observedLevels.Length);
             Array.Clear(levelChangedAt, 0, levelChangedAt.Length);
-            notice = "撃破で得た墨で強化。枝が増えるほど末端の墨圧は分散する。";
             DrawNewBranches();
+        }
+        public bool ResumeRun()
+        {
+            if (!ResumeAvailable || loadBlocked || storageFailed) return false;
+            IsPaused = false; AwaitingStart = false; Page = GamePage.Battle; return true;
+        }
+        public bool AbandonRun()
+        {
+            autoRepeat.Cancel();
+            if (campaign == null || loadBlocked) return false;
+            if (Run != null && !AwaitingStart && Run.State != RunStatus.Running) return false;
+            try { ApplyCampaign(CampaignSaveStore.DiscardRun(SavePath, campaign)); }
+            catch (Exception e) when (IsSaveException(e)) { SaveFailed(e); return false; }
+            Run = new RunSimulator(InitialSeed, Meta); Run.SetBuild(SelectedBuild); Run.SetPolicy(SelectedPolicy); Run.SetWeapon(SelectedWeapon);
+            AwaitingStart = true; IsPaused = true; rewarded = endHandled = rewardSaved = false; abandonConfirmation = false;
+            Page = GamePage.Home; ResetInk(); notice = "途中の周回を終了しました。報酬はありません。"; return true;
         }
         public bool BuyUpgrade(UpgradeKind kind)
         {
-            if (Run == null || AwaitingStart) return false;
+            if (Run == null || AwaitingStart || loadBlocked || storageFailed) return false;
             bool bought = Run.TryBuy(kind);
             notice = bought ? UpgradeNames[(int)kind] + "を強化しました。" : "墨が不足、または強化上限に達しています。";
             if (bought) ObserveUpgrades();
             return bought;
         }
+        public bool TryRepair()
+        {
+            if (Run == null || AwaitingStart || Run.State != RunStatus.Running || loadBlocked || storageFailed) return false;
+            bool repaired = Run.TryRepair();
+            notice = repaired ? "核を修復しました。" : "墨不足・修復上限・核の状態を確認してください。";
+            if (repaired) SaveProgress();
+            return repaired;
+        }
         public bool BuyMeta(MetaUpgrade kind)
         {
-            if (Run != null && !AwaitingStart && Run.State == RunStatus.Running) return false;
-            bool bought = Meta.TryBuy(kind);
-            notice = bought ? "研究完了。次の周回から反映します。" : "結晶が不足、または研究上限に達しています。";
-            if (bought) { SaveProgress(); ProgressChanged?.Invoke(); }
-            return bought;
+            if (campaign == null || campaign.HasActiveRun || loadBlocked || storageFailed) return false;
+            var proposed = CopyMeta(Meta);
+            if (!proposed.TryBuy(kind)) { notice = "結晶が不足、または研究上限に達しています。"; return false; }
+            try { ApplyCampaign(CampaignSaveStore.SaveMeta(SavePath, campaign, proposed)); }
+            catch (Exception e) when (IsSaveException(e)) { SaveFailed(e); return false; }
+            notice = "研究完了。次の周回から反映します。"; ProgressChanged?.Invoke(); return true;
         }
         public void SetSpeed(int speed) { Speed = Mathf.Clamp(speed, 1, 2); }
-        public void SetPaused(bool paused) { IsPaused = paused; }
+        public void SetPaused(bool paused)
+        {
+            if (!paused && (loadBlocked || storageFailed)) return;
+            IsPaused = paused;
+            if (paused && progressLoaded && !AwaitingStart) SaveProgress();
+        }
+        public void SetPage(GamePage page)
+        {
+            if (!Enum.IsDefined(typeof(GamePage), page)) throw new ArgumentOutOfRangeException(nameof(page));
+            Page = page; panelScroll = Vector2.zero;
+            if (page != GamePage.Battle) SetPaused(true);
+        }
+        public bool SaveBuildSlot(int index)
+        {
+            if (campaign == null || loadBlocked || storageFailed) return false;
+            var slot = new BuildSlot { Name = "構成" + (index + 1), Weapon = SelectedWeapon, Build = SelectedBuild, Policy = SelectedPolicy, Speed = Speed };
+            try { ApplyCampaign(CampaignSaveStore.SaveSlot(SavePath, campaign, index, slot)); notice = slot.Name + "を保存しました。"; return true; }
+            catch (Exception e) when (IsSaveException(e)) { SaveFailed(e); return false; }
+        }
+        public bool LoadBuildSlot(int index)
+        {
+            if (campaign == null || index < 0 || index >= campaign.Slots.Length || loadBlocked || storageFailed) return false;
+            var slot = campaign.Slots[index]; SetWeapon(slot.Weapon); SetBuild(slot.Build); SetPolicy(slot.Policy); SetSpeed(slot.Speed);
+            notice = slot.Name + "を呼び出しました。"; return true;
+        }
         public void SetAutoRepeat(bool enabled)
         {
             if (autoRepeat.Enabled == enabled) return;
@@ -203,14 +330,14 @@ namespace Bokumyaku.Presentation
                 flashes[i].Life -= Time.unscaledDeltaTime;
                 if (flashes[i].Life <= 0) flashes.RemoveAt(i);
             }
-            if (Run == null || AwaitingStart) return;
+            if (Run == null || AwaitingStart || loadBlocked || storageFailed) return;
             if (Run.State != RunStatus.Running)
             {
                 CompleteRun();
                 if (autoRepeat.Advance(Mathf.Min(Time.unscaledDeltaTime, .25f), IsPaused))
                 {
                     int nextSeed = unchecked(Run.Seed + 1), previousSpeed = Speed;
-                    StartRun(nextSeed); Speed = previousSpeed;
+                    BeginRun(nextSeed, previousSpeed);
                 }
                 return;
             }
@@ -230,19 +357,22 @@ namespace Bokumyaku.Presentation
             }
             ObserveUpgrades();
             if (Run.State != RunStatus.Running) CompleteRun();
+            else
+            {
+                checkpointClock += Mathf.Min(Time.unscaledDeltaTime, .25f);
+                if (checkpointClock >= 10f) SaveProgress();
+            }
         }
         void CompleteRun()
         {
             if (endHandled) return;
             endHandled = true;
-            rewarded = Run.ClaimReward(Meta);
-            if (rewarded)
-            {
-                CompletedRuns++; SessionCrystals += Run.CrystalsReward;
-                SaveProgress(); ProgressChanged?.Invoke();
-            }
+            SaveProgress();
             notice = Run.State == RunStatus.CapacityExceeded ? "試作版の処理上限。報酬は付与されません。" : "結晶で永続強化して、次の周回へ。";
         }
+        void OnApplicationFocus(bool focused) { if (!focused && progressLoaded && !loadBlocked && !AwaitingStart) { IsPaused = true; SaveProgress(); } }
+        void OnApplicationPause(bool paused) { if (paused && progressLoaded && !loadBlocked && !AwaitingStart) { IsPaused = true; SaveProgress(); } }
+        void OnApplicationQuit() { if (progressLoaded && !loadBlocked && !AwaitingStart) SaveProgress(); }
         void ObserveUpgrades()
         {
             int[] levels = Run.UpgradeLevels;
@@ -347,17 +477,41 @@ namespace Bokumyaku.Presentation
                 GUI.Label(new Rect(24, 14, 300, 43), "墨 脈", title);
                 GUI.Label(new Rect(25, 55, 330, 20), "B O K U M Y A K U   /   墨が生きる防衛", small);
                 Fill(new Rect(24, 85, width - 48, 1), new Color(.75f, .72f, .64f));
-                Rect field = portrait ? new Rect(28, 111, 384, 512) : new Rect(55, 116, 432, 576);
-                DrawField(field);
-                if (portrait) DrawPanel(new Rect(24, 648, 392, 388), true);
+                Rect field = portrait ? new Rect(52, 111, 336, 448) : new Rect(55, 116, 432, 576);
+                if (Page == GamePage.Home) DrawHome(field); else DrawField(field);
+                if (portrait) DrawPanel(new Rect(24, 584, 392, 452), true);
                 else DrawPanel(new Rect(558, 110, 494, 616), false);
                 GUI.Label(new Rect(field.x, field.yMax + 7, field.width, 18), "墨の枝  ／  金の末端  ／  朱の敵", small);
-                GUI.Label(new Rect(width - 170, portrait ? 20 : 42, 146, 25), "縦切り試作  0.4", small);
+                GUI.Label(new Rect(width - 185, portrait ? 20 : 42, 162, 25), "システム α  0.5", small);
             }
             finally { GUI.matrix = oldMatrix; GUI.color = oldColor; GUI.backgroundColor = oldBackground; GUI.enabled = oldEnabled; }
         }
         Vector2 View(Rect field, double x, double y) { return new Vector2(field.x + (float)x / 384f * field.width, field.yMax - (float)y / 512f * field.height); }
         Vector2 Logical(Rect field, Vector2 point) { return View(field, 192 + point.x * .48, 256 + point.y * .48); }
+        void DrawHome(Rect field)
+        {
+            Fill(field, paper); DrawArt(field, landscapeArt, .6f, ScaleMode.ScaleAndCrop);
+            DrawArt(new Rect(field.center.x - 116, field.y + 20, 232, 232), ensoArt, .25f, ScaleMode.ScaleToFit);
+            GUI.Label(new Rect(field.x + 20, field.y + 66, field.width - 40, 45), "一滴から、再び。", title);
+            GUI.Label(new Rect(field.x + 20, field.y + 119, field.width - 40, 60), "最高到達 " + BestWave + " 波\n累計 " + (campaign == null ? 0 : campaign.TotalRuns) + " 周  ／  " + (campaign == null ? 0 : campaign.TotalCrystals) + " 結晶", body);
+            GUI.Label(new Rect(field.x + 20, field.y + 187, field.width - 40, 45), notice, small);
+            bool enabled = GUI.enabled;
+            GUI.enabled = !loadBlocked && !storageFailed;
+            if (Button(new Rect(field.x + 20, field.y + 245, field.width - 40, 38), ResumeAvailable ? "途中から続行" : "出撃する", true))
+            {
+                if (ResumeAvailable) ResumeRun(); else TryStartRun(Run == null || AwaitingStart ? InitialSeed : unchecked(Run.Seed + 1));
+            }
+            if (ResumeAvailable)
+            {
+                if (Button(new Rect(field.x + 20, field.y + 292, field.width - 40, 34), abandonConfirmation ? "報酬なしで終了する（確定）" : "途中終了・帰還", false))
+                {
+                    if (abandonConfirmation) AbandonRun(); else abandonConfirmation = true;
+                }
+                GUI.Label(new Rect(field.x + 20, field.y + 333, field.width - 40, 40), "途中状態は約10秒ごとに保存。\n読込後は手動で続行するまで停止。", small);
+            }
+            else GUI.Label(new Rect(field.x + 20, field.y + 297, field.width - 40, 60), "六つの武器と投資方針を選ぶ。\n研究は周回の合間、記録はいつでも。", body);
+            GUI.enabled = enabled;
+        }
         void DrawField(Rect field)
         {
             Fill(field, paper);
@@ -389,10 +543,24 @@ namespace Bokumyaku.Presentation
             foreach (var e in Run.Enemies)
             {
                 Vector2 point = View(field, e.ViewX, e.ViewY);
-                float radius = e.Kind == EnemyKind.Heavy ? 8 : e.Kind == EnemyKind.Fast ? 4 : 6;
+                float radius = e.Kind == EnemyKind.Boss ? 11 : e.Kind == EnemyKind.Heavy ? 8 : e.Kind == EnemyKind.Fast ? 4 : 6;
                 Dot(point, radius + 2, new Color(red.r, red.g, red.b, .15f)); Dot(point, radius, red);
                 if (e.Kind == EnemyKind.Fast) Line(point + new Vector2(-9, 3), point + new Vector2(-4, 3), 1, red);
                 if (e.Kind == EnemyKind.Heavy) Ring(point, 11, red);
+                if (e.Kind == EnemyKind.Splitter)
+                {
+                    Dot(point + new Vector2(-4, -3), 4, red);
+                    Dot(point + new Vector2(4, 3), 4, red);
+                    Line(point + new Vector2(-8, 8), point + new Vector2(8, -8), 1.5f, ink);
+                }
+                if (e.Kind == EnemyKind.Boss)
+                {
+                    Dot(point, 11, red); Ring(point, 15, ink);
+                    Line(point + new Vector2(0, -19), point + new Vector2(19, 0), 2, red);
+                    Line(point + new Vector2(19, 0), point + new Vector2(0, 19), 2, red);
+                    Line(point + new Vector2(0, 19), point + new Vector2(-19, 0), 2, red);
+                    Line(point + new Vector2(-19, 0), point + new Vector2(0, -19), 2, red);
+                }
                 if (e.Hp < e.MaxHp) { Fill(new Rect(point.x - 9, point.y - radius - 6, 18, 2), new Color(0, 0, 0, .12f)); Fill(new Rect(point.x - 9, point.y - radius - 6, 18 * Mathf.Clamp01((float)(e.Hp / e.MaxHp)), 2), red); }
             }
             foreach (var flash in flashes)
@@ -410,6 +578,23 @@ namespace Bokumyaku.Presentation
                     Line(from, to, .9f, new Color(ink.r, ink.g, ink.b, alpha * .45f));
                     Dot(to, 3 + 3 * alpha, new Color(ink.r, ink.g, ink.b, alpha));
                     Ring(to, 3 + 8 * (1 - alpha), new Color(gold.r, gold.g, gold.b, alpha));
+                }
+                else if (flash.Weapon == WeaponKind.Sweep)
+                {
+                    Vector2 direction = (to - from).normalized;
+                    for (int i = -2; i <= 2; i++)
+                    {
+                        float angle = i * .18f;
+                        Vector2 turned = new Vector2(direction.x * Mathf.Cos(angle) - direction.y * Mathf.Sin(angle), direction.x * Mathf.Sin(angle) + direction.y * Mathf.Cos(angle));
+                        Line(from, from + turned * Vector2.Distance(from, to), 2 * alpha, new Color(ink.r, ink.g, ink.b, alpha * .5f));
+                    }
+                }
+                else if (flash.Weapon == WeaponKind.Enso)
+                    Ring(from, 8 + 26 * (1 - alpha), new Color(ink.r, ink.g, ink.b, alpha));
+                else if (flash.Weapon == WeaponKind.Resonance)
+                {
+                    Line(from, to, 2, new Color(gold.r, gold.g, gold.b, alpha));
+                    Ring(to, 5 + 8 * (1 - alpha), new Color(ink.r, ink.g, ink.b, alpha));
                 }
                 else Dot(to, 4 + 8 * (1 - alpha), new Color(ink.r, ink.g, ink.b, alpha * .25f));
             }
@@ -433,29 +618,35 @@ namespace Bokumyaku.Presentation
                 Fill(box, new Color(.96f, .95f, .91f, .96f));
                 DrawArt(new Rect(box.center.x - 110, box.center.y - 110, 220, 220), ensoArt, .10f, ScaleMode.ScaleToFit);
                 string status = AwaitingStart ? "一滴から、命が芽吹く。" : Run.State == RunStatus.Defeated ? "墨が静まり、核が砕けた。" : Run.State == RunStatus.TestCompleted ? RunSimulator.WaveLimit + "の波を、耐え抜いた。" : "試作版の処理上限";
+                int milestone = rewarded && campaign != null && campaign.LastResult != null ? campaign.LastResult.MilestoneCrystals : 0;
+                int totalReward = Run.CrystalsReward + milestone;
                 GUI.Label(new Rect(box.x + 14, box.y + 12, box.width - 28, 35), status, heading);
                 GUI.Label(new Rect(box.x + 14, box.y + 48, box.width - 28, 146), AwaitingStart
                     ? "核を守る墨の枝。敵を倒すと枝が伸びる。\n操作欄で武器と投資方針を選び、出撃する。\n武器: " + WeaponNames[(int)SelectedWeapon] + "\n投資: " + BuildNames[(int)SelectedBuild]
                     : "到達 " + Run.CompletedWave + " 波突破  ·  " + Run.Kills + " 撃破\n生存 " + FormatTime(Run.ElapsedSeconds)
                         + "  ／  獲得墨 " + Run.IncomeEarned + "\n獲得墨/分 " + Run.IncomePerMinute.ToString("0.0")
-                        + "  ／  結晶 " + Run.CrystalsReward + "\n武器: " + WeaponNames[(int)Run.Weapon]
-                        + "  ／  結晶/分 " + (Run.ElapsedSeconds > 0 ? Run.CrystalsReward * 60.0 / Run.ElapsedSeconds : 0).ToString("0.00"), body);
+                        + "\n結晶 " + Run.CrystalsReward + " + 初達成 " + milestone + (rewarded ? "（保存済）" : "（保存待ち）")
+                        + "\n武器: " + WeaponNames[(int)Run.Weapon] + " / 結晶/分 " + (Run.ElapsedSeconds > 0 ? totalReward * 60.0 / Run.ElapsedSeconds : 0).ToString("0.00"), body);
                 if (Button(new Rect(box.x + 14, box.y + 206, box.width - 28, 32), AwaitingStart ? "出撃する" : "再び芽吹く", true)) StartRun(unchecked(InitialSeed + (AwaitingStart ? 0 : Run.Seed - InitialSeed + 1)));
             }
         }
         void DrawPanel(Rect panel, bool compact)
         {
             float x = panel.x, y = panel.y, w = panel.width;
+            float tabWidth = (w - 18) / 4;
+            string[] pages = { "ホーム", "戦闘", "研究", "記録" };
+            for (int i = 0; i < 4; i++)
+                if (Button(new Rect(x + i * (tabWidth + 6), y, tabWidth, 29), pages[i], Page == (GamePage)i)) SetPage((GamePage)i);
+            y += 36;
             GUI.Label(new Rect(x, y, w * .48f, 17), "墨  ／  周回内", small);
             GUI.Label(new Rect(x, y + 16, w * .48f, 33), Run.RunInk.ToString(), number);
             GUI.Label(new Rect(x + w * .50f, y, w * .5f, 17), "結晶  ／  永続強化", small);
             GUI.Label(new Rect(x + w * .50f, y + 16, w * .5f, 33), Meta.Crystals.ToString(), number);
             y += 54;
             float bw = (w - 16) / 3;
-            if (Button(new Rect(x, y, bw, 29), IsPaused ? "再開" : "一時停止", IsPaused)) IsPaused = !IsPaused;
+            if (Button(new Rect(x, y, bw, 29), IsPaused ? "再開" : "一時停止", IsPaused)) SetPaused(!IsPaused);
             if (Button(new Rect(x + bw + 8, y, bw, 29), Speed == 1 ? "速度  1倍" : "速度  2倍", Speed == 2)) SetSpeed(Speed == 1 ? 2 : 1);
-            if (Button(new Rect(x + (bw + 8) * 2, y, bw, 29), metaTab ? "周回強化へ" : "永続強化へ", metaTab))
-            { metaTab = !metaTab; panelScroll = Vector2.zero; }
+            if (Button(new Rect(x + (bw + 8) * 2, y, bw, 29), "途中保存", false)) SaveProgress();
             y += 38;
             if (Button(new Rect(x, y, 144, 30), AutoRepeatEnabled ? "自動周回  ON" : "自動周回  OFF", AutoRepeatEnabled)) SetAutoRepeat(!AutoRepeatEnabled);
             string repeatStatus = AutoRepeatPending
@@ -469,13 +660,14 @@ namespace Bokumyaku.Presentation
             Rect viewport = new Rect(x, y, w, panel.yMax - y - footerHeight);
             float contentWidth = w - 20;
             // The battlefield and pause/speed controls stay visible while the upgrade list scrolls.
-            panelScroll = GUI.BeginScrollView(viewport, panelScroll, new Rect(0, 0, contentWidth, metaTab ? 348 : 746), false, true);
-            try { DrawUpgradeContent(contentWidth); }
+            float contentHeight = Page == GamePage.Research ? 348 : Page == GamePage.Records ? 180 + (campaign == null ? 0 : campaign.History.Count) * 62 : 1130;
+            panelScroll = GUI.BeginScrollView(viewport, panelScroll, new Rect(0, 0, contentWidth, contentHeight), false, true);
+            try { if (Page == GamePage.Records) DrawRecords(contentWidth); else DrawUpgradeContent(contentWidth); }
             finally { GUI.EndScrollView(); }
             if (!string.IsNullOrEmpty(saveWarning))
             {
                 GUI.Label(new Rect(x, panel.yMax - 46, w - 105, 44), saveWarning, small);
-                if (Button(new Rect(x + w - 100, panel.yMax - 41, 100, 30), "保存再試行", true)) SaveProgress();
+                if (Button(new Rect(x + w - 100, panel.yMax - 41, 100, 30), loadBlocked ? "読込再試行" : "保存再試行", true)) { if (loadBlocked) TryReloadProgress(); else SaveProgress(); }
             }
             else
                 GUI.Label(new Rect(x, panel.yMax - 25, w, 24), FormatTime(Run.ElapsedSeconds) + " 生存  /  墨 " + Run.IncomePerMinute.ToString("0.0") + "/分  /  " + Run.Kills + " 撃破", small);
@@ -483,7 +675,7 @@ namespace Bokumyaku.Presentation
         void DrawUpgradeContent(float w)
         {
             float y = 0, bw = (w - 16) / 3;
-            if (metaTab)
+            if (Page == GamePage.Research)
             {
                 GUI.Label(new Rect(0, y, w, 27), "命をつなぐ研究", heading); y += 32;
                 GUI.Label(new Rect(0, y, w, 39), "周回の合間に購入。次の出撃から永続的に働く。", small); y += 43;
@@ -492,7 +684,7 @@ namespace Bokumyaku.Presentation
                     var kind = (MetaUpgrade)i;
                     GUI.Label(new Rect(0, y, w - 110, 23), MetaNames[i] + "  Lv." + Meta.Level(kind), body);
                     GUI.Label(new Rect(0, y + 24, w - 110, 24), MetaNotes[i], small);
-                    GUI.enabled = (AwaitingStart || Run.State != RunStatus.Running) && Meta.Crystals >= Meta.Cost(kind) && Meta.Level(kind) < 20;
+                    GUI.enabled = !loadBlocked && !storageFailed && campaign != null && !campaign.HasActiveRun && Meta.Crystals >= Meta.Cost(kind) && Meta.Level(kind) < 20;
                     if (Button(new Rect(w - 104, y + 4, 104, 32), Meta.Level(kind) >= 20 ? "MAX" : Meta.Cost(kind) + " 結晶", GUI.enabled)) BuyMeta(kind);
                     GUI.enabled = true; y += 56;
                 }
@@ -500,9 +692,9 @@ namespace Bokumyaku.Presentation
             else
             {
                 GUI.Label(new Rect(0, y, w, 26), "武器  ／  投資方針とは独立", heading); y += 30;
-                for (int i = 0; i < 3; i++)
-                    if (WeaponButton(new Rect((bw + 8) * i, y, bw, 74), i)) SetWeapon((WeaponKind)i);
-                y += 78;
+                for (int i = 0; i < 6; i++)
+                    if (WeaponButton(new Rect((bw + 8) * (i % 3), y + 78 * (i / 3), bw, 74), i)) SetWeapon((WeaponKind)i);
+                y += 156;
                 GUI.Label(new Rect(0, y, w, 42), WeaponNotes[(int)SelectedWeapon], small); y += 44;
                 GUI.Label(new Rect(0, y, w, 26), "墨の投資方針", heading); y += 30;
                 for (int i = 0; i < 3; i++)
@@ -513,6 +705,9 @@ namespace Bokumyaku.Presentation
                 var names = new[] { "均衡", "迎撃", "集中" };
                 for (int i = 0; i < 3; i++) if (Button(new Rect((bw + 8) * i, y, bw, 28), names[i], SelectedPolicy == (GrowthPolicy)i)) SetPolicy((GrowthPolicy)i);
                 y += 34;
+                GUI.enabled = !loadBlocked && !storageFailed && !AwaitingStart && Run.State == RunStatus.Running && Run.CoreHp < 10 && Run.RepairCount < 5 && Run.RunInk >= Run.RepairCost;
+                if (Button(new Rect(0, y, w, 32), "核を修復 +2  ／  " + Run.RepairCost + " 墨  ／  " + Run.RepairCount + "/5回", GUI.enabled)) TryRepair();
+                GUI.enabled = true; y += 40;
                 GUI.Label(new Rect(0, y, w, 23), SelectedBuild == BuildPreset.Manual ? "手動購入  ／  六つの強化" : AwaitingStart || Run.State != RunStatus.Running ? "次の出撃で自動購入  ／  手動購入も可能" : "自動購入中  ／  貯蓄して順番に購入", small); y += 26;
                 int[] levels = Run.UpgradeLevels;
                 int[] caps = { 30, 25, 25, 9, 10, 10 };
@@ -523,12 +718,37 @@ namespace Bokumyaku.Presentation
                     if (changed) Fill(new Rect(0, y, w, 49), new Color(gold.r, gold.g, gold.b, .13f));
                     GUI.Label(new Rect(4, y, w - 112, 24), UpgradeNames[i] + "  Lv." + levels[i] + (changed ? "  ↑" : ""), body);
                     GUI.Label(new Rect(4, y + 24, w - 112, 24), UpgradeNotes[i], small);
-                    GUI.enabled = !AwaitingStart && Run.State == RunStatus.Running && Run.RunInk >= Run.UpgradeCost(kind) && levels[i] < caps[i];
+                    GUI.enabled = !loadBlocked && !storageFailed && !AwaitingStart && Run.State == RunStatus.Running && Run.RunInk >= Run.UpgradeCost(kind) && levels[i] < caps[i];
                     if (Button(new Rect(w - 104, y + 7, 104, 32), levels[i] >= caps[i] ? "MAX" : Run.UpgradeCost(kind) + " 墨", GUI.enabled)) BuyUpgrade(kind);
                     GUI.enabled = true; y += 52;
                 }
+                y += 12; GUI.Label(new Rect(0, y, w, 27), "構成を保存・呼出", heading); y += 32;
+                for (int i = 0; i < 3; i++)
+                {
+                    var slot = campaign == null ? null : campaign.Slots[i];
+                    GUI.Label(new Rect(0, y, w - 176, 49), "構成" + (i + 1) + (slot == null ? "" : "  " + WeaponNames[(int)slot.Weapon] + "\n" + BuildNames[(int)slot.Build]), small);
+                    GUI.enabled = !loadBlocked && !storageFailed && campaign != null;
+                    if (Button(new Rect(w - 170, y + 7, 80, 32), "保存", false)) SaveBuildSlot(i);
+                    if (Button(new Rect(w - 84, y + 7, 80, 32), "呼出", false)) LoadBuildSlot(i);
+                    GUI.enabled = true; y += 54;
+                }
             }
             GUI.Label(new Rect(0, y + 4, w, 43), notice, small);
+        }
+        void DrawRecords(float width)
+        {
+            GUI.Label(new Rect(0, 0, width, 29), "これまでの墨脈", heading);
+            GUI.Label(new Rect(0, 34, width, 62), "最高到達 " + BestWave + " 波\n累計 " + (campaign == null ? 0 : campaign.TotalRuns) + " 周 / " + (campaign == null ? 0 : campaign.TotalCrystals) + " 結晶", body);
+            GUI.Label(new Rect(0, 100, width, 48), "敵: 通常＝丸 / 速い＝尾 / 重い＝輪\n分裂＝双点 / ボス＝菱形と輪", small);
+            if (campaign == null || campaign.History.Count == 0) { GUI.Label(new Rect(0, 155, width, 35), "記録はまだありません。", body); return; }
+            float y = 154;
+            for (int i = campaign.History.Count - 1; i >= 0; i--)
+            {
+                var result = campaign.History[i];
+                GUI.Label(new Rect(0, y, width, 52), result.CompletedWave + " 波 / " + WeaponNames[(int)result.Weapon] + " / " + FormatTime(result.Ticks / 30.0)
+                    + "\n結晶 " + result.Crystals + " + 初達成 " + result.MilestoneCrystals + "  / Seed " + result.Seed, small);
+                y += 62;
+            }
         }
         static string FormatTime(double seconds)
         {
@@ -560,7 +780,10 @@ namespace Bokumyaku.Presentation
                 Vector2 center = new Vector2(rect.center.x, rect.y + 25);
                 if (index == 0) Dot(center, 5, ink);
                 else if (index == 1) Line(center + new Vector2(-14, 6), center + new Vector2(14, -6), 4, ink);
-                else Ring(center, 12, ink);
+                else if (index == 2) { Dot(center, 12, new Color(ink.r, ink.g, ink.b, .3f)); Ring(center, 12, ink); }
+                else if (index == 3) { Line(center + new Vector2(-15, 8), center + new Vector2(15, -5), 6, ink); Line(center + new Vector2(-15, 8), center + new Vector2(12, -12), 2, ink); }
+                else if (index == 4) Ring(center, 14, ink);
+                else { Dot(center, 4, ink); Dot(center + new Vector2(-14, 6), 3, gold); Dot(center + new Vector2(14, -6), 3, gold); Line(center + new Vector2(-14, 6), center + new Vector2(14, -6), 1, ink); }
             }
             GUI.Label(new Rect(rect.x + 4, rect.yMax - 25, rect.width - 8, 22), WeaponNames[index], iconLabel);
             return clicked;

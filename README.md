@@ -25,7 +25,7 @@
 
 ## 墨脈のゲーム試作
 
-ゲームは `UnitySandbox/Assets/BokumyakuPrototype/` に分離しています。ローカルWindows版は `Builds/Bokumyaku-v0.4/Bokumyaku.exe`。点墨・貫筆・滲墨の3武器と、「広域・滲み」「多枝・火力」の自動投資候補を組み合わせられます。v0.4では保存成功後の自動再出撃と和紙/山水/武器アイコンを追加。3敵・60Wave上限の比較用試作で、役割ごとの経済バランスは調整中です。[操作と検証範囲](docs/BOKUMYAKU_PROTOTYPE.md)を参照してください。
+ゲームは `UnitySandbox/Assets/BokumyakuPrototype/` に分離しています。ローカルWindows版は `Builds/Bokumyaku-v0.5/Bokumyaku.exe`。一人用システムαとして5敵・6武器、6周回/4恒久強化、3構成保存、途中保存・再開、報酬と履歴、自動周回を実装。60Wave上限で、ビルドの経済的役割と完成美術は調整中です。[操作と検証範囲](docs/BOKUMYAKU_PROTOTYPE.md)を参照してください。
 
 Unity Package ManagerからGitURLで使用できるよう、`package.json` は**レポジトリルート**に設置しています。例：`https://github.com/kntnext-hash/sumi-engine.git`（GitHubへpush後）。
 

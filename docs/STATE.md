@@ -177,3 +177,18 @@
 - 続き: 固定報酬4と完了実績の積算方式を比較し、自己最高の達成報酬/解放を設計→独立試験→実装。次に分裂/ボス、現行5敵版の正式120条件、敵/核/攻撃美術。全体進捗はBOKUMYAKU_PRODUCTION_PROGRESS.md。
 - v0.4増分はPC試作受入。長時間自動周回、物理入力、モバイル性能/品質、オフライン、ランキング/課金、最終美術は未合格。素材室第一弾は納品/統合済み、追加依頼はまだ送っていない。
 - 終了状態: Bokumyakuシーンの非Play、isDirty=false、runInBackground=false、GameView最大化解除。一時縦画面サイズを削除。旧ユーザーセーブを変更せずQA保存はlogsへ隔離。
+
+## 最新: 墨脈 v0.5 一人用システムα（2026-10-22）
+- ユーザーの「システム面完成まで」を受け、40bb883/clean/main同期から開始。SUMI Runtime/Editor/Brush Lab、既存シーンは変更せず、ゲーム領域だけを拡張。Core/Persistence/Presentationを分担し、統合とEditor/Gitはゲーム室が担当。
+- 5敵/6武器/修復、6周回強化/4恒久強化、ホーム/戦闘/研究/記録、3構成、通常/一度きりの節目報酬、最高記録/履歴20、途中保存/停止復帰、自然敗北後の自動周回を接続。
+- 保存v2: runId/revision、一時検証→置換→メモリ反映、再送二重報酬防止、旧v1読取移行/原本保持、正常bakと破損原本保護。Unity JSONの隣接doubleへの丸めを実試験で検出し、IEEE754 bit payloadで正確復元。初回の失敗XML/UI JSONも保存。
+- 機能検証: Unity6000.3.26f1コンパイル成功、102 NUnit、12独立C#、数値保存12検査、GameView31項目（3周/研究/slot/再開/保存失敗復旧）、縦440×1060の共鳴選択と897pxスクロールPASS。PC物理入力・モバイルとは分ける。
+- 比較: 武器180/GDD戦略120/恒久追加10=310条件と310再走は同状態。標準初回中央値462.07秒、5〜8分7/10。恒久Lv5で平均Wave37.3→47.5。Record候補の深度優位は未成立。候補3回で区切り、G-V2-04/05は未合格を維持。
+- コード/保存/テストのコミットec30c7e。画面・Player・台帳は後続コミットへ。Windows v0.5のbuildと別プロセス復帰検証は下の最終追記を参照。
+- 次セッション: BOKUMYAKU_SYSTEMS_ACCEPTANCE.md / BOKUMYAKU_PRODUCTION_PROGRESS.md / 最新QAから再開。まずビルドの役割/初回尺を調整し、人のプレイでテンポを評価。縦戦場/完成美術/音、長時間/実機は別工程。Tier/実時間研究/オフライン/大会/課金は後続で契約・有効化を独断で行わない。
+- 通常ユーザーセーブへ試験データを書かない。Editorはone-shot隔離パスをStart前に注入。Playerも明示probe引数の専用パス。旧Builds/Bokumyaku-v0.4を保護。
+
+### v0.5終了時の再開点
+- Windows実行版 `Builds/Bokumyaku-v0.5/Bokumyaku.exe`。6武器と別プロセス復帰検証は合格。主要一人用機能の受入表はBOKUMYAKU_SYSTEMS_ACCEPTANCE.md。
+- EditorはBokumyakuの非Play/isDirty=false。PlayerSettings/Application.runInBackground=false、GameView最大化解除、一時縦解像度削除。QA one-shotキー消去。試験中の背景設定をビルドへ残さないよう最終再ビルドと再実行を完了。両プロセスexit0、Console error/warning0。
+- 次はG-V2-04/05とプレイ評価。機能の存在を面白さ/実機/完成美術の合格に置換しない。

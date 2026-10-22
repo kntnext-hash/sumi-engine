@@ -1,1 +1,1 @@
-{"name":"Bokumyaku.Diagnostics","references":["Bokumyaku.Presentation","Bokumyaku.Simulation","ConnectPiece.SumiEngine"],"autoReferenced":true}
+{"name":"Bokumyaku.Diagnostics","references":["Bokumyaku.Presentation","Bokumyaku.Simulation","Bokumyaku.Persistence","ConnectPiece.SumiEngine"],"autoReferenced":true}

@@ -195,3 +195,23 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - Player: bokumyaku-player-v4.json、launch-v4.json、exit0、62.99秒、frame2→293258。3武器各900tick/7枝/9撃破/2購入、実武器とAttackEvent一致、滲墨4領域。自動再出撃seed42→43/完了1/結晶12/速度2/設定保持、6Texture、透明195342/墨1266画素。明示probe時のみ自動操作、隔離セーブ。非表示起動のデータ検査であり画面やFPS計測ではない。Player.logのException/Error/Failed一致0。
 - ツール失敗の分類: 画像toolのsave_pathをTempからAssets/Tempへ補正。Play再入場中の一時Pipeline切断はCLI statusでreadyを再確認して復旧。statusに非対応caller/skillを付けた1回は引数エラーで、対応書式へ修正。ゲーム不具合/不合格を隠して成功に置換していない。
 - 未達: G-V2-04/05、5敵/全武器/正式120条件、長時間周回/途中復帰/オフライン、物理入力、モバイル、最終美術/音/競技/課金。
+
+## 墨脈 v0.5検証（2026-10-22）
+- Compile: Unity6000.3.26f1、最終recompile completed/failed=false/errors=[]。新規snapshot/保存/画面を実コンパイル。Engineは変更せず再試験対象外。
+- NUnit: bokumyaku-editmode-v5.xml、102/102、65.274秒。初回92/99の失敗をattempt1.xmlへ保持。JsonUtilityがdoubleを隣接値に復元し、未来の厳密一致を壊した。全doubleの正確bit payloadを深copyへ復元し、隣接1ULPだけ整合を認める。テスト許容値の拡大や計算の丸めで隠さず、負値/signedzero/非有限/改変拒否を追加。
+- Pure C#: Test-Bokumyaku.ps1 12/12（standalone-v5.txt）。snapshot-v5.jsonの12検査（6武器JSON未来一致＋精度/破損）。Unity未実行の代用品ではなく別証拠。
+- UI: play-v5.json 31/31、frame1565→5209。GameViewの合成Down/Upを0.2秒離し、固定30Hzのlive Updateで停止/再開/敗北決済/待機/再出撃。3周で初回結晶15→研究後次周12→3周目16、最高11Wave、研究Lv1。repairは実ダメージ/実獲得墨の状態から+2、checkpointへ保存。
+- 敗北fixtureだけ純C#で最終1tick前まで加速。3周の壁時計耐久試験ではない。保存失敗はFileShare.Noneで1回発生させ、失敗中は停止/報酬未確定/自動再出撃なし→解除後明示再試行で1回決済。期待warningは正常動作。失敗初回play-v5-attempt1.jsonの唯一の失敗はJSON厳密復帰、修正後31/31。
+- 縦: portrait-v5.json 440×1060、共鳴ボタン/scroll897 PASS。一時GameViewサイズは復元・削除。portrait-top-v5.pngはscroll後を含む実画面。物理入力/タッチ/実機ではない。横gameplay/records-v5.pngも取得・目視。これは機能確認用UIで、参考スマホ美術の合格ではない。
+- 比較: systems-v5.json。180武器+120正式戦略+10meta5=310、全状態再走310。固定参加4撤廃。通常係数.05/.08/.10の平均結晶/分2.26/3.72/4.67、中間.08は仮進行速度。子の追加報酬なし。PBボーナスは効率比較に混ぜない。標準初回317.93〜493.13秒/中央値462.07秒/5〜8分7/10。meta0→5の平均Wave37.3→47.5。Record優位と構成均衡は未達。
+- 測定後の変更はsnapshot輸送だけ。元測定sourceHashesは保持、変更後hashと独立12検査をsnapshotTransportUpdateへ記録。新しい戦闘310再走を実施したとは書かない。
+- Independent QA: campaignのcopy-on-write、同ID再送、古いrevision拒否、移行/破損保護を読取。Presentation例外フィルターのInvalidDataException漏れを修正、本物の例外捕捉/NullReference対照を独立C#で確認。
+- ツール上の途中リロードで初回NUnitのXML未出力が1回、変更が落ち着いてから起動し結果取得。recompile toolのHTTP400はstatusでcompleted/failed=falseを確認。evalで存在しないTestRunnerApi.IsTestRunActiveを参照した診断は中止し、実XMLを根拠にした。製品例外とツール診断を混同しない。
+- Windows build/別プロセス復帰/最終Consoleは下の最終追記へ。長時間・モバイル・物理入力・面白さ・完成美術・オンライン/課金は未合格。
+
+### v0.5 Windows確認
+- 6武器各900tick、7枝/9撃破/2購入、実AttackEvent/武器一致、滲墨領域4、各checkpointの厳密復帰。実再出撃seed42→43/完了1周/結晶15/速度2、6素材と透明枝を確認。
+- 保存した状態でアプリを終了し、別プロセスを起動。停止/速度2/累計1周/全snapshot一致を確認し、続行後600tickの未来も全snapshot一致。非表示のopt-in probeであり、FPS/タッチ/実機の証拠ではない。
+- 試験用背景実行設定がEditorに戻る挙動を検出。Play終了後PlayerSettingsとApplicationをfalseへAPIで復元。ProjectSettings差分0を確認し、背景設定を戻した最終ビルドで2プロセス試験を再実行し合格。常駐していた別のBokumyakuプロセスは停止・変更していない。
+
+- 最終build_f4ea763aa193: Succeeded、95,018,441bytes、4.102秒、error/warning0。最初のビルドは29.484秒。最終Player97.346秒、別プロセス14.132秒、両exit0。最終ログのException/Error/Failed一致0。成果物/DLLハッシュはartifact-v5.json。Console groundTruthもcompilationFailed=false/error0/warning0（履歴bufferとは区別）。
