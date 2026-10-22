@@ -1,0 +1,38 @@
+{
+  "frameAdvanced": true,
+  "tickAdvanced": true,
+  "report": [
+    {
+      "kind": "Normal",
+      "ink": 2029,
+      "clear": 6928
+    },
+    {
+      "kind": "Fast",
+      "ink": 1235,
+      "clear": 7724
+    },
+    {
+      "kind": "Heavy",
+      "ink": 2349,
+      "clear": 6473
+    },
+    {
+      "kind": "Splitter",
+      "ink": 1700,
+      "clear": 7149
+    },
+    {
+      "kind": "Boss",
+      "ink": 2222,
+      "clear": 6563
+    },
+    {
+      "kind": "Core",
+      "ink": 1879,
+      "clear": 6987
+    }
+  ],
+  "Wave": 21,
+  "method": "Limited Unity play/mask check; not device performance or full QA"
+}
