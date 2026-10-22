@@ -100,6 +100,21 @@ try {
         $r.SetBuild('Manual'); $levels=$r.UpgradeLevels -join ','; $ink=$r.RunInk
         Finish $r; Assert (($r.UpgradeLevels -join ',') -eq $levels -and $r.RunInk -ge $ink) 'Manual build spent automatically'
     }
+    Check 'weapon switches replay attack and field state and retain finite termination' {
+        $a=[Bokumyaku.Simulation.RunSimulator]::new(42); $b=[Bokumyaku.Simulation.RunSimulator]::new(42)
+        $a.SetBuild('Record'); $b.SetBuild('Record')
+        while ($a.State -eq 'Running' -and $a.TickCount -le [Bokumyaku.Simulation.RunSimulator]::MaxTicks) {
+            if ($a.TickCount -eq 300) { $a.SetWeapon('Pierce'); $b.SetWeapon('Pierce') }
+            if ($a.TickCount -eq 900) { $a.SetWeapon('Bleed'); $b.SetWeapon('Bleed') }
+            $a.Tick(); $b.Tick()
+            Assert ($a.Weapon -eq $b.Weapon -and $a.CoreHp -eq $b.CoreHp -and $a.Kills -eq $b.Kills -and $a.RunInk -eq $b.RunInk) 'Weapon replay mismatch'
+            Assert ($a.Attacks.Count -eq $b.Attacks.Count -and $a.Fields.Count -eq $b.Fields.Count -and $a.Fields.Count -le 96) 'Attack/field count mismatch'
+            for ($i=0;$i -lt $a.Fields.Count;$i++) {
+                Assert ($a.Fields[$i].X -eq $b.Fields[$i].X -and $a.Fields[$i].DamagePerTick -eq $b.Fields[$i].DamagePerTick -and $a.Fields[$i].UntilTick -eq $b.Fields[$i].UntilTick) 'Field replay mismatch'
+            }
+        }
+        Assert ($a.State -ne 'Running' -and $a.State -ne 'CapacityExceeded') 'Weapon run did not end normally'
+    }
     Write-Output "TOTAL $script:passed passed / $script:failed failed"
     if ($script:failed -gt 0) { exit 1 }; exit 0
 } catch { Write-Error -ErrorAction Continue $_; exit 1 }

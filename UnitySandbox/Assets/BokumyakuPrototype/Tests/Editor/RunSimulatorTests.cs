@@ -21,11 +21,12 @@ namespace Bokumyaku.Tests
             var s = new StringBuilder();
             Action<object> add = v => s.Append(Convert.ToString(v, CultureInfo.InvariantCulture)).Append('|');
             add(run.TickCount); add(run.State); add(run.Wave); add(run.CompletedWave); add(run.CoreHp);
-            add(run.RunInk); add(run.Kills); add(run.Leaks); add(run.EffectiveDamage); add(run.Policy); add(run.Build);
+            add(run.RunInk); add(run.Kills); add(run.Leaks); add(run.EffectiveDamage); add(run.Policy); add(run.Build); add(run.Weapon);
             foreach (int level in run.UpgradeLevels) add(level);
             foreach (var b in run.Branches) { add(b.Id); add(b.ParentId); add(b.X); add(b.Y); add(b.PathLength); add(b.IsTip); }
             foreach (var e in run.Enemies) { add(e.Id); add(e.Kind); add(e.X); add(e.Y); add(e.Hp); add(e.Speed); add(e.SpawnWave); }
-            foreach (var a in run.Attacks) { add(a.BranchId); add(a.EnemyId); add(a.TargetX); add(a.TargetY); add(a.Damage); add(a.Pressure); }
+            foreach (var a in run.Attacks) { add(a.BranchId); add(a.EnemyId); add(a.TargetX); add(a.TargetY); add(a.Damage); add(a.Pressure); add(a.Weapon); }
+            foreach (var f in run.Fields) { add(f.X); add(f.Y); add(f.Radius); add(f.DamagePerTick); add(f.UntilTick); add(f.Weapon); }
             return s.ToString();
         }
 
@@ -37,6 +38,8 @@ namespace Bokumyaku.Tests
             {
                 if (a.TickCount % 120 == 0) { a.TryBuy(UpgradeKind.Damage); b.TryBuy(UpgradeKind.Damage); }
                 if (a.TickCount == 600) { a.SetPolicy(GrowthPolicy.Intercept); b.SetPolicy(GrowthPolicy.Intercept); }
+                if (a.TickCount == 300) { a.SetWeapon(WeaponKind.Pierce); b.SetWeapon(WeaponKind.Pierce); }
+                if (a.TickCount == 900) { a.SetWeapon(WeaponKind.Bleed); b.SetWeapon(WeaponKind.Bleed); }
                 a.Tick(); b.Tick(); Assert.AreEqual(Snapshot(a), Snapshot(b));
             }
             Assert.AreNotEqual(RunStatus.Running, a.State);

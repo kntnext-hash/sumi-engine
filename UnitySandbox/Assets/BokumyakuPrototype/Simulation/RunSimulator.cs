@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Bokumyaku.Simulation
 {
+    public enum WeaponKind { Point, Pierce, Bleed }
     public enum BuildPreset { Manual, Farming, Record }
     public enum RunStatus { Running, Defeated, TestCompleted, CapacityExceeded }
     public enum UpgradeKind { Damage, Speed, Supply, Branch, Width, Bleed }
@@ -56,8 +57,18 @@ namespace Bokumyaku.Simulation
         public double ViewY { get { return 256 + Y * .48; } }
         internal int NextAttack;
     }
+    public sealed class InkFieldState
+    {
+        public double X { get; internal set; }
+        public double Y { get; internal set; }
+        public double Radius { get; internal set; }
+        public double DamagePerTick { get; internal set; }
+        public int UntilTick { get; internal set; }
+        public WeaponKind Weapon { get; internal set; }
+    }
     public sealed class AttackEvent
     {
+        public WeaponKind Weapon { get; internal set; }
         public int BranchId { get; internal set; }
         public int EnemyId { get; internal set; }
         public double X { get; internal set; }
@@ -83,13 +94,16 @@ namespace Bokumyaku.Simulation
         readonly List<EnemyState> enemies = new List<EnemyState>();
         readonly List<BranchState> branches = new List<BranchState>();
         readonly List<AttackEvent> attacks = new List<AttackEvent>();
-        readonly List<BleedField> fields = new List<BleedField>();
+        public const int FieldLimit = 96;
+        readonly List<InkFieldState> fields = new List<InkFieldState>();
         uint spawnRng, growthRng;
         int nextEnemyId, growthCount;
         double spawnCredit, growthCharge;
         bool rewardClaimed;
         readonly int[] levels = new int[6];
         public int[] UpgradeLevels { get { return (int[])levels.Clone(); } }
+        public WeaponKind Weapon { get; private set; }
+        public IReadOnlyList<InkFieldState> Fields { get { return fields.AsReadOnly(); } }
         public BuildPreset Build { get; private set; }
         public int IncomeEarned { get; private set; }
         public double ElapsedSeconds { get { return TickCount / 30.0; } }
@@ -145,6 +159,12 @@ namespace Bokumyaku.Simulation
             if (!Enum.IsDefined(typeof(BuildPreset), build)) throw new ArgumentOutOfRangeException("build");
             if (State == RunStatus.Running) Build = build;
         }
+        public void SetWeapon(WeaponKind weapon)
+        {
+            if (!Enum.IsDefined(typeof(WeaponKind), weapon)) throw new ArgumentOutOfRangeException(nameof(weapon));
+            // Existing cooldowns and fields survive a switch; switching grants no free shot.
+            if (State == RunStatus.Running) Weapon = weapon;
+        }
         void AutoBuy()
         {
             if (Build == BuildPreset.Manual) return;
@@ -196,7 +216,7 @@ namespace Bokumyaku.Simulation
             {
                 if (!b.IsTip || b.NextAttack > TickCount) continue;
                 EnemyState target = null; double eta = double.MaxValue;
-                double range = BaseAttackRange + 4 * levels[4];
+                double range = (BaseAttackRange + 4 * levels[4]) * (Weapon == WeaponKind.Pierce ? 1.2 : 1);
                 foreach (var e in enemies)
                 {
                     double dx = e.X - b.X, dy = e.Y - b.Y;
@@ -206,18 +226,22 @@ namespace Bokumyaku.Simulation
                 }
                 if (target == null) continue;
                 double pressure = Pressure(b), baseDamage = BaseAttackDamage * Math.Pow(1.10, levels[0]) * (1 + .025 * meta.Damage);
-                double damage = baseDamage * pressure;
-                attacks.Add(new AttackEvent { BranchId = b.Id, EnemyId = target.Id, X = b.X, Y = b.Y, TargetX = target.X, TargetY = target.Y, Damage = damage, Pressure = pressure });
-                b.NextAttack = TickCount + (int)Math.Ceiling(TickRate / Math.Min(4.5, 1.25 * Math.Pow(1.07, levels[1])));
-                if (levels[5] > 0) fields.Add(new BleedField { X = target.X, Y = target.Y, Radius = 10 + 2 * levels[5], Damage = baseDamage * .08 * levels[5] / TickRate, Until = TickCount + 21 });
-                Hurt(target, damage);
+                double damage = baseDamage * pressure * (Weapon == WeaponKind.Pierce ? .8 : Weapon == WeaponKind.Bleed ? .45 : 1);
+                double interval = Weapon == WeaponKind.Pierce ? 1.35 : Weapon == WeaponKind.Bleed ? 1.1 : 1;
+                b.NextAttack = TickCount + (int)Math.Ceiling(interval * TickRate / Math.Min(4.5, 1.25 * Math.Pow(1.07, levels[1])));
+                if (Weapon == WeaponKind.Bleed)
+                    AddField(target.X, target.Y, 32 + 3 * levels[4] + 2 * levels[5], baseDamage * pressure * .85 * (1 + .12 * levels[5]) / TickRate, 48);
+                else if (levels[5] > 0)
+                    AddField(target.X, target.Y, 10 + 2 * levels[5], baseDamage * .08 * levels[5] / TickRate, 21);
+                if (Weapon == WeaponKind.Pierce) Pierce(b, target, range, damage, pressure);
+                else Hit(b, target, damage, pressure);
             }
-            for (int i = fields.Count - 1; i >= 0; i--) if (fields[i].Until <= TickCount) fields.RemoveAt(i);
+            RemoveExpiredFields();
             for (int i = enemies.Count - 1; i >= 0; i--)
             {
                 var e = enemies[i]; int stacks = 0; double damage = 0;
-                // Oldest two overlapping fields win; field damage excludes tip pressure (prototype assumption).
-                foreach (var f in fields) { double dx = f.X - e.X, dy = f.Y - e.Y; if (dx * dx + dy * dy <= f.Radius * f.Radius) { damage += f.Damage; if (++stacks == 2) break; } }
+                // The oldest two overlapping live fields win across all weapon types.
+                foreach (var f in fields) { double dx = f.X - e.X, dy = f.Y - e.Y; if (dx * dx + dy * dy <= f.Radius * f.Radius) { damage += f.DamagePerTick; if (++stacks == 2) break; } }
                 if (damage > 0) Hurt(e, damage);
             }
             double threshold = (4 + growthCount) * (1 - Math.Min(.35, .02 * meta.Growth));
@@ -242,6 +266,7 @@ namespace Bokumyaku.Simulation
         }
         void Hurt(EnemyState enemy, double damage)
         {
+            if (enemy == null || enemy.Hp <= 0 || !enemies.Contains(enemy) || damage <= 0) return;
             EffectiveDamage += Math.Min(enemy.Hp, damage); enemy.Hp -= damage;
             if (enemy.Hp > 0) return;
             Kills++; growthCharge++; enemies.Remove(enemy);
@@ -287,6 +312,48 @@ namespace Bokumyaku.Simulation
             state ^= state << 13; state ^= state >> 17; state ^= state << 5;
             return state / 4294967296.0;
         }
-        sealed class BleedField { public double X, Y, Radius, Damage; public int Until; }
+        void RemoveExpiredFields()
+        {
+            for (int i = fields.Count - 1; i >= 0; i--)
+                if (fields[i].UntilTick <= TickCount) fields.RemoveAt(i);
+        }
+        void AddField(double x, double y, double radius, double damage, int duration)
+        {
+            RemoveExpiredFields();
+            // Preserve the oldest-field priority. At capacity the new field is discarded.
+            if (fields.Count >= FieldLimit) return;
+            fields.Add(new InkFieldState { X = x, Y = y, Radius = radius, DamagePerTick = damage, UntilTick = TickCount + duration, Weapon = Weapon });
+        }
+        void Hit(BranchState branch, EnemyState target, double damage, double pressure)
+        {
+            if (target.Hp <= 0 || !enemies.Contains(target)) return;
+            attacks.Add(new AttackEvent { BranchId = branch.Id, EnemyId = target.Id, X = branch.X, Y = branch.Y, TargetX = target.X, TargetY = target.Y, Damage = damage, Pressure = pressure, Weapon = Weapon });
+            Hurt(target, damage);
+        }
+        void Pierce(BranchState branch, EnemyState target, double range, double damage, double pressure)
+        {
+            double dx = target.X - branch.X, dy = target.Y - branch.Y;
+            double length = Math.Sqrt(dx * dx + dy * dy);
+            if (length < 1e-9) { Hit(branch, target, damage, pressure); return; }
+            dx /= length; dy /= length;
+            double halfWidth = 12 + 2 * levels[4];
+            var candidates = new List<EnemyState>();
+            foreach (var enemy in enemies)
+            {
+                double x = enemy.X - branch.X, y = enemy.Y - branch.Y;
+                double projection = x * dx + y * dy;
+                double perpendicular = x * dy - y * dx;
+                if (projection >= 0 && projection <= range && x * x + y * y <= range * range && Math.Abs(perpendicular) <= halfWidth)
+                    candidates.Add(enemy);
+            }
+            candidates.Sort((a, b) =>
+            {
+                double ap = (a.X - branch.X) * dx + (a.Y - branch.Y) * dy;
+                double bp = (b.X - branch.X) * dx + (b.Y - branch.Y) * dy;
+                int order = ap.CompareTo(bp);
+                return order != 0 ? order : a.Id.CompareTo(b.Id);
+            });
+            for (int i = 0; i < Math.Min(3, candidates.Count); i++) Hit(branch, candidates[i], damage, pressure);
+        }
     }
 }
