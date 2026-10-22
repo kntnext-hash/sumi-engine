@@ -1,0 +1,81 @@
+{
+  "classification": "Bounded three-candidate purchase-policy comparison; candidateB retained as limited improvement after fixed validation",
+  "selectedCandidate": 2,
+  "selection": "B preserves initial baseline, improves grown Point mean depth, maintains Farming crystal efficiency; it does not satisfy grown strict role gate",
+  "candidateCount": 3,
+  "candidateSeedRange": "1..10",
+  "postSelectionSeedRange": "11..20",
+  "totalMeasuredRuns": 1920,
+  "fixedMeta": "Damage14 Supply13 Growth14 Harvest12, not campaign simulation",
+  "initialPresetSeeds": {
+    "G04Pass": true,
+    "recordDepthWins": 56.0,
+    "farmingRateWins": 55.0,
+    "cases": 60
+  },
+  "initialAdditionalSeeds": {
+    "G04Pass": false,
+    "recordDepthWins": 42.0,
+    "farmingRateWins": 58.0,
+    "cases": 60,
+    "reason": "Enso5/10 and overall42/60 depth; same results as immutable baseline, not caused by candidateB"
+  },
+  "grownGatePass": false,
+  "grownAgainstOldRecord": {
+    "wins": 53,
+    "ties": 66,
+    "losses": 1,
+    "cases": 120,
+    "pointMeanGainSeeds1to10": 2.6,
+    "pointMeanGainSeeds11to20": 2.1,
+    "regressions": [
+      {
+        "seed": 18,
+        "weapon": "Bleed",
+        "beforeWave": 57,
+        "afterWave": 56,
+        "beforeTicks": 20555,
+        "afterTicks": 20248,
+        "beforeRate": 9.765076289658513,
+        "afterRate": 9.646966270036385
+      }
+    ]
+  },
+  "farmingMeasuredTerminalMetricsUnchangedCases": 240,
+  "metricsCompared": [
+    "ticks",
+    "wave",
+    "status",
+    "crystals",
+    "allUpgradeLevels",
+    "income",
+    "remainingInk"
+  ],
+  "maxObservedNodesSelected": 30.0,
+  "maxNodesLimit": 64,
+  "limitations": [
+    "Farming comparisons use measured terminal metrics; full snapshot fingerprints and50seed pacing handled by integration",
+    "Wave60 TestCompleted is censored and ties do not count as depth wins",
+    "B has one1Wave Bleed regression on held-out seed18; no retuning performed",
+    "No proof of optimum or long-run campaign economy",
+    "A never reachedSupply14 and extra cap did not activate; B explicitly supplied missing investment; C removing Bleed investment regressed"
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/record-v8-candidate1.json",
+      "sha256": "6825BBFD84227F614B194722B34DD124F9C5A43858247CDCD6E3866699A65B68"
+    },
+    {
+      "path": "docs/evidence/record-v8-candidate2.json",
+      "sha256": "151A09C86F13E43A5D6451B6D72D5C1C8F59464A2E04B98DC3B8D97E8BCA9A22"
+    },
+    {
+      "path": "docs/evidence/record-v8-candidate3.json",
+      "sha256": "6807E95ABFE743F095C2FAC3DFB8E31EA370FAA222E2A78170666C03AC3B2BAF"
+    },
+    {
+      "path": "docs/evidence/record-v8-fixed11to20.json",
+      "sha256": "BB1186CE32DB5F4BC747EF04BD7FFB86E0163AC7FC7446864B270C7B9E27248B"
+    }
+  ]
+}

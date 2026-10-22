@@ -1,0 +1,142 @@
+{
+  "classification": "Standalone C# production replay; not Unity validation",
+  "rulesVersion": 4,
+  "sourceHashFormat": "Exact file bytes SHA256",
+  "sourceHashes": [
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/AutoRepeatController.cs",
+      "sha256": "D110E501CA532370504A4F5E1C09842769F0DE9CC4EA51DDAF1E640FE3B67ACE"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.cs",
+      "sha256": "CD3476348B328F1E1CF31639FFC61C2DF79775C87CDA7C565D4463D77D9CB58C"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.ExactSnapshot.cs",
+      "sha256": "1D3DEC084E8811727E8DC333E7FB0937A3A06AC1CF4711F0CACA85D312CB4969"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.Snapshot.cs",
+      "sha256": "7D444CF0343C578071341D3383DE35C3D4BD983F844721CF1F1DAB74DA942F05"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSnapshot.cs",
+      "sha256": "21F9068A22BBDBCF877341E5B6459857F12164905971FA211F610AB429501FCB"
+    }
+  ],
+  "checks": [
+    {
+      "reference": "record-v8-candidate2.json",
+      "referenceSha256": "151A09C86F13E43A5D6451B6D72D5C1C8F59464A2E04B98DC3B8D97E8BCA9A22",
+      "cases": 240,
+      "matched": 240,
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "scope": "2 meta x 6 weapons x 2 builds x 10 seeds; terminal status,ticks,wave,crystals,levels,repairs,nodes,tips,income,ink,seconds,rate,meanPressure"
+    },
+    {
+      "reference": "record-v8-fixed11to20.json",
+      "referenceSha256": "BB1186CE32DB5F4BC747EF04BD7FFB86E0163AC7FC7446864B270C7B9E27248B",
+      "cases": 240,
+      "matched": 240,
+      "seeds": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "scope": "2 meta x 6 weapons x 2 builds x 10 seeds; terminal status,ticks,wave,crystals,levels,repairs,nodes,tips,income,ink,seconds,rate,meanPressure"
+    },
+    {
+      "reference": "bokumyaku-pacing-v7-candidate-2.json",
+      "referenceSha256": "240CBB965D9826874F296BA0E6BABDECF1E807B146935B872F415C8EA6A87148",
+      "cases": 30,
+      "matched": 30,
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "scope": "meta0 Farming Point; terminal ticks,wave,crystals,levels,status,repairs"
+    },
+    {
+      "reference": "bokumyaku-pacing-v7-candidate-2-fixed31to50.json",
+      "referenceSha256": "A7482722275EB9E8A8E033E0C011421FE7EE819B4F9BD24A1B3E070E7D6CCE72",
+      "cases": 20,
+      "matched": 20,
+      "seeds": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "scope": "meta0 Farming Point; terminal ticks,wave,crystals,levels,status,repairs"
+    }
+  ],
+  "passed": true,
+  "failures": [],
+  "rateDefinition": "normal crystals*60/(battle seconds+3); candidate reference metric",
+  "limitations": [
+    "Terminal metrics equality, not full state equality",
+    "Source code compiled directly; no Unity runtime or device performance validation"
+  ]
+}

@@ -263,3 +263,25 @@ CLI Consoleのbuffer累積error15/warn23と現在groundTruth error0/warn0を区�
 - 証拠: evidence/bokumyaku-player-v7.json、bokumyaku-player-resume-v7.json、bokumyaku-player-launch-v7.json、bokumyaku-artifact-v7.json。ビルドサイズ95,024,073bytes。エンジン/Scene/ProjectSettingsにコミット差分なし。
 
 実装コミット: a448fb5。検証スクリプト/証拠/台帳は次の独立コミット。
+
+## 2026-10-22 v0.8 記録後半供給の検証（最新）
+- 初期状態03628c2/main clean、Unity6000.3.26f1/Pipeline0.9.0-exp.1接続確認。WindowsApps CLIはsandbox内でアクセス拒否、承認付き同CLIで正常実行。既知CLI更新alias制約を再試行せず使用。
+- 3候補各480走＋固定Bの追加480走＝1920走。immutable Git blob基準、独立seed1920件ではない。Bは初期同値、育成Point旧版比+2.6Wave/追加+2.1。育成120組53勝66同1敗、Bleed18は-1Wave。育成Sweep/Ensoの60上限を自然敗北と分離。record-v8-candidate1/2/3.json、fixed11to20.json、selection.json。
+- 初期G04既定seed56/60深度・55/60効率は合格維持。追加seed42/60・58/60は一般化未達、基準も同値。G05の初回50条件を旧v7と照合し不変、45/50未合格。純C#本体照合480+50=530PASS、13終端指標（整数・levels完全一致、浮動値1e-10以内）。全snapshot/端末性能検証とは別。record-v8-production.json。
+- NUnit157/157（29.1701686秒）。初回156/157はRecordSupplyTestsの合成snapshotに所持墨だけを注入して収入整合検証に拒否されたもの。試験準備で版を直接設定して購入優先のみ検査するよう修正、実v7fixtureの復帰テストは別に保持。attempt1.xmlと最終editmode-v8.xml。製品保存検証を緩和していない。
+- 実v7 DLLから変更前に採取した固定育成meta/seed42のFarming・Recordを6000→6900tick/終端まで完全一致。旧v5/v6互換も同NUnit。rules4の供給購入費用/不足時fallback禁止/攻撃条件/旧rules3切替の保持を検証。record-v8-legacy-fixtures.jsonとTests/Fixtures/v7-*。
+- Unity非依存C#12/12: bokumyaku-standalone-v8.txt。UI41/41: bokumyaku-play-v8.json。6武器/3周/研究/履歴/保存失敗再試行/旧保存コピー/旧rules3再保存/次周rules4をlive Updateと合成入力で確認。gameplay/records/result-v8.png。結果画面目視で規則4と通常/初達成分離を確認。
+- QA保存はlogs内隔離。UIは加速fixtureの最後のtickをlive Updateで進める方式であり、長時間放置/物理マウス/スマホではない。今回レイアウト変更なし、縦画面440×1060試験の最新はv0.7、v0.8で再測定とは記録しない。Play後に背景設定false・QAキー解除・GameView復元。
+- rules4の採用は有限比較で得た限定改善。育成役割ゲート/初期追加seed/初回尺/長期経済/美術/実機は未合格を保持する。Windowsの確定結果は次追記。
+
+### v0.8 ビルドと終了状態
+- Windows64 build_3efd91eb98b0: Succeeded、95,024,585bytes、12,298ms、error/warning0。Builds/Bokumyaku-v0.8へ新規出力し旧版保持。
+- 現在Console groundTruth error0/warning0、compilationFailed=false。Play停止、Scene dirty=false、runInBackground=false、QA SessionStateキー空。累積buffer件数と現在Consoleを区別。
+- 実装コミットbb9886f。実画面41/41、旧保存原本保護と新規rules4を確認。次セッションは初回尺G05と上限未到達武器の役割から再開。候補Bの追加seedで1件退行した事実を維持する。
+
+### v0.8 Windows最終結果
+- 6武器各900tick・checkpoint・自動再出撃、別プロセスで保存復帰後600tick未来一致。2プロセスともpassed=true/exit0、105.917秒/14.320秒。PlayerログException/Error/Failedなし。
+- 証拠はbokumyaku-player-v8.json、player-resume-v8.json、player-launch-v8.json、artifact-v8.json。通常セーブは未使用。描画FPS/モバイル/物理入力/長時間放置の証明ではない。
+- 起動先Builds/Bokumyaku-v0.8/Bokumyaku.exe。実装bb9886f、今回の有限比較と機能回帰の増分を受入。G05/育成役割/追加seed初期役割の未達は維持。
+
+失敗XMLはGit登録時にstack-trace行末空白のみ除去（失敗本文・結果は保持）。

@@ -1,6 +1,6 @@
 # 墨脈 — 一人用システム完成チェック
 
-最新は末尾のv0.7増分判定。分岐角改善・旧ルール保存をPCα受入。初期役割比較G04合格を維持。初回尺G05、育成後の記録構成、長期経済・美術/実機は未合格。
+最新は末尾のv0.8増分判定。後半供給投資・旧ルール保存をPCα受入。初期役割比較G04は既定seed合格を維持し、追加seedでは未達。初回尺G05、育成後の記録構成、長期経済・美術/実機は未合格。
 
 2026-10-22 JST。ユーザーの「システム面完成まで」を受け、40bb883/v0.4から実装を継続。今回の対象はGDDの一人用MVPと既存の武器/放置ビルド案。状態は実検証後に更新する。
 
@@ -53,7 +53,7 @@
 
 証拠パスはdocs/evidence配下。採墨の最大16倍は長期経済の完成値ではない。次の最初のゲームゲートはG-V2-05、並行課題は恒久育成速度。参考スマホ美術・音・実機・長時間・後続オンライン機能は上記PCα受入に含めない。
 
-## v0.7 増分判定（最新）
+## v0.7 増分判定（履歴）
 
 - 基点397b666。3案の有限比較から分岐角±0.65を採用。ボスHPと修復案は不採用。新規rules3、途中rules1/2は旧角度±0.35を保持。
 - G04: 初期meta0、60組で記録深度56勝/周回効率55勝、各武器は深度8/10以上・効率7/10以上。G05: seed1..30で28/30、固定後31..50で17/20、合計45/50。25/26/31/40/49は約244秒で未達。追加調整やseed選別なし。
@@ -66,3 +66,17 @@
 ### v0.7 Windows最終結果
 - 6武器各900tick、攻撃/購入/checkpoint復帰、自動再出撃42→43を実Playerで確認。別プロセスで同checkpoint復帰＋600tick未来一致。両passed=true/exit0（105.811秒、14.209秒）。通常セーブは使用しない。PlayerログにException/Error/Failedなし。
 - 証拠: evidence/bokumyaku-player-v7.json、bokumyaku-player-resume-v7.json、bokumyaku-player-launch-v7.json、bokumyaku-artifact-v7.json。ビルドサイズ95,024,073bytes。エンジン/Scene/ProjectSettingsにコミット差分なし。
+
+## 2026-10-22 v0.8 記録構成の後半供給（最新）
+- 基点03628c2、main clean/同期。Unity6000.3.26f1/Pipeline0.9.0-exp.1。Core比較/QA永続化/Demo照合/親統合で所有分割し、Engine/Scene/BrushLabは変更なし。
+- 最大3案を比較。A枝上限のみは供給条件に届かず不変。B後半供給優先を採用。C滲墨を供給へ置換は初期から悪化し不採用。各480走＋B固定後480走＝1920走（反復基準含む、独立1920seedではない）。
+- rules4: Recordの枝Lv6以降、Damage条件が足りれば次枝のSupply>=2*nextまで有償供給を優先、枝上限9。既存の毎秒購入枠/費用/敵/報酬は不変。旧rules1〜3は従来処理。保存先v5、schema3/configv3、旧原本/bak保護。
+- 育成Point旧Record比平均+2.6Wave、固定後+2.1。全育成120組53勝66同1敗、Bleed seed18は57→56Wave。対Farming育成役割は未合格。Sweep/Ensoは双方60上限の同着で優位を判定できない。
+- 初期G04は既定seed深度56/60・効率55/60を維持、追加seedは42/60・58/60で一般化未達（基準版と同じ）。初回Farming50条件は旧版不変、G05は45/50の未合格を保持。
+- Unity157/157、独立12/12、採用仮案と本体480条件＋初回50条件一致。初回NUnit156/157の1件は試験で注入した所持墨とincomeEarnedの不整合、試験準備を修正して再実行157/157。失敗XMLも保持。実v7 DLL fixtureの旧未来/終端は初回から合格。
+- 詳細BOKUMYAKU_RECORD_V8.md、evidence/record-v8-*.json。次はG05、上限未到達武器の役割、上限で評価不能な条件の整理。今回の候補を増やして再探索しない。完成美術/音/実機/長時間/物理操作は別工程。
+
+### v0.8 Windows最終結果
+- 6武器各900tick・checkpoint・自動再出撃、別プロセスで保存復帰後600tick未来一致。2プロセスともpassed=true/exit0、105.917秒/14.320秒。PlayerログException/Error/Failedなし。
+- 証拠はbokumyaku-player-v8.json、player-resume-v8.json、player-launch-v8.json、artifact-v8.json。通常セーブは未使用。描画FPS/モバイル/物理入力/長時間放置の証明ではない。
+- 起動先Builds/Bokumyaku-v0.8/Bokumyaku.exe。実装bb9886f、今回の有限比較と機能回帰の増分を受入。G05/育成役割/追加seed初期役割の未達は維持。

@@ -1,0 +1,33 @@
+{
+  "baseline": "03628c2",
+  "rulesVersion": 3,
+  "method": "Actual pre-change Unity loaded DLL, JsonUtility CaptureState, seed42 Point Balanced, meta14/13/14/12, Farming and Record",
+  "dllSha256": "999D9B99F531D51D4F04699A44AB04DFA11C1F91D05E767E384E3C6B58360D70",
+  "capturedUtc": "2026-10-22T09:23:34.8376476Z",
+  "files": [
+    {
+      "sha256": "5E426027A8175580F8EB77D150B015ECBF8B03B1D4F210B97778E8A7BB952AD3",
+      "name": "v7-farming-terminal.json"
+    },
+    {
+      "sha256": "0FD6032240B98F8FA2BFDB0D701B3ADA81DDF332D40A93C80A315E821C1EEB57",
+      "name": "v7-farming-tick6000.json"
+    },
+    {
+      "sha256": "469C05F3E1E1D661363328345B38F716CD51A0ACCAF82CE6EE9C0DB8854CE1DA",
+      "name": "v7-farming-tick6900.json"
+    },
+    {
+      "sha256": "1432A3172BCCBF0D3848439B08BAC04AF3CF286D8A8C449FD8A3FC82FEE63EE6",
+      "name": "v7-record-terminal.json"
+    },
+    {
+      "sha256": "43DAE937CE54F004C99B95E31F9AE5BB55FACC002803CBC668866E555E22A404",
+      "name": "v7-record-tick6000.json"
+    },
+    {
+      "sha256": "AA34D81FF2497143BF4E728002AC90228E7602CEF1DD03181CCA6C28C884851B",
+      "name": "v7-record-tick6900.json"
+    }
+  ]
+}
