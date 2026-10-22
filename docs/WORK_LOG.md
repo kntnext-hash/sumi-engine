@@ -175,3 +175,19 @@
 - STATEの先頭がv0.3を示していたため最新v0.6へ整理し、TASKS/QA/操作ガイド/全体進捗/受入票も更新。次はG05の短命seedに対する序盤漏れ・供給の分析と長期経済。今回の有限増分を閉じてコミット・pushする。
 
 - 実装をaf48ab9でコミット。Windows2プロセス106.145秒/14.126秒・両exit0、ログエラー一致0を確認。証拠と継続文書を別コミットへまとめる。旧比較スクリプトはec15566のGit blobに固定し、読込/構文だけを再検証した。
+
+## 2026-10-22 v0.7 分岐・互換・経済診断
+
+- 基点397b666。3案の有限比較から分岐角±0.65を採用。ボスHPと修復案は不採用。新規rules3、途中rules1/2は旧角度±0.35を保持。
+- G04: 初期meta0、60組で記録深度56勝/周回効率55勝、各武器は深度8/10以上・効率7/10以上。G05: seed1..30で28/30、固定後31..50で17/20、合計45/50。25/26/31/40/49は約244秒で未達。追加調整やseed選別なし。
+- 旧rules2の80周回測定と20条件の同meta比較を保存。Farming20周で恒久購入54回、Record29回。確定rules3の同固定meta14/13/14/12・20条件では記録1勝2同点7敗、平均−1.4Wave。育成後の役割差は未合格（v0.7連続20周育成の結果ではない）。
+- campaign-v4へ原本保護コピー、JSON構造schema3/configv3継続。結果画面は通常結晶/分に初達成を含めず、侵入合計と最多種を表示。死因判定ではない。
+- Unity141/141（44.708秒）、純C#12/12、画面41/41、縦440×1060の選択/スクロール合格。実v0.6 DLL由来fixtureの未来/終端一致、旧v0.5互換、rules3の12構成900tick毎tick復帰一致。仮案と本体160条件のtick/Wave/報酬/状態/修復/強化Lv一致。
+- 仕様・診断: BOKUMYAKU_PACING_V7.md。証拠: evidence/bokumyaku-*-v7.* と bokumyaku-pacing-v7-*.json。Builds/Bokumyaku-v0.7を新規作成、旧バイナリ/通常セーブ/Scene/描画基盤は保護。
+- 次: G05と育成後記録構成。供給条件を維持した記録分岐上限6→9を有限比較する候補（未実装・未測定）。初期G04の退行、同meta役割、初回尺を別々に判定。長期経済/美術/音/実機/長時間/物理入力は未合格。
+
+### v0.7 Windows最終結果
+- 6武器各900tick、攻撃/購入/checkpoint復帰、自動再出撃42→43を実Playerで確認。別プロセスで同checkpoint復帰＋600tick未来一致。両passed=true/exit0（105.811秒、14.209秒）。通常セーブは使用しない。PlayerログにException/Error/Failedなし。
+- 証拠: evidence/bokumyaku-player-v7.json、bokumyaku-player-resume-v7.json、bokumyaku-player-launch-v7.json、bokumyaku-artifact-v7.json。ビルドサイズ95,024,073bytes。エンジン/Scene/ProjectSettingsにコミット差分なし。
+
+実装コミット: a448fb5。検証スクリプト/証拠/台帳は次の独立コミット。

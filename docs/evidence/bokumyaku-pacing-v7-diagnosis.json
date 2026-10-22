@@ -1,0 +1,305 @@
+{
+  "classification": "Observational diagnosis, hypotheses not causal proof",
+  "shortSeeds": [
+    4,
+    20,
+    25,
+    28
+  ],
+  "firstBossGroups": [
+    {
+      "outcome": "killed",
+      "count": 11,
+      "meanCoveredTipSeconds": 33.806060606060605,
+      "meanAttacks": 44.63636363636363,
+      "meanPressure": 0.8038204451873944,
+      "meanMaxAngleGap": 117.55154517179835
+    },
+    {
+      "outcome": "leaked",
+      "count": 19,
+      "meanCoveredTipSeconds": 25.59824561403509,
+      "meanAttacks": 28.842105263157894,
+      "meanPressure": 0.8099332637893324,
+      "meanMaxAngleGap": 115.92261138741826
+    }
+  ],
+  "findings": [
+    "All four short runs lose4HP to first Boss at tick3755 (125.1667sec). Seed25 then loses6HP to three Heavy by166.5sec, before Harvest unlock.",
+    "Seeds4/20/28 die around244-245sec after second Boss and Heavy contacts. Fixed arrival times explain clusters; there is no arbitrary death timer.",
+    "Bosses that leak have less integrated multi-tip coverage and fewer hits, while starting mean pressure is nearly equal. Largest tip gap alone does not distinguish outcomes.",
+    "Farming branches early: by first Boss contact SupplyLv2, DamageLv3, SpeedLv2,6-7tips. Pressure dilution is shared across seeds, not enough alone to explain directional variation.",
+    "All leaking first Bosses had geometric exposure, so a fully blind no-range gap is not supported. Directional overlap, cooldown allocation and earlier-ETA competing targets jointly limit damage.",
+    "Wave15 Harvest cannot explain seed25 failure and earlier boss/Heavy damage in other short runs."
+  ],
+  "boundedCandidateProposals": [
+    {
+      "id": "A",
+      "change": "Split angular offsets �}.35 to �}.65, shared growth geometry",
+      "hypothesis": "Spread siblings and increase overlapping directional coverage away from initial three lobes",
+      "risks": "Can reduce coverage density on old lanes or extend strong seeds beyond480sec; no success claim"
+    },
+    {
+      "id": "B",
+      "change": "When adding branches at radius limit, choose currently least-covered angular sector with deterministic tie break",
+      "hypothesis": "Address spatial concentration directly rather than using largest gap as an outcome predictor",
+      "risks": "Requires explicit geometry/path validation and rules version isolation; may alter weapon compatibility"
+    },
+    {
+      "id": "C",
+      "change": "Delay next Farming branch until Supply>=2*nextBranchLevel, keeping all prices and manual actions common",
+      "hypothesis": "Test pressure dilution versus geographic coverage with fewer stronger tips",
+      "risks": "May weaken multi-lane defense; not combine with A/B in first causal comparison"
+    }
+  ],
+  "constraints": [
+    "Do not alter production source until parent approval",
+    "At most3 candidate schedules/geometries; no special seed/timer rules",
+    "Keep old rules saves on old behavior, new behavior versioned if adopted",
+    "Evaluate all30 seeds plus role split; fixing short cases alone is not acceptance"
+  ],
+  "traceFile": "docs/evidence/bokumyaku-pacing-v7-traces.json",
+  "traceSha256": "957B21BFE927B32E7C96C8003FA2780C0352D9BED8A7114BE1792F99D2935D02",
+  "firstBossRows": [
+    {
+      "seed": 1,
+      "outcome": "killed",
+      "coveredTipSeconds": 35.333333333333336,
+      "attacks": 46,
+      "meanPressure": 0.7482337157762974,
+      "maxAngleGap": 113.37078360831075
+    },
+    {
+      "seed": 2,
+      "outcome": "leaked",
+      "coveredTipSeconds": 30.833333333333332,
+      "attacks": 40,
+      "meanPressure": 0.810176960234778,
+      "maxAngleGap": 113.20745886326694
+    },
+    {
+      "seed": 3,
+      "outcome": "leaked",
+      "coveredTipSeconds": 25.166666666666668,
+      "attacks": 27,
+      "meanPressure": 0.8079940331891046,
+      "maxAngleGap": 115.98405322812559
+    },
+    {
+      "seed": 4,
+      "outcome": "leaked",
+      "coveredTipSeconds": 22.066666666666666,
+      "attacks": 18,
+      "meanPressure": 0.8058430353916385,
+      "maxAngleGap": 108.97423100422857
+    },
+    {
+      "seed": 5,
+      "outcome": "killed",
+      "coveredTipSeconds": 34.56666666666667,
+      "attacks": 46,
+      "meanPressure": 0.8092923638285098,
+      "maxAngleGap": 120.22518095657655
+    },
+    {
+      "seed": 6,
+      "outcome": "killed",
+      "coveredTipSeconds": 29.866666666666667,
+      "attacks": 44,
+      "meanPressure": 0.8072905028123684,
+      "maxAngleGap": 118.09667828539189
+    },
+    {
+      "seed": 7,
+      "outcome": "leaked",
+      "coveredTipSeconds": 26.266666666666666,
+      "attacks": 38,
+      "meanPressure": 0.8099984053968502,
+      "maxAngleGap": 111.18985303136856
+    },
+    {
+      "seed": 8,
+      "outcome": "leaked",
+      "coveredTipSeconds": 21,
+      "attacks": 22,
+      "meanPressure": 0.811386247600869,
+      "maxAngleGap": 115.22505642790037
+    },
+    {
+      "seed": 9,
+      "outcome": "leaked",
+      "coveredTipSeconds": 34.333333333333336,
+      "attacks": 41,
+      "meanPressure": 0.8134981559017002,
+      "maxAngleGap": 115.44259962760215
+    },
+    {
+      "seed": 10,
+      "outcome": "killed",
+      "coveredTipSeconds": 40.06666666666667,
+      "attacks": 46,
+      "meanPressure": 0.8089529986548399,
+      "maxAngleGap": 118.76243490676927
+    },
+    {
+      "seed": 11,
+      "outcome": "leaked",
+      "coveredTipSeconds": 20.333333333333332,
+      "attacks": 28,
+      "meanPressure": 0.8120518262832205,
+      "maxAngleGap": 117.18823746341025
+    },
+    {
+      "seed": 12,
+      "outcome": "leaked",
+      "coveredTipSeconds": 18.1,
+      "attacks": 9,
+      "meanPressure": 0.8112332517902257,
+      "maxAngleGap": 113.83013320628899
+    },
+    {
+      "seed": 13,
+      "outcome": "killed",
+      "coveredTipSeconds": 33.13333333333333,
+      "attacks": 45,
+      "meanPressure": 0.80623048627701,
+      "maxAngleGap": 111.77911449457316
+    },
+    {
+      "seed": 14,
+      "outcome": "leaked",
+      "coveredTipSeconds": 37.666666666666664,
+      "attacks": 30,
+      "meanPressure": 0.8132878929962688,
+      "maxAngleGap": 118.17881706837619
+    },
+    {
+      "seed": 15,
+      "outcome": "killed",
+      "coveredTipSeconds": 36.266666666666666,
+      "attacks": 45,
+      "meanPressure": 0.8087628422870732,
+      "maxAngleGap": 116.31374889567041
+    },
+    {
+      "seed": 16,
+      "outcome": "killed",
+      "coveredTipSeconds": 35.333333333333336,
+      "attacks": 44,
+      "meanPressure": 0.8074370753463816,
+      "maxAngleGap": 116.706064342808
+    },
+    {
+      "seed": 17,
+      "outcome": "leaked",
+      "coveredTipSeconds": 17.933333333333334,
+      "attacks": 20,
+      "meanPressure": 0.805904941667651,
+      "maxAngleGap": 121.24800002476694
+    },
+    {
+      "seed": 18,
+      "outcome": "leaked",
+      "coveredTipSeconds": 19.133333333333333,
+      "attacks": 19,
+      "meanPressure": 0.8105391215393425,
+      "maxAngleGap": 116.23036357913138
+    },
+    {
+      "seed": 19,
+      "outcome": "leaked",
+      "coveredTipSeconds": 25.733333333333334,
+      "attacks": 34,
+      "meanPressure": 0.8060028938480898,
+      "maxAngleGap": 110.70289932257639
+    },
+    {
+      "seed": 20,
+      "outcome": "leaked",
+      "coveredTipSeconds": 31.533333333333335,
+      "attacks": 35,
+      "meanPressure": 0.8077067222593034,
+      "maxAngleGap": 121.52177811875669
+    },
+    {
+      "seed": 21,
+      "outcome": "leaked",
+      "coveredTipSeconds": 28.2,
+      "attacks": 27,
+      "meanPressure": 0.8090521123898946,
+      "maxAngleGap": 114.46135105447883
+    },
+    {
+      "seed": 22,
+      "outcome": "leaked",
+      "coveredTipSeconds": 18.333333333333332,
+      "attacks": 24,
+      "meanPressure": 0.8105311696827505,
+      "maxAngleGap": 121.43640685210919
+    },
+    {
+      "seed": 23,
+      "outcome": "killed",
+      "coveredTipSeconds": 33.46666666666667,
+      "attacks": 42,
+      "meanPressure": 0.8122159048635548,
+      "maxAngleGap": 124.73842459984424
+    },
+    {
+      "seed": 24,
+      "outcome": "killed",
+      "coveredTipSeconds": 34.333333333333336,
+      "attacks": 44,
+      "meanPressure": 0.8110416512685421,
+      "maxAngleGap": 113.67554268651455
+    },
+    {
+      "seed": 25,
+      "outcome": "leaked",
+      "coveredTipSeconds": 33.96666666666667,
+      "attacks": 39,
+      "meanPressure": 0.8127102717896156,
+      "maxAngleGap": 114.33012799855973
+    },
+    {
+      "seed": 26,
+      "outcome": "leaked",
+      "coveredTipSeconds": 17.5,
+      "attacks": 21,
+      "meanPressure": 0.8093000307396322,
+      "maxAngleGap": 115.815649552307
+    },
+    {
+      "seed": 27,
+      "outcome": "killed",
+      "coveredTipSeconds": 30.2,
+      "attacks": 44,
+      "meanPressure": 0.811517111455776,
+      "maxAngleGap": 120.26666245421819
+    },
+    {
+      "seed": 28,
+      "outcome": "leaked",
+      "coveredTipSeconds": 27.2,
+      "attacks": 39,
+      "meanPressure": 0.8092370855468564,
+      "maxAngleGap": 122.18136911844974
+    },
+    {
+      "seed": 29,
+      "outcome": "leaked",
+      "coveredTipSeconds": 31.066666666666666,
+      "attacks": 37,
+      "meanPressure": 0.812277853749527,
+      "maxAngleGap": 115.38123081924373
+    },
+    {
+      "seed": 30,
+      "outcome": "killed",
+      "coveredTipSeconds": 29.3,
+      "attacks": 45,
+      "meanPressure": 0.8110502444909841,
+      "maxAngleGap": 119.1323616591049
+    }
+  ]
+}

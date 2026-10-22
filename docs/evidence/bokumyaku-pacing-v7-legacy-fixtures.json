@@ -1,0 +1,19 @@
+{
+  "source": "UnitySandbox/Library/ScriptAssemblies/Bokumyaku.Simulation.dll",
+  "sha256": "F151899F2A0B4A1C8DAA16F59024B91C211C283EDC98564FCDE29C4D03754DFD",
+  "rules": 2,
+  "seed": 42,
+  "builds": [
+    "Farming",
+    "Record"
+  ],
+  "captureTicks": [
+    6000,
+    6900
+  ],
+  "terminalTicks": [
+    12401,
+    13485
+  ],
+  "method": "Actual pre-change v0.6 Unity assembly, JsonUtility + exactDoubleBits; captured via Editor API into isolated logs before Simulation edits"
+}

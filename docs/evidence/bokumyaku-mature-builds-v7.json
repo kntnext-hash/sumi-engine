@@ -1,0 +1,535 @@
+{
+  "classification": "Standalone C# simulation; not Unity/device/persistence/product economy acceptance",
+  "generatedAtUtc": "2026-10-22T09:05:25.5369078Z",
+  "conditions": 20,
+  "rulesVersion": 3,
+  "weapon": "Point",
+  "growthPolicy": "Balanced",
+  "meta": {
+    "Damage": 14,
+    "Supply": 13,
+    "Growth": 14,
+    "Harvest": 12,
+    "Crystals": 0
+  },
+  "metaProvenance": "Fixed evaluation point derived from v0.6 rules2 nineteen-round Farming cheapest-meta-purchase diagnostic; NOT a v0.7 twenty-round progression result",
+  "policy": "Clone fixed meta independently for every seed/build. No post-run purchases or first-time milestone rewards. Normal crystals/min includes three-second retry delay.",
+  "limitations": [
+    "One fixed mature meta and Point only",
+    "Seeds1..10, finite comparison without tuning",
+    "No old evidence replaced"
+  ],
+  "sourceHashes": [
+    {
+      "file": "AutoRepeatController.cs",
+      "sha256": "D110E501CA532370504A4F5E1C09842769F0DE9CC4EA51DDAF1E640FE3B67ACE"
+    },
+    {
+      "file": "RunSimulator.cs",
+      "sha256": "87C9ECFD9AFA67175C9A1D671322A8E12EB8789762E85DA97C22C5F80A6071F5"
+    },
+    {
+      "file": "RunSimulator.ExactSnapshot.cs",
+      "sha256": "1D3DEC084E8811727E8DC333E7FB0937A3A06AC1CF4711F0CACA85D312CB4969"
+    },
+    {
+      "file": "RunSimulator.Snapshot.cs",
+      "sha256": "F8536DC5C6ECC0E9A4744D0F2EA8CE6CB7D9AEC1436F4551704B59DAE117DC05"
+    },
+    {
+      "file": "RunSnapshot.cs",
+      "sha256": "21F9068A22BBDBCF877341E5B6459857F12164905971FA211F610AB429501FCB"
+    }
+  ],
+  "summary": {
+    "recordDepthWins": 1,
+    "depthTies": 2,
+    "farmingEfficiencyWins": 10,
+    "meanRecordCompletedWaveDelta": -1.4,
+    "testCompletedRuns": 0
+  },
+  "pairs": [
+    {
+      "seed": 1,
+      "farmingCompletedWave": 52,
+      "recordCompletedWave": 51,
+      "recordCompletedWaveDelta": -1,
+      "farmingCrystalsPerMinute": 94.68147282291058,
+      "recordCrystalsPerMinute": 8.62635291583652
+    },
+    {
+      "seed": 2,
+      "farmingCompletedWave": 53,
+      "recordCompletedWave": 51,
+      "recordCompletedWaveDelta": -2,
+      "farmingCrystalsPerMinute": 100.94845360824743,
+      "recordCrystalsPerMinute": 8.719723183391004
+    },
+    {
+      "seed": 3,
+      "farmingCompletedWave": 54,
+      "recordCompletedWave": 51,
+      "recordCompletedWaveDelta": -3,
+      "farmingCrystalsPerMinute": 103.10724340926542,
+      "recordCrystalsPerMinute": 8.66039571845605
+    },
+    {
+      "seed": 4,
+      "farmingCompletedWave": 53,
+      "recordCompletedWave": 51,
+      "recordCompletedWaveDelta": -2,
+      "farmingCrystalsPerMinute": 101.00518134715026,
+      "recordCrystalsPerMinute": 8.744467235236964
+    },
+    {
+      "seed": 5,
+      "farmingCompletedWave": 50,
+      "recordCompletedWave": 51,
+      "recordCompletedWaveDelta": 1,
+      "farmingCrystalsPerMinute": 90.95482883079953,
+      "recordCrystalsPerMinute": 8.574676554972122
+    },
+    {
+      "seed": 6,
+      "farmingCompletedWave": 51,
+      "recordCompletedWave": 51,
+      "recordCompletedWaveDelta": 0,
+      "farmingCrystalsPerMinute": 94.72150259067357,
+      "recordCrystalsPerMinute": 8.671646638519
+    },
+    {
+      "seed": 7,
+      "farmingCompletedWave": 53,
+      "recordCompletedWave": 51,
+      "recordCompletedWaveDelta": -2,
+      "farmingCrystalsPerMinute": 102.72883205987839,
+      "recordCrystalsPerMinute": 8.770030316154179
+    },
+    {
+      "seed": 8,
+      "farmingCompletedWave": 54,
+      "recordCompletedWave": 51,
+      "recordCompletedWaveDelta": -3,
+      "farmingCrystalsPerMinute": 104.02240325865581,
+      "recordCrystalsPerMinute": 8.570052961001444
+    },
+    {
+      "seed": 9,
+      "farmingCompletedWave": 51,
+      "recordCompletedWave": 51,
+      "recordCompletedWaveDelta": 0,
+      "farmingCrystalsPerMinute": 94.63987502020147,
+      "recordCrystalsPerMinute": 8.754390705214806
+    },
+    {
+      "seed": 10,
+      "farmingCompletedWave": 54,
+      "recordCompletedWave": 52,
+      "recordCompletedWaveDelta": -2,
+      "farmingCrystalsPerMinute": 103.82152657790427,
+      "recordCrystalsPerMinute": 8.596444680286549
+    }
+  ],
+  "runs": [
+    {
+      "seed": 1,
+      "build": "Farming",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18731,
+      "seconds": 624.3666666666667,
+      "completedWave": 52,
+      "normalCrystals": 990,
+      "normalCrystalsPerMinute": 94.68147282291058,
+      "levels": [
+        21,
+        14,
+        18,
+        6,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 1,
+      "build": "Record",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18481,
+      "seconds": 616.0333333333333,
+      "completedWave": 51,
+      "normalCrystals": 89,
+      "normalCrystalsPerMinute": 8.62635291583652,
+      "levels": [
+        23,
+        12,
+        12,
+        6,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 2,
+      "build": "Farming",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 19310,
+      "seconds": 643.6666666666666,
+      "completedWave": 53,
+      "normalCrystals": 1088,
+      "normalCrystalsPerMinute": 100.94845360824743,
+      "levels": [
+        20,
+        15,
+        19,
+        6,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 2,
+      "build": "Record",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18695,
+      "seconds": 623.1666666666666,
+      "completedWave": 51,
+      "normalCrystals": 91,
+      "normalCrystalsPerMinute": 8.719723183391004,
+      "levels": [
+        23,
+        12,
+        12,
+        6,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 3,
+      "build": "Farming",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 19445,
+      "seconds": 648.1666666666666,
+      "completedWave": 54,
+      "normalCrystals": 1119,
+      "normalCrystalsPerMinute": 103.10724340926542,
+      "levels": [
+        20,
+        15,
+        19,
+        6,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 3,
+      "build": "Record",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18408,
+      "seconds": 613.6,
+      "completedWave": 51,
+      "normalCrystals": 89,
+      "normalCrystalsPerMinute": 8.66039571845605,
+      "levels": [
+        23,
+        12,
+        12,
+        6,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 4,
+      "build": "Farming",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 19210,
+      "seconds": 640.3333333333334,
+      "completedWave": 53,
+      "normalCrystals": 1083,
+      "normalCrystalsPerMinute": 101.00518134715026,
+      "levels": [
+        21,
+        14,
+        19,
+        6,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 4,
+      "build": "Record",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18436,
+      "seconds": 614.5333333333333,
+      "completedWave": 51,
+      "normalCrystals": 90,
+      "normalCrystalsPerMinute": 8.744467235236964,
+      "levels": [
+        23,
+        12,
+        12,
+        6,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 5,
+      "build": "Farming",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18196,
+      "seconds": 606.5333333333333,
+      "completedWave": 50,
+      "normalCrystals": 924,
+      "normalCrystalsPerMinute": 90.95482883079953,
+      "levels": [
+        18,
+        12,
+        20,
+        6,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 5,
+      "build": "Record",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18383,
+      "seconds": 612.7666666666667,
+      "completedWave": 51,
+      "normalCrystals": 88,
+      "normalCrystalsPerMinute": 8.574676554972122,
+      "levels": [
+        23,
+        12,
+        12,
+        6,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 6,
+      "build": "Farming",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18438,
+      "seconds": 614.6,
+      "completedWave": 51,
+      "normalCrystals": 975,
+      "normalCrystalsPerMinute": 94.72150259067357,
+      "levels": [
+        20,
+        14,
+        18,
+        6,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 6,
+      "build": "Record",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18384,
+      "seconds": 612.8,
+      "completedWave": 51,
+      "normalCrystals": 89,
+      "normalCrystalsPerMinute": 8.671646638519,
+      "levels": [
+        23,
+        12,
+        12,
+        6,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 7,
+      "build": "Farming",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 19149,
+      "seconds": 638.3,
+      "completedWave": 53,
+      "normalCrystals": 1098,
+      "normalCrystalsPerMinute": 102.72883205987839,
+      "levels": [
+        21,
+        14,
+        19,
+        6,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 7,
+      "build": "Record",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18382,
+      "seconds": 612.7333333333333,
+      "completedWave": 51,
+      "normalCrystals": 90,
+      "normalCrystalsPerMinute": 8.770030316154179,
+      "levels": [
+        23,
+        12,
+        12,
+        6,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 8,
+      "build": "Farming",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 19550,
+      "seconds": 651.6666666666666,
+      "completedWave": 54,
+      "normalCrystals": 1135,
+      "normalCrystalsPerMinute": 104.02240325865581,
+      "levels": [
+        20,
+        15,
+        20,
+        6,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 8,
+      "build": "Record",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18603,
+      "seconds": 620.1,
+      "completedWave": 51,
+      "normalCrystals": 89,
+      "normalCrystalsPerMinute": 8.570052961001444,
+      "levels": [
+        23,
+        12,
+        12,
+        6,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 9,
+      "build": "Farming",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18473,
+      "seconds": 615.7666666666667,
+      "completedWave": 51,
+      "normalCrystals": 976,
+      "normalCrystalsPerMinute": 94.63987502020147,
+      "levels": [
+        20,
+        14,
+        18,
+        6,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 9,
+      "build": "Record",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18415,
+      "seconds": 613.8333333333334,
+      "completedWave": 51,
+      "normalCrystals": 90,
+      "normalCrystalsPerMinute": 8.754390705214806,
+      "levels": [
+        23,
+        12,
+        12,
+        6,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 10,
+      "build": "Farming",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 19588,
+      "seconds": 652.9333333333333,
+      "completedWave": 54,
+      "normalCrystals": 1135,
+      "normalCrystalsPerMinute": 103.82152657790427,
+      "levels": [
+        21,
+        15,
+        19,
+        6,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "seed": 10,
+      "build": "Record",
+      "rulesVersion": 3,
+      "status": "Defeated",
+      "ticks": 18755,
+      "seconds": 625.1666666666666,
+      "completedWave": 52,
+      "normalCrystals": 90,
+      "normalCrystalsPerMinute": 8.596444680286549,
+      "levels": [
+        23,
+        12,
+        12,
+        6,
+        10,
+        10,
+        0
+      ]
+    }
+  ]
+}

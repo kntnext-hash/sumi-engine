@@ -1,0 +1,81 @@
+{
+  "classification": "Three bounded source-in-memory candidates; no production changes",
+  "selectionRecommendation": "C_SplitAngle65 has best G05 coverage among candidates maintaining all predeclared G04 thresholds; remains G05 FAIL",
+  "additionalSeeds31to50": "CandidateC fixed before evaluation;17/20 within300-480sec, G05 remains FAIL; see bokumyaku-pacing-v7-candidate-2-fixed31to50.json",
+  "candidates": [
+    {
+      "candidate": "A_PaidRepair2",
+      "G04Pass": true,
+      "recordDepthWins": 55.0,
+      "farmingRateWins": 54.0,
+      "G05Within300to480": 27,
+      "G05Pass": false,
+      "shortOrLongSeeds": [
+        {
+          "seed": 2,
+          "seconds": 292.8,
+          "wave": 24
+        },
+        {
+          "seed": 20,
+          "seconds": 244.23333333333332,
+          "wave": 20
+        },
+        {
+          "seed": 25,
+          "seconds": 244.23333333333332,
+          "wave": 20
+        }
+      ]
+    },
+    {
+      "candidate": "B_EarlyBossRamp",
+      "G04Pass": false,
+      "recordDepthWins": 54.0,
+      "farmingRateWins": 50.0,
+      "G05Within300to480": 29,
+      "G05Pass": false,
+      "shortOrLongSeeds": [
+        {
+          "seed": 25,
+          "seconds": 244.23333333333332,
+          "wave": 20
+        }
+      ]
+    },
+    {
+      "candidate": "C_SplitAngle65",
+      "G04Pass": true,
+      "recordDepthWins": 56.0,
+      "farmingRateWins": 55.0,
+      "G05Within300to480": 28,
+      "G05Pass": false,
+      "shortOrLongSeeds": [
+        {
+          "seed": 25,
+          "seconds": 244.23333333333332,
+          "wave": 20
+        },
+        {
+          "seed": 26,
+          "seconds": 244.23333333333332,
+          "wave": 20
+        }
+      ]
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "path": "docs/evidence/bokumyaku-pacing-v7-candidate-0.json",
+      "sha256": "B7BA3805D29BEDD22698D05FC95B74B0D0941F3451B7DF147EE7E301D8E4C79B"
+    },
+    {
+      "path": "docs/evidence/bokumyaku-pacing-v7-candidate-1.json",
+      "sha256": "B8D9A0CFE21E2582C97B9F93EA0EA1D38B4423F63127E9BD7FFDCD40D7145BB9"
+    },
+    {
+      "path": "docs/evidence/bokumyaku-pacing-v7-candidate-2.json",
+      "sha256": "240CBB965D9826874F296BA0E6BABDECF1E807B146935B872F415C8EA6A87148"
+    }
+  ]
+}

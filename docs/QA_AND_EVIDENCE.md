@@ -236,3 +236,30 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - player-v6.json: 6武器各900tick/7枝/9撃破/2購入、実AttackEventと選択武器一致、滲墨4領域、全checkpoint復帰合格。実自動再出撃seed42→43、完了1周/結晶15、6素材と枝透明画素を確認。
 - player-resume-v6.json: 保存後に終了して別プロセスで起動、停止状態と速度2、全snapshot一致、再開後600tickも完全一致。resumeレポートの未使用autoRepeat等のfalseは未実施欄で、別プロセス復帰passed=trueを判定に使う。
 - 初回106.145秒、復帰14.126秒、両exit0、各ログException/Error/Failed一致0。artifact-v6.jsonへexeとゲームDLLのSHA256を保存。非表示opt-in probe/隔離セーブで、描画FPS・物理入力・モバイル性能の測定ではない。900tickは採墨自動購入前であり、採墨の実ボタンはEditor37項目、後半自動購入は独立実走とNUnitで検証した。
+
+## 2026-10-22 ゲームv0.7 独立検証（最新）
+
+|層|結果・範囲|証拠（docs/evidence/）|
+|---|---|---|
+|Unity実コンパイル/NUnit|141/141、初回実行で全合格、44.708316秒|bokumyaku-editmode-v7.xml|
+|Unity非依存C#|12/12|bokumyaku-standalone-v7.txt|
+|旧版継続|変更前v0.6 DLLのFarming/Record、6000→6900tickと終端一致。旧v0.5互換もNUnit対象|bokumyaku-pacing-v7-legacy-fixtures.json、rules-checks.json、Tests/Fixtures/v6-*.json|
+|rules3保存|6武器×2構成、各900tickの毎tick復帰一致|bokumyaku-pacing-v7-rules-checks.json|
+|候補比較|3案×140条件、採用C固定後20seed。仮案と本体160条件の指定終端指標が一致|bokumyaku-pacing-v7-candidate-*.json、comparison.json、adoption-check.json|
+|初回尺|28/30＋17/20＝45/50。G05未合格、5seed約244秒|bokumyaku-pacing-v7-candidate-2*.json|
+|初期役割|meta0で深度56/60、効率55/60、各武器の閾値合格|bokumyaku-pacing-v7-comparison.json|
+|長期経済|旧rules2で80周回＋同meta20条件。現在rules3の同固定meta20条件は記録1勝2同点7敗、平均−1.4Wave。育成後役割は未合格|bokumyaku-progression-v7.json、bokumyaku-mature-builds-v7.json|
+|実画面|41/41、合成MouseDown/Upとlive Update。原本保護移行/旧rules2継続/次周rules3/通常報酬表示|bokumyaku-play-v7.json、gameplay/records/result-v7.png|
+|縦画面|440×1060、共鳴選択とスクロール成功、PNG目視確認|bokumyaku-portrait-v7.json、portrait-top/bottom-v7.png|
+|Windowsビルド|Succeeded、95,024,073bytes、13,410ms、error/warning0。旧版保持|bokumyaku-build-v7.json|
+|Editor終状態|Play停止、compile failed=false、Scene dirty=false、runInBackground=false。現在Console error/warning0|bokumyaku-console-v7.json|
+
+CLI Consoleのbuffer累積error15/warn23と現在groundTruth error0/warn0を区別する。UI試験には意図的な保存ロック警告がある。縦画面probe起動時の誤ったCLI引数type/methodはEditorへ到達前に拒否、発見済みentry指定で修正し合格。CLI更新aliasの既知制約は継続、Editor接続成功と区別する。
+
+結果画面PNGでは通常4結晶＋初達成10を分離し、通常結晶/分1.91と侵入5体を確認。これは機能試作の画面でありユーザー参考の完成美術への到達ではない。スマホ実機、物理操作、FPS、長時間、楽しさ、経済テンポの合格を主張しない。生成ログ/ビルドキャッシュ/通常セーブはコミット対象外。
+
+### v0.7 Windows最終結果
+- 6武器各900tick、攻撃/購入/checkpoint復帰、自動再出撃42→43を実Playerで確認。別プロセスで同checkpoint復帰＋600tick未来一致。両passed=true/exit0（105.811秒、14.209秒）。通常セーブは使用しない。PlayerログにException/Error/Failedなし。
+- 証拠: evidence/bokumyaku-player-v7.json、bokumyaku-player-resume-v7.json、bokumyaku-player-launch-v7.json、bokumyaku-artifact-v7.json。ビルドサイズ95,024,073bytes。エンジン/Scene/ProjectSettingsにコミット差分なし。
+
+実装コミット: a448fb5。検証スクリプト/証拠/台帳は次の独立コミット。

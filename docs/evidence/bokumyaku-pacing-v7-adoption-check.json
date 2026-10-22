@@ -1,0 +1,46 @@
+{
+  "classification": "Actual production rules3 against fixed candidateC terminal records",
+  "pass": true,
+  "matchedRuns": 160,
+  "coverage": "All50 Point Farming plus ten seeds/six weapons/both builds (Point overlaps)",
+  "comparedFields": [
+    "ticks",
+    "completedWave",
+    "crystals",
+    "repairCount",
+    "status",
+    "all7upgradeLevels"
+  ],
+  "sourceHashes": [
+    {
+      "name": "AutoRepeatController.cs",
+      "sha256": "D110E501CA532370504A4F5E1C09842769F0DE9CC4EA51DDAF1E640FE3B67ACE"
+    },
+    {
+      "name": "RunSimulator.cs",
+      "sha256": "87C9ECFD9AFA67175C9A1D671322A8E12EB8789762E85DA97C22C5F80A6071F5"
+    },
+    {
+      "name": "RunSimulator.ExactSnapshot.cs",
+      "sha256": "1D3DEC084E8811727E8DC333E7FB0937A3A06AC1CF4711F0CACA85D312CB4969"
+    },
+    {
+      "name": "RunSimulator.Snapshot.cs",
+      "sha256": "F8536DC5C6ECC0E9A4744D0F2EA8CE6CB7D9AEC1436F4551704B59DAE117DC05"
+    },
+    {
+      "name": "RunSnapshot.cs",
+      "sha256": "21F9068A22BBDBCF877341E5B6459857F12164905971FA211F610AB429501FCB"
+    }
+  ],
+  "evidenceHashes": [
+    {
+      "name": "bokumyaku-pacing-v7-candidate-2.json",
+      "sha256": "240CBB965D9826874F296BA0E6BABDECF1E807B146935B872F415C8EA6A87148"
+    },
+    {
+      "name": "bokumyaku-pacing-v7-candidate-2-fixed31to50.json",
+      "sha256": "A7482722275EB9E8A8E033E0C011421FE7EE819B4F9BD24A1B3E070E7D6CCE72"
+    }
+  ]
+}

@@ -1,0 +1,3551 @@
+{
+  "classification": "Standalone C# simulation measurement; not Unity, persistence transaction, device or product economy acceptance",
+  "generatedAtUtc": "2026-10-22T08:57:50.1461892Z",
+  "conditions": 100,
+  "rulesVersion": 2,
+  "weapon": "Point",
+  "growthPolicy": "Balanced",
+  "seeds": "1..20 sequential rounds for each independent campaign",
+  "purchasePolicy": "Measurement-only policy, not a product auto-purchase feature. After settlement repeatedly buy cheapest uncapped meta upgrade; equal costs use enum order Damage,Supply,Growth,Harvest",
+  "milestonePolicy": "5 crystals per first new five completed waves, separate from normal; equivalent arithmetic, not CampaignSaveStore execution",
+  "limitations": [
+    "Only Point/Balanced and one fixed purchase policy",
+    "Twenty finite rounds, no offline income",
+    "TestCompleted at wave60 is finite test completion, not natural defeat; explicitly counted",
+    "No retuning or product economy completion claim"
+  ],
+  "sourceHashes": [
+    {
+      "file": "AutoRepeatController.cs",
+      "sha256": "D110E501CA532370504A4F5E1C09842769F0DE9CC4EA51DDAF1E640FE3B67ACE"
+    },
+    {
+      "file": "RunSimulator.cs",
+      "sha256": "F5F2A2ED719758A339D2F27033FE8AC3ADEB7CA4F6B48535E6A170F8A88105E1"
+    },
+    {
+      "file": "RunSimulator.ExactSnapshot.cs",
+      "sha256": "1D3DEC084E8811727E8DC333E7FB0937A3A06AC1CF4711F0CACA85D312CB4969"
+    },
+    {
+      "file": "RunSimulator.Snapshot.cs",
+      "sha256": "7A4BC736736B9F2DBE9BB9F0545517F04A2B725DDB87AE1D4FD770F13E0DB6FE"
+    },
+    {
+      "file": "RunSnapshot.cs",
+      "sha256": "21F9068A22BBDBCF877341E5B6459857F12164905971FA211F610AB429501FCB"
+    }
+  ],
+  "summaries": [
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "runs": 20,
+      "totalPurchases": 54.0,
+      "meanPurchasesPerRun": 2.7,
+      "finalMeta": {
+        "Crystals": 852,
+        "Damage": 14,
+        "Supply": 13,
+        "Growth": 14,
+        "Harvest": 13
+      },
+      "bestWave": 54,
+      "totalNormalCrystals": 16303.0,
+      "totalFirstMilestoneCrystals": 50.0,
+      "totalSeconds": 11587.199999999999,
+      "testCompletedRuns": 0,
+      "anyMetaAtCap": false
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "runs": 20,
+      "totalPurchases": 0.0,
+      "meanPurchasesPerRun": 0.0,
+      "finalMeta": {
+        "Crystals": 3464,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "bestWave": 39,
+      "totalNormalCrystals": 3429.0,
+      "totalFirstMilestoneCrystals": 35.0,
+      "totalSeconds": 7429.033333333335,
+      "testCompletedRuns": 0,
+      "anyMetaAtCap": false
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "runs": 20,
+      "totalPurchases": 29.0,
+      "meanPurchasesPerRun": 1.45,
+      "finalMeta": {
+        "Crystals": 109,
+        "Damage": 8,
+        "Supply": 7,
+        "Growth": 8,
+        "Harvest": 6
+      },
+      "bestWave": 47,
+      "totalNormalCrystals": 1350.0,
+      "totalFirstMilestoneCrystals": 45.0,
+      "totalSeconds": 10773.933333333334,
+      "testCompletedRuns": 0,
+      "anyMetaAtCap": false
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "runs": 20,
+      "totalPurchases": 0.0,
+      "meanPurchasesPerRun": 0.0,
+      "finalMeta": {
+        "Crystals": 1002,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "bestWave": 41,
+      "totalNormalCrystals": 962.0,
+      "totalFirstMilestoneCrystals": 40.0,
+      "totalSeconds": 9116.999999999998,
+      "testCompletedRuns": 0,
+      "anyMetaAtCap": false
+    }
+  ],
+  "runs": [
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 1,
+      "seed": 1,
+      "rulesVersion": 2,
+      "ticks": 11768,
+      "completedWave": 32,
+      "normalCrystals": 189,
+      "firstMilestoneCrystals": 30,
+      "bestWave": 32,
+      "seconds": 392.26666666666665,
+      "before": {
+        "Crystals": 0,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 14,
+        "Damage": 4,
+        "Supply": 3,
+        "Growth": 4,
+        "Harvest": 2
+      },
+      "purchases": [
+        {
+          "kind": "Damage",
+          "cost": 8,
+          "level": 1
+        },
+        {
+          "kind": "Growth",
+          "cost": 8,
+          "level": 1
+        },
+        {
+          "kind": "Supply",
+          "cost": 10,
+          "level": 1
+        },
+        {
+          "kind": "Damage",
+          "cost": 12,
+          "level": 2
+        },
+        {
+          "kind": "Growth",
+          "cost": 12,
+          "level": 2
+        },
+        {
+          "kind": "Harvest",
+          "cost": 12,
+          "level": 1
+        },
+        {
+          "kind": "Supply",
+          "cost": 15,
+          "level": 2
+        },
+        {
+          "kind": "Damage",
+          "cost": 18,
+          "level": 3
+        },
+        {
+          "kind": "Growth",
+          "cost": 18,
+          "level": 3
+        },
+        {
+          "kind": "Harvest",
+          "cost": 18,
+          "level": 2
+        },
+        {
+          "kind": "Supply",
+          "cost": 22,
+          "level": 3
+        },
+        {
+          "kind": "Damage",
+          "cost": 26,
+          "level": 4
+        },
+        {
+          "kind": "Growth",
+          "cost": 26,
+          "level": 4
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 2,
+      "seed": 2,
+      "rulesVersion": 2,
+      "ticks": 13074,
+      "completedWave": 36,
+      "normalCrystals": 268,
+      "firstMilestoneCrystals": 5,
+      "bestWave": 36,
+      "seconds": 435.8,
+      "before": {
+        "Crystals": 14,
+        "Damage": 4,
+        "Supply": 3,
+        "Growth": 4,
+        "Harvest": 2
+      },
+      "after": {
+        "Crystals": 5,
+        "Damage": 6,
+        "Supply": 5,
+        "Growth": 5,
+        "Harvest": 4
+      },
+      "purchases": [
+        {
+          "kind": "Harvest",
+          "cost": 27,
+          "level": 3
+        },
+        {
+          "kind": "Supply",
+          "cost": 33,
+          "level": 4
+        },
+        {
+          "kind": "Damage",
+          "cost": 39,
+          "level": 5
+        },
+        {
+          "kind": "Growth",
+          "cost": 39,
+          "level": 5
+        },
+        {
+          "kind": "Harvest",
+          "cost": 39,
+          "level": 4
+        },
+        {
+          "kind": "Supply",
+          "cost": 48,
+          "level": 5
+        },
+        {
+          "kind": "Damage",
+          "cost": 57,
+          "level": 6
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 3,
+      "seed": 3,
+      "rulesVersion": 2,
+      "ticks": 16319,
+      "completedWave": 45,
+      "normalCrystals": 634,
+      "firstMilestoneCrystals": 10,
+      "bestWave": 45,
+      "seconds": 543.9666666666667,
+      "before": {
+        "Crystals": 5,
+        "Damage": 6,
+        "Supply": 5,
+        "Growth": 5,
+        "Harvest": 4
+      },
+      "after": {
+        "Crystals": 100,
+        "Damage": 7,
+        "Supply": 7,
+        "Growth": 7,
+        "Harvest": 6
+      },
+      "purchases": [
+        {
+          "kind": "Growth",
+          "cost": 57,
+          "level": 6
+        },
+        {
+          "kind": "Harvest",
+          "cost": 58,
+          "level": 5
+        },
+        {
+          "kind": "Supply",
+          "cost": 72,
+          "level": 6
+        },
+        {
+          "kind": "Damage",
+          "cost": 85,
+          "level": 7
+        },
+        {
+          "kind": "Growth",
+          "cost": 85,
+          "level": 7
+        },
+        {
+          "kind": "Harvest",
+          "cost": 86,
+          "level": 6
+        },
+        {
+          "kind": "Supply",
+          "cost": 106,
+          "level": 7
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 4,
+      "seed": 4,
+      "rulesVersion": 2,
+      "ticks": 17093,
+      "completedWave": 47,
+      "normalCrystals": 759,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 47,
+      "seconds": 569.7666666666667,
+      "before": {
+        "Crystals": 100,
+        "Damage": 7,
+        "Supply": 7,
+        "Growth": 7,
+        "Harvest": 6
+      },
+      "after": {
+        "Crystals": 141,
+        "Damage": 9,
+        "Supply": 8,
+        "Growth": 8,
+        "Harvest": 7
+      },
+      "purchases": [
+        {
+          "kind": "Damage",
+          "cost": 125,
+          "level": 8
+        },
+        {
+          "kind": "Growth",
+          "cost": 125,
+          "level": 8
+        },
+        {
+          "kind": "Harvest",
+          "cost": 127,
+          "level": 7
+        },
+        {
+          "kind": "Supply",
+          "cost": 156,
+          "level": 8
+        },
+        {
+          "kind": "Damage",
+          "cost": 185,
+          "level": 9
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 5,
+      "seed": 5,
+      "rulesVersion": 2,
+      "ticks": 18096,
+      "completedWave": 50,
+      "normalCrystals": 911,
+      "firstMilestoneCrystals": 5,
+      "bestWave": 50,
+      "seconds": 603.2,
+      "before": {
+        "Crystals": 141,
+        "Damage": 9,
+        "Supply": 8,
+        "Growth": 8,
+        "Harvest": 7
+      },
+      "after": {
+        "Crystals": 181,
+        "Damage": 10,
+        "Supply": 9,
+        "Growth": 9,
+        "Harvest": 8
+      },
+      "purchases": [
+        {
+          "kind": "Growth",
+          "cost": 185,
+          "level": 9
+        },
+        {
+          "kind": "Harvest",
+          "cost": 187,
+          "level": 8
+        },
+        {
+          "kind": "Supply",
+          "cost": 231,
+          "level": 9
+        },
+        {
+          "kind": "Damage",
+          "cost": 273,
+          "level": 10
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 6,
+      "seed": 6,
+      "rulesVersion": 2,
+      "ticks": 18087,
+      "completedWave": 50,
+      "normalCrystals": 898,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 50,
+      "seconds": 602.9,
+      "before": {
+        "Crystals": 181,
+        "Damage": 10,
+        "Supply": 9,
+        "Growth": 9,
+        "Harvest": 8
+      },
+      "after": {
+        "Crystals": 188,
+        "Damage": 10,
+        "Supply": 10,
+        "Growth": 10,
+        "Harvest": 9
+      },
+      "purchases": [
+        {
+          "kind": "Growth",
+          "cost": 273,
+          "level": 10
+        },
+        {
+          "kind": "Harvest",
+          "cost": 277,
+          "level": 9
+        },
+        {
+          "kind": "Supply",
+          "cost": 341,
+          "level": 10
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 7,
+      "seed": 7,
+      "rulesVersion": 2,
+      "ticks": 16109,
+      "completedWave": 44,
+      "normalCrystals": 631,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 50,
+      "seconds": 536.9666666666667,
+      "before": {
+        "Crystals": 188,
+        "Damage": 10,
+        "Supply": 10,
+        "Growth": 10,
+        "Harvest": 9
+      },
+      "after": {
+        "Crystals": 11,
+        "Damage": 11,
+        "Supply": 10,
+        "Growth": 11,
+        "Harvest": 9
+      },
+      "purchases": [
+        {
+          "kind": "Damage",
+          "cost": 404,
+          "level": 11
+        },
+        {
+          "kind": "Growth",
+          "cost": 404,
+          "level": 11
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 8,
+      "seed": 8,
+      "rulesVersion": 2,
+      "ticks": 16656,
+      "completedWave": 46,
+      "normalCrystals": 682,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 50,
+      "seconds": 555.2,
+      "before": {
+        "Crystals": 11,
+        "Damage": 11,
+        "Supply": 10,
+        "Growth": 11,
+        "Harvest": 9
+      },
+      "after": {
+        "Crystals": 284,
+        "Damage": 11,
+        "Supply": 10,
+        "Growth": 11,
+        "Harvest": 10
+      },
+      "purchases": [
+        {
+          "kind": "Harvest",
+          "cost": 409,
+          "level": 10
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 9,
+      "seed": 9,
+      "rulesVersion": 2,
+      "ticks": 18121,
+      "completedWave": 50,
+      "normalCrystals": 910,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 50,
+      "seconds": 604.0333333333333,
+      "before": {
+        "Crystals": 284,
+        "Damage": 11,
+        "Supply": 10,
+        "Growth": 11,
+        "Harvest": 10
+      },
+      "after": {
+        "Crystals": 92,
+        "Damage": 12,
+        "Supply": 11,
+        "Growth": 11,
+        "Harvest": 10
+      },
+      "purchases": [
+        {
+          "kind": "Supply",
+          "cost": 505,
+          "level": 11
+        },
+        {
+          "kind": "Damage",
+          "cost": 597,
+          "level": 12
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 10,
+      "seed": 10,
+      "rulesVersion": 2,
+      "ticks": 17996,
+      "completedWave": 49,
+      "normalCrystals": 868,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 50,
+      "seconds": 599.8666666666667,
+      "before": {
+        "Crystals": 92,
+        "Damage": 12,
+        "Supply": 11,
+        "Growth": 11,
+        "Harvest": 10
+      },
+      "after": {
+        "Crystals": 363,
+        "Damage": 12,
+        "Supply": 11,
+        "Growth": 12,
+        "Harvest": 10
+      },
+      "purchases": [
+        {
+          "kind": "Growth",
+          "cost": 597,
+          "level": 12
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 11,
+      "seed": 11,
+      "rulesVersion": 2,
+      "ticks": 18112,
+      "completedWave": 50,
+      "normalCrystals": 912,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 50,
+      "seconds": 603.7333333333333,
+      "before": {
+        "Crystals": 363,
+        "Damage": 12,
+        "Supply": 11,
+        "Growth": 12,
+        "Harvest": 10
+      },
+      "after": {
+        "Crystals": 669,
+        "Damage": 12,
+        "Supply": 11,
+        "Growth": 12,
+        "Harvest": 11
+      },
+      "purchases": [
+        {
+          "kind": "Harvest",
+          "cost": 606,
+          "level": 11
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 12,
+      "seed": 12,
+      "rulesVersion": 2,
+      "ticks": 18112,
+      "completedWave": 50,
+      "normalCrystals": 905,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 50,
+      "seconds": 603.7333333333333,
+      "before": {
+        "Crystals": 669,
+        "Damage": 12,
+        "Supply": 11,
+        "Growth": 12,
+        "Harvest": 11
+      },
+      "after": {
+        "Crystals": 827,
+        "Damage": 12,
+        "Supply": 12,
+        "Growth": 12,
+        "Harvest": 11
+      },
+      "purchases": [
+        {
+          "kind": "Supply",
+          "cost": 747,
+          "level": 12
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 13,
+      "seed": 13,
+      "rulesVersion": 2,
+      "ticks": 18087,
+      "completedWave": 50,
+      "normalCrystals": 903,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 50,
+      "seconds": 602.9,
+      "before": {
+        "Crystals": 827,
+        "Damage": 12,
+        "Supply": 12,
+        "Growth": 12,
+        "Harvest": 11
+      },
+      "after": {
+        "Crystals": 846,
+        "Damage": 13,
+        "Supply": 12,
+        "Growth": 12,
+        "Harvest": 11
+      },
+      "purchases": [
+        {
+          "kind": "Damage",
+          "cost": 884,
+          "level": 13
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 14,
+      "seed": 14,
+      "rulesVersion": 2,
+      "ticks": 18112,
+      "completedWave": 50,
+      "normalCrystals": 889,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 50,
+      "seconds": 603.7333333333333,
+      "before": {
+        "Crystals": 846,
+        "Damage": 13,
+        "Supply": 12,
+        "Growth": 12,
+        "Harvest": 11
+      },
+      "after": {
+        "Crystals": 851,
+        "Damage": 13,
+        "Supply": 12,
+        "Growth": 13,
+        "Harvest": 11
+      },
+      "purchases": [
+        {
+          "kind": "Growth",
+          "cost": 884,
+          "level": 13
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 15,
+      "seed": 15,
+      "rulesVersion": 2,
+      "ticks": 18105,
+      "completedWave": 50,
+      "normalCrystals": 896,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 50,
+      "seconds": 603.5,
+      "before": {
+        "Crystals": 851,
+        "Damage": 13,
+        "Supply": 12,
+        "Growth": 13,
+        "Harvest": 11
+      },
+      "after": {
+        "Crystals": 851,
+        "Damage": 13,
+        "Supply": 12,
+        "Growth": 13,
+        "Harvest": 12
+      },
+      "purchases": [
+        {
+          "kind": "Harvest",
+          "cost": 896,
+          "level": 12
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 16,
+      "seed": 16,
+      "rulesVersion": 2,
+      "ticks": 18196,
+      "completedWave": 50,
+      "normalCrystals": 927,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 50,
+      "seconds": 606.5333333333333,
+      "before": {
+        "Crystals": 851,
+        "Damage": 13,
+        "Supply": 12,
+        "Growth": 13,
+        "Harvest": 12
+      },
+      "after": {
+        "Crystals": 673,
+        "Damage": 13,
+        "Supply": 13,
+        "Growth": 13,
+        "Harvest": 12
+      },
+      "purchases": [
+        {
+          "kind": "Supply",
+          "cost": 1105,
+          "level": 13
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 17,
+      "seed": 17,
+      "rulesVersion": 2,
+      "ticks": 18465,
+      "completedWave": 51,
+      "normalCrystals": 951,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 51,
+      "seconds": 615.5,
+      "before": {
+        "Crystals": 673,
+        "Damage": 13,
+        "Supply": 13,
+        "Growth": 13,
+        "Harvest": 12
+      },
+      "after": {
+        "Crystals": 316,
+        "Damage": 14,
+        "Supply": 13,
+        "Growth": 13,
+        "Harvest": 12
+      },
+      "purchases": [
+        {
+          "kind": "Damage",
+          "cost": 1308,
+          "level": 14
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 18,
+      "seed": 18,
+      "rulesVersion": 2,
+      "ticks": 19520,
+      "completedWave": 54,
+      "normalCrystals": 1143,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 54,
+      "seconds": 650.6666666666666,
+      "before": {
+        "Crystals": 316,
+        "Damage": 14,
+        "Supply": 13,
+        "Growth": 13,
+        "Harvest": 12
+      },
+      "after": {
+        "Crystals": 151,
+        "Damage": 14,
+        "Supply": 13,
+        "Growth": 14,
+        "Harvest": 12
+      },
+      "purchases": [
+        {
+          "kind": "Growth",
+          "cost": 1308,
+          "level": 14
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 19,
+      "seed": 19,
+      "rulesVersion": 2,
+      "ticks": 18090,
+      "completedWave": 50,
+      "normalCrystals": 887,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 54,
+      "seconds": 603.0,
+      "before": {
+        "Crystals": 151,
+        "Damage": 14,
+        "Supply": 13,
+        "Growth": 14,
+        "Harvest": 12
+      },
+      "after": {
+        "Crystals": 1038,
+        "Damage": 14,
+        "Supply": 13,
+        "Growth": 14,
+        "Harvest": 12
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 20,
+      "seed": 20,
+      "rulesVersion": 2,
+      "ticks": 19498,
+      "completedWave": 54,
+      "normalCrystals": 1140,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 54,
+      "seconds": 649.9333333333333,
+      "before": {
+        "Crystals": 1038,
+        "Damage": 14,
+        "Supply": 13,
+        "Growth": 14,
+        "Harvest": 12
+      },
+      "after": {
+        "Crystals": 852,
+        "Damage": 14,
+        "Supply": 13,
+        "Growth": 14,
+        "Harvest": 13
+      },
+      "purchases": [
+        {
+          "kind": "Harvest",
+          "cost": 1326,
+          "level": 13
+        }
+      ]
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 1,
+      "seed": 1,
+      "rulesVersion": 2,
+      "ticks": 11768,
+      "completedWave": 32,
+      "normalCrystals": 189,
+      "firstMilestoneCrystals": 30,
+      "bestWave": 32,
+      "seconds": 392.26666666666665,
+      "before": {
+        "Crystals": 0,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 219,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 2,
+      "seed": 2,
+      "rulesVersion": 2,
+      "ticks": 10902,
+      "completedWave": 30,
+      "normalCrystals": 146,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 32,
+      "seconds": 363.4,
+      "before": {
+        "Crystals": 219,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 365,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 3,
+      "seed": 3,
+      "rulesVersion": 2,
+      "ticks": 10902,
+      "completedWave": 30,
+      "normalCrystals": 145,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 32,
+      "seconds": 363.4,
+      "before": {
+        "Crystals": 365,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 510,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 4,
+      "seed": 4,
+      "rulesVersion": 2,
+      "ticks": 7360,
+      "completedWave": 20,
+      "normalCrystals": 29,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 32,
+      "seconds": 245.33333333333334,
+      "before": {
+        "Crystals": 510,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 539,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 5,
+      "seed": 5,
+      "rulesVersion": 2,
+      "ticks": 11753,
+      "completedWave": 32,
+      "normalCrystals": 187,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 32,
+      "seconds": 391.76666666666665,
+      "before": {
+        "Crystals": 539,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 726,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 6,
+      "seed": 6,
+      "rulesVersion": 2,
+      "ticks": 14169,
+      "completedWave": 39,
+      "normalCrystals": 383,
+      "firstMilestoneCrystals": 5,
+      "bestWave": 39,
+      "seconds": 472.3,
+      "before": {
+        "Crystals": 726,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 1114,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 7,
+      "seed": 7,
+      "rulesVersion": 2,
+      "ticks": 9538,
+      "completedWave": 26,
+      "normalCrystals": 83,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 317.93333333333334,
+      "before": {
+        "Crystals": 1114,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 1197,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 8,
+      "seed": 8,
+      "rulesVersion": 2,
+      "ticks": 10902,
+      "completedWave": 30,
+      "normalCrystals": 144,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 363.4,
+      "before": {
+        "Crystals": 1197,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 1341,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 9,
+      "seed": 9,
+      "rulesVersion": 2,
+      "ticks": 11927,
+      "completedWave": 33,
+      "normalCrystals": 211,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 397.56666666666666,
+      "before": {
+        "Crystals": 1341,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 1552,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 10,
+      "seed": 10,
+      "rulesVersion": 2,
+      "ticks": 10902,
+      "completedWave": 30,
+      "normalCrystals": 140,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 363.4,
+      "before": {
+        "Crystals": 1552,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 1692,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 11,
+      "seed": 11,
+      "rulesVersion": 2,
+      "ticks": 9785,
+      "completedWave": 27,
+      "normalCrystals": 94,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 326.1666666666667,
+      "before": {
+        "Crystals": 1692,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 1786,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 12,
+      "seed": 12,
+      "rulesVersion": 2,
+      "ticks": 10902,
+      "completedWave": 30,
+      "normalCrystals": 135,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 363.4,
+      "before": {
+        "Crystals": 1786,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 1921,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 13,
+      "seed": 13,
+      "rulesVersion": 2,
+      "ticks": 13067,
+      "completedWave": 36,
+      "normalCrystals": 277,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 435.56666666666666,
+      "before": {
+        "Crystals": 1921,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 2198,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 14,
+      "seed": 14,
+      "rulesVersion": 2,
+      "ticks": 12307,
+      "completedWave": 34,
+      "normalCrystals": 222,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 410.23333333333335,
+      "before": {
+        "Crystals": 2198,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 2420,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 15,
+      "seed": 15,
+      "rulesVersion": 2,
+      "ticks": 11285,
+      "completedWave": 31,
+      "normalCrystals": 161,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 376.1666666666667,
+      "before": {
+        "Crystals": 2420,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 2581,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 16,
+      "seed": 16,
+      "rulesVersion": 2,
+      "ticks": 12637,
+      "completedWave": 35,
+      "normalCrystals": 249,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 421.23333333333335,
+      "before": {
+        "Crystals": 2581,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 2830,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 17,
+      "seed": 17,
+      "rulesVersion": 2,
+      "ticks": 13595,
+      "completedWave": 37,
+      "normalCrystals": 313,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 453.1666666666667,
+      "before": {
+        "Crystals": 2830,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 3143,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 18,
+      "seed": 18,
+      "rulesVersion": 2,
+      "ticks": 10937,
+      "completedWave": 30,
+      "normalCrystals": 150,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 364.56666666666666,
+      "before": {
+        "Crystals": 3143,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 3293,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 19,
+      "seed": 19,
+      "rulesVersion": 2,
+      "ticks": 10906,
+      "completedWave": 30,
+      "normalCrystals": 140,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 363.53333333333336,
+      "before": {
+        "Crystals": 3293,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 3433,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Farming",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 20,
+      "seed": 20,
+      "rulesVersion": 2,
+      "ticks": 7327,
+      "completedWave": 20,
+      "normalCrystals": 31,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 39,
+      "seconds": 244.23333333333332,
+      "before": {
+        "Crystals": 3433,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 3464,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 1,
+      "seed": 1,
+      "rulesVersion": 2,
+      "ticks": 14491,
+      "completedWave": 40,
+      "normalCrystals": 54,
+      "firstMilestoneCrystals": 40,
+      "bestWave": 40,
+      "seconds": 483.03333333333336,
+      "before": {
+        "Crystals": 0,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 17,
+        "Damage": 2,
+        "Supply": 2,
+        "Growth": 2,
+        "Harvest": 1
+      },
+      "purchases": [
+        {
+          "kind": "Damage",
+          "cost": 8,
+          "level": 1
+        },
+        {
+          "kind": "Growth",
+          "cost": 8,
+          "level": 1
+        },
+        {
+          "kind": "Supply",
+          "cost": 10,
+          "level": 1
+        },
+        {
+          "kind": "Damage",
+          "cost": 12,
+          "level": 2
+        },
+        {
+          "kind": "Growth",
+          "cost": 12,
+          "level": 2
+        },
+        {
+          "kind": "Harvest",
+          "cost": 12,
+          "level": 1
+        },
+        {
+          "kind": "Supply",
+          "cost": 15,
+          "level": 2
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 2,
+      "seed": 2,
+      "rulesVersion": 2,
+      "ticks": 14913,
+      "completedWave": 41,
+      "normalCrystals": 57,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 497.1,
+      "before": {
+        "Crystals": 17,
+        "Damage": 2,
+        "Supply": 2,
+        "Growth": 2,
+        "Harvest": 1
+      },
+      "after": {
+        "Crystals": 20,
+        "Damage": 3,
+        "Supply": 2,
+        "Growth": 3,
+        "Harvest": 2
+      },
+      "purchases": [
+        {
+          "kind": "Damage",
+          "cost": 18,
+          "level": 3
+        },
+        {
+          "kind": "Growth",
+          "cost": 18,
+          "level": 3
+        },
+        {
+          "kind": "Harvest",
+          "cost": 18,
+          "level": 2
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 3,
+      "seed": 3,
+      "rulesVersion": 2,
+      "ticks": 14956,
+      "completedWave": 41,
+      "normalCrystals": 56,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 498.53333333333336,
+      "before": {
+        "Crystals": 20,
+        "Damage": 3,
+        "Supply": 2,
+        "Growth": 3,
+        "Harvest": 2
+      },
+      "after": {
+        "Crystals": 2,
+        "Damage": 4,
+        "Supply": 3,
+        "Growth": 4,
+        "Harvest": 2
+      },
+      "purchases": [
+        {
+          "kind": "Supply",
+          "cost": 22,
+          "level": 3
+        },
+        {
+          "kind": "Damage",
+          "cost": 26,
+          "level": 4
+        },
+        {
+          "kind": "Growth",
+          "cost": 26,
+          "level": 4
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 4,
+      "seed": 4,
+      "rulesVersion": 2,
+      "ticks": 16040,
+      "completedWave": 44,
+      "normalCrystals": 67,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 44,
+      "seconds": 534.6666666666666,
+      "before": {
+        "Crystals": 2,
+        "Damage": 4,
+        "Supply": 3,
+        "Growth": 4,
+        "Harvest": 2
+      },
+      "after": {
+        "Crystals": 9,
+        "Damage": 4,
+        "Supply": 4,
+        "Growth": 4,
+        "Harvest": 3
+      },
+      "purchases": [
+        {
+          "kind": "Harvest",
+          "cost": 27,
+          "level": 3
+        },
+        {
+          "kind": "Supply",
+          "cost": 33,
+          "level": 4
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 5,
+      "seed": 5,
+      "rulesVersion": 2,
+      "ticks": 14838,
+      "completedWave": 41,
+      "normalCrystals": 57,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 44,
+      "seconds": 494.6,
+      "before": {
+        "Crystals": 9,
+        "Damage": 4,
+        "Supply": 4,
+        "Growth": 4,
+        "Harvest": 3
+      },
+      "after": {
+        "Crystals": 27,
+        "Damage": 5,
+        "Supply": 4,
+        "Growth": 4,
+        "Harvest": 3
+      },
+      "purchases": [
+        {
+          "kind": "Damage",
+          "cost": 39,
+          "level": 5
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 6,
+      "seed": 6,
+      "rulesVersion": 2,
+      "ticks": 15170,
+      "completedWave": 42,
+      "normalCrystals": 61,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 44,
+      "seconds": 505.6666666666667,
+      "before": {
+        "Crystals": 27,
+        "Damage": 5,
+        "Supply": 4,
+        "Growth": 4,
+        "Harvest": 3
+      },
+      "after": {
+        "Crystals": 10,
+        "Damage": 5,
+        "Supply": 4,
+        "Growth": 5,
+        "Harvest": 4
+      },
+      "purchases": [
+        {
+          "kind": "Growth",
+          "cost": 39,
+          "level": 5
+        },
+        {
+          "kind": "Harvest",
+          "cost": 39,
+          "level": 4
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 7,
+      "seed": 7,
+      "rulesVersion": 2,
+      "ticks": 15862,
+      "completedWave": 44,
+      "normalCrystals": 66,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 44,
+      "seconds": 528.7333333333333,
+      "before": {
+        "Crystals": 10,
+        "Damage": 5,
+        "Supply": 4,
+        "Growth": 5,
+        "Harvest": 4
+      },
+      "after": {
+        "Crystals": 28,
+        "Damage": 5,
+        "Supply": 5,
+        "Growth": 5,
+        "Harvest": 4
+      },
+      "purchases": [
+        {
+          "kind": "Supply",
+          "cost": 48,
+          "level": 5
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 8,
+      "seed": 8,
+      "rulesVersion": 2,
+      "ticks": 16175,
+      "completedWave": 44,
+      "normalCrystals": 68,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 44,
+      "seconds": 539.1666666666666,
+      "before": {
+        "Crystals": 28,
+        "Damage": 5,
+        "Supply": 5,
+        "Growth": 5,
+        "Harvest": 4
+      },
+      "after": {
+        "Crystals": 39,
+        "Damage": 6,
+        "Supply": 5,
+        "Growth": 5,
+        "Harvest": 4
+      },
+      "purchases": [
+        {
+          "kind": "Damage",
+          "cost": 57,
+          "level": 6
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 9,
+      "seed": 9,
+      "rulesVersion": 2,
+      "ticks": 16236,
+      "completedWave": 45,
+      "normalCrystals": 69,
+      "firstMilestoneCrystals": 5,
+      "bestWave": 45,
+      "seconds": 541.2,
+      "before": {
+        "Crystals": 39,
+        "Damage": 6,
+        "Supply": 5,
+        "Growth": 5,
+        "Harvest": 4
+      },
+      "after": {
+        "Crystals": 56,
+        "Damage": 6,
+        "Supply": 5,
+        "Growth": 6,
+        "Harvest": 4
+      },
+      "purchases": [
+        {
+          "kind": "Growth",
+          "cost": 57,
+          "level": 6
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 10,
+      "seed": 10,
+      "rulesVersion": 2,
+      "ticks": 16573,
+      "completedWave": 46,
+      "normalCrystals": 70,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 46,
+      "seconds": 552.4333333333333,
+      "before": {
+        "Crystals": 56,
+        "Damage": 6,
+        "Supply": 5,
+        "Growth": 6,
+        "Harvest": 4
+      },
+      "after": {
+        "Crystals": 68,
+        "Damage": 6,
+        "Supply": 5,
+        "Growth": 6,
+        "Harvest": 5
+      },
+      "purchases": [
+        {
+          "kind": "Harvest",
+          "cost": 58,
+          "level": 5
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 11,
+      "seed": 11,
+      "rulesVersion": 2,
+      "ticks": 16582,
+      "completedWave": 46,
+      "normalCrystals": 70,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 46,
+      "seconds": 552.7333333333333,
+      "before": {
+        "Crystals": 68,
+        "Damage": 6,
+        "Supply": 5,
+        "Growth": 6,
+        "Harvest": 5
+      },
+      "after": {
+        "Crystals": 66,
+        "Damage": 6,
+        "Supply": 6,
+        "Growth": 6,
+        "Harvest": 5
+      },
+      "purchases": [
+        {
+          "kind": "Supply",
+          "cost": 72,
+          "level": 6
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 12,
+      "seed": 12,
+      "rulesVersion": 2,
+      "ticks": 16474,
+      "completedWave": 45,
+      "normalCrystals": 69,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 46,
+      "seconds": 549.1333333333333,
+      "before": {
+        "Crystals": 66,
+        "Damage": 6,
+        "Supply": 6,
+        "Growth": 6,
+        "Harvest": 5
+      },
+      "after": {
+        "Crystals": 50,
+        "Damage": 7,
+        "Supply": 6,
+        "Growth": 6,
+        "Harvest": 5
+      },
+      "purchases": [
+        {
+          "kind": "Damage",
+          "cost": 85,
+          "level": 7
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 13,
+      "seed": 13,
+      "rulesVersion": 2,
+      "ticks": 17030,
+      "completedWave": 47,
+      "normalCrystals": 76,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 47,
+      "seconds": 567.6666666666666,
+      "before": {
+        "Crystals": 50,
+        "Damage": 7,
+        "Supply": 6,
+        "Growth": 6,
+        "Harvest": 5
+      },
+      "after": {
+        "Crystals": 41,
+        "Damage": 7,
+        "Supply": 6,
+        "Growth": 7,
+        "Harvest": 5
+      },
+      "purchases": [
+        {
+          "kind": "Growth",
+          "cost": 85,
+          "level": 7
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 14,
+      "seed": 14,
+      "rulesVersion": 2,
+      "ticks": 16290,
+      "completedWave": 45,
+      "normalCrystals": 67,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 47,
+      "seconds": 543.0,
+      "before": {
+        "Crystals": 41,
+        "Damage": 7,
+        "Supply": 6,
+        "Growth": 7,
+        "Harvest": 5
+      },
+      "after": {
+        "Crystals": 22,
+        "Damage": 7,
+        "Supply": 6,
+        "Growth": 7,
+        "Harvest": 6
+      },
+      "purchases": [
+        {
+          "kind": "Harvest",
+          "cost": 86,
+          "level": 6
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 15,
+      "seed": 15,
+      "rulesVersion": 2,
+      "ticks": 16967,
+      "completedWave": 47,
+      "normalCrystals": 74,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 47,
+      "seconds": 565.5666666666667,
+      "before": {
+        "Crystals": 22,
+        "Damage": 7,
+        "Supply": 6,
+        "Growth": 7,
+        "Harvest": 6
+      },
+      "after": {
+        "Crystals": 96,
+        "Damage": 7,
+        "Supply": 6,
+        "Growth": 7,
+        "Harvest": 6
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 16,
+      "seed": 16,
+      "rulesVersion": 2,
+      "ticks": 16492,
+      "completedWave": 45,
+      "normalCrystals": 71,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 47,
+      "seconds": 549.7333333333333,
+      "before": {
+        "Crystals": 96,
+        "Damage": 7,
+        "Supply": 6,
+        "Growth": 7,
+        "Harvest": 6
+      },
+      "after": {
+        "Crystals": 61,
+        "Damage": 7,
+        "Supply": 7,
+        "Growth": 7,
+        "Harvest": 6
+      },
+      "purchases": [
+        {
+          "kind": "Supply",
+          "cost": 106,
+          "level": 7
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 17,
+      "seed": 17,
+      "rulesVersion": 2,
+      "ticks": 17039,
+      "completedWave": 47,
+      "normalCrystals": 74,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 47,
+      "seconds": 567.9666666666667,
+      "before": {
+        "Crystals": 61,
+        "Damage": 7,
+        "Supply": 7,
+        "Growth": 7,
+        "Harvest": 6
+      },
+      "after": {
+        "Crystals": 10,
+        "Damage": 8,
+        "Supply": 7,
+        "Growth": 7,
+        "Harvest": 6
+      },
+      "purchases": [
+        {
+          "kind": "Damage",
+          "cost": 125,
+          "level": 8
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 18,
+      "seed": 18,
+      "rulesVersion": 2,
+      "ticks": 17084,
+      "completedWave": 47,
+      "normalCrystals": 76,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 47,
+      "seconds": 569.4666666666667,
+      "before": {
+        "Crystals": 10,
+        "Damage": 8,
+        "Supply": 7,
+        "Growth": 7,
+        "Harvest": 6
+      },
+      "after": {
+        "Crystals": 86,
+        "Damage": 8,
+        "Supply": 7,
+        "Growth": 7,
+        "Harvest": 6
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 19,
+      "seed": 19,
+      "rulesVersion": 2,
+      "ticks": 17182,
+      "completedWave": 47,
+      "normalCrystals": 75,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 47,
+      "seconds": 572.7333333333333,
+      "before": {
+        "Crystals": 86,
+        "Damage": 8,
+        "Supply": 7,
+        "Growth": 7,
+        "Harvest": 6
+      },
+      "after": {
+        "Crystals": 36,
+        "Damage": 8,
+        "Supply": 7,
+        "Growth": 8,
+        "Harvest": 6
+      },
+      "purchases": [
+        {
+          "kind": "Growth",
+          "cost": 125,
+          "level": 8
+        }
+      ]
+    },
+    {
+      "build": "Record",
+      "policy": "CheapestThenEnum",
+      "status": "Defeated",
+      "round": 20,
+      "seed": 20,
+      "rulesVersion": 2,
+      "ticks": 16824,
+      "completedWave": 46,
+      "normalCrystals": 73,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 47,
+      "seconds": 560.8,
+      "before": {
+        "Crystals": 36,
+        "Damage": 8,
+        "Supply": 7,
+        "Growth": 8,
+        "Harvest": 6
+      },
+      "after": {
+        "Crystals": 109,
+        "Damage": 8,
+        "Supply": 7,
+        "Growth": 8,
+        "Harvest": 6
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 1,
+      "seed": 1,
+      "rulesVersion": 2,
+      "ticks": 14491,
+      "completedWave": 40,
+      "normalCrystals": 54,
+      "firstMilestoneCrystals": 40,
+      "bestWave": 40,
+      "seconds": 483.03333333333336,
+      "before": {
+        "Crystals": 0,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 94,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 2,
+      "seed": 2,
+      "rulesVersion": 2,
+      "ticks": 13485,
+      "completedWave": 37,
+      "normalCrystals": 46,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 40,
+      "seconds": 449.5,
+      "before": {
+        "Crystals": 94,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 140,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 3,
+      "seed": 3,
+      "rulesVersion": 2,
+      "ticks": 14529,
+      "completedWave": 40,
+      "normalCrystals": 53,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 40,
+      "seconds": 484.3,
+      "before": {
+        "Crystals": 140,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 193,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 4,
+      "seed": 4,
+      "rulesVersion": 2,
+      "ticks": 13534,
+      "completedWave": 37,
+      "normalCrystals": 48,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 40,
+      "seconds": 451.1333333333333,
+      "before": {
+        "Crystals": 193,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 241,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 5,
+      "seed": 5,
+      "rulesVersion": 2,
+      "ticks": 14520,
+      "completedWave": 40,
+      "normalCrystals": 55,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 40,
+      "seconds": 484.0,
+      "before": {
+        "Crystals": 241,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 296,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 6,
+      "seed": 6,
+      "rulesVersion": 2,
+      "ticks": 14805,
+      "completedWave": 41,
+      "normalCrystals": 57,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 493.5,
+      "before": {
+        "Crystals": 296,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 353,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 7,
+      "seed": 7,
+      "rulesVersion": 2,
+      "ticks": 13243,
+      "completedWave": 36,
+      "normalCrystals": 45,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 441.43333333333334,
+      "before": {
+        "Crystals": 353,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 398,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 8,
+      "seed": 8,
+      "rulesVersion": 2,
+      "ticks": 13112,
+      "completedWave": 36,
+      "normalCrystals": 44,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 437.06666666666666,
+      "before": {
+        "Crystals": 398,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 442,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 9,
+      "seed": 9,
+      "rulesVersion": 2,
+      "ticks": 12136,
+      "completedWave": 33,
+      "normalCrystals": 38,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 404.53333333333336,
+      "before": {
+        "Crystals": 442,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 480,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 10,
+      "seed": 10,
+      "rulesVersion": 2,
+      "ticks": 14507,
+      "completedWave": 40,
+      "normalCrystals": 54,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 483.56666666666666,
+      "before": {
+        "Crystals": 480,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 534,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 11,
+      "seed": 11,
+      "rulesVersion": 2,
+      "ticks": 10902,
+      "completedWave": 30,
+      "normalCrystals": 30,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 363.4,
+      "before": {
+        "Crystals": 534,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 564,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 12,
+      "seed": 12,
+      "rulesVersion": 2,
+      "ticks": 11955,
+      "completedWave": 33,
+      "normalCrystals": 36,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 398.5,
+      "before": {
+        "Crystals": 564,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 600,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 13,
+      "seed": 13,
+      "rulesVersion": 2,
+      "ticks": 13387,
+      "completedWave": 37,
+      "normalCrystals": 46,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 446.23333333333335,
+      "before": {
+        "Crystals": 600,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 646,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 14,
+      "seed": 14,
+      "rulesVersion": 2,
+      "ticks": 13585,
+      "completedWave": 37,
+      "normalCrystals": 46,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 452.8333333333333,
+      "before": {
+        "Crystals": 646,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 692,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 15,
+      "seed": 15,
+      "rulesVersion": 2,
+      "ticks": 14307,
+      "completedWave": 39,
+      "normalCrystals": 52,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 476.9,
+      "before": {
+        "Crystals": 692,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 744,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 16,
+      "seed": 16,
+      "rulesVersion": 2,
+      "ticks": 13707,
+      "completedWave": 38,
+      "normalCrystals": 49,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 456.9,
+      "before": {
+        "Crystals": 744,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 793,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 17,
+      "seed": 17,
+      "rulesVersion": 2,
+      "ticks": 14518,
+      "completedWave": 40,
+      "normalCrystals": 54,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 483.93333333333334,
+      "before": {
+        "Crystals": 793,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 847,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 18,
+      "seed": 18,
+      "rulesVersion": 2,
+      "ticks": 14480,
+      "completedWave": 40,
+      "normalCrystals": 54,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 482.6666666666667,
+      "before": {
+        "Crystals": 847,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 901,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 19,
+      "seed": 19,
+      "rulesVersion": 2,
+      "ticks": 13827,
+      "completedWave": 38,
+      "normalCrystals": 48,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 460.9,
+      "before": {
+        "Crystals": 901,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 949,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    },
+    {
+      "build": "Record",
+      "policy": "NoMetaPurchases",
+      "status": "Defeated",
+      "round": 20,
+      "seed": 20,
+      "rulesVersion": 2,
+      "ticks": 14480,
+      "completedWave": 40,
+      "normalCrystals": 53,
+      "firstMilestoneCrystals": 0,
+      "bestWave": 41,
+      "seconds": 482.6666666666667,
+      "before": {
+        "Crystals": 949,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "after": {
+        "Crystals": 1002,
+        "Damage": 0,
+        "Supply": 0,
+        "Growth": 0,
+        "Harvest": 0
+      },
+      "purchases": []
+    }
+  ],
+  "sharedMetaComparison": {
+    "definition": "Same meta cloned after round19 Farming cheapest-purchase campaign; independent seed1..10 runs, no post-run purchases or milestone rewards",
+    "meta": {
+      "Crystals": 1038,
+      "Damage": 14,
+      "Supply": 13,
+      "Growth": 14,
+      "Harvest": 12
+    },
+    "conditions": 20,
+    "recordDepthWins": 1,
+    "depthTies": 3,
+    "farmingEfficiencyWins": 10,
+    "meanRecordCompletedWaveDelta": -0.9,
+    "pairs": [
+      {
+        "seed": 1,
+        "farming": {
+          "build": "Farming",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 1,
+          "rulesVersion": 2,
+          "ticks": 18538,
+          "completedWave": 51,
+          "normalCrystals": 961,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 617.9333333333333,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "record": {
+          "build": "Record",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 1,
+          "rulesVersion": 2,
+          "ticks": 18538,
+          "completedWave": 51,
+          "normalCrystals": 89,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 617.9333333333333,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "recordCompletedWaveDelta": 0,
+        "farmingNormalCrystalsPerMinute": 92.86021043590296,
+        "recordNormalCrystalsPerMinute": 8.59995705389736
+      },
+      {
+        "seed": 2,
+        "farming": {
+          "build": "Farming",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 2,
+          "rulesVersion": 2,
+          "ticks": 19310,
+          "completedWave": 53,
+          "normalCrystals": 1089,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 643.6666666666666,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "record": {
+          "build": "Record",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 2,
+          "rulesVersion": 2,
+          "ticks": 18873,
+          "completedWave": 52,
+          "normalCrystals": 93,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 629.1,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "recordCompletedWaveDelta": -1,
+        "farmingNormalCrystalsPerMinute": 101.04123711340206,
+        "recordNormalCrystalsPerMinute": 8.827717133364974
+      },
+      {
+        "seed": 3,
+        "farming": {
+          "build": "Farming",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 3,
+          "rulesVersion": 2,
+          "ticks": 19218,
+          "completedWave": 53,
+          "normalCrystals": 1085,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 640.6,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "record": {
+          "build": "Record",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 3,
+          "rulesVersion": 2,
+          "ticks": 18988,
+          "completedWave": 52,
+          "normalCrystals": 94,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 632.9333333333333,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "recordCompletedWaveDelta": -1,
+        "farmingNormalCrystalsPerMinute": 101.14978247358607,
+        "recordNormalCrystalsPerMinute": 8.86885417758675
+      },
+      {
+        "seed": 4,
+        "farming": {
+          "build": "Farming",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 4,
+          "rulesVersion": 2,
+          "ticks": 19264,
+          "completedWave": 53,
+          "normalCrystals": 1092,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 642.1333333333333,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "record": {
+          "build": "Record",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 4,
+          "rulesVersion": 2,
+          "ticks": 18853,
+          "completedWave": 52,
+          "normalCrystals": 94,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 628.4333333333333,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "recordCompletedWaveDelta": -1,
+        "farmingNormalCrystalsPerMinute": 101.56040095070786,
+        "recordNormalCrystalsPerMinute": 8.932059335902444
+      },
+      {
+        "seed": 5,
+        "farming": {
+          "build": "Farming",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 5,
+          "rulesVersion": 2,
+          "ticks": 18603,
+          "completedWave": 51,
+          "normalCrystals": 1001,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 620.1,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "record": {
+          "build": "Record",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 5,
+          "rulesVersion": 2,
+          "ticks": 18562,
+          "completedWave": 51,
+          "normalCrystals": 91,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 618.7333333333333,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "recordCompletedWaveDelta": 0,
+        "farmingNormalCrystalsPerMinute": 96.38902262879152,
+        "recordNormalCrystalsPerMinute": 8.781900064336265
+      },
+      {
+        "seed": 6,
+        "farming": {
+          "build": "Farming",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 6,
+          "rulesVersion": 2,
+          "ticks": 19103,
+          "completedWave": 53,
+          "normalCrystals": 1070,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 636.7666666666667,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "record": {
+          "build": "Record",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 6,
+          "rulesVersion": 2,
+          "ticks": 18416,
+          "completedWave": 51,
+          "normalCrystals": 90,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 613.8666666666667,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "recordCompletedWaveDelta": -2,
+        "farmingNormalCrystalsPerMinute": 100.3490856041265,
+        "recordNormalCrystalsPerMinute": 8.75391764833027
+      },
+      {
+        "seed": 7,
+        "farming": {
+          "build": "Farming",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 7,
+          "rulesVersion": 2,
+          "ticks": 19149,
+          "completedWave": 53,
+          "normalCrystals": 1098,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 638.3,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "record": {
+          "build": "Record",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 7,
+          "rulesVersion": 2,
+          "ticks": 18262,
+          "completedWave": 50,
+          "normalCrystals": 89,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 608.7333333333333,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "recordCompletedWaveDelta": -3,
+        "farmingNormalCrystalsPerMinute": 102.72883205987839,
+        "recordNormalCrystalsPerMinute": 8.729293809938971
+      },
+      {
+        "seed": 8,
+        "farming": {
+          "build": "Farming",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 8,
+          "rulesVersion": 2,
+          "ticks": 18506,
+          "completedWave": 51,
+          "normalCrystals": 961,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 616.8666666666667,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "record": {
+          "build": "Record",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 8,
+          "rulesVersion": 2,
+          "ticks": 18731,
+          "completedWave": 52,
+          "normalCrystals": 91,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 624.3666666666667,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "recordCompletedWaveDelta": 1,
+        "farmingNormalCrystalsPerMinute": 93.02000430200043,
+        "recordNormalCrystalsPerMinute": 8.70304447160087
+      },
+      {
+        "seed": 9,
+        "farming": {
+          "build": "Farming",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 9,
+          "rulesVersion": 2,
+          "ticks": 18473,
+          "completedWave": 51,
+          "normalCrystals": 974,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 615.7666666666667,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "record": {
+          "build": "Record",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 9,
+          "rulesVersion": 2,
+          "ticks": 18473,
+          "completedWave": 51,
+          "normalCrystals": 90,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 615.7666666666667,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "recordCompletedWaveDelta": 0,
+        "farmingNormalCrystalsPerMinute": 94.44594085007812,
+        "recordNormalCrystalsPerMinute": 8.727037655551365
+      },
+      {
+        "seed": 10,
+        "farming": {
+          "build": "Farming",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 10,
+          "rulesVersion": 2,
+          "ticks": 19558,
+          "completedWave": 54,
+          "normalCrystals": 1123,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 651.9333333333333,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "record": {
+          "build": "Record",
+          "policy": "SharedMetaAfter19FarmingRounds",
+          "status": "Defeated",
+          "round": 0,
+          "seed": 10,
+          "rulesVersion": 2,
+          "ticks": 18786,
+          "completedWave": 52,
+          "normalCrystals": 91,
+          "firstMilestoneCrystals": 0,
+          "bestWave": 0,
+          "seconds": 626.2,
+          "before": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "after": {
+            "Crystals": 1038,
+            "Damage": 14,
+            "Supply": 13,
+            "Growth": 14,
+            "Harvest": 12
+          },
+          "purchases": []
+        },
+        "recordCompletedWaveDelta": -2,
+        "farmingNormalCrystalsPerMinute": 102.8807003257329,
+        "recordNormalCrystalsPerMinute": 8.677685950413222
+      }
+    ]
+  }
+}

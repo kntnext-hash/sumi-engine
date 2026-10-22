@@ -1,10 +1,10 @@
-# 墨脈 — 一人用システム α v0.6
+# 墨脈 — 一人用システム α v0.7
 
 2026-10-22 JST。5敵、6武器、60Wave上限の一人用試作。戦闘・周回・永続化・画面導線を通す版で、完成美術や商用版ではない。検証の合否はQA_AND_EVIDENCE.md、完成範囲はBOKUMYAKU_SYSTEMS_ACCEPTANCE.mdを参照。
 
 ## 起動と操作
 
-Windows: `Builds/Bokumyaku-v0.6/Bokumyaku.exe`。同じフォルダのDLL/Dataも必要。Unity 6000.3.26f1では `Assets/BokumyakuPrototype/Scenes/Bokumyaku.unity` を開きPlay。旧ビルドは保持する。
+Windows: `Builds/Bokumyaku-v0.7/Bokumyaku.exe`。同じフォルダのDLL/Dataも必要。Unity 6000.3.26f1では `Assets/BokumyakuPrototype/Scenes/Bokumyaku.unity` を開きPlay。旧ビルドは保持する。
 
 1. ホームで武器・投資・成長方針を選んで出撃。構成3枠は操作欄を下へスクロールして保存・呼出できる。
 2. 戦闘は自動迎撃。撃破で得た周回内の墨を7強化に使う。手動/採墨・周回/供給・記録を切替可能。完全新規データだけ採墨・周回を初期選択。成長は均衡/迎撃/集中。末端を増やすと供給が分散する。
@@ -40,13 +40,13 @@ Windows: `Builds/Bokumyaku-v0.6/Bokumyaku.exe`。同じフォルダのDLL/Data�
 
 採墨は購入後の有効撃破点を1Lvにつき+150%（10Lvで16倍）にする試作値。費用は `ceil(30×1.25^Lv)`、購入前の撃破に遡らず、分裂子は0。全構成で購入でき、墨収入や攻撃は増えない。火力へ回す墨が減ることが代償。高倍率による恒久育成の加速は未調整で、製品経済の完成値ではない。
 
-v0.6の同seed・同武器60組で、記録の深度勝ち54/60、周回の通常結晶効率勝ち51/60。事前に固定したG-V2-04の条件を満たした。標準Farming/Point/Balanced/meta0の5〜8分は追加seedを含む20件中18件で、G-V2-05は未合格。詳細と旧版比較はBOKUMYAKU_BALANCE_V6.md。v0.5の310条件は旧ルールの証拠として保持する。
+v0.7は枝の開き角を広げ、初期meta0の同seed・同武器60組で記録深度56勝、周回通常効率55勝。標準初回5〜8分は1..30で28件、固定後31..50で17件、G05は未合格。育成後の固定metaではRecordが1勝2同点7敗で、役割差はまだ安定していない。詳細はBOKUMYAKU_PACING_V7.md。旧版測定を保持する。
 
 ## 保存と保護
 
-`Application.persistentDataPath/bokumyaku-campaign-v3.json` に恒久状態、runId/revision、3構成、最高記録、履歴、途中の敵・枝・領域・乱数・強化・速度・ルール版を保存する。途中保存は約10秒ごと、および停止/フォーカス喪失/アプリ停止/終了時。強制終了では最後の成功checkpointまで戻る。経過した現実時間は戦闘に加えない。
+`Application.persistentDataPath/bokumyaku-campaign-v4.json` に恒久状態、runId/revision、3構成、最高記録、履歴、途中の敵・枝・領域・乱数・強化・速度・ルール版を保存する。途中保存は約10秒ごと、および停止/フォーカス喪失/アプリ停止/終了時。強制終了では最後の成功checkpointまで戻る。経過した現実時間は戦闘に加えない。
 
-旧 `bokumyaku-campaign-v2.json` を新v3へコピーして移行し、原本/bakは書き換えない。旧途中周回はrules1の6強化と購入順で続き、次の新規出撃からrules2になる。旧版履歴にはrules1を付ける。v2がない場合は旧 `bokumyaku-prototype-v1.json` の研究を移行する。v3が存在するのに壊れている場合、古いv2に巻き戻さない。旧Playerで移行後に増やした進捗は自動合流しない。
+旧campaign-v3、なければv2、さらに旧prototype-v1を順に探し、新しいcampaign-v4へコピーする。原本/bakは保持。ファイル世代4でもJSONのschema3/configv3は同じ。旧途中周回はrules1/2の計算で続き、新規出撃からrules3の枝角度になる。新ファイルが壊れた際に古い別世代へ巻き戻さない。旧Playerで移行後に増やした進捗は自動合流しない。
 
 正常直前版は `.bak`、壊れた原本は復旧保存時に `.corrupt-UUID` へ保持。両方不正なら初期化せず操作を停止する。一時ファイル検証・置換成功後にメモリ状態を交換し、同runIdの決済再送と古いrevisionを検出する。これは単一PCの保存保護でありオンライン不正対策ではない。
 
@@ -61,3 +61,5 @@ v0.6の同seed・同武器60組で、記録の深度勝ち54/60、周回の通�
 ### v0.5途中保存の数値精度
 
 Unity JsonUtilityのdouble読込が隣接値へずれることを実NUnitで検出。Snapshotは人が読める数値欄に加え、全doubleのIEEE754 bit列をversion/count付きBase64で保持する。復元時は深いコピーを作り、欄との同値/隣接1ULP整合を確認して正確な値へ戻す。NaN/Infinity、2ULP以上の差、長さ/形式不正を拒否。戦闘計算の丸めや一致判定の緩和は行わない。暗号署名ではなくローカル保存精度の対策。
+
+結果の『通常結晶/分』は通常報酬÷戦闘秒×60で、初達成ボーナスを含めない。数値比較の効率は再出撃待機3秒も分母へ加えるため別の指標。結果には侵入総数と最多敵種を表示するが、核損傷量や最後の死因の断定ではない。

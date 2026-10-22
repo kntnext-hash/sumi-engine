@@ -1,0 +1,7 @@
+{
+  "classification": "Standalone C# System.Text.Json, not Unity JsonUtility",
+  "rulesVersion": 3,
+  "legacyV6TickAndTerminalCases": 2,
+  "newRules900TickEveryTickCases": 12,
+  "pass": true
+}

@@ -1,0 +1,458 @@
+{
+  "candidate": "C_SplitAngle65",
+  "classification": "Standalone in-memory source intervention, production files unchanged",
+  "sourceHashes": [
+    {
+      "name": "AutoRepeatController.cs",
+      "sha256": "D110E501CA532370504A4F5E1C09842769F0DE9CC4EA51DDAF1E640FE3B67ACE"
+    },
+    {
+      "name": "RunSimulator.cs",
+      "sha256": "F5F2A2ED719758A339D2F27033FE8AC3ADEB7CA4F6B48535E6A170F8A88105E1"
+    },
+    {
+      "name": "RunSimulator.ExactSnapshot.cs",
+      "sha256": "1D3DEC084E8811727E8DC333E7FB0937A3A06AC1CF4711F0CACA85D312CB4969"
+    },
+    {
+      "name": "RunSimulator.Snapshot.cs",
+      "sha256": "7A4BC736736B9F2DBE9BB9F0545517F04A2B725DDB87AE1D4FD770F13E0DB6FE"
+    },
+    {
+      "name": "RunSnapshot.cs",
+      "sha256": "21F9068A22BBDBCF877341E5B6459857F12164905971FA211F610AB429501FCB"
+    }
+  ],
+  "rules": [
+    "A: Farming only, HP<=6 paid repair priority at normal30tick purchase boundaries, cap2, waits for cost",
+    "B: All builds Boss HP8x atWave10,10x atWave20,12x later",
+    "C: All builds split angular offsets +/-0.65 instead of0.35; no other growth change"
+  ],
+  "pointWithin300to480": 17,
+  "pointMinSeconds": 244.23333333333332,
+  "pointMaxSeconds": 451.1333333333333,
+  "pairs": [],
+  "runs": [
+    {
+      "seed": 31,
+      "wave": 20,
+      "crystals": 30,
+      "repairs": 0,
+      "ticks": 7327,
+      "seconds": 244.23333333333332,
+      "rate": 7.280571659700688,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        6,
+        6,
+        5,
+        6,
+        3
+      ]
+    },
+    {
+      "seed": 32,
+      "wave": 37,
+      "crystals": 314,
+      "repairs": 0,
+      "ticks": 13414,
+      "seconds": 447.1333333333333,
+      "rate": 41.8542654028436,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        14,
+        10,
+        11,
+        6,
+        10,
+        10,
+        8
+      ]
+    },
+    {
+      "seed": 33,
+      "wave": 34,
+      "crystals": 224,
+      "repairs": 0,
+      "ticks": 12320,
+      "seconds": 410.6666666666667,
+      "rate": 32.48992747784045,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        13,
+        9,
+        9,
+        6,
+        10,
+        10,
+        7
+      ]
+    },
+    {
+      "seed": 34,
+      "wave": 36,
+      "crystals": 267,
+      "repairs": 0,
+      "ticks": 13086,
+      "seconds": 436.2,
+      "rate": 36.47540983606557,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        14,
+        8,
+        9,
+        6,
+        10,
+        10,
+        8
+      ]
+    },
+    {
+      "seed": 35,
+      "wave": 30,
+      "crystals": 136,
+      "repairs": 0,
+      "ticks": 10902,
+      "seconds": 363.4,
+      "rate": 22.270742358078603,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        10,
+        8,
+        10,
+        6,
+        8,
+        7,
+        6
+      ]
+    },
+    {
+      "seed": 36,
+      "wave": 36,
+      "crystals": 291,
+      "repairs": 0,
+      "ticks": 13187,
+      "seconds": 439.56666666666666,
+      "rate": 39.451683362205316,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        14,
+        9,
+        11,
+        6,
+        10,
+        9,
+        8
+      ]
+    },
+    {
+      "seed": 37,
+      "wave": 34,
+      "crystals": 230,
+      "repairs": 0,
+      "ticks": 12361,
+      "seconds": 412.03333333333336,
+      "rate": 33.25034133804513,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        12,
+        7,
+        11,
+        6,
+        10,
+        10,
+        7
+      ]
+    },
+    {
+      "seed": 38,
+      "wave": 36,
+      "crystals": 286,
+      "repairs": 0,
+      "ticks": 13175,
+      "seconds": 439.1666666666667,
+      "rate": 38.80889558989823,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        14,
+        9,
+        10,
+        6,
+        10,
+        10,
+        8
+      ]
+    },
+    {
+      "seed": 39,
+      "wave": 37,
+      "crystals": 319,
+      "repairs": 0,
+      "ticks": 13534,
+      "seconds": 451.1333333333333,
+      "rate": 42.146212566059894,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        14,
+        9,
+        11,
+        6,
+        10,
+        10,
+        8
+      ]
+    },
+    {
+      "seed": 40,
+      "wave": 20,
+      "crystals": 31,
+      "repairs": 0,
+      "ticks": 7327,
+      "seconds": 244.23333333333332,
+      "rate": 7.523257381690711,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        6,
+        6,
+        5,
+        6,
+        3
+      ]
+    },
+    {
+      "seed": 41,
+      "wave": 30,
+      "crystals": 143,
+      "repairs": 0,
+      "ticks": 10902,
+      "seconds": 363.4,
+      "rate": 23.41703056768559,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        10,
+        8,
+        9,
+        6,
+        10,
+        9,
+        6
+      ]
+    },
+    {
+      "seed": 42,
+      "wave": 35,
+      "crystals": 241,
+      "repairs": 0,
+      "ticks": 12624,
+      "seconds": 420.8,
+      "rate": 34.11986786219915,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        12,
+        8,
+        11,
+        6,
+        10,
+        10,
+        7
+      ]
+    },
+    {
+      "seed": 43,
+      "wave": 30,
+      "crystals": 140,
+      "repairs": 0,
+      "ticks": 10902,
+      "seconds": 363.4,
+      "rate": 22.925764192139738,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        9,
+        9,
+        8,
+        6,
+        10,
+        9,
+        6
+      ]
+    },
+    {
+      "seed": 44,
+      "wave": 30,
+      "crystals": 136,
+      "repairs": 0,
+      "ticks": 10902,
+      "seconds": 363.4,
+      "rate": 22.270742358078603,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        10,
+        8,
+        10,
+        6,
+        8,
+        7,
+        6
+      ]
+    },
+    {
+      "seed": 45,
+      "wave": 30,
+      "crystals": 135,
+      "repairs": 0,
+      "ticks": 10902,
+      "seconds": 363.4,
+      "rate": 22.10698689956332,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        9,
+        7,
+        10,
+        6,
+        8,
+        9,
+        6
+      ]
+    },
+    {
+      "seed": 46,
+      "wave": 33,
+      "crystals": 211,
+      "repairs": 0,
+      "ticks": 12147,
+      "seconds": 404.9,
+      "rate": 31.03701887717578,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        12,
+        9,
+        9,
+        6,
+        10,
+        9,
+        7
+      ]
+    },
+    {
+      "seed": 47,
+      "wave": 30,
+      "crystals": 148,
+      "repairs": 0,
+      "ticks": 10902,
+      "seconds": 363.4,
+      "rate": 24.23580786026201,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        10,
+        8,
+        9,
+        6,
+        10,
+        9,
+        6
+      ]
+    },
+    {
+      "seed": 48,
+      "wave": 30,
+      "crystals": 135,
+      "repairs": 0,
+      "ticks": 10902,
+      "seconds": 363.4,
+      "rate": 22.10698689956332,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        10,
+        7,
+        10,
+        6,
+        9,
+        8,
+        6
+      ]
+    },
+    {
+      "seed": 49,
+      "wave": 20,
+      "crystals": 28,
+      "repairs": 0,
+      "ticks": 7337,
+      "seconds": 244.56666666666666,
+      "rate": 6.786050895381716,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        7,
+        4,
+        7,
+        6,
+        5,
+        5,
+        2
+      ]
+    },
+    {
+      "seed": 50,
+      "wave": 34,
+      "crystals": 237,
+      "repairs": 0,
+      "ticks": 12361,
+      "seconds": 412.03333333333336,
+      "rate": 34.26230824833347,
+      "weapon": "Point",
+      "build": "Farming",
+      "status": "Defeated",
+      "levels": [
+        13,
+        9,
+        11,
+        6,
+        10,
+        8,
+        7
+      ]
+    }
+  ],
+  "postSelectionValidation": true
+}
