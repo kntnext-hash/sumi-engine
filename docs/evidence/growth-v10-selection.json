@@ -1,0 +1,225 @@
+{
+  "classification": "Three bounded growth candidates then fixed C validation; no guarantee of100000Wave reachability",
+  "selectedCandidate": 3,
+  "costAnchors": {
+    "run30": 7040.0,
+    "meta20": 20339.0
+  },
+  "initialOutcomeIdentical": 72,
+  "initialConditions": 72,
+  "terminalAllocationDifferences": [
+    {
+      "seed": 1,
+      "metaDamage": 20,
+      "weapon": "Enso",
+      "build": "Record",
+      "oldLevels": [
+        30,
+        17,
+        23,
+        9,
+        10,
+        10,
+        0
+      ],
+      "newLevels": [
+        30,
+        16,
+        22,
+        9,
+        10,
+        10,
+        0
+      ],
+      "oldInk": 167,
+      "newInk": 2475
+    },
+    {
+      "seed": 2,
+      "metaDamage": 20,
+      "weapon": "Enso",
+      "build": "Record",
+      "oldLevels": [
+        30,
+        17,
+        23,
+        9,
+        10,
+        10,
+        0
+      ],
+      "newLevels": [
+        30,
+        16,
+        22,
+        9,
+        10,
+        10,
+        0
+      ],
+      "oldInk": 302,
+      "newInk": 2610
+    }
+  ],
+  "extendedMeta100": [
+    {
+      "seed": 1,
+      "metaDamage": 100,
+      "ticks": 86384,
+      "wave": 240,
+      "completedWave": 239,
+      "crystals": 14765,
+      "income": 211170,
+      "ink": 10963,
+      "tips": 9,
+      "nodes": 23,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "censored": false,
+      "levels": [
+        44,
+        25,
+        25,
+        6,
+        10,
+        10,
+        10
+      ],
+      "seconds": 2879.4666666666667,
+      "provisionalCrystalRate": 307.3409348474686,
+      "maxHit": 14246.620252838982,
+      "maxField": 230.24840812669063,
+      "effectiveDamage": 385506421.73727614
+    },
+    {
+      "seed": 1,
+      "metaDamage": 100,
+      "ticks": 720000,
+      "wave": 2000,
+      "completedWave": 2000,
+      "crystals": 0,
+      "income": 3375416,
+      "ink": 1096239,
+      "tips": 12,
+      "nodes": 28,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Running",
+      "censored": true,
+      "levels": [
+        100,
+        25,
+        25,
+        9,
+        10,
+        10,
+        0
+      ],
+      "seconds": 24000.0,
+      "provisionalCrystalRate": 22.657167854018248,
+      "maxHit": 8126828.926693292,
+      "maxField": 131342.68972433606,
+      "effectiveDamage": 327792825665.2616
+    },
+    {
+      "seed": 1,
+      "metaDamage": 100,
+      "ticks": 720000,
+      "wave": 2000,
+      "completedWave": 2000,
+      "crystals": 0,
+      "income": 3374847,
+      "ink": 1094935,
+      "tips": 9,
+      "nodes": 23,
+      "build": "Farming",
+      "weapon": "Enso",
+      "status": "Running",
+      "censored": true,
+      "levels": [
+        100,
+        25,
+        25,
+        6,
+        10,
+        10,
+        10
+      ],
+      "seconds": 24000.0,
+      "provisionalCrystalRate": 361.2798400199975,
+      "maxHit": 6501463.141354634,
+      "maxField": 131342.68972433606,
+      "effectiveDamage": 327792536402.9353
+    },
+    {
+      "seed": 1,
+      "metaDamage": 100,
+      "ticks": 720000,
+      "wave": 2000,
+      "completedWave": 2000,
+      "crystals": 0,
+      "income": 3375416,
+      "ink": 1096239,
+      "tips": 12,
+      "nodes": 28,
+      "build": "Record",
+      "weapon": "Enso",
+      "status": "Running",
+      "censored": true,
+      "levels": [
+        100,
+        25,
+        25,
+        9,
+        10,
+        10,
+        0
+      ],
+      "seconds": 24000.0,
+      "provisionalCrystalRate": 22.657167854018248,
+      "maxHit": 6501463.141354634,
+      "maxField": 131342.68972433606,
+      "effectiveDamage": 327792825665.2697
+    }
+  ],
+  "extendedCensoring": "Three configurations stillRunning at2000Wave; PointFarming naturally defeated239. Running is observation cutoff, not completion or earned reward.",
+  "arithmeticBounds": {
+    "maximumSingleHit": 8126828.926693292,
+    "maximumFieldPerTick": 506572.3364305486,
+    "conservativeDirect": 48147986488637970.0,
+    "conservativeField": 3501427989407951.5,
+    "adoptedEffectiveDamageValidationLimit": 60000000000000000.0,
+    "legacyLimit": 1000000000000000.0,
+    "attackAndFieldValidationLimits": 1000000000.0,
+    "currencyAndSpawnBounds": "Unchanged from rules5 because only Damage caps/multipliers changed"
+  },
+  "limitations": [
+    "Screening uses seed1,Point/Enso,Farming/Record,metaDamage20/60/100 with othermeta20",
+    "Initial comparison uses seed1..3,all6weapons,bothbuilds,meta0/all20",
+    "Meta100 supplied as controlled state, not proof of affordable chronological campaign progression",
+    "No seed-specific rules or build-specific reward bonuses"
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/growth-v10-candidate1.json",
+      "sha256": "5A6181F0804BB12187D801FEB25E404C458007BADB21FABCC7D7B4F43F39835D"
+    },
+    {
+      "path": "docs/evidence/growth-v10-candidate2.json",
+      "sha256": "FAF20F23E4126BE11F91FE3D65D1C63A641AFB02DA4C95D3AF3CFE7B0C81116C"
+    },
+    {
+      "path": "docs/evidence/growth-v10-candidate3.json",
+      "sha256": "191A5E50C466CF99470435ACDC186ED5A3D9398C3B9967E9A91DCCD5116E688D"
+    },
+    {
+      "path": "docs/evidence/growth-v10-candidate3-Initial.json",
+      "sha256": "876415418958CE755007C7BD3A4BB4307CA14EB2EA026587CBF78259E03209F7"
+    },
+    {
+      "path": "docs/evidence/growth-v10-candidate3-Extended.json",
+      "sha256": "608D84929684F3521CADB13635786BE86EFC5E84AA9C3A100AB6C35C835870C2"
+    }
+  ]
+}

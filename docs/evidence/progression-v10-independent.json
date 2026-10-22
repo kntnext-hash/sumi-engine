@@ -1,0 +1,1200 @@
+{
+  "classification": "Standalone C# paid progression and synthetic boundary verification; not Unity or product balance acceptance",
+  "rulesVersion": 6,
+  "sourceHashes": [
+    {
+      "path": "AutoRepeatController.cs",
+      "sha256": "D110E501CA532370504A4F5E1C09842769F0DE9CC4EA51DDAF1E640FE3B67ACE"
+    },
+    {
+      "path": "RunSimulator.cs",
+      "sha256": "6B11467BAFB0FB05A3B9B1E15B814FCBC04E2FA24BFCE5D69382466F5FEC9CF2"
+    },
+    {
+      "path": "RunSimulator.ExactSnapshot.cs",
+      "sha256": "1D3DEC084E8811727E8DC333E7FB0937A3A06AC1CF4711F0CACA85D312CB4969"
+    },
+    {
+      "path": "RunSimulator.LongRunRules.cs",
+      "sha256": "D1B8E1834D6EF6D25996EB79AC505C9E753DE787D8A15ECD2CFFF8541BB8A0BE"
+    },
+    {
+      "path": "RunSimulator.Snapshot.cs",
+      "sha256": "8ADDAB0D7787C98020DD5E8204C2DCB3433A6468B8F6FCBF8958F3AB8C30E22B"
+    },
+    {
+      "path": "RunSnapshot.cs",
+      "sha256": "21F9068A22BBDBCF877341E5B6459857F12164905971FA211F610AB429501FCB"
+    }
+  ],
+  "boundaries": [
+    "rules5 runDamage31 rejected",
+    "rules5 metaDamage21 rejected",
+    "meta20/run30:900 exact JSON future ticks",
+    "meta20/run31:900 exact JSON future ticks",
+    "meta20/run100:900 exact JSON future ticks",
+    "meta21/run30:900 exact JSON future ticks",
+    "meta21/run31:900 exact JSON future ticks",
+    "meta21/run100:900 exact JSON future ticks",
+    "meta100/run30:900 exact JSON future ticks",
+    "meta100/run31:900 exact JSON future ticks",
+    "meta100/run100:900 exact JSON future ticks"
+  ],
+  "resourceBounds": {
+    "enemyIds": 12970003,
+    "rewardPoints": 140160032,
+    "ink": 560640128,
+    "crystals": 11212802,
+    "growthCharge": 4330001,
+    "maxHit": 8126828.926693292,
+    "maxFieldPerTick": 506572.3364305486,
+    "effectiveDamage": 51649414478045920.0,
+    "effectiveDamageAssumption": "ceil(36m/7)*12tips*96targets*maxHit +36m*96enemies*2fields*maxFieldPerTick"
+  },
+  "formulaDomain": [
+    {
+      "level": 0,
+      "metaCost": 8,
+      "runCost": 10,
+      "metaMultiplier": 1.0,
+      "observedRunMultiplier": 1.0
+    },
+    {
+      "level": 1,
+      "metaCost": 12,
+      "runCost": 12,
+      "metaMultiplier": 1.025,
+      "observedRunMultiplier": 1.1
+    },
+    {
+      "level": 2,
+      "metaCost": 18,
+      "runCost": 14,
+      "metaMultiplier": 1.05,
+      "observedRunMultiplier": 1.2100000000000002
+    },
+    {
+      "level": 3,
+      "metaCost": 26,
+      "runCost": 17,
+      "metaMultiplier": 1.075,
+      "observedRunMultiplier": 1.3310000000000004
+    },
+    {
+      "level": 4,
+      "metaCost": 39,
+      "runCost": 21,
+      "metaMultiplier": 1.1,
+      "observedRunMultiplier": 1.4641000000000002
+    },
+    {
+      "level": 5,
+      "metaCost": 57,
+      "runCost": 26,
+      "metaMultiplier": 1.125,
+      "observedRunMultiplier": 1.6105100000000006
+    },
+    {
+      "level": 6,
+      "metaCost": 85,
+      "runCost": 32,
+      "metaMultiplier": 1.15,
+      "observedRunMultiplier": 1.7715610000000008
+    },
+    {
+      "level": 7,
+      "metaCost": 125,
+      "runCost": 40,
+      "metaMultiplier": 1.175,
+      "observedRunMultiplier": 1.9487171000000014
+    },
+    {
+      "level": 8,
+      "metaCost": 185,
+      "runCost": 50,
+      "metaMultiplier": 1.2,
+      "observedRunMultiplier": 2.1435888100000016
+    },
+    {
+      "level": 9,
+      "metaCost": 273,
+      "runCost": 63,
+      "metaMultiplier": 1.225,
+      "observedRunMultiplier": 2.357947691000002
+    },
+    {
+      "level": 10,
+      "metaCost": 404,
+      "runCost": 80,
+      "metaMultiplier": 1.25,
+      "observedRunMultiplier": 2.5937424601000023
+    },
+    {
+      "level": 11,
+      "metaCost": 597,
+      "runCost": 101,
+      "metaMultiplier": 1.275,
+      "observedRunMultiplier": 2.8531167061100025
+    },
+    {
+      "level": 12,
+      "metaCost": 884,
+      "runCost": 128,
+      "metaMultiplier": 1.3,
+      "observedRunMultiplier": 3.138428376721003
+    },
+    {
+      "level": 13,
+      "metaCost": 1308,
+      "runCost": 162,
+      "metaMultiplier": 1.325,
+      "observedRunMultiplier": 3.4522712143931034
+    },
+    {
+      "level": 14,
+      "metaCost": 1936,
+      "runCost": 206,
+      "metaMultiplier": 1.35,
+      "observedRunMultiplier": 3.7974983358324144
+    },
+    {
+      "level": 15,
+      "metaCost": 2865,
+      "runCost": 260,
+      "metaMultiplier": 1.375,
+      "observedRunMultiplier": 4.177248169415656
+    },
+    {
+      "level": 16,
+      "metaCost": 4240,
+      "runCost": 328,
+      "metaMultiplier": 1.4,
+      "observedRunMultiplier": 4.594972986357222
+    },
+    {
+      "level": 17,
+      "metaCost": 6274,
+      "runCost": 413,
+      "metaMultiplier": 1.425,
+      "observedRunMultiplier": 5.054470284992945
+    },
+    {
+      "level": 18,
+      "metaCost": 9286,
+      "runCost": 520,
+      "metaMultiplier": 1.45,
+      "observedRunMultiplier": 5.55991731349224
+    },
+    {
+      "level": 19,
+      "metaCost": 13743,
+      "runCost": 653,
+      "metaMultiplier": 1.475,
+      "observedRunMultiplier": 6.115909044841464
+    },
+    {
+      "level": 20,
+      "metaCost": 20339,
+      "runCost": 818,
+      "metaMultiplier": 1.5,
+      "observedRunMultiplier": 6.727499949325611
+    },
+    {
+      "level": 21,
+      "metaCost": 22424,
+      "runCost": 1023,
+      "metaMultiplier": 1.5759374999999998,
+      "observedRunMultiplier": 7.400249944258172
+    },
+    {
+      "level": 22,
+      "metaCost": 24611,
+      "runCost": 1276,
+      "metaMultiplier": 1.65375,
+      "observedRunMultiplier": 8.14027493868399
+    },
+    {
+      "level": 23,
+      "metaCost": 26899,
+      "runCost": 1590,
+      "metaMultiplier": 1.7334375,
+      "observedRunMultiplier": 8.95430243255239
+    },
+    {
+      "level": 24,
+      "metaCost": 29289,
+      "runCost": 1977,
+      "metaMultiplier": 1.8150000000000004,
+      "observedRunMultiplier": 9.84973267580763
+    },
+    {
+      "level": 25,
+      "metaCost": 31780,
+      "runCost": 2453,
+      "metaMultiplier": 1.8984375,
+      "observedRunMultiplier": 10.834705943388395
+    },
+    {
+      "level": 26,
+      "metaCost": 34373,
+      "runCost": 3039,
+      "metaMultiplier": 1.9837499999999997,
+      "observedRunMultiplier": 11.918176537727234
+    },
+    {
+      "level": 27,
+      "metaCost": 37068,
+      "runCost": 3758,
+      "metaMultiplier": 2.0709375000000003,
+      "observedRunMultiplier": 13.10999419149996
+    },
+    {
+      "level": 28,
+      "metaCost": 39865,
+      "runCost": 4640,
+      "metaMultiplier": 2.16,
+      "observedRunMultiplier": 14.420993610649957
+    },
+    {
+      "level": 29,
+      "metaCost": 42763,
+      "runCost": 5720,
+      "metaMultiplier": 2.2509375000000005,
+      "observedRunMultiplier": 15.86309297171495
+    },
+    {
+      "level": 30,
+      "metaCost": 45763,
+      "runCost": 7040,
+      "metaMultiplier": 2.34375,
+      "observedRunMultiplier": 17.44940226888645
+    },
+    {
+      "level": 31,
+      "metaCost": 48865,
+      "runCost": 7469,
+      "metaMultiplier": 2.4384375,
+      "observedRunMultiplier": 19.543330541152823
+    },
+    {
+      "level": 32,
+      "metaCost": 52068,
+      "runCost": 7911,
+      "metaMultiplier": 2.535,
+      "observedRunMultiplier": 21.888530206091165
+    },
+    {
+      "level": 33,
+      "metaCost": 55373,
+      "runCost": 8365,
+      "metaMultiplier": 2.6334375,
+      "observedRunMultiplier": 24.515153830822108
+    },
+    {
+      "level": 34,
+      "metaCost": 58780,
+      "runCost": 8831,
+      "metaMultiplier": 2.7337500000000006,
+      "observedRunMultiplier": 27.456972290520763
+    },
+    {
+      "level": 35,
+      "metaCost": 62289,
+      "runCost": 9311,
+      "metaMultiplier": 2.8359375,
+      "observedRunMultiplier": 30.751808965383255
+    },
+    {
+      "level": 36,
+      "metaCost": 65899,
+      "runCost": 9803,
+      "metaMultiplier": 2.9399999999999995,
+      "observedRunMultiplier": 34.44202604122925
+    },
+    {
+      "level": 37,
+      "metaCost": 69611,
+      "runCost": 10308,
+      "metaMultiplier": 3.0459375,
+      "observedRunMultiplier": 38.57506916617677
+    },
+    {
+      "level": 38,
+      "metaCost": 73424,
+      "runCost": 10825,
+      "metaMultiplier": 3.15375,
+      "observedRunMultiplier": 43.20407746611798
+    },
+    {
+      "level": 39,
+      "metaCost": 77340,
+      "runCost": 11355,
+      "metaMultiplier": 3.2634375,
+      "observedRunMultiplier": 48.38856676205214
+    },
+    {
+      "level": 40,
+      "metaCost": 81356,
+      "runCost": 11898,
+      "metaMultiplier": 3.375,
+      "observedRunMultiplier": 54.1951947734984
+    },
+    {
+      "level": 41,
+      "metaCost": 85475,
+      "runCost": 12454,
+      "metaMultiplier": 3.4884374999999994,
+      "observedRunMultiplier": 60.69861814631821
+    },
+    {
+      "level": 42,
+      "metaCost": 89695,
+      "runCost": 13022,
+      "metaMultiplier": 3.6037500000000007,
+      "observedRunMultiplier": 67.98245232387642
+    },
+    {
+      "level": 43,
+      "metaCost": 94018,
+      "runCost": 13602,
+      "metaMultiplier": 3.720937500000001,
+      "observedRunMultiplier": 76.14034660274159
+    },
+    {
+      "level": 44,
+      "metaCost": 98441,
+      "runCost": 14196,
+      "metaMultiplier": 3.8400000000000007,
+      "observedRunMultiplier": 85.2771881950706
+    },
+    {
+      "level": 45,
+      "metaCost": 102967,
+      "runCost": 14802,
+      "metaMultiplier": 3.9609375,
+      "observedRunMultiplier": 95.51045077847907
+    },
+    {
+      "level": 46,
+      "metaCost": 107594,
+      "runCost": 15421,
+      "metaMultiplier": 4.083749999999999,
+      "observedRunMultiplier": 106.97170487189656
+    },
+    {
+      "level": 47,
+      "metaCost": 112323,
+      "runCost": 16052,
+      "metaMultiplier": 4.2084375000000005,
+      "observedRunMultiplier": 119.80830945652417
+    },
+    {
+      "level": 48,
+      "metaCost": 117153,
+      "runCost": 16697,
+      "metaMultiplier": 4.335000000000001,
+      "observedRunMultiplier": 134.18530659130707
+    },
+    {
+      "level": 49,
+      "metaCost": 122085,
+      "runCost": 17353,
+      "metaMultiplier": 4.4634375,
+      "observedRunMultiplier": 150.28754338226395
+    },
+    {
+      "level": 50,
+      "metaCost": 127119,
+      "runCost": 18023,
+      "metaMultiplier": 4.59375,
+      "observedRunMultiplier": 168.32204858813563
+    },
+    {
+      "level": 51,
+      "metaCost": 132255,
+      "runCost": 18705,
+      "metaMultiplier": 4.7259375,
+      "observedRunMultiplier": 188.5206944187119
+    },
+    {
+      "level": 52,
+      "metaCost": 137492,
+      "runCost": 19400,
+      "metaMultiplier": 4.86,
+      "observedRunMultiplier": 211.14317774895738
+    },
+    {
+      "level": 53,
+      "metaCost": 142831,
+      "runCost": 20107,
+      "metaMultiplier": 4.995937500000001,
+      "observedRunMultiplier": 236.48035907883227
+    },
+    {
+      "level": 54,
+      "metaCost": 148272,
+      "runCost": 20828,
+      "metaMultiplier": 5.133750000000001,
+      "observedRunMultiplier": 264.85800216829216
+    },
+    {
+      "level": 55,
+      "metaCost": 153814,
+      "runCost": 21560,
+      "metaMultiplier": 5.2734375,
+      "observedRunMultiplier": 296.6409624284872
+    },
+    {
+      "level": 56,
+      "metaCost": 159458,
+      "runCost": 22306,
+      "metaMultiplier": 5.415,
+      "observedRunMultiplier": 332.23787791990577
+    },
+    {
+      "level": 57,
+      "metaCost": 165204,
+      "runCost": 23064,
+      "metaMultiplier": 5.5584375,
+      "observedRunMultiplier": 372.1064232702945
+    },
+    {
+      "level": 58,
+      "metaCost": 171051,
+      "runCost": 23835,
+      "metaMultiplier": 5.703750000000001,
+      "observedRunMultiplier": 416.75919406272993
+    },
+    {
+      "level": 59,
+      "metaCost": 177001,
+      "runCost": 24619,
+      "metaMultiplier": 5.850937500000001,
+      "observedRunMultiplier": 466.7702973502575
+    },
+    {
+      "level": 60,
+      "metaCost": 183051,
+      "runCost": 25415,
+      "metaMultiplier": 6.0,
+      "observedRunMultiplier": 522.7827330322884
+    },
+    {
+      "level": 61,
+      "metaCost": 189204,
+      "runCost": 26224,
+      "metaMultiplier": 6.150937500000003,
+      "observedRunMultiplier": 585.5166609961632
+    },
+    {
+      "level": 62,
+      "metaCost": 195458,
+      "runCost": 27045,
+      "metaMultiplier": 6.303749999999999,
+      "observedRunMultiplier": 655.7786603157027
+    },
+    {
+      "level": 63,
+      "metaCost": 201814,
+      "runCost": 27880,
+      "metaMultiplier": 6.458437500000001,
+      "observedRunMultiplier": 734.4720995535872
+    },
+    {
+      "level": 64,
+      "metaCost": 208272,
+      "runCost": 28727,
+      "metaMultiplier": 6.615,
+      "observedRunMultiplier": 822.6087515000178
+    },
+    {
+      "level": 65,
+      "metaCost": 214831,
+      "runCost": 29586,
+      "metaMultiplier": 6.7734375,
+      "observedRunMultiplier": 921.32180168002
+    },
+    {
+      "level": 66,
+      "metaCost": 221492,
+      "runCost": 30458,
+      "metaMultiplier": 6.933750000000002,
+      "observedRunMultiplier": 1031.8804178816224
+    },
+    {
+      "level": 67,
+      "metaCost": 228255,
+      "runCost": 31343,
+      "metaMultiplier": 7.095937499999998,
+      "observedRunMultiplier": 1155.7060680274171
+    },
+    {
+      "level": 68,
+      "metaCost": 235119,
+      "runCost": 32241,
+      "metaMultiplier": 7.260000000000002,
+      "observedRunMultiplier": 1294.3907961907075
+    },
+    {
+      "level": 69,
+      "metaCost": 242085,
+      "runCost": 33151,
+      "metaMultiplier": 7.425937500000001,
+      "observedRunMultiplier": 1449.7176917335923
+    },
+    {
+      "level": 70,
+      "metaCost": 249153,
+      "runCost": 34074,
+      "metaMultiplier": 7.59375,
+      "observedRunMultiplier": 1623.6838147416236
+    },
+    {
+      "level": 71,
+      "metaCost": 256323,
+      "runCost": 35010,
+      "metaMultiplier": 7.763437500000003,
+      "observedRunMultiplier": 1818.5258725106187
+    },
+    {
+      "level": 72,
+      "metaCost": 263594,
+      "runCost": 35958,
+      "metaMultiplier": 7.934999999999999,
+      "observedRunMultiplier": 2036.748977211893
+    },
+    {
+      "level": 73,
+      "metaCost": 270967,
+      "runCost": 36919,
+      "metaMultiplier": 8.1084375,
+      "observedRunMultiplier": 2281.1588544773213
+    },
+    {
+      "level": 74,
+      "metaCost": 278441,
+      "runCost": 37893,
+      "metaMultiplier": 8.283750000000001,
+      "observedRunMultiplier": 2554.8979170145994
+    },
+    {
+      "level": 75,
+      "metaCost": 286018,
+      "runCost": 38879,
+      "metaMultiplier": 8.4609375,
+      "observedRunMultiplier": 2861.4856670563513
+    },
+    {
+      "level": 76,
+      "metaCost": 293696,
+      "runCost": 39878,
+      "metaMultiplier": 8.640000000000002,
+      "observedRunMultiplier": 3204.863947103114
+    },
+    {
+      "level": 77,
+      "metaCost": 301475,
+      "runCost": 40890,
+      "metaMultiplier": 8.8209375,
+      "observedRunMultiplier": 3589.447620755488
+    },
+    {
+      "level": 78,
+      "metaCost": 309357,
+      "runCost": 41914,
+      "metaMultiplier": 9.003750000000002,
+      "observedRunMultiplier": 4020.1813352461463
+    },
+    {
+      "level": 79,
+      "metaCost": 317340,
+      "runCost": 42951,
+      "metaMultiplier": 9.188437500000001,
+      "observedRunMultiplier": 4502.603095475685
+    },
+    {
+      "level": 80,
+      "metaCost": 325424,
+      "runCost": 44000,
+      "metaMultiplier": 9.375,
+      "observedRunMultiplier": 5042.915466932766
+    },
+    {
+      "level": 81,
+      "metaCost": 333611,
+      "runCost": 45063,
+      "metaMultiplier": 9.563437500000003,
+      "observedRunMultiplier": 5648.065322964699
+    },
+    {
+      "level": 82,
+      "metaCost": 341899,
+      "runCost": 46138,
+      "metaMultiplier": 9.75375,
+      "observedRunMultiplier": 6325.833161720464
+    },
+    {
+      "level": 83,
+      "metaCost": 350289,
+      "runCost": 47226,
+      "metaMultiplier": 9.945937500000001,
+      "observedRunMultiplier": 7084.933141126921
+    },
+    {
+      "level": 84,
+      "metaCost": 358780,
+      "runCost": 48326,
+      "metaMultiplier": 10.14,
+      "observedRunMultiplier": 7935.125118062152
+    },
+    {
+      "level": 85,
+      "metaCost": 367374,
+      "runCost": 49439,
+      "metaMultiplier": 10.3359375,
+      "observedRunMultiplier": 8887.340132229612
+    },
+    {
+      "level": 86,
+      "metaCost": 376069,
+      "runCost": 50565,
+      "metaMultiplier": 10.533750000000003,
+      "observedRunMultiplier": 9953.820948097167
+    },
+    {
+      "level": 87,
+      "metaCost": 384865,
+      "runCost": 51703,
+      "metaMultiplier": 10.733437499999997,
+      "observedRunMultiplier": 11148.279461868826
+    },
+    {
+      "level": 88,
+      "metaCost": 393764,
+      "runCost": 52854,
+      "metaMultiplier": 10.935000000000002,
+      "observedRunMultiplier": 12486.072997293086
+    },
+    {
+      "level": 89,
+      "metaCost": 402764,
+      "runCost": 54018,
+      "metaMultiplier": 11.1384375,
+      "observedRunMultiplier": 13984.40175696826
+    },
+    {
+      "level": 90,
+      "metaCost": 411865,
+      "runCost": 55194,
+      "metaMultiplier": 11.34375,
+      "observedRunMultiplier": 15662.529967804452
+    },
+    {
+      "level": 91,
+      "metaCost": 421069,
+      "runCost": 56383,
+      "metaMultiplier": 11.550937500000003,
+      "observedRunMultiplier": 17542.03356394099
+    },
+    {
+      "level": 92,
+      "metaCost": 430374,
+      "runCost": 57585,
+      "metaMultiplier": 11.759999999999998,
+      "observedRunMultiplier": 19647.07759161391
+    },
+    {
+      "level": 93,
+      "metaCost": 439781,
+      "runCost": 58799,
+      "metaMultiplier": 11.970937500000002,
+      "observedRunMultiplier": 22004.72690260758
+    },
+    {
+      "level": 94,
+      "metaCost": 449289,
+      "runCost": 60026,
+      "metaMultiplier": 12.18375,
+      "observedRunMultiplier": 24645.29413092049
+    },
+    {
+      "level": 95,
+      "metaCost": 458899,
+      "runCost": 61266,
+      "metaMultiplier": 12.3984375,
+      "observedRunMultiplier": 27602.729426630955
+    },
+    {
+      "level": 96,
+      "metaCost": 468611,
+      "runCost": 62519,
+      "metaMultiplier": 12.615000000000002,
+      "observedRunMultiplier": 30915.05695782667
+    },
+    {
+      "level": 97,
+      "metaCost": 478425,
+      "runCost": 63784,
+      "metaMultiplier": 12.833437499999999,
+      "observedRunMultiplier": 34624.86379276588
+    },
+    {
+      "level": 98,
+      "metaCost": 488340,
+      "runCost": 65061,
+      "metaMultiplier": 13.05375,
+      "observedRunMultiplier": 38779.84744789778
+    },
+    {
+      "level": 99,
+      "metaCost": 498357,
+      "runCost": 66352,
+      "metaMultiplier": 13.275937500000001,
+      "observedRunMultiplier": 43433.429141645516
+    },
+    {
+      "level": 100,
+      "metaCost": 508475,
+      "runCost": 67655,
+      "metaMultiplier": 13.5,
+      "observedRunMultiplier": 48645.440638642984
+    }
+  ],
+  "formulaNotes": "Run multiplier measured through first Point AttackEvent relative to level0 with same seed/pressure; legacy numerical ratio tolerance1e-10. Meta0..20 and run0..30 cost formulas exact.",
+  "paidProgression": {
+    "initialMeta": "20/20/20/20",
+    "initialCrystals": 0,
+    "weapon": "Enso",
+    "separateBuildSeries": [
+      "Farming",
+      "Record"
+    ],
+    "maximumRunsEach": 10,
+    "observationTickLimit": 720000,
+    "policy": "Only naturally terminal runs settle reward; running at 2000Wave observation limit receives none. Buy Damage only using actual balance; no milestone bonuses.",
+    "rate": "Earned normal crystals per battle hour, excludes restart wait",
+    "ledger": [
+      {
+        "seed": 1,
+        "build": 1,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 0,
+        "earned": 2376,
+        "spent": 0,
+        "endingCrystals": 2376,
+        "ticks": 25887,
+        "wave": 72,
+        "completedWave": 71,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 862.9,
+        "normalCrystalsPerHour": 9912.620234094333
+      },
+      {
+        "seed": 2,
+        "build": 1,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 2376,
+        "earned": 2168,
+        "spent": 0,
+        "endingCrystals": 4544,
+        "ticks": 24706,
+        "wave": 69,
+        "completedWave": 68,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 823.5333333333333,
+        "normalCrystalsPerHour": 9477.212013276128
+      },
+      {
+        "seed": 3,
+        "build": 1,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 4544,
+        "earned": 2364,
+        "spent": 0,
+        "endingCrystals": 6908,
+        "ticks": 25734,
+        "wave": 72,
+        "completedWave": 71,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 857.8,
+        "normalCrystalsPerHour": 9921.193751457216
+      },
+      {
+        "seed": 4,
+        "build": 1,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 6908,
+        "earned": 2509,
+        "spent": 0,
+        "endingCrystals": 9417,
+        "ticks": 26480,
+        "wave": 74,
+        "completedWave": 73,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 882.6666666666666,
+        "normalCrystalsPerHour": 10233.08157099698
+      },
+      {
+        "seed": 5,
+        "build": 1,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 9417,
+        "earned": 2585,
+        "spent": 0,
+        "endingCrystals": 12002,
+        "ticks": 26675,
+        "wave": 75,
+        "completedWave": 74,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 889.1666666666666,
+        "normalCrystalsPerHour": 10465.9793814433
+      },
+      {
+        "seed": 6,
+        "build": 1,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 12002,
+        "earned": 2564,
+        "spent": 0,
+        "endingCrystals": 14566,
+        "ticks": 26625,
+        "wave": 74,
+        "completedWave": 73,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 887.5,
+        "normalCrystalsPerHour": 10400.450704225352
+      },
+      {
+        "seed": 7,
+        "build": 1,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 14566,
+        "earned": 2464,
+        "spent": 0,
+        "endingCrystals": 17030,
+        "ticks": 26122,
+        "wave": 73,
+        "completedWave": 72,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 870.7333333333333,
+        "normalCrystalsPerHour": 10187.275093790675
+      },
+      {
+        "seed": 8,
+        "build": 1,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 17030,
+        "earned": 2107,
+        "spent": 0,
+        "endingCrystals": 19137,
+        "ticks": 24556,
+        "wave": 69,
+        "completedWave": 68,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 818.5333333333333,
+        "normalCrystalsPerHour": 9266.818700114025
+      },
+      {
+        "seed": 9,
+        "build": 1,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 21,
+        "startingCrystals": 19137,
+        "earned": 2748,
+        "spent": 20339,
+        "endingCrystals": 1546,
+        "ticks": 27754,
+        "wave": 78,
+        "completedWave": 77,
+        "nextCost": 22424,
+        "purchases": 1,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 925.1333333333333,
+        "normalCrystalsPerHour": 10693.37753116668
+      },
+      {
+        "seed": 10,
+        "build": 1,
+        "weapon": 4,
+        "startingDamage": 21,
+        "endingDamage": 21,
+        "startingCrystals": 1546,
+        "earned": 2041,
+        "spent": 0,
+        "endingCrystals": 3587,
+        "ticks": 24154,
+        "wave": 68,
+        "completedWave": 67,
+        "nextCost": 22424,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 805.1333333333333,
+        "normalCrystalsPerHour": 9125.9418729817
+      },
+      {
+        "seed": 1,
+        "build": 2,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 0,
+        "earned": 261,
+        "spent": 0,
+        "endingCrystals": 261,
+        "ticks": 32394,
+        "wave": 90,
+        "completedWave": 89,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 1079.8,
+        "normalCrystalsPerHour": 870.1611409520282
+      },
+      {
+        "seed": 2,
+        "build": 2,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 261,
+        "earned": 261,
+        "spent": 0,
+        "endingCrystals": 522,
+        "ticks": 32394,
+        "wave": 90,
+        "completedWave": 89,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 1079.8,
+        "normalCrystalsPerHour": 870.1611409520282
+      },
+      {
+        "seed": 3,
+        "build": 2,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 522,
+        "earned": 234,
+        "spent": 0,
+        "endingCrystals": 756,
+        "ticks": 30187,
+        "wave": 84,
+        "completedWave": 83,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 1006.2333333333333,
+        "normalCrystalsPerHour": 837.1815682247325
+      },
+      {
+        "seed": 4,
+        "build": 2,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 756,
+        "earned": 261,
+        "spent": 0,
+        "endingCrystals": 1017,
+        "ticks": 32394,
+        "wave": 90,
+        "completedWave": 89,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 1079.8,
+        "normalCrystalsPerHour": 870.1611409520282
+      },
+      {
+        "seed": 5,
+        "build": 2,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 1017,
+        "earned": 262,
+        "spent": 0,
+        "endingCrystals": 1279,
+        "ticks": 32394,
+        "wave": 90,
+        "completedWave": 89,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 1079.8,
+        "normalCrystalsPerHour": 873.4950916836451
+      },
+      {
+        "seed": 6,
+        "build": 2,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 1279,
+        "earned": 262,
+        "spent": 0,
+        "endingCrystals": 1541,
+        "ticks": 32394,
+        "wave": 90,
+        "completedWave": 89,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 1079.8,
+        "normalCrystalsPerHour": 873.4950916836451
+      },
+      {
+        "seed": 7,
+        "build": 2,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 1541,
+        "earned": 264,
+        "spent": 0,
+        "endingCrystals": 1805,
+        "ticks": 32394,
+        "wave": 90,
+        "completedWave": 89,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 1079.8,
+        "normalCrystalsPerHour": 880.1629931468791
+      },
+      {
+        "seed": 8,
+        "build": 2,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 1805,
+        "earned": 261,
+        "spent": 0,
+        "endingCrystals": 2066,
+        "ticks": 32394,
+        "wave": 90,
+        "completedWave": 89,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 1079.8,
+        "normalCrystalsPerHour": 870.1611409520282
+      },
+      {
+        "seed": 9,
+        "build": 2,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 2066,
+        "earned": 261,
+        "spent": 0,
+        "endingCrystals": 2327,
+        "ticks": 32394,
+        "wave": 90,
+        "completedWave": 89,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 1079.8,
+        "normalCrystalsPerHour": 870.1611409520282
+      },
+      {
+        "seed": 10,
+        "build": 2,
+        "weapon": 4,
+        "startingDamage": 20,
+        "endingDamage": 20,
+        "startingCrystals": 2327,
+        "earned": 259,
+        "spent": 0,
+        "endingCrystals": 2586,
+        "ticks": 32394,
+        "wave": 90,
+        "completedWave": 89,
+        "nextCost": 20339,
+        "purchases": 0,
+        "status": "Defeated",
+        "observationLimit": false,
+        "settled": true,
+        "seconds": 1079.8,
+        "normalCrystalsPerHour": 863.4932394887943
+      }
+    ]
+  },
+  "passed": true
+}

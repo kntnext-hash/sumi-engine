@@ -60,8 +60,8 @@ try {
     Check 'meta costs and caps hold for every type' {
         foreach ($kind in [Enum]::GetValues([Bokumyaku.Simulation.MetaUpgrade])) {
             $m=[Bokumyaku.Simulation.MetaProgress]::new(); Assert (!$m.TryBuy($kind)) 'Unfunded meta purchase'
-            $m.Crystals=10000000
-            for ($level=0;$level -lt 20;$level++) { $before=$m.Crystals; $cost=$m.Cost($kind); Assert ($m.TryBuy($kind)) 'Meta purchase failed'; Assert ($m.Crystals -eq $before-$cost -and $m.Level($kind) -eq $level+1) 'Meta accounting' }
+            $m.Crystals=[int]::MaxValue
+            for ($level=0;$level -lt [Bokumyaku.Simulation.MetaProgress]::MaxLevel($kind);$level++) { $before=$m.Crystals; $cost=$m.Cost($kind); Assert ($m.TryBuy($kind)) 'Meta purchase failed'; Assert ($m.Crystals -eq $before-$cost -and $m.Level($kind) -eq $level+1) 'Meta accounting' }
             Assert (!$m.TryBuy($kind)) 'Meta cap ignored'
         }
     }

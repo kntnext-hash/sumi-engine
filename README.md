@@ -25,7 +25,7 @@
 
 ## 墨脈のゲーム試作
 
-ゲームは `UnitySandbox/Assets/BokumyakuPrototype/` に分離しています。ローカルWindows版は `Builds/Bokumyaku-v0.9/Bokumyaku.exe`。一人用システムαとして5敵・6武器、7周回/4恒久強化、3構成保存、途中保存・再開、報酬と履歴、自動周回を実装。採墨による稼ぎと記録の投資差、旧版の途中周回を保つ保存移行を追加しました。新規は100,000Waveまでの実行・保存に対応（旧途中周回は60）。そこまで到達する育成曲線・長期経済・完成美術は調整中です。[操作と検証範囲](docs/BOKUMYAKU_PROTOTYPE.md)を参照してください。
+ゲームは `UnitySandbox/Assets/BokumyakuPrototype/` に分離しています。ローカルWindows版は `Builds/Bokumyaku-v0.10/Bokumyaku.exe`。一人用システムαとして5敵・6武器、7周回/4恒久強化、3構成保存、途中保存・再開、報酬と履歴、自動周回を実装。採墨による稼ぎと記録の投資差、旧版の途中周回を保つ保存移行を追加しました。新規は100,000Waveまでの実行・保存に対応（rules1〜4の旧途中周回は60）。筆撃/祖墨の上限を100へ拡張。そこまで到達する育成曲線・長期経済・完成美術は調整中です。[操作と検証範囲](docs/BOKUMYAKU_PROTOTYPE.md)を参照してください。
 
 Unity Package ManagerからGitURLで使用できるよう、`package.json` は**レポジトリルート**に設置しています。例：`https://github.com/kntnext-hash/sumi-engine.git`（GitHubへpush後）。
 

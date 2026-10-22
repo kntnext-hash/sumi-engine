@@ -2,7 +2,14 @@
 
 更新: 2026-10-22 JST。以下の現行要約と末尾の最新記録を優先する。
 
-## 現行要約 — ゲームシステム α v0.9（長期基盤）
+## 現行要約 — ゲームシステム α v0.10（長期火力育成）
+- 新規rules6は周回筆撃100/恒久祖墨100。旧rules1〜5の途中周回・上限・計算を保持し、保存先v7へ原本保護移行。実装ab07f5a。
+- Unity200/200、画面50/50、独立基礎12/12に合格。候補と本体76条件一致。Windows確定結果は末尾。起動先Builds/Bokumyaku-v0.10/Bokumyaku.exe。
+- 最大育成の3構成がWave1から2000Wave完了時点までRunning（観測打切り）。点墨Farmingは239完了・240で敗北。全育成を実際に進めた証明ではなく、数万攻略は未達。
+- 育成済みmeta20/結晶0からの有償20周ではFarmingが9周目に祖墨21を購入、Recordは10周で購入なし。研究の遅さと構成差を確認。次は費用・成長テンポと6武器の役割差を調整する。
+- システム全体完成/長期経済/実機/完成美術・音の合格ではない。最新の仕様はBOKUMYAKU_PROGRESSION_V10.md、証拠と再開点は末尾/TASKS/QA台帳。
+
+### 前版v0.9の受入
 - 最新変更: 新規rules5を100,000Wave/36,000,000tickへ拡張。旧rules1〜4は60Waveのまま継続。数値上界・同時存在上限を検証し、保存先campaign-v6へ原本保護移行する。
 - 独立検証: 全100,000Wave数式、30高Wave注入条件、最終境界、JSON復帰一致に合格。自然進行12条件は全て敗北まで実行し、最高79Wave突破・80Wave敗北。数万Waveへ自然到達した記録ではない。
 - 次の実装は長期育成・周回強化の拡張と、放置周回/記録ビルドの調整。現行の強化上限は据置きであり、長期バランスは未完成。Unity/画面/Windowsの今回確定結果は末尾を参照。
@@ -257,3 +264,23 @@
 - 証拠: bokumyaku-player-v9.json、player-resume-v9.json、player-launch-v9.json、artifact-v9.json。隔離セーブのみ使用。モバイル/長時間実測/描画FPSの合格ではない。
 - 起動先Builds/Bokumyaku-v0.9/Bokumyaku.exe（Data/UnityPlayer/MonoBleedingEdge同梱のまま使用）。実装dca9fb9。今回の長期基盤を受入し、システム全体完成とはしない。
 - 次: 強化上限と恒久成長を長期向けに拡張。複数seed・同metaで放置周回の収益と記録構成の到達を比較する。現状は最高79Wave完了の小標本、数万Wave攻略バランスは未達。初回尺G05/育成役割/実機/美術の残件も維持。
+
+## 2026-10-22 v0.10 火力の長期育成
+- 基点bc04d5b/main clean/同期。Core=有限比較/Simulation、QA=Persistence/移行テスト、Demo=UI/独立有償育成、親=統合/Unity/台帳。Engine/Scene/BrushLabは変更しない。
+- 新規rules6は周回筆撃100・恒久祖墨100。他上限/報酬/敵は維持。旧取得範囲の費用・威力を保ち、筆撃30超の指数1.12と二次費用、祖墨20超の二次倍率・費用を採用。旧rules1〜5は従来上限のまま。保存先v7へ原本保護移行。仕様BOKUMYAKU_PROGRESSION_V10.md。
+- 候補A(80/1.10)、B(100/1.10)、C(100/1.12)の各12条件を500Wave上限で比較しCを固定。追加4条件は祖墨100/他meta20、PointFは239Wave完了・240Wave自然敗北、PointR/EnsoF/EnsoRは2000Wave観測打切りRunning。固定高metaの試験であり初期から育てて到達した実績ではない。
+- 初期/meta20×6武器×2構成×seed1..3=72条件で旧版との敗北時刻/到達/収益一致。EnsoRecord2条件は終端購入配分のみ変化。採用候補と製品76条件のtick/到達/報酬/墨収入・残高/状態/全7Lv一致。候補36走＋追加4走＋旧比較72組、反復を独立seedと数えない。
+- 独立C#全101Lv費用/倍率、旧式一致、旧caps超過拒否、9組×900tick JSON未来一致、資源・攻撃上界PASS。最大単発8.13m/場0.507m<1e9、累積保守上界5.16494e16<rules6検証上限6e16（旧1e15維持）。
+- 有償育成20周: 初期meta20/20/20/20・結晶0、Enso、seed1..10。Farmingは戦闘時間合計2.3953h、23926結晶、9周目に20339支払い祖墨20→21、残3587。Recordは2.9790h・2586結晶、購入0。初達成を含めない通常結晶のみ。育成済み状態からの試験で、ゼロからの全育成/実時間放置/長期バランス合格ではない。
+- Unity200/200（66.4940851秒）初回合格。純C#既存scriptは古い上限20固定で初回11/12、テストを種類別MaxLevel参照へ直して再実行。失敗記録も保持、製品コードの試験回避はなし。
+- 次: 恒久研究の費用/購入テンポと武器・構成差を複数seedで調整。今回祖墨20→21でも約2時間相当の戦闘を要し、役割差全武器/数万Wave攻略は未合格。G05/スマホ/長時間/美術/音は別ゲート。
+
+### v0.10 Unity画面・ビルド受入
+- 実装ab07f5a、Unity200/200、独立基礎12/12。画面50/50: 旧rules5の上限30・原本保持、祖墨20→21の実ボタン購入、正確な費用20339減算、再読込、次周反映、戦闘中購入禁止を追加。研究画面でLv21/100・倍率1.58・他研究20/20表示を目視確認。
+- Windows64 build_549aa28a7436成功、95,028,681bytes、14,556ms、error/warning0。Builds/Bokumyaku-v0.10へ新規出力、旧版保持。ツール日時は返却値のまま保管。
+- 現在Console error0/warning0、compilationFailed=false。Play停止/Scene dirty=false/背景実行false/QA保存キー空。Engine/Scene/BrushLab/ProjectSettingsに差分なし。独立検証の全Simulationソースhashを実装後に再照合済み。
+
+### v0.10 Windows最終受入と次の一手
+- Windows6武器各900tick、checkpoint、自動再出撃を確認。別プロセスで復帰し600tickの未来一致。両passed=true/exit0、105.742秒/14.409秒。PlayerログException/Error/Failedなし。通常保存を使わずlogs内に隔離。
+- bokumyaku-player-v10.json / player-resume-v10.json / player-launch-v10.json / artifact-v10.jsonを保存。実装ab07f5a、起動先Builds/Bokumyaku-v0.10/Bokumyaku.exe。Data/UnityPlayer/MonoBleedingEdgeを同梱のまま使用。
+- v0.10の機能受入を完了。ゲーム全体完成ではなく、次は研究費用と成長テンポ、放置周回/記録の武器別比較。祖墨20からの20周実測と最大祖墨100の2000Wave観測を混同しない。数万Wave攻略・長時間/実機性能・美術/音の残件を維持。

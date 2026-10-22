@@ -1,0 +1,173 @@
+{
+  "classification": "In-memory screening trial, not production rules and not a reachability guarantee",
+  "baselineCommit": "bc04d5b52d253a5b63081cec068b62c6d77dabc2",
+  "sourceHashes": [
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/AutoRepeatController.cs",
+      "sha256": "6E535C6DB35E4B78888E640A242494A40BAFE59C63D133E940ABD64E0B5C8845"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.cs",
+      "sha256": "DF144690A3BD31E2490194260FE49CFF2C2A5759EC00790DF5DCFF70962FB3BC"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.ExactSnapshot.cs",
+      "sha256": "E238C561DC31EF4A80555339011C50ECB6E23DB6685488A04DC4E498FF190C22"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.LongRunRules.cs",
+      "sha256": "ABE9696CB5182D7B17FF6C69EE7225C3373FA6EA0EF809BB989B21BDD31C574A"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.Snapshot.cs",
+      "sha256": "D66C1774F771C13998D06834131AFA49A64C8CB3BBB9A597C04D41975DBB5A67"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSnapshot.cs",
+      "sha256": "73AB657680E5769E6A2028BA2BACDD7792B46679C02AB8F647FD3171477B34C0"
+    }
+  ],
+  "compilerInputSha256": "9643BA1EBDD873CF4F2A3158A6DB15950DC8792F66248010C7772D48A9D95204",
+  "candidate": 3,
+  "runDamageCap": 100,
+  "runDamageGrowthAfter30": 1.12,
+  "runCost": "Lv>=30 ceil7040*(1+.03*(lv-30))^2",
+  "metaDamageCap": 100,
+  "metaDamageMultiplier": "Lv<=20 legacy; above20 1.5*(1+.025*(lv-20))^2",
+  "metaDamageCost": "Lv>=20 ceil20339*(1+.05*(lv-20))^2",
+  "otherMetaLevels": 20,
+  "mode": "Extended",
+  "tickBudget": 720000,
+  "waveBudget": 2000,
+  "maxPossibleSingleHit": 8126828.926693292,
+  "conservativeEffectiveDamageBound": 6661139076106304.0,
+  "limitations": [
+    "Only seed1 and Point/Enso screened; no optimality claim",
+    "Running rows are observation-budget censored, not completed runs; provisional rate is not settled reward",
+    "Currency bounds unchanged because Supply/Growth/Harvest remain capped20 and eligible kill rewards unchanged",
+    "Snapshot validation is not modified in these experimental copies; adoption requires versioned caps and new damage bounds"
+  ],
+  "baselineRuns": [],
+  "runs": [
+    {
+      "seed": 1,
+      "metaDamage": 100,
+      "ticks": 86384,
+      "wave": 240,
+      "completedWave": 239,
+      "crystals": 14765,
+      "income": 211170,
+      "ink": 10963,
+      "tips": 9,
+      "nodes": 23,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "censored": false,
+      "levels": [
+        44,
+        25,
+        25,
+        6,
+        10,
+        10,
+        10
+      ],
+      "seconds": 2879.4666666666667,
+      "provisionalCrystalRate": 307.3409348474686,
+      "maxHit": 14246.620252838982,
+      "maxField": 230.24840812669063,
+      "effectiveDamage": 385506421.73727614
+    },
+    {
+      "seed": 1,
+      "metaDamage": 100,
+      "ticks": 720000,
+      "wave": 2000,
+      "completedWave": 2000,
+      "crystals": 0,
+      "income": 3375416,
+      "ink": 1096239,
+      "tips": 12,
+      "nodes": 28,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Running",
+      "censored": true,
+      "levels": [
+        100,
+        25,
+        25,
+        9,
+        10,
+        10,
+        0
+      ],
+      "seconds": 24000.0,
+      "provisionalCrystalRate": 22.657167854018248,
+      "maxHit": 8126828.926693292,
+      "maxField": 131342.68972433606,
+      "effectiveDamage": 327792825665.2616
+    },
+    {
+      "seed": 1,
+      "metaDamage": 100,
+      "ticks": 720000,
+      "wave": 2000,
+      "completedWave": 2000,
+      "crystals": 0,
+      "income": 3374847,
+      "ink": 1094935,
+      "tips": 9,
+      "nodes": 23,
+      "build": "Farming",
+      "weapon": "Enso",
+      "status": "Running",
+      "censored": true,
+      "levels": [
+        100,
+        25,
+        25,
+        6,
+        10,
+        10,
+        10
+      ],
+      "seconds": 24000.0,
+      "provisionalCrystalRate": 361.2798400199975,
+      "maxHit": 6501463.141354634,
+      "maxField": 131342.68972433606,
+      "effectiveDamage": 327792536402.9353
+    },
+    {
+      "seed": 1,
+      "metaDamage": 100,
+      "ticks": 720000,
+      "wave": 2000,
+      "completedWave": 2000,
+      "crystals": 0,
+      "income": 3375416,
+      "ink": 1096239,
+      "tips": 12,
+      "nodes": 28,
+      "build": "Record",
+      "weapon": "Enso",
+      "status": "Running",
+      "censored": true,
+      "levels": [
+        100,
+        25,
+        25,
+        9,
+        10,
+        10,
+        0
+      ],
+      "seconds": 24000.0,
+      "provisionalCrystalRate": 22.657167854018248,
+      "maxHit": 6501463.141354634,
+      "maxField": 131342.68972433606,
+      "effectiveDamage": 327792825665.2697
+    }
+  ]
+}

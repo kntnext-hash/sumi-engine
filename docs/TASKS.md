@@ -241,3 +241,16 @@ ENVの構築検証は完了。描画P0全体は未合格で、次はP0-03の実�
 - 証拠: bokumyaku-player-v9.json、player-resume-v9.json、player-launch-v9.json、artifact-v9.json。隔離セーブのみ使用。モバイル/長時間実測/描画FPSの合格ではない。
 - 起動先Builds/Bokumyaku-v0.9/Bokumyaku.exe（Data/UnityPlayer/MonoBleedingEdge同梱のまま使用）。実装dca9fb9。今回の長期基盤を受入し、システム全体完成とはしない。
 - 次: 強化上限と恒久成長を長期向けに拡張。複数seed・同metaで放置周回の収益と記録構成の到達を比較する。現状は最高79Wave完了の小標本、数万Wave攻略バランスは未達。初回尺G05/育成役割/実機/美術の残件も維持。
+
+## v0.10 現行再開ゲート
+- [x] rules6周回筆撃100/恒久祖墨100、旧ルール上限保護、原本保護v7保存。
+- [x] Unity200テスト、独立費用/倍率/保存境界、採用候補と本体76条件照合。
+- [x] 有償育成20周を完了、稼ぎ/記録の差と研究の遅さを記録。
+- [x] 画面50/50、Windows6武器・別プロセス復帰の最終受入（末尾参照）。
+- [ ] 次は恒久研究の費用・育成テンポ、6武器/構成の役割差。数万Wave攻略の自然到達と全期間の経済は未合格。
+- [ ] 初回尺G05、モバイル実機/長時間、美術・音、オンライン/課金は後続。
+
+### v0.10 Windows最終受入と次の一手
+- Windows6武器各900tick、checkpoint、自動再出撃を確認。別プロセスで復帰し600tickの未来一致。両passed=true/exit0、105.742秒/14.409秒。PlayerログException/Error/Failedなし。通常保存を使わずlogs内に隔離。
+- bokumyaku-player-v10.json / player-resume-v10.json / player-launch-v10.json / artifact-v10.jsonを保存。実装ab07f5a、起動先Builds/Bokumyaku-v0.10/Bokumyaku.exe。Data/UnityPlayer/MonoBleedingEdgeを同梱のまま使用。
+- v0.10の機能受入を完了。ゲーム全体完成ではなく、次は研究費用と成長テンポ、放置周回/記録の武器別比較。祖墨20からの20周実測と最大祖墨100の2000Wave観測を混同しない。数万Wave攻略・長時間/実機性能・美術/音の残件を維持。

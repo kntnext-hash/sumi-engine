@@ -1,0 +1,291 @@
+{
+  "passed": true,
+  "method": "Synthetic GameView input + live Update; accelerated combat fixtures; isolated saves; one intentional locked-save warning; not physical/mobile/endurance input",
+  "checks": [
+    {
+      "name": "isolated fresh home",
+      "passed": true,
+      "detail": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\logs\\bokumyaku-qa-v10\\41eb4ef4ca8e4f189301bf5253215796\\campaign.json"
+    },
+    {
+      "name": "fresh recommended farming and seven upgrades",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "weapon button 0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "weapon button 1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "weapon button 2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "weapon button 3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "weapon button 4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "weapon button 5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "slot save button",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "slot load button",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "home sortie button",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pause button and checkpoint",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reload exact paused run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "paused time stays fixed",
+      "passed": true,
+      "detail": 929
+    },
+    {
+      "name": "home continue button",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "abandon has no award",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "settlement round 1",
+      "passed": true,
+      "detail": {
+        "CompletedRuns": 1,
+        "Crystals": 15,
+        "BestWave": 11
+      }
+    },
+    {
+      "name": "repeat save pays once 1",
+      "passed": true,
+      "detail": {
+        "revision": 9,
+        "after": 10
+      }
+    },
+    {
+      "name": "research tab and purchase button",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "records tab",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "auto OFF cancels",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "auto ON arms saved result",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "live auto restart uses permanent upgrade",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "settlement round 2",
+      "passed": true,
+      "detail": {
+        "CompletedRuns": 2,
+        "Crystals": 12,
+        "BestWave": 11
+      }
+    },
+    {
+      "name": "repeat save pays once 2",
+      "passed": true,
+      "detail": {
+        "revision": 17,
+        "after": 18
+      }
+    },
+    {
+      "name": "locked save stops and withholds reward",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "save retry settles once",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "settlement round 3",
+      "passed": true,
+      "detail": {
+        "CompletedRuns": 3,
+        "Crystals": 16,
+        "BestWave": 11
+      }
+    },
+    {
+      "name": "repeat save pays once 3",
+      "passed": true,
+      "detail": {
+        "revision": 21,
+        "after": 22
+      }
+    },
+    {
+      "name": "reload three completed runs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "repair and persisted checkpoint",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "harvest button pays and does not rewrite past kills",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "seven-upgrade checkpoint reload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "old real snapshot migrates without changing original",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "legacy harvest is disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "next sortie upgrades rules only after leaving old run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "v9 campaign copied with rules5 and original intact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "old rules keep damage cap30",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "v9 checkpoint saved and reloaded exactly",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "v9 next sortie uses new rules",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "result separates normal rate and invasion summary",
+      "passed": true,
+      "detail": {
+        "normalCrystals": 8,
+        "milestone": 15,
+        "summary": "侵入 6体 / 最多 通常 3体"
+      }
+    },
+    {
+      "name": "new rules cross old Wave60 boundary",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "injected high Wave checkpoint loads paused",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Wave30000 live advance and exact disk resume",
+      "passed": true,
+      "detail": {
+        "Wave": 30000,
+        "TickCount": 10799646,
+        "method": "Injected checkpoint, not natural progression"
+      }
+    },
+    {
+      "name": "long-term research fixture loads",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "research button buys level21 at exact cost",
+      "passed": true,
+      "detail": {
+        "Damage": 21,
+        "DamageMultiplier": 1.5759374999999998
+      }
+    },
+    {
+      "name": "research purchase survives disk reload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "new run uses extended research and upgrade cap",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "research cannot change an active run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "live frames",
+      "passed": true,
+      "detail": {
+        "firstFrame": 138,
+        "endFrame": 4829
+      }
+    }
+  ]
+}

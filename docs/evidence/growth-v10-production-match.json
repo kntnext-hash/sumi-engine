@@ -1,0 +1,40 @@
+{
+  "classification": "Actual rules6 compared with fixed candidateC; no new tuning",
+  "matchedConditions": 76,
+  "pass": true,
+  "sourceHashes": [
+    {
+      "name": "AutoRepeatController.cs",
+      "sha256": "D110E501CA532370504A4F5E1C09842769F0DE9CC4EA51DDAF1E640FE3B67ACE"
+    },
+    {
+      "name": "RunSimulator.cs",
+      "sha256": "6B11467BAFB0FB05A3B9B1E15B814FCBC04E2FA24BFCE5D69382466F5FEC9CF2"
+    },
+    {
+      "name": "RunSimulator.ExactSnapshot.cs",
+      "sha256": "1D3DEC084E8811727E8DC333E7FB0937A3A06AC1CF4711F0CACA85D312CB4969"
+    },
+    {
+      "name": "RunSimulator.LongRunRules.cs",
+      "sha256": "D1B8E1834D6EF6D25996EB79AC505C9E753DE787D8A15ECD2CFFF8541BB8A0BE"
+    },
+    {
+      "name": "RunSimulator.Snapshot.cs",
+      "sha256": "8ADDAB0D7787C98020DD5E8204C2DCB3433A6468B8F6FCBF8958F3AB8C30E22B"
+    },
+    {
+      "name": "RunSnapshot.cs",
+      "sha256": "21F9068A22BBDBCF877341E5B6459857F12164905971FA211F610AB429501FCB"
+    }
+  ],
+  "comparedFields": [
+    "ticks",
+    "completedWave",
+    "crystals",
+    "income",
+    "ink",
+    "status",
+    "all7levels"
+  ]
+}
