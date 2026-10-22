@@ -56,8 +56,9 @@ namespace Bokumyaku.Presentation
                 Page = GamePage.Home; saveWarning = "";
             }
         }
-        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v7.json");
-        public string LatestPreviousCampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v6.json") : SavePathOverride + ".v6";
+        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v8.json");
+        public string LatestPreviousCampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v7.json") : SavePathOverride + ".v7";
+        public string PreviousV6CampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v6.json") : SavePathOverride + ".v6";
         public string PreviousV5CampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v5.json") : SavePathOverride + ".v5";
         public string PreviousV4CampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v4.json") : SavePathOverride + ".v4";
         public string PreviousCampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v3.json") : SavePathOverride + ".v3";
@@ -137,9 +138,9 @@ namespace Bokumyaku.Presentation
             EnsureCanvas();
             try
             {
-                bool firstNewCampaign = !progressLoaded && !SaveFamilyExists(SavePath) && !SaveFamilyExists(LatestPreviousCampaignPath) && !SaveFamilyExists(PreviousV5CampaignPath) && !SaveFamilyExists(PreviousV4CampaignPath) && !SaveFamilyExists(PreviousCampaignPath) && !SaveFamilyExists(OlderCampaignPath) && !SaveFamilyExists(LegacySavePath);
+                bool firstNewCampaign = !progressLoaded && !SaveFamilyExists(SavePath) && !SaveFamilyExists(LatestPreviousCampaignPath) && !SaveFamilyExists(PreviousV6CampaignPath) && !SaveFamilyExists(PreviousV5CampaignPath) && !SaveFamilyExists(PreviousV4CampaignPath) && !SaveFamilyExists(PreviousCampaignPath) && !SaveFamilyExists(OlderCampaignPath) && !SaveFamilyExists(LegacySavePath);
                 string warning;
-                var loaded = CampaignSaveStore.LoadLatest(SavePath, LatestPreviousCampaignPath, PreviousV5CampaignPath, PreviousV4CampaignPath, PreviousCampaignPath, OlderCampaignPath, LegacySavePath, out warning);
+                var loaded = CampaignSaveStore.LoadLatest(SavePath, LatestPreviousCampaignPath, PreviousV6CampaignPath, PreviousV5CampaignPath, PreviousV4CampaignPath, PreviousCampaignPath, OlderCampaignPath, LegacySavePath, out warning);
                 if (firstNewCampaign) SelectedBuild = BuildPreset.Farming;
                 var restored = loaded.HasActiveRun ? RunSimulator.Restore(loaded.ActiveRun) : new RunSimulator(InitialSeed, loaded.Meta);
                 ApplyCampaign(loaded); Run = restored; progressLoaded = true; loadBlocked = false;
@@ -499,7 +500,7 @@ namespace Bokumyaku.Presentation
                 if (portrait) DrawPanel(new Rect(24, 584, 392, 452), true);
                 else DrawPanel(new Rect(558, 110, 494, 616), false);
                 GUI.Label(new Rect(field.x, field.yMax + 7, field.width, 18), "墨の枝  ／  金の末端  ／  朱の敵", small);
-                GUI.Label(new Rect(width - 185, portrait ? 20 : 42, 162, 25), "システム α  0.10", small);
+                GUI.Label(new Rect(width - 185, portrait ? 20 : 42, 162, 25), "システム α  0.11", small);
             }
             finally { GUI.matrix = oldMatrix; GUI.color = oldColor; GUI.backgroundColor = oldBackground; GUI.enabled = oldEnabled; }
         }
@@ -699,7 +700,7 @@ namespace Bokumyaku.Presentation
                 {
                     var kind = (MetaUpgrade)i;
                     GUI.Label(new Rect(0, y, w - 110, 23), MetaNames[i] + "  Lv." + Meta.Level(kind) + "/" + MetaProgress.MaxLevel(kind), body);
-                    GUI.Label(new Rect(0, y + 24, w - 110, 24), kind == MetaUpgrade.Damage ? "基礎攻撃×" + Meta.DamageMultiplier.ToString("0.00") + "・次周から" : MetaNotes[i], small);
+                    GUI.Label(new Rect(0, y + 24, w - 110, 24), kind == MetaUpgrade.Damage ? "攻撃×" + Meta.DamageMultiplier.ToString("0.00") + (Meta.Damage < MetaProgress.MaxLevel(kind) ? " → ×" + new MetaProgress { Damage = Meta.Damage + 1 }.DamageMultiplier.ToString("0.00") : "（MAX）") : MetaNotes[i], small);
                     GUI.enabled = !loadBlocked && !storageFailed && campaign != null && !campaign.HasActiveRun && Meta.Crystals >= Meta.Cost(kind) && Meta.Level(kind) < MetaProgress.MaxLevel(kind);
                     if (Button(new Rect(w - 104, y + 4, 104, 32), Meta.Level(kind) >= MetaProgress.MaxLevel(kind) ? "MAX" : Meta.Cost(kind) + " 結晶", GUI.enabled)) BuyMeta(kind);
                     GUI.enabled = true; y += 56;

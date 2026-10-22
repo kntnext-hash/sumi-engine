@@ -14,14 +14,25 @@ namespace Bokumyaku.Simulation
     [Serializable]
     public sealed class MetaProgress
     {
-        // Rounded legacy cost at Damage20: ceil(8*1.48^20).
-        public const int DamageCostAt20 = 20339;
+        // Price generation is independent of battle rules. Rounded Cost10 is the new curve anchor.
+        public const int ResearchPriceVersion = 2;
+        public const int DamageCostAt20 = 2952; // ceil(ceil(8*1.48^10)*1.22^10).
         public int Crystals;
         public int Damage, Supply, Growth, Harvest;
         public int Level(MetaUpgrade kind) { return kind == MetaUpgrade.Damage ? Damage : kind == MetaUpgrade.Supply ? Supply : kind == MetaUpgrade.Growth ? Growth : Harvest; }
         public static int MaxLevel(MetaUpgrade kind) { if(!Enum.IsDefined(typeof(MetaUpgrade),kind))throw new ArgumentOutOfRangeException(nameof(kind)); return kind==MetaUpgrade.Damage?100:20; }
         public double DamageMultiplier { get { if(Damage<0 || Damage>100)throw new ArgumentOutOfRangeException(nameof(Damage));return Damage<=20?1+.025*Damage:1.5*Math.Pow(1+.025*(Damage-20),2); } }
-        public int Cost(MetaUpgrade kind) { int level=Level(kind);if(level<0||level>MaxLevel(kind))throw new ArgumentOutOfRangeException(nameof(kind));if(kind==MetaUpgrade.Damage && level>=20)return (int)Math.Ceiling(DamageCostAt20*Math.Pow(1+.05*(level-20),2)); return (int)Math.Ceiling((kind == MetaUpgrade.Supply ? 10 : kind == MetaUpgrade.Harvest ? 12 : 8) * Math.Pow(1.48, Level(kind))); }
+        public int Cost(MetaUpgrade kind)
+        {
+            int level = Level(kind);
+            if (level < 0 || level > MaxLevel(kind)) throw new ArgumentOutOfRangeException(nameof(kind));
+            double basis = kind == MetaUpgrade.Supply ? 10 : kind == MetaUpgrade.Harvest ? 12 : 8;
+            if (level <= 10) return (int)Math.Ceiling(basis * Math.Pow(1.48, level));
+            if (kind == MetaUpgrade.Damage && level > 20)
+                return (int)Math.Ceiling(DamageCostAt20 * Math.Pow(1 + .05 * (level - 20), 2));
+            double roundedCost10 = Math.Ceiling(basis * Math.Pow(1.48, 10));
+            return (int)Math.Ceiling(roundedCost10 * Math.Pow(1.22, level - 10));
+        }
         public bool TryBuy(MetaUpgrade kind)
         {
             if (!Enum.IsDefined(typeof(MetaUpgrade), kind) || Level(kind) >= MaxLevel(kind) || Crystals < Cost(kind)) return false;

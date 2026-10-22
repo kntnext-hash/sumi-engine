@@ -107,6 +107,24 @@ namespace Bokumyaku.Persistence
                 { throw new InvalidDataException("Campaign and backup are unreadable; no data was replaced.", new AggregateException(e, backup)); }
             }
         }
+        /// <summary>File generation 8 isolates research price generation 2; combat rules and schema remain unchanged.</summary>
+        public static CampaignProgress LoadLatest(string path, string previousV7, string previousV6, string previousV5, string previousV4, string previousV3, string olderV2, string legacyMetaPath, out string warning)
+        {
+            lock (Gate)
+            {
+                foreach (var source in new[] { previousV7, previousV6, previousV5, previousV4, previousV3, olderV2, legacyMetaPath })
+                    if (!string.IsNullOrEmpty(source)) Require(!string.Equals(Path.GetFullPath(path), Path.GetFullPath(source), StringComparison.OrdinalIgnoreCase), "Migration destination must differ from every source.");
+                if (File.Exists(path) || File.Exists(path + ".bak")) return ReadRecover(path, out warning);
+                if (!string.IsNullOrEmpty(previousV7) && (File.Exists(previousV7) || File.Exists(previousV7 + ".bak")))
+                {
+                    var c = ReadRecover(previousV7, out warning);
+                    Write(path, c);
+                    warning = "Previous campaign copied to file generation8 without repricing existing progress; original and backup preserved. " + warning;
+                    return c;
+                }
+                return LoadLatest(path, previousV6, previousV5, previousV4, previousV3, olderV2, legacyMetaPath, out warning);
+            }
+        }
         /// <summary>File generation 7 retains schema/config 3 and isolates rules6 progression.</summary>
         public static CampaignProgress LoadLatest(string path, string previousV6, string previousV5, string previousV4, string previousV3, string olderV2, string legacyMetaPath, out string warning)
         {

@@ -177,7 +177,7 @@ namespace Bokumyaku.Tests
             meta.Crystals = int.MaxValue;
             for (int level = 0; level < MetaProgress.MaxLevel(kind); level++)
             {
-                int expected = kind==MetaUpgrade.Damage && level>20 ? (int)Math.Ceiling(20339*Math.Pow(1+.05*(level-20),2)) : (int)Math.Ceiling(initialCost * Math.Pow(1.48, level));
+                int expected = kind==MetaUpgrade.Damage && level>20 ? (int)Math.Ceiling(2952*Math.Pow(1+.05*(level-20),2)) : level<=10 ? (int)Math.Ceiling(initialCost * Math.Pow(1.48, level)) : (int)Math.Ceiling(Math.Ceiling(initialCost*Math.Pow(1.48,10))*Math.Pow(1.22,level-10));
                 int before = meta.Crystals; Assert.AreEqual(expected, meta.Cost(kind));
                 Assert.IsTrue(meta.TryBuy(kind)); Assert.AreEqual(before - expected, meta.Crystals);
                 Assert.AreEqual(level + 1, meta.Level(kind));
