@@ -1,0 +1,3284 @@
+{
+  "classification": "Post-processing of existing v3 combat measurements; no new combat or Unity execution",
+  "input": "docs/evidence/bokumyaku-weapons-v3.json",
+  "inputJsonSha256": "2874FEC29E5D3FBB4B0BE9D5A2B585397718217C0CB96382B220E60D4F74C83B",
+  "inputSourceSha256": "2FBF514160B85B6F5564E96D0F142B48CF51A3967F9DF9A6FC81D695B5FBA3F9",
+  "currentRawSourceSha256": "2FBF514160B85B6F5564E96D0F142B48CF51A3967F9DF9A6FC81D695B5FBA3F9",
+  "currentLfSourceSha256": "1B47328CDD512EF4CDDBFAF5F5949C7B57A1347BCFF796F575939EE8B7F846C3",
+  "sourceMatch": "exact raw bytes",
+  "currentFormulaMatches": 90,
+  "conditions": 90,
+  "independentSeeds": 10,
+  "generatedAtUtc": "2026-10-22T06:54:45.1966430Z",
+  "method": "Three reward formulas only. w=completedWave, floor(4+0.25*w^exponent), zero if w=0. Rate=reward*60/(measured seconds+3). Seeds/builds/weapons/meta and battle outcomes unchanged.",
+  "limitations": [
+    "Reuses identical seed across nine configurations; 90 rows are not independent samples.",
+    "Pearson correlation is descriptive across this pooled sample, not causal or inferential.",
+    "No save overhead, player interaction time, meta progression over multiple runs, tiers, or hypothetical tier multipliers.",
+    "Manual means no purchases, not player-controlled optimized play.",
+    "Floor rounding and fixed reward offset materially affect short runs."
+  ],
+  "candidates": [
+    {
+      "exponent": 1.4,
+      "coefficient": 0.25,
+      "constant": 4,
+      "zeroWaveReward": 0,
+      "waitSeconds": 3,
+      "manualOptimalSeedCount": 0,
+      "pearsonCompletedWaveVersusEfficiency": 0.9868606155695124,
+      "summaries": [
+        {
+          "build": "Farming",
+          "weapon": "Bleed",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 5.89060803888491,
+          "medianCompletedWave": 42.5,
+          "medianCycleSeconds": 519.6166666666667
+        },
+        {
+          "build": "Farming",
+          "weapon": "Pierce",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 5.5566611643839074,
+          "medianCompletedWave": 35,
+          "medianCycleSeconds": 429.8833333333333
+        },
+        {
+          "build": "Farming",
+          "weapon": "Point",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 5.883370982270524,
+          "medianCompletedWave": 41.5,
+          "medianCycleSeconds": 505.51666666666665
+        },
+        {
+          "build": "Manual",
+          "weapon": "Bleed",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 4.674807216858959,
+          "medianCompletedWave": 12,
+          "medianCycleSeconds": 149.28333333333333
+        },
+        {
+          "build": "Manual",
+          "weapon": "Pierce",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 4.553068882337175,
+          "medianCompletedWave": 10,
+          "medianCycleSeconds": 131.2
+        },
+        {
+          "build": "Manual",
+          "weapon": "Point",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 4.660901585918694,
+          "medianCompletedWave": 11,
+          "medianCycleSeconds": 144.46666666666667
+        },
+        {
+          "build": "Record",
+          "weapon": "Bleed",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 4.816449840966676,
+          "medianCompletedWave": 20,
+          "medianCycleSeconds": 252.88333333333333
+        },
+        {
+          "build": "Record",
+          "weapon": "Pierce",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 5.8764807936438,
+          "medianCompletedWave": 41,
+          "medianCycleSeconds": 495.8
+        },
+        {
+          "build": "Record",
+          "weapon": "Point",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 5.896808687705939,
+          "medianCompletedWave": 42,
+          "medianCycleSeconds": 508.04999999999995
+        }
+      ],
+      "seedWinners": [
+        {
+          "seed": 1,
+          "winners": [
+            "Farming/Bleed"
+          ],
+          "manualIsOptimal": false,
+          "bestPerMinute": 6.025196275333211,
+          "runnerUpPerMinute": 5.991933935087382,
+          "advantagePercent": 0.5551186078847081
+        },
+        {
+          "seed": 2,
+          "winners": [
+            "Farming/Point"
+          ],
+          "manualIsOptimal": false,
+          "bestPerMinute": 5.995772211901864,
+          "runnerUpPerMinute": 5.980448533640023,
+          "advantagePercent": 0.25622958170521404
+        },
+        {
+          "seed": 3,
+          "winners": [
+            "Record/Pierce"
+          ],
+          "manualIsOptimal": false,
+          "bestPerMinute": 5.929810407422347,
+          "runnerUpPerMinute": 5.909001378766988,
+          "advantagePercent": 0.35215812827751325
+        },
+        {
+          "seed": 4,
+          "winners": [
+            "Farming/Bleed"
+          ],
+          "manualIsOptimal": false,
+          "bestPerMinute": 6.0639470782800435,
+          "runnerUpPerMinute": 5.929810407422347,
+          "advantagePercent": 2.262073517389318
+        },
+        {
+          "seed": 5,
+          "winners": [
+            "Farming/Bleed"
+          ],
+          "manualIsOptimal": false,
+          "bestPerMinute": 5.824865704485147,
+          "runnerUpPerMinute": 5.797507351911497,
+          "advantagePercent": 0.4718985404068343
+        },
+        {
+          "seed": 6,
+          "winners": [
+            "Record/Point"
+          ],
+          "manualIsOptimal": false,
+          "bestPerMinute": 5.900865460267506,
+          "runnerUpPerMinute": 5.882745281131195,
+          "advantagePercent": 0.30802250089649874
+        },
+        {
+          "seed": 7,
+          "winners": [
+            "Record/Pierce"
+          ],
+          "manualIsOptimal": false,
+          "bestPerMinute": 5.853658536585366,
+          "runnerUpPerMinute": 5.844930417495029,
+          "advantagePercent": 0.1493280238924921
+        },
+        {
+          "seed": 8,
+          "winners": [
+            "Farming/Bleed"
+          ],
+          "manualIsOptimal": false,
+          "bestPerMinute": 5.821098247202639,
+          "runnerUpPerMinute": 5.799960544486092,
+          "advantagePercent": 0.36444562949038417
+        },
+        {
+          "seed": 9,
+          "winners": [
+            "Farming/Point"
+          ],
+          "manualIsOptimal": false,
+          "bestPerMinute": 5.972952667167544,
+          "runnerUpPerMinute": 5.965482741370685,
+          "advantagePercent": 0.1252191334836228
+        },
+        {
+          "seed": 10,
+          "winners": [
+            "Farming/Point"
+          ],
+          "manualIsOptimal": false,
+          "bestPerMinute": 5.999615409268637,
+          "runnerUpPerMinute": 5.945499587118085,
+          "advantagePercent": 0.9101980642266527
+        }
+      ],
+      "runs": [
+        {
+          "seed": 1,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 10,
+          "seconds": 131.9,
+          "cycleSeconds": 134.9,
+          "crystals": 10.0,
+          "crystalsPerMinute": 4.447739065974796
+        },
+        {
+          "seed": 1,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 9,
+          "seconds": 113.03333333333333,
+          "cycleSeconds": 116.03333333333333,
+          "crystals": 9.0,
+          "crystalsPerMinute": 4.6538351048549265
+        },
+        {
+          "seed": 1,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 11,
+          "seconds": 138.56666666666666,
+          "cycleSeconds": 141.56666666666666,
+          "crystals": 11.0,
+          "crystalsPerMinute": 4.662114433717918
+        },
+        {
+          "seed": 1,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 517.7,
+          "cycleSeconds": 520.7,
+          "crystals": 52.0,
+          "crystalsPerMinute": 5.991933935087382
+        },
+        {
+          "seed": 1,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 37,
+          "seconds": 451.53333333333336,
+          "cycleSeconds": 454.53333333333336,
+          "crystals": 43.0,
+          "crystalsPerMinute": 5.676151364036374
+        },
+        {
+          "seed": 1,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 45,
+          "seconds": 544.7,
+          "cycleSeconds": 547.7,
+          "crystals": 55.0,
+          "crystalsPerMinute": 6.025196275333211
+        },
+        {
+          "seed": 1,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 519.0666666666667,
+          "cycleSeconds": 522.0666666666667,
+          "crystals": 52.0,
+          "crystalsPerMinute": 5.9762482441578335
+        },
+        {
+          "seed": 1,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 497.8333333333333,
+          "cycleSeconds": 500.8333333333333,
+          "crystals": 49.0,
+          "crystalsPerMinute": 5.870216306156406
+        },
+        {
+          "seed": 1,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 17,
+          "seconds": 208.13333333333333,
+          "cycleSeconds": 211.13333333333333,
+          "crystals": 17.0,
+          "crystalsPerMinute": 4.83107041364067
+        },
+        {
+          "seed": 2,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 11,
+          "seconds": 140.33333333333334,
+          "cycleSeconds": 143.33333333333334,
+          "crystals": 11.0,
+          "crystalsPerMinute": 4.604651162790697
+        },
+        {
+          "seed": 2,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 9,
+          "seconds": 119.56666666666666,
+          "cycleSeconds": 122.56666666666666,
+          "crystals": 9.0,
+          "crystalsPerMinute": 4.405765569757955
+        },
+        {
+          "seed": 2,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 12,
+          "seconds": 146.63333333333333,
+          "cycleSeconds": 149.63333333333333,
+          "crystals": 12.0,
+          "crystalsPerMinute": 4.811762085096904
+        },
+        {
+          "seed": 2,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 517.3666666666667,
+          "cycleSeconds": 520.3666666666667,
+          "crystals": 52.0,
+          "crystalsPerMinute": 5.995772211901864
+        },
+        {
+          "seed": 2,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 35,
+          "seconds": 428.6333333333333,
+          "cycleSeconds": 431.6333333333333,
+          "crystals": 40.0,
+          "crystalsPerMinute": 5.56027492470461
+        },
+        {
+          "seed": 2,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 43,
+          "seconds": 520.8666666666667,
+          "cycleSeconds": 523.8666666666667,
+          "crystals": 52.0,
+          "crystalsPerMinute": 5.955713922117587
+        },
+        {
+          "seed": 2,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 518.7,
+          "cycleSeconds": 521.7,
+          "crystals": 52.0,
+          "crystalsPerMinute": 5.980448533640023
+        },
+        {
+          "seed": 2,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 494.96666666666664,
+          "cycleSeconds": 497.96666666666664,
+          "crystals": 49.0,
+          "crystalsPerMinute": 5.904009639199411
+        },
+        {
+          "seed": 2,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 20,
+          "seconds": 245.33333333333334,
+          "cycleSeconds": 248.33333333333334,
+          "crystals": 20.0,
+          "crystalsPerMinute": 4.832214765100671
+        },
+        {
+          "seed": 3,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 10,
+          "seconds": 129.63333333333333,
+          "cycleSeconds": 132.63333333333333,
+          "crystals": 10.0,
+          "crystalsPerMinute": 4.523749685850716
+        },
+        {
+          "seed": 3,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 128.2,
+          "cycleSeconds": 131.2,
+          "crystals": 10.0,
+          "crystalsPerMinute": 4.573170731707317
+        },
+        {
+          "seed": 3,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 11,
+          "seconds": 142.6,
+          "cycleSeconds": 145.6,
+          "crystals": 11.0,
+          "crystalsPerMinute": 4.532967032967033
+        },
+        {
+          "seed": 3,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 42,
+          "seconds": 504.7,
+          "cycleSeconds": 507.7,
+          "crystals": 50.0,
+          "crystalsPerMinute": 5.909001378766988
+        },
+        {
+          "seed": 3,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 34,
+          "seconds": 413.8333333333333,
+          "cycleSeconds": 416.8333333333333,
+          "crystals": 38.0,
+          "crystalsPerMinute": 5.469812075169933
+        },
+        {
+          "seed": 3,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 42,
+          "seconds": 504.7,
+          "cycleSeconds": 507.7,
+          "crystals": 50.0,
+          "crystalsPerMinute": 5.909001378766988
+        },
+        {
+          "seed": 3,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 42,
+          "seconds": 504.7,
+          "cycleSeconds": 507.7,
+          "crystals": 50.0,
+          "crystalsPerMinute": 5.909001378766988
+        },
+        {
+          "seed": 3,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 492.8,
+          "cycleSeconds": 495.8,
+          "crystals": 49.0,
+          "crystalsPerMinute": 5.929810407422347
+        },
+        {
+          "seed": 3,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 18,
+          "seconds": 222.9,
+          "cycleSeconds": 225.9,
+          "crystals": 18.0,
+          "crystalsPerMinute": 4.780876494023905
+        },
+        {
+          "seed": 4,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 11,
+          "seconds": 138.06666666666666,
+          "cycleSeconds": 141.06666666666666,
+          "crystals": 11.0,
+          "crystalsPerMinute": 4.678638941398866
+        },
+        {
+          "seed": 4,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 120.73333333333333,
+          "cycleSeconds": 123.73333333333333,
+          "crystals": 10.0,
+          "crystalsPerMinute": 4.849137931034483
+        },
+        {
+          "seed": 4,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 10,
+          "seconds": 126.6,
+          "cycleSeconds": 129.6,
+          "crystals": 10.0,
+          "crystalsPerMinute": 4.62962962962963
+        },
+        {
+          "seed": 4,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 41,
+          "seconds": 498.9,
+          "cycleSeconds": 501.9,
+          "crystals": 49.0,
+          "crystalsPerMinute": 5.857740585774059
+        },
+        {
+          "seed": 4,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 32,
+          "seconds": 393.7,
+          "cycleSeconds": 396.7,
+          "crystals": 35.0,
+          "crystalsPerMinute": 5.293672800604991
+        },
+        {
+          "seed": 4,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 45,
+          "seconds": 541.2,
+          "cycleSeconds": 544.2,
+          "crystals": 55.0,
+          "crystalsPerMinute": 6.0639470782800435
+        },
+        {
+          "seed": 4,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 41,
+          "seconds": 503.2,
+          "cycleSeconds": 506.2,
+          "crystals": 49.0,
+          "crystalsPerMinute": 5.807981035163967
+        },
+        {
+          "seed": 4,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 492.8,
+          "cycleSeconds": 495.8,
+          "crystals": 49.0,
+          "crystalsPerMinute": 5.929810407422347
+        },
+        {
+          "seed": 4,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 21,
+          "seconds": 259.4,
+          "cycleSeconds": 262.4,
+          "crystals": 21.0,
+          "crystalsPerMinute": 4.801829268292684
+        },
+        {
+          "seed": 5,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 12,
+          "seconds": 149.16666666666666,
+          "cycleSeconds": 152.16666666666666,
+          "crystals": 12.0,
+          "crystalsPerMinute": 4.731653888280395
+        },
+        {
+          "seed": 5,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 131.9,
+          "cycleSeconds": 134.9,
+          "crystals": 10.0,
+          "crystalsPerMinute": 4.447739065974796
+        },
+        {
+          "seed": 5,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 13,
+          "seconds": 163.4,
+          "cycleSeconds": 166.4,
+          "crystals": 13.0,
+          "crystalsPerMinute": 4.6875
+        },
+        {
+          "seed": 5,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 40,
+          "seconds": 483.93333333333334,
+          "cycleSeconds": 486.93333333333334,
+          "crystals": 47.0,
+          "crystalsPerMinute": 5.791347207009857
+        },
+        {
+          "seed": 5,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 33,
+          "seconds": 402.6666666666667,
+          "cycleSeconds": 405.6666666666667,
+          "crystals": 37.0,
+          "crystalsPerMinute": 5.472473294987674
+        },
+        {
+          "seed": 5,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 42,
+          "seconds": 512.0333333333333,
+          "cycleSeconds": 515.0333333333333,
+          "crystals": 50.0,
+          "crystalsPerMinute": 5.824865704485147
+        },
+        {
+          "seed": 5,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 40,
+          "seconds": 487.6333333333333,
+          "cycleSeconds": 490.6333333333333,
+          "crystals": 47.0,
+          "crystalsPerMinute": 5.74767307561655
+        },
+        {
+          "seed": 5,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 39,
+          "seconds": 473.06666666666666,
+          "cycleSeconds": 476.06666666666666,
+          "crystals": 46.0,
+          "crystalsPerMinute": 5.797507351911497
+        },
+        {
+          "seed": 5,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 19,
+          "seconds": 236.26666666666668,
+          "cycleSeconds": 239.26666666666668,
+          "crystals": 19.0,
+          "crystalsPerMinute": 4.764558372805795
+        },
+        {
+          "seed": 6,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 11,
+          "seconds": 142.6,
+          "cycleSeconds": 145.6,
+          "crystals": 11.0,
+          "crystalsPerMinute": 4.532967032967033
+        },
+        {
+          "seed": 6,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 128.2,
+          "cycleSeconds": 131.2,
+          "crystals": 10.0,
+          "crystalsPerMinute": 4.573170731707317
+        },
+        {
+          "seed": 6,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 12,
+          "seconds": 145.93333333333334,
+          "cycleSeconds": 148.93333333333334,
+          "crystals": 12.0,
+          "crystalsPerMinute": 4.834377797672336
+        },
+        {
+          "seed": 6,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 41,
+          "seconds": 500.3333333333333,
+          "cycleSeconds": 503.3333333333333,
+          "crystals": 49.0,
+          "crystalsPerMinute": 5.841059602649007
+        },
+        {
+          "seed": 6,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 40,
+          "seconds": 483.93333333333334,
+          "cycleSeconds": 486.93333333333334,
+          "crystals": 47.0,
+          "crystalsPerMinute": 5.791347207009857
+        },
+        {
+          "seed": 6,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 42,
+          "seconds": 509.23333333333335,
+          "cycleSeconds": 512.2333333333333,
+          "crystals": 50.0,
+          "crystalsPerMinute": 5.856705928287889
+        },
+        {
+          "seed": 6,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 42,
+          "seconds": 505.4,
+          "cycleSeconds": 508.4,
+          "crystals": 50.0,
+          "crystalsPerMinute": 5.900865460267506
+        },
+        {
+          "seed": 6,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 496.76666666666665,
+          "cycleSeconds": 499.76666666666665,
+          "crystals": 49.0,
+          "crystalsPerMinute": 5.882745281131195
+        },
+        {
+          "seed": 6,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 34,
+          "seconds": 417.6333333333333,
+          "cycleSeconds": 420.6333333333333,
+          "crystals": 38.0,
+          "crystalsPerMinute": 5.4203978128219354
+        },
+        {
+          "seed": 7,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 12,
+          "seconds": 152.06666666666666,
+          "cycleSeconds": 155.06666666666666,
+          "crystals": 12.0,
+          "crystalsPerMinute": 4.643164230438521
+        },
+        {
+          "seed": 7,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 11,
+          "seconds": 136.93333333333334,
+          "cycleSeconds": 139.93333333333334,
+          "crystals": 11.0,
+          "crystalsPerMinute": 4.7165316817532155
+        },
+        {
+          "seed": 7,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 12,
+          "seconds": 155.3,
+          "cycleSeconds": 158.3,
+          "crystals": 12.0,
+          "crystalsPerMinute": 4.548325963360707
+        },
+        {
+          "seed": 7,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 38,
+          "seconds": 461.23333333333335,
+          "cycleSeconds": 464.23333333333335,
+          "crystals": 44.0,
+          "crystalsPerMinute": 5.68679543333094
+        },
+        {
+          "seed": 7,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 36,
+          "seconds": 440.0,
+          "cycleSeconds": 443.0,
+          "crystals": 41.0,
+          "crystalsPerMinute": 5.553047404063205
+        },
+        {
+          "seed": 7,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 41,
+          "seconds": 500.0,
+          "cycleSeconds": 503.0,
+          "crystals": 49.0,
+          "crystalsPerMinute": 5.844930417495029
+        },
+        {
+          "seed": 7,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 39,
+          "seconds": 472.3,
+          "cycleSeconds": 475.3,
+          "crystals": 46.0,
+          "crystalsPerMinute": 5.806858826004628
+        },
+        {
+          "seed": 7,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 39,
+          "seconds": 468.5,
+          "cycleSeconds": 471.5,
+          "crystals": 46.0,
+          "crystalsPerMinute": 5.853658536585366
+        },
+        {
+          "seed": 7,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 26,
+          "seconds": 316.1333333333333,
+          "cycleSeconds": 319.1333333333333,
+          "crystals": 27.0,
+          "crystalsPerMinute": 5.07624817213286
+        },
+        {
+          "seed": 8,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 12,
+          "seconds": 148.8,
+          "cycleSeconds": 151.8,
+          "crystals": 12.0,
+          "crystalsPerMinute": 4.743083003952568
+        },
+        {
+          "seed": 8,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 129.63333333333333,
+          "cycleSeconds": 132.63333333333333,
+          "crystals": 10.0,
+          "crystalsPerMinute": 4.523749685850716
+        },
+        {
+          "seed": 8,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 13,
+          "seconds": 157.36666666666667,
+          "cycleSeconds": 160.36666666666667,
+          "crystals": 13.0,
+          "crystalsPerMinute": 4.863853668675951
+        },
+        {
+          "seed": 8,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 36,
+          "seconds": 441.8333333333333,
+          "cycleSeconds": 444.8333333333333,
+          "crystals": 41.0,
+          "crystalsPerMinute": 5.530161109029599
+        },
+        {
+          "seed": 8,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 35,
+          "seconds": 425.1333333333333,
+          "cycleSeconds": 428.1333333333333,
+          "crystals": 40.0,
+          "crystalsPerMinute": 5.605730302086577
+        },
+        {
+          "seed": 8,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 42,
+          "seconds": 512.3666666666667,
+          "cycleSeconds": 515.3666666666667,
+          "crystals": 50.0,
+          "crystalsPerMinute": 5.821098247202639
+        },
+        {
+          "seed": 8,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 41,
+          "seconds": 503.9,
+          "cycleSeconds": 506.9,
+          "crystals": 49.0,
+          "crystalsPerMinute": 5.799960544486092
+        },
+        {
+          "seed": 8,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 40,
+          "seconds": 487.6333333333333,
+          "cycleSeconds": 490.6333333333333,
+          "crystals": 47.0,
+          "crystalsPerMinute": 5.74767307561655
+        },
+        {
+          "seed": 8,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 23,
+          "seconds": 279.26666666666665,
+          "cycleSeconds": 282.26666666666665,
+          "crystals": 24.0,
+          "crystalsPerMinute": 5.101558809636278
+        },
+        {
+          "seed": 9,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 11,
+          "seconds": 134.66666666666666,
+          "cycleSeconds": 137.66666666666666,
+          "crystals": 11.0,
+          "crystalsPerMinute": 4.7941888619854724
+        },
+        {
+          "seed": 9,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 9,
+          "seconds": 119.3,
+          "cycleSeconds": 122.3,
+          "crystals": 9.0,
+          "crystalsPerMinute": 4.415372035977105
+        },
+        {
+          "seed": 9,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 11,
+          "seconds": 140.73333333333332,
+          "cycleSeconds": 143.73333333333332,
+          "crystals": 11.0,
+          "crystalsPerMinute": 4.591836734693878
+        },
+        {
+          "seed": 9,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 44,
+          "seconds": 529.4,
+          "cycleSeconds": 532.4,
+          "crystals": 53.0,
+          "crystalsPerMinute": 5.972952667167544
+        },
+        {
+          "seed": 9,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 34,
+          "seconds": 410.7,
+          "cycleSeconds": 413.7,
+          "crystals": 38.0,
+          "crystalsPerMinute": 5.511240029006527
+        },
+        {
+          "seed": 9,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 44,
+          "seconds": 538.5333333333333,
+          "cycleSeconds": 541.5333333333333,
+          "crystals": 53.0,
+          "crystalsPerMinute": 5.872214699002832
+        },
+        {
+          "seed": 9,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 44,
+          "seconds": 530.0666666666667,
+          "cycleSeconds": 533.0666666666667,
+          "crystals": 53.0,
+          "crystalsPerMinute": 5.965482741370685
+        },
+        {
+          "seed": 9,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 43,
+          "seconds": 522.7666666666667,
+          "cycleSeconds": 525.7666666666667,
+          "crystals": 52.0,
+          "crystalsPerMinute": 5.934191339631015
+        },
+        {
+          "seed": 9,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 20,
+          "seconds": 250.63333333333333,
+          "cycleSeconds": 253.63333333333333,
+          "crystals": 20.0,
+          "crystalsPerMinute": 4.731239321855697
+        },
+        {
+          "seed": 10,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 12,
+          "seconds": 148.1,
+          "cycleSeconds": 151.1,
+          "crystals": 12.0,
+          "crystalsPerMinute": 4.765056254136334
+        },
+        {
+          "seed": 10,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 11,
+          "seconds": 142.6,
+          "cycleSeconds": 145.6,
+          "crystals": 11.0,
+          "crystalsPerMinute": 4.532967032967033
+        },
+        {
+          "seed": 10,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 12,
+          "seconds": 147.73333333333332,
+          "cycleSeconds": 150.73333333333332,
+          "crystals": 12.0,
+          "crystalsPerMinute": 4.776647501105706
+        },
+        {
+          "seed": 10,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 517.0333333333333,
+          "cycleSeconds": 520.0333333333333,
+          "crystals": 52.0,
+          "crystalsPerMinute": 5.999615409268637
+        },
+        {
+          "seed": 10,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 37,
+          "seconds": 449.9,
+          "cycleSeconds": 452.9,
+          "crystals": 43.0,
+          "crystalsPerMinute": 5.696621770810333
+        },
+        {
+          "seed": 10,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 43,
+          "seconds": 521.7666666666667,
+          "cycleSeconds": 524.7666666666667,
+          "crystals": 52.0,
+          "crystalsPerMinute": 5.945499587118085
+        },
+        {
+          "seed": 10,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 42,
+          "seconds": 506.1,
+          "cycleSeconds": 509.1,
+          "crystals": 50.0,
+          "crystalsPerMinute": 5.892751915144372
+        },
+        {
+          "seed": 10,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 37,
+          "seconds": 450.3,
+          "cycleSeconds": 453.3,
+          "crystals": 43.0,
+          "crystalsPerMinute": 5.691594970218398
+        },
+        {
+          "seed": 10,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 20,
+          "seconds": 249.13333333333333,
+          "cycleSeconds": 252.13333333333333,
+          "crystals": 20.0,
+          "crystalsPerMinute": 4.759386567953464
+        }
+      ]
+    },
+    {
+      "exponent": 1.2,
+      "coefficient": 0.25,
+      "constant": 4,
+      "zeroWaveReward": 0,
+      "waitSeconds": 3,
+      "manualOptimalSeedCount": 10,
+      "pearsonCompletedWaveVersusEfficiency": -0.7737278108509329,
+      "summaries": [
+        {
+          "build": "Farming",
+          "weapon": "Bleed",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 3.027950627438824,
+          "medianCompletedWave": 42.5,
+          "medianCycleSeconds": 519.6166666666667
+        },
+        {
+          "build": "Farming",
+          "weapon": "Pierce",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 3.0012374282792527,
+          "medianCompletedWave": 35,
+          "medianCycleSeconds": 429.8833333333333
+        },
+        {
+          "build": "Farming",
+          "weapon": "Point",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 2.992305061775432,
+          "medianCompletedWave": 41.5,
+          "medianCycleSeconds": 505.51666666666665
+        },
+        {
+          "build": "Manual",
+          "weapon": "Bleed",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 3.2429665242165244,
+          "medianCompletedWave": 12,
+          "medianCycleSeconds": 149.28333333333333
+        },
+        {
+          "build": "Manual",
+          "weapon": "Pierce",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 3.345549924213717,
+          "medianCompletedWave": 10,
+          "medianCycleSeconds": 131.2
+        },
+        {
+          "build": "Manual",
+          "weapon": "Point",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 3.1716644747598624,
+          "medianCompletedWave": 11,
+          "medianCycleSeconds": 144.46666666666667
+        },
+        {
+          "build": "Record",
+          "weapon": "Bleed",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 3.042250160489142,
+          "medianCompletedWave": 20,
+          "medianCycleSeconds": 252.88333333333333
+        },
+        {
+          "build": "Record",
+          "weapon": "Pierce",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 3.0185181301968154,
+          "medianCompletedWave": 41,
+          "medianCycleSeconds": 495.8
+        },
+        {
+          "build": "Record",
+          "weapon": "Point",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 3.0099448706286047,
+          "medianCompletedWave": 42,
+          "medianCycleSeconds": 508.04999999999995
+        }
+      ],
+      "seedWinners": [
+        {
+          "seed": 1,
+          "winners": [
+            "Manual/Pierce"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 3.6196495259982764,
+          "runnerUpPerMinute": 3.3906286790675773,
+          "advantagePercent": 6.7545245619075045
+        },
+        {
+          "seed": 2,
+          "winners": [
+            "Manual/Pierce"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 3.4267065542561874,
+          "runnerUpPerMinute": 3.3488372093023253,
+          "advantagePercent": 2.3252651618167253
+        },
+        {
+          "seed": 3,
+          "winners": [
+            "Manual/Bleed"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 3.296703296703297,
+          "runnerUpPerMinute": 3.2012195121951224,
+          "advantagePercent": 2.982731554160112
+        },
+        {
+          "seed": 4,
+          "winners": [
+            "Manual/Point"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 3.402646502835539,
+          "runnerUpPerMinute": 3.394396551724138,
+          "advantagePercent": 0.24304617877397572
+        },
+        {
+          "seed": 5,
+          "winners": [
+            "Manual/Bleed"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 3.2451923076923075,
+          "runnerUpPerMinute": 3.154435925520263,
+          "advantagePercent": 2.8771033653846034
+        },
+        {
+          "seed": 6,
+          "winners": [
+            "Manual/Point"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 3.296703296703297,
+          "runnerUpPerMinute": 3.222918531781558,
+          "advantagePercent": 2.2893772893773034
+        },
+        {
+          "seed": 7,
+          "winners": [
+            "Manual/Pierce"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 3.430204859456884,
+          "runnerUpPerMinute": 3.0954428202923476,
+          "advantagePercent": 10.814673654120988
+        },
+        {
+          "seed": 8,
+          "winners": [
+            "Manual/Bleed"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 3.3672833090833505,
+          "runnerUpPerMinute": 3.1666247800955016,
+          "advantagePercent": 6.336668943195645
+        },
+        {
+          "seed": 9,
+          "winners": [
+            "Manual/Point"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 3.4866828087167074,
+          "runnerUpPerMinute": 3.4341782502044156,
+          "advantagePercent": 1.5288827395365079
+        },
+        {
+          "seed": 10,
+          "winners": [
+            "Manual/Pierce"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 3.296703296703297,
+          "runnerUpPerMinute": 3.184431667403804,
+          "advantagePercent": 3.5256410256410353
+        }
+      ],
+      "runs": [
+        {
+          "seed": 1,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 10,
+          "seconds": 131.9,
+          "cycleSeconds": 134.9,
+          "crystals": 7.0,
+          "crystalsPerMinute": 3.113417346182357
+        },
+        {
+          "seed": 1,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 9,
+          "seconds": 113.03333333333333,
+          "cycleSeconds": 116.03333333333333,
+          "crystals": 7.0,
+          "crystalsPerMinute": 3.6196495259982764
+        },
+        {
+          "seed": 1,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 11,
+          "seconds": 138.56666666666666,
+          "cycleSeconds": 141.56666666666666,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.3906286790675773
+        },
+        {
+          "seed": 1,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 517.7,
+          "cycleSeconds": 520.7,
+          "crystals": 26.0,
+          "crystalsPerMinute": 2.995966967543691
+        },
+        {
+          "seed": 1,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 37,
+          "seconds": 451.53333333333336,
+          "cycleSeconds": 454.53333333333336,
+          "crystals": 23.0,
+          "crystalsPerMinute": 3.036080962158991
+        },
+        {
+          "seed": 1,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 45,
+          "seconds": 544.7,
+          "cycleSeconds": 547.7,
+          "crystals": 28.0,
+          "crystalsPerMinute": 3.0673726492605438
+        },
+        {
+          "seed": 1,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 519.0666666666667,
+          "cycleSeconds": 522.0666666666667,
+          "crystals": 26.0,
+          "crystalsPerMinute": 2.9881241220789168
+        },
+        {
+          "seed": 1,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 497.8333333333333,
+          "cycleSeconds": 500.8333333333333,
+          "crystals": 25.0,
+          "crystalsPerMinute": 2.995008319467554
+        },
+        {
+          "seed": 1,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 17,
+          "seconds": 208.13333333333333,
+          "cycleSeconds": 211.13333333333333,
+          "crystals": 11.0,
+          "crystalsPerMinute": 3.12598673823808
+        },
+        {
+          "seed": 2,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 11,
+          "seconds": 140.33333333333334,
+          "cycleSeconds": 143.33333333333334,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.3488372093023253
+        },
+        {
+          "seed": 2,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 9,
+          "seconds": 119.56666666666666,
+          "cycleSeconds": 122.56666666666666,
+          "crystals": 7.0,
+          "crystalsPerMinute": 3.4267065542561874
+        },
+        {
+          "seed": 2,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 12,
+          "seconds": 146.63333333333333,
+          "cycleSeconds": 149.63333333333333,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.2078413900646026
+        },
+        {
+          "seed": 2,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 517.3666666666667,
+          "cycleSeconds": 520.3666666666667,
+          "crystals": 26.0,
+          "crystalsPerMinute": 2.997886105950932
+        },
+        {
+          "seed": 2,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 35,
+          "seconds": 428.6333333333333,
+          "cycleSeconds": 431.6333333333333,
+          "crystals": 21.0,
+          "crystalsPerMinute": 2.9191443354699205
+        },
+        {
+          "seed": 2,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 43,
+          "seconds": 520.8666666666667,
+          "cycleSeconds": 523.8666666666667,
+          "crystals": 26.0,
+          "crystalsPerMinute": 2.9778569610587935
+        },
+        {
+          "seed": 2,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 518.7,
+          "cycleSeconds": 521.7,
+          "crystals": 26.0,
+          "crystalsPerMinute": 2.9902242668200114
+        },
+        {
+          "seed": 2,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 494.96666666666664,
+          "cycleSeconds": 497.96666666666664,
+          "crystals": 25.0,
+          "crystalsPerMinute": 3.012249815918067
+        },
+        {
+          "seed": 2,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 20,
+          "seconds": 245.33333333333334,
+          "cycleSeconds": 248.33333333333334,
+          "crystals": 13.0,
+          "crystalsPerMinute": 3.140939597315436
+        },
+        {
+          "seed": 3,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 10,
+          "seconds": 129.63333333333333,
+          "cycleSeconds": 132.63333333333333,
+          "crystals": 7.0,
+          "crystalsPerMinute": 3.1666247800955016
+        },
+        {
+          "seed": 3,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 128.2,
+          "cycleSeconds": 131.2,
+          "crystals": 7.0,
+          "crystalsPerMinute": 3.2012195121951224
+        },
+        {
+          "seed": 3,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 11,
+          "seconds": 142.6,
+          "cycleSeconds": 145.6,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.296703296703297
+        },
+        {
+          "seed": 3,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 42,
+          "seconds": 504.7,
+          "cycleSeconds": 507.7,
+          "crystals": 26.0,
+          "crystalsPerMinute": 3.072680716958834
+        },
+        {
+          "seed": 3,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 34,
+          "seconds": 413.8333333333333,
+          "cycleSeconds": 416.8333333333333,
+          "crystals": 21.0,
+          "crystalsPerMinute": 3.0227908836465414
+        },
+        {
+          "seed": 3,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 42,
+          "seconds": 504.7,
+          "cycleSeconds": 507.7,
+          "crystals": 26.0,
+          "crystalsPerMinute": 3.072680716958834
+        },
+        {
+          "seed": 3,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 42,
+          "seconds": 504.7,
+          "cycleSeconds": 507.7,
+          "crystals": 26.0,
+          "crystalsPerMinute": 3.072680716958834
+        },
+        {
+          "seed": 3,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 492.8,
+          "cycleSeconds": 495.8,
+          "crystals": 25.0,
+          "crystalsPerMinute": 3.0254134731746674
+        },
+        {
+          "seed": 3,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 18,
+          "seconds": 222.9,
+          "cycleSeconds": 225.9,
+          "crystals": 12.0,
+          "crystalsPerMinute": 3.187250996015936
+        },
+        {
+          "seed": 4,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 11,
+          "seconds": 138.06666666666666,
+          "cycleSeconds": 141.06666666666666,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.402646502835539
+        },
+        {
+          "seed": 4,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 120.73333333333333,
+          "cycleSeconds": 123.73333333333333,
+          "crystals": 7.0,
+          "crystalsPerMinute": 3.394396551724138
+        },
+        {
+          "seed": 4,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 10,
+          "seconds": 126.6,
+          "cycleSeconds": 129.6,
+          "crystals": 7.0,
+          "crystalsPerMinute": 3.240740740740741
+        },
+        {
+          "seed": 4,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 41,
+          "seconds": 498.9,
+          "cycleSeconds": 501.9,
+          "crystals": 25.0,
+          "crystalsPerMinute": 2.9886431560071727
+        },
+        {
+          "seed": 4,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 32,
+          "seconds": 393.7,
+          "cycleSeconds": 396.7,
+          "crystals": 20.0,
+          "crystalsPerMinute": 3.024955886059995
+        },
+        {
+          "seed": 4,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 45,
+          "seconds": 541.2,
+          "cycleSeconds": 544.2,
+          "crystals": 28.0,
+          "crystalsPerMinute": 3.0871003307607494
+        },
+        {
+          "seed": 4,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 41,
+          "seconds": 503.2,
+          "cycleSeconds": 506.2,
+          "crystals": 25.0,
+          "crystalsPerMinute": 2.9632556301856976
+        },
+        {
+          "seed": 4,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 492.8,
+          "cycleSeconds": 495.8,
+          "crystals": 25.0,
+          "crystalsPerMinute": 3.0254134731746674
+        },
+        {
+          "seed": 4,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 21,
+          "seconds": 259.4,
+          "cycleSeconds": 262.4,
+          "crystals": 13.0,
+          "crystalsPerMinute": 2.972560975609756
+        },
+        {
+          "seed": 5,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 12,
+          "seconds": 149.16666666666666,
+          "cycleSeconds": 152.16666666666666,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.154435925520263
+        },
+        {
+          "seed": 5,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 131.9,
+          "cycleSeconds": 134.9,
+          "crystals": 7.0,
+          "crystalsPerMinute": 3.113417346182357
+        },
+        {
+          "seed": 5,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 13,
+          "seconds": 163.4,
+          "cycleSeconds": 166.4,
+          "crystals": 9.0,
+          "crystalsPerMinute": 3.2451923076923075
+        },
+        {
+          "seed": 5,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 40,
+          "seconds": 483.93333333333334,
+          "cycleSeconds": 486.93333333333334,
+          "crystals": 24.0,
+          "crystalsPerMinute": 2.9572836801752462
+        },
+        {
+          "seed": 5,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 33,
+          "seconds": 402.6666666666667,
+          "cycleSeconds": 405.6666666666667,
+          "crystals": 20.0,
+          "crystalsPerMinute": 2.9580936729663105
+        },
+        {
+          "seed": 5,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 42,
+          "seconds": 512.0333333333333,
+          "cycleSeconds": 515.0333333333333,
+          "crystals": 26.0,
+          "crystalsPerMinute": 3.0289301663322763
+        },
+        {
+          "seed": 5,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 40,
+          "seconds": 487.6333333333333,
+          "cycleSeconds": 490.6333333333333,
+          "crystals": 24.0,
+          "crystalsPerMinute": 2.934981996059515
+        },
+        {
+          "seed": 5,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 39,
+          "seconds": 473.06666666666666,
+          "cycleSeconds": 476.06666666666666,
+          "crystals": 24.0,
+          "crystalsPerMinute": 3.0247864444755637
+        },
+        {
+          "seed": 5,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 19,
+          "seconds": 236.26666666666668,
+          "cycleSeconds": 239.26666666666668,
+          "crystals": 12.0,
+          "crystalsPerMinute": 3.0091947617720813
+        },
+        {
+          "seed": 6,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 11,
+          "seconds": 142.6,
+          "cycleSeconds": 145.6,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.296703296703297
+        },
+        {
+          "seed": 6,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 128.2,
+          "cycleSeconds": 131.2,
+          "crystals": 7.0,
+          "crystalsPerMinute": 3.2012195121951224
+        },
+        {
+          "seed": 6,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 12,
+          "seconds": 145.93333333333334,
+          "cycleSeconds": 148.93333333333334,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.222918531781558
+        },
+        {
+          "seed": 6,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 41,
+          "seconds": 500.3333333333333,
+          "cycleSeconds": 503.3333333333333,
+          "crystals": 25.0,
+          "crystalsPerMinute": 2.980132450331126
+        },
+        {
+          "seed": 6,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 40,
+          "seconds": 483.93333333333334,
+          "cycleSeconds": 486.93333333333334,
+          "crystals": 24.0,
+          "crystalsPerMinute": 2.9572836801752462
+        },
+        {
+          "seed": 6,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 42,
+          "seconds": 509.23333333333335,
+          "cycleSeconds": 512.2333333333333,
+          "crystals": 26.0,
+          "crystalsPerMinute": 3.0454870827097027
+        },
+        {
+          "seed": 6,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 42,
+          "seconds": 505.4,
+          "cycleSeconds": 508.4,
+          "crystals": 26.0,
+          "crystalsPerMinute": 3.068450039339103
+        },
+        {
+          "seed": 6,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 496.76666666666665,
+          "cycleSeconds": 499.76666666666665,
+          "crystals": 25.0,
+          "crystalsPerMinute": 3.0014006536383646
+        },
+        {
+          "seed": 6,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 34,
+          "seconds": 417.6333333333333,
+          "cycleSeconds": 420.6333333333333,
+          "crystals": 21.0,
+          "crystalsPerMinute": 2.9954830018226484
+        },
+        {
+          "seed": 7,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 12,
+          "seconds": 152.06666666666666,
+          "cycleSeconds": 155.06666666666666,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.0954428202923476
+        },
+        {
+          "seed": 7,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 11,
+          "seconds": 136.93333333333334,
+          "cycleSeconds": 139.93333333333334,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.430204859456884
+        },
+        {
+          "seed": 7,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 12,
+          "seconds": 155.3,
+          "cycleSeconds": 158.3,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.0322173089071383
+        },
+        {
+          "seed": 7,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 38,
+          "seconds": 461.23333333333335,
+          "cycleSeconds": 464.23333333333335,
+          "crystals": 23.0,
+          "crystalsPerMinute": 2.9726430674229913
+        },
+        {
+          "seed": 7,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 36,
+          "seconds": 440.0,
+          "cycleSeconds": 443.0,
+          "crystals": 22.0,
+          "crystalsPerMinute": 2.979683972911964
+        },
+        {
+          "seed": 7,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 41,
+          "seconds": 500.0,
+          "cycleSeconds": 503.0,
+          "crystals": 25.0,
+          "crystalsPerMinute": 2.982107355864811
+        },
+        {
+          "seed": 7,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 39,
+          "seconds": 472.3,
+          "cycleSeconds": 475.3,
+          "crystals": 24.0,
+          "crystalsPerMinute": 3.0296654744371976
+        },
+        {
+          "seed": 7,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 39,
+          "seconds": 468.5,
+          "cycleSeconds": 471.5,
+          "crystals": 24.0,
+          "crystalsPerMinute": 3.0540827147401908
+        },
+        {
+          "seed": 7,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 26,
+          "seconds": 316.1333333333333,
+          "cycleSeconds": 319.1333333333333,
+          "crystals": 16.0,
+          "crystalsPerMinute": 3.0081470649676207
+        },
+        {
+          "seed": 8,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 12,
+          "seconds": 148.8,
+          "cycleSeconds": 151.8,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.1620553359683794
+        },
+        {
+          "seed": 8,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 129.63333333333333,
+          "cycleSeconds": 132.63333333333333,
+          "crystals": 7.0,
+          "crystalsPerMinute": 3.1666247800955016
+        },
+        {
+          "seed": 8,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 13,
+          "seconds": 157.36666666666667,
+          "cycleSeconds": 160.36666666666667,
+          "crystals": 9.0,
+          "crystalsPerMinute": 3.3672833090833505
+        },
+        {
+          "seed": 8,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 36,
+          "seconds": 441.8333333333333,
+          "cycleSeconds": 444.8333333333333,
+          "crystals": 22.0,
+          "crystalsPerMinute": 2.9674035219183215
+        },
+        {
+          "seed": 8,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 35,
+          "seconds": 425.1333333333333,
+          "cycleSeconds": 428.1333333333333,
+          "crystals": 21.0,
+          "crystalsPerMinute": 2.9430084085954533
+        },
+        {
+          "seed": 8,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 42,
+          "seconds": 512.3666666666667,
+          "cycleSeconds": 515.3666666666667,
+          "crystals": 26.0,
+          "crystalsPerMinute": 3.026971088545372
+        },
+        {
+          "seed": 8,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 41,
+          "seconds": 503.9,
+          "cycleSeconds": 506.9,
+          "crystals": 25.0,
+          "crystalsPerMinute": 2.959163543105149
+        },
+        {
+          "seed": 8,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 40,
+          "seconds": 487.6333333333333,
+          "cycleSeconds": 490.6333333333333,
+          "crystals": 24.0,
+          "crystalsPerMinute": 2.934981996059515
+        },
+        {
+          "seed": 8,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 23,
+          "seconds": 279.26666666666665,
+          "cycleSeconds": 282.26666666666665,
+          "crystals": 14.0,
+          "crystalsPerMinute": 2.9759093056211623
+        },
+        {
+          "seed": 9,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 11,
+          "seconds": 134.66666666666666,
+          "cycleSeconds": 137.66666666666666,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.4866828087167074
+        },
+        {
+          "seed": 9,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 9,
+          "seconds": 119.3,
+          "cycleSeconds": 122.3,
+          "crystals": 7.0,
+          "crystalsPerMinute": 3.4341782502044156
+        },
+        {
+          "seed": 9,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 11,
+          "seconds": 140.73333333333332,
+          "cycleSeconds": 143.73333333333332,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.3395176252319114
+        },
+        {
+          "seed": 9,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 44,
+          "seconds": 529.4,
+          "cycleSeconds": 532.4,
+          "crystals": 27.0,
+          "crystalsPerMinute": 3.04282494365139
+        },
+        {
+          "seed": 9,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 34,
+          "seconds": 410.7,
+          "cycleSeconds": 413.7,
+          "crystals": 21.0,
+          "crystalsPerMinute": 3.0456852791878175
+        },
+        {
+          "seed": 9,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 44,
+          "seconds": 538.5333333333333,
+          "cycleSeconds": 541.5333333333333,
+          "crystals": 27.0,
+          "crystalsPerMinute": 2.991505601378801
+        },
+        {
+          "seed": 9,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 44,
+          "seconds": 530.0666666666667,
+          "cycleSeconds": 533.0666666666667,
+          "crystals": 27.0,
+          "crystalsPerMinute": 3.039019509754877
+        },
+        {
+          "seed": 9,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 43,
+          "seconds": 522.7666666666667,
+          "cycleSeconds": 525.7666666666667,
+          "crystals": 26.0,
+          "crystalsPerMinute": 2.9670956698155075
+        },
+        {
+          "seed": 9,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 20,
+          "seconds": 250.63333333333333,
+          "cycleSeconds": 253.63333333333333,
+          "crystals": 13.0,
+          "crystalsPerMinute": 3.0753055592062033
+        },
+        {
+          "seed": 10,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 12,
+          "seconds": 148.1,
+          "cycleSeconds": 151.1,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.1767041694242226
+        },
+        {
+          "seed": 10,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 11,
+          "seconds": 142.6,
+          "cycleSeconds": 145.6,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.296703296703297
+        },
+        {
+          "seed": 10,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 12,
+          "seconds": 147.73333333333332,
+          "cycleSeconds": 150.73333333333332,
+          "crystals": 8.0,
+          "crystalsPerMinute": 3.184431667403804
+        },
+        {
+          "seed": 10,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 517.0333333333333,
+          "cycleSeconds": 520.0333333333333,
+          "crystals": 26.0,
+          "crystalsPerMinute": 2.9998077046343186
+        },
+        {
+          "seed": 10,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 37,
+          "seconds": 449.9,
+          "cycleSeconds": 452.9,
+          "crystals": 23.0,
+          "crystalsPerMinute": 3.0470302495032016
+        },
+        {
+          "seed": 10,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 43,
+          "seconds": 521.7666666666667,
+          "cycleSeconds": 524.7666666666667,
+          "crystals": 26.0,
+          "crystalsPerMinute": 2.9727497935590423
+        },
+        {
+          "seed": 10,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 42,
+          "seconds": 506.1,
+          "cycleSeconds": 509.1,
+          "crystals": 26.0,
+          "crystalsPerMinute": 3.0642309958750733
+        },
+        {
+          "seed": 10,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 37,
+          "seconds": 450.3,
+          "cycleSeconds": 453.3,
+          "crystals": 23.0,
+          "crystalsPerMinute": 3.044341495698213
+        },
+        {
+          "seed": 10,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 20,
+          "seconds": 249.13333333333333,
+          "cycleSeconds": 252.13333333333333,
+          "crystals": 13.0,
+          "crystalsPerMinute": 3.0936012691697514
+        }
+      ]
+    },
+    {
+      "exponent": 1.0,
+      "coefficient": 0.25,
+      "constant": 4,
+      "zeroWaveReward": 0,
+      "waitSeconds": 3,
+      "manualOptimalSeedCount": 10,
+      "pearsonCompletedWaveVersusEfficiency": -0.960075809458824,
+      "summaries": [
+        {
+          "build": "Farming",
+          "weapon": "Bleed",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 1.6415565038693787,
+          "medianCompletedWave": 42.5,
+          "medianCycleSeconds": 519.6166666666667
+        },
+        {
+          "build": "Farming",
+          "weapon": "Pierce",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 1.726195611569173,
+          "medianCompletedWave": 35,
+          "medianCycleSeconds": 429.8833333333333
+        },
+        {
+          "build": "Farming",
+          "weapon": "Point",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 1.6712571697747238,
+          "medianCompletedWave": 41.5,
+          "medianCycleSeconds": 505.51666666666665
+        },
+        {
+          "build": "Manual",
+          "weapon": "Bleed",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 2.636094137290398,
+          "medianCompletedWave": 12,
+          "medianCycleSeconds": 149.28333333333333
+        },
+        {
+          "build": "Manual",
+          "weapon": "Pierce",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 2.7439024390243905,
+          "medianCompletedWave": 10,
+          "medianCycleSeconds": 131.2
+        },
+        {
+          "build": "Manual",
+          "weapon": "Point",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 2.688577953670341,
+          "medianCompletedWave": 11,
+          "medianCycleSeconds": 144.46666666666667
+        },
+        {
+          "build": "Record",
+          "weapon": "Bleed",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 2.0913804133061253,
+          "medianCompletedWave": 20,
+          "medianCycleSeconds": 252.88333333333333
+        },
+        {
+          "build": "Record",
+          "weapon": "Pierce",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 1.6838221314758008,
+          "medianCompletedWave": 41,
+          "medianCycleSeconds": 495.8
+        },
+        {
+          "build": "Record",
+          "weapon": "Point",
+          "conditions": 10,
+          "medianCrystalsPerMinute": 1.6533813574648293,
+          "medianCompletedWave": 42,
+          "medianCycleSeconds": 508.04999999999995
+        }
+      ],
+      "seedWinners": [
+        {
+          "seed": 1,
+          "winners": [
+            "Manual/Pierce"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 3.102556736569951,
+          "runnerUpPerMinute": 2.6686434395848777,
+          "advantagePercent": 16.25969548980177
+        },
+        {
+          "seed": 2,
+          "winners": [
+            "Manual/Pierce"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 2.9371770465053033,
+          "runnerUpPerMinute": 2.8068612163065274,
+          "advantagePercent": 4.642760013986558
+        },
+        {
+          "seed": 3,
+          "winners": [
+            "Manual/Pierce"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 2.7439024390243905,
+          "runnerUpPerMinute": 2.71424981151043,
+          "advantagePercent": 1.0924796747967536
+        },
+        {
+          "seed": 4,
+          "winners": [
+            "Manual/Pierce"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 2.9094827586206895,
+          "runnerUpPerMinute": 2.7777777777777777,
+          "advantagePercent": 4.741379310344818
+        },
+        {
+          "seed": 5,
+          "winners": [
+            "Manual/Point"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 2.7601314348302304,
+          "runnerUpPerMinute": 2.6686434395848777,
+          "advantagePercent": 3.4282584884994582
+        },
+        {
+          "seed": 6,
+          "winners": [
+            "Manual/Bleed"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 2.820053715308863,
+          "runnerUpPerMinute": 2.7439024390243905,
+          "advantagePercent": 2.7752909579229934
+        },
+        {
+          "seed": 7,
+          "winners": [
+            "Manual/Point"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 2.708512467755804,
+          "runnerUpPerMinute": 2.653190145293746,
+          "advantagePercent": 2.085124677558059
+        },
+        {
+          "seed": 8,
+          "winners": [
+            "Manual/Point"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 2.766798418972332,
+          "runnerUpPerMinute": 2.71424981151043,
+          "advantagePercent": 1.9360269360269244
+        },
+        {
+          "seed": 9,
+          "winners": [
+            "Manual/Pierce"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 2.9435813573180702,
+          "runnerUpPerMinute": 2.6150121065375305,
+          "advantagePercent": 12.564731534478057
+        },
+        {
+          "seed": 10,
+          "winners": [
+            "Manual/Bleed"
+          ],
+          "manualIsOptimal": true,
+          "bestPerMinute": 2.7863777089783284,
+          "runnerUpPerMinute": 2.7796161482461947,
+          "advantagePercent": 0.24325519681556163
+        }
+      ],
+      "runs": [
+        {
+          "seed": 1,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 10,
+          "seconds": 131.9,
+          "cycleSeconds": 134.9,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.6686434395848777
+        },
+        {
+          "seed": 1,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 9,
+          "seconds": 113.03333333333333,
+          "cycleSeconds": 116.03333333333333,
+          "crystals": 6.0,
+          "crystalsPerMinute": 3.102556736569951
+        },
+        {
+          "seed": 1,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 11,
+          "seconds": 138.56666666666666,
+          "cycleSeconds": 141.56666666666666,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.542971509300683
+        },
+        {
+          "seed": 1,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 517.7,
+          "cycleSeconds": 520.7,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.613212982523526
+        },
+        {
+          "seed": 1,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 37,
+          "seconds": 451.53333333333336,
+          "cycleSeconds": 454.53333333333336,
+          "crystals": 13.0,
+          "crystalsPerMinute": 1.716045761220299
+        },
+        {
+          "seed": 1,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 45,
+          "seconds": 544.7,
+          "cycleSeconds": 547.7,
+          "crystals": 15.0,
+          "crystalsPerMinute": 1.6432353478181485
+        },
+        {
+          "seed": 1,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 519.0666666666667,
+          "cycleSeconds": 522.0666666666667,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6089899118886475
+        },
+        {
+          "seed": 1,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 497.8333333333333,
+          "cycleSeconds": 500.8333333333333,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6772046589018303
+        },
+        {
+          "seed": 1,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 17,
+          "seconds": 208.13333333333333,
+          "cycleSeconds": 211.13333333333333,
+          "crystals": 8.0,
+          "crystalsPerMinute": 2.2734449005367856
+        },
+        {
+          "seed": 2,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 11,
+          "seconds": 140.33333333333334,
+          "cycleSeconds": 143.33333333333334,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.511627906976744
+        },
+        {
+          "seed": 2,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 9,
+          "seconds": 119.56666666666666,
+          "cycleSeconds": 122.56666666666666,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.9371770465053033
+        },
+        {
+          "seed": 2,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 12,
+          "seconds": 146.63333333333333,
+          "cycleSeconds": 149.63333333333333,
+          "crystals": 7.0,
+          "crystalsPerMinute": 2.8068612163065274
+        },
+        {
+          "seed": 2,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 517.3666666666667,
+          "cycleSeconds": 520.3666666666667,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6142463647428096
+        },
+        {
+          "seed": 2,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 35,
+          "seconds": 428.6333333333333,
+          "cycleSeconds": 431.6333333333333,
+          "crystals": 12.0,
+          "crystalsPerMinute": 1.6680824774113832
+        },
+        {
+          "seed": 2,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 43,
+          "seconds": 520.8666666666667,
+          "cycleSeconds": 523.8666666666667,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6034614405701195
+        },
+        {
+          "seed": 2,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 518.7,
+          "cycleSeconds": 521.7,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.610120759056929
+        },
+        {
+          "seed": 2,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 494.96666666666664,
+          "cycleSeconds": 497.96666666666664,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6868598969141175
+        },
+        {
+          "seed": 2,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 20,
+          "seconds": 245.33333333333334,
+          "cycleSeconds": 248.33333333333334,
+          "crystals": 9.0,
+          "crystalsPerMinute": 2.174496644295302
+        },
+        {
+          "seed": 3,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 10,
+          "seconds": 129.63333333333333,
+          "cycleSeconds": 132.63333333333333,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.71424981151043
+        },
+        {
+          "seed": 3,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 128.2,
+          "cycleSeconds": 131.2,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.7439024390243905
+        },
+        {
+          "seed": 3,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 11,
+          "seconds": 142.6,
+          "cycleSeconds": 145.6,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.4725274725274726
+        },
+        {
+          "seed": 3,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 42,
+          "seconds": 504.7,
+          "cycleSeconds": 507.7,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6545203860547568
+        },
+        {
+          "seed": 3,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 34,
+          "seconds": 413.8333333333333,
+          "cycleSeconds": 416.8333333333333,
+          "crystals": 12.0,
+          "crystalsPerMinute": 1.7273090763694523
+        },
+        {
+          "seed": 3,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 42,
+          "seconds": 504.7,
+          "cycleSeconds": 507.7,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6545203860547568
+        },
+        {
+          "seed": 3,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 42,
+          "seconds": 504.7,
+          "cycleSeconds": 507.7,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6545203860547568
+        },
+        {
+          "seed": 3,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 492.8,
+          "cycleSeconds": 495.8,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6942315449778136
+        },
+        {
+          "seed": 3,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 18,
+          "seconds": 222.9,
+          "cycleSeconds": 225.9,
+          "crystals": 8.0,
+          "crystalsPerMinute": 2.1248339973439574
+        },
+        {
+          "seed": 4,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 11,
+          "seconds": 138.06666666666666,
+          "cycleSeconds": 141.06666666666666,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.551984877126654
+        },
+        {
+          "seed": 4,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 120.73333333333333,
+          "cycleSeconds": 123.73333333333333,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.9094827586206895
+        },
+        {
+          "seed": 4,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 10,
+          "seconds": 126.6,
+          "cycleSeconds": 129.6,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.7777777777777777
+        },
+        {
+          "seed": 4,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 41,
+          "seconds": 498.9,
+          "cycleSeconds": 501.9,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6736401673640169
+        },
+        {
+          "seed": 4,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 32,
+          "seconds": 393.7,
+          "cycleSeconds": 396.7,
+          "crystals": 12.0,
+          "crystalsPerMinute": 1.814973531635997
+        },
+        {
+          "seed": 4,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 45,
+          "seconds": 541.2,
+          "cycleSeconds": 544.2,
+          "crystals": 15.0,
+          "crystalsPerMinute": 1.65380374862183
+        },
+        {
+          "seed": 4,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 41,
+          "seconds": 503.2,
+          "cycleSeconds": 506.2,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6594231529039905
+        },
+        {
+          "seed": 4,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 492.8,
+          "cycleSeconds": 495.8,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6942315449778136
+        },
+        {
+          "seed": 4,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 21,
+          "seconds": 259.4,
+          "cycleSeconds": 262.4,
+          "crystals": 9.0,
+          "crystalsPerMinute": 2.057926829268293
+        },
+        {
+          "seed": 5,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 12,
+          "seconds": 149.16666666666666,
+          "cycleSeconds": 152.16666666666666,
+          "crystals": 7.0,
+          "crystalsPerMinute": 2.7601314348302304
+        },
+        {
+          "seed": 5,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 131.9,
+          "cycleSeconds": 134.9,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.6686434395848777
+        },
+        {
+          "seed": 5,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 13,
+          "seconds": 163.4,
+          "cycleSeconds": 166.4,
+          "crystals": 7.0,
+          "crystalsPerMinute": 2.5240384615384612
+        },
+        {
+          "seed": 5,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 40,
+          "seconds": 483.93333333333334,
+          "cycleSeconds": 486.93333333333334,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.7250821467688937
+        },
+        {
+          "seed": 5,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 33,
+          "seconds": 402.6666666666667,
+          "cycleSeconds": 405.6666666666667,
+          "crystals": 12.0,
+          "crystalsPerMinute": 1.7748562037797864
+        },
+        {
+          "seed": 5,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 42,
+          "seconds": 512.0333333333333,
+          "cycleSeconds": 515.0333333333333,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6309623972558411
+        },
+        {
+          "seed": 5,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 40,
+          "seconds": 487.6333333333333,
+          "cycleSeconds": 490.6333333333333,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.712072831034717
+        },
+        {
+          "seed": 5,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 39,
+          "seconds": 473.06666666666666,
+          "cycleSeconds": 476.06666666666666,
+          "crystals": 13.0,
+          "crystalsPerMinute": 1.638425990757597
+        },
+        {
+          "seed": 5,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 19,
+          "seconds": 236.26666666666668,
+          "cycleSeconds": 239.26666666666668,
+          "crystals": 8.0,
+          "crystalsPerMinute": 2.0061298411813873
+        },
+        {
+          "seed": 6,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 11,
+          "seconds": 142.6,
+          "cycleSeconds": 145.6,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.4725274725274726
+        },
+        {
+          "seed": 6,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 128.2,
+          "cycleSeconds": 131.2,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.7439024390243905
+        },
+        {
+          "seed": 6,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 12,
+          "seconds": 145.93333333333334,
+          "cycleSeconds": 148.93333333333334,
+          "crystals": 7.0,
+          "crystalsPerMinute": 2.820053715308863
+        },
+        {
+          "seed": 6,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 41,
+          "seconds": 500.3333333333333,
+          "cycleSeconds": 503.3333333333333,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6688741721854305
+        },
+        {
+          "seed": 6,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 40,
+          "seconds": 483.93333333333334,
+          "cycleSeconds": 486.93333333333334,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.7250821467688937
+        },
+        {
+          "seed": 6,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 42,
+          "seconds": 509.23333333333335,
+          "cycleSeconds": 512.2333333333333,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.639877659920609
+        },
+        {
+          "seed": 6,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 42,
+          "seconds": 505.4,
+          "cycleSeconds": 508.4,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6522423288749017
+        },
+        {
+          "seed": 6,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 41,
+          "seconds": 496.76666666666665,
+          "cycleSeconds": 499.76666666666665,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6807843660374842
+        },
+        {
+          "seed": 6,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 34,
+          "seconds": 417.6333333333333,
+          "cycleSeconds": 420.6333333333333,
+          "crystals": 12.0,
+          "crystalsPerMinute": 1.7117045724700848
+        },
+        {
+          "seed": 7,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 12,
+          "seconds": 152.06666666666666,
+          "cycleSeconds": 155.06666666666666,
+          "crystals": 7.0,
+          "crystalsPerMinute": 2.708512467755804
+        },
+        {
+          "seed": 7,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 11,
+          "seconds": 136.93333333333334,
+          "cycleSeconds": 139.93333333333334,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.572653644592663
+        },
+        {
+          "seed": 7,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 12,
+          "seconds": 155.3,
+          "cycleSeconds": 158.3,
+          "crystals": 7.0,
+          "crystalsPerMinute": 2.653190145293746
+        },
+        {
+          "seed": 7,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 38,
+          "seconds": 461.23333333333335,
+          "cycleSeconds": 464.23333333333335,
+          "crystals": 13.0,
+          "crystalsPerMinute": 1.6801895598477776
+        },
+        {
+          "seed": 7,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 36,
+          "seconds": 440.0,
+          "cycleSeconds": 443.0,
+          "crystals": 13.0,
+          "crystalsPerMinute": 1.7607223476297968
+        },
+        {
+          "seed": 7,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 41,
+          "seconds": 500.0,
+          "cycleSeconds": 503.0,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6699801192842942
+        },
+        {
+          "seed": 7,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 39,
+          "seconds": 472.3,
+          "cycleSeconds": 475.3,
+          "crystals": 13.0,
+          "crystalsPerMinute": 1.641068798653482
+        },
+        {
+          "seed": 7,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 39,
+          "seconds": 468.5,
+          "cycleSeconds": 471.5,
+          "crystals": 13.0,
+          "crystalsPerMinute": 1.6542948038176033
+        },
+        {
+          "seed": 7,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 26,
+          "seconds": 316.1333333333333,
+          "cycleSeconds": 319.1333333333333,
+          "crystals": 10.0,
+          "crystalsPerMinute": 1.8800919156047629
+        },
+        {
+          "seed": 8,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 12,
+          "seconds": 148.8,
+          "cycleSeconds": 151.8,
+          "crystals": 7.0,
+          "crystalsPerMinute": 2.766798418972332
+        },
+        {
+          "seed": 8,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 10,
+          "seconds": 129.63333333333333,
+          "cycleSeconds": 132.63333333333333,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.71424981151043
+        },
+        {
+          "seed": 8,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 13,
+          "seconds": 157.36666666666667,
+          "cycleSeconds": 160.36666666666667,
+          "crystals": 7.0,
+          "crystalsPerMinute": 2.6189981292870503
+        },
+        {
+          "seed": 8,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 36,
+          "seconds": 441.8333333333333,
+          "cycleSeconds": 444.8333333333333,
+          "crystals": 13.0,
+          "crystalsPerMinute": 1.75346571749719
+        },
+        {
+          "seed": 8,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 35,
+          "seconds": 425.1333333333333,
+          "cycleSeconds": 428.1333333333333,
+          "crystals": 12.0,
+          "crystalsPerMinute": 1.6817190906259734
+        },
+        {
+          "seed": 8,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 42,
+          "seconds": 512.3666666666667,
+          "cycleSeconds": 515.3666666666667,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6299075092167388
+        },
+        {
+          "seed": 8,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 41,
+          "seconds": 503.9,
+          "cycleSeconds": 506.9,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6571315841388834
+        },
+        {
+          "seed": 8,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 40,
+          "seconds": 487.6333333333333,
+          "cycleSeconds": 490.6333333333333,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.712072831034717
+        },
+        {
+          "seed": 8,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 23,
+          "seconds": 279.26666666666665,
+          "cycleSeconds": 282.26666666666665,
+          "crystals": 9.0,
+          "crystalsPerMinute": 1.9130845536136043
+        },
+        {
+          "seed": 9,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 11,
+          "seconds": 134.66666666666666,
+          "cycleSeconds": 137.66666666666666,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.6150121065375305
+        },
+        {
+          "seed": 9,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 9,
+          "seconds": 119.3,
+          "cycleSeconds": 122.3,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.9435813573180702
+        },
+        {
+          "seed": 9,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 11,
+          "seconds": 140.73333333333332,
+          "cycleSeconds": 143.73333333333332,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.5046382189239336
+        },
+        {
+          "seed": 9,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 44,
+          "seconds": 529.4,
+          "cycleSeconds": 532.4,
+          "crystals": 15.0,
+          "crystalsPerMinute": 1.69045830202855
+        },
+        {
+          "seed": 9,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 34,
+          "seconds": 410.7,
+          "cycleSeconds": 413.7,
+          "crystals": 12.0,
+          "crystalsPerMinute": 1.7403915881073242
+        },
+        {
+          "seed": 9,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 44,
+          "seconds": 538.5333333333333,
+          "cycleSeconds": 541.5333333333333,
+          "crystals": 15.0,
+          "crystalsPerMinute": 1.6619475563215562
+        },
+        {
+          "seed": 9,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 44,
+          "seconds": 530.0666666666667,
+          "cycleSeconds": 533.0666666666667,
+          "crystals": 15.0,
+          "crystalsPerMinute": 1.6883441720860428
+        },
+        {
+          "seed": 9,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 43,
+          "seconds": 522.7666666666667,
+          "cycleSeconds": 525.7666666666667,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.5976668991314271
+        },
+        {
+          "seed": 9,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 20,
+          "seconds": 250.63333333333333,
+          "cycleSeconds": 253.63333333333333,
+          "crystals": 9.0,
+          "crystalsPerMinute": 2.1290576948350637
+        },
+        {
+          "seed": 10,
+          "build": "Manual",
+          "weapon": "Point",
+          "completedWave": 12,
+          "seconds": 148.1,
+          "cycleSeconds": 151.1,
+          "crystals": 7.0,
+          "crystalsPerMinute": 2.7796161482461947
+        },
+        {
+          "seed": 10,
+          "build": "Manual",
+          "weapon": "Pierce",
+          "completedWave": 11,
+          "seconds": 142.6,
+          "cycleSeconds": 145.6,
+          "crystals": 6.0,
+          "crystalsPerMinute": 2.4725274725274726
+        },
+        {
+          "seed": 10,
+          "build": "Manual",
+          "weapon": "Bleed",
+          "completedWave": 12,
+          "seconds": 147.73333333333332,
+          "cycleSeconds": 150.73333333333332,
+          "crystals": 7.0,
+          "crystalsPerMinute": 2.7863777089783284
+        },
+        {
+          "seed": 10,
+          "build": "Farming",
+          "weapon": "Point",
+          "completedWave": 43,
+          "seconds": 517.0333333333333,
+          "cycleSeconds": 520.0333333333333,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6152810717261714
+        },
+        {
+          "seed": 10,
+          "build": "Farming",
+          "weapon": "Pierce",
+          "completedWave": 37,
+          "seconds": 449.9,
+          "cycleSeconds": 452.9,
+          "crystals": 13.0,
+          "crystalsPerMinute": 1.7222344888496357
+        },
+        {
+          "seed": 10,
+          "build": "Farming",
+          "weapon": "Bleed",
+          "completedWave": 43,
+          "seconds": 521.7666666666667,
+          "cycleSeconds": 524.7666666666667,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6007114273010228
+        },
+        {
+          "seed": 10,
+          "build": "Record",
+          "weapon": "Point",
+          "completedWave": 42,
+          "seconds": 506.1,
+          "cycleSeconds": 509.1,
+          "crystals": 14.0,
+          "crystalsPerMinute": 1.6499705362404242
+        },
+        {
+          "seed": 10,
+          "build": "Record",
+          "weapon": "Pierce",
+          "completedWave": 37,
+          "seconds": 450.3,
+          "cycleSeconds": 453.3,
+          "crystals": 13.0,
+          "crystalsPerMinute": 1.7207147584381204
+        },
+        {
+          "seed": 10,
+          "build": "Record",
+          "weapon": "Bleed",
+          "completedWave": 20,
+          "seconds": 249.13333333333333,
+          "cycleSeconds": 252.13333333333333,
+          "crystals": 9.0,
+          "crystalsPerMinute": 2.141723955579059
+        }
+      ]
+    }
+  ]
+}

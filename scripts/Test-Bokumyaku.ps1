@@ -115,6 +115,20 @@ try {
         }
         Assert ($a.State -ne 'Running' -and $a.State -ne 'CapacityExceeded') 'Weapon run did not end normally'
     }
+    Check 'auto repeat requires saved defeat, pauses, and fires once' {
+        $c=[Bokumyaku.Simulation.AutoRepeatController]::new()
+        Assert (!$c.Enabled -and !$c.Schedule('Defeated',$true)) 'Auto repeat enabled by default'
+        $c.SetEnabled($true); Assert (!$c.IsPending) 'Enabling scheduled a run'
+        Assert (!$c.Schedule('Defeated',$false)) 'Unsaved defeat scheduled'
+        Assert (!$c.Schedule('TestCompleted',$true)) 'Test completion scheduled'
+        Assert ($c.Schedule('Defeated',$true)) 'Saved defeat not scheduled'
+        Assert (!$c.Advance(2,$false)) 'Early repeat'
+        Assert (!$c.Advance(100,$true) -and $c.SecondsRemaining -eq 1) 'Pause consumed countdown'
+        Assert ($c.Advance(1,$false)) 'Countdown never fired'
+        Assert (!$c.Advance(100,$false)) 'Repeat fired twice'
+        $null=$c.Schedule('Defeated',$true); $c.SetEnabled($false)
+        Assert (!$c.IsPending -and !$c.Advance(3,$false)) 'Disabled repeat fired'
+    }
     Write-Output "TOTAL $script:passed passed / $script:failed failed"
     if ($script:failed -gt 0) { exit 1 }; exit 0
 } catch { Write-Error -ErrorAction Continue $_; exit 1 }
