@@ -457,6 +457,7 @@ namespace Bokumyaku.Presentation
         void InitStyles()
         {
             if (body != null) return;
+            EnsureInkMotifs();
             body = new GUIStyle(GUI.skin.label) { fontSize = 16, wordWrap = true, alignment = TextAnchor.MiddleLeft };
             japaneseFont = Font.CreateDynamicFontFromOSFont(new[] { "Yu Gothic", "Meiryo", "Noto Sans CJK JP", "Arial" }, 16);
             if (japaneseFont != null) body.font = japaneseFont;
@@ -570,23 +571,7 @@ namespace Bokumyaku.Presentation
             {
                 Vector2 point = View(field, e.ViewX, e.ViewY);
                 float radius = e.Kind == EnemyKind.Boss ? 11 : e.Kind == EnemyKind.Heavy ? 8 : e.Kind == EnemyKind.Fast ? 4 : 6;
-                Dot(point, radius + 2, new Color(red.r, red.g, red.b, .15f)); Dot(point, radius, red);
-                if (e.Kind == EnemyKind.Fast) Line(point + new Vector2(-9, 3), point + new Vector2(-4, 3), 1, red);
-                if (e.Kind == EnemyKind.Heavy) Ring(point, 11, red);
-                if (e.Kind == EnemyKind.Splitter)
-                {
-                    Dot(point + new Vector2(-4, -3), 4, red);
-                    Dot(point + new Vector2(4, 3), 4, red);
-                    Line(point + new Vector2(-8, 8), point + new Vector2(8, -8), 1.5f, ink);
-                }
-                if (e.Kind == EnemyKind.Boss)
-                {
-                    Dot(point, 11, red); Ring(point, 15, ink);
-                    Line(point + new Vector2(0, -19), point + new Vector2(19, 0), 2, red);
-                    Line(point + new Vector2(19, 0), point + new Vector2(0, 19), 2, red);
-                    Line(point + new Vector2(0, 19), point + new Vector2(-19, 0), 2, red);
-                    Line(point + new Vector2(-19, 0), point + new Vector2(0, -19), 2, red);
-                }
+                DrawInkEnemy(e.Kind, point, radius);
                 if (e.Hp < e.MaxHp) { Fill(new Rect(point.x - 9, point.y - radius - 6, 18, 2), new Color(0, 0, 0, .12f)); Fill(new Rect(point.x - 9, point.y - radius - 6, 18 * Mathf.Clamp01((float)(e.Hp / e.MaxHp)), 2), red); }
             }
             foreach (var flash in flashes)
@@ -624,7 +609,7 @@ namespace Bokumyaku.Presentation
                 }
                 else Dot(to, 4 + 8 * (1 - alpha), new Color(ink.r, ink.g, ink.b, alpha * .25f));
             }
-            Dot(center, 14, ink); Dot(center, 5, gold);
+            DrawInkCore(center);
             double minPressure = double.MaxValue, maxPressure = 0;
             foreach (var branch in Run.Branches)
             {
@@ -851,6 +836,7 @@ namespace Bokumyaku.Presentation
         }
         void OnDestroy()
         {
+            ReleaseInkMotifs();
             autoRepeat.Cancel();
             if (disc != null) Destroy(disc);
             if (branchOverlay != null) Destroy(branchOverlay);
