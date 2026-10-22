@@ -82,4 +82,3 @@ public static class BokumyakuPortraitEvidenceV5
         active=false;view.Repaint();return report;
     }
 }
-

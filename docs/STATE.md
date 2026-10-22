@@ -192,3 +192,4 @@
 - Windows実行版 `Builds/Bokumyaku-v0.5/Bokumyaku.exe`。6武器と別プロセス復帰検証は合格。主要一人用機能の受入表はBOKUMYAKU_SYSTEMS_ACCEPTANCE.md。
 - EditorはBokumyakuの非Play/isDirty=false。PlayerSettings/Application.runInBackground=false、GameView最大化解除、一時縦解像度削除。QA one-shotキー消去。試験中の背景設定をビルドへ残さないよう最終再ビルドと再実行を完了。両プロセスexit0、Console error/warning0。
 - 次はG-V2-04/05とプレイ評価。機能の存在を面白さ/実機/完成美術の合格に置換しない。
+- GitHub反映: ec30c7e（戦闘/保存）、5fa8116（画面/Windows検証/台帳）をmainへpush済み。最終整形で末尾の空行を除去した。ゲームコード・ビルドには追加変更なし。
