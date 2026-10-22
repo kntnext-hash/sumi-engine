@@ -176,3 +176,8 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - Player: bokumyaku-player-v3.jsonとplayer-launch-v3.json。明示--bokumyaku-smoke-output時だけ動作、QA保存先隔離、exit0、frame2→291212。3武器とも900tick/7枝ノード/9撃破/2購入/顔料1891.2052、実武器とAttackEventの種別一致。滲墨で最大4領域を観測。非表示起動のデータ検査であり、画面/物理入力/完走/FPS計測とは異なる。通常起動では自動操作/終了なし。
 - Console: bokumyaku-console-v3.json、現在compilationFailed=false/consoleErrors0/consoleWarnings0。過去履歴は保持。最終Player.logのException/Error/Failed一致0。
 - 未達: 経済役割差、5敵、正式120条件、全武器/装備進行、オフライン収益、モバイル、物理入力、長時間手動評価。実装増分の合格とゲーム全体完成を区別する。
+
+## 2026-10-22 全体進捗・素材室準備の確認
+- c6f0f17/cleanを開始時に確認し、実コードの3敵/3武器/6周回/4恒久と直前の証拠を照合。既存51NUnit/10独立/18UI/Player結果を進捗へ参照。今回コード変更なし、テスト再実行なし。
+- list_projectsで水墨プロジェクトと既存描画室を確認。別の素材専用チャットをcreate_threadで作成、wait_threadsでactiveと着手コメントを確認。画像生成の成功や6点完了は未確認。
+- 新規進捗表と素材依頼書をgit diff --checkで確認。素材室はUnity未取込みのフォルダへ納品し、実alpha/寸法/小サイズ識別/出所記録を受入条件とした。素材制作とゲーム表示/実機QAを区別。

@@ -9,6 +9,7 @@
 - Unity NUnit 51件、独立C#10件、GameView合成入力18項目に合格。縦440×1060の選択/スクロール/表示を確認。Windows版はBuilds/Bokumyaku-v0.3/Bokumyaku.exe、実Playerで各武器900tick・攻撃・自動購入・枝描画を確認（exit0）。
 - 次の主課題は周回効率と到達記録の役割差。現行90条件で武器と構成の相性は出たが、結晶/分と到達Waveが連動しやすく、経済的役割分担と初回5〜8分目標は未達。分裂/ボス、背景演出、6武器全体も後続。ゲーム全体の完成とはしない。
 - 操作手順: BOKUMYAKU_PROTOTYPE.md。実行証拠と残件は本書末尾、TASKS.md、QA_AND_EVIDENCE.mdを参照。
+- 全体工程: BOKUMYAKU_PRODUCTION_PROGRESS.md。ユーザー依頼で素材専用室を作成し、和紙/山水背景/円相/3武器アイコンの6点を先行制作開始。ゲーム統合は未実施。
 
 以下は経緯を保管した記録。初期の「Editor不在」「ゲーム未実装」は現在の状態ではない。
 
@@ -159,3 +160,9 @@
 - EditorはBokumyakuの非Play、runInBackground=false、GameViewの一時縦解像度は削除して元へ復元。通常セーブは保護し、QAはlogsの独立保存先を使用。操作手順はBOKUMYAKU_PROTOTYPE.md。
 - Unity公式Plugin/Pipeline/MCPは導入・実接続済み。CLIのbeta.14更新要求に対しインストール済みはbeta.13のままという環境差を保持。MCPと明示グループCLIで検証した。認証/再インストールは今回不要。
 - 戦闘実装/テスト/90条件測定のコミット: f4d84e2。UI・Player・台帳の続きは同じmainの後続コミットを参照。
+
+## 2026-10-22 全体進捗と素材室の分業開始
+- 実装基準c6f0f17を確認して、BOKUMYAKU_PRODUCTION_PROGRESS.mdへシステム、経済、長期育成、競技/課金、美術、UI、音、QA、公開準備の現状と残件を整理した。根拠のない全体完成率は付けない。
+- 同じ水墨プロジェクトに素材専用チャットを作成。threadId: 01a16134-e305-7543-954d-eb9c2c8c17c7。activeで依頼書/スキル確認に着手したことをwait_threadsで確認。
+- 初回6点の仕様と受入はBOKUMYAKU_ART_BRIEF.md。素材室はArtSource~/Bokumyaku/batch-001/とdocs/art/だけを所有。ゲーム室がUnity操作/統合/共有4台帳/commitを所有する。
+- 本記録時点は制作開始、PNG納品/Unity統合の合格ではない。次回は素材室のdocs/art/ASSET_MANIFEST.mdと成果を確認し、採用候補をゲーム画面へ統合して評価する。ゲーム実装はG-V2-04/05から継続。
