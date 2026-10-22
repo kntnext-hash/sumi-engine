@@ -1,0 +1,3122 @@
+{
+  "candidate": 0,
+  "classification": "Actual standalone fixed-tick simulation, meta0 Balanced; no Unity performance claim",
+  "gain": 0.12,
+  "cost": 30.0,
+  "growth": 1.25,
+  "additionalValidationSeeds": "11..20 Point only; inspected for all candidates, not an untouched holdout",
+  "schedule": "W15 then every5 waves",
+  "sourceVariant": "Gain and schedule substituted in memory by Candidate; listed hashes identify current source inputs",
+  "threshold": "Point >=8/10 and all >=48/60, every weapon >=6/10 for both metrics",
+  "secondsWithin300to480": 15,
+  "pairs": [
+    {
+      "weapon": "Point",
+      "recordDepthWins": 8,
+      "farmingRateWins": 6,
+      "meanWaveDifference": 5.5,
+      "meanRateDifference": 0.5450579506802334
+    },
+    {
+      "weapon": "Pierce",
+      "recordDepthWins": 8,
+      "farmingRateWins": 4,
+      "meanWaveDifference": 7.8,
+      "meanRateDifference": -0.6973697982709399
+    },
+    {
+      "weapon": "Bleed",
+      "recordDepthWins": 10,
+      "farmingRateWins": 1,
+      "meanWaveDifference": 15.8,
+      "meanRateDifference": -1.8160334001826381
+    },
+    {
+      "weapon": "Sweep",
+      "recordDepthWins": 10,
+      "farmingRateWins": 0,
+      "meanWaveDifference": 20.4,
+      "meanRateDifference": -2.954682592650749
+    },
+    {
+      "weapon": "Enso",
+      "recordDepthWins": 8,
+      "farmingRateWins": 3,
+      "meanWaveDifference": 14.0,
+      "meanRateDifference": -1.2456224981487583
+    },
+    {
+      "weapon": "Resonance",
+      "recordDepthWins": 4,
+      "farmingRateWins": 9,
+      "meanWaveDifference": 1.7,
+      "meanRateDifference": 2.4888341102460934
+    }
+  ],
+  "runs": [
+    {
+      "seed": 1,
+      "wave": 40,
+      "ticks": 14697,
+      "crystals": 75,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        16,
+        11,
+        13,
+        6,
+        10,
+        10,
+        6
+      ],
+      "seconds": 489.9,
+      "rate": 9.129640900791236
+    },
+    {
+      "seed": 1,
+      "wave": 40,
+      "ticks": 14491,
+      "crystals": 54,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 483.03333333333336,
+      "rate": 6.666209450654962
+    },
+    {
+      "seed": 1,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 36,
+      "build": "Farming",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        11,
+        9,
+        9,
+        6,
+        9,
+        9,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 5.895196506550219
+    },
+    {
+      "seed": 1,
+      "wave": 32,
+      "ticks": 11696,
+      "crystals": 35,
+      "build": "Record",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        16,
+        9,
+        9,
+        4,
+        8,
+        8,
+        0
+      ],
+      "seconds": 389.8666666666667,
+      "rate": 5.345324961819108
+    },
+    {
+      "seed": 1,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 36,
+      "build": "Farming",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        11,
+        9,
+        9,
+        6,
+        9,
+        9,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 5.895196506550219
+    },
+    {
+      "seed": 1,
+      "wave": 41,
+      "ticks": 14903,
+      "crystals": 57,
+      "build": "Record",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        19,
+        10,
+        10,
+        5,
+        10,
+        9,
+        0
+      ],
+      "seconds": 496.76666666666665,
+      "rate": 6.843193490295471
+    },
+    {
+      "seed": 1,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 16,
+      "build": "Farming",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        7,
+        4,
+        7,
+        6,
+        5,
+        5,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.882971551840367
+    },
+    {
+      "seed": 1,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 53,
+      "build": "Record",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.547700754975978
+    },
+    {
+      "seed": 1,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 72,
+      "build": "Farming",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        15,
+        10,
+        14,
+        6,
+        10,
+        10,
+        6
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 8.894989704873026
+    },
+    {
+      "seed": 1,
+      "wave": 50,
+      "ticks": 18060,
+      "crystals": 83,
+      "build": "Record",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        21,
+        11,
+        11,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 602.0,
+      "rate": 8.231404958677686
+    },
+    {
+      "seed": 1,
+      "wave": 46,
+      "ticks": 16573,
+      "crystals": 101,
+      "build": "Farming",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        18,
+        13,
+        14,
+        6,
+        10,
+        10,
+        7
+      ],
+      "seconds": 552.4333333333333,
+      "rate": 10.910400288063375
+    },
+    {
+      "seed": 1,
+      "wave": 44,
+      "ticks": 15872,
+      "crystals": 64,
+      "build": "Record",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        19,
+        10,
+        10,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 529.0666666666667,
+      "rate": 7.217140709184312
+    },
+    {
+      "seed": 2,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 37,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        11,
+        9,
+        9,
+        6,
+        10,
+        9,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 6.058951965065503
+    },
+    {
+      "seed": 2,
+      "wave": 37,
+      "ticks": 13485,
+      "crystals": 46,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        9,
+        9,
+        4,
+        9,
+        9,
+        0
+      ],
+      "seconds": 449.5,
+      "rate": 6.099447513812155
+    },
+    {
+      "seed": 2,
+      "wave": 20,
+      "ticks": 7405,
+      "crystals": 16,
+      "build": "Farming",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        7,
+        5,
+        7,
+        6,
+        5,
+        5,
+        2
+      ],
+      "seconds": 246.83333333333334,
+      "rate": 3.8425617078052032
+    },
+    {
+      "seed": 2,
+      "wave": 34,
+      "ticks": 12523,
+      "crystals": 39,
+      "build": "Record",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        16,
+        9,
+        9,
+        4,
+        8,
+        8,
+        0
+      ],
+      "seconds": 417.43333333333334,
+      "rate": 5.565686196781098
+    },
+    {
+      "seed": 2,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 16,
+      "build": "Farming",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        7,
+        5,
+        7,
+        6,
+        5,
+        5,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.882971551840367
+    },
+    {
+      "seed": 2,
+      "wave": 42,
+      "ticks": 15183,
+      "crystals": 59,
+      "build": "Record",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        19,
+        10,
+        10,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 506.1,
+      "rate": 6.953447259870359
+    },
+    {
+      "seed": 2,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 16,
+      "build": "Farming",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        7,
+        5,
+        7,
+        6,
+        5,
+        5,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.882971551840367
+    },
+    {
+      "seed": 2,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 31,
+      "build": "Record",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        15,
+        8,
+        8,
+        4,
+        8,
+        8,
+        0
+      ],
+      "seconds": 363.4,
+      "rate": 5.076419213973799
+    },
+    {
+      "seed": 2,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 36,
+      "build": "Farming",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        11,
+        9,
+        9,
+        6,
+        9,
+        9,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 5.895196506550219
+    },
+    {
+      "seed": 2,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 53,
+      "build": "Record",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.547700754975978
+    },
+    {
+      "seed": 2,
+      "wave": 48,
+      "ticks": 17492,
+      "crystals": 115,
+      "build": "Farming",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        19,
+        13,
+        14,
+        6,
+        10,
+        10,
+        7
+      ],
+      "seconds": 583.0666666666667,
+      "rate": 11.773404618359685
+    },
+    {
+      "seed": 2,
+      "wave": 44,
+      "ticks": 16049,
+      "crystals": 65,
+      "build": "Record",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        20,
+        10,
+        10,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 534.9666666666667,
+      "rate": 7.249519796765599
+    },
+    {
+      "seed": 3,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 37,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        10,
+        9,
+        9,
+        6,
+        9,
+        10,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 6.058951965065503
+    },
+    {
+      "seed": 3,
+      "wave": 40,
+      "ticks": 14529,
+      "crystals": 53,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 484.3,
+      "rate": 6.525754155550995
+    },
+    {
+      "seed": 3,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 37,
+      "build": "Farming",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        11,
+        9,
+        9,
+        6,
+        10,
+        9,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 6.058951965065503
+    },
+    {
+      "seed": 3,
+      "wave": 37,
+      "ticks": 13625,
+      "crystals": 46,
+      "build": "Record",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        18,
+        9,
+        9,
+        4,
+        9,
+        9,
+        0
+      ],
+      "seconds": 454.1666666666667,
+      "rate": 6.037185563251914
+    },
+    {
+      "seed": 3,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        6,
+        6,
+        5,
+        6,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.640285829850344
+    },
+    {
+      "seed": 3,
+      "wave": 40,
+      "ticks": 14529,
+      "crystals": 54,
+      "build": "Record",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 484.3,
+      "rate": 6.648881592448184
+    },
+    {
+      "seed": 3,
+      "wave": 16,
+      "ticks": 6025,
+      "crystals": 11,
+      "build": "Farming",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        5,
+        3,
+        5,
+        6,
+        3,
+        4,
+        1
+      ],
+      "seconds": 200.83333333333334,
+      "rate": 3.2379394930498773
+    },
+    {
+      "seed": 3,
+      "wave": 45,
+      "ticks": 16274,
+      "crystals": 67,
+      "build": "Record",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        20,
+        10,
+        11,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 542.4666666666667,
+      "rate": 7.369836225861647
+    },
+    {
+      "seed": 3,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        7,
+        4,
+        7,
+        6,
+        5,
+        5,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.640285829850344
+    },
+    {
+      "seed": 3,
+      "wave": 50,
+      "ticks": 18012,
+      "crystals": 82,
+      "build": "Record",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        21,
+        11,
+        11,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 600.4,
+      "rate": 8.153795160755719
+    },
+    {
+      "seed": 3,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 71,
+      "build": "Farming",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        15,
+        10,
+        14,
+        6,
+        10,
+        10,
+        6
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 8.771448181194234
+    },
+    {
+      "seed": 3,
+      "wave": 43,
+      "ticks": 15734,
+      "crystals": 62,
+      "build": "Record",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        19,
+        10,
+        10,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 524.4666666666667,
+      "rate": 7.0525783619818
+    },
+    {
+      "seed": 4,
+      "wave": 20,
+      "ticks": 7360,
+      "crystals": 16,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        7,
+        5,
+        7,
+        6,
+        5,
+        5,
+        2
+      ],
+      "seconds": 245.33333333333334,
+      "rate": 3.8657718120805367
+    },
+    {
+      "seed": 4,
+      "wave": 37,
+      "ticks": 13534,
+      "crystals": 48,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        9,
+        9,
+        4,
+        9,
+        9,
+        0
+      ],
+      "seconds": 451.1333333333333,
+      "rate": 6.341749853200235
+    },
+    {
+      "seed": 4,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        6,
+        6,
+        5,
+        6,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.640285829850344
+    },
+    {
+      "seed": 4,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 14,
+      "build": "Record",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        10,
+        6,
+        6,
+        3,
+        5,
+        5,
+        0
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.397600107860321
+    },
+    {
+      "seed": 4,
+      "wave": 20,
+      "ticks": 7360,
+      "crystals": 16,
+      "build": "Farming",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        7,
+        5,
+        7,
+        6,
+        5,
+        5,
+        2
+      ],
+      "seconds": 245.33333333333334,
+      "rate": 3.8657718120805367
+    },
+    {
+      "seed": 4,
+      "wave": 44,
+      "ticks": 16020,
+      "crystals": 66,
+      "build": "Record",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        20,
+        10,
+        10,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 534.0,
+      "rate": 7.374301675977653
+    },
+    {
+      "seed": 4,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        6,
+        6,
+        5,
+        6,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.640285829850344
+    },
+    {
+      "seed": 4,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 31,
+      "build": "Record",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        15,
+        8,
+        8,
+        4,
+        8,
+        8,
+        0
+      ],
+      "seconds": 363.4,
+      "rate": 5.076419213973799
+    },
+    {
+      "seed": 4,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 37,
+      "build": "Farming",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        11,
+        8,
+        10,
+        6,
+        9,
+        9,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 6.058951965065503
+    },
+    {
+      "seed": 4,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 31,
+      "build": "Record",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        15,
+        8,
+        8,
+        4,
+        8,
+        8,
+        0
+      ],
+      "seconds": 363.4,
+      "rate": 5.076419213973799
+    },
+    {
+      "seed": 4,
+      "wave": 46,
+      "ticks": 16703,
+      "crystals": 104,
+      "build": "Farming",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        18,
+        12,
+        14,
+        6,
+        10,
+        10,
+        7
+      ],
+      "seconds": 556.7666666666667,
+      "rate": 11.147501935330197
+    },
+    {
+      "seed": 4,
+      "wave": 46,
+      "ticks": 16638,
+      "crystals": 71,
+      "build": "Record",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        20,
+        11,
+        11,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 554.6,
+      "rate": 7.639885222381635
+    },
+    {
+      "seed": 5,
+      "wave": 39,
+      "ticks": 14215,
+      "crystals": 69,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        15,
+        11,
+        13,
+        6,
+        10,
+        10,
+        6
+      ],
+      "seconds": 473.8333333333333,
+      "rate": 8.682278923453339
+    },
+    {
+      "seed": 5,
+      "wave": 40,
+      "ticks": 14520,
+      "crystals": 55,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 484.0,
+      "rate": 6.776180698151951
+    },
+    {
+      "seed": 5,
+      "wave": 20,
+      "ticks": 7367,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        6,
+        6,
+        5,
+        6,
+        2
+      ],
+      "seconds": 245.56666666666666,
+      "rate": 3.6207590183719995
+    },
+    {
+      "seed": 5,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 30,
+      "build": "Record",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        15,
+        8,
+        8,
+        4,
+        8,
+        7,
+        0
+      ],
+      "seconds": 363.4,
+      "rate": 4.9126637554585155
+    },
+    {
+      "seed": 5,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 37,
+      "build": "Farming",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        10,
+        9,
+        9,
+        6,
+        10,
+        9,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 6.058951965065503
+    },
+    {
+      "seed": 5,
+      "wave": 41,
+      "ticks": 14838,
+      "crystals": 57,
+      "build": "Record",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        19,
+        10,
+        10,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 494.6,
+      "rate": 6.872990353697749
+    },
+    {
+      "seed": 5,
+      "wave": 13,
+      "ticks": 4809,
+      "crystals": 6,
+      "build": "Farming",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        4,
+        2,
+        3,
+        5,
+        3,
+        2,
+        0
+      ],
+      "seconds": 160.3,
+      "rate": 2.204531537048377
+    },
+    {
+      "seed": 5,
+      "wave": 46,
+      "ticks": 16796,
+      "crystals": 73,
+      "build": "Record",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        20,
+        11,
+        11,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 559.8666666666667,
+      "rate": 7.781594220063958
+    },
+    {
+      "seed": 5,
+      "wave": 15,
+      "ticks": 5494,
+      "crystals": 8,
+      "build": "Farming",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        4,
+        2,
+        4,
+        5,
+        3,
+        3,
+        1
+      ],
+      "seconds": 183.13333333333333,
+      "rate": 2.5787965616045847
+    },
+    {
+      "seed": 5,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 54,
+      "build": "Record",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.67124227865477
+    },
+    {
+      "seed": 5,
+      "wave": 47,
+      "ticks": 16967,
+      "crystals": 109,
+      "build": "Farming",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        18,
+        12,
+        15,
+        6,
+        10,
+        10,
+        7
+      ],
+      "seconds": 565.5666666666667,
+      "rate": 11.502608899572023
+    },
+    {
+      "seed": 5,
+      "wave": 43,
+      "ticks": 15622,
+      "crystals": 63,
+      "build": "Record",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        19,
+        10,
+        10,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 520.7333333333333,
+      "rate": 7.217413441955193
+    },
+    {
+      "seed": 6,
+      "wave": 39,
+      "ticks": 14169,
+      "crystals": 70,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        15,
+        9,
+        14,
+        6,
+        10,
+        10,
+        6
+      ],
+      "seconds": 472.3,
+      "rate": 8.836524300441827
+    },
+    {
+      "seed": 6,
+      "wave": 41,
+      "ticks": 14805,
+      "crystals": 57,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        19,
+        10,
+        10,
+        5,
+        10,
+        9,
+        0
+      ],
+      "seconds": 493.5,
+      "rate": 6.888217522658611
+    },
+    {
+      "seed": 6,
+      "wave": 21,
+      "ticks": 7694,
+      "crystals": 18,
+      "build": "Farming",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        8,
+        5,
+        7,
+        6,
+        6,
+        5,
+        2
+      ],
+      "seconds": 256.46666666666664,
+      "rate": 4.1623843782117165
+    },
+    {
+      "seed": 6,
+      "wave": 36,
+      "ticks": 13187,
+      "crystals": 45,
+      "build": "Record",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        17,
+        9,
+        9,
+        4,
+        9,
+        9,
+        0
+      ],
+      "seconds": 439.56666666666666,
+      "rate": 6.100775777660616
+    },
+    {
+      "seed": 6,
+      "wave": 39,
+      "ticks": 14169,
+      "crystals": 69,
+      "build": "Farming",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        15,
+        9,
+        14,
+        6,
+        10,
+        10,
+        6
+      ],
+      "seconds": 472.3,
+      "rate": 8.710288239006942
+    },
+    {
+      "seed": 6,
+      "wave": 41,
+      "ticks": 14784,
+      "crystals": 56,
+      "build": "Record",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        19,
+        10,
+        10,
+        5,
+        10,
+        9,
+        0
+      ],
+      "seconds": 492.8,
+      "rate": 6.776926179911254
+    },
+    {
+      "seed": 6,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        6,
+        6,
+        5,
+        6,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.640285829850344
+    },
+    {
+      "seed": 6,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 54,
+      "build": "Record",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.67124227865477
+    },
+    {
+      "seed": 6,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        7,
+        4,
+        7,
+        6,
+        5,
+        5,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.640285829850344
+    },
+    {
+      "seed": 6,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 54,
+      "build": "Record",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.67124227865477
+    },
+    {
+      "seed": 6,
+      "wave": 41,
+      "ticks": 14784,
+      "crystals": 77,
+      "build": "Farming",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        15,
+        10,
+        15,
+        6,
+        10,
+        10,
+        6
+      ],
+      "seconds": 492.8,
+      "rate": 9.318273497377975
+    },
+    {
+      "seed": 6,
+      "wave": 43,
+      "ticks": 15501,
+      "crystals": 63,
+      "build": "Record",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        19,
+        10,
+        10,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 516.7,
+      "rate": 7.273426977102174
+    },
+    {
+      "seed": 7,
+      "wave": 30,
+      "ticks": 10968,
+      "crystals": 38,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        11,
+        9,
+        9,
+        6,
+        10,
+        9,
+        4
+      ],
+      "seconds": 365.6,
+      "rate": 6.185567010309278
+    },
+    {
+      "seed": 7,
+      "wave": 36,
+      "ticks": 13243,
+      "crystals": 45,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        17,
+        9,
+        9,
+        4,
+        9,
+        9,
+        0
+      ],
+      "seconds": 441.43333333333334,
+      "rate": 6.07515187879697
+    },
+    {
+      "seed": 7,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        7,
+        6,
+        5,
+        6,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.640285829850344
+    },
+    {
+      "seed": 7,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 30,
+      "build": "Record",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        15,
+        8,
+        8,
+        4,
+        8,
+        7,
+        0
+      ],
+      "seconds": 363.4,
+      "rate": 4.9126637554585155
+    },
+    {
+      "seed": 7,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 36,
+      "build": "Farming",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        11,
+        9,
+        9,
+        6,
+        9,
+        9,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 5.895196506550219
+    },
+    {
+      "seed": 7,
+      "wave": 41,
+      "ticks": 14816,
+      "crystals": 57,
+      "build": "Record",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        19,
+        10,
+        10,
+        5,
+        10,
+        9,
+        0
+      ],
+      "seconds": 493.8666666666667,
+      "rate": 6.883134308332215
+    },
+    {
+      "seed": 7,
+      "wave": 13,
+      "ticks": 4840,
+      "crystals": 6,
+      "build": "Farming",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        4,
+        2,
+        3,
+        5,
+        3,
+        2,
+        0
+      ],
+      "seconds": 161.33333333333334,
+      "rate": 2.1906693711967544
+    },
+    {
+      "seed": 7,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 53,
+      "build": "Record",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.547700754975978
+    },
+    {
+      "seed": 7,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 16,
+      "build": "Farming",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        7,
+        6,
+        5,
+        6,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.882971551840367
+    },
+    {
+      "seed": 7,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 54,
+      "build": "Record",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.67124227865477
+    },
+    {
+      "seed": 7,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 73,
+      "build": "Farming",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        16,
+        12,
+        12,
+        6,
+        10,
+        10,
+        6
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 9.018531228551819
+    },
+    {
+      "seed": 7,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 53,
+      "build": "Record",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.547700754975978
+    },
+    {
+      "seed": 8,
+      "wave": 32,
+      "ticks": 11609,
+      "crystals": 43,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        11,
+        9,
+        10,
+        6,
+        10,
+        10,
+        4
+      ],
+      "seconds": 386.96666666666664,
+      "rate": 6.615950081203522
+    },
+    {
+      "seed": 8,
+      "wave": 36,
+      "ticks": 13112,
+      "crystals": 44,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        17,
+        9,
+        9,
+        4,
+        9,
+        9,
+        0
+      ],
+      "seconds": 437.06666666666666,
+      "rate": 5.999091046811089
+    },
+    {
+      "seed": 8,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        6,
+        6,
+        5,
+        6,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.640285829850344
+    },
+    {
+      "seed": 8,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 30,
+      "build": "Record",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        15,
+        8,
+        8,
+        4,
+        8,
+        7,
+        0
+      ],
+      "seconds": 363.4,
+      "rate": 4.9126637554585155
+    },
+    {
+      "seed": 8,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        7,
+        4,
+        6,
+        6,
+        5,
+        5,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.640285829850344
+    },
+    {
+      "seed": 8,
+      "wave": 41,
+      "ticks": 14827,
+      "crystals": 56,
+      "build": "Record",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        19,
+        10,
+        10,
+        5,
+        10,
+        9,
+        0
+      ],
+      "seconds": 494.23333333333335,
+      "rate": 6.75739089629282
+    },
+    {
+      "seed": 8,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        6,
+        6,
+        5,
+        6,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.640285829850344
+    },
+    {
+      "seed": 8,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 52,
+      "build": "Record",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.424159231297185
+    },
+    {
+      "seed": 8,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        6,
+        6,
+        5,
+        6,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.640285829850344
+    },
+    {
+      "seed": 8,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 52,
+      "build": "Record",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.424159231297185
+    },
+    {
+      "seed": 8,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        6,
+        6,
+        5,
+        6,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.640285829850344
+    },
+    {
+      "seed": 8,
+      "wave": 43,
+      "ticks": 15622,
+      "crystals": 61,
+      "build": "Record",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        19,
+        10,
+        10,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 520.7333333333333,
+      "rate": 6.988289205702648
+    },
+    {
+      "seed": 9,
+      "wave": 35,
+      "ticks": 12689,
+      "crystals": 55,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        13,
+        10,
+        12,
+        6,
+        10,
+        10,
+        5
+      ],
+      "seconds": 422.96666666666664,
+      "rate": 7.7470850614289075
+    },
+    {
+      "seed": 9,
+      "wave": 33,
+      "ticks": 12136,
+      "crystals": 38,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        16,
+        9,
+        9,
+        4,
+        8,
+        8,
+        0
+      ],
+      "seconds": 404.53333333333336,
+      "rate": 5.594634385735318
+    },
+    {
+      "seed": 9,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 36,
+      "build": "Farming",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        11,
+        9,
+        9,
+        6,
+        9,
+        9,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 5.895196506550219
+    },
+    {
+      "seed": 9,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 30,
+      "build": "Record",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        15,
+        8,
+        8,
+        4,
+        8,
+        8,
+        0
+      ],
+      "seconds": 363.4,
+      "rate": 4.9126637554585155
+    },
+    {
+      "seed": 9,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 37,
+      "build": "Farming",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        11,
+        9,
+        9,
+        6,
+        9,
+        9,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 6.058951965065503
+    },
+    {
+      "seed": 9,
+      "wave": 44,
+      "ticks": 16040,
+      "crystals": 67,
+      "build": "Record",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        20,
+        10,
+        11,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 534.6666666666666,
+      "rate": 7.476751394916305
+    },
+    {
+      "seed": 9,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 37,
+      "build": "Farming",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        11,
+        9,
+        9,
+        6,
+        9,
+        9,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 6.058951965065503
+    },
+    {
+      "seed": 9,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 54,
+      "build": "Record",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.67124227865477
+    },
+    {
+      "seed": 9,
+      "wave": 50,
+      "ticks": 18060,
+      "crystals": 127,
+      "build": "Farming",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        19,
+        13,
+        16,
+        6,
+        10,
+        10,
+        8
+      ],
+      "seconds": 602.0,
+      "rate": 12.59504132231405
+    },
+    {
+      "seed": 9,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 31,
+      "build": "Record",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        15,
+        8,
+        8,
+        4,
+        8,
+        8,
+        0
+      ],
+      "seconds": 363.4,
+      "rate": 5.076419213973799
+    },
+    {
+      "seed": 9,
+      "wave": 47,
+      "ticks": 16939,
+      "crystals": 108,
+      "build": "Farming",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        18,
+        12,
+        15,
+        6,
+        10,
+        10,
+        7
+      ],
+      "seconds": 564.6333333333333,
+      "rate": 11.415820071642493
+    },
+    {
+      "seed": 9,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 54,
+      "build": "Record",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.67124227865477
+    },
+    {
+      "seed": 10,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 36,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        10,
+        9,
+        9,
+        6,
+        10,
+        9,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 5.895196506550219
+    },
+    {
+      "seed": 10,
+      "wave": 40,
+      "ticks": 14507,
+      "crystals": 54,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 483.56666666666666,
+      "rate": 6.658902514215249
+    },
+    {
+      "seed": 10,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 15,
+      "build": "Farming",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        7,
+        4,
+        6,
+        6,
+        4,
+        6,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.640285829850344
+    },
+    {
+      "seed": 10,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 30,
+      "build": "Record",
+      "weapon": "Pierce",
+      "status": "Defeated",
+      "levels": [
+        15,
+        8,
+        8,
+        4,
+        8,
+        7,
+        0
+      ],
+      "seconds": 363.4,
+      "rate": 4.9126637554585155
+    },
+    {
+      "seed": 10,
+      "wave": 20,
+      "ticks": 7428,
+      "crystals": 16,
+      "build": "Farming",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        6,
+        4,
+        7,
+        6,
+        5,
+        6,
+        2
+      ],
+      "seconds": 247.6,
+      "rate": 3.8308060654429372
+    },
+    {
+      "seed": 10,
+      "wave": 42,
+      "ticks": 15480,
+      "crystals": 61,
+      "build": "Record",
+      "weapon": "Bleed",
+      "status": "Defeated",
+      "levels": [
+        19,
+        10,
+        10,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 516.0,
+      "rate": 7.0520231213872835
+    },
+    {
+      "seed": 10,
+      "wave": 15,
+      "ticks": 5720,
+      "crystals": 9,
+      "build": "Farming",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        5,
+        2,
+        4,
+        6,
+        3,
+        3,
+        1
+      ],
+      "seconds": 190.66666666666666,
+      "rate": 2.7882960413080897
+    },
+    {
+      "seed": 10,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 53,
+      "build": "Record",
+      "weapon": "Sweep",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.547700754975978
+    },
+    {
+      "seed": 10,
+      "wave": 15,
+      "ticks": 5720,
+      "crystals": 9,
+      "build": "Farming",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        5,
+        2,
+        4,
+        6,
+        3,
+        3,
+        1
+      ],
+      "seconds": 190.66666666666666,
+      "rate": 2.7882960413080897
+    },
+    {
+      "seed": 10,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 53,
+      "build": "Record",
+      "weapon": "Enso",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.547700754975978
+    },
+    {
+      "seed": 10,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 71,
+      "build": "Farming",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        15,
+        10,
+        14,
+        6,
+        10,
+        10,
+        6
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 8.771448181194234
+    },
+    {
+      "seed": 10,
+      "wave": 46,
+      "ticks": 16656,
+      "crystals": 70,
+      "build": "Record",
+      "weapon": "Resonance",
+      "status": "Defeated",
+      "levels": [
+        20,
+        11,
+        11,
+        5,
+        10,
+        10,
+        0
+      ],
+      "seconds": 555.2,
+      "rate": 7.524184879971336
+    },
+    {
+      "seed": 11,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 36,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        10,
+        8,
+        11,
+        6,
+        9,
+        8,
+        4
+      ],
+      "seconds": 363.4,
+      "rate": 5.895196506550219
+    },
+    {
+      "seed": 11,
+      "wave": 30,
+      "ticks": 10902,
+      "crystals": 30,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        15,
+        8,
+        8,
+        4,
+        8,
+        8,
+        0
+      ],
+      "seconds": 363.4,
+      "rate": 4.9126637554585155
+    },
+    {
+      "seed": 12,
+      "wave": 32,
+      "ticks": 11710,
+      "crystals": 43,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        12,
+        9,
+        11,
+        6,
+        10,
+        8,
+        4
+      ],
+      "seconds": 390.3333333333333,
+      "rate": 6.559322033898305
+    },
+    {
+      "seed": 12,
+      "wave": 33,
+      "ticks": 11955,
+      "crystals": 36,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        16,
+        9,
+        9,
+        4,
+        8,
+        8,
+        0
+      ],
+      "seconds": 398.5,
+      "rate": 5.379825653798257
+    },
+    {
+      "seed": 13,
+      "wave": 36,
+      "ticks": 13175,
+      "crystals": 57,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        13,
+        10,
+        13,
+        6,
+        10,
+        10,
+        5
+      ],
+      "seconds": 439.1666666666667,
+      "rate": 7.734640030154542
+    },
+    {
+      "seed": 13,
+      "wave": 37,
+      "ticks": 13387,
+      "crystals": 46,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        9,
+        9,
+        4,
+        9,
+        9,
+        0
+      ],
+      "seconds": 446.23333333333335,
+      "rate": 6.143800549083624
+    },
+    {
+      "seed": 14,
+      "wave": 37,
+      "ticks": 13387,
+      "crystals": 58,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        13,
+        11,
+        12,
+        6,
+        10,
+        10,
+        5
+      ],
+      "seconds": 446.23333333333335,
+      "rate": 7.746531127105438
+    },
+    {
+      "seed": 14,
+      "wave": 37,
+      "ticks": 13585,
+      "crystals": 46,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        9,
+        9,
+        4,
+        9,
+        9,
+        0
+      ],
+      "seconds": 452.8333333333333,
+      "rate": 6.0548446069469835
+    },
+    {
+      "seed": 15,
+      "wave": 35,
+      "ticks": 12663,
+      "crystals": 52,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        12,
+        9,
+        12,
+        6,
+        10,
+        10,
+        5
+      ],
+      "seconds": 422.1,
+      "rate": 7.339449541284403
+    },
+    {
+      "seed": 15,
+      "wave": 39,
+      "ticks": 14307,
+      "crystals": 52,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 476.9,
+      "rate": 6.501354448843509
+    },
+    {
+      "seed": 16,
+      "wave": 40,
+      "ticks": 14495,
+      "crystals": 73,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        16,
+        12,
+        12,
+        6,
+        10,
+        10,
+        6
+      ],
+      "seconds": 483.1666666666667,
+      "rate": 9.009256085018855
+    },
+    {
+      "seed": 16,
+      "wave": 38,
+      "ticks": 13707,
+      "crystals": 49,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        9,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 456.9,
+      "rate": 6.392694063926941
+    },
+    {
+      "seed": 17,
+      "wave": 38,
+      "ticks": 13707,
+      "crystals": 62,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        14,
+        11,
+        12,
+        6,
+        10,
+        10,
+        5
+      ],
+      "seconds": 456.9,
+      "rate": 8.088714938030007
+    },
+    {
+      "seed": 17,
+      "wave": 40,
+      "ticks": 14518,
+      "crystals": 54,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 483.93333333333334,
+      "rate": 6.6538882803943045
+    },
+    {
+      "seed": 18,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 72,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        15,
+        12,
+        13,
+        6,
+        10,
+        10,
+        6
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 8.894989704873026
+    },
+    {
+      "seed": 18,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 54,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.67124227865477
+    },
+    {
+      "seed": 19,
+      "wave": 30,
+      "ticks": 10906,
+      "crystals": 36,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        11,
+        9,
+        9,
+        6,
+        9,
+        9,
+        4
+      ],
+      "seconds": 363.53333333333336,
+      "rate": 5.893052018915969
+    },
+    {
+      "seed": 19,
+      "wave": 38,
+      "ticks": 13827,
+      "crystals": 48,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        9,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 460.9,
+      "rate": 6.208234533304592
+    },
+    {
+      "seed": 20,
+      "wave": 20,
+      "ticks": 7327,
+      "crystals": 16,
+      "build": "Farming",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        7,
+        5,
+        7,
+        6,
+        5,
+        5,
+        2
+      ],
+      "seconds": 244.23333333333332,
+      "rate": 3.882971551840367
+    },
+    {
+      "seed": 20,
+      "wave": 40,
+      "ticks": 14480,
+      "crystals": 53,
+      "build": "Record",
+      "weapon": "Point",
+      "status": "Defeated",
+      "levels": [
+        18,
+        10,
+        10,
+        5,
+        9,
+        9,
+        0
+      ],
+      "seconds": 482.6666666666667,
+      "rate": 6.547700754975978
+    }
+  ],
+  "sourceHashes": [
+    {
+      "name": "AutoRepeatController.cs",
+      "sha256": "D110E501CA532370504A4F5E1C09842769F0DE9CC4EA51DDAF1E640FE3B67ACE"
+    },
+    {
+      "name": "RunSimulator.cs",
+      "sha256": "F5F2A2ED719758A339D2F27033FE8AC3ADEB7CA4F6B48535E6A170F8A88105E1"
+    },
+    {
+      "name": "RunSimulator.ExactSnapshot.cs",
+      "sha256": "1D3DEC084E8811727E8DC333E7FB0937A3A06AC1CF4711F0CACA85D312CB4969"
+    },
+    {
+      "name": "RunSimulator.Snapshot.cs",
+      "sha256": "7A4BC736736B9F2DBE9BB9F0545517F04A2B725DDB87AE1D4FD770F13E0DB6FE"
+    },
+    {
+      "name": "RunSnapshot.cs",
+      "sha256": "21F9068A22BBDBCF877341E5B6459857F12164905971FA211F610AB429501FCB"
+    }
+  ],
+  "summaries": [
+    {
+      "build": "Farming",
+      "weapon": "Bleed",
+      "medianSeconds": 305.5,
+      "medianWave": 25,
+      "medianRate": 4.889084029195293,
+      "meanHarvestLevel": 3.2,
+      "endStates": [
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated"
+      ]
+    },
+    {
+      "build": "Farming",
+      "weapon": "Enso",
+      "medianSeconds": 244.23333333333332,
+      "medianWave": 20,
+      "medianRate": 3.7616286908453556,
+      "meanHarvestLevel": 3.2,
+      "endStates": [
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated"
+      ]
+    },
+    {
+      "build": "Farming",
+      "weapon": "Pierce",
+      "medianSeconds": 246.2,
+      "medianWave": 20,
+      "medianRate": 3.7414237688277736,
+      "meanHarvestLevel": 2.6,
+      "endStates": [
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated"
+      ]
+    },
+    {
+      "build": "Farming",
+      "weapon": "Point",
+      "medianSeconds": 376.2833333333333,
+      "medianWave": 31,
+      "medianRate": 6.4007585457564,
+      "meanHarvestLevel": 4.5,
+      "endStates": [
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated"
+      ]
+    },
+    {
+      "build": "Farming",
+      "weapon": "Resonance",
+      "medianSeconds": 522.6166666666667,
+      "medianWave": 43.5,
+      "medianRate": 10.114336892720676,
+      "meanHarvestLevel": 6.1,
+      "endStates": [
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated"
+      ]
+    },
+    {
+      "build": "Farming",
+      "weapon": "Sweep",
+      "medianSeconds": 244.23333333333332,
+      "medianWave": 20,
+      "medianRate": 3.640285829850344,
+      "meanHarvestLevel": 1.6,
+      "endStates": [
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated"
+      ]
+    },
+    {
+      "build": "Record",
+      "weapon": "Bleed",
+      "medianSeconds": 495.68333333333334,
+      "medianWave": 41,
+      "medianRate": 6.878062331014982,
+      "meanHarvestLevel": 0.0,
+      "endStates": [
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated"
+      ]
+    },
+    {
+      "build": "Record",
+      "weapon": "Enso",
+      "medianSeconds": 482.6666666666667,
+      "medianWave": 40,
+      "medianRate": 6.609471516815374,
+      "meanHarvestLevel": 0.0,
+      "endStates": [
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated"
+      ]
+    },
+    {
+      "build": "Record",
+      "weapon": "Pierce",
+      "medianSeconds": 363.4,
+      "medianWave": 30,
+      "medianRate": 4.9126637554585155,
+      "meanHarvestLevel": 0.0,
+      "endStates": [
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated"
+      ]
+    },
+    {
+      "build": "Record",
+      "weapon": "Point",
+      "medianSeconds": 467.08333333333337,
+      "medianWave": 38.5,
+      "medianRate": 6.433752004375615,
+      "meanHarvestLevel": 0.0,
+      "endStates": [
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated"
+      ]
+    },
+    {
+      "build": "Record",
+      "weapon": "Resonance",
+      "medianSeconds": 522.6,
+      "medianWave": 43,
+      "medianRate": 7.217277075569752,
+      "meanHarvestLevel": 0.0,
+      "endStates": [
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated"
+      ]
+    },
+    {
+      "build": "Record",
+      "weapon": "Sweep",
+      "medianSeconds": 482.6666666666667,
+      "medianWave": 40,
+      "medianRate": 6.547700754975978,
+      "meanHarvestLevel": 0.0,
+      "endStates": [
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated",
+        "Defeated"
+      ]
+    }
+  ]
+}

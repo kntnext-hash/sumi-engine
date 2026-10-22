@@ -1,0 +1,7 @@
+{
+  "classification": "Standalone C# System.Text.Json verification; Unity JsonUtility tested separately",
+  "legacyFixture900TicksExact": true,
+  "legacyFixtureTerminalExact": true,
+  "newRules900TickEveryTickChecks": 12,
+  "rulesVersion": 2
+}

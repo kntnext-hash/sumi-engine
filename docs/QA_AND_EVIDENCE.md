@@ -215,3 +215,24 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - 試験用背景実行設定がEditorに戻る挙動を検出。Play終了後PlayerSettingsとApplicationをfalseへAPIで復元。ProjectSettings差分0を確認し、背景設定を戻した最終ビルドで2プロセス試験を再実行し合格。常駐していた別のBokumyakuプロセスは停止・変更していない。
 
 - 最終build_f4ea763aa193: Succeeded、95,018,441bytes、4.102秒、error/warning0。最初のビルドは29.484秒。最終Player97.346秒、別プロセス14.132秒、両exit0。最終ログのException/Error/Failed一致0。成果物/DLLハッシュはartifact-v5.json。Console groundTruthもcompilationFailed=false/error0/warning0（履歴bufferとは区別）。
+
+## 墨脈 v0.6検証（2026-10-22）
+
+- 開始ec15566/main/clean、GitHubも同HEAD。Unity6000.3.26f1/Pipeline0.9.0-exp.1、保存済みBokumyakuシーン。ゲームのみ変更し、Engine/BrushLab/Sceneは変更なし。
+- NUnit: bokumyaku-editmode-v6.xml、124/124 PASS、41.217秒。初回122/124は既存の武器等費用テスト2件が強化配列6要素を期待したため失敗。7要素・採墨0へ修正し合格、attempt1.xml保持。新規8ルール試験と14移行ケースは初回から合格。
+- 独立C#: Test-Bokumyaku.ps1、12/12（standalone-v6.txt）。Test-BokumyakuRules.ps1は実v0.5 DLL由来seed42 Farming/Pointの1800→2700tickと終端13991tickの全snapshot一致、現行2構成×6武器のJSON復帰後900tick毎tick一致12件を検証。System.Text.Jsonの独立検証とUnity JsonUtilityのNUnitを区別。
+- 旧fixtureは変更前Bokumyaku.Simulation.dll（hash/取得時刻はbalance-v6-legacy-fixture.json）から生成。現行snapshotのschema番号だけを書き換えたものではない。旧rules1は6強化/旧AutoBuy/倍率1を維持、現行schema2に明示して再保存。新rules2は7強化と購入cursor、cursorはmod6で蓄積を防止。
+- 独立レビュー: v2ヘッダで新snapshotを旧扱いできる不備を補強。移行元activeは実旧schema1/6強化/metadata0だけ許可。v3の欠落/未知履歴RulesVersion拒否、同runIdの精算防止、原本/bak保護、v3破損時のv2への巻戻し禁止を確認。
+- UI: play-v6.json、37/37、frame2527→7012。6武器/3構成/新規Farming/停止/速度/3周精算/研究/履歴、採墨の実ボタン購入と過去報酬不変、7強化の厳密読戻し、旧実fixture移行/旧採墨無効/次周から新ルールを確認。旧ファイルbytesも不変。
+- UIの敗北fixtureは最終1tick前まで純シミュレーションで加速し、最後のtick・精算・3秒待機・再出撃を実Updateで行った。FileShare.Noneによる意図的保存失敗1件を発生させ、解除後の再試行で一度だけ精算。物理マウス/端末/長時間放置の試験ではない。
+- Portrait: portrait-v6.json、440×1060、共鳴ボタンとScrollWheel949px合格。top/bottom-v6.png、横gameplay/records-v6.pngを目視。文字と操作は表示されるが、縦UI下部に余白があり完成スマホ戦闘構図ではない。一時GameViewサイズ・拡大率を復元、Play終了後背景実行false/QAキー空/Scene dirty=falseを確認。
+- 数値: 購入順3案300条件→採墨3案各140条件。採用後に未使用21..30のPoint Farming10条件追加。G04は深度54/60・効率51/60で事前閾値合格。G05は合計26/30で未合格。11..20は全候補で測ったため独立holdoutではない。元データ・各中央値・組別差・source hashはbalance-v6-*、選定と限界はselection.json。最大16倍とPoint平均165.7結晶の長期経済影響は未調整。
+- Build: build_6138de5220e8、StandaloneWindows64/Bokumyakuシーン、Succeeded、95,022,537bytes、13.055秒、error/warning0。新Builds/Bokumyaku-v0.6、旧成果物保持。Console現在compilationFailed=false/error0/warning0、過去bufferは別に保持。
+- ツール: Refresh直後に1回Pipelineが一時未検出。status readyを確認してrecompileはup_to_date。認証や導入を再試行せず、テストXML/画面/ビルドを実証拠にした。
+- Windows2プロセスの最終結果は次の追記へ。初回尺・長期経済・長時間/強制終了・IL2CPP/モバイル・物理入力・面白さ・完成美術/音は未合格。
+
+### v0.6 Windows最終結果
+
+- player-v6.json: 6武器各900tick/7枝/9撃破/2購入、実AttackEventと選択武器一致、滲墨4領域、全checkpoint復帰合格。実自動再出撃seed42→43、完了1周/結晶15、6素材と枝透明画素を確認。
+- player-resume-v6.json: 保存後に終了して別プロセスで起動、停止状態と速度2、全snapshot一致、再開後600tickも完全一致。resumeレポートの未使用autoRepeat等のfalseは未実施欄で、別プロセス復帰passed=trueを判定に使う。
+- 初回106.145秒、復帰14.126秒、両exit0、各ログException/Error/Failed一致0。artifact-v6.jsonへexeとゲームDLLのSHA256を保存。非表示opt-in probe/隔離セーブで、描画FPS・物理入力・モバイル性能の測定ではない。900tickは採墨自動購入前であり、採墨の実ボタンはEditor37項目、後半自動購入は独立実走とNUnitで検証した。

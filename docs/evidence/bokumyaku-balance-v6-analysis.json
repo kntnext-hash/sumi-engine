@@ -1,0 +1,24 @@
+{
+  "classification": "Analysis of the actual 300-condition v6 purchase-controller experiment; no production changes",
+  "inputSha256": "656C21FA36768F1B080EE51DF998059A2ABD31AAE2A15000BCAE54CBB2A17DA0",
+  "pairedCandidateCases": 180,
+  "desiredDepthUpEfficiencyDownCases": 0.0,
+  "pearsonDepthEfficiency": 0.9971962744696883,
+  "findings": [
+    "All 180 paired candidate cases fail the strict desired role split: higher Wave for candidate AND higher ordinary crystal/min for Farming.",
+    "C uses paid production repairs but its successful deeper runs generally also kill more high-wave enemies, increasing reward points/min.",
+    "Current original Record reserves early branch costs at low supply; candidates B and C delay branches and materially improve several weapons. This supports the investment-timing hypothesis, not an all-weapons optimum.",
+    "Best candidate median combination is C/Enso: Wave50,590.93sec,7.98crystals/min, versus original best Farming/Resonance: Wave46,543.60sec,7.41crystals/min. It improves both objectives rather than separating them.",
+    "For default Point, B gives Wave39.5 vs Farming39; 6/10 paired Wave wins, but farming rate only wins3/10. Not a robust role split.",
+    "All candidate clocks align with production purchase boundaries before ticks30,60,...; costs and combat constants are shared."
+  ],
+  "recommendation": [
+    "Do not mark G-V2-04/05 role separation passed. Candidate B is a defensible general investment improvement for Point/Bleed/Sweep/Enso, with weapon-dependent failures.",
+    "Keep economic and record labels as candidate objectives, or use structural names such as supply-led and repair-reserve. Existing once-only record milestones can supply a separate challenge value without claiming ordinary income/min separation."
+  ],
+  "limitations": [
+    "Correlation is descriptive across repeated paired seeds, not causal evidence or statistical significance.",
+    "Three candidates exhausted; no fourth candidate or seed filtering.",
+    "Tier, forced cashout, hidden build multipliers, enemy weakening and new repair powers were not introduced."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "source": "UnitySandbox/Library/ScriptAssemblies/Bokumyaku.Simulation.dll",
+  "dllSha256": "05B749A16462F31DFC2F172AECC6EBE5121C4BD8DCD19D2A32CA9224AD1DB817",
+  "schema": 1,
+  "seed": 42,
+  "build": "Farming",
+  "weapon": "Point",
+  "captureTicks": [
+    1800,
+    2700,
+    13991
+  ],
+  "generatedAtUtc": "2026-10-22T08:23:00.6840632Z",
+  "method": "Loaded pre-change compiled Unity v5 Simulation DLL in PowerShell; System.Text.Json IncludeFields; no current source compilation"
+}

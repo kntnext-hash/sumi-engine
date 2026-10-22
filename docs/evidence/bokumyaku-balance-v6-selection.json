@@ -1,0 +1,46 @@
+{
+  "selectedCandidate": 2,
+  "selection": "Bounded three economic candidates; provisional systems test values, not finished product economy",
+  "rules": "Eligible kill reward points multiply by current 1+1.5*HarvestLevel; no past-kill change, no child points, no ink/attack multiplier",
+  "maxLevel": 10,
+  "maximumMultiplier": 16,
+  "meanFarmingFinalHarvestLevel": 4.566666666666666,
+  "meanFarmingFinalMultiplier": 7.85,
+  "pointMeanReward": 165.7,
+  "pointMeanRewardOverInitialDamageCost": 20.7125,
+  "metaCostCaveat": "Initial Damage cost8 grows by1.48^level, rounded up. Ratio is cost units, not count of affordable levels. No long-term meta economy or retention validation.",
+  "maxObservedReward": 567.0,
+  "G04": {
+    "recordDepthWins": 54.0,
+    "farmingRateWins": 51.0,
+    "pairedSeedWeaponCases": 60,
+    "pass": true
+  },
+  "G05": {
+    "seeds1to20Within300to480": 18,
+    "postFreezeSeeds21to30Within300to480": 8,
+    "pass": false
+  },
+  "validationDistinction": "Seeds11..20 were evaluated for every candidate, not untouched holdout. Seeds21..30 were first run after candidate2 was fixed; failures did not trigger further tuning.",
+  "candidateFiles": [
+    {
+      "path": "docs/evidence/bokumyaku-balance-v6-harvest-0.json",
+      "sha256": "D96E62929A482996228085855A804610BBB6B275CFEEB64FF2D11519225EA936"
+    },
+    {
+      "path": "docs/evidence/bokumyaku-balance-v6-harvest-1.json",
+      "sha256": "C9E10A73BADAD26D5359A78ED8C52799DE5D49E308C6D136721896F28A31795B"
+    },
+    {
+      "path": "docs/evidence/bokumyaku-balance-v6-harvest-2.json",
+      "sha256": "1B0EA77D436782497D3E1C78A9759FE1500B55D4F2FA0F9818C333C8656B4BBE"
+    }
+  ],
+  "limitations": [
+    "Same10seeds reused across6 weapons, not60 independent seeds",
+    "The16x cap is large and accelerates permanent upgrades; economic inflation remains unvalidated",
+    "No hidden build-label multiplier; manual players can buy Harvest",
+    "No crystal points for split children; no reroll/seed selection",
+    "No Unity execution or hardware performance claim"
+  ]
+}
