@@ -48,3 +48,9 @@ TheTowerSDKのREADME/LICENSE/NOTICEを読取。MIT表記に加えて由来別の
 
 ## 2026-10-22 ゲーム参考ビジュアル
 ユーザー提供4画像は色・構図・モチーフの参考のみ。画像やロゴの直接同梱なし。枝は既存SUMI、敵/UIは独自手続き表示。日本語は実行OSのYu Gothic/Meiryo等を参照し、フォントファイルの再配布なし。
+
+## 2026-10-22 素材室の生成PNG・第一弾
+- built-in image_gen.imagegenによる新規生成6点（和紙/山水/円相/点墨/貫筆/滲墨）。モデル番号非公開。提供画像は方向の目視参考、生成入力への添付や切抜きなし。外部ゲームのアセットは同梱しない。
+- 原本: ArtSource~/Bokumyaku/batch-001/*.png。生成初稿は同revisions/。プロンプト・生成回数・SHA256・alpha検査: docs/art/PROMPTS.md、ASSET_MANIFEST.md、inspection-final.json。検査用縮小合成はalpha-small-preview.png。
+- 使用ファイル: UnitySandbox/Assets/BokumyakuPrototype/Resources/BokumyakuArt/{paper_ivory_01,landscape_mist_01,enso_frame_01,weapon_point_01,weapon_pierce_01,weapon_bleed_01}.png。原本bytesを維持しUnity importのサイズ/透過/フィルタを設定。ゲーム表示の判断はBOKUMYAKU_ART_INTEGRATION.md。
+- 新しい外部コード/OSS/フォントファイルの取り込みなし。生成物に独自のOSSライセンス・権利の独占性保証を付与していない。

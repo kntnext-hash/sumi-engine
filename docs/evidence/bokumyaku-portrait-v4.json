@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "width": 440,
+  "height": 1060,
+  "weapon": "Bleed",
+  "scrollY": 541.0,
+  "method": "Editor GameView fixed resolution + synthetic button/wheel; not mobile hardware or physical input"
+}

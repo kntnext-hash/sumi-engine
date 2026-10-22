@@ -166,3 +166,14 @@
 - 同じ水墨プロジェクトに素材専用チャットを作成。threadId: 01a16134-e305-7543-954d-eb9c2c8c17c7。activeで依頼書/スキル確認に着手したことをwait_threadsで確認。
 - 初回6点の仕様と受入はBOKUMYAKU_ART_BRIEF.md。素材室はArtSource~/Bokumyaku/batch-001/とdocs/art/だけを所有。ゲーム室がUnity操作/統合/共有4台帳/commitを所有する。
 - 本記録時点は制作開始、PNG納品/Unity統合の合格ではない。次回は素材室のdocs/art/ASSET_MANIFEST.mdと成果を確認し、採用候補をゲーム画面へ統合して評価する。ゲーム実装はG-V2-04/05から継続。
+
+## 最新: 墨脈 v0.4 自動周回・第一弾素材統合（2026-10-22）
+- 開始HEAD 04e9061、main同期済み。素材室の未コミットArtSource~/docs/artを保護して内容/出所/実寸を確認。Core/Demo/Independent QAを分担、共有Editor/統合/台帳はこのゲーム室が担当。
+- 自動周回の初期値OFF、自然敗北の報酬保存成功後のみ約3秒で再出撃。停止/OFF/手動再出撃/保存失敗で待機を制御し、武器/投資/成長/速度を保持。起動中の完了周回数・獲得結晶を重複集計しない。オフライン進行や途中ラン復元は未実装。
+- 素材室の和紙/山水/円相/3武器アイコンを採用。原本画素は維持、Unity importのサイズ上限とUI余白で表示。枝の透過合成はゲーム側の追加時更新。SUMI Runtime/Editor、Scene YAMLは未変更。
+- Unity6000.3.26f1 compile成功、67 NUnit/11独立検査 PASS。GameView18項目で保存失敗停止/再試行/二重集計防止/実再出撃/透明枝を確認。縦440×1060の選択とスクロール541pxを確認。初回クリック失敗は倍率とイベント間隔を補正、初回JSONも保持。
+- Windows v0.4 build Succeeded（94,980,185bytes、22.076秒、error/warning0）。実Player3武器各900tick、6素材、自動再出撃seed42→43/完了1周/結晶12、exit0。Builds/Bokumyaku-v0.4/Bokumyaku.exe。旧v0.3も保持。成果物hashはevidence/bokumyaku-artifact-v4.json。
+- 報酬候補p1.4/1.2/1.0を既存90条件から後処理。低指数2案は10seed全件で無購入短命周回が最効率になるため不採用。戦闘/報酬式は据置、G-V2-04/05は未合格。REWARD_REVIEW参照。
+- 続き: 固定報酬4と完了実績の積算方式を比較し、自己最高の達成報酬/解放を設計→独立試験→実装。次に分裂/ボス、現行5敵版の正式120条件、敵/核/攻撃美術。全体進捗はBOKUMYAKU_PRODUCTION_PROGRESS.md。
+- v0.4増分はPC試作受入。長時間自動周回、物理入力、モバイル性能/品質、オフライン、ランキング/課金、最終美術は未合格。素材室第一弾は納品/統合済み、追加依頼はまだ送っていない。
+- 終了状態: Bokumyakuシーンの非Play、isDirty=false、runInBackground=false、GameView最大化解除。一時縦画面サイズを削除。旧ユーザーセーブを変更せずQA保存はlogsへ隔離。

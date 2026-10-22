@@ -1,0 +1,73 @@
+{
+  "unity": "6000.3.26f1",
+  "assets": [
+    {
+      "name": "paper_ivory_01",
+      "path": "Assets/BokumyakuPrototype/Resources/BokumyakuArt/paper_ivory_01.png",
+      "sourceBytes": 2533055,
+      "width": 512,
+      "height": 512,
+      "format": "RGB24",
+      "alpha": false,
+      "textureBytes": 1835904,
+      "sourcePixelsUnchanged": true
+    },
+    {
+      "name": "landscape_mist_01",
+      "path": "Assets/BokumyakuPrototype/Resources/BokumyakuArt/landscape_mist_01.png",
+      "sourceBytes": 2201149,
+      "width": 683,
+      "height": 1024,
+      "format": "RGB24",
+      "alpha": false,
+      "textureBytes": 2099072,
+      "sourcePixelsUnchanged": true
+    },
+    {
+      "name": "enso_frame_01",
+      "path": "Assets/BokumyakuPrototype/Resources/BokumyakuArt/enso_frame_01.png",
+      "sourceBytes": 714927,
+      "width": 512,
+      "height": 512,
+      "format": "RGBA32",
+      "alpha": true,
+      "textureBytes": 1049472,
+      "sourcePixelsUnchanged": true
+    },
+    {
+      "name": "weapon_point_01",
+      "path": "Assets/BokumyakuPrototype/Resources/BokumyakuArt/weapon_point_01.png",
+      "sourceBytes": 348358,
+      "width": 256,
+      "height": 256,
+      "format": "RGBA32",
+      "alpha": true,
+      "textureBytes": 263040,
+      "sourcePixelsUnchanged": true
+    },
+    {
+      "name": "weapon_pierce_01",
+      "path": "Assets/BokumyakuPrototype/Resources/BokumyakuArt/weapon_pierce_01.png",
+      "sourceBytes": 284462,
+      "width": 256,
+      "height": 256,
+      "format": "RGBA32",
+      "alpha": true,
+      "textureBytes": 263040,
+      "sourcePixelsUnchanged": true
+    },
+    {
+      "name": "weapon_bleed_01",
+      "path": "Assets/BokumyakuPrototype/Resources/BokumyakuArt/weapon_bleed_01.png",
+      "sourceBytes": 798203,
+      "width": 256,
+      "height": 256,
+      "format": "RGBA32",
+      "alpha": true,
+      "textureBytes": 263040,
+      "sourcePixelsUnchanged": true
+    }
+  ],
+  "textureBytes": 5773568,
+  "classification": "Editor import and current texture allocation; not device performance or total game memory"
+}

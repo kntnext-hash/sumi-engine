@@ -1,0 +1,124 @@
+{
+  "passed": true,
+  "method": "GameView synthetic clicks; live Update; combat accelerated to final natural-defeat tick for repeat fixtures; isolated saves; one intentional save-failure warning; no physical input/mobile test",
+  "checks": [
+    {
+      "name": "initial auto repeat OFF",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "auto repeat ON button",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "auto repeat OFF button",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "art weapon/build/policy buttons",
+      "passed": true,
+      "detail": {
+        "weapon": "Bleed",
+        "build": "Farming",
+        "policy": "Focus",
+        "Speed": 2
+      }
+    },
+    {
+      "name": "six art textures and transparent ink",
+      "passed": true,
+      "detail": {
+        "LoadedArtCount": 6,
+        "transparent": 194767,
+        "ink": 1841,
+        "mismatches": 0
+      }
+    },
+    {
+      "name": "paused overlay does not rebuild",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "defeat reward saved before countdown",
+      "passed": true,
+      "detail": {
+        "CompletedRuns": 1,
+        "SessionCrystals": 12,
+        "AutoRepeatSeconds": 2.8681924007833004
+      }
+    },
+    {
+      "name": "pause freezes countdown",
+      "passed": true,
+      "detail": 2.8681924007833004
+    },
+    {
+      "name": "repeat save neither resets nor duplicates",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "OFF cancels pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ON re-arms saved defeat",
+      "passed": true,
+      "detail": 3.0
+    },
+    {
+      "name": "live auto repeat preserves settings",
+      "passed": true,
+      "detail": {
+        "Seed": 43,
+        "Speed": 2,
+        "CompletedRuns": 1
+      }
+    },
+    {
+      "name": "failed save stops automatic restart",
+      "passed": true,
+      "detail": {
+        "AutoRepeatEnabled": true,
+        "AutoRepeatPending": false,
+        "CompletedRuns": 2
+      }
+    },
+    {
+      "name": "failed save stays stopped",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "explicit save retry re-arms",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "successful retry counted once",
+      "passed": true,
+      "detail": {
+        "CompletedRuns": 2,
+        "SessionCrystals": 23
+      }
+    },
+    {
+      "name": "manual restart cancels pending",
+      "passed": true,
+      "detail": 45
+    },
+    {
+      "name": "live frames",
+      "passed": true,
+      "detail": {
+        "firstFrame": 1694,
+        "endFrame": 4663
+      }
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+[
+  {
+    "file": "enso_frame_01.png",
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "bytes": 714927,
+    "alphaZero": 1140913,
+    "alphaPartial": 431243,
+    "alphaOpaque": 360,
+    "bounds": [
+      49,
+      59,
+      1227,
+      1218
+    ],
+    "centerAlpha": 0,
+    "sha256": "8B79B56FD00B28EAE6572D34B65BF3B636F8E5C4B7CB6D4DA8A62B09EC8651D6"
+  },
+  {
+    "file": "landscape_mist_01.png",
+    "width": 1024,
+    "height": 1536,
+    "format": "Format24bppRgb",
+    "bytes": 2201149,
+    "alphaZero": 0,
+    "alphaPartial": 0,
+    "alphaOpaque": 1572864,
+    "bounds": [
+      0,
+      0,
+      1023,
+      1535
+    ],
+    "centerAlpha": 255,
+    "sha256": "DD80439A2DBA638D69942A5DC6B2AE47196AEAA508189C49FD8644A99B459661"
+  },
+  {
+    "file": "paper_ivory_01.png",
+    "width": 1254,
+    "height": 1254,
+    "format": "Format24bppRgb",
+    "bytes": 2533055,
+    "alphaZero": 0,
+    "alphaPartial": 0,
+    "alphaOpaque": 1572516,
+    "bounds": [
+      0,
+      0,
+      1253,
+      1253
+    ],
+    "centerAlpha": 255,
+    "sha256": "6C6DFE268A279182EB31F38F288E93F73037CA8398EE54FCBEADE82A5E25B385"
+  },
+  {
+    "file": "weapon_bleed_01.png",
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "bytes": 1404387,
+    "alphaZero": 848822,
+    "alphaPartial": 723463,
+    "alphaOpaque": 231,
+    "bounds": [
+      0,
+      0,
+      1233,
+      1253
+    ],
+    "centerAlpha": 253,
+    "sha256": "BC68967CD2849C22DBA6887D41473EB53BB89217B395E19AF40360DEF2488954"
+  },
+  {
+    "file": "weapon_pierce_01.png",
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "bytes": 284462,
+    "alphaZero": 1421991,
+    "alphaPartial": 150282,
+    "alphaOpaque": 243,
+    "bounds": [
+      43,
+      134,
+      1179,
+      1181
+    ],
+    "centerAlpha": 0,
+    "sha256": "69A40BB68BB8EE8DE6A4CFAD3A97059D2E8D9112F37355AFC9FE3EC730A9C144"
+  },
+  {
+    "file": "weapon_point_01.png",
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "bytes": 348358,
+    "alphaZero": 1393406,
+    "alphaPartial": 178401,
+    "alphaOpaque": 709,
+    "bounds": [
+      138,
+      160,
+      885,
+      1155
+    ],
+    "centerAlpha": 252,
+    "sha256": "22FC794BD1B231F35C01D532696BE6F393B22BB92FCACC7F1440DFAA4FF717A0"
+  }
+]

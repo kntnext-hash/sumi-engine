@@ -1,0 +1,62 @@
+{
+    "version": "6000.3.26f1",
+    "error": "",
+    "passed": true,
+    "startFrame": 2,
+    "endFrame": 293258,
+    "runs": [
+        {
+            "requestedWeapon": "Point",
+            "weapon": "Point",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "pigment": 1891.2052001953125
+        },
+        {
+            "requestedWeapon": "Pierce",
+            "weapon": "Pierce",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "pigment": 1891.2052001953125
+        },
+        {
+            "requestedWeapon": "Bleed",
+            "weapon": "Bleed",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 4,
+            "peakWeaponFields": 4,
+            "pigment": 1891.2052001953125
+        }
+    ],
+    "autoRepeatPassed": true,
+    "autoRepeatSeed": 43,
+    "completedRuns": 1,
+    "loadedArtCount": 6,
+    "overlayTransparentPixels": 195342,
+    "overlayInkPixels": 1266,
+    "sessionCrystals": 12,
+    "autoRepeatMethod": "Fast-forwarded deterministic pre-defeat fixture; live Update defeat/save/3-second active countdown/restart"
+}

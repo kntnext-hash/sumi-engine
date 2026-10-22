@@ -21,6 +21,15 @@ namespace Bokumyaku.Presentation
         public BuildPreset SelectedBuild { get; private set; } = BuildPreset.Manual;
         public GrowthPolicy SelectedPolicy { get; private set; } = GrowthPolicy.Balanced;
         public WeaponKind SelectedWeapon { get; private set; } = WeaponKind.Point;
+        readonly AutoRepeatController autoRepeat = new AutoRepeatController();
+        public bool AutoRepeatEnabled => autoRepeat.Enabled;
+        public bool AutoRepeatPending => autoRepeat.IsPending;
+        public double AutoRepeatSeconds => autoRepeat.SecondsRemaining;
+        public int CompletedRuns { get; private set; }
+        public long SessionCrystals { get; private set; }
+        public int LoadedArtCount { get; private set; }
+        public int BranchOverlayRebuilds { get; private set; }
+        public Texture2D BranchOverlay => branchOverlay;
         public event Action ProgressChanged;
         string saveWarning = "";
         bool progressLoaded;
@@ -29,12 +38,16 @@ namespace Bokumyaku.Presentation
         public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-prototype-v1.json");
         SumiCanvas canvas;
         Texture2D disc;
-        GUIStyle title, heading, body, small, button, number;
+        Texture2D paperArt, landscapeArt, ensoArt, branchOverlay;
+        readonly Texture2D[] weaponArt = new Texture2D[3];
+        Color32[] branchPixels;
+        GUIStyle title, heading, body, small, button, number, iconLabel;
         readonly List<Flash> flashes = new List<Flash>();
         readonly Dictionary<int, float> growth = new Dictionary<int, float>();
         float tickClock;
         int drawnBranches;
         bool metaTab, rewarded;
+        bool endHandled, rewardSaved;
         Vector2 panelScroll;
         readonly int[] observedLevels = new int[6];
         readonly float[] levelChangedAt = new float[6];
@@ -82,9 +95,21 @@ namespace Bokumyaku.Presentation
         }
         public bool SaveProgress()
         {
-            try { MetaSaveStore.Save(SavePath, Meta); saveWarning = ""; return true; }
+            try
+            {
+                MetaSaveStore.Save(SavePath, Meta); saveWarning = "";
+                // Repeated saves must not restart a countdown or duplicate a reward.
+                bool newlySavedReward = rewarded && !rewardSaved;
+                if (rewarded) rewardSaved = true;
+                if (newlySavedReward) autoRepeat.Schedule(Run.State, true);
+                return true;
+            }
             catch (Exception e) when (e is System.IO.IOException || e is UnauthorizedAccessException || e is ArgumentException)
-            { saveWarning = "保存に失敗しました。再試行してください。"; Debug.LogWarning("Bokumyaku save: " + e.Message); return false; }
+            {
+                rewardSaved = false; autoRepeat.Cancel();
+                saveWarning = "保存に失敗。自動周回を停止中。再試行してください。";
+                Debug.LogWarning("Bokumyaku save: " + e.Message); return false;
+            }
         }
         void EnsureCanvas()
         {
@@ -96,9 +121,22 @@ namespace Bokumyaku.Presentation
             canvas.diffusionFps = 0; // Persistent branches are fixed. Combat effects are transient overlays.
             canvas.uploadFps = 15;
             canvas.displayDensity = 7f;
+            paperArt = LoadArt("paper_ivory_01");
+            landscapeArt = LoadArt("landscape_mist_01");
+            ensoArt = LoadArt("enso_frame_01");
+            weaponArt[0] = LoadArt("weapon_point_01");
+            weaponArt[1] = LoadArt("weapon_pierce_01");
+            weaponArt[2] = LoadArt("weapon_bleed_01");
+        }
+        Texture2D LoadArt(string name)
+        {
+            var texture = Resources.Load<Texture2D>("BokumyakuArt/" + name);
+            if (texture != null) LoadedArtCount++;
+            return texture;
         }
         public void StartRun(int seed)
         {
+            autoRepeat.Cancel();
             EnsureCanvas();
             LoadProgress();
             Run = new RunSimulator(seed, Meta);
@@ -106,7 +144,7 @@ namespace Bokumyaku.Presentation
             Run.SetPolicy(SelectedPolicy);
             Run.SetWeapon(SelectedWeapon);
             AwaitingStart = false; IsPaused = false; Speed = 1;
-            tickClock = 0; drawnBranches = 0; rewarded = false;
+            tickClock = 0; drawnBranches = 0; rewarded = false; endHandled = false; rewardSaved = false;
             flashes.Clear(); growth.Clear(); canvas.Clear();
             Array.Clear(observedLevels, 0, observedLevels.Length);
             Array.Clear(levelChangedAt, 0, levelChangedAt.Length);
@@ -131,6 +169,13 @@ namespace Bokumyaku.Presentation
         }
         public void SetSpeed(int speed) { Speed = Mathf.Clamp(speed, 1, 2); }
         public void SetPaused(bool paused) { IsPaused = paused; }
+        public void SetAutoRepeat(bool enabled)
+        {
+            if (autoRepeat.Enabled == enabled) return;
+            autoRepeat.SetEnabled(enabled);
+            if (enabled && !AwaitingStart && rewarded && rewardSaved && Run != null)
+                autoRepeat.Schedule(Run.State, true);
+        }
         public void SetPolicy(GrowthPolicy policy)
         {
             if (!Enum.IsDefined(typeof(GrowthPolicy), policy)) throw new ArgumentOutOfRangeException(nameof(policy));
@@ -158,7 +203,18 @@ namespace Bokumyaku.Presentation
                 flashes[i].Life -= Time.unscaledDeltaTime;
                 if (flashes[i].Life <= 0) flashes.RemoveAt(i);
             }
-            if (Run == null || AwaitingStart || IsPaused || Run.State != RunStatus.Running) return;
+            if (Run == null || AwaitingStart) return;
+            if (Run.State != RunStatus.Running)
+            {
+                CompleteRun();
+                if (autoRepeat.Advance(Mathf.Min(Time.unscaledDeltaTime, .25f), IsPaused))
+                {
+                    int nextSeed = unchecked(Run.Seed + 1), previousSpeed = Speed;
+                    StartRun(nextSeed); Speed = previousSpeed;
+                }
+                return;
+            }
+            if (IsPaused) return;
             tickClock += Mathf.Min(Time.unscaledDeltaTime, .25f) * Speed;
             int budget = 16;
             while (tickClock >= 1f / RunSimulator.TickRate && budget-- > 0 && Run.State == RunStatus.Running)
@@ -173,12 +229,19 @@ namespace Bokumyaku.Presentation
                 DrawNewBranches();
             }
             ObserveUpgrades();
-            if (Run.State != RunStatus.Running && !rewarded)
+            if (Run.State != RunStatus.Running) CompleteRun();
+        }
+        void CompleteRun()
+        {
+            if (endHandled) return;
+            endHandled = true;
+            rewarded = Run.ClaimReward(Meta);
+            if (rewarded)
             {
-                rewarded = Run.ClaimReward(Meta);
-                if (rewarded) { SaveProgress(); ProgressChanged?.Invoke(); }
-                notice = Run.State == RunStatus.CapacityExceeded ? "試作版の処理上限。報酬は付与されません。" : "結晶で永続強化して、次の周回へ。";
+                CompletedRuns++; SessionCrystals += Run.CrystalsReward;
+                SaveProgress(); ProgressChanged?.Invoke();
             }
+            notice = Run.State == RunStatus.CapacityExceeded ? "試作版の処理上限。報酬は付与されません。" : "結晶で永続強化して、次の周回へ。";
         }
         void ObserveUpgrades()
         {
@@ -196,6 +259,7 @@ namespace Bokumyaku.Presentation
         void DrawNewBranches()
         {
             var branches = Run.Branches;
+            bool changed = drawnBranches < branches.Count;
             for (; drawnBranches < branches.Count; drawnBranches++)
             {
                 var b = branches[drawnBranches];
@@ -220,6 +284,27 @@ namespace Bokumyaku.Presentation
                 }
                 canvas.End(); growth[b.Id] = Time.unscaledTime;
             }
+            if (changed) RebuildBranchOverlay();
+        }
+        void RebuildBranchOverlay()
+        {
+            // Game-only adapter: same optical density as RenderRgba, without its opaque paper.
+            // Called only when branches change, never from OnGUI or a per-frame pixel loop.
+            int width = canvas.Core.Paper.Width, height = canvas.Core.Paper.Height;
+            if (branchOverlay == null)
+            {
+                branchOverlay = new Texture2D(width, height, TextureFormat.RGBA32, false, false)
+                { name = "Bokumyaku transparent ink", filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.DontSave };
+                branchPixels = new Color32[width * height];
+            }
+            Color32 color = canvas.inkColor;
+            for (int y = 0; y < height; y++) for (int x = 0; x < width; x++)
+            {
+                float alpha = 1f - Mathf.Exp(-canvas.displayDensity * canvas.Core.Paper.PigmentAt(x, y));
+                branchPixels[y * width + x] = new Color32(color.r, color.g, color.b, (byte)Mathf.RoundToInt(Mathf.Clamp01(alpha) * 255f));
+            }
+            branchOverlay.SetPixels32(branchPixels); branchOverlay.Apply(false, false);
+            BranchOverlayRebuilds++;
         }
         void InitStyles()
         {
@@ -238,6 +323,7 @@ namespace Bokumyaku.Presentation
             button.hover.background = Texture2D.whiteTexture;
             button.active.background = Texture2D.whiteTexture;
             button.normal.textColor = ink; button.hover.textColor = ink; button.active.textColor = ink;
+            iconLabel = new GUIStyle(body) { alignment = TextAnchor.MiddleCenter };
             disc = new Texture2D(48, 48, TextureFormat.RGBA32, false);
             disc.name = "Bokumyaku procedural node"; disc.hideFlags = HideFlags.DontSave;
             var pixels = new Color[48 * 48];
@@ -257,6 +343,7 @@ namespace Bokumyaku.Presentation
             try
             {
                 Fill(new Rect(0, 0, width, height), paper);
+                DrawArt(new Rect(0, 0, width, height), paperArt, .45f, ScaleMode.ScaleAndCrop);
                 GUI.Label(new Rect(24, 14, 300, 43), "墨 脈", title);
                 GUI.Label(new Rect(25, 55, 330, 20), "B O K U M Y A K U   /   墨が生きる防衛", small);
                 Fill(new Rect(24, 85, width - 48, 1), new Color(.75f, .72f, .64f));
@@ -265,7 +352,7 @@ namespace Bokumyaku.Presentation
                 if (portrait) DrawPanel(new Rect(24, 648, 392, 388), true);
                 else DrawPanel(new Rect(558, 110, 494, 616), false);
                 GUI.Label(new Rect(field.x, field.yMax + 7, field.width, 18), "墨の枝  ／  金の末端  ／  朱の敵", small);
-                GUI.Label(new Rect(width - 170, portrait ? 20 : 42, 146, 25), "縦切り試作  0.3", small);
+                GUI.Label(new Rect(width - 170, portrait ? 20 : 42, 146, 25), "縦切り試作  0.4", small);
             }
             finally { GUI.matrix = oldMatrix; GUI.color = oldColor; GUI.backgroundColor = oldBackground; GUI.enabled = oldEnabled; }
         }
@@ -273,7 +360,10 @@ namespace Bokumyaku.Presentation
         Vector2 Logical(Rect field, Vector2 point) { return View(field, 192 + point.x * .48, 256 + point.y * .48); }
         void DrawField(Rect field)
         {
-            GUI.DrawTexture(field, canvas.Texture, ScaleMode.StretchToFill);
+            Fill(field, paper);
+            DrawArt(field, paperArt, 1f, ScaleMode.ScaleAndCrop);
+            DrawArt(field, landscapeArt, .62f, ScaleMode.ScaleAndCrop);
+            GUI.DrawTexture(field, branchOverlay != null ? branchOverlay : canvas.Texture, ScaleMode.StretchToFill);
             var center = View(field, 192, 256);
             Ring(center, field.width * .45f, new Color(.58f, .53f, .42f, .17f));
             Ring(center, field.width * .25f, new Color(.58f, .53f, .42f, .10f));
@@ -341,6 +431,7 @@ namespace Bokumyaku.Presentation
             {
                 var box = new Rect(field.x + 22, field.center.y - 126, field.width - 44, 252);
                 Fill(box, new Color(.96f, .95f, .91f, .96f));
+                DrawArt(new Rect(box.center.x - 110, box.center.y - 110, 220, 220), ensoArt, .10f, ScaleMode.ScaleToFit);
                 string status = AwaitingStart ? "一滴から、命が芽吹く。" : Run.State == RunStatus.Defeated ? "墨が静まり、核が砕けた。" : Run.State == RunStatus.TestCompleted ? RunSimulator.WaveLimit + "の波を、耐え抜いた。" : "試作版の処理上限";
                 GUI.Label(new Rect(box.x + 14, box.y + 12, box.width - 28, 35), status, heading);
                 GUI.Label(new Rect(box.x + 14, box.y + 48, box.width - 28, 146), AwaitingStart
@@ -366,11 +457,19 @@ namespace Bokumyaku.Presentation
             if (Button(new Rect(x + (bw + 8) * 2, y, bw, 29), metaTab ? "周回強化へ" : "永続強化へ", metaTab))
             { metaTab = !metaTab; panelScroll = Vector2.zero; }
             y += 38;
+            if (Button(new Rect(x, y, 144, 30), AutoRepeatEnabled ? "自動周回  ON" : "自動周回  OFF", AutoRepeatEnabled)) SetAutoRepeat(!AutoRepeatEnabled);
+            string repeatStatus = AutoRepeatPending
+                ? "再出撃 " + AutoRepeatSeconds.ToString("0.0") + "秒" + (IsPaused ? " / 一時停止" : "")
+                : !string.IsNullOrEmpty(saveWarning) ? "保存待ち / 再出撃しません"
+                : AutoRepeatEnabled ? "敗北・保存後に再出撃" : "次の出撃は手動";
+            GUI.Label(new Rect(x + 152, y, w - 152, 30), repeatStatus, small);
+            GUI.Label(new Rect(x, y + 32, w, 24), "完了 " + CompletedRuns + " 周  ／  獲得 " + SessionCrystals + " 結晶  (この起動中)", small);
+            y += 62;
             float footerHeight = string.IsNullOrEmpty(saveWarning) ? 29 : 48;
             Rect viewport = new Rect(x, y, w, panel.yMax - y - footerHeight);
             float contentWidth = w - 20;
             // The battlefield and pause/speed controls stay visible while the upgrade list scrolls.
-            panelScroll = GUI.BeginScrollView(viewport, panelScroll, new Rect(0, 0, contentWidth, metaTab ? 348 : 702), false, true);
+            panelScroll = GUI.BeginScrollView(viewport, panelScroll, new Rect(0, 0, contentWidth, metaTab ? 348 : 746), false, true);
             try { DrawUpgradeContent(contentWidth); }
             finally { GUI.EndScrollView(); }
             if (!string.IsNullOrEmpty(saveWarning))
@@ -402,8 +501,8 @@ namespace Bokumyaku.Presentation
             {
                 GUI.Label(new Rect(0, y, w, 26), "武器  ／  投資方針とは独立", heading); y += 30;
                 for (int i = 0; i < 3; i++)
-                    if (Button(new Rect((bw + 8) * i, y, bw, 30), WeaponNames[i], SelectedWeapon == (WeaponKind)i)) SetWeapon((WeaponKind)i);
-                y += 34;
+                    if (WeaponButton(new Rect((bw + 8) * i, y, bw, 74), i)) SetWeapon((WeaponKind)i);
+                y += 78;
                 GUI.Label(new Rect(0, y, w, 42), WeaponNotes[(int)SelectedWeapon], small); y += 44;
                 GUI.Label(new Rect(0, y, w, 26), "墨の投資方針", heading); y += 30;
                 for (int i = 0; i < 3; i++)
@@ -450,6 +549,30 @@ namespace Bokumyaku.Presentation
             GUI.backgroundColor = before;
             return clicked;
         }
+        bool WeaponButton(Rect rect, int index)
+        {
+            bool clicked = Button(rect, "", SelectedWeapon == (WeaponKind)index);
+            // Preserve the supplied icon's aspect and transparent margins; no source image edits.
+            if (weaponArt[index] != null)
+                DrawArt(new Rect(rect.x + 8, rect.y + 4, rect.width - 16, 44), weaponArt[index], 1f, ScaleMode.ScaleToFit);
+            else
+            {
+                Vector2 center = new Vector2(rect.center.x, rect.y + 25);
+                if (index == 0) Dot(center, 5, ink);
+                else if (index == 1) Line(center + new Vector2(-14, 6), center + new Vector2(14, -6), 4, ink);
+                else Ring(center, 12, ink);
+            }
+            GUI.Label(new Rect(rect.x + 4, rect.yMax - 25, rect.width - 8, 22), WeaponNames[index], iconLabel);
+            return clicked;
+        }
+        void DrawArt(Rect rect, Texture2D texture, float opacity, ScaleMode mode)
+        {
+            if (texture == null) return;
+            Color previous = GUI.color;
+            GUI.color = new Color(1, 1, 1, opacity);
+            GUI.DrawTexture(rect, texture, mode, true);
+            GUI.color = previous;
+        }
         void Fill(Rect rect, Color color) { var old = GUI.color; GUI.color = color; GUI.DrawTexture(rect, Texture2D.whiteTexture); GUI.color = old; }
         void Dot(Vector2 center, float radius, Color color) { var old = GUI.color; GUI.color = color; GUI.DrawTexture(new Rect(center.x - radius, center.y - radius, radius * 2, radius * 2), disc); GUI.color = old; }
         void Line(Vector2 a, Vector2 b, float width, Color color)
@@ -469,7 +592,13 @@ namespace Bokumyaku.Presentation
                 Line(previous, next, .7f, color); previous = next;
             }
         }
-        void OnDestroy() { if (disc != null) Destroy(disc); if (japaneseFont != null) Destroy(japaneseFont); }
+        void OnDestroy()
+        {
+            autoRepeat.Cancel();
+            if (disc != null) Destroy(disc);
+            if (branchOverlay != null) Destroy(branchOverlay);
+            if (japaneseFont != null) Destroy(japaneseFont);
+        }
         sealed class Flash { public Vector2 A, B; public float Life; public WeaponKind Weapon; }
     }
 }

@@ -181,3 +181,17 @@ WindowsのUnity実行例（Unityの具体パスを導入済みのものに置換
 - c6f0f17/cleanを開始時に確認し、実コードの3敵/3武器/6周回/4恒久と直前の証拠を照合。既存51NUnit/10独立/18UI/Player結果を進捗へ参照。今回コード変更なし、テスト再実行なし。
 - list_projectsで水墨プロジェクトと既存描画室を確認。別の素材専用チャットをcreate_threadで作成、wait_threadsでactiveと着手コメントを確認。画像生成の成功や6点完了は未確認。
 - 新規進捗表と素材依頼書をgit diff --checkで確認。素材室はUnity未取込みのフォルダへ納品し、実alpha/寸法/小サイズ識別/出所記録を受入条件とした。素材制作とゲーム表示/実機QAを区別。
+
+## 墨脈 v0.4検証（2026-10-22）
+- Compile: Unity6000.3.26f1でcompleted/failed=false/errors=[]。最終Console groundTruthもcompilationFailed=false、現在error/warning0。過去buffer履歴は保持。変更なしのEngine42試験は再実行していない。
+- A: bokumyaku-editmode-v4.xml、67/67 PASS、26.9829105秒。自動再出撃16ケースを追加（初期OFF/未保存/終了状態/停止/OFF/単発発火/無効delta/手動cancel）。scripts/Test-Bokumyaku.ps1で純C#実コンパイル、11 PASS/0 FAIL（bokumyaku-standalone-v4.txt）。
+- R/UI: bokumyaku-play-v4.json、18/18 PASS、frame1694→4663。GameView合成ボタン入力、実Update、通常保存先と分離。3秒待機/停止/OFF/再ON/手動開始/選択保持、結晶12→計23/完了2回の一度だけ集計、保存障害で予約停止・明示再試行成功を確認。保存障害はディレクトリを保存先に使い期待されたwarning1件を出した。正常ファイル未変更も確認。
+- 上記敗北fixtureは純シミュレーションを自然敗北1tick前まで加速し、最後のtick・報酬・保存・待機・再出撃を実Updateで実行。v3の実時間自然敗北試験とは区別。約3秒は1frame最大0.25秒のactive countdownであり、サスペンド中の壁時計待機やオフライン進行ではない。
+- R/Art: 6Textureロード、枝alphaは透明194767/墨1841画素、Coreの光学濃度から計算した全alphaと不一致0。停止中のrebuilds=4を維持。bokumyaku-art-import-v4.jsonは原本bytes一致/実import寸法/形式と5,773,568bytesのTexture割当。ゲーム総メモリ/FPS/モバイル計測ではない。
+- R/Portrait: bokumyaku-portrait-v4.json、440×1060、Bleedボタンとscroll541px PASS。初回はGameView拡大と同じ評価内のDown/Upでクリック未反映、initial.jsonを保持。fit＋別イベントに分けてDown/Upを送り成功。ゲームコードの修正なし。自動化helperにもfit/イベント間隔を記録。top/bottom PNGを目視。人の物理入力/モバイル実機とは区別。
+- R/Images: bokumyaku-gameplay-v4.png（序盤戦闘）、portrait-top/bottom-v4.png、start-v4.png（円相と出撃前）を実GameViewから取得。朱敵/黒枝/金ノードと淡い山水の識別を目視。最高密度・最終美術の受入ではない。
+- Balance: bokumyaku-reward-candidates-v4.json。v3の90条件の後処理、戦闘を再走していない。RunSimulator SHAがv3と完全一致、90/90の元報酬一致。p1.2/1.0は各10/10seedで無購入Manualが最効率、採用しない。詳細BOKUMYAKU_REWARD_REVIEW.md。式据置で役割差未合格。
+- Build: bokumyaku-build-v4.json、build_9228027bf70d、Succeeded、94,980,185bytes/22.076秒、error/warning0。実行ファイルとDLLのSHAはbokumyaku-artifact-v4.json。
+- Player: bokumyaku-player-v4.json、launch-v4.json、exit0、62.99秒、frame2→293258。3武器各900tick/7枝/9撃破/2購入、実武器とAttackEvent一致、滲墨4領域。自動再出撃seed42→43/完了1/結晶12/速度2/設定保持、6Texture、透明195342/墨1266画素。明示probe時のみ自動操作、隔離セーブ。非表示起動のデータ検査であり画面やFPS計測ではない。Player.logのException/Error/Failed一致0。
+- ツール失敗の分類: 画像toolのsave_pathをTempからAssets/Tempへ補正。Play再入場中の一時Pipeline切断はCLI statusでreadyを再確認して復旧。statusに非対応caller/skillを付けた1回は引数エラーで、対応書式へ修正。ゲーム不具合/不合格を隠して成功に置換していない。
+- 未達: G-V2-04/05、5敵/全武器/正式120条件、長時間周回/途中復帰/オフライン、物理入力、モバイル、最終美術/音/競技/課金。

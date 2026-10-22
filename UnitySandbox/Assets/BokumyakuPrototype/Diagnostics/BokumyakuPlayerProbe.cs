@@ -18,6 +18,10 @@ namespace Bokumyaku.Diagnostics
             public bool passed;
             public int startFrame, endFrame;
             public WeaponReport[] runs;
+            public bool autoRepeatPassed;
+            public int autoRepeatSeed, completedRuns, loadedArtCount, overlayTransparentPixels, overlayInkPixels;
+            public long sessionCrystals;
+            public string autoRepeatMethod;
         }
         [Serializable] sealed class WeaponReport
         {
@@ -87,6 +91,46 @@ namespace Bokumyaku.Diagnostics
                         row.pigment > 0 && row.sawAttack && row.weaponMatches &&
                         (i != (int)WeaponKind.Bleed || row.peakWeaponFields > 0);
                     report.passed &= row.passed;
+                }
+                catch (Exception e) { report.error = e.ToString(); report.passed = false; }
+            }
+            if (report.error == null && report.passed)
+            {
+                try
+                {
+                    game.SetBuild(BuildPreset.Manual); game.SetWeapon(WeaponKind.Point);
+                    game.SetPolicy(GrowthPolicy.Focus); game.SetAutoRepeat(true);
+                    game.StartRun(42); game.SetSpeed(2);
+                    // Accelerate only the deterministic fixture; the final defeat, settlement,
+                    // saved reward, countdown and next run must occur through live Update.
+                    var expected = new RunSimulator(42, game.Meta);
+                    expected.SetPolicy(GrowthPolicy.Focus);
+                    while (expected.State == RunStatus.Running) expected.Tick();
+                    if (expected.State != RunStatus.Defeated) throw new InvalidOperationException("Defeat fixture missing.");
+                    while (game.Run.TickCount < expected.TickCount - 1) game.Run.Tick();
+                    report.autoRepeatMethod = "Fast-forwarded deterministic pre-defeat fixture; live Update defeat/save/3-second active countdown/restart";
+                }
+                catch (Exception e) { report.error = e.ToString(); report.passed = false; }
+                float retryDeadline = Time.realtimeSinceStartup + 12;
+                while (report.error == null && game.Run.Seed == 42 && Time.realtimeSinceStartup < retryDeadline)
+                    yield return null;
+                try
+                {
+                    game.SetPaused(true);
+                    report.autoRepeatSeed = game.Run.Seed;
+                    report.completedRuns = game.CompletedRuns;
+                    report.sessionCrystals = game.SessionCrystals;
+                    report.loadedArtCount = game.LoadedArtCount;
+                    foreach (var pixel in game.BranchOverlay.GetPixels32())
+                    {
+                        if (pixel.a == 0) report.overlayTransparentPixels++;
+                        else report.overlayInkPixels++;
+                    }
+                    report.autoRepeatPassed = game.Run.Seed == 43 && game.CompletedRuns == 1 && game.SessionCrystals > 0 &&
+                        game.Speed == 2 && game.Run.Policy == GrowthPolicy.Focus && game.Run.Build == BuildPreset.Manual &&
+                        game.Run.Weapon == WeaponKind.Point && !game.AutoRepeatPending && game.Meta.Crystals == game.SessionCrystals;
+                    report.passed &= report.autoRepeatPassed && report.loadedArtCount == 6 && report.overlayTransparentPixels > 0 && report.overlayInkPixels > 0;
+                    game.SetAutoRepeat(false);
                 }
                 catch (Exception e) { report.error = e.ToString(); report.passed = false; }
             }
