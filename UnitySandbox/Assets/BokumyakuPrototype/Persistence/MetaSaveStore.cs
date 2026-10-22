@@ -36,6 +36,18 @@ namespace Bokumyaku.Persistence
                 { warning = "Save unreadable; original preserved, starting temporary progress."; return new MetaProgress(); }
             }
         }
+        // Migration must never silently replace unreadable legacy progress with zero.
+        public static MetaProgress LoadForMigration(string path, out string warning)
+        {
+            warning = "";
+            try { return Read(path); }
+            catch (Exception e) when (e is IOException || e is InvalidDataException || e is ArgumentException)
+            {
+                var recovered = Read(path + ".bak");
+                warning = "Legacy save recovered from backup; original preserved.";
+                return recovered;
+            }
+        }
         public static void Save(string path, MetaProgress meta)
         {
             if (!Valid(meta)) throw new InvalidDataException("Invalid progress.");

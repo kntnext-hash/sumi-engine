@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Bokumyaku.Simulation
 {
-    public enum WeaponKind { Point, Pierce, Bleed }
+    public enum WeaponKind { Point, Pierce, Bleed, Sweep, Enso, Resonance }
     public enum BuildPreset { Manual, Farming, Record }
     public enum RunStatus { Running, Defeated, TestCompleted, CapacityExceeded }
     public enum UpgradeKind { Damage, Speed, Supply, Branch, Width, Bleed }
     public enum GrowthPolicy { Balanced, Intercept, Focus }
-    public enum EnemyKind { Normal, Fast, Heavy }
+    public enum EnemyKind { Normal, Fast, Heavy, Splitter, Boss }
     public enum MetaUpgrade { Damage, Supply, Growth, Harvest }
 
     [Serializable]
@@ -42,6 +42,7 @@ namespace Bokumyaku.Simulation
         public double MaxHp { get; internal set; }
         public double Speed { get; internal set; }
         public int SpawnWave { get; internal set; }
+        public bool IsSplitChild { get; internal set; }
         public double ViewX { get { return 192 + X * .48; } }
         public double ViewY { get { return 256 + Y * .48; } }
     }
@@ -80,13 +81,13 @@ namespace Bokumyaku.Simulation
     }
 
     // Fixed 30Hz three-enemy prototype. All balance and distribution choices remain hypotheses.
-    public sealed class RunSimulator
+    public sealed partial class RunSimulator
     {
         public const int TickRate = 30;
         public const int WaveLimit = 60;
         public const int MaxTicks = WaveLimit * 360;
         // v2 experimental tuning: shared by all builds, with original Wave/reward formulas retained.
-        public const double BaseAttackDamage = 8;
+        public const double BaseAttackDamage = 7.5;
         public const double BaseAttackRange = 150;
         public const double GrowthRadius = 150;
         public const int EnemyLimit = 96;
@@ -97,7 +98,15 @@ namespace Bokumyaku.Simulation
         public const int FieldLimit = 96;
         readonly List<InkFieldState> fields = new List<InkFieldState>();
         uint spawnRng, growthRng;
-        int nextEnemyId, growthCount;
+        int nextEnemyId, growthCount, repairCount, lastBossWave;
+        double rewardPoints;
+        readonly int[] spawnedByType = new int[5], killedByType = new int[5], leakedByType = new int[5];
+        public int[] SpawnedByType { get { return (int[])spawnedByType.Clone(); } }
+        public int[] KilledByType { get { return (int[])killedByType.Clone(); } }
+        public int[] LeakedByType { get { return (int[])leakedByType.Clone(); } }
+        public double RewardPoints { get { return rewardPoints; } }
+        public int RepairCount { get { return repairCount; } }
+        public int RepairCost { get { return (int)Math.Ceiling(25 * Math.Pow(1.5, repairCount)); } }
         double spawnCredit, growthCharge;
         bool rewardClaimed;
         readonly int[] levels = new int[6];
@@ -149,6 +158,11 @@ namespace Bokumyaku.Simulation
             if (levels[i] >= caps[i] || RunInk < cost) return false;
             RunInk -= cost; levels[i]++; return true;
         }
+        public bool TryRepair()
+        {
+            if (State != RunStatus.Running || CoreHp >= 10 || repairCount >= 5 || RunInk < RepairCost) return false;
+            RunInk -= RepairCost; CoreHp = Math.Min(10, CoreHp + 2); repairCount++; return true;
+        }
         public void SetPolicy(GrowthPolicy policy)
         {
             if (!Enum.IsDefined(typeof(GrowthPolicy), policy)) throw new ArgumentOutOfRangeException("policy");
@@ -199,46 +213,56 @@ namespace Bokumyaku.Simulation
             attacks.Clear(); if (State != RunStatus.Running) return;
             TickCount++; if (TickCount % 30 == 0) AutoBuy(); Wave = Math.Min(WaveLimit, (TickCount - 1) / 360 + 1);
             int phase = (TickCount - 1) % 360;
+            if (phase == 0 && Wave % 10 == 0 && lastBossWave != Wave)
+            {
+                if (!Spawn(EnemyKind.Boss)) { StopAtCapacity(); return; }
+                lastBossWave = Wave;
+            }
             if (phase < 270)
             {
                 spawnCredit += SpawnRate(Wave) / TickRate;
-                while (spawnCredit >= 1) { spawnCredit -= 1; if (!Spawn()) { State = RunStatus.CapacityExceeded; return; } }
+                while (spawnCredit >= 1) { spawnCredit -= 1; if (!Spawn()) { StopAtCapacity(); return; } }
             }
             for (int i = enemies.Count - 1; i >= 0; i--)
             {
                 var e = enemies[i]; double distance = Math.Sqrt(e.X * e.X + e.Y * e.Y);
                 double step = e.Speed / TickRate;
-                if (distance <= 12 + step) { CoreHp = Math.Max(0, CoreHp - (e.Kind == EnemyKind.Heavy ? 2 : 1)); Leaks++; enemies.RemoveAt(i); }
+                if (distance <= 12 + step) { CoreHp = Math.Max(0, CoreHp - (e.Kind == EnemyKind.Boss ? 4 : e.Kind == EnemyKind.Heavy ? 2 : 1)); Leaks++; leakedByType[(int)e.Kind]++; enemies.RemoveAt(i); }
                 else { e.X *= (distance - step) / distance; e.Y *= (distance - step) / distance; }
             }
             if (CoreHp == 0) { Finish(RunStatus.Defeated); return; }
             foreach (var b in branches)
             {
+                if (State != RunStatus.Running) break;
                 if (!b.IsTip || b.NextAttack > TickCount) continue;
                 EnemyState target = null; double eta = double.MaxValue;
-                double range = (BaseAttackRange + 4 * levels[4]) * (Weapon == WeaponKind.Pierce ? 1.2 : 1);
+                double range = Weapon == WeaponKind.Enso ? 150 + 4 * levels[4] : (BaseAttackRange + 4 * levels[4]) * (Weapon == WeaponKind.Pierce ? 1.2 : 1);
                 foreach (var e in enemies)
                 {
                     double dx = e.X - b.X, dy = e.Y - b.Y;
-                    if (dx * dx + dy * dy > range * range) continue;
+                    if (dx * dx + dy * dy > range * range || (Weapon == WeaponKind.Enso && dx * dx + dy * dy < 20 * 20)) continue;
                     double candidate = Math.Sqrt(e.X * e.X + e.Y * e.Y) / e.Speed;
                     if (target == null || candidate < eta || (candidate == eta && (e.Hp < target.Hp || (e.Hp == target.Hp && e.Id < target.Id)))) { target = e; eta = candidate; }
                 }
                 if (target == null) continue;
                 double pressure = Pressure(b), baseDamage = BaseAttackDamage * Math.Pow(1.10, levels[0]) * (1 + .025 * meta.Damage);
-                double damage = baseDamage * pressure * (Weapon == WeaponKind.Pierce ? .8 : Weapon == WeaponKind.Bleed ? .45 : 1);
-                double interval = Weapon == WeaponKind.Pierce ? 1.35 : Weapon == WeaponKind.Bleed ? 1.1 : 1;
+                double damage = baseDamage * pressure * (Weapon == WeaponKind.Pierce ? .8 : Weapon == WeaponKind.Bleed ? .45 : Weapon == WeaponKind.Sweep ? .85 : Weapon == WeaponKind.Enso ? .8 : Weapon == WeaponKind.Resonance ? 1 : 1);
+                double interval = Weapon == WeaponKind.Pierce ? 1.35 : Weapon == WeaponKind.Bleed ? 1.1 : Weapon == WeaponKind.Sweep ? 1.2 : Weapon == WeaponKind.Enso ? 1.35 : Weapon == WeaponKind.Resonance ? 1.15 : 1;
                 b.NextAttack = TickCount + (int)Math.Ceiling(interval * TickRate / Math.Min(4.5, 1.25 * Math.Pow(1.07, levels[1])));
                 if (Weapon == WeaponKind.Bleed)
                     AddField(target.X, target.Y, 32 + 3 * levels[4] + 2 * levels[5], baseDamage * pressure * .85 * (1 + .12 * levels[5]) / TickRate, 48);
                 else if (levels[5] > 0)
                     AddField(target.X, target.Y, 10 + 2 * levels[5], baseDamage * .08 * levels[5] / TickRate, 21);
                 if (Weapon == WeaponKind.Pierce) Pierce(b, target, range, damage, pressure);
+                else if (Weapon == WeaponKind.Sweep || Weapon == WeaponKind.Enso) AreaHit(b, target, range, damage, pressure);
+                else if (Weapon == WeaponKind.Resonance) ChainHit(b, target, damage, pressure);
                 else Hit(b, target, damage, pressure);
             }
+            if (State != RunStatus.Running) return;
             RemoveExpiredFields();
             for (int i = enemies.Count - 1; i >= 0; i--)
             {
+                if (State != RunStatus.Running) break;
                 var e = enemies[i]; int stacks = 0; double damage = 0;
                 // The oldest two overlapping live fields win across all weapon types.
                 foreach (var f in fields) { double dx = f.X - e.X, dy = f.Y - e.Y; if (dx * dx + dy * dy <= f.Radius * f.Radius) { damage += f.DamagePerTick; if (++stacks == 2) break; } }
@@ -246,22 +270,28 @@ namespace Bokumyaku.Simulation
             }
             double threshold = (4 + growthCount) * (1 - Math.Min(.35, .02 * meta.Growth));
             if (growthCharge >= threshold && branches.Count < 64 && Grow()) { growthCharge -= threshold; growthCount++; }
+            if (State == RunStatus.CapacityExceeded) return;
             CompletedWave = TickCount / 360;
             if (TickCount >= MaxTicks) Finish(RunStatus.TestCompleted);
+        }
+        void StopAtCapacity()
+        {
+            State = RunStatus.CapacityExceeded; CompletedWave = TickCount / 360; CrystalsReward = 0;
         }
         void Finish(RunStatus status)
         {
             State = status; CompletedWave = (TickCount - (status == RunStatus.Defeated ? 1 : 0)) / 360;
-            CrystalsReward = CompletedWave == 0 ? 0 : (int)Math.Floor(4 + .25 * Math.Pow(CompletedWave, 1.4));
+            CrystalsReward = (int)Math.Floor(rewardPoints * .08);
         }
-        bool Spawn()
+        bool Spawn(EnemyKind? forced = null)
         {
             if (enemies.Count >= EnemyLimit) return false;
             // Initial hypothesis: fast 25% from wave4, heavy 20% from wave8; otherwise normal.
             double roll = Random01(ref spawnRng), angle = Random01(ref spawnRng) * 2 * Math.PI;
-            var kind = Wave >= 8 && roll < .20 ? EnemyKind.Heavy : Wave >= 4 && roll < (Wave >= 8 ? .45 : .25) ? EnemyKind.Fast : EnemyKind.Normal;
-            double hp = BaseHp(Wave) * (kind == EnemyKind.Heavy ? 3.2 : kind == EnemyKind.Fast ? .65 : 1);
-            enemies.Add(new EnemyState { Id = ++nextEnemyId, Kind = kind, X = 360 * Math.Cos(angle), Y = 360 * Math.Sin(angle), Hp = hp, MaxHp = hp, SpawnWave = Wave, Speed = 35 * (1 + .006 * (Wave - 1)) * (kind == EnemyKind.Heavy ? .65 : kind == EnemyKind.Fast ? 1.8 : 1) });
+            var kind = forced ?? (Wave >= 15 && roll >= .80 ? EnemyKind.Splitter : Wave >= 8 && roll < .20 ? EnemyKind.Heavy : Wave >= 4 && roll < (Wave >= 8 ? .45 : .25) ? EnemyKind.Fast : EnemyKind.Normal);
+            double hp = BaseHp(Wave) * (kind == EnemyKind.Boss ? 12 : kind == EnemyKind.Splitter ? .9 : kind == EnemyKind.Heavy ? 3.2 : kind == EnemyKind.Fast ? .65 : 1);
+            enemies.Add(new EnemyState { Id = ++nextEnemyId, Kind = kind, X = 360 * Math.Cos(angle), Y = 360 * Math.Sin(angle), Hp = hp, MaxHp = hp, SpawnWave = Wave, Speed = 35 * (1 + .006 * (Wave - 1)) * (kind == EnemyKind.Boss ? .55 : kind == EnemyKind.Heavy ? .65 : kind == EnemyKind.Fast ? 1.8 : 1) });
+            spawnedByType[(int)kind]++;
             return true;
         }
         void Hurt(EnemyState enemy, double damage)
@@ -269,10 +299,23 @@ namespace Bokumyaku.Simulation
             if (enemy == null || enemy.Hp <= 0 || !enemies.Contains(enemy) || damage <= 0) return;
             EffectiveDamage += Math.Min(enemy.Hp, damage); enemy.Hp -= damage;
             if (enemy.Hp > 0) return;
-            Kills++; growthCharge++; enemies.Remove(enemy);
-            double yield = enemy.Kind == EnemyKind.Heavy ? 2 : enemy.Kind == EnemyKind.Fast ? 1.1 : 1;
+            Kills++; killedByType[(int)enemy.Kind]++; enemies.Remove(enemy);
+            if (enemy.IsSplitChild) return;
+            growthCharge++;
+            double yield = enemy.Kind == EnemyKind.Boss ? 12 : enemy.Kind == EnemyKind.Splitter ? 1.4 : enemy.Kind == EnemyKind.Heavy ? 2 : enemy.Kind == EnemyKind.Fast ? 1.1 : 1;
+            rewardPoints += yield;
             int reward = (int)Math.Round(4 * yield * (1 + .018 * enemy.SpawnWave) * (1 + .03 * meta.Harvest), MidpointRounding.ToEven);
             RunInk += reward; IncomeEarned += reward;
+            if (enemy.Kind == EnemyKind.Splitter)
+            {
+                if (enemies.Count > EnemyLimit - 2) { StopAtCapacity(); return; }
+                for (int i = 0; i < 2; i++)
+                {
+                    enemies.Add(new EnemyState { Id = ++nextEnemyId, Kind = EnemyKind.Splitter, IsSplitChild = true, X = enemy.X + (i == 0 ? -4 : 4), Y = enemy.Y,
+                        Hp = enemy.MaxHp * .35, MaxHp = enemy.MaxHp * .35, Speed = enemy.Speed, SpawnWave = enemy.SpawnWave });
+                    spawnedByType[(int)EnemyKind.Splitter]++;
+                }
+            }
         }
         bool Grow()
         {
@@ -326,9 +369,38 @@ namespace Bokumyaku.Simulation
         }
         void Hit(BranchState branch, EnemyState target, double damage, double pressure)
         {
-            if (target.Hp <= 0 || !enemies.Contains(target)) return;
+            if (State != RunStatus.Running || target.Hp <= 0 || !enemies.Contains(target)) return;
             attacks.Add(new AttackEvent { BranchId = branch.Id, EnemyId = target.Id, X = branch.X, Y = branch.Y, TargetX = target.X, TargetY = target.Y, Damage = damage, Pressure = pressure, Weapon = Weapon });
             Hurt(target, damage);
+        }
+        void AreaHit(BranchState branch, EnemyState target, double range, double damage, double pressure)
+        {
+            var targets = new List<EnemyState>();
+            double ax = target.X - branch.X, ay = target.Y - branch.Y;
+            double al = Math.Sqrt(ax * ax + ay * ay);
+            foreach (var e in enemies)
+            {
+                double x = e.X - branch.X, y = e.Y - branch.Y, distance2 = x*x+y*y;
+                if (distance2 > range*range) continue;
+                if (Weapon == WeaponKind.Enso) { if (distance2 < 400) continue; }
+                else if (al > 1e-9 && distance2 > 1e-18 && (x*ax+y*ay)/(Math.Sqrt(distance2)*al) < .7071067811865476) continue;
+                targets.Add(e);
+            }
+            targets.Sort((a,b) => { double ad=(a.X-branch.X)*(a.X-branch.X)+(a.Y-branch.Y)*(a.Y-branch.Y), bd=(b.X-branch.X)*(b.X-branch.X)+(b.Y-branch.Y)*(b.Y-branch.Y); int c=ad.CompareTo(bd); return c!=0?c:a.Id.CompareTo(b.Id); });
+            int cap = Weapon == WeaponKind.Enso ? 6 : 5;
+            for (int i=0;i<Math.Min(cap,targets.Count);i++) Hit(branch,targets[i],damage,pressure);
+        }
+        void ChainHit(BranchState branch, EnemyState target, double damage, double pressure)
+        {
+            var hit = new HashSet<int>();
+            for (int step=0;step<4 && target!=null;step++)
+            {
+                double x=target.X,y=target.Y; hit.Add(target.Id); Hit(branch,target,damage,pressure); damage*=.75;
+                EnemyState next=null; double nearest=(70+2*levels[4])*(70+2*levels[4]);
+                foreach(var e in enemies) { if(hit.Contains(e.Id)) continue; double dx=e.X-x,dy=e.Y-y,d=dx*dx+dy*dy;
+                    if(d<nearest || (d==nearest && (next==null || e.Id<next.Id))) { next=e; nearest=d; } }
+                target=next;
+            }
         }
         void Pierce(BranchState branch, EnemyState target, double range, double damage, double pressure)
         {

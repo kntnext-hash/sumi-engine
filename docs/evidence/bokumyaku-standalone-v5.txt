@@ -1,0 +1,17 @@
+Standalone Bokumyaku / PowerShell 7.6.5 / .NET 10.0.11
+Not Unity, NUnit, persistence, visual or device evidence.
+PASS fixed seeds replay state and enemies at every tick
+PASS insufficient purchases preserve currency and levels
+PASS earned purchase charges exact cost
+PASS actual split dilutes pressure at fixed path length
+PASS natural defeat stops ticks and rejects duplicate rewards
+PASS meta costs and caps hold for every type
+PASS three natural runs retain permanent progress and reset run ink
+  Farming tick=13991 state=Defeated wave=38 tips=9 levels=15,10,14,6,10,10
+  Record tick=10902 state=Defeated wave=30 tips=12 levels=15,8,7,9,8,0
+PASS auto builds replay purchases, retain branch budget, and terminate
+PASS switching to Manual halts automatic spending
+PASS weapon switches replay attack and field state and retain finite termination
+PASS serialized checkpoints replay all six weapons and isolate mutable snapshots
+PASS auto repeat requires saved defeat, pauses, and fires once
+TOTAL 12 passed / 0 failed

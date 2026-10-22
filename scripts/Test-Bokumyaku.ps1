@@ -115,6 +115,24 @@ try {
         }
         Assert ($a.State -ne 'Running' -and $a.State -ne 'CapacityExceeded') 'Weapon run did not end normally'
     }
+    Check 'serialized checkpoints replay all six weapons and isolate mutable snapshots' {
+        $options=[System.Text.Json.JsonSerializerOptions]::new(); $options.IncludeFields=$true
+        foreach ($weapon in [Enum]::GetValues([Bokumyaku.Simulation.WeaponKind])) {
+            $a=[Bokumyaku.Simulation.RunSimulator]::new(42)
+            $a.SetBuild('Farming'); $a.SetPolicy('Intercept'); $a.SetWeapon($weapon)
+            for($i=0;$i -lt 1800 -and $a.State -eq 'Running';$i++){$a.Tick()}
+            $snapshot=$a.CaptureState()
+            $json=[System.Text.Json.JsonSerializer]::Serialize($snapshot,$options)
+            $dto=[System.Text.Json.JsonSerializer]::Deserialize($json,[Bokumyaku.Simulation.RunSnapshot],$options)
+            $b=[Bokumyaku.Simulation.RunSimulator]::Restore($dto)
+            $dto.levels[0]=30
+            Assert ($a.UpgradeLevels[0] -eq $b.UpgradeLevels[0]) 'Restored run aliases the input DTO'
+            while($a.State -eq 'Running'){$a.Tick();$b.Tick()}
+            $aj=[System.Text.Json.JsonSerializer]::Serialize($a.CaptureState(),$options)
+            $bj=[System.Text.Json.JsonSerializer]::Serialize($b.CaptureState(),$options)
+            Assert ($aj -ceq $bj) ('Checkpoint final state differs: '+$weapon)
+        }
+    }
     Check 'auto repeat requires saved defeat, pauses, and fires once' {
         $c=[Bokumyaku.Simulation.AutoRepeatController]::new()
         Assert (!$c.Enabled -and !$c.Schedule('Defeated',$true)) 'Auto repeat enabled by default'

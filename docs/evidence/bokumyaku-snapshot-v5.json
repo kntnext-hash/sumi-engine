@@ -1,0 +1,42 @@
+{
+  "classification": "Independent C# Add-Type and real System.Text.Json. Unity JsonUtility must be tested separately by integration.",
+  "generatedAtUtc": "2026-10-22T07:31:25.2553321Z",
+  "sourceHashes": [
+    {
+      "name": "AutoRepeatController.cs",
+      "sha256": "D110E501CA532370504A4F5E1C09842769F0DE9CC4EA51DDAF1E640FE3B67ACE"
+    },
+    {
+      "name": "RunSimulator.cs",
+      "sha256": "D6B3608B71994B1262F5CEBFC3E1DB4F8A23CC3A979B4549C203DC7259EA3C5F"
+    },
+    {
+      "name": "RunSimulator.ExactSnapshot.cs",
+      "sha256": "4ACD822E0ADD6362A5F9B8B593EEC650C78BD0DEC05CD5BE454DD6DE2234C645"
+    },
+    {
+      "name": "RunSimulator.Snapshot.cs",
+      "sha256": "B2213BAD7BBD298B45AE0FBCD2B13C8A4070D2E269C360E31426293A4EB2D3E4"
+    },
+    {
+      "name": "RunSnapshot.cs",
+      "sha256": "73FA17C19A809852B950760822B5068FBA6082B0784D9F5D1AB5E38937A470FF"
+    }
+  ],
+  "checks": [
+    "Point real JSON complete future exact parity PASS",
+    "Pierce real JSON complete future exact parity PASS",
+    "Bleed real JSON complete future exact parity PASS",
+    "Sweep real JSON complete future exact parity PASS",
+    "Enso real JSON complete future exact parity PASS",
+    "Resonance real JSON complete future exact parity PASS",
+    "Adjacent ULP branch1 restored exactly without input mutation PASS",
+    "Adjacent ULP branch2 restored exactly without input mutation PASS",
+    "2ULP mutation rejected PASS",
+    "Corrupt payload rejected PASS",
+    "NaN rejected PASS",
+    "Signed zero restored PASS"
+  ],
+  "checkCount": 12,
+  "payload": "IEEE754 double bits in versioned Base64; finite same-value/adjacent1ULP numeric consistency; signedzero preserved; restore does not mutate or re-encode source."
+}
