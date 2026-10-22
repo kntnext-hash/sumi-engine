@@ -1,0 +1,3250 @@
+{
+  "classification": "Paid sequential simulation with only research prices varied, no battle changes",
+  "baselineCommit": "94606b8e547e89cdd5920ad97cce49c8a91031d9",
+  "sourceHashes": [
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/AutoRepeatController.cs",
+      "sha256": "6E535C6DB35E4B78888E640A242494A40BAFE59C63D133E940ABD64E0B5C8845"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.cs",
+      "sha256": "57D4C367800F7E7DC7C88A31B99DFA86A10CEEB64461BE184B61805F3F52031C"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.ExactSnapshot.cs",
+      "sha256": "E238C561DC31EF4A80555339011C50ECB6E23DB6685488A04DC4E498FF190C22"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.LongRunRules.cs",
+      "sha256": "547EC9B3A75AD0D77EDD5E3FE86C17A6821BAB238A031F2D9548CDE2864608EC"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.Snapshot.cs",
+      "sha256": "42095E3882F5309BB62633CBEB8E4175BD56FC71F8FA3FE329EC74B50889C30C"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSnapshot.cs",
+      "sha256": "73AB657680E5769E6A2028BA2BACDD7792B46679C02AB8F647FD3171477B34C0"
+    }
+  ],
+  "compilerInputSha256": "9BAA3FC51A0F4CA2C19EEA1763B4BEDAE9C02D6F4030A1F49211DA9925FB867E",
+  "variant": "Growth1",
+  "candidate": 1,
+  "growth": 1.18,
+  "purchasePolicy": "After each settled run repeatedly choose uncapped lowest research level; ties Damage,Supply,Growth,Harvest; wait if selected item is unaffordable. No borrowing or grants. Grown20/20/20/20 has Supply/Growth/Harvest capped, so only Damage can be purchased; initial0 series balances all four.",
+  "initialFunds": 0,
+  "rewards": "Ordinary crystals only; PB milestone excluded",
+  "seedPolicy": "Each independent series seeds1..N",
+  "tickBudgetPerRun": 180000,
+  "prices": [
+    {
+      "kind": 0,
+      "level": 0,
+      "cost": 8
+    },
+    {
+      "kind": 0,
+      "level": 10,
+      "cost": 404
+    },
+    {
+      "kind": 0,
+      "level": 11,
+      "cost": 477
+    },
+    {
+      "kind": 0,
+      "level": 20,
+      "cost": 2115
+    },
+    {
+      "kind": 1,
+      "level": 0,
+      "cost": 10
+    },
+    {
+      "kind": 1,
+      "level": 10,
+      "cost": 505
+    },
+    {
+      "kind": 1,
+      "level": 11,
+      "cost": 596
+    },
+    {
+      "kind": 1,
+      "level": 20,
+      "cost": 2644
+    },
+    {
+      "kind": 2,
+      "level": 0,
+      "cost": 8
+    },
+    {
+      "kind": 2,
+      "level": 10,
+      "cost": 404
+    },
+    {
+      "kind": 2,
+      "level": 11,
+      "cost": 477
+    },
+    {
+      "kind": 2,
+      "level": 20,
+      "cost": 2115
+    },
+    {
+      "kind": 3,
+      "level": 0,
+      "cost": 12
+    },
+    {
+      "kind": 3,
+      "level": 10,
+      "cost": 606
+    },
+    {
+      "kind": 3,
+      "level": 11,
+      "cost": 716
+    },
+    {
+      "kind": 3,
+      "level": 20,
+      "cost": 3172
+    }
+  ],
+  "series": [
+    {
+      "scenario": "grownEnso10",
+      "weapon": "Enso",
+      "build": "Farming",
+      "firstPurchaseRun": 1,
+      "totalRewards": 31232,
+      "totalSpent": 27732,
+      "finalBalance": 3500,
+      "finalLevels": [
+        29,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 25887,
+          "wave": 71,
+          "normalReward": 2376,
+          "balanceBefore": 0,
+          "balanceAfter": 261,
+          "purchaseCount": 1,
+          "spent": 2115,
+          "seconds": 862.9,
+          "rate": 164.6379489548447,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 20,
+              "cost": 2115
+            }
+          ]
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 25395,
+          "wave": 70,
+          "normalReward": 2312,
+          "balanceBefore": 261,
+          "balanceAfter": 241,
+          "purchaseCount": 1,
+          "spent": 2332,
+          "seconds": 846.5,
+          "rate": 163.29605650382578,
+          "censored": false,
+          "beforeLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            22,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 21,
+              "cost": 2332
+            }
+          ]
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 26619,
+          "wave": 73,
+          "normalReward": 2552,
+          "balanceBefore": 241,
+          "balanceAfter": 233,
+          "purchaseCount": 1,
+          "spent": 2560,
+          "seconds": 887.3,
+          "rate": 171.9869706840391,
+          "censored": false,
+          "beforeLevels": [
+            22,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            23,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 22,
+              "cost": 2560
+            }
+          ]
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 4,
+          "seed": 4,
+          "ticks": 28770,
+          "wave": 79,
+          "normalReward": 2974,
+          "balanceBefore": 233,
+          "balanceAfter": 409,
+          "purchaseCount": 1,
+          "spent": 2798,
+          "seconds": 959.0,
+          "rate": 185.48856548856548,
+          "censored": false,
+          "beforeLevels": [
+            23,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            24,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 23,
+              "cost": 2798
+            }
+          ]
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 5,
+          "seed": 5,
+          "ticks": 31278,
+          "wave": 86,
+          "normalReward": 3511,
+          "balanceBefore": 409,
+          "balanceAfter": 874,
+          "purchaseCount": 1,
+          "spent": 3046,
+          "seconds": 1042.6,
+          "rate": 201.47283856159146,
+          "censored": false,
+          "beforeLevels": [
+            24,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            25,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 24,
+              "cost": 3046
+            }
+          ]
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 6,
+          "seed": 6,
+          "ticks": 28808,
+          "wave": 80,
+          "normalReward": 3013,
+          "balanceBefore": 874,
+          "balanceAfter": 582,
+          "purchaseCount": 1,
+          "spent": 3305,
+          "seconds": 960.2666666666667,
+          "rate": 187.67388746626065,
+          "censored": false,
+          "beforeLevels": [
+            25,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            26,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 25,
+              "cost": 3305
+            }
+          ]
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 7,
+          "seed": 7,
+          "ticks": 32394,
+          "wave": 89,
+          "normalReward": 3767,
+          "balanceBefore": 582,
+          "balanceAfter": 774,
+          "purchaseCount": 1,
+          "spent": 3575,
+          "seconds": 1079.8,
+          "rate": 208.7366087920207,
+          "censored": false,
+          "beforeLevels": [
+            26,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            27,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 26,
+              "cost": 3575
+            }
+          ]
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 8,
+          "seed": 8,
+          "ticks": 30061,
+          "wave": 83,
+          "normalReward": 3246,
+          "balanceBefore": 774,
+          "balanceAfter": 165,
+          "purchaseCount": 1,
+          "spent": 3855,
+          "seconds": 1002.0333333333333,
+          "rate": 193.78461742562436,
+          "censored": false,
+          "beforeLevels": [
+            27,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            28,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 27,
+              "cost": 3855
+            }
+          ]
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 9,
+          "seed": 9,
+          "ticks": 32752,
+          "wave": 90,
+          "normalReward": 3794,
+          "balanceBefore": 165,
+          "balanceAfter": 3959,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 1091.7333333333333,
+          "rate": 207.94105109311246,
+          "censored": false,
+          "beforeLevels": [
+            28,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            28,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 10,
+          "seed": 10,
+          "ticks": 32394,
+          "wave": 89,
+          "normalReward": 3687,
+          "balanceBefore": 3959,
+          "balanceAfter": 3500,
+          "purchaseCount": 1,
+          "spent": 4146,
+          "seconds": 1079.8,
+          "rate": 204.30365718507574,
+          "censored": false,
+          "beforeLevels": [
+            28,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            29,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 28,
+              "cost": 4146
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "grownEnso10",
+      "weapon": "Enso",
+      "build": "Record",
+      "firstPurchaseRun": 9,
+      "totalRewards": 2586,
+      "totalSpent": 2115,
+      "finalBalance": 471,
+      "finalLevels": [
+        21,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 32394,
+          "wave": 89,
+          "normalReward": 261,
+          "balanceBefore": 0,
+          "balanceAfter": 261,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 1079.8,
+          "rate": 14.462504617657924,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 32394,
+          "wave": 89,
+          "normalReward": 261,
+          "balanceBefore": 261,
+          "balanceAfter": 522,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 1079.8,
+          "rate": 14.462504617657924,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 30187,
+          "wave": 83,
+          "normalReward": 234,
+          "balanceBefore": 522,
+          "balanceAfter": 756,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 1006.2333333333333,
+          "rate": 13.911550021468441,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 4,
+          "seed": 4,
+          "ticks": 32394,
+          "wave": 89,
+          "normalReward": 261,
+          "balanceBefore": 756,
+          "balanceAfter": 1017,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 1079.8,
+          "rate": 14.462504617657924,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 5,
+          "seed": 5,
+          "ticks": 32394,
+          "wave": 89,
+          "normalReward": 262,
+          "balanceBefore": 1017,
+          "balanceAfter": 1279,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 1079.8,
+          "rate": 14.517916512744737,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 6,
+          "seed": 6,
+          "ticks": 32394,
+          "wave": 89,
+          "normalReward": 262,
+          "balanceBefore": 1279,
+          "balanceAfter": 1541,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 1079.8,
+          "rate": 14.517916512744737,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 7,
+          "seed": 7,
+          "ticks": 32394,
+          "wave": 89,
+          "normalReward": 264,
+          "balanceBefore": 1541,
+          "balanceAfter": 1805,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 1079.8,
+          "rate": 14.628740302918361,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 8,
+          "seed": 8,
+          "ticks": 32394,
+          "wave": 89,
+          "normalReward": 261,
+          "balanceBefore": 1805,
+          "balanceAfter": 2066,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 1079.8,
+          "rate": 14.462504617657924,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 9,
+          "seed": 9,
+          "ticks": 32394,
+          "wave": 89,
+          "normalReward": 261,
+          "balanceBefore": 2066,
+          "balanceAfter": 212,
+          "purchaseCount": 1,
+          "spent": 2115,
+          "seconds": 1079.8,
+          "rate": 14.462504617657924,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 20,
+              "cost": 2115
+            }
+          ]
+        },
+        {
+          "scenario": "grownEnso10",
+          "weapon": "Enso",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 10,
+          "seed": 10,
+          "ticks": 32394,
+          "wave": 89,
+          "normalReward": 259,
+          "balanceBefore": 212,
+          "balanceAfter": 471,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 1079.8,
+          "rate": 14.3516808274843,
+          "censored": false,
+          "beforeLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        }
+      ]
+    },
+    {
+      "scenario": "initialBalanced20",
+      "weapon": "Enso",
+      "build": "Farming",
+      "firstPurchaseRun": 1,
+      "totalRewards": 38186,
+      "totalSpent": 36773,
+      "finalBalance": 1413,
+      "finalLevels": [
+        19,
+        19,
+        18,
+        18
+      ],
+      "rows": [
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 10902,
+          "wave": 30,
+          "normalReward": 144,
+          "balanceBefore": 0,
+          "balanceAfter": 9,
+          "purchaseCount": 10,
+          "spent": 135,
+          "seconds": 363.4,
+          "rate": 23.580786026200876,
+          "censored": false,
+          "beforeLevels": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "afterLevels": [
+            3,
+            3,
+            2,
+            2
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 0,
+              "cost": 8
+            },
+            {
+              "kind": "Supply",
+              "fromLevel": 0,
+              "cost": 10
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 0,
+              "cost": 8
+            },
+            {
+              "kind": "Harvest",
+              "fromLevel": 0,
+              "cost": 12
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 1,
+              "cost": 12
+            },
+            {
+              "kind": "Supply",
+              "fromLevel": 1,
+              "cost": 15
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 1,
+              "cost": 12
+            },
+            {
+              "kind": "Harvest",
+              "fromLevel": 1,
+              "cost": 18
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 2,
+              "cost": 18
+            },
+            {
+              "kind": "Supply",
+              "fromLevel": 2,
+              "cost": 22
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 14480,
+          "wave": 40,
+          "normalReward": 411,
+          "balanceBefore": 9,
+          "balanceAfter": 10,
+          "purchaseCount": 11,
+          "spent": 410,
+          "seconds": 482.6666666666667,
+          "rate": 50.775566231983525,
+          "censored": false,
+          "beforeLevels": [
+            3,
+            3,
+            2,
+            2
+          ],
+          "afterLevels": [
+            6,
+            5,
+            5,
+            5
+          ],
+          "purchases": [
+            {
+              "kind": "Growth",
+              "fromLevel": 2,
+              "cost": 18
+            },
+            {
+              "kind": "Harvest",
+              "fromLevel": 2,
+              "cost": 27
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 3,
+              "cost": 26
+            },
+            {
+              "kind": "Supply",
+              "fromLevel": 3,
+              "cost": 33
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 3,
+              "cost": 26
+            },
+            {
+              "kind": "Harvest",
+              "fromLevel": 3,
+              "cost": 39
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 4,
+              "cost": 39
+            },
+            {
+              "kind": "Supply",
+              "fromLevel": 4,
+              "cost": 48
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 4,
+              "cost": 39
+            },
+            {
+              "kind": "Harvest",
+              "fromLevel": 4,
+              "cost": 58
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 5,
+              "cost": 57
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 18060,
+          "wave": 50,
+          "normalReward": 891,
+          "balanceBefore": 10,
+          "balanceAfter": 2,
+          "purchaseCount": 9,
+          "spent": 899,
+          "seconds": 602.0,
+          "rate": 88.36363636363636,
+          "censored": false,
+          "beforeLevels": [
+            6,
+            5,
+            5,
+            5
+          ],
+          "afterLevels": [
+            8,
+            8,
+            7,
+            7
+          ],
+          "purchases": [
+            {
+              "kind": "Supply",
+              "fromLevel": 5,
+              "cost": 72
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 5,
+              "cost": 57
+            },
+            {
+              "kind": "Harvest",
+              "fromLevel": 5,
+              "cost": 86
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 6,
+              "cost": 85
+            },
+            {
+              "kind": "Supply",
+              "fromLevel": 6,
+              "cost": 106
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 6,
+              "cost": 85
+            },
+            {
+              "kind": "Harvest",
+              "fromLevel": 6,
+              "cost": 127
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 7,
+              "cost": 125
+            },
+            {
+              "kind": "Supply",
+              "fromLevel": 7,
+              "cost": 156
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 4,
+          "seed": 4,
+          "ticks": 21641,
+          "wave": 60,
+          "normalReward": 1543,
+          "balanceBefore": 2,
+          "balanceAfter": 82,
+          "purchaseCount": 7,
+          "spent": 1463,
+          "seconds": 721.3666666666667,
+          "rate": 127.80820026689982,
+          "censored": false,
+          "beforeLevels": [
+            8,
+            8,
+            7,
+            7
+          ],
+          "afterLevels": [
+            10,
+            9,
+            9,
+            9
+          ],
+          "purchases": [
+            {
+              "kind": "Growth",
+              "fromLevel": 7,
+              "cost": 125
+            },
+            {
+              "kind": "Harvest",
+              "fromLevel": 7,
+              "cost": 187
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 8,
+              "cost": 185
+            },
+            {
+              "kind": "Supply",
+              "fromLevel": 8,
+              "cost": 231
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 8,
+              "cost": 185
+            },
+            {
+              "kind": "Harvest",
+              "fromLevel": 8,
+              "cost": 277
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 9,
+              "cost": 273
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 5,
+          "seed": 5,
+          "ticks": 22236,
+          "wave": 61,
+          "normalReward": 1669,
+          "balanceBefore": 82,
+          "balanceAfter": 324,
+          "purchaseCount": 4,
+          "spent": 1427,
+          "seconds": 741.2,
+          "rate": 134.5606019887127,
+          "censored": false,
+          "beforeLevels": [
+            10,
+            9,
+            9,
+            9
+          ],
+          "afterLevels": [
+            11,
+            10,
+            10,
+            10
+          ],
+          "purchases": [
+            {
+              "kind": "Supply",
+              "fromLevel": 9,
+              "cost": 341
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 9,
+              "cost": 273
+            },
+            {
+              "kind": "Harvest",
+              "fromLevel": 9,
+              "cost": 409
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 10,
+              "cost": 404
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 6,
+          "seed": 6,
+          "ticks": 25224,
+          "wave": 70,
+          "normalReward": 2276,
+          "balanceBefore": 324,
+          "balanceAfter": 12,
+          "purchaseCount": 5,
+          "spent": 2588,
+          "seconds": 840.8,
+          "rate": 161.83929841194598,
+          "censored": false,
+          "beforeLevels": [
+            11,
+            10,
+            10,
+            10
+          ],
+          "afterLevels": [
+            12,
+            12,
+            11,
+            11
+          ],
+          "purchases": [
+            {
+              "kind": "Supply",
+              "fromLevel": 10,
+              "cost": 505
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 10,
+              "cost": 404
+            },
+            {
+              "kind": "Harvest",
+              "fromLevel": 10,
+              "cost": 606
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 11,
+              "cost": 477
+            },
+            {
+              "kind": "Supply",
+              "fromLevel": 11,
+              "cost": 596
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 7,
+          "seed": 7,
+          "ticks": 24856,
+          "wave": 69,
+          "normalReward": 2196,
+          "balanceBefore": 12,
+          "balanceAfter": 452,
+          "purchaseCount": 3,
+          "spent": 1756,
+          "seconds": 828.5333333333333,
+          "rate": 158.4542612042011,
+          "censored": false,
+          "beforeLevels": [
+            12,
+            12,
+            11,
+            11
+          ],
+          "afterLevels": [
+            13,
+            12,
+            12,
+            12
+          ],
+          "purchases": [
+            {
+              "kind": "Growth",
+              "fromLevel": 11,
+              "cost": 477
+            },
+            {
+              "kind": "Harvest",
+              "fromLevel": 11,
+              "cost": 716
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 12,
+              "cost": 563
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 8,
+          "seed": 8,
+          "ticks": 22173,
+          "wave": 61,
+          "normalReward": 1650,
+          "balanceBefore": 452,
+          "balanceAfter": 835,
+          "purchaseCount": 2,
+          "spent": 1267,
+          "seconds": 739.1,
+          "rate": 133.40520145532946,
+          "censored": false,
+          "beforeLevels": [
+            13,
+            12,
+            12,
+            12
+          ],
+          "afterLevels": [
+            13,
+            13,
+            13,
+            12
+          ],
+          "purchases": [
+            {
+              "kind": "Supply",
+              "fromLevel": 12,
+              "cost": 704
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 12,
+              "cost": 563
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 9,
+          "seed": 9,
+          "ticks": 26255,
+          "wave": 72,
+          "normalReward": 2454,
+          "balanceBefore": 835,
+          "balanceAfter": 287,
+          "purchaseCount": 4,
+          "spent": 3002,
+          "seconds": 875.1666666666666,
+          "rate": 167.66748908711332,
+          "censored": false,
+          "beforeLevels": [
+            13,
+            13,
+            13,
+            12
+          ],
+          "afterLevels": [
+            14,
+            14,
+            14,
+            13
+          ],
+          "purchases": [
+            {
+              "kind": "Harvest",
+              "fromLevel": 12,
+              "cost": 844
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 13,
+              "cost": 664
+            },
+            {
+              "kind": "Supply",
+              "fromLevel": 13,
+              "cost": 830
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 13,
+              "cost": 664
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 10,
+          "seed": 10,
+          "ticks": 24500,
+          "wave": 68,
+          "normalReward": 2104,
+          "balanceBefore": 287,
+          "balanceAfter": 611,
+          "purchaseCount": 2,
+          "spent": 1780,
+          "seconds": 816.6666666666666,
+          "rate": 154.01382675884506,
+          "censored": false,
+          "beforeLevels": [
+            14,
+            14,
+            14,
+            13
+          ],
+          "afterLevels": [
+            15,
+            14,
+            14,
+            14
+          ],
+          "purchases": [
+            {
+              "kind": "Harvest",
+              "fromLevel": 13,
+              "cost": 996
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 14,
+              "cost": 784
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 11,
+          "seed": 11,
+          "ticks": 23829,
+          "wave": 66,
+          "normalReward": 1977,
+          "balanceBefore": 611,
+          "balanceAfter": 824,
+          "purchaseCount": 2,
+          "spent": 1764,
+          "seconds": 794.3,
+          "rate": 148.77712278941428,
+          "censored": false,
+          "beforeLevels": [
+            15,
+            14,
+            14,
+            14
+          ],
+          "afterLevels": [
+            15,
+            15,
+            15,
+            14
+          ],
+          "purchases": [
+            {
+              "kind": "Supply",
+              "fromLevel": 14,
+              "cost": 980
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 14,
+              "cost": 784
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 12,
+          "seed": 12,
+          "ticks": 25224,
+          "wave": 70,
+          "normalReward": 2280,
+          "balanceBefore": 824,
+          "balanceAfter": 1004,
+          "purchaseCount": 2,
+          "spent": 2100,
+          "seconds": 840.8,
+          "rate": 162.12372600142214,
+          "censored": false,
+          "beforeLevels": [
+            15,
+            15,
+            15,
+            14
+          ],
+          "afterLevels": [
+            16,
+            15,
+            15,
+            15
+          ],
+          "purchases": [
+            {
+              "kind": "Harvest",
+              "fromLevel": 14,
+              "cost": 1175
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 15,
+              "cost": 925
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 13,
+          "seed": 13,
+          "ticks": 26029,
+          "wave": 72,
+          "normalReward": 2441,
+          "balanceBefore": 1004,
+          "balanceAfter": 1364,
+          "purchaseCount": 2,
+          "spent": 2081,
+          "seconds": 867.6333333333333,
+          "rate": 168.2223668593744,
+          "censored": false,
+          "beforeLevels": [
+            16,
+            15,
+            15,
+            15
+          ],
+          "afterLevels": [
+            16,
+            16,
+            16,
+            15
+          ],
+          "purchases": [
+            {
+              "kind": "Supply",
+              "fromLevel": 15,
+              "cost": 1156
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 15,
+              "cost": 925
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 14,
+          "seed": 14,
+          "ticks": 25459,
+          "wave": 70,
+          "normalReward": 2306,
+          "balanceBefore": 1364,
+          "balanceAfter": 1192,
+          "purchaseCount": 2,
+          "spent": 2478,
+          "seconds": 848.6333333333333,
+          "rate": 162.4642843164116,
+          "censored": false,
+          "beforeLevels": [
+            16,
+            16,
+            16,
+            15
+          ],
+          "afterLevels": [
+            17,
+            16,
+            16,
+            16
+          ],
+          "purchases": [
+            {
+              "kind": "Harvest",
+              "fromLevel": 15,
+              "cost": 1387
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 16,
+              "cost": 1091
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 15,
+          "seed": 15,
+          "ticks": 25224,
+          "wave": 70,
+          "normalReward": 2253,
+          "balanceBefore": 1192,
+          "balanceAfter": 990,
+          "purchaseCount": 2,
+          "spent": 2455,
+          "seconds": 840.8,
+          "rate": 160.20383977245794,
+          "censored": false,
+          "beforeLevels": [
+            17,
+            16,
+            16,
+            16
+          ],
+          "afterLevels": [
+            17,
+            17,
+            17,
+            16
+          ],
+          "purchases": [
+            {
+              "kind": "Supply",
+              "fromLevel": 16,
+              "cost": 1364
+            },
+            {
+              "kind": "Growth",
+              "fromLevel": 16,
+              "cost": 1091
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 16,
+          "seed": 16,
+          "ticks": 25224,
+          "wave": 70,
+          "normalReward": 2269,
+          "balanceBefore": 990,
+          "balanceAfter": 336,
+          "purchaseCount": 2,
+          "spent": 2923,
+          "seconds": 840.8,
+          "rate": 161.34155013036266,
+          "censored": false,
+          "beforeLevels": [
+            17,
+            17,
+            17,
+            16
+          ],
+          "afterLevels": [
+            18,
+            17,
+            17,
+            17
+          ],
+          "purchases": [
+            {
+              "kind": "Harvest",
+              "fromLevel": 16,
+              "cost": 1636
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 17,
+              "cost": 1287
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 17,
+          "seed": 17,
+          "ticks": 25239,
+          "wave": 70,
+          "normalReward": 2242,
+          "balanceBefore": 336,
+          "balanceAfter": 969,
+          "purchaseCount": 1,
+          "spent": 1609,
+          "seconds": 841.3,
+          "rate": 159.32725334596708,
+          "censored": false,
+          "beforeLevels": [
+            18,
+            17,
+            17,
+            17
+          ],
+          "afterLevels": [
+            18,
+            18,
+            17,
+            17
+          ],
+          "purchases": [
+            {
+              "kind": "Supply",
+              "fromLevel": 17,
+              "cost": 1609
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 18,
+          "seed": 18,
+          "ticks": 25224,
+          "wave": 70,
+          "normalReward": 2235,
+          "balanceBefore": 969,
+          "balanceAfter": 1917,
+          "purchaseCount": 1,
+          "spent": 1287,
+          "seconds": 840.8,
+          "rate": 158.92391561981512,
+          "censored": false,
+          "beforeLevels": [
+            18,
+            18,
+            17,
+            17
+          ],
+          "afterLevels": [
+            18,
+            18,
+            18,
+            17
+          ],
+          "purchases": [
+            {
+              "kind": "Growth",
+              "fromLevel": 17,
+              "cost": 1287
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 19,
+          "seed": 19,
+          "ticks": 25224,
+          "wave": 70,
+          "normalReward": 2252,
+          "balanceBefore": 1917,
+          "balanceAfter": 719,
+          "purchaseCount": 2,
+          "spent": 3450,
+          "seconds": 840.8,
+          "rate": 160.1327328750889,
+          "censored": false,
+          "beforeLevels": [
+            18,
+            18,
+            18,
+            17
+          ],
+          "afterLevels": [
+            19,
+            18,
+            18,
+            18
+          ],
+          "purchases": [
+            {
+              "kind": "Harvest",
+              "fromLevel": 17,
+              "cost": 1931
+            },
+            {
+              "kind": "Damage",
+              "fromLevel": 18,
+              "cost": 1519
+            }
+          ]
+        },
+        {
+          "scenario": "initialBalanced20",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 20,
+          "seed": 20,
+          "ticks": 26682,
+          "wave": 74,
+          "normalReward": 2593,
+          "balanceBefore": 719,
+          "balanceAfter": 1413,
+          "purchaseCount": 1,
+          "spent": 1899,
+          "seconds": 889.4,
+          "rate": 174.33886149708653,
+          "censored": false,
+          "beforeLevels": [
+            19,
+            18,
+            18,
+            18
+          ],
+          "afterLevels": [
+            19,
+            19,
+            18,
+            18
+          ],
+          "purchases": [
+            {
+              "kind": "Supply",
+              "fromLevel": 18,
+              "cost": 1899
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "grownAllWeapons3",
+      "weapon": "Point",
+      "build": "Farming",
+      "firstPurchaseRun": 2,
+      "totalRewards": 3431,
+      "totalSpent": 2115,
+      "finalBalance": 1316,
+      "finalLevels": [
+        21,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Point",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 19400,
+          "wave": 53,
+          "normalReward": 1110,
+          "balanceBefore": 0,
+          "balanceAfter": 1110,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 646.6666666666666,
+          "rate": 102.51410979989738,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Point",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 19498,
+          "wave": 54,
+          "normalReward": 1131,
+          "balanceBefore": 1110,
+          "balanceAfter": 126,
+          "purchaseCount": 1,
+          "spent": 2115,
+          "seconds": 649.9333333333333,
+          "rate": 103.9309781498877,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 20,
+              "cost": 2115
+            }
+          ]
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Point",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 19832,
+          "wave": 55,
+          "normalReward": 1190,
+          "balanceBefore": 126,
+          "balanceAfter": 1316,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 661.0666666666667,
+          "rate": 107.51932536893885,
+          "censored": false,
+          "beforeLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        }
+      ]
+    },
+    {
+      "scenario": "grownAllWeapons3",
+      "weapon": "Point",
+      "build": "Record",
+      "firstPurchaseRun": -1,
+      "totalRewards": 368,
+      "totalSpent": 0,
+      "finalBalance": 368,
+      "finalLevels": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Point",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 21708,
+          "wave": 60,
+          "normalReward": 124,
+          "balanceBefore": 0,
+          "balanceAfter": 124,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 723.6,
+          "rate": 10.239471511147812,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Point",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 21657,
+          "wave": 60,
+          "normalReward": 124,
+          "balanceBefore": 124,
+          "balanceAfter": 248,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 721.9,
+          "rate": 10.263484618568079,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Point",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 21246,
+          "wave": 59,
+          "normalReward": 120,
+          "balanceBefore": 248,
+          "balanceAfter": 368,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 708.2,
+          "rate": 10.12373453318335,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        }
+      ]
+    },
+    {
+      "scenario": "grownAllWeapons3",
+      "weapon": "Pierce",
+      "build": "Farming",
+      "firstPurchaseRun": 2,
+      "totalRewards": 3905,
+      "totalSpent": 2115,
+      "finalBalance": 1790,
+      "finalLevels": [
+        21,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Pierce",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 20750,
+          "wave": 57,
+          "normalReward": 1341,
+          "balanceBefore": 0,
+          "balanceAfter": 1341,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 691.6666666666666,
+          "rate": 115.8253358925144,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Pierce",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 20169,
+          "wave": 56,
+          "normalReward": 1232,
+          "balanceBefore": 1341,
+          "balanceAfter": 458,
+          "purchaseCount": 1,
+          "spent": 2115,
+          "seconds": 672.3,
+          "rate": 109.46246112838739,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 20,
+              "cost": 2115
+            }
+          ]
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Pierce",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 20660,
+          "wave": 57,
+          "normalReward": 1332,
+          "balanceBefore": 458,
+          "balanceAfter": 1790,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 688.6666666666666,
+          "rate": 115.54698795180724,
+          "censored": false,
+          "beforeLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        }
+      ]
+    },
+    {
+      "scenario": "grownAllWeapons3",
+      "weapon": "Pierce",
+      "build": "Record",
+      "firstPurchaseRun": -1,
+      "totalRewards": 376,
+      "totalSpent": 0,
+      "finalBalance": 376,
+      "finalLevels": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Pierce",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 21708,
+          "wave": 60,
+          "normalReward": 125,
+          "balanceBefore": 0,
+          "balanceAfter": 125,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 723.6,
+          "rate": 10.32204789430223,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Pierce",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 21641,
+          "wave": 60,
+          "normalReward": 123,
+          "balanceBefore": 125,
+          "balanceAfter": 248,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 721.3666666666667,
+          "rate": 10.188210390686116,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Pierce",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 21946,
+          "wave": 60,
+          "normalReward": 128,
+          "balanceBefore": 248,
+          "balanceAfter": 376,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 731.5333333333333,
+          "rate": 10.455618079506262,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        }
+      ]
+    },
+    {
+      "scenario": "grownAllWeapons3",
+      "weapon": "Bleed",
+      "build": "Farming",
+      "firstPurchaseRun": 2,
+      "totalRewards": 4438,
+      "totalSpent": 2115,
+      "finalBalance": 2323,
+      "finalLevels": [
+        21,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Bleed",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 21246,
+          "wave": 59,
+          "normalReward": 1445,
+          "balanceBefore": 0,
+          "balanceAfter": 1445,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 708.2,
+          "rate": 121.90663667041619,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Bleed",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 21372,
+          "wave": 59,
+          "normalReward": 1454,
+          "balanceBefore": 1445,
+          "balanceAfter": 784,
+          "purchaseCount": 1,
+          "spent": 2115,
+          "seconds": 712.4,
+          "rate": 121.94576460721275,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 20,
+              "cost": 2115
+            }
+          ]
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Bleed",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 21707,
+          "wave": 60,
+          "normalReward": 1539,
+          "balanceBefore": 784,
+          "balanceAfter": 2323,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 723.5666666666667,
+          "rate": 127.09088406661466,
+          "censored": false,
+          "beforeLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        }
+      ]
+    },
+    {
+      "scenario": "grownAllWeapons3",
+      "weapon": "Bleed",
+      "build": "Record",
+      "firstPurchaseRun": -1,
+      "totalRewards": 384,
+      "totalSpent": 0,
+      "finalBalance": 384,
+      "finalLevels": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Bleed",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 22034,
+          "wave": 61,
+          "normalReward": 129,
+          "balanceBefore": 0,
+          "balanceAfter": 129,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 734.4666666666667,
+          "rate": 10.495389622129814,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Bleed",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 21844,
+          "wave": 60,
+          "normalReward": 126,
+          "balanceBefore": 129,
+          "balanceAfter": 255,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 728.1333333333333,
+          "rate": 10.340111242819367,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Bleed",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 21996,
+          "wave": 61,
+          "normalReward": 129,
+          "balanceBefore": 255,
+          "balanceAfter": 384,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 733.2,
+          "rate": 10.513447432762835,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        }
+      ]
+    },
+    {
+      "scenario": "grownAllWeapons3",
+      "weapon": "Sweep",
+      "build": "Farming",
+      "firstPurchaseRun": 2,
+      "totalRewards": 6176,
+      "totalSpent": 4447,
+      "finalBalance": 1729,
+      "finalLevels": [
+        22,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Sweep",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 23879,
+          "wave": 66,
+          "normalReward": 1966,
+          "balanceBefore": 0,
+          "balanceAfter": 1966,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 795.9666666666667,
+          "rate": 147.64070257415827,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Sweep",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 23873,
+          "wave": 66,
+          "normalReward": 1963,
+          "balanceBefore": 1966,
+          "balanceAfter": 1814,
+          "purchaseCount": 1,
+          "spent": 2115,
+          "seconds": 795.7666666666667,
+          "rate": 147.45232233025916,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 20,
+              "cost": 2115
+            }
+          ]
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Sweep",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 25224,
+          "wave": 70,
+          "normalReward": 2247,
+          "balanceBefore": 1814,
+          "balanceAfter": 1729,
+          "purchaseCount": 1,
+          "spent": 2332,
+          "seconds": 840.8,
+          "rate": 159.77719838824368,
+          "censored": false,
+          "beforeLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            22,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 21,
+              "cost": 2332
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "grownAllWeapons3",
+      "weapon": "Sweep",
+      "build": "Record",
+      "firstPurchaseRun": -1,
+      "totalRewards": 600,
+      "totalSpent": 0,
+      "finalBalance": 600,
+      "finalLevels": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Sweep",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 28161,
+          "wave": 78,
+          "normalReward": 205,
+          "balanceBefore": 0,
+          "balanceAfter": 205,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 938.7,
+          "rate": 13.061484549219497,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Sweep",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 27321,
+          "wave": 75,
+          "normalReward": 196,
+          "balanceBefore": 205,
+          "balanceAfter": 401,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 910.7,
+          "rate": 12.870745321221406,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Sweep",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 27502,
+          "wave": 76,
+          "normalReward": 199,
+          "balanceBefore": 401,
+          "balanceAfter": 600,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 916.7333333333333,
+          "rate": 12.982023775007248,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        }
+      ]
+    },
+    {
+      "scenario": "grownAllWeapons3",
+      "weapon": "Enso",
+      "build": "Farming",
+      "firstPurchaseRun": 1,
+      "totalRewards": 7240,
+      "totalSpent": 7007,
+      "finalBalance": 233,
+      "finalLevels": [
+        23,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 25887,
+          "wave": 71,
+          "normalReward": 2376,
+          "balanceBefore": 0,
+          "balanceAfter": 261,
+          "purchaseCount": 1,
+          "spent": 2115,
+          "seconds": 862.9,
+          "rate": 164.6379489548447,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 20,
+              "cost": 2115
+            }
+          ]
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 25395,
+          "wave": 70,
+          "normalReward": 2312,
+          "balanceBefore": 261,
+          "balanceAfter": 241,
+          "purchaseCount": 1,
+          "spent": 2332,
+          "seconds": 846.5,
+          "rate": 163.29605650382578,
+          "censored": false,
+          "beforeLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            22,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 21,
+              "cost": 2332
+            }
+          ]
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Enso",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 26619,
+          "wave": 73,
+          "normalReward": 2552,
+          "balanceBefore": 241,
+          "balanceAfter": 233,
+          "purchaseCount": 1,
+          "spent": 2560,
+          "seconds": 887.3,
+          "rate": 171.9869706840391,
+          "censored": false,
+          "beforeLevels": [
+            22,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            23,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 22,
+              "cost": 2560
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "grownAllWeapons3",
+      "weapon": "Enso",
+      "build": "Record",
+      "firstPurchaseRun": -1,
+      "totalRewards": 756,
+      "totalSpent": 0,
+      "finalBalance": 756,
+      "finalLevels": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Enso",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 32394,
+          "wave": 89,
+          "normalReward": 261,
+          "balanceBefore": 0,
+          "balanceAfter": 261,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 1079.8,
+          "rate": 14.462504617657924,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Enso",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 32394,
+          "wave": 89,
+          "normalReward": 261,
+          "balanceBefore": 261,
+          "balanceAfter": 522,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 1079.8,
+          "rate": 14.462504617657924,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Enso",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 30187,
+          "wave": 83,
+          "normalReward": 234,
+          "balanceBefore": 522,
+          "balanceAfter": 756,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 1006.2333333333333,
+          "rate": 13.911550021468441,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        }
+      ]
+    },
+    {
+      "scenario": "grownAllWeapons3",
+      "weapon": "Resonance",
+      "build": "Farming",
+      "firstPurchaseRun": 2,
+      "totalRewards": 5402,
+      "totalSpent": 4447,
+      "finalBalance": 955,
+      "finalLevels": [
+        22,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Resonance",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 24117,
+          "wave": 66,
+          "normalReward": 2015,
+          "balanceBefore": 0,
+          "balanceAfter": 2015,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 803.9,
+          "rate": 149.8326930226794,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Resonance",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 22374,
+          "wave": 62,
+          "normalReward": 1672,
+          "balanceBefore": 2015,
+          "balanceAfter": 1572,
+          "purchaseCount": 1,
+          "spent": 2115,
+          "seconds": 745.8,
+          "rate": 133.97435897435898,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 20,
+              "cost": 2115
+            }
+          ]
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Resonance",
+          "build": "Farming",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 22549,
+          "wave": 62,
+          "normalReward": 1715,
+          "balanceBefore": 1572,
+          "balanceAfter": 955,
+          "purchaseCount": 1,
+          "spent": 2332,
+          "seconds": 751.6333333333333,
+          "rate": 136.3576129687707,
+          "censored": false,
+          "beforeLevels": [
+            21,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            22,
+            20,
+            20,
+            20
+          ],
+          "purchases": [
+            {
+              "kind": "Damage",
+              "fromLevel": 21,
+              "cost": 2332
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "grownAllWeapons3",
+      "weapon": "Resonance",
+      "build": "Record",
+      "firstPurchaseRun": -1,
+      "totalRewards": 561,
+      "totalSpent": 0,
+      "finalBalance": 561,
+      "finalLevels": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "rows": [
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Resonance",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 1,
+          "seed": 1,
+          "ticks": 26355,
+          "wave": 73,
+          "normalReward": 184,
+          "balanceBefore": 0,
+          "balanceAfter": 184,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 878.5,
+          "rate": 12.524106636415201,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Resonance",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 2,
+          "seed": 2,
+          "ticks": 27321,
+          "wave": 75,
+          "normalReward": 196,
+          "balanceBefore": 184,
+          "balanceAfter": 380,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 910.7,
+          "rate": 12.870745321221406,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        },
+        {
+          "scenario": "grownAllWeapons3",
+          "weapon": "Resonance",
+          "build": "Record",
+          "status": "Defeated",
+          "index": 3,
+          "seed": 3,
+          "ticks": 26035,
+          "wave": 72,
+          "normalReward": 181,
+          "balanceBefore": 380,
+          "balanceAfter": 561,
+          "purchaseCount": 0,
+          "spent": 0,
+          "seconds": 867.8333333333334,
+          "rate": 12.470813397129186,
+          "censored": false,
+          "beforeLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "afterLevels": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "purchases": []
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Same seeds and scenarios reused; not independent populations",
+    "Grown studies start at externally supplied20/20/20/20; from-zero series is separate",
+    "Running atbudget is censored and receives no reward or purchase",
+    "No change to battle rules6 or research multipliers/caps"
+  ]
+}

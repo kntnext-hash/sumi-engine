@@ -1,6 +1,6 @@
 # 墨脈 — 一人用システム完成チェック
 
-最新は末尾のv0.9長期基盤の検証状況。v0.8までのPCα受入は履歴として保持し、v0.9のUnity/Player最終判定は未確定。初期役割比較G04は既定seed合格を維持し、追加seedでは未達。初回尺G05、育成後の記録構成、長期経済・美術/実機は未合格。
+最新は末尾のv0.11研究価格版2。v0.10までのPCα受入は履歴として保持し、今回のUnity/Player最終判定はQA台帳へ確定後に記録する。初期役割G04の追加seed、初回尺G05、育成後役割、長期経済・美術/実機は未合格。
 
 2026-10-22 JST。ユーザーの「システム面完成まで」を受け、40bb883/v0.4から実装を継続。今回の対象はGDDの一人用MVPと既存の武器/放置ビルド案。状態は実検証後に更新する。
 
@@ -122,3 +122,16 @@
 - Windows6武器各900tick、checkpoint、自動再出撃を確認。別プロセスで復帰し600tickの未来一致。両passed=true/exit0、105.742秒/14.409秒。PlayerログException/Error/Failedなし。通常保存を使わずlogs内に隔離。
 - bokumyaku-player-v10.json / player-resume-v10.json / player-launch-v10.json / artifact-v10.jsonを保存。実装ab07f5a、起動先Builds/Bokumyaku-v0.10/Bokumyaku.exe。Data/UnityPlayer/MonoBleedingEdgeを同梱のまま使用。
 - v0.10の機能受入を完了。ゲーム全体完成ではなく、次は研究費用と成長テンポ、放置周回/記録の武器別比較。祖墨20からの20周実測と最大祖墨100の2000Wave観測を混同しない。数万Wave攻略・長時間/実機性能・美術/音の残件を維持。
+
+## 2026-10-22 v0.11 研究価格版2
+
+- 基点94606b8。価格のみ1.18/1.22/1.26の最大3候補を比較し1.22を固定。ResearchPriceVersion=2、戦闘rules6・能力倍率・上限・敵・報酬は維持。旧購入前Lv0〜10の費用を保持し、丸め済みCost10を後半曲線の基点にする。祖墨Cost20=2952。保存先v8、旧原本保護、既払い分の返金なし。
+- 旧版と各候補76周の計304周。採用案は育成済みmeta20のEnso Farmingが2周目に祖墨購入、10周で26。Recordは10周購入なし。全0のEnso Farming20周は18/18/18/17。固定後seed11〜13の36周では全6武器Farmingが2〜3周で初購入、Recordは3周未購入。全36周自然敗北。
+- 製品76周の再走は採用候補と全行収支・戦闘結果が完全一致。有限比較を終了し、短期購入テンポ改善と長期経済全体の未達を区別する。詳細BOKUMYAKU_RESEARCH_V11.md、証拠research-v11-*.json。
+- Unity211/211、画面50/50、基礎独立12/12合格。旧v0.10由来fixtureの未来・終端一致、原本保持移行、研究購入・再読込を検証。Windowsの確定結果はQA_AND_EVIDENCE.md末尾を参照する。G04/G05・長時間実測・実機・完成美術の残件を維持。
+
+### v0.11 最終受入・再開点
+- 実装539af7c。Windows6武器各900tick、checkpoint、自動再出撃、別プロセスからの復帰600tick未来一致に合格。両passed=true/exit0、106.538秒と14.183秒。PlayerログException/Error/Failedなし。隔離セーブのみ使用。
+- 起動先Builds/Bokumyaku-v0.11/Bokumyaku.exe（Data/UnityPlayer/MonoBleedingEdge同梱のまま）。証拠bokumyaku-player-v11.json、player-resume-v11.json、player-launch-v11.json、artifact-v11.json。独立検証の製品ソースhashも再照合済み。
+- 今回の研究価格・表示・保存移行をPCα機能として受入。Unity211/211・画面50/50・基礎独立12/12。これはシステム全体完成、実時間長期放置、スマホ性能、数万Wave自然攻略の合格ではない。
+- 次セッション: G-V2-05初回5〜8分の未達5seedと育成後役割差から、有限の評価条件を決めて実装する。価格3候補比較は終了。STATEの現行要約と本記録、TASKSの最新ゲートを優先する。

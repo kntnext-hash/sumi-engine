@@ -1,10 +1,10 @@
-# 墨脈 — 一人用システム α v0.10
+# 墨脈 — 一人用システム α v0.11
 
 2026-10-22 JST。5敵、6武器、新規周回100,000Wave上限の一人用試作。戦闘・周回・永続化・画面導線を通す版で、完成美術や商用版ではない。検証の合否はQA_AND_EVIDENCE.md、完成範囲はBOKUMYAKU_SYSTEMS_ACCEPTANCE.mdを参照。
 
 ## 起動と操作
 
-Windows: `Builds/Bokumyaku-v0.10/Bokumyaku.exe`。同じフォルダのDLL/Dataも必要。Unity 6000.3.26f1では `Assets/BokumyakuPrototype/Scenes/Bokumyaku.unity` を開きPlay。旧ビルドは保持する。
+Windows: `Builds/Bokumyaku-v0.11/Bokumyaku.exe`。同じフォルダのDLL/Dataも必要。Unity 6000.3.26f1では `Assets/BokumyakuPrototype/Scenes/Bokumyaku.unity` を開きPlay。旧ビルドは保持する。
 
 1. ホームで武器・投資・成長方針を選んで出撃。構成3枠は操作欄を下へスクロールして保存・呼出できる。
 2. 戦闘は自動迎撃。撃破で得た周回内の墨を7強化に使う。手動/採墨・周回/供給・記録を切替可能。完全新規データだけ採墨・周回を初期選択。成長は均衡/迎撃/集中。末端を増やすと供給が分散する。
@@ -46,9 +46,9 @@ v0.9は60Wave以降を多項式HP・上限付き速度・対数墨報酬へ移�
 
 ## 保存と保護
 
-`Application.persistentDataPath/bokumyaku-campaign-v7.json` に恒久状態、runId/revision、3構成、最高記録、履歴、途中の敵・枝・領域・乱数・強化・速度・ルール版を保存する。途中保存は約10秒ごと、および停止/フォーカス喪失/アプリ停止/終了時。強制終了では最後の成功checkpointまで戻る。経過した現実時間は戦闘に加えない。
+`Application.persistentDataPath/bokumyaku-campaign-v8.json` に恒久状態、runId/revision、3構成、最高記録、履歴、途中の敵・枝・領域・乱数・強化・速度・ルール版を保存する。途中保存は約10秒ごと、および停止/フォーカス喪失/アプリ停止/終了時。強制終了では最後の成功checkpointまで戻る。経過した現実時間は戦闘に加えない。
 
-旧campaign-v6、v5、v4、v3、v2、prototype-v1を順に探し、新しいcampaign-v7へコピーする。原本/bakは保持。ファイル世代7でもJSONのschema3/configv3は同じ。旧途中周回は元のrulesと上限（rules1〜4は60、rules5は100000）で続き、新規出撃からrules6の長期育成になる。新ファイルが壊れた際に古い別世代へ巻き戻さない。旧Playerで移行後に増やした進捗は自動合流しない。
+旧campaign-v7、v6、v5、v4、v3、v2、prototype-v1を順に探し、新しいcampaign-v8へコピーする。原本/bakは保持。ファイル世代8でもJSONのschema3/configv3は同じ。旧途中周回は元のrulesと上限（rules1〜4は60、rules5は100000）で続き、新規出撃からrules6の長期育成になる。新ファイルが壊れた際に古い別世代へ巻き戻さない。旧Playerで移行後に増やした進捗は自動合流しない。
 
 正常直前版は `.bak`、壊れた原本は復旧保存時に `.corrupt-UUID` へ保持。両方不正なら初期化せず操作を停止する。一時ファイル検証・置換成功後にメモリ状態を交換し、同runIdの決済再送と古いrevisionを検出する。これは単一PCの保存保護でありオンライン不正対策ではない。
 
@@ -65,3 +65,6 @@ v0.9は60Wave以降を多項式HP・上限付き速度・対数墨報酬へ移�
 Unity JsonUtilityのdouble読込が隣接値へずれることを実NUnitで検出。Snapshotは人が読める数値欄に加え、全doubleのIEEE754 bit列をversion/count付きBase64で保持する。復元時は深いコピーを作り、欄との同値/隣接1ULP整合を確認して正確な値へ戻す。NaN/Infinity、2ULP以上の差、長さ/形式不正を拒否。戦闘計算の丸めや一致判定の緩和は行わない。暗号署名ではなくローカル保存精度の対策。
 
 結果の『通常結晶/分』は通常報酬÷戦闘秒×60で、初達成ボーナスを含めない。数値比較の効率は再出撃待機3秒も分母へ加えるため別の指標。結果には侵入総数と最多敵種を表示するが、核損傷量や最後の死因の断定ではない。
+
+## v0.11 研究費用
+価格版2。購入前Lv0〜10は従来価格、11〜20は丸め済Cost10を基点に1.22倍刻み。祖墨20→21は20339から2952結晶へ変更。倍率・戦闘規則・所持Lv・残高は変えず、過去購入分の差額返金はない。研究画面で祖墨の現在→次Lv倍率を確認できる。詳細BOKUMYAKU_RESEARCH_V11.md。

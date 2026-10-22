@@ -2,7 +2,12 @@
 
 更新: 2026-10-22 JST。以下の現行要約と末尾の最新記録を優先する。
 
-## 現行要約 — ゲームシステム α v0.10（長期火力育成）
+## 現行要約 — ゲームシステム α v0.11（研究価格）
+- 研究価格版2を実装。祖墨20→21は2,952結晶、育成済みFarmingの次購入を2〜3周へ調整。倍率・戦闘rules6を維持。
+- 原本を残してcampaign-v8へ移行、研究画面に次倍率を表示。Unity211/211、独立価格164点と戦闘12組一致。画面・PCの確定結果は末尾を参照。
+- 次は初回尺G05と育成後の役割差。数万Wave自然攻略・実機・長時間・完成美術は未達。仕様BOKUMYAKU_RESEARCH_V11.md。
+
+### 前版v0.10の受入
 - 新規rules6は周回筆撃100/恒久祖墨100。旧rules1〜5の途中周回・上限・計算を保持し、保存先v7へ原本保護移行。実装ab07f5a。
 - Unity200/200、画面50/50、独立基礎12/12に合格。候補と本体76条件一致。Windows確定結果は末尾。起動先Builds/Bokumyaku-v0.10/Bokumyaku.exe。
 - 最大育成の3構成がWave1から2000Wave完了時点までRunning（観測打切り）。点墨Farmingは239完了・240で敗北。全育成を実際に進めた証明ではなく、数万攻略は未達。
@@ -284,3 +289,23 @@
 - Windows6武器各900tick、checkpoint、自動再出撃を確認。別プロセスで復帰し600tickの未来一致。両passed=true/exit0、105.742秒/14.409秒。PlayerログException/Error/Failedなし。通常保存を使わずlogs内に隔離。
 - bokumyaku-player-v10.json / player-resume-v10.json / player-launch-v10.json / artifact-v10.jsonを保存。実装ab07f5a、起動先Builds/Bokumyaku-v0.10/Bokumyaku.exe。Data/UnityPlayer/MonoBleedingEdgeを同梱のまま使用。
 - v0.10の機能受入を完了。ゲーム全体完成ではなく、次は研究費用と成長テンポ、放置周回/記録の武器別比較。祖墨20からの20周実測と最大祖墨100の2000Wave観測を混同しない。数万Wave攻略・長時間/実機性能・美術/音の残件を維持。
+
+## 2026-10-22 v0.11 研究価格と成長テンポ
+- 基点94606b8/main同期。研究価格のみ変更、戦闘rules6・倍率・上限は維持。購入前Lv0〜10は従来費用、11〜20は丸め済みLv10費用×1.22指数、祖墨20超は新Lv20費用から二次増加。祖墨20→21は20,339→2,952結晶。
+- 旧版＋3候補の304自然周回を比較し1.22を固定。Enso Farmingの次購入は9→2周。初期meta0から20周は18/18/18/17へ成長。育成meta20からの試験と初期育成を区別する。
+- 固定後seed11〜13の36自然周回で全6武器Farmingの次購入は2〜3周。Recordは3周以内購入なし。製品76周は採用候補の全結果・購入・残高と完全一致。比較は今回で終了、長期経済全体の合格ではない。
+- 保存先campaign-v8へ原本保護移行。所持Lv/残高/途中状態を保持、遡及返金なし。研究画面に購入前→購入後倍率を表示。
+- 独立検証: 全164価格点・購入境界PASS。旧版との固定meta12組で状態完全一致、10組自然敗北、最大meta Record2組はWave2000観測打切りRunning。Unity EditMode211/211（61.0585128秒）、基礎独立12/12合格。
+- Unityドメイン再読込時にDeleting invalid font reference警告1件を観測、コンパイル失敗/Console errorなし。画面/PC最終結果は下段へ追記する。
+- 次: 未達の初回尺G-V2-05と育成後の武器・構成差を有限条件で評価。数万Wave自然攻略、実時間放置・モバイル実機、完成美術・音は未達。研究価格の候補探索を無制限に繰り返さない。
+
+### v0.11 Unity画面・Windowsビルド
+- Unity211/211、基礎独立12/12、画面50/50合格。祖墨20→21の実ボタン購入で2952を減算し、再読込・次周反映・戦闘中購入禁止を確認。研究画面Lv21/100、次費用3255、攻撃×1.58→×1.65を画像で確認。
+- build_78c02500b754 / Windows64成功、95,029,193bytes、14,538ms、error/warning0。Builds/Bokumyaku-v0.11/Bokumyaku.exeへ出力。旧ビルド保持、ツール日時は返却値のまま保存。
+- 最終Console error0/warning0、compilationFailed=false。Play停止、Scene dirty=false、背景実行false、QAキー空へ復元。画面試験の意図的な保存競合警告は期待された失敗経路。Engine/Scene/BrushLab/ProjectSettingsに変更なし。
+
+### v0.11 最終受入・再開点
+- 実装539af7c。Windows6武器各900tick、checkpoint、自動再出撃、別プロセスからの復帰600tick未来一致に合格。両passed=true/exit0、106.538秒と14.183秒。PlayerログException/Error/Failedなし。隔離セーブのみ使用。
+- 起動先Builds/Bokumyaku-v0.11/Bokumyaku.exe（Data/UnityPlayer/MonoBleedingEdge同梱のまま）。証拠bokumyaku-player-v11.json、player-resume-v11.json、player-launch-v11.json、artifact-v11.json。独立検証の製品ソースhashも再照合済み。
+- 今回の研究価格・表示・保存移行をPCα機能として受入。Unity211/211・画面50/50・基礎独立12/12。これはシステム全体完成、実時間長期放置、スマホ性能、数万Wave自然攻略の合格ではない。
+- 次セッション: G-V2-05初回5〜8分の未達5seedと育成後役割差から、有限の評価条件を決めて実装する。価格3候補比較は終了。STATEの現行要約と本記録、TASKSの最新ゲートを優先する。

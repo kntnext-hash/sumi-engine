@@ -1,0 +1,236 @@
+{
+  "classification": "Three bounded price-only candidates with paid sequential campaigns; no production edits",
+  "recommendation": "Growth1.22: all six Farming weapons purchase next Damage in2-3 runs; midpoint within observed1-3 run target",
+  "ordinaryRewardsOnly": true,
+  "totalRuns": null,
+  "purchasePolicy": "Uncapped minimum level first; tie Damage,Supply,Growth,Harvest; selected item must be affordable; settle then purchase",
+  "candidates": [
+    {
+      "variant": "Baseline",
+      "growth": 1.48,
+      "runCount": 76,
+      "censored": 0,
+      "totalBattleSeconds": 63051.43333333333,
+      "ensoFfirstPurchase": 9,
+      "ensoFDamageAfter10": 21,
+      "ensoFReward10": 23926,
+      "ensoFSpent10": 20339,
+      "ensoFBalance": 3587,
+      "farmingFirstPurchaseByWeapon": [
+        {
+          "weapon": "Point",
+          "firstPurchaseRun": -1
+        },
+        {
+          "weapon": "Pierce",
+          "firstPurchaseRun": -1
+        },
+        {
+          "weapon": "Bleed",
+          "firstPurchaseRun": -1
+        },
+        {
+          "weapon": "Sweep",
+          "firstPurchaseRun": -1
+        },
+        {
+          "weapon": "Enso",
+          "firstPurchaseRun": -1
+        },
+        {
+          "weapon": "Resonance",
+          "firstPurchaseRun": -1
+        }
+      ],
+      "initial20FinalLevels": [
+        16,
+        16,
+        15,
+        15
+      ]
+    },
+    {
+      "variant": "Growth1",
+      "growth": 1.18,
+      "runCount": 76,
+      "censored": 0,
+      "totalBattleSeconds": 64592.566666666666,
+      "ensoFfirstPurchase": 1,
+      "ensoFDamageAfter10": 29,
+      "ensoFReward10": 31232,
+      "ensoFSpent10": 27732,
+      "ensoFBalance": 3500,
+      "farmingFirstPurchaseByWeapon": [
+        {
+          "weapon": "Point",
+          "firstPurchaseRun": 2
+        },
+        {
+          "weapon": "Pierce",
+          "firstPurchaseRun": 2
+        },
+        {
+          "weapon": "Bleed",
+          "firstPurchaseRun": 2
+        },
+        {
+          "weapon": "Sweep",
+          "firstPurchaseRun": 2
+        },
+        {
+          "weapon": "Enso",
+          "firstPurchaseRun": 1
+        },
+        {
+          "weapon": "Resonance",
+          "firstPurchaseRun": 2
+        }
+      ],
+      "initial20FinalLevels": [
+        19,
+        19,
+        18,
+        18
+      ]
+    },
+    {
+      "variant": "Growth2",
+      "growth": 1.22,
+      "runCount": 76,
+      "censored": 0,
+      "totalBattleSeconds": 63666.43333333333,
+      "ensoFfirstPurchase": 2,
+      "ensoFDamageAfter10": 26,
+      "ensoFReward10": 26937,
+      "ensoFSpent10": 22548,
+      "ensoFBalance": 4389,
+      "farmingFirstPurchaseByWeapon": [
+        {
+          "weapon": "Point",
+          "firstPurchaseRun": 3
+        },
+        {
+          "weapon": "Pierce",
+          "firstPurchaseRun": 3
+        },
+        {
+          "weapon": "Bleed",
+          "firstPurchaseRun": 3
+        },
+        {
+          "weapon": "Sweep",
+          "firstPurchaseRun": 2
+        },
+        {
+          "weapon": "Enso",
+          "firstPurchaseRun": 2
+        },
+        {
+          "weapon": "Resonance",
+          "firstPurchaseRun": 2
+        }
+      ],
+      "initial20FinalLevels": [
+        18,
+        18,
+        18,
+        17
+      ]
+    },
+    {
+      "variant": "Growth3",
+      "growth": 1.26,
+      "runCount": 76,
+      "censored": 0,
+      "totalBattleSeconds": 63348.46666666665,
+      "ensoFfirstPurchase": 2,
+      "ensoFDamageAfter10": 25,
+      "ensoFReward10": 25530,
+      "ensoFSpent10": 24757,
+      "ensoFBalance": 773,
+      "farmingFirstPurchaseByWeapon": [
+        {
+          "weapon": "Point",
+          "firstPurchaseRun": -1
+        },
+        {
+          "weapon": "Pierce",
+          "firstPurchaseRun": -1
+        },
+        {
+          "weapon": "Bleed",
+          "firstPurchaseRun": 3
+        },
+        {
+          "weapon": "Sweep",
+          "firstPurchaseRun": 3
+        },
+        {
+          "weapon": "Enso",
+          "firstPurchaseRun": 2
+        },
+        {
+          "weapon": "Resonance",
+          "firstPurchaseRun": 3
+        }
+      ],
+      "initial20FinalLevels": [
+        18,
+        17,
+        17,
+        17
+      ]
+    }
+  ],
+  "limitations": [
+    "One deterministic seed sequence per scenario; no independent repetition or user-time study",
+    "Three-run Record comparisons are censored for next-purchase wait, not evidence of impossibility",
+    "Farming speedup arises from permanent levels purchased using observed rewards, not changed battle multipliers",
+    "No refunds or prior save changes evaluated here"
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/research-v11-Baseline.json",
+      "sha256": "5C2382A6D7101121285D7617B4183685026F875888CEC4EF912EC2DFE365558F"
+    },
+    {
+      "path": "docs/evidence/research-v11-Growth1.json",
+      "sha256": "49B8C1D48BE0D3B01AF2C0715DB84AE4524CCE3485899742444524DA3A4D629C"
+    },
+    {
+      "path": "docs/evidence/research-v11-Growth2.json",
+      "sha256": "B92F05A090E1D100DCE76E7B0A1015371D201F5D23A85C3313507BF04C8FD49A"
+    },
+    {
+      "path": "docs/evidence/research-v11-Growth3.json",
+      "sha256": "3D5277EE1A709C05087615BA9837246D6F453016861C37E73D720815FBF0F932"
+    }
+  ],
+  "selectedGrowth": 1.22,
+  "fixedAdditionalValidation": {
+    "evidence": "research-v11-FixedAdditional11to13.json",
+    "runs": 36,
+    "seeds": [
+      11,
+      12,
+      13
+    ],
+    "farmingFirstPurchaseByWeapon": [
+      3,
+      3,
+      3,
+      2,
+      2,
+      2
+    ],
+    "recordPurchasesWithinThreeRuns": 0,
+    "allNaturalDefeats": true,
+    "interpretation": "All six Farming series meet 1-3 run next-purchase target from meta20; Record series do not. No retuning after selection."
+  },
+  "productionVerification": {
+    "evidence": "research-v11-Production.json",
+    "runs": 76,
+    "allSeriesExactMatch": true,
+    "compared": "All row ticks, waves, rewards, purchases, levels, balances, and aggregate ledgers compared with selected immutable-baseline candidate2."
+  }
+}

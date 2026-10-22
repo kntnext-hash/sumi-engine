@@ -1,0 +1,1210 @@
+{
+  "classification": "Standalone C# independent price-domain and unchanged-combat verification; not Unity validation",
+  "passed": true,
+  "baselineCommit": "94606b8e547e89cdd5920ad97cce49c8a91031d9",
+  "baselineHashesFormat": "UTF8 LF one final LF",
+  "baselineHashes": [
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/AutoRepeatController.cs",
+      "sha256": "6E535C6DB35E4B78888E640A242494A40BAFE59C63D133E940ABD64E0B5C8845"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.cs",
+      "sha256": "57D4C367800F7E7DC7C88A31B99DFA86A10CEEB64461BE184B61805F3F52031C"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.ExactSnapshot.cs",
+      "sha256": "E238C561DC31EF4A80555339011C50ECB6E23DB6685488A04DC4E498FF190C22"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.LongRunRules.cs",
+      "sha256": "547EC9B3A75AD0D77EDD5E3FE86C17A6821BAB238A031F2D9548CDE2864608EC"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSimulator.Snapshot.cs",
+      "sha256": "42095E3882F5309BB62633CBEB8E4175BD56FC71F8FA3FE329EC74B50889C30C"
+    },
+    {
+      "path": "UnitySandbox/Assets/BokumyakuPrototype/Simulation/RunSnapshot.cs",
+      "sha256": "73AB657680E5769E6A2028BA2BACDD7792B46679C02AB8F647FD3171477B34C0"
+    }
+  ],
+  "productionHashesFormat": "Exact file bytes SHA256",
+  "productionHashes": [
+    {
+      "path": "AutoRepeatController.cs",
+      "sha256": "D110E501CA532370504A4F5E1C09842769F0DE9CC4EA51DDAF1E640FE3B67ACE"
+    },
+    {
+      "path": "RunSimulator.cs",
+      "sha256": "9E5816C8B8DEEB8B8ACDEAB65D32799814A08C58BB1038BB719957121DAB5F4E"
+    },
+    {
+      "path": "RunSimulator.ExactSnapshot.cs",
+      "sha256": "1D3DEC084E8811727E8DC333E7FB0937A3A06AC1CF4711F0CACA85D312CB4969"
+    },
+    {
+      "path": "RunSimulator.LongRunRules.cs",
+      "sha256": "D1B8E1834D6EF6D25996EB79AC505C9E753DE787D8A15ECD2CFFF8541BB8A0BE"
+    },
+    {
+      "path": "RunSimulator.Snapshot.cs",
+      "sha256": "8ADDAB0D7787C98020DD5E8204C2DCB3433A6468B8F6FCBF8958F3AB8C30E22B"
+    },
+    {
+      "path": "RunSnapshot.cs",
+      "sha256": "21F9068A22BBDBCF877341E5B6459857F12164905971FA211F610AB429501FCB"
+    }
+  ],
+  "prices": [
+    {
+      "kind": 0,
+      "level": 0,
+      "cost": 8,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 0,
+      "level": 1,
+      "cost": 12,
+      "damageMultiplier": 1.025
+    },
+    {
+      "kind": 0,
+      "level": 2,
+      "cost": 18,
+      "damageMultiplier": 1.05
+    },
+    {
+      "kind": 0,
+      "level": 3,
+      "cost": 26,
+      "damageMultiplier": 1.075
+    },
+    {
+      "kind": 0,
+      "level": 4,
+      "cost": 39,
+      "damageMultiplier": 1.1
+    },
+    {
+      "kind": 0,
+      "level": 5,
+      "cost": 57,
+      "damageMultiplier": 1.125
+    },
+    {
+      "kind": 0,
+      "level": 6,
+      "cost": 85,
+      "damageMultiplier": 1.15
+    },
+    {
+      "kind": 0,
+      "level": 7,
+      "cost": 125,
+      "damageMultiplier": 1.175
+    },
+    {
+      "kind": 0,
+      "level": 8,
+      "cost": 185,
+      "damageMultiplier": 1.2
+    },
+    {
+      "kind": 0,
+      "level": 9,
+      "cost": 273,
+      "damageMultiplier": 1.225
+    },
+    {
+      "kind": 0,
+      "level": 10,
+      "cost": 404,
+      "damageMultiplier": 1.25
+    },
+    {
+      "kind": 0,
+      "level": 11,
+      "cost": 493,
+      "damageMultiplier": 1.275
+    },
+    {
+      "kind": 0,
+      "level": 12,
+      "cost": 602,
+      "damageMultiplier": 1.3
+    },
+    {
+      "kind": 0,
+      "level": 13,
+      "cost": 734,
+      "damageMultiplier": 1.325
+    },
+    {
+      "kind": 0,
+      "level": 14,
+      "cost": 895,
+      "damageMultiplier": 1.35
+    },
+    {
+      "kind": 0,
+      "level": 15,
+      "cost": 1092,
+      "damageMultiplier": 1.375
+    },
+    {
+      "kind": 0,
+      "level": 16,
+      "cost": 1333,
+      "damageMultiplier": 1.4
+    },
+    {
+      "kind": 0,
+      "level": 17,
+      "cost": 1626,
+      "damageMultiplier": 1.425
+    },
+    {
+      "kind": 0,
+      "level": 18,
+      "cost": 1983,
+      "damageMultiplier": 1.45
+    },
+    {
+      "kind": 0,
+      "level": 19,
+      "cost": 2419,
+      "damageMultiplier": 1.475
+    },
+    {
+      "kind": 0,
+      "level": 20,
+      "cost": 2952,
+      "damageMultiplier": 1.5
+    },
+    {
+      "kind": 0,
+      "level": 21,
+      "cost": 3255,
+      "damageMultiplier": 1.5759374999999998
+    },
+    {
+      "kind": 0,
+      "level": 22,
+      "cost": 3572,
+      "damageMultiplier": 1.65375
+    },
+    {
+      "kind": 0,
+      "level": 23,
+      "cost": 3905,
+      "damageMultiplier": 1.7334375
+    },
+    {
+      "kind": 0,
+      "level": 24,
+      "cost": 4251,
+      "damageMultiplier": 1.8150000000000004
+    },
+    {
+      "kind": 0,
+      "level": 25,
+      "cost": 4613,
+      "damageMultiplier": 1.8984375
+    },
+    {
+      "kind": 0,
+      "level": 26,
+      "cost": 4989,
+      "damageMultiplier": 1.9837499999999997
+    },
+    {
+      "kind": 0,
+      "level": 27,
+      "cost": 5381,
+      "damageMultiplier": 2.0709375000000003
+    },
+    {
+      "kind": 0,
+      "level": 28,
+      "cost": 5786,
+      "damageMultiplier": 2.16
+    },
+    {
+      "kind": 0,
+      "level": 29,
+      "cost": 6207,
+      "damageMultiplier": 2.2509375000000005
+    },
+    {
+      "kind": 0,
+      "level": 30,
+      "cost": 6642,
+      "damageMultiplier": 2.34375
+    },
+    {
+      "kind": 0,
+      "level": 31,
+      "cost": 7093,
+      "damageMultiplier": 2.4384375
+    },
+    {
+      "kind": 0,
+      "level": 32,
+      "cost": 7558,
+      "damageMultiplier": 2.535
+    },
+    {
+      "kind": 0,
+      "level": 33,
+      "cost": 8037,
+      "damageMultiplier": 2.6334375
+    },
+    {
+      "kind": 0,
+      "level": 34,
+      "cost": 8532,
+      "damageMultiplier": 2.7337500000000006
+    },
+    {
+      "kind": 0,
+      "level": 35,
+      "cost": 9041,
+      "damageMultiplier": 2.8359375
+    },
+    {
+      "kind": 0,
+      "level": 36,
+      "cost": 9565,
+      "damageMultiplier": 2.9399999999999995
+    },
+    {
+      "kind": 0,
+      "level": 37,
+      "cost": 10104,
+      "damageMultiplier": 3.0459375
+    },
+    {
+      "kind": 0,
+      "level": 38,
+      "cost": 10657,
+      "damageMultiplier": 3.15375
+    },
+    {
+      "kind": 0,
+      "level": 39,
+      "cost": 11225,
+      "damageMultiplier": 3.2634375
+    },
+    {
+      "kind": 0,
+      "level": 40,
+      "cost": 11808,
+      "damageMultiplier": 3.375
+    },
+    {
+      "kind": 0,
+      "level": 41,
+      "cost": 12406,
+      "damageMultiplier": 3.4884374999999994
+    },
+    {
+      "kind": 0,
+      "level": 42,
+      "cost": 13019,
+      "damageMultiplier": 3.6037500000000007
+    },
+    {
+      "kind": 0,
+      "level": 43,
+      "cost": 13646,
+      "damageMultiplier": 3.720937500000001
+    },
+    {
+      "kind": 0,
+      "level": 44,
+      "cost": 14288,
+      "damageMultiplier": 3.8400000000000007
+    },
+    {
+      "kind": 0,
+      "level": 45,
+      "cost": 14945,
+      "damageMultiplier": 3.9609375
+    },
+    {
+      "kind": 0,
+      "level": 46,
+      "cost": 15617,
+      "damageMultiplier": 4.083749999999999
+    },
+    {
+      "kind": 0,
+      "level": 47,
+      "cost": 16303,
+      "damageMultiplier": 4.2084375000000005
+    },
+    {
+      "kind": 0,
+      "level": 48,
+      "cost": 17004,
+      "damageMultiplier": 4.335000000000001
+    },
+    {
+      "kind": 0,
+      "level": 49,
+      "cost": 17720,
+      "damageMultiplier": 4.4634375
+    },
+    {
+      "kind": 0,
+      "level": 50,
+      "cost": 18450,
+      "damageMultiplier": 4.59375
+    },
+    {
+      "kind": 0,
+      "level": 51,
+      "cost": 19196,
+      "damageMultiplier": 4.7259375
+    },
+    {
+      "kind": 0,
+      "level": 52,
+      "cost": 19956,
+      "damageMultiplier": 4.86
+    },
+    {
+      "kind": 0,
+      "level": 53,
+      "cost": 20731,
+      "damageMultiplier": 4.995937500000001
+    },
+    {
+      "kind": 0,
+      "level": 54,
+      "cost": 21521,
+      "damageMultiplier": 5.133750000000001
+    },
+    {
+      "kind": 0,
+      "level": 55,
+      "cost": 22325,
+      "damageMultiplier": 5.2734375
+    },
+    {
+      "kind": 0,
+      "level": 56,
+      "cost": 23144,
+      "damageMultiplier": 5.415
+    },
+    {
+      "kind": 0,
+      "level": 57,
+      "cost": 23978,
+      "damageMultiplier": 5.5584375
+    },
+    {
+      "kind": 0,
+      "level": 58,
+      "cost": 24827,
+      "damageMultiplier": 5.703750000000001
+    },
+    {
+      "kind": 0,
+      "level": 59,
+      "cost": 25690,
+      "damageMultiplier": 5.850937500000001
+    },
+    {
+      "kind": 0,
+      "level": 60,
+      "cost": 26568,
+      "damageMultiplier": 6.0
+    },
+    {
+      "kind": 0,
+      "level": 61,
+      "cost": 27461,
+      "damageMultiplier": 6.150937500000003
+    },
+    {
+      "kind": 0,
+      "level": 62,
+      "cost": 28369,
+      "damageMultiplier": 6.303749999999999
+    },
+    {
+      "kind": 0,
+      "level": 63,
+      "cost": 29292,
+      "damageMultiplier": 6.458437500000001
+    },
+    {
+      "kind": 0,
+      "level": 64,
+      "cost": 30229,
+      "damageMultiplier": 6.615
+    },
+    {
+      "kind": 0,
+      "level": 65,
+      "cost": 31181,
+      "damageMultiplier": 6.7734375
+    },
+    {
+      "kind": 0,
+      "level": 66,
+      "cost": 32148,
+      "damageMultiplier": 6.933750000000002
+    },
+    {
+      "kind": 0,
+      "level": 67,
+      "cost": 33129,
+      "damageMultiplier": 7.095937499999998
+    },
+    {
+      "kind": 0,
+      "level": 68,
+      "cost": 34126,
+      "damageMultiplier": 7.260000000000002
+    },
+    {
+      "kind": 0,
+      "level": 69,
+      "cost": 35137,
+      "damageMultiplier": 7.425937500000001
+    },
+    {
+      "kind": 0,
+      "level": 70,
+      "cost": 36162,
+      "damageMultiplier": 7.59375
+    },
+    {
+      "kind": 0,
+      "level": 71,
+      "cost": 37203,
+      "damageMultiplier": 7.763437500000003
+    },
+    {
+      "kind": 0,
+      "level": 72,
+      "cost": 38258,
+      "damageMultiplier": 7.934999999999999
+    },
+    {
+      "kind": 0,
+      "level": 73,
+      "cost": 39329,
+      "damageMultiplier": 8.1084375
+    },
+    {
+      "kind": 0,
+      "level": 74,
+      "cost": 40413,
+      "damageMultiplier": 8.283750000000001
+    },
+    {
+      "kind": 0,
+      "level": 75,
+      "cost": 41513,
+      "damageMultiplier": 8.4609375
+    },
+    {
+      "kind": 0,
+      "level": 76,
+      "cost": 42627,
+      "damageMultiplier": 8.640000000000002
+    },
+    {
+      "kind": 0,
+      "level": 77,
+      "cost": 43757,
+      "damageMultiplier": 8.8209375
+    },
+    {
+      "kind": 0,
+      "level": 78,
+      "cost": 44900,
+      "damageMultiplier": 9.003750000000002
+    },
+    {
+      "kind": 0,
+      "level": 79,
+      "cost": 46059,
+      "damageMultiplier": 9.188437500000001
+    },
+    {
+      "kind": 0,
+      "level": 80,
+      "cost": 47232,
+      "damageMultiplier": 9.375
+    },
+    {
+      "kind": 0,
+      "level": 81,
+      "cost": 48421,
+      "damageMultiplier": 9.563437500000003
+    },
+    {
+      "kind": 0,
+      "level": 82,
+      "cost": 49624,
+      "damageMultiplier": 9.75375
+    },
+    {
+      "kind": 0,
+      "level": 83,
+      "cost": 50841,
+      "damageMultiplier": 9.945937500000001
+    },
+    {
+      "kind": 0,
+      "level": 84,
+      "cost": 52074,
+      "damageMultiplier": 10.14
+    },
+    {
+      "kind": 0,
+      "level": 85,
+      "cost": 53321,
+      "damageMultiplier": 10.3359375
+    },
+    {
+      "kind": 0,
+      "level": 86,
+      "cost": 54583,
+      "damageMultiplier": 10.533750000000003
+    },
+    {
+      "kind": 0,
+      "level": 87,
+      "cost": 55860,
+      "damageMultiplier": 10.733437499999997
+    },
+    {
+      "kind": 0,
+      "level": 88,
+      "cost": 57151,
+      "damageMultiplier": 10.935000000000002
+    },
+    {
+      "kind": 0,
+      "level": 89,
+      "cost": 58457,
+      "damageMultiplier": 11.1384375
+    },
+    {
+      "kind": 0,
+      "level": 90,
+      "cost": 59778,
+      "damageMultiplier": 11.34375
+    },
+    {
+      "kind": 0,
+      "level": 91,
+      "cost": 61114,
+      "damageMultiplier": 11.550937500000003
+    },
+    {
+      "kind": 0,
+      "level": 92,
+      "cost": 62465,
+      "damageMultiplier": 11.759999999999998
+    },
+    {
+      "kind": 0,
+      "level": 93,
+      "cost": 63830,
+      "damageMultiplier": 11.970937500000002
+    },
+    {
+      "kind": 0,
+      "level": 94,
+      "cost": 65210,
+      "damageMultiplier": 12.18375
+    },
+    {
+      "kind": 0,
+      "level": 95,
+      "cost": 66605,
+      "damageMultiplier": 12.3984375
+    },
+    {
+      "kind": 0,
+      "level": 96,
+      "cost": 68015,
+      "damageMultiplier": 12.615000000000002
+    },
+    {
+      "kind": 0,
+      "level": 97,
+      "cost": 69439,
+      "damageMultiplier": 12.833437499999999
+    },
+    {
+      "kind": 0,
+      "level": 98,
+      "cost": 70878,
+      "damageMultiplier": 13.05375
+    },
+    {
+      "kind": 0,
+      "level": 99,
+      "cost": 72332,
+      "damageMultiplier": 13.275937500000001
+    },
+    {
+      "kind": 0,
+      "level": 100,
+      "cost": 73800,
+      "damageMultiplier": 13.5
+    },
+    {
+      "kind": 1,
+      "level": 0,
+      "cost": 10,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 1,
+      "cost": 15,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 2,
+      "cost": 22,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 3,
+      "cost": 33,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 4,
+      "cost": 48,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 5,
+      "cost": 72,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 6,
+      "cost": 106,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 7,
+      "cost": 156,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 8,
+      "cost": 231,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 9,
+      "cost": 341,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 10,
+      "cost": 505,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 11,
+      "cost": 617,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 12,
+      "cost": 752,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 13,
+      "cost": 918,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 14,
+      "cost": 1119,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 15,
+      "cost": 1365,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 16,
+      "cost": 1666,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 17,
+      "cost": 2032,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 18,
+      "cost": 2479,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 19,
+      "cost": 3024,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 1,
+      "level": 20,
+      "cost": 3689,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 0,
+      "cost": 8,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 1,
+      "cost": 12,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 2,
+      "cost": 18,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 3,
+      "cost": 26,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 4,
+      "cost": 39,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 5,
+      "cost": 57,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 6,
+      "cost": 85,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 7,
+      "cost": 125,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 8,
+      "cost": 185,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 9,
+      "cost": 273,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 10,
+      "cost": 404,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 11,
+      "cost": 493,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 12,
+      "cost": 602,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 13,
+      "cost": 734,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 14,
+      "cost": 895,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 15,
+      "cost": 1092,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 16,
+      "cost": 1333,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 17,
+      "cost": 1626,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 18,
+      "cost": 1983,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 19,
+      "cost": 2419,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 2,
+      "level": 20,
+      "cost": 2952,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 0,
+      "cost": 12,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 1,
+      "cost": 18,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 2,
+      "cost": 27,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 3,
+      "cost": 39,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 4,
+      "cost": 58,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 5,
+      "cost": 86,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 6,
+      "cost": 127,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 7,
+      "cost": 187,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 8,
+      "cost": 277,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 9,
+      "cost": 409,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 10,
+      "cost": 606,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 11,
+      "cost": 740,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 12,
+      "cost": 902,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 13,
+      "cost": 1101,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 14,
+      "cost": 1343,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 15,
+      "cost": 1638,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 16,
+      "cost": 1999,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 17,
+      "cost": 2438,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 18,
+      "cost": 2975,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 19,
+      "cost": 3629,
+      "damageMultiplier": 1.0
+    },
+    {
+      "kind": 3,
+      "level": 20,
+      "cost": 4427,
+      "damageMultiplier": 1.0
+    }
+  ],
+  "priceChecks": "All164 levels, 1-short refusal, exact funds purchase, cap refusal, invalid enums, unchanged DamageMultiplier",
+  "combat": [
+    {
+      "seed": 42,
+      "damage": 0,
+      "otherMeta": 0,
+      "weapon": 0,
+      "build": 1,
+      "ticks": 12624,
+      "wave": 36,
+      "crystals": 241,
+      "status": "Defeated",
+      "observationLimit": false,
+      "exactFutureTicks": 900
+    },
+    {
+      "seed": 42,
+      "damage": 0,
+      "otherMeta": 0,
+      "weapon": 0,
+      "build": 2,
+      "ticks": 13460,
+      "wave": 38,
+      "crystals": 46,
+      "status": "Defeated",
+      "observationLimit": false,
+      "exactFutureTicks": 900
+    },
+    {
+      "seed": 42,
+      "damage": 0,
+      "otherMeta": 0,
+      "weapon": 4,
+      "build": 1,
+      "ticks": 14480,
+      "wave": 41,
+      "crystals": 417,
+      "status": "Defeated",
+      "observationLimit": false,
+      "exactFutureTicks": 900
+    },
+    {
+      "seed": 42,
+      "damage": 0,
+      "otherMeta": 0,
+      "weapon": 4,
+      "build": 2,
+      "ticks": 10902,
+      "wave": 31,
+      "crystals": 30,
+      "status": "Defeated",
+      "observationLimit": false,
+      "exactFutureTicks": 900
+    },
+    {
+      "seed": 42,
+      "damage": 20,
+      "otherMeta": 20,
+      "weapon": 0,
+      "build": 1,
+      "ticks": 20404,
+      "wave": 57,
+      "crystals": 1292,
+      "status": "Defeated",
+      "observationLimit": false,
+      "exactFutureTicks": 900
+    },
+    {
+      "seed": 42,
+      "damage": 20,
+      "otherMeta": 20,
+      "weapon": 0,
+      "build": 2,
+      "ticks": 21641,
+      "wave": 61,
+      "crystals": 125,
+      "status": "Defeated",
+      "observationLimit": false,
+      "exactFutureTicks": 900
+    },
+    {
+      "seed": 42,
+      "damage": 20,
+      "otherMeta": 20,
+      "weapon": 4,
+      "build": 1,
+      "ticks": 28475,
+      "wave": 80,
+      "crystals": 2941,
+      "status": "Defeated",
+      "observationLimit": false,
+      "exactFutureTicks": 900
+    },
+    {
+      "seed": 42,
+      "damage": 20,
+      "otherMeta": 20,
+      "weapon": 4,
+      "build": 2,
+      "ticks": 32394,
+      "wave": 90,
+      "crystals": 262,
+      "status": "Defeated",
+      "observationLimit": false,
+      "exactFutureTicks": 900
+    },
+    {
+      "seed": 42,
+      "damage": 100,
+      "otherMeta": 20,
+      "weapon": 0,
+      "build": 1,
+      "ticks": 71888,
+      "wave": 200,
+      "crystals": 11770,
+      "status": "Defeated",
+      "observationLimit": false,
+      "exactFutureTicks": 900
+    },
+    {
+      "seed": 42,
+      "damage": 100,
+      "otherMeta": 20,
+      "weapon": 0,
+      "build": 2,
+      "ticks": 720000,
+      "wave": 2000,
+      "crystals": 0,
+      "status": "Running",
+      "observationLimit": true,
+      "exactFutureTicks": 900
+    },
+    {
+      "seed": 42,
+      "damage": 100,
+      "otherMeta": 20,
+      "weapon": 4,
+      "build": 1,
+      "ticks": 82669,
+      "wave": 230,
+      "crystals": 13992,
+      "status": "Defeated",
+      "observationLimit": false,
+      "exactFutureTicks": 900
+    },
+    {
+      "seed": 42,
+      "damage": 100,
+      "otherMeta": 20,
+      "weapon": 4,
+      "build": 2,
+      "ticks": 720000,
+      "wave": 2000,
+      "crystals": 0,
+      "status": "Running",
+      "observationLimit": true,
+      "exactFutureTicks": 900
+    }
+  ],
+  "combatChecks": "Same seed42/meta/build/weapon full snapshot exact at initial state, each of first900ticks, and natural terminal or720000tick observation limit",
+  "limitations": [
+    "Research price can change paid progression even though fixed-meta combat is unchanged",
+    "High-meta conditions are injected configuration, not evidence of paid leveling to100",
+    "Running at observation limit is not a natural terminal"
+  ]
+}
