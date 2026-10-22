@@ -56,8 +56,9 @@ namespace Bokumyaku.Presentation
                 Page = GamePage.Home; saveWarning = "";
             }
         }
-        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v3.json");
-        public string PreviousCampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v2.json") : SavePathOverride + ".v2";
+        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v4.json");
+        public string PreviousCampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v3.json") : SavePathOverride + ".v3";
+        public string OlderCampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v2.json") : SavePathOverride + ".v2";
         string LegacySavePath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-prototype-v1.json") : SavePathOverride + ".legacy";
         SumiCanvas canvas;
         Texture2D disc;
@@ -133,9 +134,9 @@ namespace Bokumyaku.Presentation
             EnsureCanvas();
             try
             {
-                bool firstNewCampaign = !progressLoaded && !SaveFamilyExists(SavePath) && !SaveFamilyExists(PreviousCampaignPath) && !SaveFamilyExists(LegacySavePath);
+                bool firstNewCampaign = !progressLoaded && !SaveFamilyExists(SavePath) && !SaveFamilyExists(PreviousCampaignPath) && !SaveFamilyExists(OlderCampaignPath) && !SaveFamilyExists(LegacySavePath);
                 string warning;
-                var loaded = CampaignSaveStore.Load(SavePath, PreviousCampaignPath, LegacySavePath, out warning);
+                var loaded = CampaignSaveStore.LoadLatest(SavePath, PreviousCampaignPath, OlderCampaignPath, LegacySavePath, out warning);
                 if (firstNewCampaign) SelectedBuild = BuildPreset.Farming;
                 var restored = loaded.HasActiveRun ? RunSimulator.Restore(loaded.ActiveRun) : new RunSimulator(InitialSeed, loaded.Meta);
                 ApplyCampaign(loaded); Run = restored; progressLoaded = true; loadBlocked = false;
@@ -495,7 +496,7 @@ namespace Bokumyaku.Presentation
                 if (portrait) DrawPanel(new Rect(24, 584, 392, 452), true);
                 else DrawPanel(new Rect(558, 110, 494, 616), false);
                 GUI.Label(new Rect(field.x, field.yMax + 7, field.width, 18), "墨の枝  ／  金の末端  ／  朱の敵", small);
-                GUI.Label(new Rect(width - 185, portrait ? 20 : 42, 162, 25), "システム α  0.6", small);
+                GUI.Label(new Rect(width - 185, portrait ? 20 : 42, 162, 25), "システム α  0.7", small);
             }
             finally { GUI.matrix = oldMatrix; GUI.color = oldColor; GUI.backgroundColor = oldBackground; GUI.enabled = oldEnabled; }
         }
@@ -632,14 +633,13 @@ namespace Bokumyaku.Presentation
                 DrawArt(new Rect(box.center.x - 110, box.center.y - 110, 220, 220), ensoArt, .10f, ScaleMode.ScaleToFit);
                 string status = AwaitingStart ? "一滴から、命が芽吹く。" : Run.State == RunStatus.Defeated ? "墨が静まり、核が砕けた。" : Run.State == RunStatus.TestCompleted ? RunSimulator.WaveLimit + "の波を、耐え抜いた。" : "試作版の処理上限";
                 int milestone = rewarded && campaign != null && campaign.LastResult != null ? campaign.LastResult.MilestoneCrystals : 0;
-                int totalReward = Run.CrystalsReward + milestone;
                 GUI.Label(new Rect(box.x + 14, box.y + 12, box.width - 28, 35), status, heading);
                 GUI.Label(new Rect(box.x + 14, box.y + 48, box.width - 28, 146), AwaitingStart
                     ? "核を守る墨の枝。敵を倒すと枝が伸びる。\n操作欄で武器と投資方針を選び、出撃する。\n武器: " + WeaponNames[(int)SelectedWeapon] + "\n投資: " + BuildNames[(int)SelectedBuild]
-                    : "到達 " + Run.CompletedWave + " 波突破  ·  " + Run.Kills + " 撃破\n生存 " + FormatTime(Run.ElapsedSeconds)
-                        + "  ／  獲得墨 " + Run.IncomeEarned + "\n獲得墨/分 " + Run.IncomePerMinute.ToString("0.0")
+                    : "到達 " + Run.CompletedWave + " 波突破  ·  " + Run.Kills + " 撃破\n戦闘 " + FormatTime(Run.ElapsedSeconds)
+                        + "  ／  獲得墨 " + Run.IncomeEarned + "\n" + ResultPresentation.InvasionSummary(Run.LeakedByType)
                         + "\n結晶 " + Run.CrystalsReward + " + 初達成 " + milestone + (rewarded ? "（保存済）" : "（保存待ち）")
-                        + "\n武器: " + WeaponNames[(int)Run.Weapon] + " / 結晶/分 " + (Run.ElapsedSeconds > 0 ? totalReward * 60.0 / Run.ElapsedSeconds : 0).ToString("0.00"), body);
+                        + "\n武器: " + WeaponNames[(int)Run.Weapon] + " / 通常結晶/分 " + ResultPresentation.NormalCrystalsPerMinute(Run.CrystalsReward, Run.ElapsedSeconds).ToString("0.00"), body);
                 if (Button(new Rect(box.x + 14, box.y + 206, box.width - 28, 32), AwaitingStart ? "出撃する" : "再び芽吹く", true)) StartRun(unchecked(InitialSeed + (AwaitingStart ? 0 : Run.Seed - InitialSeed + 1)));
             }
         }
@@ -842,5 +842,29 @@ namespace Bokumyaku.Presentation
             if (japaneseFont != null) Destroy(japaneseFont);
         }
         sealed class Flash { public Vector2 A, B; public float Life; public WeaponKind Weapon; }
+    }
+    // Display-only calculations. Efficiency uses battle time, excluding restart waits and milestone bonuses.
+    public static class ResultPresentation
+    {
+        public static double NormalCrystalsPerMinute(int normalCrystals, double battleSeconds)
+        {
+            return battleSeconds > 0 ? normalCrystals * 60.0 / battleSeconds : 0;
+        }
+
+        public static string InvasionSummary(int[] leakedByType)
+        {
+            string[] names = { "通常", "速敵", "重敵", "分裂", "ボス" };
+            int total = 0, most = 0, mostIndex = 0;
+            for (int i = 0; i < leakedByType.Length; i++)
+            {
+                int count = leakedByType[i];
+                total += count;
+                // Strict comparison keeps ties stable in EnemyKind order; this is not a cause-of-death claim.
+                if (count > most) { most = count; mostIndex = i; }
+            }
+            if (total == 0) return "核への侵入なし";
+            string kind = mostIndex < names.Length ? names[mostIndex] : "不明";
+            return "侵入 " + total + "体 / 最多 " + kind + " " + most + "体";
+        }
     }
 }

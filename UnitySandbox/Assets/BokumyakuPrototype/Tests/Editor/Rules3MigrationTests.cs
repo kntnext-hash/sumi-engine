@@ -1,0 +1,55 @@
+using System;
+using System.IO;
+using Bokumyaku.Persistence;
+using Bokumyaku.Simulation;
+using NUnit.Framework;
+using UnityEngine;
+namespace Bokumyaku.Tests
+{
+    public sealed class Rules3MigrationTests
+    {
+        string dir, latest, previous, older;
+        [SetUp] public void Setup() { dir=Path.Combine(Path.GetTempPath(),"BokumyakuRules3-"+Guid.NewGuid().ToString("N")); Directory.CreateDirectory(dir);latest=Path.Combine(dir,"v4.json");previous=Path.Combine(dir,"v3.json");older=Path.Combine(dir,"v2.json"); }
+        [TearDown] public void Cleanup() { foreach(var f in Directory.GetFiles(dir))File.Delete(f);Directory.Delete(dir); }
+        static RunSnapshot Fixture(string name) => JsonUtility.FromJson<RunSnapshot>(File.ReadAllText(Path.Combine(Application.dataPath,"BokumyakuPrototype/Tests/Fixtures",name)));
+        [TestCase("v6-run")] [TestCase("v6-record")] public void PreviousRules2ActivePreservesFutureAndAllSourceBytes(string prefix)
+        {
+            var s=Fixture(prefix+"-tick6000.json");Assert.AreEqual(2,s.rulesVersion);
+            var c=new CampaignProgress { HasActiveRun=true,ActiveRunId=Guid.NewGuid().ToString("N"),ActiveRun=s,Meta=s.meta,ActiveSpeed=2 };
+            c=CampaignSaveStore.Save(previous,c);c=CampaignSaveStore.Save(previous,c);
+            var bytes=File.ReadAllBytes(previous);var backup=File.ReadAllBytes(previous+".bak");
+            string warning;var migrated=CampaignSaveStore.LoadLatest(latest,previous,older,null,out warning);
+            Assert.AreEqual(JsonUtility.ToJson(c),JsonUtility.ToJson(migrated));Assert.AreEqual(3,migrated.SchemaVersion);Assert.AreEqual("bokumyaku-campaign-v3",migrated.Config);
+            var live=RunSimulator.Restore(migrated.ActiveRun);for(int i=0;i<900;i++)live.Tick();
+            Assert.AreEqual(JsonUtility.ToJson(RunSimulator.Restore(Fixture(prefix+"-tick6900.json")).CaptureState()),JsonUtility.ToJson(live.CaptureState()));
+            CampaignSaveStore.SaveActive(latest,migrated,live,2);
+            CollectionAssert.AreEqual(bytes,File.ReadAllBytes(previous));CollectionAssert.AreEqual(backup,File.ReadAllBytes(previous+".bak"));
+        }
+        [Test] public void CorruptPreviousUsesItsBackupAndPreservesOriginal()
+        {
+            CampaignSaveStore.Save(previous,new CampaignProgress { Meta=new MetaProgress { Crystals=71 } });File.Copy(previous,previous+".bak");File.WriteAllText(previous,"broken");
+            string w;var c=CampaignSaveStore.LoadLatest(latest,previous,older,null,out w);Assert.AreEqual(71,c.Meta.Crystals);Assert.AreEqual("broken",File.ReadAllText(previous));Assert.IsTrue(File.Exists(previous+".bak"));
+        }
+        [Test] public void OldV2FallbackStillMigratesWithoutChangingSource()
+        {
+            var c=new CampaignProgress { SchemaVersion=2,Config="bokumyaku-campaign-v2",Meta=new MetaProgress { Crystals=39 } };var bytes=JsonUtility.ToJson(c);File.WriteAllText(older,bytes);
+            string w;var migrated=CampaignSaveStore.LoadLatest(latest,previous,older,null,out w);Assert.AreEqual(39,migrated.Meta.Crystals);Assert.AreEqual(3,migrated.SchemaVersion);Assert.AreEqual(bytes,File.ReadAllText(older));
+        }
+        [Test] public void BrokenLatestDoesNotRollBackToPrevious()
+        {
+            CampaignSaveStore.Save(previous,new CampaignProgress());File.WriteAllText(latest,"broken-latest");
+            Assert.Throws<InvalidDataException>(()=>{string w;CampaignSaveStore.LoadLatest(latest,previous,older,null,out w);});Assert.AreEqual("broken-latest",File.ReadAllText(latest));
+        }
+        [Test] public void SameSourceAndDestinationIsRejected()
+        {
+            Assert.Throws<InvalidDataException>(()=>{string w;CampaignSaveStore.LoadLatest(latest,latest,older,null,out w);});Assert.IsFalse(File.Exists(latest));
+        }
+        [TestCase(3,true)] [TestCase(4,false)]
+        public void ResultRulesHaveExplicitSupportedRange(int rules,bool valid)
+        {
+            var id=Guid.NewGuid().ToString("N");var r=new CampaignResult { RunId=id,RulesVersion=rules,Status=RunStatus.Defeated };
+            var c=new CampaignProgress { TotalRuns=1,LastSettledRunId=id,LastResult=r };c.History.Add(r);
+            if(valid)Assert.DoesNotThrow(()=>CampaignSaveStore.Save(latest,c));else Assert.Throws<InvalidDataException>(()=>CampaignSaveStore.Save(latest,c));
+        }
+    }
+}

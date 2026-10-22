@@ -84,7 +84,7 @@ namespace Bokumyaku.Simulation
     public sealed partial class RunSimulator
     {
         public const int LegacyRulesVersion = 1;
-        public const int CurrentRulesVersion = 2;
+        public const int CurrentRulesVersion = 3;
         public const int HarvestMaxLevel = 10;
         public const double HarvestGainPerLevel = 1.5;
         public const double HarvestBaseCost = 30;
@@ -368,8 +368,9 @@ namespace Bokumyaku.Simulation
             bool split = TipCount < Math.Min(12, 3 + levels[3]) && branches.Count <= 62;
             chosen.IsTip = false;
             double length = 25 + Random01(ref growthRng) * 30;
-            AddBranch(chosen, angle + (split ? -.35 : (Random01(ref growthRng) - .5) * .5), length);
-            if (split) AddBranch(chosen, angle + .35, length);
+            double splitAngle = RulesVersion >= 3 ? .65 : .35;
+            AddBranch(chosen, angle + (split ? -splitAngle : (Random01(ref growthRng) - .5) * .5), length);
+            if (split) AddBranch(chosen, angle + splitAngle, length);
             return true;
         }
         void AddBranch(BranchState parent, double angle, double length)
