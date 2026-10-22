@@ -84,7 +84,7 @@ namespace Bokumyaku.Simulation
     public sealed partial class RunSimulator
     {
         public const int LegacyRulesVersion = 1;
-        public const int CurrentRulesVersion = 3;
+        public const int CurrentRulesVersion = 4;
         public const int HarvestMaxLevel = 10;
         public const double HarvestGainPerLevel = 1.5;
         public const double HarvestBaseCost = 30;
@@ -200,7 +200,11 @@ namespace Bokumyaku.Simulation
                 AutoBuyLegacy(); return;
             }
             int next = levels[3] + 1;
-            if (levels[3] < 6 && levels[2] >= 2 * next && levels[0] >= next) { TryBuy(UpgradeKind.Branch); return; }
+            int branchCap = RulesVersion >= 4 ? 9 : 6;
+            // Late branches still need paid supply first; unfinished older runs keep their purchase order.
+            if (RulesVersion >= 4 && levels[3] >= 6 && levels[3] < branchCap && levels[0] >= next && levels[2] < 2 * next)
+            { TryBuy(UpgradeKind.Supply); return; }
+            if (levels[3] < branchCap && levels[2] >= 2 * next && levels[0] >= next) { TryBuy(UpgradeKind.Branch); return; }
             UpgradeKind[] cycle = { UpgradeKind.Supply, UpgradeKind.Speed, UpgradeKind.Damage, UpgradeKind.Width, UpgradeKind.Bleed, UpgradeKind.Damage };
             int[] caps = { 30, 25, 25, 9, 10, 10 };
             for (int i = 0; i < cycle.Length; i++)

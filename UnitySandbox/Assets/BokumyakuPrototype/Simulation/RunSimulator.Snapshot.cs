@@ -40,7 +40,7 @@ namespace Bokumyaku.Simulation
             s = DecodeExactDoubles(s);
             Check(s.schemaVersion==1 || s.schemaVersion==2,"schemaVersion");
             int rules = s.schemaVersion == 1 ? LegacyRulesVersion : s.rulesVersion;
-            Check(rules==1 || rules==2 || rules==3,"rulesVersion");
+            Check(rules>=1 && rules<=CurrentRulesVersion,"rulesVersion");
             Check(s.schemaVersion!=1 || (s.rulesVersion==0 && s.autoPurchaseCursor==0),"legacy metadata");
             Range(s.autoPurchaseCursor,0,5,"purchase cursor");
             Check(rules!=1 || s.autoPurchaseCursor==0,"legacy cursor");

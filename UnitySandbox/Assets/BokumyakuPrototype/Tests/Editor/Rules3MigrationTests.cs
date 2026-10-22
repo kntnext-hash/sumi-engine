@@ -44,7 +44,7 @@ namespace Bokumyaku.Tests
         {
             Assert.Throws<InvalidDataException>(()=>{string w;CampaignSaveStore.LoadLatest(latest,latest,older,null,out w);});Assert.IsFalse(File.Exists(latest));
         }
-        [TestCase(3,true)] [TestCase(4,false)]
+        [TestCase(3,true)] [TestCase(5,false)]
         public void ResultRulesHaveExplicitSupportedRange(int rules,bool valid)
         {
             var id=Guid.NewGuid().ToString("N");var r=new CampaignResult { RunId=id,RulesVersion=rules,Status=RunStatus.Defeated };

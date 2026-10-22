@@ -41,14 +41,14 @@ namespace Bokumyaku.Tests
         {
             var r=RunSimulator.Restore(Fixture("v6-run-tick6000"));r.SetBuild(BuildPreset.Record);
             Assert.AreEqual(2,r.RulesVersion);Assert.AreEqual(2,RunSimulator.Restore(r.CaptureState()).RulesVersion);
-            Assert.AreEqual(3,new RunSimulator(42).RulesVersion);
+            Assert.AreEqual(4,new RunSimulator(42).RulesVersion);
         }
         [TestCase(BuildPreset.Farming)] [TestCase(BuildPreset.Record)]
         public void NewRulesJsonRoundTripPreservesPurchaseCursorAndFuture(BuildPreset build)
         {
             var a=new RunSimulator(42);a.SetBuild(build);for(int i=0;i<6000;i++)a.Tick();
             var b=RunSimulator.Restore(JsonUtility.FromJson<RunSnapshot>(State(a)));
-            Assert.AreEqual(3,b.RulesVersion);Assert.AreEqual(7,b.UpgradeLevels.Length);
+            Assert.AreEqual(4,b.RulesVersion);Assert.AreEqual(7,b.UpgradeLevels.Length);
             for(int i=0;i<900;i++){a.Tick();b.Tick();Assert.AreEqual(State(a),State(b));}
         }
         [Test] public void HarvestPurchaseIsPaidCappedAndNeverRetroactive()
@@ -60,7 +60,7 @@ namespace Bokumyaku.Tests
         }
         [Test] public void InvalidRulesAndLevelShapeAreRejected()
         {
-            var s=new RunSimulator(1).CaptureState();s.rulesVersion=4;Assert.Throws<ArgumentException>(()=>RunSimulator.Restore(s));
+            var s=new RunSimulator(1).CaptureState();s.rulesVersion=5;Assert.Throws<ArgumentException>(()=>RunSimulator.Restore(s));
             s=new RunSimulator(1).CaptureState();s.rulesVersion=1;Assert.Throws<ArgumentException>(()=>RunSimulator.Restore(s));
             s=new RunSimulator(1).CaptureState();s.autoPurchaseCursor=-1;Assert.Throws<ArgumentException>(()=>RunSimulator.Restore(s));
         }

@@ -23,7 +23,7 @@ namespace Bokumyaku.Persistence
         }
         static void ResultValid(CampaignResult r)
         {
-            Require(r != null && (r.RulesVersion >= 1 && r.RulesVersion <= 3) && Id(r.RunId) && r.Ticks >= 0 && r.Ticks <= RunSimulator.MaxTicks && r.CompletedWave >= 0 && r.CompletedWave <= RunSimulator.WaveLimit && r.Crystals >= 0 && r.Crystals <= 80000 && r.MilestoneCrystals >= 0 && r.MilestoneCrystals <= RunSimulator.WaveLimit, "Invalid result.");
+            Require(r != null && (r.RulesVersion >= 1 && r.RulesVersion <= 4) && Id(r.RunId) && r.Ticks >= 0 && r.Ticks <= RunSimulator.MaxTicks && r.CompletedWave >= 0 && r.CompletedWave <= RunSimulator.WaveLimit && r.Crystals >= 0 && r.Crystals <= 80000 && r.MilestoneCrystals >= 0 && r.MilestoneCrystals <= RunSimulator.WaveLimit, "Invalid result.");
             Require(r.Status == RunStatus.Defeated || r.Status == RunStatus.TestCompleted || r.Status == RunStatus.CapacityExceeded, "Result must be terminal.");
             Require(Enum.IsDefined(typeof(WeaponKind), r.Weapon) && Enum.IsDefined(typeof(BuildPreset), r.Build) && Enum.IsDefined(typeof(GrowthPolicy), r.Policy), "Invalid result configuration.");
         }
@@ -92,6 +92,24 @@ namespace Bokumyaku.Persistence
                 try { var c = Read(path + ".bak", previous); warning = "Campaign recovered from backup; original preserved."; return c; }
                 catch (Exception backup) when (backup is IOException || backup is InvalidDataException)
                 { throw new InvalidDataException("Campaign and backup are unreadable; no data was replaced.", new AggregateException(e, backup)); }
+            }
+        }
+        /// <summary>File generation 5 keeps schema/config 3 while isolating rules4 writes from older executables.</summary>
+        public static CampaignProgress LoadLatest(string path, string previousV4, string previousV3, string olderV2, string legacyMetaPath, out string warning)
+        {
+            lock (Gate)
+            {
+                foreach (var source in new[] { previousV4, previousV3, olderV2, legacyMetaPath })
+                    if (!string.IsNullOrEmpty(source)) Require(!string.Equals(Path.GetFullPath(path), Path.GetFullPath(source), StringComparison.OrdinalIgnoreCase), "Migration destination must differ from every source.");
+                if (File.Exists(path) || File.Exists(path + ".bak")) return ReadRecover(path, out warning);
+                if (!string.IsNullOrEmpty(previousV4) && (File.Exists(previousV4) || File.Exists(previousV4 + ".bak")))
+                {
+                    var c = ReadRecover(previousV4, out warning);
+                    Write(path, c);
+                    warning = "Previous schema3 campaign copied to file generation5; original and backup preserved. " + warning;
+                    return c;
+                }
+                return LoadLatest(path, previousV3, olderV2, legacyMetaPath, out warning);
             }
         }
         /// <summary>File generation 4 retains campaign schema/config 3. Previous files are read-only migration sources.</summary>
