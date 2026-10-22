@@ -14,7 +14,7 @@ namespace Bokumyaku.Persistence
         [Serializable] sealed class Header { public int SchemaVersion = 0; public string Config = null; }
         static void Require(bool ok, string message) { if (!ok) throw new InvalidDataException(message); }
         static bool Id(string value) { Guid parsed; return !string.IsNullOrEmpty(value) && Guid.TryParseExact(value, "N", out parsed); }
-        static bool MetaValid(MetaProgress m) => m != null && m.Crystals >= 0 && m.Damage >= 0 && m.Damage <= 20 && m.Supply >= 0 && m.Supply <= 20 && m.Growth >= 0 && m.Growth <= 20 && m.Harvest >= 0 && m.Harvest <= 20;
+        static bool MetaValid(MetaProgress m) => m != null && m.Crystals >= 0 && m.Damage >= 0 && m.Damage <= MetaProgress.MaxLevel(MetaUpgrade.Damage) && m.Supply >= 0 && m.Supply <= MetaProgress.MaxLevel(MetaUpgrade.Supply) && m.Growth >= 0 && m.Growth <= MetaProgress.MaxLevel(MetaUpgrade.Growth) && m.Harvest >= 0 && m.Harvest <= MetaProgress.MaxLevel(MetaUpgrade.Harvest);
         static bool SameMeta(MetaProgress a, MetaProgress b) => MetaValid(a) && MetaValid(b) && a.Crystals == b.Crystals && a.Damage == b.Damage && a.Supply == b.Supply && a.Growth == b.Growth && a.Harvest == b.Harvest;
         static void SlotValid(BuildSlot s)
         {
@@ -23,7 +23,7 @@ namespace Bokumyaku.Persistence
         }
         static void ResultValid(CampaignResult r)
         {
-            Require(r != null && r.RulesVersion >= 1 && r.RulesVersion <= 5, "Unsupported result rules.");
+            Require(r != null && r.RulesVersion >= 1 && r.RulesVersion <= 6, "Unsupported result rules.");
             int waveLimit = RunSimulator.WaveLimitForRules(r.RulesVersion), tickLimit = RunSimulator.TickLimitForRules(r.RulesVersion);
             Require(Id(r.RunId) && r.Ticks >= 0 && r.Ticks <= tickLimit && r.CompletedWave >= 0 && r.CompletedWave <= waveLimit && r.Crystals >= 0 && r.Crystals <= RunSimulator.CrystalLimitForRules(r.RulesVersion) && r.MilestoneCrystals >= 0 && r.MilestoneCrystals <= waveLimit, "Invalid result.");
             Require(r.Status == RunStatus.Defeated || r.Status == RunStatus.TestCompleted || r.Status == RunStatus.CapacityExceeded, "Result must be terminal.");
@@ -105,6 +105,24 @@ namespace Bokumyaku.Persistence
                 try { var c = Read(path + ".bak", previous); warning = "Campaign recovered from backup; original preserved."; return c; }
                 catch (Exception backup) when (backup is IOException || backup is InvalidDataException)
                 { throw new InvalidDataException("Campaign and backup are unreadable; no data was replaced.", new AggregateException(e, backup)); }
+            }
+        }
+        /// <summary>File generation 7 retains schema/config 3 and isolates rules6 progression.</summary>
+        public static CampaignProgress LoadLatest(string path, string previousV6, string previousV5, string previousV4, string previousV3, string olderV2, string legacyMetaPath, out string warning)
+        {
+            lock (Gate)
+            {
+                foreach (var source in new[] { previousV6, previousV5, previousV4, previousV3, olderV2, legacyMetaPath })
+                    if (!string.IsNullOrEmpty(source)) Require(!string.Equals(Path.GetFullPath(path), Path.GetFullPath(source), StringComparison.OrdinalIgnoreCase), "Migration destination must differ from every source.");
+                if (File.Exists(path) || File.Exists(path + ".bak")) return ReadRecover(path, out warning);
+                if (!string.IsNullOrEmpty(previousV6) && (File.Exists(previousV6) || File.Exists(previousV6 + ".bak")))
+                {
+                    var c = ReadRecover(previousV6, out warning);
+                    Write(path, c);
+                    warning = "Previous schema3 campaign copied to file generation7; original and backup preserved. " + warning;
+                    return c;
+                }
+                return LoadLatest(path, previousV5, previousV4, previousV3, olderV2, legacyMetaPath, out warning);
             }
         }
         /// <summary>File generation 6 retains schema/config 3 and isolates rules5 progress.</summary>

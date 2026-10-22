@@ -1,0 +1,648 @@
+{
+    "schemaVersion": 2,
+    "rulesVersion": 5,
+    "autoPurchaseCursor": 2,
+    "exactDoubleBits": "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",
+    "seed": 42,
+    "tickCount": 28468,
+    "wave": 80,
+    "completedWave": 79,
+    "coreHp": 0,
+    "runInk": 279,
+    "kills": 2754,
+    "leaks": 3,
+    "crystalsReward": 212,
+    "incomeEarned": 27772,
+    "nextEnemyId": 2770,
+    "growthCount": 17,
+    "repairCount": 0,
+    "lastBossWave": 80,
+    "spawnRng": 1593668440,
+    "growthRng": 4170985843,
+    "spawnCredit": 0.5383000000000702,
+    "growthCharge": 1852.12,
+    "effectiveDamage": 4479765.611887921,
+    "rewardPoints": 2654.6999999999966,
+    "rewardClaimed": false,
+    "status": 1,
+    "policy": 0,
+    "build": 2,
+    "weapon": 4,
+    "meta": {
+        "Crystals": 0,
+        "Damage": 14,
+        "Supply": 13,
+        "Growth": 14,
+        "Harvest": 12
+    },
+    "levels": [
+        28,
+        15,
+        21,
+        9,
+        10,
+        10,
+        0
+    ],
+    "spawnedByType": [
+        743,
+        473,
+        408,
+        1138,
+        8
+    ],
+    "killedByType": [
+        742,
+        471,
+        402,
+        1134,
+        5
+    ],
+    "leakedByType": [
+        0,
+        0,
+        1,
+        0,
+        2
+    ],
+    "enemies": [
+        {
+            "id": 2730,
+            "spawnWave": 79,
+            "kind": 2,
+            "x": -7.6051927264938838,
+            "y": 66.7880239942822,
+            "hp": 5496.580434382279,
+            "maxHp": 14046.446002422046,
+            "speed": 33.397,
+            "isSplitChild": false
+        },
+        {
+            "id": 2732,
+            "spawnWave": 79,
+            "kind": 2,
+            "x": 55.81400935650549,
+            "y": 59.65169538521013,
+            "hp": 5162.841185264119,
+            "maxHp": 14046.446002422046,
+            "speed": 33.397,
+            "isSplitChild": false
+        },
+        {
+            "id": 2742,
+            "spawnWave": 79,
+            "kind": 2,
+            "x": 122.9595119449278,
+            "y": 61.21189917036725,
+            "hp": 8736.334207832759,
+            "maxHp": 14046.446002422046,
+            "speed": 33.397,
+            "isSplitChild": false
+        },
+        {
+            "id": 2749,
+            "spawnWave": 79,
+            "kind": 2,
+            "x": 108.51902647752556,
+            "y": 133.26930043996797,
+            "hp": 10667.16647056064,
+            "maxHp": 14046.446002422046,
+            "speed": 33.397,
+            "isSplitChild": false
+        },
+        {
+            "id": 2754,
+            "spawnWave": 79,
+            "kind": 0,
+            "x": -59.20562733219451,
+            "y": 108.55648666109657,
+            "hp": 2277.8710038077697,
+            "maxHp": 4389.514375756889,
+            "speed": 51.379999999999998,
+            "isSplitChild": false
+        },
+        {
+            "id": 2762,
+            "spawnWave": 80,
+            "kind": 4,
+            "x": -332.81159014895629,
+            "y": 21.682335884495254,
+            "hp": 54950.34724995563,
+            "maxHp": 54950.34724995563,
+            "speed": 28.3745,
+            "isSplitChild": false
+        },
+        {
+            "id": 2763,
+            "spawnWave": 80,
+            "kind": 1,
+            "x": 288.67836028816426,
+            "y": -8.57871872583972,
+            "hp": 2976.47714270593,
+            "maxHp": 2976.47714270593,
+            "speed": 92.862,
+            "isSplitChild": false
+        },
+        {
+            "id": 2764,
+            "spawnWave": 79,
+            "kind": 3,
+            "x": 4.824987530086622,
+            "y": 49.291646779674177,
+            "hp": 184.19873118498118,
+            "maxHp": 1382.69702836342,
+            "speed": 51.379999999999998,
+            "isSplitChild": true
+        },
+        {
+            "id": 2766,
+            "spawnWave": 79,
+            "kind": 3,
+            "x": 86.95408252342358,
+            "y": 18.542474300455927,
+            "hp": 568.5289024334426,
+            "maxHp": 1382.69702836342,
+            "speed": 51.379999999999998,
+            "isSplitChild": true
+        },
+        {
+            "id": 2767,
+            "spawnWave": 79,
+            "kind": 3,
+            "x": 94.87257547358603,
+            "y": 18.9373400953226,
+            "hp": 568.5289024334426,
+            "maxHp": 1382.69702836342,
+            "speed": 51.379999999999998,
+            "isSplitChild": true
+        },
+        {
+            "id": 2768,
+            "spawnWave": 80,
+            "kind": 3,
+            "x": 282.66370907322677,
+            "y": 175.06491497368578,
+            "hp": 4121.276043746672,
+            "maxHp": 4121.276043746672,
+            "speed": 51.589999999999999,
+            "isSplitChild": false
+        },
+        {
+            "id": 2769,
+            "spawnWave": 80,
+            "kind": 1,
+            "x": -307.5300448894756,
+            "y": -117.03222464892807,
+            "hp": 2976.47714270593,
+            "maxHp": 2976.47714270593,
+            "speed": 92.862,
+            "isSplitChild": false
+        },
+        {
+            "id": 2770,
+            "spawnWave": 80,
+            "kind": 2,
+            "x": -245.08862406006657,
+            "y": 257.55065790952246,
+            "hp": 14653.425933321501,
+            "maxHp": 14653.425933321501,
+            "speed": 33.5335,
+            "isSplitChild": false
+        }
+    ],
+    "branches": [
+        {
+            "id": 0,
+            "parentId": -1,
+            "nextAttack": 0,
+            "x": 0.0,
+            "y": 0.0,
+            "pathLength": 0.0,
+            "isTip": false
+        },
+        {
+            "id": 1,
+            "parentId": 0,
+            "nextAttack": 425,
+            "x": 70.0,
+            "y": 0.0,
+            "pathLength": 70.0,
+            "isTip": false
+        },
+        {
+            "id": 2,
+            "parentId": 0,
+            "nextAttack": 935,
+            "x": -34.999999999999989,
+            "y": 60.62177826491071,
+            "pathLength": 70.0,
+            "isTip": false
+        },
+        {
+            "id": 3,
+            "parentId": 0,
+            "nextAttack": 357,
+            "x": -35.00000000000003,
+            "y": -60.621778264910698,
+            "pathLength": 70.0,
+            "isTip": false
+        },
+        {
+            "id": 4,
+            "parentId": 3,
+            "nextAttack": 1480,
+            "x": -46.76657620794312,
+            "y": -93.5730896787795,
+            "pathLength": 104.98915888601914,
+            "isTip": false
+        },
+        {
+            "id": 5,
+            "parentId": 1,
+            "nextAttack": 1275,
+            "x": 102.80726063912181,
+            "y": 1.376963838428184,
+            "pathLength": 102.83614441519603,
+            "isTip": false
+        },
+        {
+            "id": 6,
+            "parentId": 2,
+            "nextAttack": 1792,
+            "x": -62.12729239288062,
+            "y": 102.94813657595066,
+            "pathLength": 120.27335875434801,
+            "isTip": false
+        },
+        {
+            "id": 7,
+            "parentId": 5,
+            "nextAttack": 2332,
+            "x": 130.7371264618933,
+            "y": 8.176971779264126,
+            "pathLength": 131.581883453764,
+            "isTip": false
+        },
+        {
+            "id": 8,
+            "parentId": 4,
+            "nextAttack": 2431,
+            "x": -85.50248216431544,
+            "y": -112.63559649030749,
+            "pathLength": 148.16148307872937,
+            "isTip": false
+        },
+        {
+            "id": 9,
+            "parentId": 4,
+            "nextAttack": 3212,
+            "x": -38.760551204166109,
+            "y": -135.9965871753246,
+            "pathLength": 148.16148307872937,
+            "isTip": false
+        },
+        {
+            "id": 10,
+            "parentId": 6,
+            "nextAttack": 3743,
+            "x": -81.70108732815094,
+            "y": 125.79718728730725,
+            "pathLength": 150.36010943597129,
+            "isTip": false
+        },
+        {
+            "id": 11,
+            "parentId": 7,
+            "nextAttack": 5326,
+            "x": 149.9688253123788,
+            "y": 3.058011514890752,
+            "pathLength": 151.48318981450323,
+            "isTip": false
+        },
+        {
+            "id": 12,
+            "parentId": 8,
+            "nextAttack": 7881,
+            "x": -94.51022852396345,
+            "y": -116.48097142601537,
+            "pathLength": 157.9556855922535,
+            "isTip": false
+        },
+        {
+            "id": 13,
+            "parentId": 9,
+            "nextAttack": 11418,
+            "x": -37.87898311280912,
+            "y": -145.13849468125103,
+            "pathLength": 157.34579770457993,
+            "isTip": false
+        },
+        {
+            "id": 14,
+            "parentId": 10,
+            "nextAttack": 16510,
+            "x": 11.089835680326374,
+            "y": 149.5894900873165,
+            "pathLength": 246.15274519307159,
+            "isTip": false
+        },
+        {
+            "id": 15,
+            "parentId": 10,
+            "nextAttack": 16061,
+            "x": -141.17165957189139,
+            "y": 50.70071531761664,
+            "pathLength": 246.1527451930715,
+            "isTip": false
+        },
+        {
+            "id": 16,
+            "parentId": 11,
+            "nextAttack": 17266,
+            "x": 121.23841911601449,
+            "y": -88.32466094047355,
+            "pathLength": 247.2758255716035,
+            "isTip": false
+        },
+        {
+            "id": 17,
+            "parentId": 11,
+            "nextAttack": 18248,
+            "x": 117.53708512122216,
+            "y": 93.19352778603552,
+            "pathLength": 247.2758255716035,
+            "isTip": false
+        },
+        {
+            "id": 18,
+            "parentId": 12,
+            "nextAttack": 28473,
+            "x": -145.7307621590487,
+            "y": -35.53230868579718,
+            "pathLength": 253.7483213493538,
+            "isTip": true
+        },
+        {
+            "id": 19,
+            "parentId": 12,
+            "nextAttack": 28472,
+            "x": -4.745361291143606,
+            "y": -149.9249196972155,
+            "pathLength": 253.74832134935378,
+            "isTip": true
+        },
+        {
+            "id": 20,
+            "parentId": 13,
+            "nextAttack": 28477,
+            "x": -117.99068869170617,
+            "y": -92.61855851856515,
+            "pathLength": 253.13843346168017,
+            "isTip": true
+        },
+        {
+            "id": 21,
+            "parentId": 13,
+            "nextAttack": 28472,
+            "x": 57.680999168464968,
+            "y": -138.46624980451933,
+            "pathLength": 253.13843346168023,
+            "isTip": true
+        },
+        {
+            "id": 22,
+            "parentId": 15,
+            "nextAttack": 28474,
+            "x": -81.70108732815089,
+            "y": 125.79718728730727,
+            "pathLength": 341.9453809501718,
+            "isTip": true
+        },
+        {
+            "id": 23,
+            "parentId": 15,
+            "nextAttack": 28473,
+            "x": -143.06785467078007,
+            "y": -45.073151208902149,
+            "pathLength": 341.94538095017176,
+            "isTip": true
+        },
+        {
+            "id": 24,
+            "parentId": 14,
+            "nextAttack": 28470,
+            "x": 99.35796435550906,
+            "y": 112.37435169614725,
+            "pathLength": 341.94538095017187,
+            "isTip": true
+        },
+        {
+            "id": 25,
+            "parentId": 14,
+            "nextAttack": 28470,
+            "x": -81.70108732815089,
+            "y": 125.79718728730727,
+            "pathLength": 341.94538095017187,
+            "isTip": true
+        },
+        {
+            "id": 26,
+            "parentId": 16,
+            "nextAttack": 28474,
+            "x": 43.063057127539739,
+            "y": -143.68567468898997,
+            "pathLength": 343.06846132870375,
+            "isTip": true
+        },
+        {
+            "id": 27,
+            "parentId": 16,
+            "nextAttack": 28469,
+            "x": 149.96882531237885,
+            "y": 3.058011514890758,
+            "pathLength": 343.0684613287038,
+            "isTip": true
+        },
+        {
+            "id": 28,
+            "parentId": 17,
+            "nextAttack": 28469,
+            "x": 149.96882531237885,
+            "y": 3.058011514890758,
+            "pathLength": 343.0684613287038,
+            "isTip": true
+        },
+        {
+            "id": 29,
+            "parentId": 17,
+            "nextAttack": 28471,
+            "x": 37.169913074993669,
+            "y": 145.3217036852975,
+            "pathLength": 343.0684613287038,
+            "isTip": true
+        }
+    ],
+    "fields": [
+        {
+            "x": -1.4555695087797494,
+            "y": 28.218951537746237,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28468,
+            "weapon": 4
+        },
+        {
+            "x": -1.3982237508945764,
+            "y": 27.10719620562634,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28469,
+            "weapon": 4
+        },
+        {
+            "x": -1.3982237508945764,
+            "y": 27.10719620562634,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28469,
+            "weapon": 4
+        },
+        {
+            "x": -1.3408779930094033,
+            "y": 25.995440873506444,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28470,
+            "weapon": 4
+        },
+        {
+            "x": -21.321139680735475,
+            "y": 24.8055205765714,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28470,
+            "weapon": 4
+        },
+        {
+            "x": -20.59549496095311,
+            "y": 23.961288265476627,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28471,
+            "weapon": 4
+        },
+        {
+            "x": -20.59549496095311,
+            "y": 23.961288265476627,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28471,
+            "weapon": 4
+        },
+        {
+            "x": -18.418560801606025,
+            "y": 21.428591332192313,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28474,
+            "weapon": 4
+        },
+        {
+            "x": -15.515981922476574,
+            "y": 18.051662087813218,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28478,
+            "weapon": 4
+        },
+        {
+            "x": -15.515981922476574,
+            "y": 18.051662087813218,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28478,
+            "weapon": 4
+        },
+        {
+            "x": -14.79033720269421,
+            "y": 17.207429776718443,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28479,
+            "weapon": 4
+        },
+        {
+            "x": -14.79033720269421,
+            "y": 17.207429776718443,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28479,
+            "weapon": 4
+        },
+        {
+            "x": -14.064692482911849,
+            "y": 16.36319746562367,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28480,
+            "weapon": 4
+        },
+        {
+            "x": -13.339047763129486,
+            "y": 15.518965154528898,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28481,
+            "weapon": 4
+        },
+        {
+            "x": -13.339047763129486,
+            "y": 15.518965154528898,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28481,
+            "weapon": 4
+        },
+        {
+            "x": -12.613403043347124,
+            "y": 14.674732843434125,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28482,
+            "weapon": 4
+        },
+        {
+            "x": -12.613403043347124,
+            "y": 14.674732843434125,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28482,
+            "weapon": 4
+        },
+        {
+            "x": -11.88775832356476,
+            "y": 13.830500532339352,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28483,
+            "weapon": 4
+        },
+        {
+            "x": -11.88775832356476,
+            "y": 13.830500532339352,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28483,
+            "weapon": 4
+        },
+        {
+            "x": -9.710824164217673,
+            "y": 11.297803599055034,
+            "radius": 30.0,
+            "damagePerTick": 3.893668274875489,
+            "untilTick": 28486,
+            "weapon": 4
+        }
+    ],
+    "attacks": []
+}

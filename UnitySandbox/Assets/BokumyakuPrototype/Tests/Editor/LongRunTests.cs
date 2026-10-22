@@ -20,7 +20,7 @@ namespace Bokumyaku.Tests
         {
             for(int i=1;i<=4;i++){Assert.AreEqual(60,RunSimulator.WaveLimitForRules(i));Assert.AreEqual(21600,RunSimulator.TickLimitForRules(i));Assert.AreEqual(80000,RunSimulator.CrystalLimitForRules(i));}
             var r=new RunSimulator(1);Assert.AreEqual(100000,r.RunWaveLimit);Assert.AreEqual(36000000,r.RunTickLimit);
-            Assert.Throws<ArgumentOutOfRangeException>(()=>RunSimulator.WaveLimitForRules(6));
+            Assert.Throws<ArgumentOutOfRangeException>(()=>RunSimulator.WaveLimitForRules(7));
         }
         [Test] public void AllSupportedWavesAreFiniteMonotoneAndEarlyFormulaExact()
         {

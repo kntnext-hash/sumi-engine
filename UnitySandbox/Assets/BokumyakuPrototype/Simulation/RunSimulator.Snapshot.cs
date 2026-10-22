@@ -51,7 +51,7 @@ namespace Bokumyaku.Simulation
             Range(s.coreHp,0,10,"coreHp"); Range(s.runInk,0,maxIncome,"runInk"); Range(s.incomeEarned,s.runInk,maxIncome,"incomeEarned");
             Range(s.kills,0,maxCounter,"kills"); Range(s.leaks,0,maxCounter,"leaks"); Range(s.nextEnemyId,0,maxCounter,"nextEnemyId");
             Range(s.growthCount,0,64,"growthCount"); Range(s.repairCount,0,5,"repairCount"); Range(s.lastBossWave,0,s.wave,"lastBossWave"); Check(s.lastBossWave%10==0,"lastBossWave");
-            Number(s.spawnCredit,0,1,"spawnCredit"); Number(s.growthCharge,0,rules>=5?LongRunGrowthChargeLimit:100000,"growthCharge"); Number(s.rewardPoints,0,rules>=5?LongRunRewardPointsLimit:1000000,"rewardPoints"); Number(s.effectiveDamage,0,1e15,"effectiveDamage");
+            Number(s.spawnCredit,0,1,"spawnCredit"); Number(s.growthCharge,0,rules>=5?LongRunGrowthChargeLimit:100000,"growthCharge"); Number(s.rewardPoints,0,rules>=5?LongRunRewardPointsLimit:1000000,"rewardPoints"); Number(s.effectiveDamage,0,rules>=6?LongRunEffectiveDamageLimit:1e15,"effectiveDamage");
             Check(Enum.IsDefined(typeof(RunStatus),s.status)&&Enum.IsDefined(typeof(BuildPreset),s.build)&&Enum.IsDefined(typeof(GrowthPolicy),s.policy)&&Enum.IsDefined(typeof(WeaponKind),s.weapon),"enum");
             Check(s.status!=RunStatus.Defeated || s.coreHp==0,"defeat requires zero HP");
             Check(s.status!=RunStatus.Running || (s.coreHp>0 && s.tickCount<maxTicks),"running state");
@@ -59,8 +59,8 @@ namespace Bokumyaku.Simulation
             Check(!s.rewardClaimed || (s.status==RunStatus.Defeated || s.status==RunStatus.TestCompleted),"reward claimed state");
             int expectedReward=(s.status==RunStatus.Defeated || s.status==RunStatus.TestCompleted)?(int)Math.Floor(s.rewardPoints*.08):0;
             Check(s.crystalsReward==expectedReward,"crystalsReward");
-            Check(s.meta!=null,"meta"); s.meta.Snapshot();
-            Check(s.levels!=null && s.levels.Length==(rules==1?6:7),"levels"); int[] caps={30,25,25,9,10,10,HarvestMaxLevel}; for(int i=0;i<s.levels.Length;i++)Range(s.levels[i],0,caps[i],"level");
+            Check(s.meta!=null,"meta"); s.meta.Snapshot(); Check(rules>=6 || s.meta.Damage<=20,"legacy meta Damage cap");
+            Check(s.levels!=null && s.levels.Length==(rules==1?6:7),"levels"); int[] caps={rules>=6?100:30,25,25,9,10,10,HarvestMaxLevel}; for(int i=0;i<s.levels.Length;i++)Range(s.levels[i],0,caps[i],"level");
             Check(s.enemies!=null&&s.enemies.Length<=EnemyLimit&&s.branches!=null&&s.branches.Length>=4&&s.branches.Length<=64&&s.fields!=null&&s.fields.Length<=FieldLimit&&s.attacks!=null&&s.attacks.Length<=96,"array bounds");
             Check(s.spawnedByType!=null&&s.spawnedByType.Length==5&&s.killedByType!=null&&s.killedByType.Length==5&&s.leakedByType!=null&&s.leakedByType.Length==5,"type counters");
             int sk=0,sl=0,ss=0; var active=new int[5]; var ids=new HashSet<int>();

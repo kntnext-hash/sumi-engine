@@ -65,7 +65,7 @@ namespace Bokumyaku.Tests
             CampaignSaveStore.Save(previousV3,new CampaignProgress());File.WriteAllText(previous,"broken-v4");
             Assert.Throws<InvalidDataException>(()=>{string w;CampaignSaveStore.LoadLatest(latest,previous,previousV3,older,null,out w);});Assert.IsFalse(File.Exists(latest));Assert.AreEqual("broken-v4",File.ReadAllText(previous));
         }
-        [TestCase(4,true)] [TestCase(6,false)]
+        [TestCase(4,true)] [TestCase(7,false)]
         public void ResultRulesHaveExplicitSupportedRange(int rules,bool valid)
         {
             var id=Guid.NewGuid().ToString("N");var r=new CampaignResult { RunId=id,RulesVersion=rules,Status=RunStatus.Defeated };

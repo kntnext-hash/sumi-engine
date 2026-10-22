@@ -14,20 +14,24 @@ namespace Bokumyaku.Simulation
     [Serializable]
     public sealed class MetaProgress
     {
+        // Rounded legacy cost at Damage20: ceil(8*1.48^20).
+        public const int DamageCostAt20 = 20339;
         public int Crystals;
         public int Damage, Supply, Growth, Harvest;
         public int Level(MetaUpgrade kind) { return kind == MetaUpgrade.Damage ? Damage : kind == MetaUpgrade.Supply ? Supply : kind == MetaUpgrade.Growth ? Growth : Harvest; }
-        public int Cost(MetaUpgrade kind) { return (int)Math.Ceiling((kind == MetaUpgrade.Supply ? 10 : kind == MetaUpgrade.Harvest ? 12 : 8) * Math.Pow(1.48, Level(kind))); }
+        public static int MaxLevel(MetaUpgrade kind) { if(!Enum.IsDefined(typeof(MetaUpgrade),kind))throw new ArgumentOutOfRangeException(nameof(kind)); return kind==MetaUpgrade.Damage?100:20; }
+        public double DamageMultiplier { get { if(Damage<0 || Damage>100)throw new ArgumentOutOfRangeException(nameof(Damage));return Damage<=20?1+.025*Damage:1.5*Math.Pow(1+.025*(Damage-20),2); } }
+        public int Cost(MetaUpgrade kind) { int level=Level(kind);if(level<0||level>MaxLevel(kind))throw new ArgumentOutOfRangeException(nameof(kind));if(kind==MetaUpgrade.Damage && level>=20)return (int)Math.Ceiling(DamageCostAt20*Math.Pow(1+.05*(level-20),2)); return (int)Math.Ceiling((kind == MetaUpgrade.Supply ? 10 : kind == MetaUpgrade.Harvest ? 12 : 8) * Math.Pow(1.48, Level(kind))); }
         public bool TryBuy(MetaUpgrade kind)
         {
-            if (!Enum.IsDefined(typeof(MetaUpgrade), kind) || Level(kind) >= 20 || Crystals < Cost(kind)) return false;
+            if (!Enum.IsDefined(typeof(MetaUpgrade), kind) || Level(kind) >= MaxLevel(kind) || Crystals < Cost(kind)) return false;
             Crystals -= Cost(kind);
             switch (kind) { case MetaUpgrade.Damage: Damage++; break; case MetaUpgrade.Supply: Supply++; break; case MetaUpgrade.Growth: Growth++; break; default: Harvest++; break; }
             return true;
         }
         internal MetaProgress Snapshot()
         {
-            if (Crystals < 0 || Damage < 0 || Damage > 20 || Supply < 0 || Supply > 20 || Growth < 0 || Growth > 20 || Harvest < 0 || Harvest > 20) throw new ArgumentOutOfRangeException("meta");
+            if (Crystals < 0 || Damage < 0 || Damage > 100 || Supply < 0 || Supply > 20 || Growth < 0 || Growth > 20 || Harvest < 0 || Harvest > 20) throw new ArgumentOutOfRangeException("meta");
             return new MetaProgress { Crystals = Crystals, Damage = Damage, Supply = Supply, Growth = Growth, Harvest = Harvest };
         }
     }
@@ -84,7 +88,9 @@ namespace Bokumyaku.Simulation
     public sealed partial class RunSimulator
     {
         public const int LegacyRulesVersion = 1;
-        public const int CurrentRulesVersion = 5;
+        public const int CurrentRulesVersion = 6;
+        // Rounded legacy run cost at Damage30: ceil(10*1.16^30*(1+.008*30^2)).
+        public const int DamageCostAt30 = 7040;
         public const int HarvestMaxLevel = 10;
         public const double HarvestGainPerLevel = 1.5;
         public const double HarvestBaseCost = 30;
@@ -155,17 +161,23 @@ namespace Bokumyaku.Simulation
         public static double BaseHp(int wave) { ValidateLongWave(wave); if(wave>LegacyWaveLimit)return BaseHp(LegacyWaveLimit)*Math.Pow(1+.036*(wave-LegacyWaveLimit),2); return 16 * Math.Pow(1.072, wave - 1) * (1 + .12 * Math.Floor((wave - 1) / 10.0)); }
         public static double SpawnRate(int wave) { ValidateLongWave(wave); return Math.Min(4.8, .50 + .027 * wave + .0007 * wave * wave); }
         public double Pressure(BranchState branch) { return Math.Min(1.65, Math.Max(.45, Math.Sqrt((RootSupply / TipCount) * Math.Exp(-.0013 * branch.PathLength) / 3))); }
+        public int UpgradeMaxLevel(UpgradeKind kind)
+        {
+            int index=(int)kind;if(index<0||index>=levels.Length)throw new ArgumentOutOfRangeException(nameof(kind));
+            int[] caps={RulesVersion>=6?100:30,25,25,9,10,10,HarvestMaxLevel};return caps[index];
+        }
         public int UpgradeCost(UpgradeKind kind)
         {
             int index = (int)kind; if (index < 0 || index >= levels.Length) throw new ArgumentOutOfRangeException("kind");
             if (kind == UpgradeKind.Harvest) return (int)Math.Ceiling(HarvestBaseCost * Math.Pow(HarvestCostGrowth, levels[6]));
             int[] costs = { 10, 12, 15, 22, 12, 18 }; int l = levels[index];
+            if(RulesVersion>=6 && index==0 && l>=30)return (int)Math.Ceiling(DamageCostAt30*Math.Pow(1+.03*(l-30),2));
             return (int)Math.Ceiling(costs[index] * Math.Pow(1.16, l) * (1 + .008 * l * l));
         }
         public bool TryBuy(UpgradeKind kind)
         {
             int i = (int)kind; if (i < 0 || i >= levels.Length || State != RunStatus.Running) return false;
-            int[] caps = { 30, 25, 25, 9, 10, 10, HarvestMaxLevel }; int cost = UpgradeCost(kind);
+            int[] caps = { UpgradeMaxLevel(UpgradeKind.Damage), 25, 25, 9, 10, 10, HarvestMaxLevel }; int cost = UpgradeCost(kind);
             if (levels[i] >= caps[i] || RunInk < cost) return false;
             RunInk -= cost; levels[i]++; return true;
         }
@@ -207,7 +219,7 @@ namespace Bokumyaku.Simulation
             { TryBuy(UpgradeKind.Supply); return; }
             if (levels[3] < branchCap && levels[2] >= 2 * next && levels[0] >= next) { TryBuy(UpgradeKind.Branch); return; }
             UpgradeKind[] cycle = { UpgradeKind.Supply, UpgradeKind.Speed, UpgradeKind.Damage, UpgradeKind.Width, UpgradeKind.Bleed, UpgradeKind.Damage };
-            int[] caps = { 30, 25, 25, 9, 10, 10 };
+            int[] caps = { UpgradeMaxLevel(UpgradeKind.Damage), 25, 25, 9, 10, 10 };
             for (int i = 0; i < cycle.Length; i++)
             {
                 var kind = cycle[autoPurchaseCursor % cycle.Length];
@@ -232,7 +244,7 @@ namespace Bokumyaku.Simulation
             for (int offset = 0; offset < cycle.Length; offset++)
             {
                 UpgradeKind kind = cycle[(count + offset) % cycle.Length];
-                int[] caps = { 30, 25, 25, 9, 10, 10 };
+                int[] caps = { UpgradeMaxLevel(UpgradeKind.Damage), 25, 25, 9, 10, 10 };
                 if (levels[(int)kind] >= caps[(int)kind]) continue;
                 TryBuy(kind); return;
             }
@@ -282,7 +294,7 @@ namespace Bokumyaku.Simulation
                     if (target == null || candidate < eta || (candidate == eta && (e.Hp < target.Hp || (e.Hp == target.Hp && e.Id < target.Id)))) { target = e; eta = candidate; }
                 }
                 if (target == null) continue;
-                double pressure = Pressure(b), baseDamage = BaseAttackDamage * Math.Pow(1.10, levels[0]) * (1 + .025 * meta.Damage);
+                double pressure = Pressure(b), baseDamage = BaseAttackDamage * (RulesVersion>=6 && levels[0]>30?Math.Pow(1.10,30)*Math.Pow(1.12,levels[0]-30):Math.Pow(1.10, levels[0])) * (RulesVersion>=6?meta.DamageMultiplier:(1 + .025 * meta.Damage));
                 double damage = baseDamage * pressure * (Weapon == WeaponKind.Pierce ? .8 : Weapon == WeaponKind.Bleed ? .45 : Weapon == WeaponKind.Sweep ? .85 : Weapon == WeaponKind.Enso ? .8 : Weapon == WeaponKind.Resonance ? 1 : 1);
                 double interval = Weapon == WeaponKind.Pierce ? 1.35 : Weapon == WeaponKind.Bleed ? 1.1 : Weapon == WeaponKind.Sweep ? 1.2 : Weapon == WeaponKind.Enso ? 1.35 : Weapon == WeaponKind.Resonance ? 1.15 : 1;
                 b.NextAttack = TickCount + (int)Math.Ceiling(interval * TickRate / Math.Min(4.5, 1.25 * Math.Pow(1.07, levels[1])));

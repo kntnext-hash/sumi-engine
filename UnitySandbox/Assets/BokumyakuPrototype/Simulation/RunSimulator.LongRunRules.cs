@@ -3,6 +3,10 @@ namespace Bokumyaku.Simulation
 {
     public sealed partial class RunSimulator
     {
+        // Rules6: max hit8,126,828.93 and max field/tick506,572.34.
+        // ceil(36m/7)*12*96 hits plus36m*96*2 field ticks bounds total below5.165e16.
+        // 6e16 is a conservative validation bound, not a damage clamp; legacy stays1e15.
+        public const double LongRunEffectiveDamageLimit = 6e16;
         public const int LegacyWaveLimit = 60;
         public const int LongRunWaveLimit = 100000;
         public const int LongRunMaxTicks = LongRunWaveLimit * 360;

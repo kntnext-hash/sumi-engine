@@ -25,7 +25,7 @@ namespace Bokumyaku.Tests
             var read=CampaignSaveStore.Load(path,out warning);Assert.AreEqual(wave,read.BestWave);Assert.AreEqual(12000000,read.LastResult.Crystals);Assert.AreEqual(wave*360,read.LastResult.Ticks);
         }
         [TestCase(5,100001,36000000,1)] [TestCase(5,100000,36000001,1)] [TestCase(5,100000,36000000,12000001)]
-        [TestCase(4,61,21600,1)] [TestCase(4,60,21601,1)] [TestCase(4,60,21600,80001)] [TestCase(6,60,21600,1)]
+        [TestCase(4,61,21600,1)] [TestCase(4,60,21601,1)] [TestCase(4,60,21600,80001)] [TestCase(7,60,21600,1)]
         public void UnsupportedResultBoundsFailBeforeWrite(int rules,int wave,int ticks,int reward)
         {Assert.Throws<InvalidDataException>(()=>CampaignSaveStore.Save(path,Result(rules,wave,ticks,reward)));Assert.IsFalse(File.Exists(path));}
         [Test] public void OldRulesStillEndAtSixtyAfterFileGenerationMigration()

@@ -174,10 +174,10 @@ namespace Bokumyaku.Tests
             var meta = new MetaProgress { Crystals = initialCost - 1 };
             Assert.AreEqual(initialCost, meta.Cost(kind)); Assert.IsFalse(meta.TryBuy(kind));
             Assert.AreEqual(initialCost - 1, meta.Crystals); Assert.AreEqual(0, meta.Level(kind));
-            meta.Crystals = 10000000;
-            for (int level = 0; level < 20; level++)
+            meta.Crystals = int.MaxValue;
+            for (int level = 0; level < MetaProgress.MaxLevel(kind); level++)
             {
-                int expected = (int)Math.Ceiling(initialCost * Math.Pow(1.48, level));
+                int expected = kind==MetaUpgrade.Damage && level>20 ? (int)Math.Ceiling(20339*Math.Pow(1+.05*(level-20),2)) : (int)Math.Ceiling(initialCost * Math.Pow(1.48, level));
                 int before = meta.Crystals; Assert.AreEqual(expected, meta.Cost(kind));
                 Assert.IsTrue(meta.TryBuy(kind)); Assert.AreEqual(before - expected, meta.Crystals);
                 Assert.AreEqual(level + 1, meta.Level(kind));
@@ -189,7 +189,7 @@ namespace Bokumyaku.Tests
         public void InvalidMetaIsRejectedAtRunStart()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new RunSimulator(1, new MetaProgress { Crystals = -1 }));
-            Assert.Throws<ArgumentOutOfRangeException>(() => new RunSimulator(1, new MetaProgress { Damage = 21 }));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new RunSimulator(1, new MetaProgress { Damage = 101 }));
             Assert.Throws<ArgumentOutOfRangeException>(() => new RunSimulator(1, new MetaProgress { Supply = -1 }));
         }
 
