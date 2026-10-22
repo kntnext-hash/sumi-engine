@@ -12,6 +12,15 @@ namespace Bokumyaku.Tests
         [SetUp] public void Setup() { dir=Path.Combine(Path.GetTempPath(),"BokumyakuRules3-"+Guid.NewGuid().ToString("N")); Directory.CreateDirectory(dir);latest=Path.Combine(dir,"v4.json");previous=Path.Combine(dir,"v3.json");older=Path.Combine(dir,"v2.json"); }
         [TearDown] public void Cleanup() { foreach(var f in Directory.GetFiles(dir))File.Delete(f);Directory.Delete(dir); }
         static RunSnapshot Fixture(string name) => JsonUtility.FromJson<RunSnapshot>(File.ReadAllText(Path.Combine(Application.dataPath,"BokumyakuPrototype/Tests/Fixtures",name)));
+        static string CanonicalCampaignJson(CampaignProgress value)
+        {
+            // Compare all campaign fields plus the strictly decoded state, not parser-adjacent doubles.
+            // Decode the original once before cloning; never regenerate or relax its payload.
+            var active=RunSimulator.Restore(value.ActiveRun).CaptureState();
+            var copy=JsonUtility.FromJson<CampaignProgress>(JsonUtility.ToJson(value));
+            copy.ActiveRun=active;
+            return JsonUtility.ToJson(copy);
+        }
         [TestCase("v6-run")] [TestCase("v6-record")] public void PreviousRules2ActivePreservesFutureAndAllSourceBytes(string prefix)
         {
             var s=Fixture(prefix+"-tick6000.json");Assert.AreEqual(2,s.rulesVersion);
@@ -19,7 +28,8 @@ namespace Bokumyaku.Tests
             c=CampaignSaveStore.Save(previous,c);c=CampaignSaveStore.Save(previous,c);
             var bytes=File.ReadAllBytes(previous);var backup=File.ReadAllBytes(previous+".bak");
             string warning;var migrated=CampaignSaveStore.LoadLatest(latest,previous,older,null,out warning);
-            Assert.AreEqual(JsonUtility.ToJson(c),JsonUtility.ToJson(migrated));Assert.AreEqual(3,migrated.SchemaVersion);Assert.AreEqual("bokumyaku-campaign-v3",migrated.Config);
+            Assert.AreEqual(c.ActiveRun.exactDoubleBits,migrated.ActiveRun.exactDoubleBits);
+            Assert.AreEqual(CanonicalCampaignJson(c),CanonicalCampaignJson(migrated));Assert.AreEqual(3,migrated.SchemaVersion);Assert.AreEqual("bokumyaku-campaign-v3",migrated.Config);
             var live=RunSimulator.Restore(migrated.ActiveRun);for(int i=0;i<900;i++)live.Tick();
             Assert.AreEqual(JsonUtility.ToJson(RunSimulator.Restore(Fixture(prefix+"-tick6900.json")).CaptureState()),JsonUtility.ToJson(live.CaptureState()));
             CampaignSaveStore.SaveActive(latest,migrated,live,2);
@@ -44,7 +54,7 @@ namespace Bokumyaku.Tests
         {
             Assert.Throws<InvalidDataException>(()=>{string w;CampaignSaveStore.LoadLatest(latest,latest,older,null,out w);});Assert.IsFalse(File.Exists(latest));
         }
-        [TestCase(3,true)] [TestCase(5,false)]
+        [TestCase(3,true)] [TestCase(6,false)]
         public void ResultRulesHaveExplicitSupportedRange(int rules,bool valid)
         {
             var id=Guid.NewGuid().ToString("N");var r=new CampaignResult { RunId=id,RulesVersion=rules,Status=RunStatus.Defeated };

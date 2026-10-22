@@ -74,7 +74,7 @@ namespace Bokumyaku.Tests
             s.enemies=new[]{new EnemySnapshot{id=1,kind=EnemyKind.Normal,x=12,y=0,hp=10,maxHp=10,speed=35,spawnWave=1}};
             s.fields=new[]{new FieldSnapshot{x=0,y=0,radius=20,damagePerTick=1,untilTick=360,weapon=WeaponKind.Bleed}};
             var r=RunSimulator.Restore(SealFixture(s));r.Tick();Assert.AreEqual(RunStatus.Defeated,r.State);Assert.AreEqual(0,r.CompletedWave);Assert.DoesNotThrow(()=>RunSimulator.Restore(r.CaptureState()));
-            s=new RunSimulator(3).CaptureState();s.tickCount=RunSimulator.MaxTicks-1;s.wave=RunSimulator.WaveLimit;s.completedWave=RunSimulator.WaveLimit-1;
+            s=new RunSimulator(3).CaptureState();s.tickCount=RunSimulator.LongRunMaxTicks-1;s.wave=RunSimulator.LongRunWaveLimit;s.completedWave=RunSimulator.LongRunWaveLimit-1;
             r=RunSimulator.Restore(SealFixture(s));r.Tick();Assert.AreEqual(RunStatus.TestCompleted,r.State);Assert.DoesNotThrow(()=>RunSimulator.Restore(r.CaptureState()));
         }
         [Test] public void CapacityStopSnapshotRestoresWithoutReward()

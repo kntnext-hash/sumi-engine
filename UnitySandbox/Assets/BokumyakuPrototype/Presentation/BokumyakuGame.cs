@@ -56,8 +56,9 @@ namespace Bokumyaku.Presentation
                 Page = GamePage.Home; saveWarning = "";
             }
         }
-        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v5.json");
-        public string LatestPreviousCampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v4.json") : SavePathOverride + ".v4";
+        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v6.json");
+        public string LatestPreviousCampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v5.json") : SavePathOverride + ".v5";
+        public string PreviousV4CampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v4.json") : SavePathOverride + ".v4";
         public string PreviousCampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v3.json") : SavePathOverride + ".v3";
         public string OlderCampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v2.json") : SavePathOverride + ".v2";
         string LegacySavePath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-prototype-v1.json") : SavePathOverride + ".legacy";
@@ -135,9 +136,9 @@ namespace Bokumyaku.Presentation
             EnsureCanvas();
             try
             {
-                bool firstNewCampaign = !progressLoaded && !SaveFamilyExists(SavePath) && !SaveFamilyExists(LatestPreviousCampaignPath) && !SaveFamilyExists(PreviousCampaignPath) && !SaveFamilyExists(OlderCampaignPath) && !SaveFamilyExists(LegacySavePath);
+                bool firstNewCampaign = !progressLoaded && !SaveFamilyExists(SavePath) && !SaveFamilyExists(LatestPreviousCampaignPath) && !SaveFamilyExists(PreviousV4CampaignPath) && !SaveFamilyExists(PreviousCampaignPath) && !SaveFamilyExists(OlderCampaignPath) && !SaveFamilyExists(LegacySavePath);
                 string warning;
-                var loaded = CampaignSaveStore.LoadLatest(SavePath, LatestPreviousCampaignPath, PreviousCampaignPath, OlderCampaignPath, LegacySavePath, out warning);
+                var loaded = CampaignSaveStore.LoadLatest(SavePath, LatestPreviousCampaignPath, PreviousV4CampaignPath, PreviousCampaignPath, OlderCampaignPath, LegacySavePath, out warning);
                 if (firstNewCampaign) SelectedBuild = BuildPreset.Farming;
                 var restored = loaded.HasActiveRun ? RunSimulator.Restore(loaded.ActiveRun) : new RunSimulator(InitialSeed, loaded.Meta);
                 ApplyCampaign(loaded); Run = restored; progressLoaded = true; loadBlocked = false;
@@ -497,7 +498,7 @@ namespace Bokumyaku.Presentation
                 if (portrait) DrawPanel(new Rect(24, 584, 392, 452), true);
                 else DrawPanel(new Rect(558, 110, 494, 616), false);
                 GUI.Label(new Rect(field.x, field.yMax + 7, field.width, 18), "墨の枝  ／  金の末端  ／  朱の敵", small);
-                GUI.Label(new Rect(width - 185, portrait ? 20 : 42, 162, 25), "システム α  0.8", small);
+                GUI.Label(new Rect(width - 185, portrait ? 20 : 42, 162, 25), "システム α  0.9", small);
             }
             finally { GUI.matrix = oldMatrix; GUI.color = oldColor; GUI.backgroundColor = oldBackground; GUI.enabled = oldEnabled; }
         }
@@ -623,7 +624,7 @@ namespace Bokumyaku.Presentation
             }
             GUI.Label(new Rect(field.x + 12, field.yMax - 30, field.width - 24, 22),
                 "流墨 Q " + Run.RootSupply.ToString("0.0") + "  ／  末端墨圧 P " + minPressure.ToString("0.00") + "–" + maxPressure.ToString("0.00"), small);
-            GUI.Label(new Rect(field.x + 12, field.y + 8, field.width - 24, 25), "波 " + Run.Wave.ToString("00") + "  /  " + RunSimulator.WaveLimit, heading);
+            GUI.Label(new Rect(field.x + 12, field.y + 8, field.width - 24, 25), "波 " + Run.Wave.ToString("00") + "  /  " + Run.RunWaveLimit, heading);
             GUI.Label(new Rect(field.x + 12, field.y + 35, field.width - 24, 22), "核 " + Run.CoreHp + "/10 · " + Run.TipCount + " 末端 · 規則" + Run.RulesVersion + (Run.RulesVersion == 1 ? "（旧）" : ""), small);
             Fill(new Rect(field.x + 12, field.y + 60, 100, 3), new Color(0, 0, 0, .10f));
             Fill(new Rect(field.x + 12, field.y + 60, 10 * Run.CoreHp, 3), gold);
@@ -632,7 +633,7 @@ namespace Bokumyaku.Presentation
                 var box = new Rect(field.x + 22, field.center.y - 126, field.width - 44, 252);
                 Fill(box, new Color(.96f, .95f, .91f, .96f));
                 DrawArt(new Rect(box.center.x - 110, box.center.y - 110, 220, 220), ensoArt, .10f, ScaleMode.ScaleToFit);
-                string status = AwaitingStart ? "一滴から、命が芽吹く。" : Run.State == RunStatus.Defeated ? "墨が静まり、核が砕けた。" : Run.State == RunStatus.TestCompleted ? RunSimulator.WaveLimit + "の波を、耐え抜いた。" : "試作版の処理上限";
+                string status = AwaitingStart ? "一滴から、命が芽吹く。" : Run.State == RunStatus.Defeated ? "墨が静まり、核が砕けた。" : Run.State == RunStatus.TestCompleted ? Run.RunWaveLimit + "の波を、耐え抜いた。" : "試作版の処理上限";
                 int milestone = rewarded && campaign != null && campaign.LastResult != null ? campaign.LastResult.MilestoneCrystals : 0;
                 GUI.Label(new Rect(box.x + 14, box.y + 12, box.width - 28, 35), status, heading);
                 GUI.Label(new Rect(box.x + 14, box.y + 48, box.width - 28, 146), AwaitingStart
@@ -772,7 +773,7 @@ namespace Bokumyaku.Presentation
         }
         static string FormatTime(double seconds)
         {
-            int whole = (int)Math.Max(0, seconds);
+            long whole = (long)Math.Max(0, seconds);
             return (whole / 60).ToString("00") + ":" + (whole % 60).ToString("00");
         }
         static void SetLabelColor(GUIStyle style, Color color)

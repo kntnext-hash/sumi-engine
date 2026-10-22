@@ -23,7 +23,9 @@ namespace Bokumyaku.Persistence
         }
         static void ResultValid(CampaignResult r)
         {
-            Require(r != null && (r.RulesVersion >= 1 && r.RulesVersion <= 4) && Id(r.RunId) && r.Ticks >= 0 && r.Ticks <= RunSimulator.MaxTicks && r.CompletedWave >= 0 && r.CompletedWave <= RunSimulator.WaveLimit && r.Crystals >= 0 && r.Crystals <= 80000 && r.MilestoneCrystals >= 0 && r.MilestoneCrystals <= RunSimulator.WaveLimit, "Invalid result.");
+            Require(r != null && r.RulesVersion >= 1 && r.RulesVersion <= 5, "Unsupported result rules.");
+            int waveLimit = RunSimulator.WaveLimitForRules(r.RulesVersion), tickLimit = RunSimulator.TickLimitForRules(r.RulesVersion);
+            Require(Id(r.RunId) && r.Ticks >= 0 && r.Ticks <= tickLimit && r.CompletedWave >= 0 && r.CompletedWave <= waveLimit && r.Crystals >= 0 && r.Crystals <= RunSimulator.CrystalLimitForRules(r.RulesVersion) && r.MilestoneCrystals >= 0 && r.MilestoneCrystals <= waveLimit, "Invalid result.");
             Require(r.Status == RunStatus.Defeated || r.Status == RunStatus.TestCompleted || r.Status == RunStatus.CapacityExceeded, "Result must be terminal.");
             Require(Enum.IsDefined(typeof(WeaponKind), r.Weapon) && Enum.IsDefined(typeof(BuildPreset), r.Build) && Enum.IsDefined(typeof(GrowthPolicy), r.Policy), "Invalid result configuration.");
         }
@@ -32,7 +34,7 @@ namespace Bokumyaku.Persistence
             Require(c != null && c.SchemaVersion == 3 && c.Config == "bokumyaku-campaign-v3", "Unsupported campaign schema/config.");
             Require(c.Revision >= 0 && c.Revision < long.MaxValue && MetaValid(c.Meta), "Invalid campaign progress.");
             Require(c.ActiveSpeed == 1 || c.ActiveSpeed == 2, "Invalid active speed.");
-            Require(c.BestWave >= 0 && c.BestWave <= RunSimulator.WaveLimit && c.TotalRuns >= 0 && c.TotalCrystals >= 0 && c.ClaimedMilestoneWave >= 0 && c.ClaimedMilestoneWave <= c.BestWave && c.ClaimedMilestoneWave % 5 == 0, "Invalid cumulative progress.");
+            Require(c.BestWave >= 0 && c.BestWave <= RunSimulator.LongRunWaveLimit && c.TotalRuns >= 0 && c.TotalCrystals >= 0 && c.ClaimedMilestoneWave >= 0 && c.ClaimedMilestoneWave <= c.BestWave && c.ClaimedMilestoneWave % 5 == 0, "Invalid cumulative progress.");
             Require(c.History != null && c.History.Count <= 20 && c.History.Count <= c.TotalRuns && c.Slots != null && c.Slots.Length == 3, "Invalid history/slots.");
             var ids = new HashSet<string>();
             long historyCrystals = 0;
@@ -61,7 +63,18 @@ namespace Bokumyaku.Persistence
             }
             else Require(string.IsNullOrEmpty(c.ActiveRunId), "Inactive run has an ID.");
         }
-        static CampaignProgress Clone(CampaignProgress c) => JsonUtility.FromJson<CampaignProgress>(JsonUtility.ToJson(c));
+        static CampaignProgress Clone(CampaignProgress c)
+        {
+            // Validate/decode the original payload before any additional JSON round trip.
+            // Repeated JsonUtility parsing can otherwise accumulate adjacent-double rounding.
+            Require(c != null, "Invalid campaign progress.");
+            RunSnapshot active = null;
+            try { if (c.HasActiveRun) active = RunSimulator.Restore(c.ActiveRun).CaptureState(); }
+            catch (ArgumentException e) { throw new InvalidDataException("Invalid active run snapshot.", e); }
+            var copy = JsonUtility.FromJson<CampaignProgress>(JsonUtility.ToJson(c));
+            if (c.HasActiveRun) copy.ActiveRun = active;
+            return copy;
+        }
         static CampaignProgress Read(string path, bool previous = false)
         {
             Require(new FileInfo(path).Length <= MaxFileBytes, "Campaign exceeds size limit.");
@@ -92,6 +105,24 @@ namespace Bokumyaku.Persistence
                 try { var c = Read(path + ".bak", previous); warning = "Campaign recovered from backup; original preserved."; return c; }
                 catch (Exception backup) when (backup is IOException || backup is InvalidDataException)
                 { throw new InvalidDataException("Campaign and backup are unreadable; no data was replaced.", new AggregateException(e, backup)); }
+            }
+        }
+        /// <summary>File generation 6 retains schema/config 3 and isolates rules5 progress.</summary>
+        public static CampaignProgress LoadLatest(string path, string previousV5, string previousV4, string previousV3, string olderV2, string legacyMetaPath, out string warning)
+        {
+            lock (Gate)
+            {
+                foreach (var source in new[] { previousV5, previousV4, previousV3, olderV2, legacyMetaPath })
+                    if (!string.IsNullOrEmpty(source)) Require(!string.Equals(Path.GetFullPath(path), Path.GetFullPath(source), StringComparison.OrdinalIgnoreCase), "Migration destination must differ from every source.");
+                if (File.Exists(path) || File.Exists(path + ".bak")) return ReadRecover(path, out warning);
+                if (!string.IsNullOrEmpty(previousV5) && (File.Exists(previousV5) || File.Exists(previousV5 + ".bak")))
+                {
+                    var c = ReadRecover(previousV5, out warning);
+                    Write(path, c);
+                    warning = "Previous schema3 campaign copied to file generation6; original and backup preserved. " + warning;
+                    return c;
+                }
+                return LoadLatest(path, previousV4, previousV3, olderV2, legacyMetaPath, out warning);
             }
         }
         /// <summary>File generation 5 keeps schema/config 3 while isolating rules4 writes from older executables.</summary>
@@ -165,7 +196,7 @@ namespace Bokumyaku.Persistence
         public static CampaignProgress Load(string path, out string warning) => Load(path, null, out warning);
         static void Write(string path, CampaignProgress c)
         {
-            Validate(c); string json = JsonUtility.ToJson(c, true);
+            Validate(c); string json = JsonUtility.ToJson(Clone(c), true);
             Require(System.Text.Encoding.UTF8.GetByteCount(json) <= MaxFileBytes, "Campaign exceeds size limit.");
             Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(path)));
             string temp = path + ".tmp-" + Guid.NewGuid().ToString("N");

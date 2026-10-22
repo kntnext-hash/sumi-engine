@@ -15,7 +15,7 @@ namespace Bokumyaku.Tests
         static RunSimulator Finished(int seed, MetaProgress meta)
         {
             var run = new RunSimulator(seed, meta);
-            for (int i = 0; i <= RunSimulator.MaxTicks && run.State == RunStatus.Running; i++) run.Tick();
+            for (int i = 0; i <= run.RunTickLimit && run.State == RunStatus.Running; i++) run.Tick();
             Assert.AreNotEqual(RunStatus.Running, run.State); return run;
         }
         [Test]
@@ -170,10 +170,10 @@ namespace Bokumyaku.Tests
         {
             var c = CampaignSaveStore.BeginRun(path, new CampaignProgress(), new RunSimulator(42));
             var s = new RunSimulator(42).CaptureState(); s.status = RunStatus.TestCompleted;
-            s.tickCount = RunSimulator.MaxTicks; s.wave = RunSimulator.WaveLimit; s.completedWave = RunSimulator.WaveLimit;
+            s.tickCount = RunSimulator.TickLimitForRules(s.rulesVersion); s.wave = RunSimulator.WaveLimitForRules(s.rulesVersion); s.completedWave = s.wave;
             c = CampaignSaveStore.SettleRun(path, c, c.ActiveRunId, RunSimulator.Restore(s));
-            Assert.AreEqual(RunSimulator.WaveLimit, c.BestWave);
-            Assert.AreEqual(RunSimulator.WaveLimit / 5 * 5, c.LastResult.MilestoneCrystals);
+            Assert.AreEqual(RunSimulator.WaveLimitForRules(s.rulesVersion), c.BestWave);
+            Assert.AreEqual(RunSimulator.WaveLimitForRules(s.rulesVersion) / 5 * 5, c.LastResult.MilestoneCrystals);
         }
     }
 }

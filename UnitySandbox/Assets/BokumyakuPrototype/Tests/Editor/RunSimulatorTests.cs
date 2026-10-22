@@ -282,7 +282,7 @@ namespace Bokumyaku.Tests
         {
             var run = new RunSimulator(42, new MetaProgress { Damage = 20, Supply = 20, Growth = 20, Harvest = 20 });
             run.SetBuild(build);
-            while (run.State == RunStatus.Running && run.TickCount <= RunSimulator.MaxTicks)
+            while (run.State == RunStatus.Running && run.TickCount < Math.Min(run.RunTickLimit, 200000))
             {
                 run.Tick(); Assert.LessOrEqual(run.Branches.Count, 64); Assert.LessOrEqual(run.TipCount, 12);
                 Assert.LessOrEqual(run.Enemies.Count, RunSimulator.EnemyLimit); Assert.GreaterOrEqual(run.RunInk, 0);
@@ -295,7 +295,7 @@ namespace Bokumyaku.Tests
             }
             Assert.AreNotEqual(RunStatus.Running, run.State);
             Assert.AreNotEqual(RunStatus.CapacityExceeded, run.State);
-            Assert.LessOrEqual(run.TickCount, RunSimulator.MaxTicks);
+            Assert.LessOrEqual(run.TickCount, run.RunTickLimit);
         }
     }
 }

@@ -84,7 +84,7 @@ namespace Bokumyaku.Simulation
     public sealed partial class RunSimulator
     {
         public const int LegacyRulesVersion = 1;
-        public const int CurrentRulesVersion = 4;
+        public const int CurrentRulesVersion = 5;
         public const int HarvestMaxLevel = 10;
         public const double HarvestGainPerLevel = 1.5;
         public const double HarvestBaseCost = 30;
@@ -93,7 +93,8 @@ namespace Bokumyaku.Simulation
         public double HarvestMultiplier { get { return RulesVersion == LegacyRulesVersion ? 1 : 1 + HarvestGainPerLevel * levels[6]; } }
         int autoPurchaseCursor;
         public const int TickRate = 30;
-        public const int WaveLimit = 60;
+        // Compatibility constants for legacy callers. New runs use RunWaveLimit/RunTickLimit.
+        public const int WaveLimit = LegacyWaveLimit;
         public const int MaxTicks = WaveLimit * 360;
         // v2 experimental tuning: shared by all builds, with original Wave/reward formulas retained.
         public const double BaseAttackDamage = 7.5;
@@ -151,8 +152,8 @@ namespace Bokumyaku.Simulation
             branches.Add(new BranchState { Id = 0, ParentId = -1 });
             for (int i = 0; i < 3; i++) AddBranch(branches[0], i * Math.PI * 2 / 3, 70);
         }
-        public static double BaseHp(int wave) { return 16 * Math.Pow(1.072, wave - 1) * (1 + .12 * Math.Floor((wave - 1) / 10.0)); }
-        public static double SpawnRate(int wave) { return Math.Min(4.8, .50 + .027 * wave + .0007 * wave * wave); }
+        public static double BaseHp(int wave) { ValidateLongWave(wave); if(wave>LegacyWaveLimit)return BaseHp(LegacyWaveLimit)*Math.Pow(1+.036*(wave-LegacyWaveLimit),2); return 16 * Math.Pow(1.072, wave - 1) * (1 + .12 * Math.Floor((wave - 1) / 10.0)); }
+        public static double SpawnRate(int wave) { ValidateLongWave(wave); return Math.Min(4.8, .50 + .027 * wave + .0007 * wave * wave); }
         public double Pressure(BranchState branch) { return Math.Min(1.65, Math.Max(.45, Math.Sqrt((RootSupply / TipCount) * Math.Exp(-.0013 * branch.PathLength) / 3))); }
         public int UpgradeCost(UpgradeKind kind)
         {
@@ -247,7 +248,7 @@ namespace Bokumyaku.Simulation
         public void Tick()
         {
             attacks.Clear(); if (State != RunStatus.Running) return;
-            TickCount++; if (TickCount % 30 == 0) AutoBuy(); Wave = Math.Min(WaveLimit, (TickCount - 1) / 360 + 1);
+            TickCount++; if (TickCount % 30 == 0) AutoBuy(); Wave = Math.Min(RunWaveLimit, (TickCount - 1) / 360 + 1);
             int phase = (TickCount - 1) % 360;
             if (phase == 0 && Wave % 10 == 0 && lastBossWave != Wave)
             {
@@ -308,7 +309,7 @@ namespace Bokumyaku.Simulation
             if (growthCharge >= threshold && branches.Count < 64 && Grow()) { growthCharge -= threshold; growthCount++; }
             if (State == RunStatus.CapacityExceeded) return;
             CompletedWave = TickCount / 360;
-            if (TickCount >= MaxTicks) Finish(RunStatus.TestCompleted);
+            if (TickCount >= RunTickLimit) Finish(RunStatus.TestCompleted);
         }
         void StopAtCapacity()
         {
@@ -326,7 +327,7 @@ namespace Bokumyaku.Simulation
             double roll = Random01(ref spawnRng), angle = Random01(ref spawnRng) * 2 * Math.PI;
             var kind = forced ?? (Wave >= 15 && roll >= .80 ? EnemyKind.Splitter : Wave >= 8 && roll < .20 ? EnemyKind.Heavy : Wave >= 4 && roll < (Wave >= 8 ? .45 : .25) ? EnemyKind.Fast : EnemyKind.Normal);
             double hp = BaseHp(Wave) * (kind == EnemyKind.Boss ? 12 : kind == EnemyKind.Splitter ? .9 : kind == EnemyKind.Heavy ? 3.2 : kind == EnemyKind.Fast ? .65 : 1);
-            enemies.Add(new EnemyState { Id = ++nextEnemyId, Kind = kind, X = 360 * Math.Cos(angle), Y = 360 * Math.Sin(angle), Hp = hp, MaxHp = hp, SpawnWave = Wave, Speed = 35 * (1 + .006 * (Wave - 1)) * (kind == EnemyKind.Boss ? .55 : kind == EnemyKind.Heavy ? .65 : kind == EnemyKind.Fast ? 1.8 : 1) });
+            enemies.Add(new EnemyState { Id = ++nextEnemyId, Kind = kind, X = 360 * Math.Cos(angle), Y = 360 * Math.Sin(angle), Hp = hp, MaxHp = hp, SpawnWave = Wave, Speed = 35 * (RulesVersion>=5?EnemySpeedFactor(Wave):(1 + .006 * (Wave - 1))) * (kind == EnemyKind.Boss ? .55 : kind == EnemyKind.Heavy ? .65 : kind == EnemyKind.Fast ? 1.8 : 1) });
             spawnedByType[(int)kind]++;
             return true;
         }
@@ -340,7 +341,7 @@ namespace Bokumyaku.Simulation
             growthCharge++;
             double yield = enemy.Kind == EnemyKind.Boss ? 12 : enemy.Kind == EnemyKind.Splitter ? 1.4 : enemy.Kind == EnemyKind.Heavy ? 2 : enemy.Kind == EnemyKind.Fast ? 1.1 : 1;
             rewardPoints += yield * HarvestMultiplier;
-            int reward = (int)Math.Round(4 * yield * (1 + .018 * enemy.SpawnWave) * (1 + .03 * meta.Harvest), MidpointRounding.ToEven);
+            int reward = (int)Math.Round(4 * yield * (RulesVersion>=5?RewardWaveFactor(enemy.SpawnWave):(1 + .018 * enemy.SpawnWave)) * (1 + .03 * meta.Harvest), MidpointRounding.ToEven);
             RunInk += reward; IncomeEarned += reward;
             if (enemy.Kind == EnemyKind.Splitter)
             {

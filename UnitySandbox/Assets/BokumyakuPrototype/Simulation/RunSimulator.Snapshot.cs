@@ -44,17 +44,18 @@ namespace Bokumyaku.Simulation
             Check(s.schemaVersion!=1 || (s.rulesVersion==0 && s.autoPurchaseCursor==0),"legacy metadata");
             Range(s.autoPurchaseCursor,0,5,"purchase cursor");
             Check(rules!=1 || s.autoPurchaseCursor==0,"legacy cursor");
-            Range(s.tickCount,0,MaxTicks,"tickCount"); Range(s.wave,1,WaveLimit,"wave"); Range(s.completedWave,0,WaveLimit,"completedWave");
-            Check(s.wave==Math.Min(WaveLimit,Math.Max(1,(s.tickCount-1)/360+1)),"wave/tick mismatch");
+            int maxWave=WaveLimitForRules(rules),maxTicks=TickLimitForRules(rules),maxCounter=rules>=5?LongRunCounterLimit:100000,maxIncome=rules>=5?LongRunIncomeLimit:10000000;
+            Range(s.tickCount,0,maxTicks,"tickCount"); Range(s.wave,1,maxWave,"wave"); Range(s.completedWave,0,maxWave,"completedWave");
+            Check(s.wave==Math.Min(maxWave,Math.Max(1,(s.tickCount-1)/360+1)),"wave/tick mismatch");
             Check(s.completedWave==(s.status==RunStatus.Defeated?Math.Max(0,s.tickCount-1)/360:s.tickCount/360),"completedWave/tick mismatch");
-            Range(s.coreHp,0,10,"coreHp"); Range(s.runInk,0,10000000,"runInk"); Range(s.incomeEarned,s.runInk,10000000,"incomeEarned");
-            Range(s.kills,0,100000,"kills"); Range(s.leaks,0,100000,"leaks"); Range(s.nextEnemyId,0,100000,"nextEnemyId");
+            Range(s.coreHp,0,10,"coreHp"); Range(s.runInk,0,maxIncome,"runInk"); Range(s.incomeEarned,s.runInk,maxIncome,"incomeEarned");
+            Range(s.kills,0,maxCounter,"kills"); Range(s.leaks,0,maxCounter,"leaks"); Range(s.nextEnemyId,0,maxCounter,"nextEnemyId");
             Range(s.growthCount,0,64,"growthCount"); Range(s.repairCount,0,5,"repairCount"); Range(s.lastBossWave,0,s.wave,"lastBossWave"); Check(s.lastBossWave%10==0,"lastBossWave");
-            Number(s.spawnCredit,0,1,"spawnCredit"); Number(s.growthCharge,0,100000,"growthCharge"); Number(s.rewardPoints,0,1000000,"rewardPoints"); Number(s.effectiveDamage,0,1e15,"effectiveDamage");
+            Number(s.spawnCredit,0,1,"spawnCredit"); Number(s.growthCharge,0,rules>=5?LongRunGrowthChargeLimit:100000,"growthCharge"); Number(s.rewardPoints,0,rules>=5?LongRunRewardPointsLimit:1000000,"rewardPoints"); Number(s.effectiveDamage,0,1e15,"effectiveDamage");
             Check(Enum.IsDefined(typeof(RunStatus),s.status)&&Enum.IsDefined(typeof(BuildPreset),s.build)&&Enum.IsDefined(typeof(GrowthPolicy),s.policy)&&Enum.IsDefined(typeof(WeaponKind),s.weapon),"enum");
             Check(s.status!=RunStatus.Defeated || s.coreHp==0,"defeat requires zero HP");
-            Check(s.status!=RunStatus.Running || (s.coreHp>0 && s.tickCount<MaxTicks),"running state");
-            Check(s.status!=RunStatus.TestCompleted || (s.tickCount==MaxTicks && s.coreHp>0),"test-completed state");
+            Check(s.status!=RunStatus.Running || (s.coreHp>0 && s.tickCount<maxTicks),"running state");
+            Check(s.status!=RunStatus.TestCompleted || (s.tickCount==maxTicks && s.coreHp>0),"test-completed state");
             Check(!s.rewardClaimed || (s.status==RunStatus.Defeated || s.status==RunStatus.TestCompleted),"reward claimed state");
             int expectedReward=(s.status==RunStatus.Defeated || s.status==RunStatus.TestCompleted)?(int)Math.Floor(s.rewardPoints*.08):0;
             Check(s.crystalsReward==expectedReward,"crystalsReward");
@@ -65,14 +66,16 @@ namespace Bokumyaku.Simulation
             int sk=0,sl=0,ss=0; var active=new int[5]; var ids=new HashSet<int>();
             foreach(var e in s.enemies) { Check(e!=null,"enemy null"); Range(e.id,1,s.nextEnemyId,"enemy id"); Check(ids.Add(e.id),"duplicate enemy"); Check(Enum.IsDefined(typeof(EnemyKind),e.kind),"enemy kind");
                 Number(e.x,-1024,1024,"enemy x"); Number(e.y,-1024,1024,"enemy y"); Number(e.maxHp,double.Epsilon,1e12,"maxHP"); Number(e.hp,double.Epsilon,e.maxHp,"hp"); Number(e.speed,double.Epsilon,10000,"speed"); Range(e.spawnWave,1,s.wave,"spawnWave"); Check(!e.isSplitChild||e.kind==EnemyKind.Splitter,"split child kind"); active[(int)e.kind]++; }
-            for(int i=0;i<5;i++) { Range(s.spawnedByType[i],0,100000,"spawn count"); Range(s.killedByType[i],0,100000,"kill count"); Range(s.leakedByType[i],0,100000,"leak count"); Check(s.spawnedByType[i]==s.killedByType[i]+s.leakedByType[i]+active[i],"type counter balance"); ss+=s.spawnedByType[i];sk+=s.killedByType[i];sl+=s.leakedByType[i]; }
+            for(int i=0;i<5;i++) { Range(s.spawnedByType[i],0,maxCounter,"spawn count"); Range(s.killedByType[i],0,maxCounter,"kill count"); Range(s.leakedByType[i],0,maxCounter,"leak count"); Check(s.spawnedByType[i]==s.killedByType[i]+s.leakedByType[i]+active[i],"type counter balance"); ss+=s.spawnedByType[i];sk+=s.killedByType[i];sl+=s.leakedByType[i]; }
             Check(ss==s.nextEnemyId&&sk==s.kills&&sl==s.leaks,"total counters");
             double minimumPoints=s.killedByType[0]+1.1*s.killedByType[1]+2.0*s.killedByType[2]+12.0*s.killedByType[4];
-            Number(s.rewardPoints,Math.Max(0,minimumPoints-1e-6),(minimumPoints+1.4*s.killedByType[3])*(rules==1?1:1+HarvestGainPerLevel*s.levels[6])+1e-6,"reward point counters");
+            // Long sums can accumulate floating-point error; legacy tolerance stays unchanged.
+            double pointsTolerance=rules>=5?Math.Max(1e-6,s.kills*1e-7):1e-6;
+            Number(s.rewardPoints,Math.Max(0,minimumPoints-pointsTolerance),(minimumPoints+1.4*s.killedByType[3])*(rules==1?1:1+HarvestGainPerLevel*s.levels[6])+pointsTolerance,"reward point counters");
             int tips=0; var hasChild=new bool[s.branches.Length];
-            for(int i=0;i<s.branches.Length;i++) {var b=s.branches[i];Check(b!=null&&b.id==i,"branch id"); Check(i==0?b.parentId==-1:b.parentId>=0&&b.parentId<i,"branch parent"); Number(b.x,-GrowthRadius,GrowthRadius,"branch x"); Number(b.y,-GrowthRadius,GrowthRadius,"branch y");Number(b.pathLength,0,10000,"pathLength");Range(b.nextAttack,0,MaxTicks+1000,"cooldown");if(i>0){hasChild[b.parentId]=true;var p=s.branches[b.parentId];double dx=b.x-p.x,dy=b.y-p.y;Check(Math.Abs(b.pathLength-p.pathLength-Math.Sqrt(dx*dx+dy*dy))<1e-6,"path geometry");} if(b.isTip)tips++; }
+            for(int i=0;i<s.branches.Length;i++) {var b=s.branches[i];Check(b!=null&&b.id==i,"branch id"); Check(i==0?b.parentId==-1:b.parentId>=0&&b.parentId<i,"branch parent"); Number(b.x,-GrowthRadius,GrowthRadius,"branch x"); Number(b.y,-GrowthRadius,GrowthRadius,"branch y");Number(b.pathLength,0,10000,"pathLength");Range(b.nextAttack,0,maxTicks+1000,"cooldown");if(i>0){hasChild[b.parentId]=true;var p=s.branches[b.parentId];double dx=b.x-p.x,dy=b.y-p.y;Check(Math.Abs(b.pathLength-p.pathLength-Math.Sqrt(dx*dx+dy*dy))<1e-6,"path geometry");} if(b.isTip)tips++; }
             Check(tips>=3&&tips<=Math.Min(12,3+s.levels[3]),"tip count"); for(int i=0;i<hasChild.Length;i++)Check(s.branches[i].isTip!=hasChild[i],"tip topology");
-            foreach(var f in s.fields){Check(f!=null&&Enum.IsDefined(typeof(WeaponKind),f.weapon),"field");Number(f.x,-1024,1024,"field x");Number(f.y,-1024,1024,"field y");Number(f.radius,0,1000,"field radius");Number(f.damagePerTick,0,1e9,"field damage");Range(f.untilTick,0,MaxTicks+1000,"field time");}
+            foreach(var f in s.fields){Check(f!=null&&Enum.IsDefined(typeof(WeaponKind),f.weapon),"field");Number(f.x,-1024,1024,"field x");Number(f.y,-1024,1024,"field y");Number(f.radius,0,1000,"field radius");Number(f.damagePerTick,0,1e9,"field damage");Range(f.untilTick,0,maxTicks+1000,"field time");}
             foreach(var a in s.attacks){Check(a!=null&&Enum.IsDefined(typeof(WeaponKind),a.weapon),"attack");Range(a.branchId,1,s.branches.Length-1,"attack branch");Range(a.enemyId,1,s.nextEnemyId,"attack enemy");Number(a.x,-1024,1024,"attack x");Number(a.y,-1024,1024,"attack y");Number(a.targetX,-1024,1024,"target x");Number(a.targetY,-1024,1024,"target y");Number(a.damage,0,1e9,"attack damage");Number(a.pressure,.45,1.65,"pressure");}
             var r=new RunSimulator(s.seed,s.meta);
             r.RulesVersion=rules; r.autoPurchaseCursor=s.autoPurchaseCursor; r.levels=new int[s.levels.Length];
