@@ -47,4 +47,3 @@ foreach($variant in $variants){
  if($VerifyProduction){$expected=Get-Content "$root/docs/evidence/research-v11-Growth2.json" -Raw|ConvertFrom-Json;if(($series|ConvertTo-Json -Depth 15 -Compress) -cne ($expected.series|ConvertTo-Json -Depth 15 -Compress)){throw 'Production/candidate ledger mismatch'};$report['productionCandidateLedgerExactMatch']=$true;$report|ConvertTo-Json -Depth 15|Set-Content "$root/docs/evidence/research-v11-$variant.json" -Encoding utf8}
  $series|Select-Object scenario,weapon,build,firstPurchaseRun,totalRewards,totalSpent,finalBalance,@{n='levels';e={$_.finalLevels -join ','}}|Format-Table
 }
-
