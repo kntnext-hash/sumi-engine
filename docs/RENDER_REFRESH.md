@@ -89,3 +89,6 @@ Fiberの広い掠れ層を残し、同じ曲線へ半径10のPool層を追加。
 
 ### 密集人工配置と同tick撃破の調査
 80体/5種を隔離状態で格子配置し、描画20呼び出しでRenderer316→316。自然Wave・経済・性能の証拠ではない。画面下側の座標圧縮で輪郭重なりが強いため改善対象。dense-battle-check.json/png。AttackEventはフィールド撃破の一覧を持たず、同tick消失子を描画だけで正確に復元できない。シミュレーション変更禁止を維持し、演出欠落は未解決とする。
+
+### 下側の描画間隔
+核位置を戦場上から72→65%へ変更し、下側の投影係数.56→.70（間隔25%増）。上側/下側の墨スプライト配置も共通CoreScreenDepthから計算。人工80体画像を比較、Renderer316固定。15点で墨面/Project一致、最大誤差2.38e-7 world units。dense-battle-before-spacing.pngとdense-battle-check.png、ink-projection-check.json。シミュレーション/射程/保存未変更。密集の完全な判読性や実機性能の合格ではない。

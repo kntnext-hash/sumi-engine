@@ -47,7 +47,8 @@ namespace Bokumyaku.Presentation
    var p=Project(center);p.y=(top.y+bottom.y)*.5f;
    Size(renderer,p,radius*2/80f*1.23f,(top.y-bottom.y)*1.23f);
   }
-  Vector2 Project(Vector2 p){float t=.5f-p.y*.48f/512f;t=t<=.5f?t*1.44f:.72f+(t-.5f)*.56f;return new Vector2(p.x/400f*5,(.5f-t)*halfHeight*2);}
+  const float CoreScreenDepth=.65f;
+  Vector2 Project(Vector2 p){float t=.5f-p.y*.48f/512f;t=t<=.5f?t*(2*CoreScreenDepth):CoreScreenDepth+(t-.5f)*(2*(1-CoreScreenDepth));return new Vector2(p.x/400f*5,(.5f-t)*halfHeight*2);}
   void Properties(SpriteRenderer r,float hit,float dissolve,float wobble,float phase,bool reduced){block.Clear();block.SetFloat("_Hit",hit);block.SetFloat("_Dissolve",dissolve);block.SetFloat("_Wobble",wobble);block.SetFloat("_Phase",phase);block.SetFloat("_ReducedMotion",reduced?1:0);r.SetPropertyBlock(block);}
   void Release(SpriteRenderer r){r.gameObject.SetActive(false);r.SetPropertyBlock(null);r.transform.localRotation=Quaternion.identity;pool.Push(r);}
   SpriteRenderer Rent(Sprite s,int order){var r=pool.Count>0?pool.Pop():Create(s,order);r.sprite=s;r.enabled=true;r.sortingOrder=order;r.color=Color.white;r.gameObject.SetActive(true);return r;}
@@ -137,7 +138,7 @@ namespace Bokumyaku.Presentation
     if(upperInk.sprite!=null){ownedSprites.Remove(upperInk.sprite);UnityEngine.Object.Destroy(upperInk.sprite);ownedSprites.Remove(lowerInk.sprite);UnityEngine.Object.Destroy(lowerInk.sprite);}
     boundInk=persistent;upperInk.sprite=MakeSprite(persistent,new Rect(0,persistent.height/2,persistent.width,persistent.height/2));lowerInk.sprite=MakeSprite(persistent,new Rect(0,0,persistent.width,persistent.height/2));
    }
-   upperInk.color=lowerInk.color=new Color(.035f,.03f,.025f);Size(upperInk,new Vector2(0,halfHeight*.28f),10,halfHeight*1.44f);Size(lowerInk,new Vector2(0,-halfHeight*.72f),10,halfHeight*.56f);
+   upperInk.color=lowerInk.color=new Color(.035f,.03f,.025f);Size(upperInk,new Vector2(0,halfHeight*(1-CoreScreenDepth)),10,halfHeight*2*CoreScreenDepth);Size(lowerInk,new Vector2(0,-halfHeight*CoreScreenDepth),10,halfHeight*2*(1-CoreScreenDepth));
    var center=Project(Vector2.zero);Size(coreGlow,center,2.5f,2.5f);Size(core,center,1.05f,1.05f);Size(coreHeart,center,.72f,.72f);Size(coreOrbit,center,1.5f,1.5f);coreOrbit.transform.localRotation=Quaternion.Euler(0,0,31);
    var branches=run.Branches;while(tips.Count<branches.Count){tips.Add(Create(halo,7));tipRings.Add(Create(ring,8));}for(int i=0;i<tips.Count;i++){bool enabled=i<branches.Count&&branches[i].IsTip;tips[i].enabled=enabled;tipRings[i].enabled=enabled;if(enabled){var b=branches[i];Size(tips[i],Project(new Vector2((float)b.X,(float)b.Y)),.6f,.6f);tips[i].color=new Color(1,.94f,.65f,1);Size(tipRings[i],Project(new Vector2((float)b.X,(float)b.Y)),.43f,.43f);tipRings[i].color=new Color(1,.72f,.24f);}}
    // The first render after a fast-forward QA or loaded run also gets current actors.
