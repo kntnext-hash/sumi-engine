@@ -568,7 +568,9 @@ namespace Bokumyaku.Presentation
             {
                 if (!b.IsTip) continue;
                 var point = View(field, b.ViewX, b.ViewY);
-                Dot(point, 5, gold);
+                InkStamp(lightHalo,point,34,new Color(1f,.65f,.15f,.75f));
+                Dot(point, 4, gold);
+                Dot(point, 1.5f, new Color(1f,.96f,.76f));
                 if (growth.TryGetValue(b.Id, out float started) && Time.unscaledTime - started < .8f)
                     Ring(point, 6 + (Time.unscaledTime - started) * 15, new Color(gold.r, gold.g, gold.b, .5f * (1 - (Time.unscaledTime - started) / .8f)));
             }

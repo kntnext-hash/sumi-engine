@@ -3,13 +3,17 @@ namespace Bokumyaku.Presentation
 {
  public sealed partial class BokumyakuGame
  {
-  GUIStyle hudStyle;
+  readonly System.Collections.Generic.Dictionary<string,GUIStyle> hudStyles=new System.Collections.Generic.Dictionary<string,GUIStyle>();
   readonly Color hudGold=new Color(.78f,.62f,.32f), hudWhite=new Color(.96f,.93f,.84f), hudBlack=new Color(.035f,.032f,.026f,.97f);
   void HudText(Rect r,string value,int size,Color color)
   {
-   if(hudStyle==null)hudStyle=new GUIStyle(body);
-   hudStyle.fontSize=size;hudStyle.alignment=TextAnchor.MiddleCenter;hudStyle.wordWrap=false;
-   SetLabelColor(hudStyle,color);GUI.Label(r,value,hudStyle);
+   string key=size+":"+ColorUtility.ToHtmlStringRGBA(color);
+   if(!hudStyles.TryGetValue(key,out var style))
+   {
+    style=new GUIStyle(body) { padding=new RectOffset(), margin=new RectOffset(), fixedHeight=0, fixedWidth=0, clipping=TextClipping.Overflow, fontSize=size, alignment=TextAnchor.MiddleCenter, wordWrap=false };
+    SetLabelColor(style,color);hudStyles.Add(key,style);
+   }
+   GUI.Label(r,value,style);
   }
   void InkPanel(Rect r)
   {
