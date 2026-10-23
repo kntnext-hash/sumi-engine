@@ -247,6 +247,7 @@ namespace Bokumyaku.Presentation
             drawnBranches = 0; inkBursts.Clear(); watchedEnemies.Clear(); ObservedInkBursts = 0; flashes.Clear(); growth.Clear(); persistentInk.Clear();battleWorld.Reset(Run);
             Array.Clear(observedLevels, 0, observedLevels.Length);
             Array.Clear(levelChangedAt, 0, levelChangedAt.Length);
+            DrawRootFlourishes();
             DrawNewBranches();
         }
         public bool ResumeRun()
@@ -907,5 +908,6 @@ namespace Bokumyaku.Presentation
         }
     }
 }
+
 
 
