@@ -108,3 +108,6 @@ Fiberの広い掠れ層を残し、同じ曲線へ半径10のPool層を追加。
 ## Windowsメニュー統合ビルド v5
 source9a60b58。Builds/Bokumyaku-menu-v5/Bokumyaku.exe。成功/135715213bytes/93.88秒。CLIの30秒timeout後も同じEditorが完了したことをmenu-build-v5.jsonとEditor.logで確認し、重複起動しなかった。旧IMGUI用abandonConfirmation fieldのCS0414警告1件をソースから除去。ビルドは除去前、次回ビルドでwarning0を再確認する。
 Test-BokumyakuMenuPlayer.ps1による隔離Player試験: 6武器900tick/保存/自動周回passed=true、別プロセス復帰600tick一致passed=true。終了コードともに0、118.75秒/15.63秒。証拠bokumyaku-player[-resume/-launch]-menu-v5.jsonとartifact JSON。非表示起動のため画面目視/フレーム性能の証拠にしない。Editorの1080×2400画像は前節の限定証拠。配布Playerの目視とスマホ実機は引き続き未検証。
+
+## メニュースクロール表示
+ホーム/研究/記録の共通ScrollRectに金色のScrollbarを追加。内容が収まる場合はAutoHide、本文と重ならない専用幅を確保。1080×2400の隔離PlayでscrollHandler入力を送信し、normalizedPosition 1→0、研究4番目の購入ボタンがViewport内に入ることを確認。menu-scroll-check.json、menu-scroll-research.pngを目視。軽量検証であり実機タッチ/指ドラッグ・フル検証ではない。手順MenuMigrationCheck.Arm→MenuScrollCheck.Run→停止→BokumyakuInkCheck.Cleanup。

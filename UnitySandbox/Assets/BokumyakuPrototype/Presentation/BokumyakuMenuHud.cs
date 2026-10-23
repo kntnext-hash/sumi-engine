@@ -62,6 +62,14 @@ namespace Bokumyaku.Presentation
             var scroll=root.gameObject.AddComponent<ScrollRect>();scroll.horizontal=false;scroll.movementType=ScrollRect.MovementType.Clamped;scroll.scrollSensitivity=35;scrolls[index]=scroll;
             var view=BokumyakuUiParts.Rect(root,"Viewport",Vector2.zero,Vector2.one);view.gameObject.AddComponent<RectMask2D>();var catchDrag=view.gameObject.AddComponent<Image>();catchDrag.color=new Color(0,0,0,.001f);
             var content=BokumyakuUiParts.Rect(view,"Content",new Vector2(0,1),Vector2.one);content.pivot=new Vector2(.5f,1);content.sizeDelta=new Vector2(0,100);scroll.viewport=view;scroll.content=content;
+            view.offsetMax=new Vector2(-16,0);
+            var track=BokumyakuUiParts.Panel(root,"ScrollTrack",new Vector2(1,0),Vector2.one,new Color(.12f,.09f,.04f,.14f));
+            track.rectTransform.offsetMin=new Vector2(-12,0);track.rectTransform.offsetMax=Vector2.zero;track.raycastTarget=true;
+            var handle=BokumyakuUiParts.Panel(track.transform,"ScrollHandle",Vector2.zero,Vector2.one,gold);
+            handle.raycastTarget=true;
+            var scrollbar=track.gameObject.AddComponent<Scrollbar>();scrollbar.direction=Scrollbar.Direction.BottomToTop;
+            scrollbar.handleRect=handle.rectTransform;scrollbar.targetGraphic=handle;
+            scroll.verticalScrollbar=scrollbar;scroll.verticalScrollbarVisibility=ScrollRect.ScrollbarVisibility.AutoHide;
         }
         RectTransform At(Transform parent,string name,float left,float top,float right,float height)
         {
