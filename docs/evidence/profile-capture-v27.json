@@ -1,0 +1,10 @@
+{
+  "raw": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\logs\\profiler-43d137585be24993934c8858b3f06447\\startup.raw",
+  "bytes": 40480714,
+  "sha256": "03022E1A381E5696CC055702F95259D870A118D90F5C9B838D93C9B8243A9313",
+  "frameLimit": 700,
+  "development": true,
+  "deepProfiling": false,
+  "log": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\logs\\profiler-43d137585be24993934c8858b3f06447\\player.log",
+  "note": "Development instrumentation changes timings. Raw stays local; inspect thread samples before conclusions."
+}

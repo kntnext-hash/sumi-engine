@@ -1,0 +1,11 @@
+{
+  "result": "Succeeded",
+  "bytes": 227689054,
+  "seconds": 79.3821665,
+  "errors": 0,
+  "warnings": 0,
+  "output": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\Builds\\Bokumyaku-profile-v27\\Bokumyaku.exe",
+  "unity": "6000.3.26f1",
+  "source": "0a25938 development profiler build",
+  "messages": []
+}

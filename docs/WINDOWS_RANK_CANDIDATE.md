@@ -104,3 +104,9 @@ Windowsビルド64.80秒、162,853,149bytes、警告/エラー0。CLIは30秒で
 明示QA引数 --bokumyaku-settled-start を追加。Start直後の追加TryReloadProgressを省き、構成選択後ホームを5秒描画してからPoint/Farming/seed42/速度2を900tickだけ実行。6武器連続リセット・自動周回・別プロセス復帰はこのモードの対象外。通常起動にはprobeを生成せず、保存はQA専用。これは通常起動そのものの性能保証ではない。既存6武器モードは保持。
 ビルド61.35秒、162,852,637bytes、警告/エラー0。同一バイナリ540×960でDirectと通常ClientWorkerJobsを各1回測定。Direct平均16.88ms/最大50.62ms/定常最大37.10ms、通常平均17.35ms/最大495.25ms/定常最大36.24ms。両方Point/購入/枝/墨/SEソース/同一プロセス保存復帰合格、欠落0。通常frame298 FinishFrameRendering467.54ms。Directで非再現でも通常側は再現したため、待機追加を製品の解決策として採用しない。リセット集中だけが原因とは言えず、描画完了待機の追跡が必要。
 今回対象Windows比較（2回）、全EditModeの再実行なし。製品設定/Runtime/シミュレーション不変。次はUnity Profilerの描画スレッド/GPU待機資料を取得できる環境を確認する。evidence/*settled*-v26.*。ビルド時の一時Pipeline切断は同一Editorのready確認後1回再試行。ビルド命令30秒タイムアウト後は同一ビルドの成功レポートで完了確認、二重起動なし。
+
+## profile-v27: Profiler取得経路（2026-10-24）
+開発ビルド（Deep Profilingなし）を79.38秒、227,689,054bytes、警告/エラー0で生成。製品ビルド設定は変更せずBuildOptions.Developmentを当該ビルドだけ指定。
+初回-profiler-enable併用はrawを3frameしかロードできず、戦闘停止の証拠として不十分（*-first.jsonに保持）。自動接続引数を外し-profiler-log-file / -profiler-capture-frame-count 700で再実行。ProfilerDriver.LoadProfileで0〜700の701frameを実ロード、Main/Render Threadの40ms以上sampleを抽出（94件、遅いframe8件）。既存Profiler記録はlogsへ退避し、active recording中はロード拒否。raw本体はlogsに保持し、パス/サイズ/SHA256をmanifestに記録。
+Point900tick/購入/枝/墨/SEソース/同一プロセス保存復帰合格。2回目の戦闘計測は平均16.87ms/最大52.61msで約500msは非再現。Profiler frame294の開始Coroutine72.79msを記録したが、入れ子sampleは加算しない。前の非開発版495.25msとは構成が異なり、解消・改善・原因確定の根拠にしない。取得経路は確立、問題再現captureは未取得。次は同じ開発バイナリをProfiler無効で実行し、開発/計測条件の差を切り分ける。今回は対象Windows＋Profiler取得、性能未合格。
+公式参照: https://docs.unity3d.com/kr/6000.0/ScriptReference/Profiling.Profiler-enableBinaryLog.html / https://docs.unity.cn/6000.1/Documentation/Manual/profiler-command-line-arguments.html / https://docs.unity3d.com/ja/current/ScriptReference/Profiling.RawFrameDataView.html 。証拠: evidence/profile-*-v27.json。rawは巨大生成物扱いでコミット対象外。

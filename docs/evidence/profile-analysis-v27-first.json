@@ -1,0 +1,2285 @@
+{
+  "first": 0,
+  "last": 2,
+  "frames": [
+    {
+      "frame": 0,
+      "ms": 14046.8008
+    },
+    {
+      "frame": 1,
+      "ms": 1591.6134
+    }
+  ],
+  "samples": [
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 0,
+      "name": "Main Thread",
+      "ms": 14046.8008,
+      "startMs": 93609845.2898,
+      "children": 659
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 20,
+      "name": "Initialize Mono",
+      "ms": 416.5129,
+      "startMs": 93610088.246699989,
+      "children": 2
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 23,
+      "name": "Initialize Player",
+      "ms": 58.7701,
+      "startMs": 93610504.923799992,
+      "children": 19
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 107,
+      "name": "Initialize Graphics",
+      "ms": 10674.72,
+      "startMs": 93610568.599899992,
+      "children": 4
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 108,
+      "name": "InitializeEngineGraphics",
+      "ms": 330.008881,
+      "startMs": 93610568.6009,
+      "children": 101
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 109,
+      "name": "Initialize Gfx Device",
+      "ms": 315.2655,
+      "startMs": 93610568.6251,
+      "children": 4
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 115,
+      "name": "Create Client Gfx Device Main",
+      "ms": 42.0435,
+      "startMs": 93610819.9698,
+      "children": 4
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 119,
+      "name": "CreateRealGfxDevice",
+      "ms": 40.1773,
+      "startMs": 93610821.082,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 120,
+      "name": "CreateD3D11GfxDevice",
+      "ms": 40.0627,
+      "startMs": 93610821.196499988,
+      "children": 3
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 278,
+      "name": "Loading Global Managers",
+      "ms": 10299.8955,
+      "startMs": 93610898.6184,
+      "children": 24
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 292,
+      "name": "Loading Manager",
+      "ms": 638.4583,
+      "startMs": 93610898.6836,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 293,
+      "name": "Loading.ReadObject",
+      "ms": 638.4573,
+      "startMs": 93610898.684299991,
+      "children": 3
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 298,
+      "name": "IntegrateAllThreadedObjects",
+      "ms": 638.3216,
+      "startMs": 93610898.8192,
+      "children": 2
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 300,
+      "name": "Loading.AwakeFromLoad",
+      "ms": 638.3162,
+      "startMs": 93610898.821699992,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 301,
+      "name": "Init FMOD",
+      "ms": 638.3127,
+      "startMs": 93610898.8236,
+      "children": 2
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 317,
+      "name": "Loading Manager",
+      "ms": 9502.49,
+      "startMs": 93611537.276599988,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 318,
+      "name": "Loading.ReadObject",
+      "ms": 9502.489,
+      "startMs": 93611537.2773,
+      "children": 3
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 337,
+      "name": "IntegrateAllThreadedObjects",
+      "ms": 9502.173,
+      "startMs": 93611537.5938,
+      "children": 2
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 339,
+      "name": "Loading.AwakeFromLoad",
+      "ms": 9502.169,
+      "startMs": 93611537.5956,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 340,
+      "name": "ReloadAssembly",
+      "ms": 9502.169,
+      "startMs": 93611537.5958,
+      "children": 5
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 341,
+      "name": "BeginReloadAssembly",
+      "ms": 6418.46436,
+      "startMs": 93611537.596299991,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 348,
+      "name": "LoadAssemblies",
+      "ms": 6412.231,
+      "startMs": 93611543.8271,
+      "children": 89
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 356,
+      "name": "LoadAssembly",
+      "ms": 51.1617,
+      "startMs": 93611578.1679,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 363,
+      "name": "LoadAssembly",
+      "ms": 58.752,
+      "startMs": 93611629.330299988,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 364,
+      "name": "File.Open",
+      "ms": 50.3776,
+      "startMs": 93611629.338,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 370,
+      "name": "LoadAssembly",
+      "ms": 58.2196,
+      "startMs": 93611688.0828,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 371,
+      "name": "File.Open",
+      "ms": 41.6541,
+      "startMs": 93611688.0894,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 377,
+      "name": "LoadAssembly",
+      "ms": 91.9884,
+      "startMs": 93611746.3033,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 378,
+      "name": "File.Open",
+      "ms": 83.7496,
+      "startMs": 93611746.3109,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 384,
+      "name": "LoadAssembly",
+      "ms": 191.86911,
+      "startMs": 93611838.2922,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 385,
+      "name": "File.Open",
+      "ms": 174.3199,
+      "startMs": 93611838.29869999,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 391,
+      "name": "LoadAssembly",
+      "ms": 277.392883,
+      "startMs": 93612030.1621,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 392,
+      "name": "File.Open",
+      "ms": 261.206482,
+      "startMs": 93612030.16839999,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 398,
+      "name": "LoadAssembly",
+      "ms": 128.8634,
+      "startMs": 93612307.5556,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 399,
+      "name": "File.Open",
+      "ms": 117.0112,
+      "startMs": 93612307.5644,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 405,
+      "name": "LoadAssembly",
+      "ms": 58.2579,
+      "startMs": 93612436.4196,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 412,
+      "name": "LoadAssembly",
+      "ms": 109.2712,
+      "startMs": 93612494.6784,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 413,
+      "name": "File.Open",
+      "ms": 100.350494,
+      "startMs": 93612494.6853,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 419,
+      "name": "LoadAssembly",
+      "ms": 48.8501,
+      "startMs": 93612603.9504,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 426,
+      "name": "LoadAssembly",
+      "ms": 60.4375,
+      "startMs": 93612652.8016,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 427,
+      "name": "File.Open",
+      "ms": 42.389,
+      "startMs": 93612652.8082,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 433,
+      "name": "LoadAssembly",
+      "ms": 56.8482,
+      "startMs": 93612713.2396,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 434,
+      "name": "File.Open",
+      "ms": 42.2851,
+      "startMs": 93612713.2475,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 440,
+      "name": "LoadAssembly",
+      "ms": 64.3131,
+      "startMs": 93612770.0882,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 441,
+      "name": "File.Open",
+      "ms": 50.9942,
+      "startMs": 93612770.0952,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 447,
+      "name": "LoadAssembly",
+      "ms": 159.2098,
+      "startMs": 93612834.4022,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 448,
+      "name": "File.Open",
+      "ms": 145.025,
+      "startMs": 93612834.409699991,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 468,
+      "name": "LoadAssembly",
+      "ms": 55.2115,
+      "startMs": 93613071.3695,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 475,
+      "name": "LoadAssembly",
+      "ms": 50.7439,
+      "startMs": 93613126.5816,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 482,
+      "name": "LoadAssembly",
+      "ms": 84.3282,
+      "startMs": 93613177.32599999,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 483,
+      "name": "File.Open",
+      "ms": 70.2191,
+      "startMs": 93613177.335,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 489,
+      "name": "LoadAssembly",
+      "ms": 48.2114,
+      "startMs": 93613261.6547,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 496,
+      "name": "LoadAssembly",
+      "ms": 66.2967,
+      "startMs": 93613309.8668,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 497,
+      "name": "File.Open",
+      "ms": 51.4966,
+      "startMs": 93613309.8738,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 503,
+      "name": "LoadAssembly",
+      "ms": 142.4841,
+      "startMs": 93613376.1643,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 504,
+      "name": "File.Open",
+      "ms": 126.128494,
+      "startMs": 93613376.1707,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 510,
+      "name": "LoadAssembly",
+      "ms": 104.7015,
+      "startMs": 93613518.648999989,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 511,
+      "name": "File.Open",
+      "ms": 85.8092957,
+      "startMs": 93613518.655299991,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 524,
+      "name": "LoadAssembly",
+      "ms": 93.3719,
+      "startMs": 93613657.7977,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 525,
+      "name": "File.Open",
+      "ms": 84.12969,
+      "startMs": 93613657.8044,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 531,
+      "name": "LoadAssembly",
+      "ms": 53.781,
+      "startMs": 93613751.170299992,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 538,
+      "name": "LoadAssembly",
+      "ms": 67.2783051,
+      "startMs": 93613804.951799989,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 539,
+      "name": "File.Open",
+      "ms": 50.4513,
+      "startMs": 93613804.9584,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 552,
+      "name": "LoadAssembly",
+      "ms": 148.01619,
+      "startMs": 93613911.0349,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 553,
+      "name": "File.Open",
+      "ms": 130.51329,
+      "startMs": 93613911.041799992,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 559,
+      "name": "LoadAssembly",
+      "ms": 60.4976,
+      "startMs": 93614059.0519,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 560,
+      "name": "File.Open",
+      "ms": 45.4492,
+      "startMs": 93614059.060099989,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 566,
+      "name": "LoadAssembly",
+      "ms": 45.3979,
+      "startMs": 93614119.55,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 573,
+      "name": "LoadAssembly",
+      "ms": 57.8402,
+      "startMs": 93614164.948499992,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 574,
+      "name": "File.Open",
+      "ms": 42.4,
+      "startMs": 93614164.95539999,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 580,
+      "name": "LoadAssembly",
+      "ms": 50.1959,
+      "startMs": 93614222.7898,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 587,
+      "name": "LoadAssembly",
+      "ms": 71.7374,
+      "startMs": 93614272.9866,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 588,
+      "name": "File.Open",
+      "ms": 53.7579,
+      "startMs": 93614272.9929,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 594,
+      "name": "LoadAssembly",
+      "ms": 48.842,
+      "startMs": 93614344.724699989,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 601,
+      "name": "LoadAssembly",
+      "ms": 57.4121,
+      "startMs": 93614393.56719999,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 602,
+      "name": "File.Open",
+      "ms": 45.8815,
+      "startMs": 93614393.573299989,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 608,
+      "name": "LoadAssembly",
+      "ms": 109.1589,
+      "startMs": 93614450.9798,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 609,
+      "name": "File.Open",
+      "ms": 88.9419,
+      "startMs": 93614450.9867,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 615,
+      "name": "LoadAssembly",
+      "ms": 46.8434,
+      "startMs": 93614560.1397,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 622,
+      "name": "LoadAssembly",
+      "ms": 91.34049,
+      "startMs": 93614606.9839,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 623,
+      "name": "File.Open",
+      "ms": 82.579,
+      "startMs": 93614606.9922,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 629,
+      "name": "LoadAssembly",
+      "ms": 109.905106,
+      "startMs": 93614698.325,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 630,
+      "name": "File.Open",
+      "ms": 95.2465,
+      "startMs": 93614698.331399992,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 636,
+      "name": "LoadAssembly",
+      "ms": 56.68,
+      "startMs": 93614808.2311,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 643,
+      "name": "LoadAssembly",
+      "ms": 90.3647,
+      "startMs": 93614864.912299991,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 644,
+      "name": "File.Open",
+      "ms": 72.5631,
+      "startMs": 93614864.92279999,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 650,
+      "name": "LoadAssembly",
+      "ms": 59.4146,
+      "startMs": 93614955.27759999,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 657,
+      "name": "LoadAssembly",
+      "ms": 50.335,
+      "startMs": 93615014.6927,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 664,
+      "name": "LoadAssembly",
+      "ms": 66.5114,
+      "startMs": 93615065.0282,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 665,
+      "name": "File.Open",
+      "ms": 54.5261,
+      "startMs": 93615065.0345,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 671,
+      "name": "LoadAssembly",
+      "ms": 46.2986,
+      "startMs": 93615131.5403,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 678,
+      "name": "LoadAssembly",
+      "ms": 42.1188,
+      "startMs": 93615177.8396,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 685,
+      "name": "LoadAssembly",
+      "ms": 63.0504,
+      "startMs": 93615219.9593,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 686,
+      "name": "File.Open",
+      "ms": 50.4356,
+      "startMs": 93615219.967799991,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 692,
+      "name": "LoadAssembly",
+      "ms": 55.166,
+      "startMs": 93615283.0105,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 699,
+      "name": "LoadAssembly",
+      "ms": 62.211998,
+      "startMs": 93615338.17719999,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 700,
+      "name": "File.Open",
+      "ms": 45.2471,
+      "startMs": 93615338.1839,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 706,
+      "name": "LoadAssembly",
+      "ms": 55.3447,
+      "startMs": 93615400.3899,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 713,
+      "name": "LoadAssembly",
+      "ms": 58.6143,
+      "startMs": 93615455.735399991,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 714,
+      "name": "File.Open",
+      "ms": 50.7065,
+      "startMs": 93615455.7422,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 720,
+      "name": "LoadAssembly",
+      "ms": 74.3972,
+      "startMs": 93615514.3503,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 721,
+      "name": "File.Open",
+      "ms": 58.0065,
+      "startMs": 93615514.3567,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 727,
+      "name": "LoadAssembly",
+      "ms": 57.3731,
+      "startMs": 93615588.7481,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 728,
+      "name": "File.Open",
+      "ms": 40.8668,
+      "startMs": 93615588.755,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 734,
+      "name": "LoadAssembly",
+      "ms": 70.8351059,
+      "startMs": 93615646.1216,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 735,
+      "name": "File.Open",
+      "ms": 55.737,
+      "startMs": 93615646.1283,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 741,
+      "name": "LoadAssembly",
+      "ms": 71.8628,
+      "startMs": 93615716.957999989,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 742,
+      "name": "File.Open",
+      "ms": 55.0891,
+      "startMs": 93615716.964,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 748,
+      "name": "LoadAssembly",
+      "ms": 84.7944,
+      "startMs": 93615788.8219,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 749,
+      "name": "File.Open",
+      "ms": 71.6399,
+      "startMs": 93615788.834699988,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 755,
+      "name": "LoadAssembly",
+      "ms": 200.5359,
+      "startMs": 93615873.617,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 756,
+      "name": "File.Open",
+      "ms": 185.0114,
+      "startMs": 93615873.6241,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 762,
+      "name": "LoadAssembly",
+      "ms": 109.72,
+      "startMs": 93616074.1538,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 763,
+      "name": "File.Open",
+      "ms": 93.9602,
+      "startMs": 93616074.1601,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 769,
+      "name": "LoadAssembly",
+      "ms": 62.722,
+      "startMs": 93616183.87439999,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 770,
+      "name": "File.Open",
+      "ms": 52.4775,
+      "startMs": 93616183.8812,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 776,
+      "name": "LoadAssembly",
+      "ms": 130.0666,
+      "startMs": 93616246.597,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 777,
+      "name": "File.Open",
+      "ms": 91.8148956,
+      "startMs": 93616246.6035,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 783,
+      "name": "LoadAssembly",
+      "ms": 163.786591,
+      "startMs": 93616376.66489999,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 784,
+      "name": "File.Open",
+      "ms": 149.0887,
+      "startMs": 93616376.6769,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 790,
+      "name": "LoadAssembly",
+      "ms": 46.5218,
+      "startMs": 93616540.4524,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 797,
+      "name": "LoadAssembly",
+      "ms": 100.412094,
+      "startMs": 93616586.974799991,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 798,
+      "name": "File.Open",
+      "ms": 82.8666,
+      "startMs": 93616586.981899992,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 804,
+      "name": "LoadAssembly",
+      "ms": 58.2587,
+      "startMs": 93616687.38759999,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 805,
+      "name": "File.Open",
+      "ms": 43.9889,
+      "startMs": 93616687.3953,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 811,
+      "name": "LoadAssembly",
+      "ms": 64.295,
+      "startMs": 93616745.647,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 812,
+      "name": "File.Open",
+      "ms": 46.5483,
+      "startMs": 93616745.653499991,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 818,
+      "name": "LoadAssembly",
+      "ms": 49.3494,
+      "startMs": 93616809.9429,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 825,
+      "name": "LoadAssembly",
+      "ms": 47.1364,
+      "startMs": 93616859.2928,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 832,
+      "name": "LoadAssembly",
+      "ms": 126.3078,
+      "startMs": 93616906.429999992,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 833,
+      "name": "File.Open",
+      "ms": 117.322,
+      "startMs": 93616906.4376,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 839,
+      "name": "LoadAssembly",
+      "ms": 43.8863,
+      "startMs": 93617032.738799989,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 846,
+      "name": "LoadAssembly",
+      "ms": 47.6026,
+      "startMs": 93617076.626,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 860,
+      "name": "LoadAssembly",
+      "ms": 61.888,
+      "startMs": 93617163.500199988,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 861,
+      "name": "File.Open",
+      "ms": 52.2453,
+      "startMs": 93617163.5062,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 867,
+      "name": "LoadAssembly",
+      "ms": 81.1859055,
+      "startMs": 93617225.388599992,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 868,
+      "name": "File.Open",
+      "ms": 66.7685,
+      "startMs": 93617225.3958,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 874,
+      "name": "LoadAssembly",
+      "ms": 46.6423,
+      "startMs": 93617306.5754,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 881,
+      "name": "LoadAssembly",
+      "ms": 112.6732,
+      "startMs": 93617353.21859999,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 882,
+      "name": "File.Open",
+      "ms": 100.567,
+      "startMs": 93617353.2278,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 888,
+      "name": "LoadAssembly",
+      "ms": 48.9829,
+      "startMs": 93617465.8924,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 895,
+      "name": "LoadAssembly",
+      "ms": 79.5715,
+      "startMs": 93617514.876299992,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 896,
+      "name": "File.Open",
+      "ms": 71.5693,
+      "startMs": 93617514.8856,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 902,
+      "name": "LoadAssembly",
+      "ms": 85.7708,
+      "startMs": 93617594.448299989,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 903,
+      "name": "File.Open",
+      "ms": 70.5016,
+      "startMs": 93617594.4544,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 909,
+      "name": "LoadAssembly",
+      "ms": 57.9202,
+      "startMs": 93617680.2198,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 910,
+      "name": "File.Open",
+      "ms": 40.5938,
+      "startMs": 93617680.2267,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 916,
+      "name": "LoadAssembly",
+      "ms": 117.579,
+      "startMs": 93617738.141,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 917,
+      "name": "File.Open",
+      "ms": 102.969,
+      "startMs": 93617738.1468,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 981,
+      "name": "UnityEngine.CoreModule.dll!UnityEngine::ClassLibraryInitializer.Init() [Invoke]",
+      "ms": 62.818,
+      "startMs": 93617892.9304,
+      "children": 292
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 2949,
+      "name": "RebuildCommonClasses",
+      "ms": 465.2843,
+      "startMs": 93617956.064599991,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 2953,
+      "name": "ManagedObjectProxy.Init",
+      "ms": 463.5874,
+      "startMs": 93617956.49589999,
+      "children": 1187
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4163,
+      "name": "LoadAllAssembliesAndSetupDomain",
+      "ms": 2607.25024,
+      "startMs": 93618427.5744,
+      "children": 4
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4164,
+      "name": "LoadAssemblies",
+      "ms": 2604.56836,
+      "startMs": 93618427.5767,
+      "children": 31
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4174,
+      "name": "LoadAssembly",
+      "ms": 136.275009,
+      "startMs": 93618458.5229,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4175,
+      "name": "File.Open",
+      "ms": 112.8011,
+      "startMs": 93618458.529399991,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4181,
+      "name": "LoadAssembly",
+      "ms": 250.8857,
+      "startMs": 93618594.7985,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4182,
+      "name": "File.Open",
+      "ms": 240.581909,
+      "startMs": 93618594.8064,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4188,
+      "name": "LoadAssembly",
+      "ms": 156.769,
+      "startMs": 93618845.6848,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4189,
+      "name": "File.Open",
+      "ms": 139.4477,
+      "startMs": 93618845.6916,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4195,
+      "name": "LoadAssembly",
+      "ms": 191.2797,
+      "startMs": 93619002.4542,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4196,
+      "name": "File.Open",
+      "ms": 176.081192,
+      "startMs": 93619002.4618,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4209,
+      "name": "LoadAssembly",
+      "ms": 54.4641,
+      "startMs": 93619208.346299991,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4210,
+      "name": "File.Open",
+      "ms": 40.0669,
+      "startMs": 93619208.3528,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4216,
+      "name": "LoadAssembly",
+      "ms": 126.984894,
+      "startMs": 93619262.8108,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4217,
+      "name": "File.Open",
+      "ms": 112.4081,
+      "startMs": 93619262.817,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4223,
+      "name": "LoadAssembly",
+      "ms": 96.0871048,
+      "startMs": 93619389.796199992,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4224,
+      "name": "File.Open",
+      "ms": 81.5281,
+      "startMs": 93619389.8034,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4237,
+      "name": "LoadAssembly",
+      "ms": 177.502213,
+      "startMs": 93619503.2184,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4238,
+      "name": "File.Open",
+      "ms": 163.679,
+      "startMs": 93619503.225,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4244,
+      "name": "LoadAssembly",
+      "ms": 59.0651,
+      "startMs": 93619680.7214,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4245,
+      "name": "File.Open",
+      "ms": 46.533,
+      "startMs": 93619680.7286,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4265,
+      "name": "LoadAssembly",
+      "ms": 173.8379,
+      "startMs": 93619762.5369,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4266,
+      "name": "File.Open",
+      "ms": 155.508392,
+      "startMs": 93619762.54519999,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4286,
+      "name": "LoadAssembly",
+      "ms": 151.2977,
+      "startMs": 93619959.341899991,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4287,
+      "name": "File.Open",
+      "ms": 141.68129,
+      "startMs": 93619959.3483,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4300,
+      "name": "LoadAssembly",
+      "ms": 180.3667,
+      "startMs": 93620120.461699992,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4301,
+      "name": "File.Open",
+      "ms": 163.7453,
+      "startMs": 93620120.46769999,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4314,
+      "name": "LoadAssembly",
+      "ms": 106.2524,
+      "startMs": 93620317.0605,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4315,
+      "name": "File.Open",
+      "ms": 92.73969,
+      "startMs": 93620317.0667,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4328,
+      "name": "LoadAssembly",
+      "ms": 133.0401,
+      "startMs": 93620438.3167,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4329,
+      "name": "File.Open",
+      "ms": 116.9721,
+      "startMs": 93620438.3232,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4335,
+      "name": "LoadAssembly",
+      "ms": 199.149292,
+      "startMs": 93620571.3572,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4336,
+      "name": "File.Open",
+      "ms": 183.4805,
+      "startMs": 93620571.3643,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4342,
+      "name": "LoadAssembly",
+      "ms": 139.9753,
+      "startMs": 93620770.5069,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4343,
+      "name": "File.Open",
+      "ms": 129.7875,
+      "startMs": 93620770.513599992,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4349,
+      "name": "LoadAssembly",
+      "ms": 117.585907,
+      "startMs": 93620910.482599989,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4350,
+      "name": "File.Open",
+      "ms": 101.2214,
+      "startMs": 93620910.4894,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4963,
+      "name": "Loading.LoadFileCompletely",
+      "ms": 132.03569,
+      "startMs": 93621066.4779,
+      "children": 2
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4964,
+      "name": "LoadFileThreaded",
+      "ms": 91.66129,
+      "startMs": 93621066.4781,
+      "children": 2
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4965,
+      "name": "LoadFileThreaded_LoadObjects",
+      "ms": 91.38631,
+      "startMs": 93621066.70629999,
+      "children": 966
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 11855,
+      "name": "Loading.ReadObjectThreaded",
+      "ms": 50.2981,
+      "startMs": 93621105.964099988,
+      "children": 8
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 11925,
+      "name": "ReadObjectFromSerializedFile",
+      "ms": 48.2397,
+      "startMs": 93621108.02139999,
+      "children": 529
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 13643,
+      "name": "IntegrateAllThreadedObjects",
+      "ms": 40.3734,
+      "startMs": 93621158.1396,
+      "children": 1990
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 17173,
+      "name": "doneInitializingEngineGraphics.Invoke",
+      "ms": 40.9449,
+      "startMs": 93621202.374499992,
+      "children": 14
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 18058,
+      "name": "LoadFirstScene",
+      "ms": 42.6727,
+      "startMs": 93621269.723999992,
+      "children": 11
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 21667,
+      "name": "Application.WaitForAsyncOperationToComplete",
+      "ms": 40.0509,
+      "startMs": 93623324.6752,
+      "children": 2
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 21668,
+      "name": "Preload Single Step",
+      "ms": 40.0392,
+      "startMs": 93623324.679899991,
+      "children": 9
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 0,
+      "name": null,
+      "ms": 14046.91,
+      "startMs": 93609845.2898,
+      "children": 1030
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 101,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 10260.4795,
+      "startMs": 93610898.1802,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 102,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 10260.4795,
+      "startMs": 93610898.1802,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 230,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 56.4689,
+      "startMs": 93621185.0403,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 231,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 56.4678,
+      "startMs": 93621185.0404,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 260,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 41.2334,
+      "startMs": 93621271.8385,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 261,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 41.2313,
+      "startMs": 93621271.8396,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 0,
+      "name": "Main Thread",
+      "ms": 1591.6134,
+      "startMs": 93623892.091799989,
+      "children": 15
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 15,
+      "name": "PlayerLoop",
+      "ms": 1591.24988,
+      "startMs": 93623892.4221,
+      "children": 225
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 61,
+      "name": "EarlyUpdate.ScriptRunDelayedStartupFrame",
+      "ms": 859.8191,
+      "startMs": 93623893.4428,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 62,
+      "name": "CoroutinesDelayedCalls",
+      "ms": 859.8181,
+      "startMs": 93623893.4433,
+      "children": 4
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 63,
+      "name": "Bokumyaku.Presentation.dll!Bokumyaku.Presentation::BokumyakuGame.Start() [Invoke]",
+      "ms": 854.514832,
+      "startMs": 93623893.456,
+      "children": 10042
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 5389,
+      "name": "Loading.ReadObject",
+      "ms": 46.6703,
+      "startMs": 93624402.5608,
+      "children": 3
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 5403,
+      "name": "IntegrateAllThreadedObjects",
+      "ms": 46.5998,
+      "startMs": 93624402.630499989,
+      "children": 2
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 5405,
+      "name": "Loading.AwakeFromLoad",
+      "ms": 46.592,
+      "startMs": 93624402.6362,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 36752,
+      "name": "Render",
+      "ms": 96.9472,
+      "startMs": 93624598.021499991,
+      "children": 3
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 36830,
+      "name": "CanvasUpdate.PreRender",
+      "ms": 91.7579041,
+      "startMs": 93624603.16,
+      "children": 869
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 66401,
+      "name": "PreLateUpdate.ScriptRunBehaviourLateUpdate",
+      "ms": 271.4091,
+      "startMs": 93624776.506399989,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 66402,
+      "name": "LateBehaviourUpdate",
+      "ms": 271.408,
+      "startMs": 93624776.507,
+      "children": 3
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 66403,
+      "name": "Bokumyaku.Presentation.dll!Bokumyaku.Presentation::BokumyakuGame.LateUpdate() [Invoke]",
+      "ms": 265.5075,
+      "startMs": 93624776.5195,
+      "children": 219
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 66646,
+      "name": "SoundManager.GetHandle",
+      "ms": 259.736084,
+      "startMs": 93624780.4742,
+      "children": 2
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 66647,
+      "name": "SoundManager.LoadFMODSound",
+      "ms": 259.724,
+      "startMs": 93624780.4744,
+      "children": 1241
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 70604,
+      "name": "PostLateUpdate.FinishFrameRendering",
+      "ms": 427.3221,
+      "startMs": 93625054.5185,
+      "children": 18
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 70622,
+      "name": "UnityEngine.CoreModule.dll!UnityEngine.Rendering::RenderPipelineManager.DoRenderLoop_Internal() [Invoke]",
+      "ms": 424.768372,
+      "startMs": 93625055.03459999,
+      "children": 14765
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 88888,
+      "name": "Inl_UniversalRenderTotal",
+      "ms": 281.861176,
+      "startMs": 93625197.8843,
+      "children": 35
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 89095,
+      "name": "Inl_RenderCameraStack",
+      "ms": 275.2815,
+      "startMs": 93625201.6906,
+      "children": 115
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 89402,
+      "name": "Inl_UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera",
+      "ms": 116.3927,
+      "startMs": 93625217.45189999,
+      "children": 235
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 92253,
+      "name": "Inl_ScriptableRenderContext.Submit",
+      "ms": 140.0185,
+      "startMs": 93625333.86119999,
+      "children": 6
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 92258,
+      "name": "UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera",
+      "ms": 139.7127,
+      "startMs": 93625334.1519,
+      "children": 3
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 92261,
+      "name": "ExecuteRenderGraph",
+      "ms": 139.6839,
+      "startMs": 93625334.180699989,
+      "children": 8
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 92268,
+      "name": "DrawScreenSpaceUI",
+      "ms": 139.0913,
+      "startMs": 93625334.218699992,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 92269,
+      "name": "UIEvents.CanvasManagerRenderOverlays",
+      "ms": 139.0446,
+      "startMs": 93625334.2631,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 92270,
+      "name": "UI.RenderOverlays",
+      "ms": 139.043808,
+      "startMs": 93625334.263399988,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 92271,
+      "name": "Canvas.RenderOverlays",
+      "ms": 139.0415,
+      "startMs": 93625334.265299991,
+      "children": 12
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 92274,
+      "name": "Material.SetPassFast",
+      "ms": 132.8449,
+      "startMs": 93625334.2739,
+      "children": 3
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 92276,
+      "name": "Shader.CreateGPUProgram",
+      "ms": 132.409,
+      "startMs": 93625334.2892,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 92277,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 132.3799,
+      "startMs": 93625334.296199992,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 0,
+      "name": null,
+      "ms": 1591.884,
+      "startMs": 93623892.2007,
+      "children": 59
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 130,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 53.8056,
+      "startMs": 93623907.7157,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 131,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 53.8049,
+      "startMs": 93623907.7158,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 132,
+      "name": "RenderLoop",
+      "ms": 493.1141,
+      "startMs": 93623961.5216,
+      "children": 45
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 133,
+      "name": "Gfx.UploadTexture",
+      "ms": 486.0559,
+      "startMs": 93623961.52759999,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 134,
+      "name": "Gfx.CreateTexture",
+      "ms": 486.0178,
+      "startMs": 93623961.5307,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 370,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 47.878,
+      "startMs": 93624484.47389999,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 371,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 47.8773,
+      "startMs": 93624484.4741,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 392,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 76.5525,
+      "startMs": 93624537.6445,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 393,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 76.5518,
+      "startMs": 93624537.6445,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 395,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 90.36111,
+      "startMs": 93624614.218499988,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 396,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 90.3602,
+      "startMs": 93624614.21859999,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 398,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 40.732,
+      "startMs": 93624704.6141,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 399,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 40.7311,
+      "startMs": 93624704.6142,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 400,
+      "name": "RenderLoop",
+      "ms": 738.738464,
+      "startMs": 93624745.346199989,
+      "children": 15
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 471,
+      "name": "Gfx.UploadTexture",
+      "ms": 737.3211,
+      "startMs": 93624746.763599992,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 472,
+      "name": "Gfx.UploadTextureData",
+      "ms": 737.320557,
+      "startMs": 93624746.7641,
+      "children": 3
+    }
+  ],
+  "note": "Inclusive samples overlap. Development capture, not release performance certification."
+}

@@ -1,0 +1,887 @@
+{
+  "first": 0,
+  "last": 700,
+  "frames": [
+    {
+      "frame": 0,
+      "ms": 4381.56641
+    },
+    {
+      "frame": 1,
+      "ms": 1575.8197
+    },
+    {
+      "frame": 11,
+      "ms": 40.481
+    },
+    {
+      "frame": 13,
+      "ms": 40.4133
+    },
+    {
+      "frame": 294,
+      "ms": 87.456
+    },
+    {
+      "frame": 295,
+      "ms": 43.2139
+    },
+    {
+      "frame": 296,
+      "ms": 40.9195
+    },
+    {
+      "frame": 306,
+      "ms": 41.24
+    }
+  ],
+  "samples": [
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 0,
+      "name": "Main Thread",
+      "ms": 4381.56641,
+      "startMs": 93694073.3822,
+      "children": 651
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 107,
+      "name": "Initialize Graphics",
+      "ms": 1088.70508,
+      "startMs": 93694690.5851,
+      "children": 4
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 108,
+      "name": "InitializeEngineGraphics",
+      "ms": 123.4607,
+      "startMs": 93694690.585599989,
+      "children": 101
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 109,
+      "name": "Initialize Gfx Device",
+      "ms": 120.772896,
+      "startMs": 93694690.618299991,
+      "children": 4
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 278,
+      "name": "Loading Global Managers",
+      "ms": 909.293335,
+      "startMs": 93694814.0545,
+      "children": 24
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 292,
+      "name": "Loading Manager",
+      "ms": 609.669861,
+      "startMs": 93694814.101599991,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 293,
+      "name": "Loading.ReadObject",
+      "ms": 609.6691,
+      "startMs": 93694814.1021,
+      "children": 3
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 298,
+      "name": "IntegrateAllThreadedObjects",
+      "ms": 609.6571,
+      "startMs": 93694814.1134,
+      "children": 2
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 300,
+      "name": "Loading.AwakeFromLoad",
+      "ms": 609.653,
+      "startMs": 93694814.1146,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 301,
+      "name": "Init FMOD",
+      "ms": 609.6505,
+      "startMs": 93694814.116,
+      "children": 2
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 317,
+      "name": "Loading Manager",
+      "ms": 183.7681,
+      "startMs": 93695423.920999989,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 318,
+      "name": "Loading.ReadObject",
+      "ms": 183.766586,
+      "startMs": 93695423.921899989,
+      "children": 3
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 337,
+      "name": "IntegrateAllThreadedObjects",
+      "ms": 183.3699,
+      "startMs": 93695424.317999989,
+      "children": 2
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 339,
+      "name": "Loading.AwakeFromLoad",
+      "ms": 183.3639,
+      "startMs": 93695424.320799991,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 340,
+      "name": "ReloadAssembly",
+      "ms": 183.3632,
+      "startMs": 93695424.3211,
+      "children": 5
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 341,
+      "name": "BeginReloadAssembly",
+      "ms": 124.8963,
+      "startMs": 93695424.321499988,
+      "children": 6
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 348,
+      "name": "LoadAssemblies",
+      "ms": 119.6506,
+      "startMs": 93695429.5642,
+      "children": 89
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 981,
+      "name": "UnityEngine.CoreModule.dll!UnityEngine::ClassLibraryInitializer.Init() [Invoke]",
+      "ms": 55.5426,
+      "startMs": 93695493.2862,
+      "children": 292
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4963,
+      "name": "Loading.LoadFileCompletely",
+      "ms": 108.6972,
+      "startMs": 93695614.649899989,
+      "children": 2
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4964,
+      "name": "LoadFileThreaded",
+      "ms": 80.9644,
+      "startMs": 93695614.6502,
+      "children": 2
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 4965,
+      "name": "LoadFileThreaded_LoadObjects",
+      "ms": 80.66431,
+      "startMs": 93695614.9155,
+      "children": 966
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 17173,
+      "name": "doneInitializingEngineGraphics.Invoke",
+      "ms": 50.7805,
+      "startMs": 93695728.5096,
+      "children": 14
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 18057,
+      "name": "LoadFirstScene",
+      "ms": 73.6428,
+      "startMs": 93695808.2352,
+      "children": 11
+    },
+    {
+      "frame": 0,
+      "thread": "Main Thread",
+      "index": 18107,
+      "name": "playerLoadFirstScenePreAwake.Invoke",
+      "ms": 70.25929,
+      "startMs": 93695811.48969999,
+      "children": 10
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 0,
+      "name": null,
+      "ms": 4381.6167,
+      "startMs": 93694073.3822,
+      "children": 1038
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 80,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 880.3425,
+      "startMs": 93694815.5739,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 81,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 880.3406,
+      "startMs": 93694815.57509999,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 229,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 69.8438,
+      "startMs": 93695708.8645,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 230,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 69.8428955,
+      "startMs": 93695708.8646,
+      "children": 0
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 265,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 72.1304,
+      "startMs": 93695810.0624,
+      "children": 1
+    },
+    {
+      "frame": 0,
+      "thread": "Render Thread",
+      "index": 266,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 72.1289,
+      "startMs": 93695810.0632,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 0,
+      "name": "Main Thread",
+      "ms": 1575.8197,
+      "startMs": 93698454.9495,
+      "children": 15
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 15,
+      "name": "PlayerLoop",
+      "ms": 1575.76477,
+      "startMs": 93698454.9759,
+      "children": 225
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 61,
+      "name": "EarlyUpdate.ScriptRunDelayedStartupFrame",
+      "ms": 1036.16321,
+      "startMs": 93698455.8493,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 62,
+      "name": "CoroutinesDelayedCalls",
+      "ms": 1036.16223,
+      "startMs": 93698455.849799991,
+      "children": 4
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 63,
+      "name": "Bokumyaku.Presentation.dll!Bokumyaku.Presentation::BokumyakuGame.Start() [Invoke]",
+      "ms": 1031.90869,
+      "startMs": 93698455.8644,
+      "children": 10042
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 5389,
+      "name": "Loading.ReadObject",
+      "ms": 236.0985,
+      "startMs": 93698969.377999991,
+      "children": 3
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 5403,
+      "name": "IntegrateAllThreadedObjects",
+      "ms": 236.0343,
+      "startMs": 93698969.44129999,
+      "children": 2
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 5405,
+      "name": "Loading.AwakeFromLoad",
+      "ms": 236.0256,
+      "startMs": 93698969.447599992,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 36214,
+      "name": "Render",
+      "ms": 93.7571,
+      "startMs": 93699343.9812,
+      "children": 3
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 36292,
+      "name": "CanvasUpdate.PreRender",
+      "ms": 88.4092941,
+      "startMs": 93699349.2807,
+      "children": 869
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 65863,
+      "name": "PreLateUpdate.ScriptRunBehaviourLateUpdate",
+      "ms": 214.6351,
+      "startMs": 93699509.4464,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 65864,
+      "name": "LateBehaviourUpdate",
+      "ms": 214.6336,
+      "startMs": 93699509.4468,
+      "children": 3
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 65865,
+      "name": "Bokumyaku.Presentation.dll!Bokumyaku.Presentation::BokumyakuGame.LateUpdate() [Invoke]",
+      "ms": 208.4627,
+      "startMs": 93699509.4576,
+      "children": 219
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 66108,
+      "name": "SoundManager.GetHandle",
+      "ms": 203.6554,
+      "startMs": 93699512.7739,
+      "children": 2
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 66109,
+      "name": "SoundManager.LoadFMODSound",
+      "ms": 203.6446,
+      "startMs": 93699512.774099991,
+      "children": 1241
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 70065,
+      "name": "PostLateUpdate.FinishFrameRendering",
+      "ms": 300.5768,
+      "startMs": 93699728.4022,
+      "children": 18
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 70083,
+      "name": "UnityEngine.CoreModule.dll!UnityEngine.Rendering::RenderPipelineManager.DoRenderLoop_Internal() [Invoke]",
+      "ms": 298.999817,
+      "startMs": 93699728.9566,
+      "children": 14721
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 88271,
+      "name": "Inl_UniversalRenderTotal",
+      "ms": 152.020309,
+      "startMs": 93699875.8793,
+      "children": 35
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 88478,
+      "name": "Inl_RenderCameraStack",
+      "ms": 146.429291,
+      "startMs": 93699879.529299989,
+      "children": 115
+    },
+    {
+      "frame": 1,
+      "thread": "Main Thread",
+      "index": 88785,
+      "name": "Inl_UniversalRenderPipeline.RenderSingleCameraInternal: Main Camera",
+      "ms": 116.384094,
+      "startMs": 93699894.518699989,
+      "children": 235
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 0,
+      "name": null,
+      "ms": 1576.36865,
+      "startMs": 93698454.9988,
+      "children": 85
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 115,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 62.6559,
+      "startMs": 93698466.3359,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 116,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 62.6553,
+      "startMs": 93698466.336,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 138,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 57.4942,
+      "startMs": 93698558.860399991,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 139,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 57.4925,
+      "startMs": 93698558.861299992,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 158,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 50.3261,
+      "startMs": 93698651.17019999,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 159,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 50.3246,
+      "startMs": 93698651.170999989,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 170,
+      "name": "RenderLoop",
+      "ms": 490.388519,
+      "startMs": 93698727.7773,
+      "children": 36
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 171,
+      "name": "Gfx.UploadTexture",
+      "ms": 475.7488,
+      "startMs": 93698727.7984,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 172,
+      "name": "Gfx.CreateTexture",
+      "ms": 475.7196,
+      "startMs": 93698727.8017,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 368,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 45.3067,
+      "startMs": 93699237.1572,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 369,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 45.3058,
+      "startMs": 93699237.1573,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 383,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 73.9094,
+      "startMs": 93699285.7585,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 384,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 73.9076,
+      "startMs": 93699285.7596,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 386,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 87.73489,
+      "startMs": 93699359.699299991,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 387,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 87.734,
+      "startMs": 93699359.6994,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 641,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 217.8631,
+      "startMs": 93699509.494,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 642,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 217.862,
+      "startMs": 93699509.49409999,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 671,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 104.1849,
+      "startMs": 93699765.949,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 672,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 104.184,
+      "startMs": 93699765.9491,
+      "children": 0
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 678,
+      "name": "Gfx.WaitForGfxCommandsFromMainThread",
+      "ms": 133.6286,
+      "startMs": 93699872.2682,
+      "children": 1
+    },
+    {
+      "frame": 1,
+      "thread": "Render Thread",
+      "index": 679,
+      "name": "Semaphore.WaitForSignal",
+      "ms": 133.6277,
+      "startMs": 93699872.2684,
+      "children": 0
+    },
+    {
+      "frame": 11,
+      "thread": "Main Thread",
+      "index": 0,
+      "name": "Main Thread",
+      "ms": 40.481,
+      "startMs": 93700296.6618,
+      "children": 1
+    },
+    {
+      "frame": 11,
+      "thread": "Main Thread",
+      "index": 1,
+      "name": "PlayerLoop",
+      "ms": 40.4553,
+      "startMs": 93700296.664099991,
+      "children": 225
+    },
+    {
+      "frame": 11,
+      "thread": "Render Thread",
+      "index": 0,
+      "name": null,
+      "ms": 42.2278,
+      "startMs": 93700297.1357,
+      "children": 7
+    },
+    {
+      "frame": 13,
+      "thread": "Main Thread",
+      "index": 0,
+      "name": "Main Thread",
+      "ms": 40.4133,
+      "startMs": 93700359.0792,
+      "children": 1
+    },
+    {
+      "frame": 13,
+      "thread": "Main Thread",
+      "index": 1,
+      "name": "PlayerLoop",
+      "ms": 40.384,
+      "startMs": 93700359.0819,
+      "children": 225
+    },
+    {
+      "frame": 13,
+      "thread": "Render Thread",
+      "index": 0,
+      "name": null,
+      "ms": 42.1166,
+      "startMs": 93700359.29959999,
+      "children": 7
+    },
+    {
+      "frame": 294,
+      "thread": "Main Thread",
+      "index": 0,
+      "name": "Main Thread",
+      "ms": 87.456,
+      "startMs": 93705053.7973,
+      "children": 1
+    },
+    {
+      "frame": 294,
+      "thread": "Main Thread",
+      "index": 1,
+      "name": "PlayerLoop",
+      "ms": 87.423,
+      "startMs": 93705053.8043,
+      "children": 225
+    },
+    {
+      "frame": 294,
+      "thread": "Main Thread",
+      "index": 170,
+      "name": "Update.ScriptRunDelayedDynamicFrameRate",
+      "ms": 72.9382,
+      "startMs": 93705054.004799992,
+      "children": 1
+    },
+    {
+      "frame": 294,
+      "thread": "Main Thread",
+      "index": 171,
+      "name": "CoroutinesDelayedCalls",
+      "ms": 72.9377,
+      "startMs": 93705054.004799992,
+      "children": 3
+    },
+    {
+      "frame": 294,
+      "thread": "Main Thread",
+      "index": 174,
+      "name": "Bokumyaku.Diagnostics.dll!Bokumyaku.Diagnostics::BokumyakuPlayerProbe.Start() [Coroutine: MoveNext] [Invoke]",
+      "ms": 72.79369,
+      "startMs": 93705054.1392,
+      "children": 2892
+    },
+    {
+      "frame": 294,
+      "thread": "Render Thread",
+      "index": 0,
+      "name": null,
+      "ms": 88.4441,
+      "startMs": 93705053.883,
+      "children": 15
+    },
+    {
+      "frame": 295,
+      "thread": "Main Thread",
+      "index": 0,
+      "name": "Main Thread",
+      "ms": 43.2139,
+      "startMs": 93705141.2535,
+      "children": 1
+    },
+    {
+      "frame": 295,
+      "thread": "Main Thread",
+      "index": 1,
+      "name": "PlayerLoop",
+      "ms": 43.1893,
+      "startMs": 93705141.2568,
+      "children": 270
+    },
+    {
+      "frame": 295,
+      "thread": "Render Thread",
+      "index": 0,
+      "name": null,
+      "ms": 43.248,
+      "startMs": 93705142.3271,
+      "children": 33
+    },
+    {
+      "frame": 296,
+      "thread": "Main Thread",
+      "index": 0,
+      "name": "Main Thread",
+      "ms": 40.9195,
+      "startMs": 93705184.46769999,
+      "children": 1
+    },
+    {
+      "frame": 296,
+      "thread": "Main Thread",
+      "index": 1,
+      "name": "PlayerLoop",
+      "ms": 40.8979,
+      "startMs": 93705184.470499992,
+      "children": 240
+    },
+    {
+      "frame": 296,
+      "thread": "Render Thread",
+      "index": 0,
+      "name": null,
+      "ms": 40.9783,
+      "startMs": 93705185.57509999,
+      "children": 7
+    },
+    {
+      "frame": 306,
+      "thread": "Main Thread",
+      "index": 0,
+      "name": "Main Thread",
+      "ms": 41.24,
+      "startMs": 93705487.131,
+      "children": 1
+    },
+    {
+      "frame": 306,
+      "thread": "Main Thread",
+      "index": 1,
+      "name": "PlayerLoop",
+      "ms": 41.2116,
+      "startMs": 93705487.1337,
+      "children": 225
+    },
+    {
+      "frame": 306,
+      "thread": "Render Thread",
+      "index": 0,
+      "name": null,
+      "ms": 40.4428,
+      "startMs": 93705487.956199989,
+      "children": 19
+    }
+  ],
+  "note": "Inclusive samples overlap. Development capture, not release performance certification."
+}
