@@ -1,0 +1,16 @@
+{
+  "file": "landscape_depth_05.png",
+  "width": 1024.0,
+  "height": 1536.0,
+  "decodedFormat": "Format24bppRgb",
+  "bytes": 2580160,
+  "sha256": "DE0A816A499CB4D97D4332B6578F6A545A2BD953E60E5CB620C028BDA2377A8D",
+  "nonGrayPixels": 1091971.0,
+  "maxRgbChannelDifference": 18.0,
+  "nonOpaquePixels": 0.0,
+  "centralLowerRegion": "x25%-75%,y50%-100%",
+  "regionPixelCount": 393216.0,
+  "regionMeanRgb8bit": 232.6281000773112,
+  "regionMinRgb8bit": 164.0,
+  "regionPixelsBelow160": 0.0
+}

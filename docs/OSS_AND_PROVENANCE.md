@@ -68,3 +68,6 @@ TheTowerSDKのREADME/LICENSE/NOTICEを読取。MIT表記に加えて由来別の
 - Noto Serif CJK JP Regular（未改変OTF）: https://github.com/notofonts/noto-cjk/tree/main/Serif/OTF/Japanese 。公式raw mainから取得、SHA256 D9854C7A8EF170B5A7932558856FD64EB8DE0B007CD823FED6F9F514AD2803D3。
 - SIL OFL1.1: https://github.com/notofonts/noto-cjk/blob/main/Serif/LICENSE 。原ライセンスをBokumyakuFonts/OFL.txtに保持。著作権情報は配布OTFのメタデータも保持。フォント単体販売なし。
 - Unity Editorで48pt/5padding/2048pxの静的TMPへ変換。432文字収録（旧IMGUI音量の↻は対象外）。戦闘HUDはOS依存を廃止。原OTF24.6MBとアトラス8.6MBでサイズ最適化は残件。
+
+## 縦山水 delivery-v5
+2026-10-24。art-source/delivery-v5/README.mdとPROMPT/REVISION_PROMPTに生成由来を保持。imagegenで新規生成＋修正1回。他作品の画像・ロゴ・文字の切抜きなし、ユーザー参考は目視の方向付けのみ。採用原本SHA256 DE0A816A499CB4D97D4332B6578F6A545A2BD953E60E5CB620C028BDA2377A8D。Unity Resourcesのlandscape_depth_05.pngは原本バイト一致。商用権利の法的保証を意味しない。詳細検査と限界はART_DELIVERY.md。

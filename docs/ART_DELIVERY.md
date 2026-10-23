@@ -83,3 +83,19 @@
 - Unity未統合。既存アイコン/文字との重ね、無効状態、紙背景、実機判読性は統合担当の確認待ち。元画像を画素加工せず保存。今回書込みはdelivery-v4と本書のみ、Unity/ゲームコード/Resources/Git操作なし。
 
 統合追記: ImportCardFrame.csでL180/B220/R180/T220、Sprite Sliced/fillCenter=false、白tint/PPU multiplier13として戦闘5カードへ採用。360×640で墨不足の無効状態、枠と名前/価格の非干渉を確認。evidence/card-frame.json/png。検証はEditor Play限定。
+
+# 素材納品 — delivery-v5 / 山・滝・塔の縦山水
+
+2026-10-24 JST。現行tier-enemies-guarded.pngとユーザー参考の墨絵インクバトルWAVE37.pngを目視比較。左右/上部の濃い岩・白い滝・塔と重なる遠山で奥行きを増し、中央下を淡い紙/霧として新規生成。敵・UI・文字・赤核・金発光なし。
+
+- [原本PNG](../art-source/delivery-v5/landscape_depth_05.png): 1024×1536、RGB、不透明、2,580,160bytes。SHA256 `DE0A816A499CB4D97D4332B6578F6A545A2BD953E60E5CB620C028BDA2377A8D`。
+- [360px幅プレビュー](../art-source/delivery-v5/preview-360.png)、[由来・限界](../art-source/delivery-v5/README.md)、[実測](../art-source/delivery-v5/inspection.json)、[プロンプト](../art-source/delivery-v5/PROMPT.txt)。
+- imagegen専用ツールで新規1回＋無彩色化修正1回。参考画像は目視だけ、生成入力は修正時の自作初稿のみ。原本を画素加工せずコピー。既存素材の上書きなし。
+- 下中央x25〜75%/y50〜100%の平均明度232.63、最小164/255、160未満0。360px幅でも滝・塔・遠近が残る。濃い側部/上部での敵判読性はゲーム内確認待ち。
+- 無彩色基調だが、RGB最大差18/255が残り厳密なグレースケールは未達。昼/夜/朱の色調・Unity組込み・実機は未検証。初稿はrevisions/へ保管。この1候補の有限ロットを完了、最終採用は統合担当。
+
+## delivery-v5 統合（2026-10-24）
+landscape_depth_05を既存背景の代替としてResourcesへ追加。旧素材は保持し、ロード失敗時は旧縦背景へ戻る。原本SHA256一致、1024×1536、EditorではBC7、readable=false、実メモリ3,146,624bytes。モバイル形式/実機メモリではない。ImportLandscapeDepth.csでインポート。
+同Wave10/1080×2400の初墨・幽墨・朱天を確認。段位色調/シェーダーエラーなし/停止中snapshot不変。山・滝・塔の奥行きが増え、中央下は明るいまま。敵核と金の核、HUD文字を目視確認。
+夜背景に7種×3列の21体＋既存ボスを強制配置した静止検査では、暗い岩壁でも赤核と主形状を識別できる。一方、下部の太い味方枝に重なる黒い敵輪郭は埋もれるため改善対象。通常の密集戦闘/性能/スマホ合格とは扱わない。
+証拠: evidence/landscape-depth-import.json、landscape-depth-1〜3.json/png、landscape-depth-2-dense.json/png。既存tier-landscape証拠を上書きしていない。今回は描画の軽量検証、シミュレーション/Runtime変更なし。

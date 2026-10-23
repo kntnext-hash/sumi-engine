@@ -215,7 +215,7 @@ namespace Bokumyaku.Presentation
             canvas.displayDensity = 7f;
             paperArt = LoadArt("paper_ivory_01");
             landscapeArt = LoadArt("landscape_mist_01");
-            portraitLandscapeArt = LoadArt("landscape_portrait_quiet_02");
+            portraitLandscapeArt = LoadArt("landscape_depth_05") ?? LoadArt("landscape_portrait_quiet_02");
             ensoArt = LoadArt("enso_frame_01");
             weaponArt[0] = LoadArt("weapon_point_01");
             weaponArt[1] = LoadArt("weapon_pierce_01");
