@@ -6,9 +6,9 @@ using TMPro;
 namespace Bokumyaku.Presentation
 {
  // Presentation owns interpolation and VFX clocks; never writes simulation state.
- public sealed class InkBattleWorld : IDisposable
+ public sealed partial class InkBattleWorld : IDisposable
  {
-  sealed class EnemyView { public EnemyState state; public Vector2 previous,current; public double hp; public SpriteRenderer body,eye,threat; public SpriteRenderer[] buds; public float hit,death; public bool dying,drawn; }
+  sealed class EnemyView { public EnemyState state; public Vector2 previous,current; public double hp; public SpriteRenderer body,eye,threat; public SpriteRenderer[] buds,drain; public float hit,death; public bool dying,drawn; }
   sealed class DamageLabel { public TextMeshPro text; public int enemyId; public Vector2 point; public double damage; public float age; }
   readonly List<DamageLabel> damageLabels=new List<DamageLabel>();
   readonly Dictionary<int,double> beforeHp=new Dictionary<int,double>();
@@ -72,7 +72,7 @@ namespace Bokumyaku.Presentation
   void Properties(SpriteRenderer r,float hit,float dissolve,float wobble,float phase,bool reduced,float paperEdge=0){block.Clear();block.SetFloat("_PaperEdge",paperEdge);block.SetFloat("_Hit",hit);block.SetFloat("_Dissolve",dissolve);block.SetFloat("_Wobble",wobble);block.SetFloat("_Phase",phase);block.SetFloat("_ReducedMotion",reduced?1:0);r.SetPropertyBlock(block);}
   void Release(SpriteRenderer r){r.gameObject.SetActive(false);r.SetPropertyBlock(null);r.transform.localRotation=Quaternion.identity;pool.Push(r);}
   SpriteRenderer Rent(Sprite s,int order){var r=pool.Count>0?pool.Pop():Create(s,order);r.sprite=s;r.enabled=true;r.sortingOrder=order;r.color=Color.white;r.gameObject.SetActive(true);return r;}
-  void ReleaseEnemy(EnemyView v){Release(v.body);Release(v.eye);if(v.threat!=null)Release(v.threat);if(v.buds!=null)foreach(var bud in v.buds)Release(bud);}
+  void ReleaseEnemy(EnemyView v){Release(v.body);Release(v.eye);if(v.threat!=null)Release(v.threat);if(v.buds!=null)foreach(var bud in v.buds)Release(bud);if(v.drain!=null)foreach(var part in v.drain)Release(part);}
   public void Reset(RunSimulator run)
   {
    foreach(var label in damageLabels){label.age=1;label.text.gameObject.SetActive(false);}
@@ -92,7 +92,7 @@ namespace Bokumyaku.Presentation
    {
     liveIds.Add(e.Id);
     Vector2 p=new Vector2((float)e.X,(float)e.Y);
-    if(!enemies.TryGetValue(e.Id,out var v)){v=new EnemyView{state=e,previous=p,current=p,hp=e.Hp,body=Rent(enemySprites[(int)e.Kind],4),eye=Rent(ember,5)};if(e.Kind==EnemyKind.Splitter||e.Kind==EnemyKind.Boss){v.buds=new SpriteRenderer[3];for(int k=0;k<3;k++)v.buds[k]=Rent(ember,5);}if(e.Kind==EnemyKind.Boss||e.Kind==EnemyKind.ShieldHalo)v.threat=Rent(ring,3);if(e.Kind==EnemyKind.Leech)v.threat=Rent(slash,3);enemies.Add(e.Id,v);}
+    if(!enemies.TryGetValue(e.Id,out var v)){v=new EnemyView{state=e,previous=p,current=p,hp=e.Hp,body=Rent(enemySprites[(int)e.Kind],4),eye=Rent(ember,5)};if(e.Kind==EnemyKind.Splitter||e.Kind==EnemyKind.Boss){v.buds=new SpriteRenderer[3];for(int k=0;k<3;k++)v.buds[k]=Rent(ember,5);}if(e.Kind==EnemyKind.Boss||e.Kind==EnemyKind.ShieldHalo)v.threat=Rent(ring,3);if(e.Kind==EnemyKind.Leech){v.threat=Rent(slash,3);v.drain=new SpriteRenderer[9];for(int k=0;k<9;k++)v.drain[k]=Rent(k<6?slash:ember,k<6?6:7);}enemies.Add(e.Id,v);}
     if(e.Hp<v.hp){v.hit=.13f;HitFlashes++;}v.hp=e.Hp;v.current=p;v.state=e;
    }
    remove.Clear();foreach(var pair in enemies)if(!pair.Value.dying&&!liveIds.Contains(pair.Key))remove.Add(pair.Key);
@@ -194,6 +194,7 @@ namespace Bokumyaku.Presentation
       var d=center-body;Size(v.threat,(center+body)*.5f,d.magnitude/.75f,.16f);
       v.threat.transform.localRotation=Quaternion.Euler(0,0,Mathf.Atan2(d.y,d.x)*Mathf.Rad2Deg);
       v.threat.color=new Color(.55f,.025f,.04f,reduced?.7f:.55f+.2f*Mathf.Sin(visualTime*5));
+      DrawDrain(v,center,body,reduced);
      }
      else
      {
