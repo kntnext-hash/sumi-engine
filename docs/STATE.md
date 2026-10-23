@@ -3,12 +3,12 @@
 
 ## 現状
 - Unity6000.3.26f1 / URP17.3.0 2D。Brush Lab表示/PNG互換確認済み。
-- 戦場SpriteRenderer、戦闘uGUI/TMP（筆枠/再利用部品をCanvasで構成）。メニューIMGUI。縦戦場幅100%・高さ68%。
+- 戦場SpriteRenderer、戦闘uGUI/TMP（筆枠/再利用部品をCanvasで構成）。メニューIMGUI。縦戦場幅100%・高さ62%。
 - 30Hz直描画から位置補間へ。敵5種/6武器/被弾/消失/表示ヒットストップ/演出軽減、SUMI枝/撃破跡dirty tile更新。
 - 日本語HUDは同梱Noto Serif静的TMP。実行60fps要求/終了時復元。Runtime/シミュレーション/経済/保存未変更。価格500案はstash保護。
 
 ## 直近の結果
-- 検証区分: 根の美術変更を限定Playで確認。seed42/6000tick/Wave17、全面再構築0。card-art-wave17.png。性能再計測・実機・新Windowsビルドなし。
+- 検証区分: HUD配置の限定Play確認。360×640で操作列高44.7px、札68.7×104.2px、主要10ボタンraycast到達。hud-size-check.json/png。実機・新Windowsビルドなし。
 - 敵案を反映: 分裂種の子核/ボスの分岐触手に赤い副核3個ずつ。隔離人工配置3体・9副核を確認。enemy-bud-fixture.json/png（自然出現試験ではない）。
 - 「滲み・採墨」開閉パネルを追加。2購入/墨減算と不足拒否3/3、31ラベルの表示文字確認。extra-upgrade-check.json/png。パネル開直後の同フレームraycastは不採用、次フレームで実施。
 - 同seed再出撃の閉じ忘れを周回参照判定へ修正。上限2種/閉じる/再開/同seed再出撃/Homeの6項目合格。副核Reset→描画30回でRenderer79→79。

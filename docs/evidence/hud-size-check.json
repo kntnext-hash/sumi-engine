@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "screen": {
+    "width": 360,
+    "height": 640
+  },
+  "viewportHeight": 0.62,
+  "buttons": [
+    {
+      "name": "Speed",
+      "width": 50.727272,
+      "height": 44.7272644,
+      "reachable": true
+    },
+    {
+      "name": "Auto",
+      "width": 54.32727,
+      "height": 44.7272644,
+      "reachable": true
+    },
+    {
+      "name": "Save",
+      "width": 50.7272644,
+      "height": 44.7272644,
+      "reachable": true
+    },
+    {
+      "name": "Home",
+      "width": 50.7272339,
+      "height": 44.7272644,
+      "reachable": true
+    },
+    {
+      "name": "ReducedMotion",
+      "width": 54.32727,
+      "height": 44.7272644,
+      "reachable": true
+    },
+    {
+      "name": "Upgrade0",
+      "width": 68.72728,
+      "height": 104.247276,
+      "reachable": true
+    },
+    {
+      "name": "Upgrade1",
+      "width": 68.72727,
+      "height": 104.247276,
+      "reachable": true
+    },
+    {
+      "name": "Upgrade2",
+      "width": 68.7272644,
+      "height": 104.247276,
+      "reachable": true
+    },
+    {
+      "name": "Upgrade3",
+      "width": 68.72728,
+      "height": 104.247276,
+      "reachable": true
+    },
+    {
+      "name": "Upgrade4",
+      "width": 68.7272949,
+      "height": 104.247276,
+      "reachable": true
+    }
+  ]
+}

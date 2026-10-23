@@ -62,7 +62,7 @@ namespace Bokumyaku.Presentation
         public static Rect GetBattleViewport()
         {
             var s = Screen.safeArea;
-            return new Rect(s.x / Screen.width, (s.y + s.height * .24f) / Screen.height, s.width / Screen.width, s.height * .68f / Screen.height);
+            return new Rect(s.x / Screen.width, (s.y + s.height * .30f) / Screen.height, s.width / Screen.width, s.height * .62f / Screen.height);
         }
         public void Initialize(BokumyakuGame owner, Texture2D ring, Texture2D[] glyphs, Texture2D paper)
         {
@@ -76,7 +76,7 @@ namespace Bokumyaku.Presentation
             font=Resources.Load<TMP_FontAsset>("BokumyakuFonts/BattleJapanese");
             if(font==null)throw new InvalidOperationException("Bundled Japanese font is missing.");
             safe = BokumyakuUiParts.Rect(transform,"SafeArea",Vector2.zero,Vector2.one);
-            var top = Panel(safe,"Header",0,.92f,1,1); var bottom = Panel(safe,"Footer",0,0,1,.24f);
+            var top = Panel(safe,"Header",0,.92f,1,1); var bottom = Panel(safe,"Footer",0,0,1,.30f);
             var ringSprite = SpriteFor(ring); var paperSprite = SpriteFor(paper);
             var brushFrameSprite = FrameSpriteFor(ring);
             if (ringSprite != null) { var image = BokumyakuUiParts.Panel(top.transform,"WaveRing",new Vector2(0,-.2f),new Vector2(.22f,1),ivory); image.sprite = ringSprite; image.preserveAspect = true; }
@@ -89,12 +89,12 @@ namespace Bokumyaku.Presentation
             repair=Button(bottom.transform,"Repair",0,.73f,.22f,1,"",()=>game.TryRepair(),out hp);
             var track = BokumyakuUiParts.Panel(bottom.transform,"CoreTrack",new Vector2(.02f,.7f),new Vector2(.2f,.73f),new Color(.2f,.18f,.13f));
             hpFill = BokumyakuUiParts.Panel(track.transform,"Fill",Vector2.zero,Vector2.one,gold);
-            Button(bottom.transform,"Speed",.23f,.76f,.38f,1,"×1",()=>game.SetSpeed(game.Speed==1?2:1),out speed);
-            Button(bottom.transform,"Auto",.38f,.76f,.54f,1,"自動",()=>game.SetAutoRepeat(!game.AutoRepeatEnabled),out auto);
+            Button(bottom.transform,"Speed",.23f,.75f,.38f,1,"×1",()=>game.SetSpeed(game.Speed==1?2:1),out speed);
+            Button(bottom.transform,"Auto",.38f,.75f,.54f,1,"自動",()=>game.SetAutoRepeat(!game.AutoRepeatEnabled),out auto);
             TextMeshProUGUI ignored;
-            Button(bottom.transform,"Save",.54f,.76f,.69f,1,"保存",()=>game.SaveProgress(),out ignored);
-            Button(bottom.transform,"Home",.69f,.76f,.84f,1,"ホーム",()=>game.SetPage(BokumyakuGame.GamePage.Home),out ignored);
-            Button(bottom.transform,"ReducedMotion",.84f,.76f,1,1,"演出",()=>game.SetReducedMotion(!game.ReducedMotion),out motion);
+            Button(bottom.transform,"Save",.54f,.75f,.69f,1,"保存",()=>game.SaveProgress(),out ignored);
+            Button(bottom.transform,"Home",.69f,.75f,.84f,1,"ホーム",()=>game.SetPage(BokumyakuGame.GamePage.Home),out ignored);
+            Button(bottom.transform,"ReducedMotion",.84f,.75f,1,1,"演出",()=>game.SetReducedMotion(!game.ReducedMotion),out motion);
             for (int i=0;i<5;i++)
             {
                 int slot=i; cards[i]=Button(bottom.transform,"Upgrade"+i,i*.2f,.12f,(i+1)*.2f,.68f,"",()=>game.BuyUpgrade((UpgradeKind)slot),out ignored); ignored.gameObject.SetActive(false);
