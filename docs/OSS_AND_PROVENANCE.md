@@ -71,3 +71,6 @@ TheTowerSDKのREADME/LICENSE/NOTICEを読取。MIT表記に加えて由来別の
 
 ## 縦山水 delivery-v5
 2026-10-24。art-source/delivery-v5/README.mdとPROMPT/REVISION_PROMPTに生成由来を保持。imagegenで新規生成＋修正1回。他作品の画像・ロゴ・文字の切抜きなし、ユーザー参考は目視の方向付けのみ。採用原本SHA256 DE0A816A499CB4D97D4332B6578F6A545A2BD953E60E5CB620C028BDA2377A8D。Unity Resourcesのlandscape_depth_05.pngは原本バイト一致。商用権利の法的保証を意味しない。詳細検査と限界はART_DELIVERY.md。
+
+## 黒墨HUDパネル delivery-v6
+2026-10-24。素材制作室でimagegen新規生成1回。参考は目視のみ、他作品画像の切抜きなし。原本SHA256 BFA3D1E60B8B986B0B5BC0246DA31C50D897C90DDDD62FD686529A8966EE50D7、Resourcesへ同一バイトコピー。プロンプトと検査はart-source/delivery-v6/に保持。詳細と未検証範囲はART_DELIVERY.md。

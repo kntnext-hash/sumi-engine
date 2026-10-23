@@ -1,0 +1,13 @@
+{
+  "file": "hud_ink_panel_06.png",
+  "sourceSize": [1774,887],
+  "borderLeftBottomRightTop": [260,230,260,230],
+  "imageType": "Sliced",
+  "fillCenter": true,
+  "tint": "white, alpha 1 to preserve ink and gold",
+  "previewCanvasWidth": 360,
+  "previewCornerSize": [14,12],
+  "previewSizes": [[344,40],[160,48],[344,144]],
+  "suggestedTextInsetAtPreviewScale": [18,12,18,12],
+  "note": "Borders are original pixels. Rescale when import dimensions change. Insets are initial guidance, not measured font fit."
+}

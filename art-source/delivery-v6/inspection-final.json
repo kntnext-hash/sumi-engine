@@ -1,0 +1,22 @@
+{
+  "file": "hud_ink_panel_06.png",
+  "width": 1774,
+  "height": 887,
+  "format": "Format32bppArgb",
+  "bytes": 1508727,
+  "alphaZero": 546343,
+  "alphaPartial": 1027014,
+  "alphaOpaque": 181,
+  "bounds": [
+    0,
+    0,
+    1759,
+    886
+  ],
+  "centerAlpha": 253,
+  "sliceCenterNonzeroAlpha": 535458,
+  "sliceCenterMinAlpha": 252,
+  "sliceCenterMaxAlpha": 254,
+  "sliceCenterMaxRgbChannel": 26,
+  "sha256": "BFA3D1E60B8B986B0B5BC0246DA31C50D897C90DDDD62FD686529A8966EE50D7"
+}

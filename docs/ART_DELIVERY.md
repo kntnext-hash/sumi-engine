@@ -99,3 +99,17 @@ landscape_depth_05を既存背景の代替としてResourcesへ追加。旧素�
 同Wave10/1080×2400の初墨・幽墨・朱天を確認。段位色調/シェーダーエラーなし/停止中snapshot不変。山・滝・塔の奥行きが増え、中央下は明るいまま。敵核と金の核、HUD文字を目視確認。
 夜背景に7種×3列の21体＋既存ボスを強制配置した静止検査では、暗い岩壁でも赤核と主形状を識別できる。一方、下部の太い味方枝に重なる黒い敵輪郭は埋もれるため改善対象。通常の密集戦闘/性能/スマホ合格とは扱わない。
 証拠: evidence/landscape-depth-import.json、landscape-depth-1〜3.json/png、landscape-depth-2-dense.json/png。既存tier-landscape証拠を上書きしていない。今回は描画の軽量検証、シミュレーション/Runtime変更なし。
+
+# 素材納品 — delivery-v6 / 黒墨HUDパネル
+
+2026-10-24 JST。player-battle-budget-v14.pngとユーザー参考を比較し、黒い矩形HUD用の横長墨パネル1候補を新規生成。暗い塗り面、控えめな外周掠れ、細い金縁。文字/アイコンなし。生成1回、修正0回。
+
+- [原本PNG](../art-source/delivery-v6/hud_ink_panel_06.png): 1774×887、RGBA、1,508,727bytes。目標1536×768と寸法不一致、2:1比率一致。SHA256 `BFA3D1E60B8B986B0B5BC0246DA31C50D897C90DDDD62FD686529A8966EE50D7`。
+- [360px幅プレビュー](../art-source/delivery-v6/preview-360.png)、[由来と検査](../art-source/delivery-v6/README.md)、[実alpha検査](../art-source/delivery-v6/inspection-final.json)、[全文プロンプト](../art-source/delivery-v6/PROMPT.txt)。
+- 完全透明546,343画素。中央セルalpha252〜254、RGB最大26/255で黒墨の読み取り面を保持。外周の微小alphaが画像端へ達するため厳密な透明余白は未達。
+- [9-slice設定案](../art-source/delivery-v6/slice-settings.json): L260/B230/R260/T230（原本px）、**Fill Center=true**、白tint。隅14×12pxで344×40/160×48/344×144の連続性を目視。小表示では微細な掠れが弱まる。
+- imagegen専用ツールで制作、参考は目視のみ。Unity実表示・文字配置・実機は統合担当の確認待ち。既存素材/ゲームコード/Resources/Unity/Gitは未変更。
+
+## delivery-v6 統合
+2026-10-24。原本をResourcesへバイト一致でコピー。1774×887、九分割L260/B230/R260/T230、NPOT保持、非圧縮、mipmapなし。共通ApplyInkPanelを追加し、戦闘パネルと共有ボタンの基本スタイルへ適用。既存メニューの紙札オーバーライドは維持。pixelsPerUnitMultiplier=22、fillCenter=true、白tint。
+360×640の隔離Editor Playで戦闘/ホームを目視、TMP overflowなし。Pause/HomeのonClickイベントを実行し動作と停止snapshot不変を確認。物理タッチ、Windowsビルド、実機性能は今回未実施。証拠hud-panel/hud-panel-home.json/png。画像は初期根が描画途中のフレームで、根の完成状態の証拠ではない。

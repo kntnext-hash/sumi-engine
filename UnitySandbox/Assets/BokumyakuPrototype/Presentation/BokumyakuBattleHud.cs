@@ -10,6 +10,17 @@ namespace Bokumyaku.Presentation
     /// <summary>Reusable uGUI primitives shared by battle and future menu migration.</summary>
     public static class BokumyakuUiParts
     {
+        static Sprite inkPanel;
+        public static void ApplyInkPanel(UnityEngine.UI.Image image)
+        {
+            if (inkPanel == null) inkPanel = Resources.Load<Sprite>("BokumyakuArt/hud_ink_panel_06");
+            if (inkPanel == null) return;
+            image.sprite = inkPanel;
+            image.type = UnityEngine.UI.Image.Type.Sliced;
+            image.fillCenter = true;
+            image.pixelsPerUnitMultiplier = 22f;
+            image.color = Color.white;
+        }
         public static RectTransform Rect(Transform parent, string name, Vector2 min, Vector2 max, float inset = 0)
         {
             var go = new GameObject(name, typeof(RectTransform));
@@ -32,6 +43,7 @@ namespace Bokumyaku.Presentation
         public static UnityEngine.UI.Button Button(Transform parent, string name, TMP_FontAsset font, Vector2 min, Vector2 max, string caption, Action click, out TextMeshProUGUI label)
         {
             var image = Panel(parent, name, min, max, new Color(.06f,.05f,.035f,.98f), 2);
+            ApplyInkPanel(image);
             image.raycastTarget = true;
             var b = image.gameObject.AddComponent<UnityEngine.UI.Button>(); b.targetGraphic = image;
             var c = b.colors; c.normalColor = Color.white; c.highlightedColor = new Color(1,.9f,.7f); c.pressedColor = new Color(.65f,.53f,.33f); c.disabledColor = new Color(.5f,.5f,.5f,.7f); b.colors = c;
@@ -168,7 +180,7 @@ namespace Bokumyaku.Presentation
         UnityEngine.UI.Image Panel(Transform p,string n,float x,float y,float xx,float yy)
         {
             var panel=BokumyakuUiParts.Panel(p,n,new Vector2(x,y),new Vector2(xx,yy),black);
-            BokumyakuUiParts.Panel(panel.transform,"GoldRule",new Vector2(0,.99f),Vector2.one,gold);return panel;
+            BokumyakuUiParts.ApplyInkPanel(panel);return panel;
         }
         TextMeshProUGUI Label(Transform p,string n,float x,float y,float xx,float yy,float size,Color color) => BokumyakuUiParts.Label(p,n,font,new Vector2(x,y),new Vector2(xx,yy),size,color);
         UnityEngine.UI.Button Button(Transform p,string n,float x,float y,float xx,float yy,string caption,Action click,out TextMeshProUGUI label) => BokumyakuUiParts.Button(p,n,font,new Vector2(x,y),new Vector2(xx,yy),caption,click,out label);
