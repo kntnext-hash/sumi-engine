@@ -12,6 +12,7 @@
 - 武器/構成/方針、保存枠、消音、出撃、終了取消/確定、研究購入、履歴、保存再読込の操作確認成功。実ボタンへのraycastを確認。証拠: evidence/menu-migration-check.json、menu-*-1080x2400.png。
 - 隔離セーブに試験結晶を付与して検証。Play停止、GameView復元済み。旧IMGUI用QAは使わずMenuMigrationCheck/ MenuInteractionCheckを使用。
 - 関連EditMode（Bokumyaku）213/213合格。evidence/menu-editmode.json。
+- ボスへ朱の筆輪を追加。人工5種80体/20描画でRenderer340固定、画像確認。軽量検証、自然Wave/実機性能ではない。
 - 共通スクロールバー追加。軽量Playで1080×2400のScroll入力→研究最下段到達を確認。menu-scroll-check.json/png。実機ドラッグは未検証。
 
 ## 次の一手

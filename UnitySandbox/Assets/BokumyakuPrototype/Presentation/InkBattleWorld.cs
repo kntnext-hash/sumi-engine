@@ -8,7 +8,7 @@ namespace Bokumyaku.Presentation
  // Presentation owns interpolation and VFX clocks; never writes simulation state.
  public sealed class InkBattleWorld : IDisposable
  {
-  sealed class EnemyView { public EnemyState state; public Vector2 previous,current; public double hp; public SpriteRenderer body,eye; public SpriteRenderer[] buds; public float hit,death; public bool dying,drawn; }
+  sealed class EnemyView { public EnemyState state; public Vector2 previous,current; public double hp; public SpriteRenderer body,eye,threat; public SpriteRenderer[] buds; public float hit,death; public bool dying,drawn; }
   sealed class DamageLabel { public TextMeshPro text; public int enemyId; public Vector2 point; public double damage; public float age; }
   readonly List<DamageLabel> damageLabels=new List<DamageLabel>();
   readonly Dictionary<int,double> beforeHp=new Dictionary<int,double>();
@@ -52,7 +52,7 @@ namespace Bokumyaku.Presentation
   void Properties(SpriteRenderer r,float hit,float dissolve,float wobble,float phase,bool reduced){block.Clear();block.SetFloat("_Hit",hit);block.SetFloat("_Dissolve",dissolve);block.SetFloat("_Wobble",wobble);block.SetFloat("_Phase",phase);block.SetFloat("_ReducedMotion",reduced?1:0);r.SetPropertyBlock(block);}
   void Release(SpriteRenderer r){r.gameObject.SetActive(false);r.SetPropertyBlock(null);r.transform.localRotation=Quaternion.identity;pool.Push(r);}
   SpriteRenderer Rent(Sprite s,int order){var r=pool.Count>0?pool.Pop():Create(s,order);r.sprite=s;r.enabled=true;r.sortingOrder=order;r.color=Color.white;r.gameObject.SetActive(true);return r;}
-  void ReleaseEnemy(EnemyView v){Release(v.body);Release(v.eye);if(v.buds!=null)foreach(var bud in v.buds)Release(bud);}
+  void ReleaseEnemy(EnemyView v){Release(v.body);Release(v.eye);if(v.threat!=null)Release(v.threat);if(v.buds!=null)foreach(var bud in v.buds)Release(bud);}
   public void Reset(RunSimulator run)
   {
    foreach(var label in damageLabels){label.age=1;label.text.gameObject.SetActive(false);}
@@ -72,7 +72,7 @@ namespace Bokumyaku.Presentation
    {
     liveIds.Add(e.Id);
     Vector2 p=new Vector2((float)e.X,(float)e.Y);
-    if(!enemies.TryGetValue(e.Id,out var v)){v=new EnemyView{state=e,previous=p,current=p,hp=e.Hp,body=Rent(enemySprites[(int)e.Kind],4),eye=Rent(ember,5)};if(e.Kind==EnemyKind.Splitter||e.Kind==EnemyKind.Boss){v.buds=new SpriteRenderer[3];for(int k=0;k<3;k++)v.buds[k]=Rent(ember,5);}enemies.Add(e.Id,v);}
+    if(!enemies.TryGetValue(e.Id,out var v)){v=new EnemyView{state=e,previous=p,current=p,hp=e.Hp,body=Rent(enemySprites[(int)e.Kind],4),eye=Rent(ember,5)};if(e.Kind==EnemyKind.Splitter||e.Kind==EnemyKind.Boss){v.buds=new SpriteRenderer[3];for(int k=0;k<3;k++)v.buds[k]=Rent(ember,5);}if(e.Kind==EnemyKind.Boss)v.threat=Rent(ring,3);enemies.Add(e.Id,v);}
     if(e.Hp<v.hp){v.hit=.13f;HitFlashes++;}v.hp=e.Hp;v.current=p;v.state=e;
    }
    remove.Clear();foreach(var pair in enemies)if(!pair.Value.dying&&!liveIds.Contains(pair.Key))remove.Add(pair.Key);
@@ -153,6 +153,7 @@ namespace Bokumyaku.Presentation
     float size=v.state.Kind==EnemyKind.Boss?1.55f:v.state.Kind==EnemyKind.Heavy?1.1f:v.state.Kind==EnemyKind.Fast?.72f:.85f;
     if(!frozen||!v.drawn){Size(v.body,p,size,size);Size(v.eye,p,size*.38f,size*.38f);
      if(v.state.Kind==EnemyKind.Fast){var direction=Project(v.current)-Project(v.previous);if(direction.sqrMagnitude>.000001f)v.body.transform.localRotation=Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg);}v.drawn=true;}v.body.color=new Color(.025f,.02f,.02f);Properties(v.body,v.hit/.13f,v.death/.45f,reduced?0:.45f,pair.Key*.73f,reduced);
+    if(v.threat!=null){Size(v.threat,p,size*1.35f,size*1.35f);v.threat.color=new Color(.65f,.045f,.025f,.55f*(1-v.death/.45f));Properties(v.threat,0,v.death/.45f,0,0,reduced);}
     v.eye.color=new Color(1,1,1,1-v.death/.45f);Properties(v.eye,0,v.death/.45f,0,0,reduced);
     if(v.buds!=null)
     {

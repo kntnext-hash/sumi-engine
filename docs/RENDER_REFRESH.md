@@ -120,3 +120,4 @@ v6機能試験は両プロセスexit0/passed=true（116.83秒/15.65秒）。6武
 
 ## 横長筆枠のゲーム統合
 button_ink_frame_03.pngをResources/BokumyakuArtへ導入。Sprite Single、border300/240/300/240、mipmapなし、非圧縮。メニューボタンを紙地・墨文字・選択金へ変更、専用Sliced枠はfillCenter=false。円相の矩形引き伸ばしをボタンから除去。1080×2400のホーム画像を目視し、MenuInteractionCheckの出撃/終了確認/研究/保存復帰等pass=trueを再確認。画像とJSONを更新。隔離Play停止・GameView復元済み。ゲームへの採用初版で、完成美術/実機合格ではない。
+ボス識別: 敵本体の背面へ朱の筆輪を追加。点滅/回転なし、撃破時は同時dissolveしpoolへ返す。人工5種80体の360×640画像を目視、20描画でRenderer340固定。dense-battle-check.json/pngを更新。密集時重なりは残り、自然Wave性能/実機/完成美術合格ではない。シミュレーション未変更、隔離Play停止/復元済み。
