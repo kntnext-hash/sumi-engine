@@ -66,11 +66,8 @@ namespace Bokumyaku.Presentation
             gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
             if (UnityEngine.Object.FindFirstObjectByType<EventSystem>() == null)
                 ownedEventSystem = new GameObject("BokumyakuEventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
-            font = TMP_FontAsset.CreateFontAsset("Yu Mincho", "Regular", 48)
-                ?? TMP_FontAsset.CreateFontAsset("Meiryo", "Regular", 48)
-                ?? TMP_FontAsset.CreateFontAsset("Noto Sans CJK JP", "Regular", 48);
-            if(font==null)throw new InvalidOperationException("A Japanese system font is required for the battle HUD.");
-            font.name = "BokumyakuDynamicJapanese";
+            font=Resources.Load<TMP_FontAsset>("BokumyakuFonts/BattleJapanese");
+            if(font==null)throw new InvalidOperationException("Bundled Japanese font is missing.");
             safe = BokumyakuUiParts.Rect(transform,"SafeArea",Vector2.zero,Vector2.one);
             var top = Panel(safe,"Header",0,.92f,1,1); var bottom = Panel(safe,"Footer",0,0,1,.24f);
             var ringSprite = SpriteFor(ring); var paperSprite = SpriteFor(paper);
@@ -176,10 +173,11 @@ namespace Bokumyaku.Presentation
         void OnDestroy()
         {
             foreach(var s in ownedSprites)if(s!=null)Destroy(s);
-            if(font!=null){foreach(var t in font.atlasTextures)if(t!=null)Destroy(t);if(font.material!=null)Destroy(font.material);Destroy(font);}
+            // The bundled static font is shared; its lifetime belongs to Unity Resources.
             if(sourceFont!=null)Destroy(sourceFont);if(ownedEventSystem!=null)Destroy(ownedEventSystem);
         }
     }
 }
+
 
 

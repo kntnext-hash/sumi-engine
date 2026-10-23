@@ -7,6 +7,7 @@ namespace Bokumyaku.Presentation
  public sealed partial class BokumyakuGame
  {
   DirtyInkSurface persistentInk;InkBattleWorld battleWorld;BokumyakuBattleHud battleHud;
+  int previousFrameRate; bool ownsFrameRate;
   public bool ReducedMotion {get;private set;}
   public string BattleNotice=>string.IsNullOrEmpty(saveWarning)?notice:"保存待ち: "+saveWarning;
   public bool BattleStorageBlocked=>loadBlocked||storageFailed;
@@ -26,6 +27,7 @@ namespace Bokumyaku.Presentation
    battleWorld.DeathMark=DrawDeathMark;
    var hudObject=new GameObject("Battle HUD",typeof(RectTransform));hudObject.transform.SetParent(transform,false);battleHud=hudObject.AddComponent<BokumyakuBattleHud>();battleHud.Initialize(this,hudRing,upgradeGlyphs,paperArt);
    var driver=gameObject.AddComponent<BokumyakuBattlePresenter>();driver.Owner=this;
+   previousFrameRate=Application.targetFrameRate;Application.targetFrameRate=60;ownsFrameRate=true;
   }
   public void PresentBattle()
   {
@@ -40,11 +42,12 @@ namespace Bokumyaku.Presentation
    var point=new InkPoint((float)enemy.ViewX*sx,(float)enemy.ViewY*sy,0,.8f);
    persistentInk.Begin(point,brush,unchecked(Run.Seed+enemy.Id*113));persistentInk.Move(new InkPoint(point.x+1,point.y+1,.1f,.3f));persistentInk.End();
   }
-  void ReleaseBattlePresentation(){battleWorld?.Dispose();battleWorld=null;persistentInk?.Dispose();persistentInk=null;if(battleHud!=null)Destroy(battleHud.gameObject);}
+  void ReleaseBattlePresentation(){if(ownsFrameRate){Application.targetFrameRate=previousFrameRate;ownsFrameRate=false;}battleWorld?.Dispose();battleWorld=null;persistentInk?.Dispose();persistentInk=null;if(battleHud!=null)Destroy(battleHud.gameObject);}
  }
  public sealed class BokumyakuBattlePresenter:MonoBehaviour
  {
   public BokumyakuGame Owner;void LateUpdate(){if(Owner!=null)Owner.PresentBattle();}
  }
 }
+
 

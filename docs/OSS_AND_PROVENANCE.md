@@ -63,3 +63,8 @@ TheTowerSDKのREADME/LICENSE/NOTICEを読取。MIT表記に加えて由来別の
 ## 2026-10-23 URP/uGUI
 - Unity Package ManagerからURP 17.3.0とuGUI 2.0.0を追加。TMP Essential Resourcesを公式インポーターで展開し、付属ライセンスを保持。
 - 日本語フォントはWindowsのYu Mincho等を実行時参照し、OSフォントファイルを再配布しない。InkSpriteシェーダーは独自実装でURP Core2D APIを使用。
+
+## 2026-10-23 同梱日本語フォント
+- Noto Serif CJK JP Regular（未改変OTF）: https://github.com/notofonts/noto-cjk/tree/main/Serif/OTF/Japanese 。公式raw mainから取得、SHA256 D9854C7A8EF170B5A7932558856FD64EB8DE0B007CD823FED6F9F514AD2803D3。
+- SIL OFL1.1: https://github.com/notofonts/noto-cjk/blob/main/Serif/LICENSE 。原ライセンスをBokumyakuFonts/OFL.txtに保持。著作権情報は配布OTFのメタデータも保持。フォント単体販売なし。
+- Unity Editorで48pt/5padding/2048pxの静的TMPへ変換。432文字収録（旧IMGUI音量の↻は対象外）。戦闘HUDはOS依存を廃止。原OTF24.6MBとアトラス8.6MBでサイズ最適化は残件。
