@@ -14,7 +14,8 @@ namespace Bokumyaku.Presentation
   readonly HashSet<int> liveIds=new HashSet<int>(); readonly List<SpriteRenderer> fieldViews=new List<SpriteRenderer>();
   readonly List<Effect> effects=new List<Effect>(); readonly Stack<SpriteRenderer> pool=new Stack<SpriteRenderer>();
   readonly List<Sprite> ownedSprites=new List<Sprite>(); readonly List<EnemyState> before=new List<EnemyState>();
-  readonly Sprite[] enemySprites=new Sprite[5]; readonly Sprite slash,burst,ring,halo;
+  readonly Sprite[] enemySprites=new Sprite[5]; readonly Sprite slash,burst,ring,halo,ember;
+  readonly Texture2D emberTexture;
   readonly SpriteRenderer paper,landscape,upperInk,lowerInk,core,coreGlow,coreHeart,coreOrbit;
   readonly List<SpriteRenderer> tips=new List<SpriteRenderer>(),tipRings=new List<SpriteRenderer>();
   Texture2D boundInk; RunSimulator boundRun; float halfHeight=7,freeze,shake,visualTime,nextStop;
@@ -27,6 +28,9 @@ namespace Bokumyaku.Presentation
    var cam=new GameObject("URP 2D battlefield camera");cam.transform.SetParent(root.transform,false);camera=cam.AddComponent<Camera>();camera.orthographic=true;camera.depth=100;camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=new Color(.94f,.91f,.83f);camera.cullingMask=1<<31;camera.nearClipPlane=.1f;camera.farClipPlane=30;camera.transform.localPosition=new Vector3(0,0,-10);
    var shader=Resources.Load<Shader>("BokumyakuRendering/InkSprite");if(shader==null)throw new InvalidOperationException("InkSprite shader missing");material=new Material(shader){name="Shared moving ink"};
    for(int i=0;i<5;i++)enemySprites[i]=MakeSprite(masks[i]);slash=MakeSprite(slashMask);burst=MakeSprite(burstMask);ring=MakeSprite(ringMask);halo=MakeSprite(haloMask);
+   emberTexture=new Texture2D(32,32,TextureFormat.RGBA32,false){name="Enemy ember",wrapMode=TextureWrapMode.Clamp};
+   var emberPixels=new Color[1024];for(int y=0;y<32;y++)for(int x=0;x<32;x++){float r=Vector2.Distance(new Vector2(x+.5f,y+.5f),new Vector2(16,16))/16;float heart=1-Mathf.SmoothStep(0,1,r/.24f);float opacity=1-Mathf.SmoothStep(0,1,(r-.25f)/.75f);emberPixels[y*32+x]=new Color(1,.035f+heart*.9f,.01f+heart*.65f,opacity);}
+   emberTexture.SetPixels(emberPixels);emberTexture.Apply(false,true);ember=MakeSprite(emberTexture);
    paper=Create(MakeSprite(paperTexture),-100);landscape=Create(MakeSprite(landscapeTexture),-99);upperInk=Create(null,-80);lowerInk=Create(null,-80);
    coreGlow=Create(halo,8);coreGlow.color=new Color(1,.55f,.08f,.8f);core=Create(ring,10);core.color=new Color(1,.88f,.52f);coreHeart=Create(halo,11);coreHeart.color=new Color(1,.98f,.84f);coreOrbit=Create(ring,9);coreOrbit.color=new Color(1,.72f,.22f,.85f);
   }
@@ -60,7 +64,7 @@ namespace Bokumyaku.Presentation
    {
     liveIds.Add(e.Id);
     Vector2 p=new Vector2((float)e.X,(float)e.Y);
-    if(!enemies.TryGetValue(e.Id,out var v)){v=new EnemyView{state=e,previous=p,current=p,hp=e.Hp,body=Rent(enemySprites[(int)e.Kind],4),eye=Rent(halo,5)};enemies.Add(e.Id,v);}
+    if(!enemies.TryGetValue(e.Id,out var v)){v=new EnemyView{state=e,previous=p,current=p,hp=e.Hp,body=Rent(enemySprites[(int)e.Kind],4),eye=Rent(ember,5)};enemies.Add(e.Id,v);}
     if(e.Hp<v.hp){v.hit=.13f;HitFlashes++;}v.hp=e.Hp;v.current=p;v.state=e;
    }
    remove.Clear();foreach(var pair in enemies)if(!pair.Value.dying&&!liveIds.Contains(pair.Key))remove.Add(pair.Key);
@@ -111,8 +115,9 @@ namespace Bokumyaku.Presentation
     var v=pair.Value;if(v.dying)v.death+=dt;v.hit=Mathf.Max(0,v.hit-dt);if(v.death>=.45f){remove.Add(pair.Key);continue;}
     var p=Project(v.dying?v.current:Vector2.Lerp(v.previous,v.current,paused?1:Mathf.Clamp01(alpha)));
     float size=v.state.Kind==EnemyKind.Boss?1.55f:v.state.Kind==EnemyKind.Heavy?1.1f:v.state.Kind==EnemyKind.Fast?.72f:.85f;
-    if(!frozen||!v.drawn){Size(v.body,p,size,size);Size(v.eye,p,size*.32f,size*.32f);v.drawn=true;}v.body.color=new Color(.025f,.02f,.02f);Properties(v.body,v.hit/.13f,v.death/.45f,reduced?0:.45f,pair.Key*.73f,reduced);
-    v.eye.color=new Color(.9f,.03f,.01f,1-v.death/.45f);Properties(v.eye,0,v.death/.45f,0,0,reduced);
+    if(!frozen||!v.drawn){Size(v.body,p,size,size);Size(v.eye,p,size*.38f,size*.38f);
+     if(v.state.Kind==EnemyKind.Fast){var direction=Project(v.current)-Project(v.previous);if(direction.sqrMagnitude>.000001f)v.body.transform.localRotation=Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg);}v.drawn=true;}v.body.color=new Color(.025f,.02f,.02f);Properties(v.body,v.hit/.13f,v.death/.45f,reduced?0:.45f,pair.Key*.73f,reduced);
+    v.eye.color=new Color(1,1,1,1-v.death/.45f);Properties(v.eye,0,v.death/.45f,0,0,reduced);
     if(!paused&&!v.dying&&alpha>0&&alpha<1&&v.previous!=v.current)InterpolatedFrames++;
    }
    foreach(int id in remove){Release(enemies[id].body);Release(enemies[id].eye);enemies.Remove(id);}
@@ -126,9 +131,11 @@ namespace Bokumyaku.Presentation
     Properties(e.renderer,0,e.type==0?t*.6f:0,0,0,reduced);
    }
   }
-  public void Dispose(){foreach(var s in ownedSprites)if(s!=null)UnityEngine.Object.Destroy(s);UnityEngine.Object.Destroy(material);UnityEngine.Object.Destroy(root);}
+  public void Dispose(){foreach(var s in ownedSprites)if(s!=null)UnityEngine.Object.Destroy(s);UnityEngine.Object.Destroy(emberTexture);UnityEngine.Object.Destroy(material);UnityEngine.Object.Destroy(root);}
  }
 }
+
+
 
 
 
