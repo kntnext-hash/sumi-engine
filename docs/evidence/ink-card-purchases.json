@@ -1,0 +1,31 @@
+[
+  {
+    "name": "card-0",
+    "passed": true,
+    "cost": 10
+  },
+  {
+    "name": "card-1",
+    "passed": true,
+    "cost": 12
+  },
+  {
+    "name": "card-2",
+    "passed": true,
+    "cost": 15
+  },
+  {
+    "name": "card-3",
+    "passed": true,
+    "cost": 22
+  },
+  {
+    "name": "card-4",
+    "passed": true,
+    "cost": 12
+  },
+  {
+    "name": "insufficient-ink",
+    "passed": true
+  }
+]
