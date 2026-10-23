@@ -58,3 +58,8 @@ GPUテクスチャ再利用版。ビルド64.35秒、156,374,861bytes、警告/�
 6武器SE入りWindows候補。ビルド68.39秒、156,540,445bytes、警告/エラー0。実寸540×960でWave3の戦場/HUDを目視。6武器各900tick、自動周回、別プロセス600tick復帰が合格。各武器の実攻撃中に対応するsfx_attack_*のAudioSourceが再生中・volume>0・非muteであることを確認。フィールドheardWeaponSourceはこの機械的観測であり、人間の試聴を意味しない。
 平均16.80〜17.43ms、最大543.46ms。Point518.39ms（frame17→18）、Sweep543.46ms（2660→2661）が開始2秒以内に再発。いずれもGC差0、未描画枝4。reuse-v18の47.07msは単回結果で、停止の恒久解消を証明していなかった。新音源追加との因果も未確定。密集/実機性能は未合格。
 今回対象Windows検証のみ。証拠evidence/*audio-v19.json/png。次は長いフレームの描画/待機時間を分解し、初期根1ストロークCPU負荷も改善する。通常保存/シミュレーションは変更していない。
+
+## 初期根と転送の分離計測（2026-10-24）
+BattleTimingに任意の記録下限を追加し、InkFlushだけ0.01ms以上を記録する。明示QA以外はタイマー/サンプルを作らず、既存の上限512件を維持。墨処理・転送方式・シミュレーションは変更なし。
+隔離Editor Playのseed42、進行を停止して35本の初期根を描画。35回のFlushを取得、最大2.5254ms。RootFlourish記録最大41.7762ms。35本完了とシミュレーションsnapshot不変を確認。evidence/ink-flush-timing.json、再現scripts/UnityAutomation~/InkFlushTimingCheck.cs。
+この条件では根のCPU描画負荷が転送API呼出し時間より大きい。GPU完了時間は測っておらず、Windows audio-v19の500ms停止の原因を確定するものではない。次はWindowsで同じ分離計測とフレーム内外の待機を調べる。今回軽量Editor検証のみ。

@@ -10,7 +10,8 @@
 ## 直近の結果
 - Windows audio-v19: ビルド警告/エラー0。実寸540×960/Wave3を目視、6武器各900tick/自動周回/別プロセス600tick復帰が合格。6種の攻撃SEを実攻撃中のAudioSourceで確認。人間の試聴ではない。
 - 平均16.80〜17.43ms、最大543.46ms。Point/Sweep開始直後に500ms級停止が再発、GC差0。前回reuse-v18の最大47.07msだけで停止解消とは判断できない。音追加との因果は未確定。WINDOWS_RANK_CANDIDATE.md、evidence/*audio-v19.*。
-- 検証区分: 今回は対象Windowsビルド/実行/画像のみ。全EditMode・実機・主観的試聴は未実施。
+- 転送分離計測を追加。隔離Editorで初期根35本/Flush35回、転送API最大2.53ms・根全体最大41.78ms。snapshot不変。ink-flush-timing.json。Windows停止の原因は未確定。
+- 検証区分: 今回は軽量Editor計測、直前は対象Windows検証。全EditMode・実機・主観的試聴は未実施。
 - GPUテクスチャ/Spriteの再利用は対象EditMode3/3と隔離Playで検証済み。初期根35ストローク・通常枝1本/フレーム。seed42/900tickの変更前後墨量ハッシュ一致。部分更新を保持。
 - 吸生の墨管/朱粒は1080×2400で表示・軽減・撃破/リセット消去確認済み。実機負荷未検証。
 - Android/SDK/NDK/JDK未導入、APK未作成。ゲームのみスマホ縦向き固定。端末種別を質問中。公式モジュール照会は無応答で照会プロセスのみ終了、インストール未開始。MOBILE_READINESS.md。

@@ -115,6 +115,8 @@ namespace Bokumyaku.Presentation.Drawing
             ThrowIfDisposed();
             int uploads = 0;
             if (PendingTiles == 0) return 0;
+            using (BattleTiming.Measure("InkFlush", .01))
+            {
             int left = Width, bottom = Height, right = 0, top = 0;
             for (int ty = 0; ty < rows; ty++) for (int tx = 0; tx < columns; tx++)
             {
@@ -142,6 +144,7 @@ namespace Bokumyaku.Presentation.Drawing
             LastDirtyRect = new RectInt(left, bottom, right - left, top - bottom);
             core.Paper.MarkRendered();
             return uploads;
+            }
         }
 
         public void Clear()

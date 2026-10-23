@@ -8,12 +8,12 @@ namespace Bokumyaku.Presentation {
   public static bool Enabled;
   [Serializable] public sealed class Sample { public string section; public int frame; public double milliseconds; }
   static readonly List<Sample> samples=new List<Sample>();
-  public static Scope Measure(string section)=>new Scope(section);
+  public static Scope Measure(string section, double minimumMs = 10)=>new Scope(section, minimumMs);
   public static Sample[] Capture()=>samples.ToArray();
   public struct Scope:IDisposable {
-   readonly string section;readonly long start;readonly int frame;
-   public Scope(string name){section=Enabled?name:null;start=Enabled?Stopwatch.GetTimestamp():0;frame=Enabled?Time.frameCount:0;}
-   public void Dispose(){if(section==null)return;double ms=(Stopwatch.GetTimestamp()-start)*1000d/Stopwatch.Frequency;if(ms>=10&&samples.Count<512)samples.Add(new Sample{section=section,frame=frame,milliseconds=ms});}
+   readonly string section;readonly long start;readonly int frame;readonly double minimumMs;
+   public Scope(string name, double minimumMs){this.minimumMs=minimumMs;section=Enabled?name:null;start=Enabled?Stopwatch.GetTimestamp():0;frame=Enabled?Time.frameCount:0;}
+   public void Dispose(){if(section==null)return;double ms=(Stopwatch.GetTimestamp()-start)*1000d/Stopwatch.Frequency;if(ms>=minimumMs&&samples.Count<512)samples.Add(new Sample{section=section,frame=frame,milliseconds=ms});}
   }
  }
 }
