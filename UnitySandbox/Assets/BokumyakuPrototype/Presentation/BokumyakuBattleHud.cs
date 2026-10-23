@@ -82,6 +82,7 @@ namespace Bokumyaku.Presentation
             var top = Panel(safe,"Header",0,.92f,1,1); var bottom = Panel(safe,"Footer",0,0,1,.30f);
             var ringSprite = SpriteFor(ring); var paperSprite = SpriteFor(paper);
             var brushFrameSprite = FrameSpriteFor(ring);
+            var cardFrameSprite = Resources.Load<Sprite>("BokumyakuArt/card_ink_gold_04");
             if (ringSprite != null) { var image = BokumyakuUiParts.Panel(top.transform,"WaveRing",new Vector2(0,-.2f),new Vector2(.22f,1),ivory); image.sprite = ringSprite; image.preserveAspect = true; }
             Label(top.transform,"WaveTitle",0,.59f,.22f,.88f,11,ivory).text = "WAVE";
             wave = Label(top.transform,"Wave",0,.02f,.22f,.60f,29,new Color(.8f,.12f,.08f));
@@ -105,8 +106,11 @@ namespace Bokumyaku.Presentation
                 var cardColors=cards[i].colors; cardColors.disabledColor=new Color(.86f,.85f,.81f,1); cardColors.highlightedColor=new Color(1,1,.94f); cards[i].colors=cardColors;
                 // Keep the rectangular button hit area; the non-raycast brush frame is purely visual.
                 var edge=BokumyakuUiParts.Panel(cards[i].transform,"BrushEdge",Vector2.zero,Vector2.one,black);
-                edge.sprite=brushFrameSprite; edge.type=UnityEngine.UI.Image.Type.Sliced;
-                edge.pixelsPerUnitMultiplier=3.5f;
+                edge.sprite=cardFrameSprite!=null?cardFrameSprite:brushFrameSprite;
+                edge.color=cardFrameSprite!=null?Color.white:black;
+                edge.type=UnityEngine.UI.Image.Type.Sliced;
+                edge.fillCenter=false;
+                edge.pixelsPerUnitMultiplier=cardFrameSprite!=null?13f:3.5f;
                 var rim=BokumyakuUiParts.Panel(cards[i].transform,"GoldEmblemRim",new Vector2(.015f,.345f),new Vector2(.985f,.99f),new Color(.7f,.52f,.22f,.7f));
                 rim.sprite=ringSprite; rim.preserveAspect=true;
                 var emblem=BokumyakuUiParts.Panel(cards[i].transform,"Emblem",new Vector2(.04f,.35f),new Vector2(.96f,.98f),black); emblem.sprite=ringSprite; emblem.preserveAspect=true;

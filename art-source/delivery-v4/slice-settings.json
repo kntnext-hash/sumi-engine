@@ -1,0 +1,11 @@
+{
+  "file": "card_ink_gold_04.png",
+  "sourceSize": [1024,1536],
+  "borderLeftBottomRightTop": [180,220,180,220],
+  "imageType": "Sliced",
+  "fillCenter": false,
+  "previewCornerSize": [12,15],
+  "previewCardSizes": [[68,96],[68,120]],
+  "previewCanvasWidth": 360,
+  "note": "Border values are source pixels. Rescale after import resizing; preserve RGB with white Image tint. Separate washi backing and procedural icon required."
+}

@@ -70,3 +70,16 @@
 
 書込みはart-source/delivery-v3/と本書への追記のみ。ゲームコード・STATE/TASKS・Runtime・Unity・Git操作なし。統合担当が枠とボタン色面を合わせ、ホームと研究で判読性を確認する。
 統合追記: delivery-v3の枠をメニューボタンへ採用。ImportMenuFrame.csでSprite設定、fillCenter=false。1080×2400ホーム目視と主要操作合格。menu-home-1080x2400.png参照。
+
+# 素材納品 — delivery-v4 / 縦札の墨縁＋控えめな金縁
+
+2026-10-23 JST。upgrade-help.png/result-reward.pngの5枚カードを確認し、68px幅で輪郭を残す不規則な墨縁1種類を制作。細い鈍金の内縁を添え、文字・アイコン・和紙背景は含めない。既存素材は未変更。
+
+- [納品PNG](../art-source/delivery-v4/card_ink_gold_04.png): 1024×1536、RGBA、1,425,075bytes。SHA256 `41130E991704066A47E30FDC805096AC246A882FD75F5DA4FB3628A8E476E0EF`。
+- [由来・検査詳細](../art-source/delivery-v4/README.md)、[全文プロンプト](../art-source/delivery-v4/PROMPT.txt)、[実alpha検査](../art-source/delivery-v4/inspection-final.json)。imagegen専用ツールで新規1回、修正0回。参考は目視のみ、生成に画像入力なし。
+- [360px幅プレビュー](../art-source/delivery-v4/preview-360.png): 原比率68×102、九分割68×96/68×120、同じ素材の5枚間隔表示。黒の輪郭と細い金縁を確認。小表示で微細な掠れは省略される。
+- [9-slice案](../art-source/delivery-v4/slice-settings.json): 原本pxでL180/B220/R180/T220、Fill Center=false。白tintでRGBを保持。previewの隅12×15px。import縮小時はBorderも換算。
+- 中心点alpha=0。ただし中央セル727,744画素のうち1,729画素に微小alphaが残るため中央セル非描画を推奨。左/下端に微小alphaが接し、厳密な外周透明余白4%は未達。主線に見える端切れは認めず。
+- Unity未統合。既存アイコン/文字との重ね、無効状態、紙背景、実機判読性は統合担当の確認待ち。元画像を画素加工せず保存。今回書込みはdelivery-v4と本書のみ、Unity/ゲームコード/Resources/Git操作なし。
+
+統合追記: ImportCardFrame.csでL180/B220/R180/T220、Sprite Sliced/fillCenter=false、白tint/PPU multiplier13として戦闘5カードへ採用。360×640で墨不足の無効状態、枠と名前/価格の非干渉を確認。evidence/card-frame.json/png。検証はEditor Play限定。

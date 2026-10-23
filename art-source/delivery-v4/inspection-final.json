@@ -1,0 +1,19 @@
+{
+  "file": "card_ink_gold_04.png",
+  "width": 1024,
+  "height": 1536,
+  "format": "Format32bppArgb",
+  "bytes": 1425075,
+  "alphaZero": 1212560,
+  "alphaPartial": 360304,
+  "alphaOpaque": 0,
+  "bounds": [
+    0,
+    9,
+    1006,
+    1535
+  ],
+  "centerAlpha": 0,
+  "sliceCenterNonzeroAlpha": 1729,
+  "sha256": "41130E991704066A47E30FDC805096AC246A882FD75F5DA4FB3628A8E476E0EF"
+}
