@@ -1,0 +1,151 @@
+diff --git a/UnitySandbox/Assets/BokumyakuPrototype/Presentation/Drawing/DirtyInkSurface.cs b/UnitySandbox/Assets/BokumyakuPrototype/Presentation/Drawing/DirtyInkSurface.cs
+index d6118ae..9d59428 100644
+--- a/UnitySandbox/Assets/BokumyakuPrototype/Presentation/Drawing/DirtyInkSurface.cs
++++ b/UnitySandbox/Assets/BokumyakuPrototype/Presentation/Drawing/DirtyInkSurface.cs
+@@ -11,11 +11,13 @@ namespace Bokumyaku.Presentation.Drawing
+     public sealed class DirtyInkSurface : IDisposable
+     {
+         public const int TileSize = 32;
++        public const int TilesPerBatch = 8;
+         readonly SumiEngineCore core;
+         readonly Texture2D staging;
+         readonly Texture2D clearTemplate;
+         readonly bool[] dirty;
+-        readonly Color32[] tilePixels = new Color32[TileSize * TileSize];
++        readonly Color32[] tilePixels = new Color32[TileSize * TileSize * TilesPerBatch];
++        readonly int[] batchTiles = new int[TilesPerBatch];
+         readonly int columns, rows;
+         InkPoint previous;
+         float extent;
+@@ -27,6 +29,7 @@ namespace Bokumyaku.Presentation.Drawing
+         public int ClearCount { get; private set; }
+         public long UpdatedPixels { get; private set; }
+         public int DirtyUploads { get; private set; }
++        public int StagingApplyCount { get; private set; }
+         public RectInt LastDirtyRect { get; private set; }
+         public int PendingTiles { get; private set; }
+         public static bool IsSupported => (SystemInfo.copyTextureSupport & CopyTextureSupport.Basic) != 0;
+@@ -39,7 +42,7 @@ namespace Bokumyaku.Presentation.Drawing
+             columns = (width + TileSize - 1) / TileSize;
+             rows = (height + TileSize - 1) / TileSize;
+             dirty = new bool[columns * rows];
+-            staging = NewTexture(TileSize, TileSize, "SUMI dirty tile staging");
++            staging = NewTexture(TileSize, TileSize * TilesPerBatch, "SUMI dirty tile staging");
+             clearTemplate = NewTexture(width, height, "SUMI transparent reset template");
+             clearTemplate.SetPixels32(new Color32[width * height]);
+             clearTemplate.Apply(false, true);
+@@ -113,37 +116,54 @@ namespace Bokumyaku.Presentation.Drawing
+         public int Flush()
+         {
+             ThrowIfDisposed();
+-            int uploads = 0;
+             if (PendingTiles == 0) return 0;
+             using (BattleTiming.Measure("InkFlush", .01))
+             {
+-            int left = Width, bottom = Height, right = 0, top = 0;
+-            for (int ty = 0; ty < rows; ty++) for (int tx = 0; tx < columns; tx++)
+-            {
+-                int index = ty * columns + tx;
+-                if (!dirty[index]) continue;
+-                int px = tx * TileSize, py = ty * TileSize;
+-                int w = Math.Min(TileSize, Width - px), h = Math.Min(TileSize, Height - py);
+-                for (int y = 0; y < h; y++) for (int x = 0; x < w; x++)
++                int uploads = 0, batchCount = 0;
++                int left = Width, bottom = Height, right = 0, top = 0;
++                for (int index = 0; index < dirty.Length; index++)
+                 {
+-                    float pigment = core.Paper.PigmentAt(px + x, py + y);
+-                    byte alpha = (byte)Mathf.RoundToInt(255f * (1f - Mathf.Exp(-2.5f * pigment)));
+-                    tilePixels[y * TileSize + x] = new Color32(255, 255, 255, alpha);
++                    if (!dirty[index]) continue;
++                    int px = (index % columns) * TileSize, py = (index / columns) * TileSize;
++                    int w = Math.Min(TileSize, Width - px), h = Math.Min(TileSize, Height - py);
++                    int offset = batchCount * TileSize * TileSize;
++                    for (int y = 0; y < h; y++) for (int x = 0; x < w; x++)
++                    {
++                        float pigment = core.Paper.PigmentAt(px + x, py + y);
++                        byte alpha = (byte)Mathf.RoundToInt(255f * (1f - Mathf.Exp(-2.5f * pigment)));
++                        tilePixels[offset + y * TileSize + x] = new Color32(255, 255, 255, alpha);
++                    }
++                    batchTiles[batchCount++] = index;
++                    uploads++;
++                    left = Math.Min(left, px); bottom = Math.Min(bottom, py);
++                    right = Math.Max(right, px + w); top = Math.Max(top, py + h);
++                    if (batchCount == TilesPerBatch) { UploadBatch(batchCount); batchCount = 0; }
+                 }
+-                using (BattleTiming.Measure("InkTile.SetPixels")) staging.SetPixels32(tilePixels);
+-                using (BattleTiming.Measure("InkTile.Apply")) staging.Apply(false, false);
+-                using (BattleTiming.Measure("InkTile.Copy")) Graphics.CopyTexture(staging, 0, 0, 0, 0, w, h, Texture, 0, 0, px, py);
++                if (batchCount > 0) UploadBatch(batchCount);
++                LastDirtyRect = new RectInt(left, bottom, right - left, top - bottom);
++                core.Paper.MarkRendered();
++                return uploads;
++            }
++        }
++
++        void UploadBatch(int count)
++        {
++            // Fixed 32 KiB source, at most eight dirty destination regions per Apply.
++            // Unused slots and clipped edges are never copied into the destination.
++            using (BattleTiming.Measure("InkTile.SetPixels")) staging.SetPixels32(tilePixels);
++            using (BattleTiming.Measure("InkTile.Apply")) staging.Apply(false, false);
++            StagingApplyCount++;
++            for (int slot = 0; slot < count; slot++)
++            {
++                int index = batchTiles[slot];
++                int px = (index % columns) * TileSize, py = (index / columns) * TileSize;
++                int w = Math.Min(TileSize, Width - px), h = Math.Min(TileSize, Height - py);
++                using (BattleTiming.Measure("InkTile.Copy"))
++                    Graphics.CopyTexture(staging, 0, 0, 0, slot * TileSize, w, h, Texture, 0, 0, px, py);
+                 dirty[index] = false;
+                 PendingTiles--;
+                 DirtyUploads++;
+                 UpdatedPixels += w * h;
+-                uploads++;
+-                left = Math.Min(left, px); bottom = Math.Min(bottom, py);
+-                right = Math.Max(right, px + w); top = Math.Max(top, py + h);
+-            }
+-            LastDirtyRect = new RectInt(left, bottom, right - left, top - bottom);
+-            core.Paper.MarkRendered();
+-            return uploads;
+             }
+         }
+ 
+diff --git a/UnitySandbox/Assets/BokumyakuPrototype/RenderingTests/Editor/DirtyInkSurfaceTests.cs b/UnitySandbox/Assets/BokumyakuPrototype/RenderingTests/Editor/DirtyInkSurfaceTests.cs
+index 0994cd3..13f5dd5 100644
+--- a/UnitySandbox/Assets/BokumyakuPrototype/RenderingTests/Editor/DirtyInkSurfaceTests.cs
++++ b/UnitySandbox/Assets/BokumyakuPrototype/RenderingTests/Editor/DirtyInkSurfaceTests.cs
+@@ -116,6 +116,33 @@ namespace Bokumyaku.Drawing.Tests
+             }
+         }
+ 
++        [Test]
++        public void SeventeenDirtyTilesUseThreeUploadsAndDoNotCopyUnusedSlots()
++        {
++            if (!DirtyInkSurface.IsSupported) Assert.Ignore("GPU region copy unavailable.");
++            using (var surface = new DirtyInkSurface(256, 128))
++            {
++                var brush = InkBrushSettings.Dense; brush.radius = 1;
++                for (int i = 0; i < 17; i++)
++                {
++                    surface.Begin(new InkPoint(16 + i % 8 * 32, 16 + i / 8 * 32, 0, 1), brush, 42 + i);
++                    surface.End();
++                }
++                Assert.AreEqual(17, surface.PendingTiles);
++                Assert.AreEqual(17, surface.Flush());
++                Assert.AreEqual(3, surface.StagingApplyCount);
++                Assert.AreEqual(17 * 32 * 32, surface.UpdatedPixels);
++                Assert.AreEqual(0, surface.Flush());
++                Assert.AreEqual(3, surface.StagingApplyCount);
++                AssertGpuMatchesPigment(surface);
++                surface.Clear();
++                surface.Begin(new InkPoint(240, 112, 0, 1), brush, 99); surface.End();
++                Assert.AreEqual(1, surface.Flush());
++                Assert.AreEqual(4, surface.StagingApplyCount);
++                AssertGpuMatchesPigment(surface);
++            }
++        }
++
+         static void AssertGpuMatchesPigment(DirtyInkSurface surface)
+         {
+             var previous = RenderTexture.active;

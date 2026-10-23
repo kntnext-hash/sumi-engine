@@ -1,0 +1,22 @@
+[
+  {
+    "name": "player",
+    "exitCode": 0,
+    "elapsedSeconds": 111.668,
+    "passed": true,
+    "singleThreadRenderingRequested": true,
+    "graphicsMode": [
+      "GfxDevice: creating device client; kGfxThreadingModeDirect"
+    ]
+  },
+  {
+    "name": "player-resume",
+    "exitCode": 0,
+    "elapsedSeconds": 17.633,
+    "passed": true,
+    "singleThreadRenderingRequested": true,
+    "graphicsMode": [
+      "GfxDevice: creating device client; kGfxThreadingModeDirect"
+    ]
+  }
+]

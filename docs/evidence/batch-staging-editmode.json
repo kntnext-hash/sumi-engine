@@ -1,0 +1,73 @@
+{
+  "success": true,
+  "command": "command test",
+  "data": {
+    "command": "test",
+    "parameters": {
+      "mode": "editor",
+      "filter": "DirtyInkSurfaceTests",
+      "async_tests": "false",
+      "timeout": "25"
+    },
+    "result": {
+      "Summary": {
+        "Total": 5,
+        "Passed": 5,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "Bokumyaku.Drawing.Tests.DirtyInkSurfaceTests.ConsecutiveFlushesPreserveGpuPigmentAndReuseStagingSource",
+          "Status": "Passed",
+          "Duration": 0.1428727,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Bokumyaku.Drawing.Tests.DirtyInkSurfaceTests.RepeatedResetDiscardsPendingStrokeAndAcceptsNewPartialMarks",
+          "Status": "Passed",
+          "Duration": 0.0274848,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Bokumyaku.Drawing.Tests.DirtyInkSurfaceTests.SeventeenDirtyTilesUseThreeUploadsAndDoNotCopyUnusedSlots",
+          "Status": "Passed",
+          "Duration": 0.0085269,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Bokumyaku.Drawing.Tests.DirtyInkSurfaceTests.SparseMarksUsePartialUploadsAndPreserveExistingPigment",
+          "Status": "Passed",
+          "Duration": 0.0082892,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Bokumyaku.Drawing.Tests.DirtyInkSurfaceTests.SplatterAndEdgeSegmentsCopyAllNonzeroPixels",
+          "Status": "Passed",
+          "Duration": 0.0105458,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 4.96,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: DirtyInkSurfaceTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\UnitySandbox"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}
+

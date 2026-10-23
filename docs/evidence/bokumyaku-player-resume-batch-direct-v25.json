@@ -1,0 +1,3396 @@
+{
+    "version": "6000.3.26f1",
+    "error": "",
+    "slowSections": [
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 0,
+            "milliseconds": 15.9245
+        },
+        {
+            "section": "InkFlush",
+            "frame": 1,
+            "milliseconds": 4.3898
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1,
+            "milliseconds": 40.312
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1,
+            "milliseconds": 40.8549
+        },
+        {
+            "section": "Loop.EarlyUpdate",
+            "frame": 1,
+            "milliseconds": 1229.9802
+        },
+        {
+            "section": "Loop.PreLateUpdate",
+            "frame": 1,
+            "milliseconds": 222.4578
+        },
+        {
+            "section": "PostLate.FinishFrameRendering",
+            "frame": 1,
+            "milliseconds": 184.7739
+        },
+        {
+            "section": "Loop.PostLateUpdate",
+            "frame": 1,
+            "milliseconds": 188.5382
+        },
+        {
+            "section": "InkFlush",
+            "frame": 2,
+            "milliseconds": 2.6975
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2,
+            "milliseconds": 36.4974
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2,
+            "milliseconds": 36.4987
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 2,
+            "milliseconds": 51.518
+        },
+        {
+            "section": "PostLate.FinishFrameRendering",
+            "frame": 2,
+            "milliseconds": 11.3327
+        },
+        {
+            "section": "Loop.PostLateUpdate",
+            "frame": 2,
+            "milliseconds": 12.1231
+        },
+        {
+            "section": "InkFlush",
+            "frame": 3,
+            "milliseconds": 2.0447
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3,
+            "milliseconds": 16.2661
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3,
+            "milliseconds": 16.2671
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 3,
+            "milliseconds": 25.4645
+        },
+        {
+            "section": "Loop.PostLateUpdate",
+            "frame": 3,
+            "milliseconds": 11.5151
+        },
+        {
+            "section": "InkFlush",
+            "frame": 4,
+            "milliseconds": 2.5164
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4,
+            "milliseconds": 36.5504
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4,
+            "milliseconds": 36.551
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 4,
+            "milliseconds": 36.6603
+        },
+        {
+            "section": "InkFlush",
+            "frame": 5,
+            "milliseconds": 2.4047
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5,
+            "milliseconds": 18.7872
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5,
+            "milliseconds": 18.7879
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 5,
+            "milliseconds": 18.8908
+        },
+        {
+            "section": "InkFlush",
+            "frame": 6,
+            "milliseconds": 2.7292
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 6,
+            "milliseconds": 38.4859
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 6,
+            "milliseconds": 38.4865
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 6,
+            "milliseconds": 38.5603
+        },
+        {
+            "section": "InkFlush",
+            "frame": 7,
+            "milliseconds": 2.0798
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 7,
+            "milliseconds": 20.0144
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 7,
+            "milliseconds": 20.0172
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 7,
+            "milliseconds": 20.13
+        },
+        {
+            "section": "InkFlush",
+            "frame": 8,
+            "milliseconds": 1.9904
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 8,
+            "milliseconds": 38.9481
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 8,
+            "milliseconds": 38.9486
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 8,
+            "milliseconds": 39.0279
+        },
+        {
+            "section": "InkFlush",
+            "frame": 9,
+            "milliseconds": 2.193
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 9,
+            "milliseconds": 18.8731
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 9,
+            "milliseconds": 18.8739
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 9,
+            "milliseconds": 18.9784
+        },
+        {
+            "section": "InkFlush",
+            "frame": 10,
+            "milliseconds": 2.8967
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 10,
+            "milliseconds": 36.7087
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 10,
+            "milliseconds": 36.7093
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 10,
+            "milliseconds": 36.7883
+        },
+        {
+            "section": "InkFlush",
+            "frame": 11,
+            "milliseconds": 2.2068
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 11,
+            "milliseconds": 18.6514
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 11,
+            "milliseconds": 18.6522
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 11,
+            "milliseconds": 18.7737
+        },
+        {
+            "section": "InkFlush",
+            "frame": 12,
+            "milliseconds": 3.3271
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 12,
+            "milliseconds": 38.3702
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 12,
+            "milliseconds": 38.3707
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 12,
+            "milliseconds": 38.4355
+        },
+        {
+            "section": "InkFlush",
+            "frame": 13,
+            "milliseconds": 2.3745
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 13,
+            "milliseconds": 19.1729
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 13,
+            "milliseconds": 19.1736
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 13,
+            "milliseconds": 19.2528
+        },
+        {
+            "section": "InkFlush",
+            "frame": 14,
+            "milliseconds": 2.7446
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 14,
+            "milliseconds": 37.1008
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 14,
+            "milliseconds": 37.1015
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 14,
+            "milliseconds": 37.174
+        },
+        {
+            "section": "InkFlush",
+            "frame": 15,
+            "milliseconds": 2.3006
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 15,
+            "milliseconds": 17.9104
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 15,
+            "milliseconds": 17.9228
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 15,
+            "milliseconds": 18.0683
+        },
+        {
+            "section": "InkFlush",
+            "frame": 16,
+            "milliseconds": 0.8526
+        },
+        {
+            "section": "InkFlush",
+            "frame": 17,
+            "milliseconds": 0.6901
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 17,
+            "milliseconds": 12.8601
+        },
+        {
+            "section": "InkFlush",
+            "frame": 18,
+            "milliseconds": 0.5893
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 18,
+            "milliseconds": 12.7807
+        },
+        {
+            "section": "InkFlush",
+            "frame": 19,
+            "milliseconds": 0.5162
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 19,
+            "milliseconds": 11.4515
+        },
+        {
+            "section": "InkFlush",
+            "frame": 20,
+            "milliseconds": 0.6225
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 20,
+            "milliseconds": 12.9991
+        },
+        {
+            "section": "InkFlush",
+            "frame": 21,
+            "milliseconds": 0.6154
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 21,
+            "milliseconds": 12.8503
+        },
+        {
+            "section": "InkFlush",
+            "frame": 22,
+            "milliseconds": 0.7683
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 22,
+            "milliseconds": 12.6738
+        },
+        {
+            "section": "InkFlush",
+            "frame": 23,
+            "milliseconds": 0.6051
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 23,
+            "milliseconds": 12.9296
+        },
+        {
+            "section": "InkFlush",
+            "frame": 24,
+            "milliseconds": 0.5708
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 24,
+            "milliseconds": 12.9578
+        },
+        {
+            "section": "InkFlush",
+            "frame": 25,
+            "milliseconds": 0.8104
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 25,
+            "milliseconds": 12.6458
+        },
+        {
+            "section": "InkFlush",
+            "frame": 26,
+            "milliseconds": 0.6091
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 26,
+            "milliseconds": 12.9039
+        },
+        {
+            "section": "InkFlush",
+            "frame": 27,
+            "milliseconds": 0.6226
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 27,
+            "milliseconds": 12.7873
+        },
+        {
+            "section": "InkFlush",
+            "frame": 28,
+            "milliseconds": 0.8907
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 28,
+            "milliseconds": 12.5766
+        },
+        {
+            "section": "InkFlush",
+            "frame": 29,
+            "milliseconds": 0.5348
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 29,
+            "milliseconds": 12.9743
+        },
+        {
+            "section": "InkFlush",
+            "frame": 30,
+            "milliseconds": 0.527
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 30,
+            "milliseconds": 13.1675
+        },
+        {
+            "section": "InkFlush",
+            "frame": 31,
+            "milliseconds": 0.7376
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 31,
+            "milliseconds": 12.196
+        },
+        {
+            "section": "InkFlush",
+            "frame": 32,
+            "milliseconds": 0.6058
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 32,
+            "milliseconds": 12.879
+        },
+        {
+            "section": "InkFlush",
+            "frame": 33,
+            "milliseconds": 0.7188
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 33,
+            "milliseconds": 12.8427
+        },
+        {
+            "section": "InkFlush",
+            "frame": 34,
+            "milliseconds": 0.7127
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 34,
+            "milliseconds": 12.9075
+        },
+        {
+            "section": "InkFlush",
+            "frame": 35,
+            "milliseconds": 0.8774
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 35,
+            "milliseconds": 12.6867
+        },
+        {
+            "section": "InkFlush",
+            "frame": 36,
+            "milliseconds": 0.6322
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 36,
+            "milliseconds": 12.9878
+        },
+        {
+            "section": "InkFlush",
+            "frame": 37,
+            "milliseconds": 1.336
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 37,
+            "milliseconds": 15.3989
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 37,
+            "milliseconds": 15.4656
+        },
+        {
+            "section": "InkFlush",
+            "frame": 38,
+            "milliseconds": 1.2373
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 38,
+            "milliseconds": 14.0556
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 38,
+            "milliseconds": 14.1149
+        },
+        {
+            "section": "InkFlush",
+            "frame": 39,
+            "milliseconds": 1.2494
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 39,
+            "milliseconds": 13.9475
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 39,
+            "milliseconds": 14.0289
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 40,
+            "milliseconds": 15.2411
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 41,
+            "milliseconds": 15.1971
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 42,
+            "milliseconds": 15.0618
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 43,
+            "milliseconds": 15.1171
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 44,
+            "milliseconds": 15.1435
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 45,
+            "milliseconds": 15.1247
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 46,
+            "milliseconds": 12.3073
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 47,
+            "milliseconds": 13.8463
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 48,
+            "milliseconds": 14.7306
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 49,
+            "milliseconds": 14.7223
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 50,
+            "milliseconds": 14.8427
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 51,
+            "milliseconds": 15.2405
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 52,
+            "milliseconds": 15.076
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 53,
+            "milliseconds": 15.0764
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 54,
+            "milliseconds": 15.2874
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 55,
+            "milliseconds": 14.8322
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 56,
+            "milliseconds": 15.0188
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 57,
+            "milliseconds": 15.3233
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 58,
+            "milliseconds": 14.7707
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 59,
+            "milliseconds": 15.2143
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 60,
+            "milliseconds": 15.302
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 61,
+            "milliseconds": 15.0309
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 62,
+            "milliseconds": 14.9263
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 63,
+            "milliseconds": 15.1402
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 64,
+            "milliseconds": 15.2214
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 65,
+            "milliseconds": 14.9012
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 66,
+            "milliseconds": 14.7308
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 67,
+            "milliseconds": 15.1412
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 68,
+            "milliseconds": 15.1025
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 69,
+            "milliseconds": 15.1207
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 70,
+            "milliseconds": 15.1533
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 71,
+            "milliseconds": 15.1167
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 72,
+            "milliseconds": 15.1052
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 73,
+            "milliseconds": 15.2316
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 74,
+            "milliseconds": 15.1724
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 75,
+            "milliseconds": 15.2043
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 76,
+            "milliseconds": 15.1484
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 77,
+            "milliseconds": 14.7659
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 78,
+            "milliseconds": 15.12
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 79,
+            "milliseconds": 14.8608
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 80,
+            "milliseconds": 15.1927
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 81,
+            "milliseconds": 15.0287
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 82,
+            "milliseconds": 15.2087
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 83,
+            "milliseconds": 15.1668
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 84,
+            "milliseconds": 15.095
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 85,
+            "milliseconds": 15.0209
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 86,
+            "milliseconds": 15.2823
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 87,
+            "milliseconds": 15.1924
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 88,
+            "milliseconds": 14.8609
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 89,
+            "milliseconds": 15.1916
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 90,
+            "milliseconds": 15.2433
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 91,
+            "milliseconds": 15.1242
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 92,
+            "milliseconds": 14.8727
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 93,
+            "milliseconds": 14.8998
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 94,
+            "milliseconds": 15.0147
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 95,
+            "milliseconds": 14.6437
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 96,
+            "milliseconds": 15.1205
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 97,
+            "milliseconds": 14.2853
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 98,
+            "milliseconds": 14.7676
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 99,
+            "milliseconds": 15.2556
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 100,
+            "milliseconds": 14.6298
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 101,
+            "milliseconds": 15.2094
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 102,
+            "milliseconds": 14.7315
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 103,
+            "milliseconds": 14.9945
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 104,
+            "milliseconds": 15.1033
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 105,
+            "milliseconds": 15.1083
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 106,
+            "milliseconds": 15.0742
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 107,
+            "milliseconds": 15.0701
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 108,
+            "milliseconds": 14.8972
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 109,
+            "milliseconds": 15.0866
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 110,
+            "milliseconds": 14.7814
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 111,
+            "milliseconds": 15.2766
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 112,
+            "milliseconds": 15.1237
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 113,
+            "milliseconds": 15.0172
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 114,
+            "milliseconds": 14.8303
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 115,
+            "milliseconds": 14.8243
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 116,
+            "milliseconds": 15.0574
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 117,
+            "milliseconds": 15.2295
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 118,
+            "milliseconds": 15.1348
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 119,
+            "milliseconds": 15.0017
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 120,
+            "milliseconds": 15.2692
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 121,
+            "milliseconds": 15.1778
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 122,
+            "milliseconds": 14.9645
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 123,
+            "milliseconds": 15.073
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 124,
+            "milliseconds": 15.1964
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 125,
+            "milliseconds": 15.0213
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 126,
+            "milliseconds": 14.6646
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 127,
+            "milliseconds": 15.0964
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 128,
+            "milliseconds": 15.1949
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 129,
+            "milliseconds": 15.115
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 130,
+            "milliseconds": 15.2619
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 131,
+            "milliseconds": 15.2487
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 132,
+            "milliseconds": 14.9951
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 133,
+            "milliseconds": 15.0931
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 134,
+            "milliseconds": 15.1674
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 135,
+            "milliseconds": 14.7812
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 136,
+            "milliseconds": 14.7657
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 137,
+            "milliseconds": 15.0615
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 138,
+            "milliseconds": 15.0838
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 139,
+            "milliseconds": 15.1269
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 140,
+            "milliseconds": 14.9528
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 141,
+            "milliseconds": 15.1968
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 142,
+            "milliseconds": 14.6716
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 143,
+            "milliseconds": 15.1054
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 144,
+            "milliseconds": 15.0789
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 145,
+            "milliseconds": 15.062
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 146,
+            "milliseconds": 14.8054
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 147,
+            "milliseconds": 15.2836
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 148,
+            "milliseconds": 15.1778
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 149,
+            "milliseconds": 14.8077
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 150,
+            "milliseconds": 15.1936
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 151,
+            "milliseconds": 15.0836
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 152,
+            "milliseconds": 15.1524
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 153,
+            "milliseconds": 15.231
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 154,
+            "milliseconds": 14.9706
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 155,
+            "milliseconds": 15.1285
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 156,
+            "milliseconds": 15.1318
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 157,
+            "milliseconds": 15.1004
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 158,
+            "milliseconds": 15.0096
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 159,
+            "milliseconds": 15.1436
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 160,
+            "milliseconds": 15.024
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 161,
+            "milliseconds": 14.9773
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 162,
+            "milliseconds": 14.5202
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 163,
+            "milliseconds": 15.0323
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 164,
+            "milliseconds": 15.2512
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 165,
+            "milliseconds": 15.1115
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 166,
+            "milliseconds": 14.9567
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 167,
+            "milliseconds": 14.625
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 168,
+            "milliseconds": 14.8317
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 169,
+            "milliseconds": 15.0763
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 170,
+            "milliseconds": 15.1382
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 171,
+            "milliseconds": 15.004
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 172,
+            "milliseconds": 15.1075
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 173,
+            "milliseconds": 15.022
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 174,
+            "milliseconds": 14.9865
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 175,
+            "milliseconds": 15.0312
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 176,
+            "milliseconds": 14.9959
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 177,
+            "milliseconds": 14.7826
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 178,
+            "milliseconds": 15.2516
+        },
+        {
+            "section": "PostLate.PlayerUpdateCanvases",
+            "frame": 179,
+            "milliseconds": 18.5805
+        },
+        {
+            "section": "Loop.PostLateUpdate",
+            "frame": 179,
+            "milliseconds": 20.4024
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 181,
+            "milliseconds": 14.7572
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 182,
+            "milliseconds": 14.8524
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 183,
+            "milliseconds": 15.1143
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 184,
+            "milliseconds": 14.6946
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 185,
+            "milliseconds": 14.7221
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 186,
+            "milliseconds": 15.0592
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 187,
+            "milliseconds": 14.94
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 188,
+            "milliseconds": 15.1182
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 189,
+            "milliseconds": 14.9016
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 190,
+            "milliseconds": 15.0661
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 191,
+            "milliseconds": 15.0698
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 192,
+            "milliseconds": 15.1419
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 193,
+            "milliseconds": 14.869
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 194,
+            "milliseconds": 14.7695
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 195,
+            "milliseconds": 14.9848
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 196,
+            "milliseconds": 15.0275
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 197,
+            "milliseconds": 15.0342
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 198,
+            "milliseconds": 15.0582
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 199,
+            "milliseconds": 15.1127
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 200,
+            "milliseconds": 15.109
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 201,
+            "milliseconds": 14.7815
+        },
+        {
+            "section": "InkFlush",
+            "frame": 202,
+            "milliseconds": 0.7321
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 202,
+            "milliseconds": 11.9645
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 203,
+            "milliseconds": 15.051
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 204,
+            "milliseconds": 15.1042
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 205,
+            "milliseconds": 14.9066
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 206,
+            "milliseconds": 15.0183
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 207,
+            "milliseconds": 14.8135
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 208,
+            "milliseconds": 15.0145
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 209,
+            "milliseconds": 14.7656
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 210,
+            "milliseconds": 14.9257
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 211,
+            "milliseconds": 14.6882
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 212,
+            "milliseconds": 14.8195
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 213,
+            "milliseconds": 14.987
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 214,
+            "milliseconds": 14.8293
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 215,
+            "milliseconds": 14.9885
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 216,
+            "milliseconds": 14.6187
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 217,
+            "milliseconds": 15.1275
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 218,
+            "milliseconds": 15.018
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 219,
+            "milliseconds": 14.7523
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 220,
+            "milliseconds": 14.2363
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 221,
+            "milliseconds": 15.1357
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 222,
+            "milliseconds": 14.3956
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 223,
+            "milliseconds": 14.9315
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 224,
+            "milliseconds": 14.7347
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 225,
+            "milliseconds": 15.2345
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 226,
+            "milliseconds": 14.8842
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 227,
+            "milliseconds": 15.0291
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 228,
+            "milliseconds": 14.7999
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 229,
+            "milliseconds": 14.0807
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 230,
+            "milliseconds": 15.0929
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 231,
+            "milliseconds": 15.1361
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 232,
+            "milliseconds": 14.3675
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 233,
+            "milliseconds": 15.1771
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 234,
+            "milliseconds": 14.9389
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 235,
+            "milliseconds": 15.0291
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 236,
+            "milliseconds": 15.029
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 237,
+            "milliseconds": 15.0835
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 238,
+            "milliseconds": 15.211
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 239,
+            "milliseconds": 14.9519
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 240,
+            "milliseconds": 15.1867
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 241,
+            "milliseconds": 15.0445
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 242,
+            "milliseconds": 15.0958
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 243,
+            "milliseconds": 15.0559
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 244,
+            "milliseconds": 14.6473
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 245,
+            "milliseconds": 14.7412
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 246,
+            "milliseconds": 15.0145
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 247,
+            "milliseconds": 14.8103
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 248,
+            "milliseconds": 15.0035
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 249,
+            "milliseconds": 15.1269
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 250,
+            "milliseconds": 15.0806
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 251,
+            "milliseconds": 15.0839
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 252,
+            "milliseconds": 15.0311
+        },
+        {
+            "section": "InkFlush",
+            "frame": 253,
+            "milliseconds": 0.5522
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 253,
+            "milliseconds": 13.8688
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 254,
+            "milliseconds": 14.9299
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 255,
+            "milliseconds": 15.1571
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 256,
+            "milliseconds": 14.787
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 257,
+            "milliseconds": 14.9639
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 258,
+            "milliseconds": 14.8247
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 259,
+            "milliseconds": 14.9584
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 260,
+            "milliseconds": 14.8891
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 261,
+            "milliseconds": 14.9043
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 262,
+            "milliseconds": 14.8898
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 263,
+            "milliseconds": 14.5434
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 264,
+            "milliseconds": 14.5684
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 265,
+            "milliseconds": 15.0239
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 266,
+            "milliseconds": 14.8787
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 267,
+            "milliseconds": 14.9123
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 268,
+            "milliseconds": 14.9507
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 269,
+            "milliseconds": 15.0569
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 270,
+            "milliseconds": 14.9327
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 271,
+            "milliseconds": 14.8843
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 272,
+            "milliseconds": 14.8752
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 273,
+            "milliseconds": 15.2222
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 274,
+            "milliseconds": 15.0849
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 275,
+            "milliseconds": 15.0591
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 276,
+            "milliseconds": 15.2132
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 277,
+            "milliseconds": 14.7962
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 278,
+            "milliseconds": 15.4292
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 279,
+            "milliseconds": 15.2153
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 280,
+            "milliseconds": 15.1375
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 281,
+            "milliseconds": 14.8212
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 282,
+            "milliseconds": 14.9574
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 283,
+            "milliseconds": 15.1534
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 284,
+            "milliseconds": 15.1226
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 285,
+            "milliseconds": 15.0988
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 286,
+            "milliseconds": 15.1431
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 287,
+            "milliseconds": 15.1987
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 288,
+            "milliseconds": 15.1369
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 289,
+            "milliseconds": 15.1372
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 290,
+            "milliseconds": 14.9848
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 291,
+            "milliseconds": 15.078
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 292,
+            "milliseconds": 15.031
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 293,
+            "milliseconds": 15.2678
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 294,
+            "milliseconds": 14.8781
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 295,
+            "milliseconds": 15.0871
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 296,
+            "milliseconds": 15.1263
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 297,
+            "milliseconds": 15.0122
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 298,
+            "milliseconds": 15.26
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 299,
+            "milliseconds": 14.4794
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 300,
+            "milliseconds": 15.105
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 301,
+            "milliseconds": 14.9425
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 302,
+            "milliseconds": 15.2281
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 303,
+            "milliseconds": 14.9407
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 304,
+            "milliseconds": 15.126
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 305,
+            "milliseconds": 15.1288
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 306,
+            "milliseconds": 14.802
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 307,
+            "milliseconds": 14.7491
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 308,
+            "milliseconds": 14.8372
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 309,
+            "milliseconds": 15.1458
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 310,
+            "milliseconds": 15.0807
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 311,
+            "milliseconds": 15.1135
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 312,
+            "milliseconds": 15.1229
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 313,
+            "milliseconds": 14.8493
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 314,
+            "milliseconds": 15.0999
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 315,
+            "milliseconds": 15.0967
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 316,
+            "milliseconds": 14.7063
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 317,
+            "milliseconds": 15.0664
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 318,
+            "milliseconds": 14.9333
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 319,
+            "milliseconds": 14.9285
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 320,
+            "milliseconds": 14.8892
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 321,
+            "milliseconds": 14.8294
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 322,
+            "milliseconds": 14.9583
+        },
+        {
+            "section": "InkFlush",
+            "frame": 323,
+            "milliseconds": 0.5108
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 323,
+            "milliseconds": 14.0985
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 324,
+            "milliseconds": 15.0186
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 325,
+            "milliseconds": 15.1784
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 326,
+            "milliseconds": 14.7653
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 327,
+            "milliseconds": 14.7265
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 328,
+            "milliseconds": 14.5787
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 329,
+            "milliseconds": 14.7307
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 330,
+            "milliseconds": 14.7136
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 331,
+            "milliseconds": 15.0829
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 332,
+            "milliseconds": 14.9507
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 333,
+            "milliseconds": 15.0065
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 334,
+            "milliseconds": 15.0365
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 335,
+            "milliseconds": 14.8546
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 336,
+            "milliseconds": 14.9316
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 337,
+            "milliseconds": 15.1081
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 338,
+            "milliseconds": 15.0782
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 339,
+            "milliseconds": 15.0124
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 340,
+            "milliseconds": 14.7143
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 341,
+            "milliseconds": 14.9987
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 342,
+            "milliseconds": 14.895
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 343,
+            "milliseconds": 14.8232
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 344,
+            "milliseconds": 15.0358
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 345,
+            "milliseconds": 14.896
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 346,
+            "milliseconds": 14.8715
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 347,
+            "milliseconds": 15.0027
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 348,
+            "milliseconds": 14.7222
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 349,
+            "milliseconds": 14.9169
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 350,
+            "milliseconds": 15.042
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 351,
+            "milliseconds": 14.7672
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 352,
+            "milliseconds": 15.0519
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 353,
+            "milliseconds": 15.0515
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 354,
+            "milliseconds": 15.0104
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 355,
+            "milliseconds": 14.7992
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 356,
+            "milliseconds": 14.8881
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 357,
+            "milliseconds": 14.2142
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 358,
+            "milliseconds": 14.6523
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 359,
+            "milliseconds": 15.0763
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 360,
+            "milliseconds": 15.3051
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 361,
+            "milliseconds": 15.1727
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 362,
+            "milliseconds": 14.2895
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 363,
+            "milliseconds": 15.1779
+        },
+        {
+            "section": "InkFlush",
+            "frame": 364,
+            "milliseconds": 1.247
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 364,
+            "milliseconds": 13.6324
+        },
+        {
+            "section": "Loop.Update",
+            "frame": 364,
+            "milliseconds": 14.9324
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 365,
+            "milliseconds": 13.6085
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 366,
+            "milliseconds": 14.6075
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 367,
+            "milliseconds": 14.6938
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 368,
+            "milliseconds": 14.9064
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 369,
+            "milliseconds": 14.9855
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 370,
+            "milliseconds": 14.7444
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 371,
+            "milliseconds": 15.0593
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 372,
+            "milliseconds": 14.9792
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 373,
+            "milliseconds": 14.7495
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 374,
+            "milliseconds": 15.0469
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 375,
+            "milliseconds": 15.0443
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 376,
+            "milliseconds": 15.0514
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 377,
+            "milliseconds": 14.9764
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 378,
+            "milliseconds": 15.1195
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 379,
+            "milliseconds": 15.0963
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 380,
+            "milliseconds": 14.932
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 381,
+            "milliseconds": 14.5137
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 382,
+            "milliseconds": 15.0776
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 383,
+            "milliseconds": 15.0684
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 384,
+            "milliseconds": 15.1721
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 385,
+            "milliseconds": 15.1029
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 386,
+            "milliseconds": 15.1373
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 387,
+            "milliseconds": 14.7247
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 388,
+            "milliseconds": 15.1788
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 389,
+            "milliseconds": 15.1557
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 390,
+            "milliseconds": 15.0126
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 391,
+            "milliseconds": 15.0518
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 392,
+            "milliseconds": 15.1127
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 393,
+            "milliseconds": 15.1923
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 394,
+            "milliseconds": 15.07
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 395,
+            "milliseconds": 15.0986
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 396,
+            "milliseconds": 15.0849
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 397,
+            "milliseconds": 15.1371
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 398,
+            "milliseconds": 15.1639
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 399,
+            "milliseconds": 15.1625
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 400,
+            "milliseconds": 15.09
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 401,
+            "milliseconds": 15.2297
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 402,
+            "milliseconds": 15.2138
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 403,
+            "milliseconds": 15.1353
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 404,
+            "milliseconds": 15.1627
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 405,
+            "milliseconds": 14.8354
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 406,
+            "milliseconds": 15.2519
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 407,
+            "milliseconds": 15.0862
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 408,
+            "milliseconds": 15.2105
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 409,
+            "milliseconds": 15.105
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 410,
+            "milliseconds": 15.2277
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 411,
+            "milliseconds": 14.8804
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 412,
+            "milliseconds": 15.06
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 413,
+            "milliseconds": 14.7456
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 414,
+            "milliseconds": 15.1538
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 415,
+            "milliseconds": 15.1373
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 416,
+            "milliseconds": 15.1339
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 417,
+            "milliseconds": 15.0956
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 418,
+            "milliseconds": 15.1117
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 419,
+            "milliseconds": 15.0385
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 420,
+            "milliseconds": 15.1513
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 421,
+            "milliseconds": 15.138
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 422,
+            "milliseconds": 15.0505
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 423,
+            "milliseconds": 14.7696
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 424,
+            "milliseconds": 15.0385
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 425,
+            "milliseconds": 15.0426
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 426,
+            "milliseconds": 15.2161
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 427,
+            "milliseconds": 15.0702
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 428,
+            "milliseconds": 15.2982
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 429,
+            "milliseconds": 15.0806
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 430,
+            "milliseconds": 15.1505
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 431,
+            "milliseconds": 15.1752
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 432,
+            "milliseconds": 15.1143
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 433,
+            "milliseconds": 15.0588
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 434,
+            "milliseconds": 15.0389
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 435,
+            "milliseconds": 14.8858
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 436,
+            "milliseconds": 14.7653
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 437,
+            "milliseconds": 15.1855
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 438,
+            "milliseconds": 14.9311
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 439,
+            "milliseconds": 14.9576
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 440,
+            "milliseconds": 15.2796
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 441,
+            "milliseconds": 15.0693
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 442,
+            "milliseconds": 14.949
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 443,
+            "milliseconds": 15.1062
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 444,
+            "milliseconds": 15.1531
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 445,
+            "milliseconds": 15.1026
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 446,
+            "milliseconds": 15.1257
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 447,
+            "milliseconds": 14.9728
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 448,
+            "milliseconds": 15.062
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 449,
+            "milliseconds": 15.095
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 450,
+            "milliseconds": 15.2913
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 451,
+            "milliseconds": 15.1368
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 452,
+            "milliseconds": 15.1295
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 453,
+            "milliseconds": 15.062
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 454,
+            "milliseconds": 15.1514
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 455,
+            "milliseconds": 15.1846
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 456,
+            "milliseconds": 15.1342
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 457,
+            "milliseconds": 15.1037
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 458,
+            "milliseconds": 15.1235
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 459,
+            "milliseconds": 15.1899
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 460,
+            "milliseconds": 15.0735
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 461,
+            "milliseconds": 15.1567
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 462,
+            "milliseconds": 15.0885
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 463,
+            "milliseconds": 15.1053
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 464,
+            "milliseconds": 15.2557
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 465,
+            "milliseconds": 14.7882
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 466,
+            "milliseconds": 15.1438
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 467,
+            "milliseconds": 14.8508
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 468,
+            "milliseconds": 14.3792
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 469,
+            "milliseconds": 15.2075
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 470,
+            "milliseconds": 17.5124
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 471,
+            "milliseconds": 12.0961
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 472,
+            "milliseconds": 13.3924
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 473,
+            "milliseconds": 14.6075
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 474,
+            "milliseconds": 14.8389
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 475,
+            "milliseconds": 14.8921
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 476,
+            "milliseconds": 15.0912
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 477,
+            "milliseconds": 15.4292
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 478,
+            "milliseconds": 15.2949
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 479,
+            "milliseconds": 15.4315
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 480,
+            "milliseconds": 15.3227
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 481,
+            "milliseconds": 15.2081
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 482,
+            "milliseconds": 15.1503
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 483,
+            "milliseconds": 15.1278
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 484,
+            "milliseconds": 15.1028
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 485,
+            "milliseconds": 15.0994
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 486,
+            "milliseconds": 14.4263
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 487,
+            "milliseconds": 15.3383
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 488,
+            "milliseconds": 14.3016
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 489,
+            "milliseconds": 14.7875
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 490,
+            "milliseconds": 14.7186
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 491,
+            "milliseconds": 14.8392
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 492,
+            "milliseconds": 14.6755
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 493,
+            "milliseconds": 14.7134
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 494,
+            "milliseconds": 15.2219
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 495,
+            "milliseconds": 15.1299
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 496,
+            "milliseconds": 15.121
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 497,
+            "milliseconds": 14.6825
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 498,
+            "milliseconds": 14.9936
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 499,
+            "milliseconds": 15.1458
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 500,
+            "milliseconds": 14.2939
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 501,
+            "milliseconds": 14.8433
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 502,
+            "milliseconds": 14.5783
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 503,
+            "milliseconds": 15.0712
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 504,
+            "milliseconds": 14.7271
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 505,
+            "milliseconds": 14.2469
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 506,
+            "milliseconds": 14.5305
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 507,
+            "milliseconds": 15.014
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 508,
+            "milliseconds": 14.9101
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 509,
+            "milliseconds": 15.0104
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 510,
+            "milliseconds": 14.9407
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 511,
+            "milliseconds": 14.8909
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 512,
+            "milliseconds": 14.6257
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 513,
+            "milliseconds": 15.0405
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 514,
+            "milliseconds": 14.7297
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 515,
+            "milliseconds": 15.1257
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 516,
+            "milliseconds": 15.0875
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 517,
+            "milliseconds": 15.0289
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 518,
+            "milliseconds": 15.1128
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 519,
+            "milliseconds": 15.0866
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 520,
+            "milliseconds": 14.9903
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 521,
+            "milliseconds": 15.137
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 522,
+            "milliseconds": 15.0809
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 523,
+            "milliseconds": 15.0382
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 524,
+            "milliseconds": 14.9229
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 525,
+            "milliseconds": 15.0606
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 526,
+            "milliseconds": 14.6517
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 527,
+            "milliseconds": 15.0871
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 528,
+            "milliseconds": 15.0628
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 529,
+            "milliseconds": 14.9232
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 530,
+            "milliseconds": 14.9467
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 531,
+            "milliseconds": 14.1109
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 532,
+            "milliseconds": 15.0759
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 533,
+            "milliseconds": 14.8511
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 534,
+            "milliseconds": 14.9005
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 535,
+            "milliseconds": 14.9599
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 536,
+            "milliseconds": 14.7953
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 537,
+            "milliseconds": 14.9476
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 538,
+            "milliseconds": 14.8323
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 539,
+            "milliseconds": 15.0334
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 540,
+            "milliseconds": 14.9056
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 541,
+            "milliseconds": 14.8268
+        },
+        {
+            "section": "InkFlush",
+            "frame": 542,
+            "milliseconds": 0.5303
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 542,
+            "milliseconds": 14.2497
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 543,
+            "milliseconds": 14.8355
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 544,
+            "milliseconds": 15.114
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 545,
+            "milliseconds": 14.8037
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 546,
+            "milliseconds": 14.7141
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 547,
+            "milliseconds": 15.0698
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 548,
+            "milliseconds": 14.6331
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 549,
+            "milliseconds": 15.1331
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 550,
+            "milliseconds": 15.0957
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 551,
+            "milliseconds": 14.9846
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 552,
+            "milliseconds": 15.0549
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 553,
+            "milliseconds": 14.6583
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 554,
+            "milliseconds": 14.9923
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 555,
+            "milliseconds": 14.9431
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 556,
+            "milliseconds": 15.0698
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 557,
+            "milliseconds": 14.9779
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 558,
+            "milliseconds": 15.0201
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 559,
+            "milliseconds": 14.9534
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 560,
+            "milliseconds": 15.1283
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 561,
+            "milliseconds": 14.816
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 562,
+            "milliseconds": 14.8133
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 563,
+            "milliseconds": 15.1239
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 564,
+            "milliseconds": 15.1416
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 565,
+            "milliseconds": 15.1125
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 566,
+            "milliseconds": 14.7587
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 567,
+            "milliseconds": 14.9318
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 568,
+            "milliseconds": 14.71
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 569,
+            "milliseconds": 14.8896
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 570,
+            "milliseconds": 14.3508
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 571,
+            "milliseconds": 14.9871
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 572,
+            "milliseconds": 15.1691
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 573,
+            "milliseconds": 14.8202
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 574,
+            "milliseconds": 15.0529
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 575,
+            "milliseconds": 15.0331
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 576,
+            "milliseconds": 15.0957
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 577,
+            "milliseconds": 14.9739
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 578,
+            "milliseconds": 15.0811
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 579,
+            "milliseconds": 15.1453
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 580,
+            "milliseconds": 15.1599
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 581,
+            "milliseconds": 15.0551
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 582,
+            "milliseconds": 14.6925
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 583,
+            "milliseconds": 15.023
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 584,
+            "milliseconds": 15.0083
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 585,
+            "milliseconds": 15.082
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 586,
+            "milliseconds": 15.0265
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 587,
+            "milliseconds": 15.1112
+        },
+        {
+            "section": "Loop.TimeUpdate",
+            "frame": 588,
+            "milliseconds": 15.0908
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 589,
+            "milliseconds": 30.2567
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 589,
+            "milliseconds": 16.5233
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 589,
+            "milliseconds": 17.2502
+        }
+    ],
+    "droppedTimingSamples": 0,
+    "passed": true,
+    "startFrame": 2,
+    "endFrame": 589,
+    "runs": [],
+    "autoRepeatPassed": false,
+    "autoRepeatSeed": 0,
+    "completedRuns": 0,
+    "loadedArtCount": 0,
+    "overlayTransparentPixels": 0,
+    "overlayInkPixels": 0,
+    "sessionCrystals": 0,
+    "autoRepeatMethod": "",
+    "checkpointResumePassed": true,
+    "separateProcessResume": true
+}

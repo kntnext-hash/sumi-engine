@@ -94,3 +94,8 @@ frame3542→3543の559msに対して、frame3543 InkFlush522.93ms、RootFlourish
 タイル別192枚案は不採用として1枚の転送元へ戻した。API別計測とreadbackを挟まない連続Flushテストは保持。戻した状態で関連EditMode4/4（5.32秒）合格。GPU alpha±1、部分更新、端コピー、Clear後source再利用を確認。Runtime/シミュレーション不変。evidence/staging-rejection-editmode.json。
 次候補は、固定サイズの小さな転送アトラスへ複数dirty tileを詰め、Apply呼出し回数を減らす方式。宛先は部分コピーを維持し、全キャンバスCPU再生成はしない。まだ未実装。Unity公式はApplyの前に更新をまとめることを推奨するが、500ms問題を解消する保証ではない: https://docs.unity3d.com/jp/2019.1/ScriptReference/Texture2D.Apply.html 。SetPixelData等もApplyが必要で単純な置換では転送待機を回避できない: https://docs.unity3d.com/cn/6000.0/ScriptReference/Texture2D.SetPixelData.html 。
 今回対象Windows比較＋関連EditMode。性能未合格。evidence/*staging-direct-v24.*。
+
+## batch-direct-v25: 8タイル一括転送候補を不採用（2026-10-24）
+32×256の固定stagingへ最大8タイルを詰め、17タイルを3 Applyで転送。関連EditMode5/5（4.96秒）、GPU alpha±1、部分更新/端コピー/Clear後の未使用スロット非混入を確認。候補ソース差分はevidence/batch-v25-candidate.patch（基点5f54b4a）に保存。
+Windowsビルド64.80秒、162,853,149bytes、警告/エラー0。CLIは30秒でタイムアウトしたがEditorの同一ビルドが完了したため再実行なし。6武器/SEソース/自動周回/別プロセス復帰合格。Direct描画、540×960、平均16.81〜17.45ms、最大554.57ms、計測欠落0。Point frame16のInkTile.Apply515.40ms、focused前後true/GC差0。直前v23/v24と同じ約0.5秒の停止が残った。起動前frame1のLoop計測は戦闘フレーム集計外。
+呼出し数削減は確認できたが停止解消にはならず、少数タイルでも32KiBを転送する増加分もあるため不採用。製品ソースとテストは5f54b4aの1枚32×32 stagingへ復元。候補ビルド/証拠は保存。今回は対象Windows比較＋関連EditMode、性能未合格。次は通常起動の負荷とGPU待機を切り分ける。タイル転送方式の同種候補を際限なく追加しない。evidence/*batch-direct-v25.* / batch-staging-editmode.json。
