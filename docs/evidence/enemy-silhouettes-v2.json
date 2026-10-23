@@ -19,14 +19,14 @@
   },
   {
     "kind": "Splitter",
-    "opaque": 1395,
-    "clear": 7340,
+    "opaque": 1806,
+    "clear": 7020,
     "passed": true
   },
   {
     "kind": "Boss",
-    "opaque": 3158,
-    "clear": 5473,
+    "opaque": 2363,
+    "clear": 6155,
     "passed": true
   }
 ]

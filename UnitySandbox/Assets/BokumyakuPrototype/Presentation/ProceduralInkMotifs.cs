@@ -39,31 +39,38 @@ namespace Bokumyaku.Presentation
                     radius = 5;
                     break;
                 case EnemyKind.Splitter:
-                    // Twin cores are separated by a waist, not a generic single disc.
-                    strokes.Add(Arc(29, 48, 15, 22, 0, 360, 24));
-                    strokes.Add(Arc(67, 48, 15, 22, 0, 360, 24));
-                    strokes.Add(Line(40, 48, 56, 48, 8));
-                    strokes.Add(Line(28, 41, 30, 55, 8));
-                    strokes.Add(Line(66, 41, 68, 55, 8));
-                    radius = 4;
+                    // A parent body carries three budding lobes instead of two disconnected rings.
+                    strokes.Add(Arc(48,48,18,22,0,360,28));
+                    for(int i=0;i<3;i++)
+                    {
+                        float a=i*Mathf.PI*2/3+.4f;
+                        var bud=new Vector2(48+Mathf.Cos(a)*23,48+Mathf.Sin(a)*23);
+                        strokes.Add(Line(48,48,bud.x,bud.y,12));
+                        strokes.Add(Arc(bud.x,bud.y,9,11,0,360,16));
+                        strokes.Add(Line(bud.x,bud.y,bud.x+Mathf.Cos(a)*14,bud.y+Mathf.Sin(a)*14,12));
+                    }
+                    radius=4;
                     break;
                 case EnemyKind.Boss:
-                    var crown = new InkPoint[17];
-                    for (int i = 0; i < crown.Length; i++)
+                    // Forked, asymmetrical limbs make the boss a living ink tree.
+                    strokes.Add(Arc(48,48,15,17,0,360,28));
+                    for(int i=0;i<9;i++)
                     {
-                        float angle = i * Mathf.PI / 8;
-                        float r = i % 2 == 0 ? 35 : 22;
-                        crown[i] = Point(48 + Mathf.Cos(angle) * r, 48 + Mathf.Sin(angle) * r, i, crown.Length);
+                        float a=i*Mathf.PI*2/9+.12f;
+                        var mid=new Vector2(48+Mathf.Cos(a+.18f)*25,48+Mathf.Sin(a+.18f)*25);
+                        var tip=new Vector2(48+Mathf.Cos(a)*40,48+Mathf.Sin(a)*40);
+                        strokes.Add(Polyline(new[]{new Vector2(48,48),mid,tip},24));
+                        var fork=mid+new Vector2(Mathf.Cos(a+.8f),Mathf.Sin(a+.8f))*13;
+                        strokes.Add(Line(mid.x,mid.y,fork.x,fork.y,12));
+                        if(i%3==0)strokes.Add(Arc(mid.x,mid.y,5,6,0,360,14));
                     }
-                    strokes.Add(crown);
-                    strokes.Add(Arc(48, 48, 12, 12, 0, 360, 16));
-                    radius = 4.5f;
+                    radius=3;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(kind));
             }
             // Opaque ink bodies with broken radial strokes read as creatures, not UI rings.
-            if(kind==EnemyKind.Normal||kind==EnemyKind.Heavy||kind==EnemyKind.Boss)
+            if(kind==EnemyKind.Normal||kind==EnemyKind.Heavy)
             {
                 int count=kind==EnemyKind.Boss?12:kind==EnemyKind.Heavy?8:6;
                 for(int i=0;i<count;i++)
@@ -179,4 +186,5 @@ namespace Bokumyaku.Presentation
         }
     }
 }
+
 
