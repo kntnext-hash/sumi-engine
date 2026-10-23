@@ -48,7 +48,7 @@ namespace Bokumyaku.Presentation
         readonly TextMeshProUGUI[] cardLevels = new TextMeshProUGUI[5], cardCosts = new TextMeshProUGUI[5];
         BokumyakuGame game; Canvas canvas; RectTransform safe; TMP_FontAsset font; Font sourceFont;
         GameObject ownedEventSystem, modal; TextMeshProUGUI wave, ink, crystals, hp, notice, speed, pause, auto, motion, result, retryLabel;
-        UnityEngine.UI.Button retry; UnityEngine.UI.Image hpFill; float nextRefresh; Rect lastSafe; int lastWidth, lastHeight;
+        UnityEngine.UI.Button retry,repair; UnityEngine.UI.Image hpFill; float nextRefresh; Rect lastSafe; int lastWidth, lastHeight;
         static readonly string[] Names = { "筆撃", "筆速", "流墨", "分岐", "筆幅" };
 
         // Camera rect uses bottom-left normalized coordinates, matching SafeArea anchors.
@@ -82,7 +82,7 @@ namespace Bokumyaku.Presentation
             crystals = Label(top.transform,"Crystals",.57f,.4f,.85f,1,17,gold);
             Label(top.transform,"Brand",.24f,.02f,.84f,.4f,12,gold).text = "墨脈 — BOKUMYAKU";
             Button(top.transform,"Pause",.86f,.1f,1,.9f,"Ⅱ",()=>game.SetPaused(!game.IsPaused),out pause);
-            hp = Label(bottom.transform,"Core",0,.73f,.22f,1,17,ivory);
+            repair=Button(bottom.transform,"Repair",0,.73f,.22f,1,"",()=>game.TryRepair(),out hp);
             var track = BokumyakuUiParts.Panel(bottom.transform,"CoreTrack",new Vector2(.02f,.7f),new Vector2(.2f,.73f),new Color(.2f,.18f,.13f));
             hpFill = BokumyakuUiParts.Panel(track.transform,"Fill",Vector2.zero,Vector2.one,gold);
             Button(bottom.transform,"Speed",.23f,.76f,.38f,1,"×1",()=>game.SetSpeed(game.Speed==1?2:1),out speed);
@@ -155,7 +155,8 @@ namespace Bokumyaku.Presentation
         void Refresh()
         {
             var run=game.Run;if(run==null)return;
-            Text(wave,run.Wave.ToString());Text(ink,"墨 "+run.RunInk);Text(crystals,"結晶 "+game.Meta.Crystals);Text(hp,"墨核 "+run.CoreHp+" / 10");
+            Text(wave,run.Wave.ToString());Text(ink,"墨 "+run.RunInk);Text(crystals,"結晶 "+game.Meta.Crystals);Text(hp,"墨核 "+run.CoreHp+" / 10\n"+(run.CoreHp>=10?"満タン":run.RepairCount>=5?"修復上限":"修復 墨 "+run.RepairCost));
+            repair.interactable=!game.BattleStorageBlocked&&!game.AwaitingStart&&run.State==RunStatus.Running&&run.CoreHp<10&&run.RepairCount<5&&run.RunInk>=run.RepairCost;
             hpFill.rectTransform.anchorMax=new Vector2(Mathf.Clamp01(run.CoreHp/10f),1);
             Text(pause,game.IsPaused?"▶":"Ⅱ");Text(speed,"×"+game.Speed);Text(auto,game.AutoRepeatEnabled?"自動 入":"自動 切");Text(motion,game.ReducedMotion?"演出 弱":"演出 通常");Text(notice,game.BattleNotice);
             for(int i=0;i<5;i++)
@@ -180,4 +181,5 @@ namespace Bokumyaku.Presentation
         }
     }
 }
+
 
