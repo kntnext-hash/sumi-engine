@@ -69,3 +69,4 @@
 候補納品。Unity import/実9-slice/1080×2400のホーム・研究操作/実機は未実施。黒背景上の黒枠は識別できないため色の組合せは統合時に確認。最終採用・商用権利の保証はしていない。
 
 書込みはart-source/delivery-v3/と本書への追記のみ。ゲームコード・STATE/TASKS・Runtime・Unity・Git操作なし。統合担当が枠とボタン色面を合わせ、ホームと研究で判読性を確認する。
+統合追記: delivery-v3の枠をメニューボタンへ採用。ImportMenuFrame.csでSprite設定、fillCenter=false。1080×2400ホーム目視と主要操作合格。menu-home-1080x2400.png参照。

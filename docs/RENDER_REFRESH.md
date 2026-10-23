@@ -117,3 +117,6 @@ Test-BokumyakuMenuPlayer.ps1による隔離Player試験: 6武器900tick/保存/�
 PlayerProbeに明示的 --bokumyaku-capture-screens を追加。通常起動は変わらず、QAセーブでのみホーム/戦闘を撮影。v6ビルドは67.98秒/135716237bytes/error0/warning0。予約delayCallは開始されず、idleを確認して直接Runで実行した。CLIは30秒timeout、Editor側の完成レポートで成功を確認。
 非表示Playerのキャプチャは黒一色で不合格。ファイル生成だけで画面表示成功とは扱わない。player-home-v6.png / player-battle-v6.pngは失敗証拠。表示可能な環境での配布画面検証が必要。
 v6機能試験は両プロセスexit0/passed=true（116.83秒/15.65秒）。6武器/自動周回/別プロセス復帰は合格、画像は別判定で不合格。
+
+## 横長筆枠のゲーム統合
+button_ink_frame_03.pngをResources/BokumyakuArtへ導入。Sprite Single、border300/240/300/240、mipmapなし、非圧縮。メニューボタンを紙地・墨文字・選択金へ変更、専用Sliced枠はfillCenter=false。円相の矩形引き伸ばしをボタンから除去。1080×2400のホーム画像を目視し、MenuInteractionCheckの出撃/終了確認/研究/保存復帰等pass=trueを再確認。画像とJSONを更新。隔離Play停止・GameView復元済み。ゲームへの採用初版で、完成美術/実機合格ではない。

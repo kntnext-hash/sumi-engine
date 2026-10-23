@@ -17,7 +17,7 @@ namespace Bokumyaku.Presentation
         readonly List<Action> bindings = new List<Action>();
         readonly List<TextMeshProUGUI> historyLabels = new List<TextMeshProUGUI>();
         BokumyakuGame game; TMP_FontAsset font; Canvas canvas; RectTransform safe;
-        Sprite paperSprite, frameSprite, landscapeSprite; GameObject ownedEventSystem, confirmation;
+        Sprite paperSprite, frameSprite, landscapeSprite, buttonFrame; GameObject ownedEventSystem, confirmation;
         readonly GameObject[] pages = new GameObject[3]; readonly ScrollRect[] scrolls = new ScrollRect[3];
         RectTransform recordsContent; TextMeshProUGUI summary, notice, warning, recordsSummary;
         CampaignProgress snapshot; BokumyakuGame.GamePage lastPage = (BokumyakuGame.GamePage)(-1);
@@ -39,6 +39,7 @@ namespace Bokumyaku.Presentation
             gameObject.AddComponent<GraphicRaycaster>();
             if(FindFirstObjectByType<EventSystem>()==null) ownedEventSystem=new GameObject("BokumyakuMenuEventSystem",typeof(EventSystem),typeof(StandaloneInputModule));
             paperSprite=SpriteFor(paper,false);frameSprite=SpriteFor(ring,true);landscapeSprite=SpriteFor(landscape,false);
+            buttonFrame=Resources.Load<Sprite>("BokumyakuArt/button_ink_frame_03");
             var background=BokumyakuUiParts.Panel(transform,"MenuPaper",Vector2.zero,Vector2.one,ivory);background.sprite=paperSprite;
             safe=BokumyakuUiParts.Rect(transform,"MenuSafeArea",Vector2.zero,Vector2.one);
             var header=Box(safe,"MenuHeader",0,0,1,100);
@@ -87,10 +88,11 @@ namespace Bokumyaku.Presentation
         Button Button(Transform parent,string name,float left,float top,float right,float height,string caption,Action action)
         {
             var r=At(parent,name+"Layout",left,top,right,height);var b=BokumyakuUiParts.Button(r,name,font,Vector2.zero,Vector2.one,caption,()=>Act(action),out var label);label.fontSize=17;label.fontSizeMin=14.45f;label.fontSizeMax=17;
-            var edge=BokumyakuUiParts.Panel(b.transform,"BrushFrame",Vector2.zero,Vector2.one,gold);edge.sprite=frameSprite;edge.type=Image.Type.Sliced;edge.pixelsPerUnitMultiplier=3.5f;edge.transform.SetAsFirstSibling();return b;
+            ((Image)b.targetGraphic).sprite=paperSprite;((Image)b.targetGraphic).color=ivory;label.color=ink;
+            var edge=BokumyakuUiParts.Panel(b.transform,"BrushFrame",Vector2.zero,Vector2.one,Color.white);edge.sprite=buttonFrame??frameSprite;edge.type=Image.Type.Sliced;edge.fillCenter=false;edge.pixelsPerUnitMultiplier=24f;edge.transform.SetAsFirstSibling();return b;
         }
         void Act(Action action){game.MenuClick();action();Refresh();}
-        void Tint(Button button,bool selected){((Image)button.targetGraphic).color=selected?new Color(.35f,.24f,.10f):ink;}
+        void Tint(Button button,bool selected){((Image)button.targetGraphic).color=selected?new Color(.82f,.66f,.36f):ivory;}
         void BuildHome()
         {
             var p=scrolls[0].content;float y=0;
