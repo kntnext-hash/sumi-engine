@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "width": 1920,
+  "height": 1080,
+  "waveLimit": 100000,
+  "resourceLimit": 2147483647,
+  "pauseRaycast": true,
+  "unchanged": true,
+  "method": "Isolated paused fixture; full numbers without abbreviation, glyph/overflow checked. Reflection supplies display limits, then restores original state; no long-wave balance claim."
+}

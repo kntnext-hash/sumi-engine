@@ -92,7 +92,7 @@ namespace Bokumyaku.Presentation
         // Camera rect uses bottom-left normalized coordinates, matching SafeArea anchors.
         public static Rect GetBattleViewport()
         {
-            var s = Screen.safeArea;
+            var s = BokumyakuViewport.Current;
             return new Rect(s.x / Screen.width, (s.y + s.height * .30f) / Screen.height, s.width / Screen.width, s.height * .62f / Screen.height);
         }
         public void Initialize(BokumyakuGame owner, Texture2D ring, Texture2D[] glyphs, Texture2D paper)
@@ -253,7 +253,7 @@ namespace Bokumyaku.Presentation
         void RefreshSafeArea()
         {
             lastSafe=Screen.safeArea;lastWidth=Screen.width;lastHeight=Screen.height;
-            safe.anchorMin=new Vector2(lastSafe.x/Screen.width,lastSafe.y/Screen.height);safe.anchorMax=new Vector2(lastSafe.xMax/Screen.width,lastSafe.yMax/Screen.height);
+            BokumyakuViewport.Apply(safe,GetComponent<UnityEngine.UI.CanvasScaler>());
         }
         void Update()
         {

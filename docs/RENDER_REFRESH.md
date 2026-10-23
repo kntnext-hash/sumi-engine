@@ -219,3 +219,8 @@ HeaderCheckで360×640/1080×2400の通常Wave5と人工Wave100000/墨・結晶2
 ## 円枠の描画順とWindows統合（2026-10-24）
 RoundPlateの旧構造は親Imageの筆枠を子の黒円が覆っていた。透明な親Imageを入力領域とし、黒円→BrushRim→文字へ描画順を修正。一時停止の色遷移対象はBrushRimへ変更。HeaderCheckを出力名rimへ替えた同一検証を1080×2400で再実行、通常/最大値・raycast・snapshot復元合格。rim-normal-1080.json/png、rim-large-1080.png。通常画像で筆縁を確認。
 Windows release v28へこれまでのカードv8/操作パネル/墨核/上部HUDを統合。BuildHudCandidateとTest-BokumyakuVisiblePlayerで確認。詳細WINDOWS_RANK_CANDIDATE.md。新しい生成円相枠v9は未統合であり当該ビルドに含まれない。
+
+## 広いウィンドウの縦表示領域（2026-10-24）
+v28で正方形化したWindows UIが縦につぶれたため、BokumyakuViewportを導入。safe area幅を最大で高さ×9/16へ中央寄せし、戦場camera rectと戦闘/メニューsafe rectへ共有。CanvasScalerの基準横幅を表示領域基準で補正し、内部440単位を維持。縦長360×800の矩形を変えず、safe inset内に収める計算を確認。
+Editor1080×1080/1920×1080で両HUDの実world cornerが領域と0.6px以内に一致、論理幅440、cameraの横位置/幅一致をViewportLayoutCheckで確認。HeaderCheckの出力名viewport版で通常/最大数値、Pause/Resume raycast、snapshot復元一致。viewport-layout/normal/large-*.json/png。通常画像を目視。横長でMenuViewportCheckの3タブraycast/ページ切替/文字overflowなし、ホーム画像を確認。価格/セーブ/戦闘判定変更なし。
+Windows実行物はまだv28のまま。この修正をWindows実行確認済みとはしない。今回全テスト/再buildなし、Play停止/QA設定復元済み。動的なウィンドウドラッグ中の追従と実機safe areaは未確認。
