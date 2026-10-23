@@ -60,7 +60,8 @@ namespace Bokumyaku.Presentation
                 Page = GamePage.Home; saveWarning = "";
             }
         }
-        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v10.json");
+        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v11.json");
+        public string PreviousV10CampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v10.json") : SavePathOverride + ".v10";
         public string PreviousV9CampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v9.json") : SavePathOverride + ".v9";
         public string PreviousV8CampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v8.json") : SavePathOverride + ".v8";
         public string LatestPreviousCampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v7.json") : SavePathOverride + ".v7";
@@ -141,9 +142,9 @@ namespace Bokumyaku.Presentation
             EnsureCanvas();
             try
             {
-                bool firstNewCampaign = !progressLoaded && !SaveFamilyExists(SavePath) && !SaveFamilyExists(PreviousV9CampaignPath) && !SaveFamilyExists(PreviousV8CampaignPath) && !SaveFamilyExists(LatestPreviousCampaignPath) && !SaveFamilyExists(PreviousV6CampaignPath) && !SaveFamilyExists(PreviousV5CampaignPath) && !SaveFamilyExists(PreviousV4CampaignPath) && !SaveFamilyExists(PreviousCampaignPath) && !SaveFamilyExists(OlderCampaignPath) && !SaveFamilyExists(LegacySavePath);
+                bool firstNewCampaign = !progressLoaded && !SaveFamilyExists(SavePath) && !SaveFamilyExists(PreviousV10CampaignPath) && !SaveFamilyExists(PreviousV9CampaignPath) && !SaveFamilyExists(PreviousV8CampaignPath) && !SaveFamilyExists(LatestPreviousCampaignPath) && !SaveFamilyExists(PreviousV6CampaignPath) && !SaveFamilyExists(PreviousV5CampaignPath) && !SaveFamilyExists(PreviousV4CampaignPath) && !SaveFamilyExists(PreviousCampaignPath) && !SaveFamilyExists(OlderCampaignPath) && !SaveFamilyExists(LegacySavePath);
                 string warning;
-                var loaded = CampaignSaveStore.LoadTierLatest(SavePath, PreviousV9CampaignPath, PreviousV8CampaignPath, LatestPreviousCampaignPath, PreviousV6CampaignPath, PreviousV5CampaignPath, PreviousV4CampaignPath, PreviousCampaignPath, OlderCampaignPath, LegacySavePath, out warning);
+                var loaded = CampaignSaveStore.LoadTierLatest(SavePath, PreviousV10CampaignPath, PreviousV9CampaignPath, PreviousV8CampaignPath, LatestPreviousCampaignPath, PreviousV6CampaignPath, PreviousV5CampaignPath, PreviousV4CampaignPath, PreviousCampaignPath, OlderCampaignPath, LegacySavePath, out warning);
                 if (firstNewCampaign) SelectedBuild = BuildPreset.Farming;
                 var restored = loaded.HasActiveRun ? RunSimulator.Restore(loaded.ActiveRun) : new RunSimulator(InitialSeed, loaded.Meta, loaded.SelectedTier);
                 ApplyCampaign(loaded); Run = restored; progressLoaded = true; loadBlocked = false;

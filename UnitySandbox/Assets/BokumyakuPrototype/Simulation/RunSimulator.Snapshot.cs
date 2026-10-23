@@ -55,7 +55,7 @@ namespace Bokumyaku.Simulation
             Range(s.coreHp,0,10,"coreHp"); Range(s.runInk,0,maxIncome,"runInk"); Range(s.incomeEarned,s.runInk,maxIncome,"incomeEarned");
             Range(s.kills,0,maxCounter,"kills"); Range(s.leaks,0,maxCounter,"leaks"); Range(s.nextEnemyId,0,maxCounter,"nextEnemyId");
             Range(s.growthCount,0,64,"growthCount"); Range(s.repairCount,0,5,"repairCount"); Range(s.lastBossWave,0,s.wave,"lastBossWave"); Check(s.lastBossWave%10==0,"lastBossWave");
-            Number(s.spawnCredit,0,1,"spawnCredit"); Number(s.growthCharge,0,rules>=5?LongRunGrowthChargeLimit:100000,"growthCharge"); Number(s.rewardPoints,0,rules>=5?LongRunRewardPointsLimit:1000000,"rewardPoints"); Number(s.effectiveDamage,0,rules>=6?LongRunEffectiveDamageLimit:1e15,"effectiveDamage");
+            Number(s.spawnCredit,0,1,"spawnCredit"); Number(s.growthCharge,0,rules>=5?LongRunGrowthChargeLimit:100000,"growthCharge"); Number(s.rewardPoints,0,rules>=5?LongRunRewardPointsLimit:1000000,"rewardPoints"); Number(s.effectiveDamage,0,rules>=9?FirstWeekEffectiveDamageLimit:rules>=6?LongRunEffectiveDamageLimit:1e15,"effectiveDamage");
             Check(Enum.IsDefined(typeof(RunStatus),s.status)&&Enum.IsDefined(typeof(BuildPreset),s.build)&&Enum.IsDefined(typeof(GrowthPolicy),s.policy)&&Enum.IsDefined(typeof(WeaponKind),s.weapon),"enum");
             Check(s.status!=RunStatus.Defeated || s.coreHp==0,"defeat requires zero HP");
             Check(s.status!=RunStatus.Running || (s.coreHp>0 && s.tickCount<maxTicks),"running state");

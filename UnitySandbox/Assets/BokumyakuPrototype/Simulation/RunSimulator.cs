@@ -14,24 +14,20 @@ namespace Bokumyaku.Simulation
     [Serializable]
     public sealed class MetaProgress
     {
-        // Price generation is independent of battle rules. Rounded Cost10 is the new curve anchor.
-        public const int ResearchPriceVersion = 2;
-        public const int DamageCostAt20 = 2952; // ceil(ceil(8*1.48^10)*1.22^10).
+        // Price generation is independent of battle rules. All early research shares a rounded level20 anchor.
+        public const int ResearchPriceVersion = 3;
+        public const int DamageCostAt20 = 1271172; // ceil(500*1.48^20).
         public int Crystals;
         public int Damage, Supply, Growth, Harvest;
         public int Level(MetaUpgrade kind) { return kind == MetaUpgrade.Damage ? Damage : kind == MetaUpgrade.Supply ? Supply : kind == MetaUpgrade.Growth ? Growth : Harvest; }
         public static int MaxLevel(MetaUpgrade kind) { if(!Enum.IsDefined(typeof(MetaUpgrade),kind))throw new ArgumentOutOfRangeException(nameof(kind)); return kind==MetaUpgrade.Damage?100:20; }
-        public double DamageMultiplier { get { if(Damage<0 || Damage>100)throw new ArgumentOutOfRangeException(nameof(Damage));return Damage<=20?1+.025*Damage:1.5*Math.Pow(1+.025*(Damage-20),2); } }
+        public double DamageMultiplier { get { if(Damage<0 || Damage>100)throw new ArgumentOutOfRangeException(nameof(Damage));return Damage<=20?Math.Pow(1.18,Damage):Math.Pow(1.18,20)*Math.Pow(1+.025*(Damage-20),2); } }
         public int Cost(MetaUpgrade kind)
         {
             int level = Level(kind);
             if (level < 0 || level > MaxLevel(kind)) throw new ArgumentOutOfRangeException(nameof(kind));
-            double basis = kind == MetaUpgrade.Supply ? 10 : kind == MetaUpgrade.Harvest ? 12 : 8;
-            if (level <= 10) return (int)Math.Ceiling(basis * Math.Pow(1.48, level));
-            if (kind == MetaUpgrade.Damage && level > 20)
-                return (int)Math.Ceiling(DamageCostAt20 * Math.Pow(1 + .05 * (level - 20), 2));
-            double roundedCost10 = Math.Ceiling(basis * Math.Pow(1.48, 10));
-            return (int)Math.Ceiling(roundedCost10 * Math.Pow(1.22, level - 10));
+            if (level <= 20) return (int)Math.Ceiling(500 * Math.Pow(1.48, level));
+            return (int)Math.Ceiling(DamageCostAt20 * Math.Pow(1 + .05 * (level - 20), 2));
         }
         public bool TryBuy(MetaUpgrade kind)
         {
@@ -99,7 +95,7 @@ namespace Bokumyaku.Simulation
     public sealed partial class RunSimulator
     {
         public const int LegacyRulesVersion = 1;
-        public const int CurrentRulesVersion = 8;
+        public const int CurrentRulesVersion = 9;
         // Rounded legacy run cost at Damage30: ceil(10*1.16^30*(1+.008*30^2)).
         public const int DamageCostAt30 = 7040;
         public const int HarvestMaxLevel = 10;
@@ -313,7 +309,7 @@ namespace Bokumyaku.Simulation
                     if (target == null || candidate < eta || (candidate == eta && (e.Hp < target.Hp || (e.Hp == target.Hp && e.Id < target.Id)))) { target = e; eta = candidate; }
                 }
                 if (target == null) continue;
-                double pressure = Pressure(b), baseDamage = BaseAttackDamage * (RulesVersion>=6 && levels[0]>30?Math.Pow(1.10,30)*Math.Pow(1.12,levels[0]-30):Math.Pow(1.10, levels[0])) * (RulesVersion>=6?meta.DamageMultiplier:(1 + .025 * meta.Damage));
+                double pressure = Pressure(b), baseDamage = BaseAttackDamage * (RulesVersion>=6 && levels[0]>30?Math.Pow(1.10,30)*Math.Pow(1.12,levels[0]-30):Math.Pow(1.10, levels[0])) * (RulesVersion>=9?meta.DamageMultiplier:RulesVersion>=6?(meta.Damage<=20?1+.025*meta.Damage:1.5*Math.Pow(1+.025*(meta.Damage-20),2)):(1 + .025 * meta.Damage));
                 double damage = baseDamage * pressure * (Weapon == WeaponKind.Pierce ? .8 : Weapon == WeaponKind.Bleed ? .45 : Weapon == WeaponKind.Sweep ? .85 : Weapon == WeaponKind.Enso ? .8 : Weapon == WeaponKind.Resonance ? 1 : 1);
                 double interval = Weapon == WeaponKind.Pierce ? 1.35 : Weapon == WeaponKind.Bleed ? 1.1 : Weapon == WeaponKind.Sweep ? 1.2 : Weapon == WeaponKind.Enso ? 1.35 : Weapon == WeaponKind.Resonance ? 1.15 : 1;
                 b.NextAttack = TickCount + (int)Math.Ceiling(interval * TickRate / Math.Min(4.5, 1.25 * Math.Pow(1.07, levels[1])));

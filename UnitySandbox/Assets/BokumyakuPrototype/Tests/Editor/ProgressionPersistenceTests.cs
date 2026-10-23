@@ -16,7 +16,7 @@ namespace Bokumyaku.Tests
         public void ExpandedDamageSavesAndStartsNewRun(int damage)
         {
             var c=CampaignSaveStore.Save(path,new CampaignProgress { Meta=new MetaProgress { Damage=damage } });string w;c=CampaignSaveStore.Load(path,out w);
-            Assert.AreEqual(damage,c.Meta.Damage);var live=new RunSimulator(42,c.Meta);Assert.AreEqual(8,live.RulesVersion);
+            Assert.AreEqual(damage,c.Meta.Damage);var live=new RunSimulator(42,c.Meta);Assert.AreEqual(9,live.RulesVersion);
             c=CampaignSaveStore.BeginRun(path,c,live);Assert.AreEqual(damage,c.ActiveRun.meta.Damage);
         }
         [Test] public void Damage101RejectsWithoutChangingExistingSave()
@@ -49,17 +49,19 @@ namespace Bokumyaku.Tests
         }
         [Test] public void MetaPurchaseIsAppliedToNextRunOnlyAndActiveSaveRejectsChanges()
         {
-            var c=CampaignSaveStore.Save(path,new CampaignProgress { Meta=new MetaProgress { Damage=20,Crystals=1000000 } });
+            var funded=new MetaProgress { Damage=20 }; int startingCrystals=funded.Cost(MetaUpgrade.Damage); funded.Crystals=startingCrystals;
+            var c=CampaignSaveStore.Save(path,new CampaignProgress { Meta=funded });
             var oldRun=new RunSimulator(42,c.Meta);c=CampaignSaveStore.BeginRun(path,c,oldRun);
             var bought=JsonUtility.FromJson<MetaProgress>(JsonUtility.ToJson(c.Meta));int cost=bought.Cost(MetaUpgrade.Damage);Assert.IsTrue(bought.TryBuy(MetaUpgrade.Damage));
             var bytes=File.ReadAllBytes(path);Assert.Throws<InvalidDataException>(()=>CampaignSaveStore.SaveMeta(path,c,bought));CollectionAssert.AreEqual(bytes,File.ReadAllBytes(path));
-            Assert.AreEqual(20,oldRun.CaptureState().meta.Damage);Assert.AreEqual(1000000,c.Meta.Crystals);
+            Assert.AreEqual(20,oldRun.CaptureState().meta.Damage);Assert.AreEqual(startingCrystals,c.Meta.Crystals);
             c=CampaignSaveStore.DiscardRun(path,c);c=CampaignSaveStore.SaveMeta(path,c,bought);
-            Assert.AreEqual(21,c.Meta.Damage);Assert.AreEqual(1000000-cost,c.Meta.Crystals);Assert.AreEqual(20,oldRun.CaptureState().meta.Damage);Assert.AreEqual(21,new RunSimulator(43,c.Meta).CaptureState().meta.Damage);
+            Assert.AreEqual(21,c.Meta.Damage);Assert.AreEqual(startingCrystals-cost,c.Meta.Crystals);Assert.AreEqual(20,oldRun.CaptureState().meta.Damage);Assert.AreEqual(21,new RunSimulator(43,c.Meta).CaptureState().meta.Damage);
         }
         [Test] public void FailedMetaWriteKeepsBalanceAndExistingData()
         {
-            var c=CampaignSaveStore.Save(path,new CampaignProgress { Meta=new MetaProgress { Damage=20,Crystals=1000000 } });var before=JsonUtility.ToJson(c);var bytes=File.ReadAllBytes(path);
+            var funded=new MetaProgress { Damage=20 }; int startingCrystals=funded.Cost(MetaUpgrade.Damage); funded.Crystals=startingCrystals;
+            var c=CampaignSaveStore.Save(path,new CampaignProgress { Meta=funded });var before=JsonUtility.ToJson(c);var bytes=File.ReadAllBytes(path);
             var bought=JsonUtility.FromJson<MetaProgress>(JsonUtility.ToJson(c.Meta));Assert.IsTrue(bought.TryBuy(MetaUpgrade.Damage));
             // A destination beneath a regular file cannot be created.
             var fresh=new CampaignProgress { Meta=c.Meta };

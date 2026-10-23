@@ -27,7 +27,7 @@ namespace Bokumyaku.Tests
             var b=RunSimulator.Restore(old);
             Assert.AreEqual(1,b.Tier); Assert.AreEqual(6,b.RulesVersion);
             for(int i=0;i<30000 && a.State==RunStatus.Running;i++) { a.Tick(); b.Tick(); }
-            var sa=a.CaptureState(); var sb=b.CaptureState(); sb.rulesVersion=8; Array.Resize(ref sb.spawnedByType,7); Array.Resize(ref sb.killedByType,7); Array.Resize(ref sb.leakedByType,7);
+            var sa=a.CaptureState(); var sb=b.CaptureState(); sb.rulesVersion=9; Array.Resize(ref sb.spawnedByType,7); Array.Resize(ref sb.killedByType,7); Array.Resize(ref sb.leakedByType,7);
             Assert.AreEqual(JsonUtility.ToJson(sa),JsonUtility.ToJson(sb));
         }
         [Test] public void HigherTierScalesFirstEnemyHpWithoutChangingInk()

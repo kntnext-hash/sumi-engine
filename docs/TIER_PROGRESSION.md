@@ -47,3 +47,6 @@ TierLandscapeCheckで1080×2400/Wave10/seed42を3段位比較、shader errorな�
 - 能力位相はtick/idから導出し保存追加フィールド不要。rules1〜7は従来5種、rules8は7種カウンタ。snapshot schema3/campaign schema4維持、ファイルv10でv9原本を保持。旧途中戦闘は旧rulesのまま、次の出撃からrules8。
 
 検証: 関連EditMode249/249。tier-enemies-editmode.json。1080×2400の強制配置による護輪状態切替/吸生シルエットをtier-enemies-guarded/open.pngで確認。吸生表示は核に隠れない最小描画距離を設けるがsimulation位置は維持。v9音設定優先を隔離Play確認。自然進行/実機は後続。
+
+## 初週研究採用（2026-10-24）
+新規戦闘rules9、研究価格版3、保存世代v11。旧rules8以下の途中戦闘は従来効果を保持し、研究Lv/結晶/v10原本を保護。初週混合ビルド測定と限界はRANK_FIRST_WEEK_BALANCE.md。段位倍率自体は据え置き、二段以降の収益/分評価は未完了。

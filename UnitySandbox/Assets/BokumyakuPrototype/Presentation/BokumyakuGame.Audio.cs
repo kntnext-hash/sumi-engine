@@ -66,7 +66,7 @@ namespace Bokumyaku.Presentation
             audioSettingsPath = path; audioPreferences = new AudioPreferences(); AudioSettingsWarning = "";
             try
             {
-                foreach (var previous in new[] { PreviousV9CampaignPath, PreviousV8CampaignPath })
+                foreach (var previous in new[] { PreviousV10CampaignPath, PreviousV9CampaignPath, PreviousV8CampaignPath })
                 {
                     if (File.Exists(path)) break;
                     if (!File.Exists(previous + ".audio.json")) continue;

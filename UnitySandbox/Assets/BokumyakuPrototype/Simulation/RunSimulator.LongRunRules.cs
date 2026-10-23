@@ -7,6 +7,7 @@ namespace Bokumyaku.Simulation
         // ceil(36m/7)*12*96 hits plus36m*96*2 field ticks bounds total below5.165e16.
         // 6e16 is a conservative validation bound, not a damage clamp; legacy stays1e15.
         public const double LongRunEffectiveDamageLimit = 6e16;
+        public static readonly double FirstWeekEffectiveDamageLimit = LongRunEffectiveDamageLimit * (Math.Pow(1.18,20) / 1.5);
         public const int LegacyWaveLimit = 60;
         public const int LongRunWaveLimit = 100000;
         public const int LongRunMaxTicks = LongRunWaveLimit * 360;

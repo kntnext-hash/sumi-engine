@@ -37,7 +37,8 @@ namespace Bokumyaku.Tests
         }
         [Test] public void PriceChangeDoesNotPermitActiveResearchOrMutateBalanceOnFailure()
         {
-            var c=new CampaignProgress { Meta=new MetaProgress { Damage=20,Crystals=1000000 } };c=CampaignSaveStore.BeginRun(path,c,new RunSimulator(42,c.Meta));
+            var funded=new MetaProgress { Damage=20 }; funded.Crystals=funded.Cost(MetaUpgrade.Damage);
+            var c=new CampaignProgress { Meta=funded };c=CampaignSaveStore.BeginRun(path,c,new RunSimulator(42,c.Meta));
             var bought=JsonUtility.FromJson<MetaProgress>(JsonUtility.ToJson(c.Meta));Assert.IsTrue(bought.TryBuy(MetaUpgrade.Damage));var bytes=File.ReadAllBytes(path);var expected=Canonical(c);
             Assert.Throws<InvalidDataException>(()=>CampaignSaveStore.SaveMeta(path,c,bought));CollectionAssert.AreEqual(bytes,File.ReadAllBytes(path));Assert.AreEqual(expected,Canonical(c));
         }

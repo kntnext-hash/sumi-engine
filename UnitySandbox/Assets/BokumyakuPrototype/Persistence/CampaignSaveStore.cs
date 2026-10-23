@@ -134,6 +134,23 @@ namespace Bokumyaku.Persistence
                 { throw new InvalidDataException("Campaign and backup are unreadable; no data was replaced.", new AggregateException(e, backup)); }
             }
         }
+        /// <summary>Generation 11 isolates rules9 and price3; prior balances and purchased levels are never repriced.</summary>
+        public static CampaignProgress LoadTierLatest(string path, string previousV10, string previousV9, string previousV8, string previousV7, string previousV6, string previousV5, string previousV4, string previousV3, string olderV2, string legacyMetaPath, out string warning)
+        {
+            lock (Gate)
+            {
+                foreach (var source in new[] { previousV10, previousV9, previousV8, previousV7, previousV6, previousV5, previousV4, previousV3, olderV2, legacyMetaPath })
+                    if (!string.IsNullOrEmpty(source)) Require(!string.Equals(Path.GetFullPath(path), Path.GetFullPath(source), StringComparison.OrdinalIgnoreCase), "Migration destination must differ from every source.");
+                if (File.Exists(path) || File.Exists(path + ".bak")) return ReadRecover(path, out warning);
+                if (!string.IsNullOrEmpty(previousV10) && (File.Exists(previousV10) || File.Exists(previousV10 + ".bak")))
+                {
+                    var c = ReadRecover(previousV10, out warning); Write(path, c);
+                    warning = "Previous campaign copied to generation11 without repricing research or crystals; original and backup preserved. " + warning;
+                    return c;
+                }
+                return LoadTierLatest(path, previousV9, previousV8, previousV7, previousV6, previousV5, previousV4, previousV3, olderV2, legacyMetaPath, out warning);
+            }
+        }
         /// <summary>Generation 10 isolates rules8 enemy counters from older executables; schema4 stays unchanged.</summary>
         public static CampaignProgress LoadTierLatest(string path, string previousV9, string previousV8, string previousV7, string previousV6, string previousV5, string previousV4, string previousV3, string olderV2, string legacyMetaPath, out string warning)
         {

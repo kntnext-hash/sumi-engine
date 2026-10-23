@@ -22,3 +22,29 @@ Recordは時点の研究を用いた時間枠外の能力診断。60000tickで�
 次は同じ1.18効果に対して、2〜3周分の通常結晶収益と価格を各Lvで照合し、既存価格表の傾きを修正する。初回500を保ち、段位倍率込みの収益で校正。実装採用時には新rules/価格版/旧保存継続と短い回帰試験が必要。
 
 再現: `pwsh -NoProfile -File scripts/Measure-BokumyakuRankWeek.ps1`。RankWeekProbe.cs.txtが有限シミュレーション本体。生成元の全SimulationファイルSHA256とcommitをevidence/rank-first-week-probe.jsonへ記録。C#を別namespaceにコンパイルし、候補の式だけ置換する。Unity画面/実機試験ではない。
+
+## 採用結果（2026-10-24、rules9 / 価格版3）
+上記は採用前の比較履歴。効果1.18を固定し、価格傾斜を最大3案で比較した。
+|価格傾斜|7時間・点墨放置最高Wave|購入数|
+|---|---:|---:|
+|1.18|78〜80|39|
+|1.30|70|29〜30|
+|1.48|61〜63|23|
+
+1.48を採用。Lv20まで全研究ceil(500×1.48^Lv)、攻撃研究1.18^Lv。Lv20超は既存の二次式へ新しいLv20アンカーから接続する。Wave上限/敵長期成長式は変更しない。
+同じ係数で4周に1回だけ円相/Record、他は点墨/Farmingという遊び方を検証した。追加係数候補ではない。
+|実コード3seed|結果|
+|---|---|
+|初回敗北|6.11〜7.01分|
+|初研究購入|3周|
+|1時間（一日目）最高完了Wave|50〜57|
+|7時間（一週間）最高完了Wave|85〜89|
+|7時間研究購入|18回/seed|
+|購入間隔|54件中51件が2〜3周、3件は1周、複数同時購入なし|
+
+二段は7時間以内に未解放。これは測定条件での進行で、全武器/全プレイヤーへの保証や二段以降の収益評価ではない。診断用Recordは時間予算外なので上表へ含めない。
+実コードで比較結果を再現し採用した。rules8以下の進行中ランは従来研究効果を保持。新規ランrules9、保存世代v11。研究Lv/結晶は維持し、v10原本を残す。
+関連EditMode263/263合格。価格変更後の画面操作/Windowsビルド/スマホは今回未実施。
+
+証拠: evidence/rank-price-probe.json、rank-mixed-build-probe.json、rank-adopted-week.json、first-week-adoption-editmode.json。
+価格/混合候補スクリプトは採用前7f76f5aのSimulationソースを入力として再現する（採用後ソースに候補置換をかけない）。採用後はMeasure-BokumyakuAdoptedWeek.ps1で実コードを測定する。adopted証拠のsourceCommitは作業開始HEADであり、実入力はsourceHashesに記録した未コミットrules9ソース。

@@ -167,8 +167,8 @@ namespace Bokumyaku.Tests
             meta.Crystals = 0; Assert.IsTrue(run.ClaimReward(meta));
         }
 
-        [TestCase(MetaUpgrade.Damage, 8)] [TestCase(MetaUpgrade.Supply, 10)]
-        [TestCase(MetaUpgrade.Growth, 8)] [TestCase(MetaUpgrade.Harvest, 12)]
+        [TestCase(MetaUpgrade.Damage,500)] [TestCase(MetaUpgrade.Supply,500)]
+        [TestCase(MetaUpgrade.Growth,500)] [TestCase(MetaUpgrade.Harvest,500)]
         public void MetaPurchaseCostsCapsAndInsufficientFunds(MetaUpgrade kind, int initialCost)
         {
             var meta = new MetaProgress { Crystals = initialCost - 1 };
@@ -177,7 +177,7 @@ namespace Bokumyaku.Tests
             meta.Crystals = int.MaxValue;
             for (int level = 0; level < MetaProgress.MaxLevel(kind); level++)
             {
-                int expected = kind==MetaUpgrade.Damage && level>20 ? (int)Math.Ceiling(2952*Math.Pow(1+.05*(level-20),2)) : level<=10 ? (int)Math.Ceiling(initialCost * Math.Pow(1.48, level)) : (int)Math.Ceiling(Math.Ceiling(initialCost*Math.Pow(1.48,10))*Math.Pow(1.22,level-10));
+                int expected=level<=20?(int)Math.Ceiling(500*Math.Pow(1.48,level)):(int)Math.Ceiling(1271172*Math.Pow(1+.05*(level-20),2));
                 int before = meta.Crystals; Assert.AreEqual(expected, meta.Cost(kind));
                 Assert.IsTrue(meta.TryBuy(kind)); Assert.AreEqual(before - expected, meta.Crystals);
                 Assert.AreEqual(level + 1, meta.Level(kind));
@@ -199,7 +199,7 @@ namespace Bokumyaku.Tests
             var meta = new MetaProgress(); int earned = 0, spent = 0;
             for (int i = 0; i < 3; i++)
             {
-                var run = new RunSimulator(42 + i, meta); Assert.AreEqual(0, run.RunInk);
+                var run = new RunSimulator(42 + i, meta); run.SetBuild(BuildPreset.Farming); Assert.AreEqual(0, run.RunInk);
                 Finish(run); Assert.AreEqual(RunStatus.Defeated, run.State);
                 Assert.IsTrue(run.ClaimReward(meta)); earned += run.CrystalsReward;
                 int cost = meta.Cost(MetaUpgrade.Damage);
@@ -278,9 +278,10 @@ namespace Bokumyaku.Tests
         }
 
         [TestCase(BuildPreset.Farming)] [TestCase(BuildPreset.Record)]
-        public void AutomaticBuildRetainsGraphLimitsAndTerminates(BuildPreset build)
+        public void LegacyRulesEightAutomaticBuildRetainsGraphLimitsAndTerminates(BuildPreset build)
         {
             var run = new RunSimulator(42, new MetaProgress { Damage = 20, Supply = 20, Growth = 20, Harvest = 20 });
+            var legacy=run.CaptureState();legacy.rulesVersion=8;run=RunSimulator.Restore(legacy);
             run.SetBuild(build);
             while (run.State == RunStatus.Running && run.TickCount < Math.Min(run.RunTickLimit, 200000))
             {
@@ -296,6 +297,22 @@ namespace Bokumyaku.Tests
             Assert.AreNotEqual(RunStatus.Running, run.State);
             Assert.AreNotEqual(RunStatus.CapacityExceeded, run.State);
             Assert.LessOrEqual(run.TickCount, run.RunTickLimit);
+        }
+        [TestCase(BuildPreset.Farming)] [TestCase(BuildPreset.Record)]
+        public void RulesNineStrongResearchMaintainsGraphAndSaveInBoundedRun(BuildPreset build)
+        {
+            var run=new RunSimulator(42,new MetaProgress{Damage=20,Supply=20,Growth=20,Harvest=20});run.SetBuild(build);
+            for(int i=0;i<21600 && run.State==RunStatus.Running;i++)
+            {
+                run.Tick();Assert.LessOrEqual(run.Branches.Count,64);Assert.LessOrEqual(run.TipCount,12);
+                Assert.LessOrEqual(run.Enemies.Count,RunSimulator.EnemyLimit);Assert.GreaterOrEqual(run.RunInk,0);
+                var known=new HashSet<int>();foreach(var branch in run.Branches){Assert.IsTrue(known.Add(branch.Id));if(branch.Id!=0){Assert.Less(branch.ParentId,branch.Id);Assert.IsTrue(known.Contains(branch.ParentId));}}
+            }
+            Assert.AreEqual(9,run.RulesVersion);Assert.AreNotEqual(RunStatus.CapacityExceeded,run.State);
+            Assert.Greater(run.Branches.Count,4);Assert.Greater(run.Kills,0);
+            var restored=RunSimulator.Restore(run.CaptureState());
+            for(int i=0;i<900;i++){run.Tick();restored.Tick();}
+            Assert.AreEqual(UnityEngine.JsonUtility.ToJson(run.CaptureState()),UnityEngine.JsonUtility.ToJson(restored.CaptureState()));
         }
     }
 }

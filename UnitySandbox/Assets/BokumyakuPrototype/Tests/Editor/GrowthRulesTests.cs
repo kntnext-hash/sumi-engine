@@ -39,8 +39,8 @@ namespace Bokumyaku.Tests
         }
         [Test] public void ExpandedMetaMultiplierIsContinuousFiniteAndOtherCapsUnchanged()
         {
-            Assert.AreEqual(2952,MetaProgress.DamageCostAt20);Assert.AreEqual(7040,RunSimulator.DamageCostAt30);
-            double last=0;for(int level=0;level<=100;level++){var m=new MetaProgress{Damage=level};double expected=level<=20?1+.025*level:1.5*Math.Pow(1+.025*(level-20),2);Assert.AreEqual(expected,m.DamageMultiplier);Assert.Greater(m.DamageMultiplier,last);Assert.Greater(m.Cost(MetaUpgrade.Damage),0);last=m.DamageMultiplier;}
+            Assert.AreEqual(1271172,MetaProgress.DamageCostAt20);Assert.AreEqual(7040,RunSimulator.DamageCostAt30);
+            double last=0;for(int level=0;level<=100;level++){var m=new MetaProgress{Damage=level};double expected=level<=20?Math.Pow(1.18,level):Math.Pow(1.18,20)*Math.Pow(1+.025*(level-20),2);Assert.AreEqual(expected,m.DamageMultiplier);Assert.Greater(m.DamageMultiplier,last);Assert.Greater(m.Cost(MetaUpgrade.Damage),0);last=m.DamageMultiplier;}
             Assert.AreEqual(100,MetaProgress.MaxLevel(MetaUpgrade.Damage));foreach(var kind in new[]{MetaUpgrade.Supply,MetaUpgrade.Growth,MetaUpgrade.Harvest})Assert.AreEqual(20,MetaProgress.MaxLevel(kind));
             Assert.Throws<ArgumentOutOfRangeException>(()=>MetaProgress.MaxLevel((MetaUpgrade)99));Assert.Throws<ArgumentOutOfRangeException>(()=>new RunSimulator(1,new MetaProgress{Damage=101}));
         }
@@ -50,6 +50,13 @@ namespace Bokumyaku.Tests
             var a=RunSimulator.Restore(s);a.SetBuild(BuildPreset.Record);for(int i=0;i<900;i++)a.Tick();
             var b=RunSimulator.Restore(JsonUtility.FromJson<RunSnapshot>(State(a)));
             for(int i=0;i<900;i++){a.Tick();b.Tick();Assert.AreEqual(State(a),State(b));}
+        }
+        [Test] public void NewResearchFullHorizonDamageFitsExplicitBounds()
+        {
+            double hit=7.5*Math.Pow(1.1,30)*Math.Pow(1.12,70)*new MetaProgress{Damage=100}.DamageMultiplier*1.65;
+            double field=hit*.85*2.2/30;
+            double bound=Math.Ceiling(36000000/7.0)*12*96*hit+36000000.0*96*2*field;
+            Assert.Less(hit,1e9);Assert.Less(field,1e9);Assert.Less(bound,RunSimulator.FirstWeekEffectiveDamageLimit);
         }
         [Test] public void ConservativeFullHorizonDamageFitsExplicitBounds()
         {
