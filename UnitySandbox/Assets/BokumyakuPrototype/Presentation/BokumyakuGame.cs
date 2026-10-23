@@ -422,7 +422,7 @@ namespace Bokumyaku.Presentation
                 // Gameplay branches must remain readable at the reduced battlefield size.
                 // Dense fibers retain a brush edge without the sparse gaps of the Dry preset.
                 var brush = InkBrushSettings.Dense;
-                brush.radius = Mathf.Lerp(8f, 4f, Mathf.Clamp01((float)b.PathLength / 400f));
+                brush.radius = Mathf.Lerp(14f, 4.5f, Mathf.Clamp01((float)b.PathLength / 400f));
                 brush.pigment = 1f; brush.water = .15f; brush.depletion = .002f;
                 brush.roughness = .42f;
                 float x0 = (float)parent.ViewX, y0 = (float)parent.ViewY;
@@ -430,11 +430,12 @@ namespace Bokumyaku.Presentation
                 float sx = canvas.width / 384f, sy = canvas.height / 512f;
                 persistentInk.Begin(new InkPoint(x0 * sx, y0 * sy, 0, 1f), brush, unchecked(Run.Seed + b.Id * 7919));
                 // A gently bowed centerline gives the growing branch a living brush gesture.
-                for (int n = 1; n <= 8; n++)
+                var normal = new Vector2(-(y1-y0), x1-x0).normalized;
+                for (int n = 1; n <= 16; n++)
                 {
-                    float t = n / 8f, bow = Mathf.Sin(t * Mathf.PI) * (b.Id % 2 == 0 ? 3.4f : -3.4f);
-                    persistentInk.Move(new InkPoint((Mathf.Lerp(x0, x1, t) + bow) * sx,
-                        Mathf.Lerp(y0, y1, t) * sy, t * .35f, Mathf.Lerp(1f, .7f, t)));
+                    float t = n / 16f, bow = Mathf.Sin(t * Mathf.PI) * (b.Id % 2 == 0 ? 9f : -9f);
+                    persistentInk.Move(new InkPoint((Mathf.Lerp(x0, x1, t) + normal.x * bow) * sx,
+                        (Mathf.Lerp(y0, y1, t) + normal.y * bow) * sy, t * .35f, Mathf.Lerp(1f, .45f, t)));
                 }
                 persistentInk.End();
                 DrawBranchFibers(x0,y0,x1,y1,sx,sy,b.Id);
@@ -906,4 +907,5 @@ namespace Bokumyaku.Presentation
         }
     }
 }
+
 

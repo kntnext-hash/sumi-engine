@@ -8,11 +8,11 @@ namespace Bokumyaku.Presentation
   void DrawBranchFibers(float x0,float y0,float x1,float y1,float sx,float sy,int id)
   {
    var a=new Vector2(x0,y0);var b=new Vector2(x1,y1);var d=(b-a).normalized;var normal=new Vector2(-d.y,d.x);
-   var brush=InkBrushSettings.Dense;brush.radius=2.1f;brush.roughness=.7f;brush.water=.12f;brush.pigment=.8f;brush.depletion=.01f;
-   for(int twig=0;twig<3;twig++)
+   var brush=InkBrushSettings.Dense;brush.radius=3.2f;brush.roughness=.7f;brush.water=.12f;brush.pigment=.8f;brush.depletion=.01f;
+   for(int twig=0;twig<5;twig++)
    {
-    float t=.25f+twig*.24f,sign=(id+twig)%2==0?1:-1;
-    Vector2 start=Vector2.Lerp(a,b,t),end=start+d*(8+(id+twig)%4*3)+normal*sign*(11+(id*7+twig)%5*3);
+    float t=.16f+twig*.16f,sign=(id+twig)%2==0?1:-1;
+    Vector2 start=Vector2.Lerp(a,b,t),end=start+d*(12+(id+twig)%4*5)+normal*sign*(16+(id*7+twig)%5*4);
     persistentInk.Begin(new InkPoint(start.x*sx,start.y*sy,0,.8f),brush,unchecked(Run.Seed+id*193+twig));
     for(int n=1;n<=10;n++)
     {
@@ -24,4 +24,5 @@ namespace Bokumyaku.Presentation
   }
  }
 }
+
 
