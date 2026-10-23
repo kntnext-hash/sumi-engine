@@ -72,6 +72,12 @@ namespace Bokumyaku.Presentation
    persistentInk.Flush();
   }
   // Decorative brush fibers only: no extra attack nodes or gameplay branches.
+  static Vector2 BranchStrokePoint(Vector2 a,Vector2 b,int id,float t)
+  {
+   var d=(b-a).normalized;var normal=new Vector2(-d.y,d.x);
+   float bow=Mathf.Sin(t*Mathf.PI)*(id%2==0?9f:-9f);
+   return Vector2.Lerp(a,b,t)+normal*bow;
+  }
   void DrawBranchFibers(float x0,float y0,float x1,float y1,float sx,float sy,int id)
   {
    var a=new Vector2(x0,y0);var b=new Vector2(x1,y1);var d=(b-a).normalized;var normal=new Vector2(-d.y,d.x);
@@ -79,11 +85,14 @@ namespace Bokumyaku.Presentation
    for(int twig=0;twig<5;twig++)
    {
     float t=.16f+twig*.16f,sign=(id+twig)%2==0?1:-1;
-    Vector2 start=Vector2.Lerp(a,b,t),end=start+d*(12+(id+twig)%4*5)+normal*sign*(16+(id*7+twig)%5*4);
+    Vector2 start=BranchStrokePoint(a,b,id,t);
+    var tangent=(BranchStrokePoint(a,b,id,t+.01f)-BranchStrokePoint(a,b,id,t-.01f)).normalized;
+    var side=new Vector2(-tangent.y,tangent.x);
+    Vector2 end=start+tangent*(12+(id+twig)%4*5)+side*sign*(16+(id*7+twig)%5*4);
     persistentInk.Begin(new InkPoint(start.x*sx,start.y*sy,0,.8f),brush,unchecked(Run.Seed+id*193+twig));
     for(int n=1;n<=10;n++)
     {
-     float u=n/10f;Vector2 p=Vector2.Lerp(start,end,u)+normal*Mathf.Sin(u*Mathf.PI)*sign*4;
+     float u=n/10f;Vector2 p=Vector2.Lerp(start,end,u)+side*Mathf.Sin(u*Mathf.PI)*sign*4;
      persistentInk.Move(new InkPoint(p.x*sx,p.y*sy,u*.3f,Mathf.Lerp(.8f,.06f,u)));
     }
     persistentInk.End();

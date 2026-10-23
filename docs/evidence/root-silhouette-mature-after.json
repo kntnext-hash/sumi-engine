@@ -1,0 +1,13 @@
+{
+  "phase": "mature-after",
+  "seed": 42,
+  "Wave": 17,
+  "TickCount": 6000,
+  "width": 1080,
+  "height": 2400,
+  "slices": 35,
+  "painted": 22,
+  "unchanged": true,
+  "frames": 1142,
+  "note": "Paused seeded fixture; all root strokes and branches complete. Visual comparison, not runtime performance."
+}

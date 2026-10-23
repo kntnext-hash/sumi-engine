@@ -465,23 +465,23 @@ namespace Bokumyaku.Presentation
                 // Gameplay branches must remain readable at the reduced battlefield size.
                 // Dense fibers retain a brush edge without the sparse gaps of the Dry preset.
                 var brush = InkBrushSettings.Dense;
-                brush.radius = Mathf.Lerp(14f, 4.5f, Mathf.Clamp01((float)b.PathLength / 400f));
+                // Taper by distance from the core, so a long tip never outweighs its trunk.
+                brush.radius = Mathf.Lerp(8.5f, 2.5f, Mathf.Clamp01((float)b.PathLength / 160f));
                 brush.pigment = 1f; brush.water = .15f; brush.depletion = .002f;
                 brush.roughness = .42f;
                 float x0 = (float)parent.ViewX, y0 = (float)parent.ViewY;
                 float x1 = (float)b.ViewX, y1 = (float)b.ViewY;
                 float sx = canvas.width / 384f, sy = canvas.height / 512f;
                 // A gently bowed centerline gives the growing branch a living brush gesture.
-                var normal = new Vector2(-(y1-y0), x1-x0).normalized;
                 for(int pass=0;pass<2;pass++)
                 {
                 if(pass==1){brush.texture=InkTexture.Pool;brush.radius*=.52f;brush.roughness=.3f;brush.water=.35f;}
                 persistentInk.Begin(new InkPoint(x0 * sx, y0 * sy, 0, 1f), brush, unchecked(Run.Seed + b.Id * 7919));
                 for (int n = 1; n <= 16; n++)
                 {
-                    float t = n / 16f, bow = Mathf.Sin(t * Mathf.PI) * (b.Id % 2 == 0 ? 9f : -9f);
-                    persistentInk.Move(new InkPoint((Mathf.Lerp(x0, x1, t) + normal.x * bow) * sx,
-                        (Mathf.Lerp(y0, y1, t) + normal.y * bow) * sy, t * .35f, Mathf.Lerp(1f, .45f, t)));
+                    float t = n / 16f;
+                    var point = BranchStrokePoint(new Vector2(x0,y0),new Vector2(x1,y1),b.Id,t);
+                    persistentInk.Move(new InkPoint(point.x * sx,point.y * sy, t * .35f, Mathf.Lerp(1f, .45f, t)));
                 }
                 persistentInk.End();
                 }
@@ -531,3 +531,4 @@ namespace Bokumyaku.Presentation
         }
     }
 }
+

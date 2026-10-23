@@ -183,3 +183,7 @@ DirtyInkSurface.Clearは透明GPUテンプレートから同形式CopyTextureで
 ## 根の曲線・分岐の改善（2026-10-24）
 BokumyakuGame.BranchFibersの装飾根を均等角の扇形から7本の非対称cubic曲線へ変更。親曲線上の接点と局所接線から曲がる側根を生成。初案は細く迫力を失ったため不採用画像を保存し、中腹の筆圧/太さと分岐長を再調整。35stroke・1stroke/frame・dirty更新を維持。シミュレーション/Runtime/当たり判定/実際の攻撃枝は不変。
 Unity Editorコンパイル後、隔離seed42/Farming/900tick/Wave3、1080×2400で前後比較。根35strokeと7枝の描画完了を確認、描画待ち中のCaptureState不変。before/afterを実見し、非対称な曲がりと太さの回復を確認。参考画像の密集した樹状構造/陰影/攻撃の迫力にはまだ差があり、完成美術ではない。初案はthin-rejectedとして保存。Editor終了後QA解像度/設定を復元。検証用スクリプトのSessionState.GetInt引数不足1件を修正して実行。今回は対象Editor画面確認、全EditMode/Windows再ビルド/実機性能は未実施。evidence/root-silhouette-*.png/json。
+
+## 攻撃枝の筆幅と小枝接続（2026-10-24）
+Wave3だけでなく初期育成seed42/Farming/6000tick/Wave17の22枝を確認し、攻撃枝が太い墨塊になる問題を修正。筆幅を核からの累積距離に応じ8.5→2.5へ減衰（従来14→4.5）。区間長基準の初案は幹より枝先が太くなるため撤回。親のbow曲線をBranchStrokePointへ共通化し、小枝の開始点と接線をその曲線から取得。枝先/攻撃判定/経済/シミュレーション/Runtime不変。部分更新と1枝/frameも維持。
+Unityコンパイルと1080×2400の同一seed/Wave17前後画像を実見。35根stroke/22枝描画完了、待機中snapshot不変。分岐間の余白と接続が読めるようになった。参考画像の密度/樹冠/演出は未完成。QA終了後設定復元。今回は対象Editor画面検証、全EditMode/Windows再ビルド/性能再測定なし。evidence/root-silhouette-mature-before/after.png/json。RootSilhouetteCheckに6000tickfixtureを追加。
