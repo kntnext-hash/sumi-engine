@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "tableVersion": 1,
+  "hpSamples": 300000,
+  "maxBossHp": 2020774771363.9797,
+  "rows": [
+    {
+      "tier": 1,
+      "wave": 1,
+      "hp": 16.0,
+      "crystalMultiplier": 1.0
+    },
+    {
+      "tier": 1,
+      "wave": 30,
+      "hp": 149.00143230230813,
+      "crystalMultiplier": 1.0
+    },
+    {
+      "tier": 1,
+      "wave": 60,
+      "hp": 1547.862224230317,
+      "crystalMultiplier": 1.0
+    },
+    {
+      "tier": 1,
+      "wave": 100,
+      "hp": 9215.3525381776144,
+      "crystalMultiplier": 1.0
+    },
+    {
+      "tier": 2,
+      "wave": 1,
+      "hp": 40.0,
+      "crystalMultiplier": 1.6
+    },
+    {
+      "tier": 2,
+      "wave": 30,
+      "hp": 394.32702286065387,
+      "crystalMultiplier": 1.6
+    },
+    {
+      "tier": 2,
+      "wave": 60,
+      "hp": 4330.8872334525031,
+      "crystalMultiplier": 1.6
+    },
+    {
+      "tier": 2,
+      "wave": 100,
+      "hp": 27646.057614532845,
+      "crystalMultiplier": 1.6
+    },
+    {
+      "tier": 3,
+      "wave": 1,
+      "hp": 96.0,
+      "crystalMultiplier": 2.5
+    },
+    {
+      "tier": 3,
+      "wave": 30,
+      "hp": 998.76111591728966,
+      "crystalMultiplier": 2.5
+    },
+    {
+      "tier": 3,
+      "wave": 60,
+      "hp": 11501.085375190114,
+      "crystalMultiplier": 2.5
+    },
+    {
+      "tier": 3,
+      "wave": 100,
+      "hp": 77408.96132069196,
+      "crystalMultiplier": 2.5
+    }
+  ],
+  "scope": "Unintegrated original Tier table, Tier1 exact compatibility and finite monotonic HP through existing cap; unlock99/100 and no skip. No gameplay balance claim."
+}
