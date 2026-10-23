@@ -169,3 +169,8 @@ RootBudgetCheckの隔離Playで同フレーム0→1→1、後続14/14組・枝7/
 14組の分割でもRootFlourish最大66.62msだったため、主根のDense/Poolを各1回、側根を各1本として35ストロークへ変更。1フレーム1本で完結し、次フレームへ開いたストロークを持ち越さない。元の順番、座標、seed、筆設定を維持。
 変更前/後を別Playのseed42・900tick・一時停止で比較。根と枝の完了後、384×512全画素のPigmentAt floatバイトのSHA256がBA771C9CF01993E7CF1A2344DF727AEB0DB17DDB4C65D49FFA672FD4EB7453FEで完全一致。root-pigment-before/after.json。一般の全seedや死体跡が交錯する動的状況の一致保証ではない。
 root-stroke-budget.jsonで35/35と枝7/7完了、snapshot/全面初期化不変。同フレーム0→1→1。今回はコンパイル＋隔離Editor Playのみ。実フレーム停止の改善は未計測。60fpsなら描画完了は最低約0.58秒、実時間は処理負荷に依存する。
+
+## 周回時の墨テクスチャ再利用（2026-10-24）
+DirtyInkSurface.Clearは透明GPUテンプレートから同形式CopyTextureで消去。目的テクスチャの破棄/再生成/全CPU配列アップロードを除去し、InkBattleWorldの墨Sprite再生成も避ける。テンプレートは初期化時1回作成、Disposeで解放。384×512 RGBA32でGPUメモリ約0.75MiB追加（管理上のサイズ、実機計測ではない）。通常筆描画は従来のdirty tile更新。ClearCountとFullInitializationsを分離。
+対象EditMode3/3合格。GPU全画素alphaをCPU墨量と比較し、非32倍寸法の端、未flush/未Endのストローク消去、3回の再利用、再描画後の部分更新と旧墨なしを確認。ink-reset-reuse-editmode.json。最初の非同期要求は結果なし・実TestRunner inactiveを確認し、同期1回で結果取得。ツールのrunning表示だけを実行証拠にしない。
+隔離Playの実AbandonRun/TryStartRunを3回実行し、テクスチャ/上下墨Spriteのidentity保持、FullInitializations=1を確認。ink-reset-reuse-play.json。今回対象EditMode＋隔離Play、Windowsフレーム時間は次回。500ms級停止が解消したとはまだ言わない。Runtime本体/シミュレーション/保存形式変更なし。

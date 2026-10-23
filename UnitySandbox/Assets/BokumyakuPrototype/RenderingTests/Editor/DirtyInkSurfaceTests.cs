@@ -50,9 +50,42 @@ namespace Bokumyaku.Drawing.Tests
                 surface.End();
                 surface.Flush();
                 AssertGpuMatchesPigment(surface);
+                var texture = surface.Texture;
                 surface.Clear();
-                Assert.AreEqual(2, surface.FullInitializations);
+                Assert.AreSame(texture, surface.Texture);
+                Assert.AreEqual(1, surface.FullInitializations);
+                Assert.AreEqual(1, surface.ClearCount);
                 AssertGpuMatchesPigment(surface);
+            }
+        }
+
+        [Test]
+        public void RepeatedResetDiscardsPendingStrokeAndAcceptsNewPartialMarks()
+        {
+            if (!DirtyInkSurface.IsSupported) Assert.Ignore("GPU region copy unavailable on test renderer.");
+            using (var surface = new DirtyInkSurface(143, 137))
+            {
+                var texture = surface.Texture;
+                var brush = InkBrushSettings.Dense; brush.radius = 3;
+                for (int i = 0; i < 3; i++)
+                {
+                    surface.Begin(new InkPoint(10, 10, 0, 1), brush, 42);
+                    surface.Move(new InkPoint(35, 35, 1, 1)); // Deliberately not ended/flushed.
+                    surface.Clear();
+                    Assert.AreSame(texture, surface.Texture);
+                    Assert.AreEqual(0, surface.PendingTiles);
+                    Assert.AreEqual(0, surface.Flush());
+                    Assert.AreEqual(0, surface.PigmentAt(10, 10));
+                    AssertGpuMatchesPigment(surface);
+                    long previousPixels = surface.UpdatedPixels;
+                    surface.Begin(new InkPoint(130, 125, 0, 1), brush, 73);
+                    surface.End(); surface.Flush();
+                    Assert.Greater(surface.PigmentAt(130, 125), 0);
+                    Assert.Less(surface.UpdatedPixels - previousPixels, surface.Width * surface.Height / 2);
+                    AssertGpuMatchesPigment(surface);
+                }
+                Assert.AreEqual(1, surface.FullInitializations);
+                Assert.AreEqual(3, surface.ClearCount);
             }
         }
 

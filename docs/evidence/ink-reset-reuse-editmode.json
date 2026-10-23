@@ -1,0 +1,1 @@
+{"mode":"EditMode","filter":"DirtyInkSurfaceTests","total":3,"passed":3,"failed":0,"skipped":0,"durationSeconds":5.17,"source":"Unity Pipeline synchronous test response, 2026-10-24","note":"Prior async request yielded no result; TestRunner IsRunActive=false was verified before synchronous retry."}

@@ -13,6 +13,7 @@ namespace Bokumyaku.Presentation.Drawing
         public const int TileSize = 32;
         readonly SumiEngineCore core;
         readonly Texture2D staging;
+        readonly Texture2D clearTemplate;
         readonly bool[] dirty;
         readonly Color32[] tilePixels = new Color32[TileSize * TileSize];
         readonly int columns, rows;
@@ -23,6 +24,7 @@ namespace Bokumyaku.Presentation.Drawing
         public int Width => core.Paper.Width;
         public int Height => core.Paper.Height;
         public int FullInitializations { get; private set; }
+        public int ClearCount { get; private set; }
         public long UpdatedPixels { get; private set; }
         public int DirtyUploads { get; private set; }
         public RectInt LastDirtyRect { get; private set; }
@@ -38,6 +40,9 @@ namespace Bokumyaku.Presentation.Drawing
             rows = (height + TileSize - 1) / TileSize;
             dirty = new bool[columns * rows];
             staging = NewTexture(TileSize, TileSize, "SUMI dirty tile staging");
+            clearTemplate = NewTexture(width, height, "SUMI transparent reset template");
+            clearTemplate.SetPixels32(new Color32[width * height]);
+            clearTemplate.Apply(false, true);
             InitializeTexture();
         }
 
@@ -146,8 +151,10 @@ namespace Bokumyaku.Presentation.Drawing
             active = false;
             Array.Clear(dirty, 0, dirty.Length);
             PendingTiles = 0;
-            Destroy(Texture);
-            InitializeTexture(); // Explicit run/reset boundary only; caller must rebind Texture.
+            // Run/reset boundary: one GPU copy, retaining the destination and bound sprites.
+            // No full CPU upload, deferred Destroy, or new texture per restart.
+            Graphics.CopyTexture(clearTemplate, Texture);
+            ClearCount++;
             LastDirtyRect = new RectInt(0, 0, Width, Height);
         }
 
@@ -162,7 +169,7 @@ namespace Bokumyaku.Presentation.Drawing
         {
             if (disposed) return;
             disposed = true;
-            Destroy(Texture); Destroy(staging);
+            Destroy(Texture); Destroy(staging); Destroy(clearTemplate);
         }
     }
 }
