@@ -19,6 +19,15 @@ namespace Bokumyaku.Presentation
             for(int i=0;i<20;i++){float t=i/19f;path[i]=new InkPoint(12+72*t,48+7*Mathf.Sin(t*Mathf.PI),t*.3f,1-.9f*t);}
             slashInk=InkTextureBaker.Bake(96,new[]{path},style,8231);
             var paths=new List<InkPoint[]>();
+            // A loaded center survives small sprite sizes; rays alone read as a faint star.
+            // Bake once through SUMI, then reuse this mask for moving/expanding effects.
+            var center=new InkPoint[40];
+            for(int i=0;i<center.Length;i++)
+            {
+                float t=i/(float)(center.Length-1),angle=t*Mathf.PI*6,radius=12*(1-t);
+                center[i]=new InkPoint(48+Mathf.Cos(angle)*radius,48+Mathf.Sin(angle)*radius,t*.3f,.95f);
+            }
+            paths.Add(center);
             for(int n=0;n<9;n++)
             {
                 float angle=n*2.39996f;float reach=19+n%3*8;
