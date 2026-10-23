@@ -29,3 +29,6 @@
 
 ## 記録あり画面（2026-10-23）
 隔離seed42/Farming/初期研究で通常Tickを敗北まで進め、SaveProgress→TryReloadProgress→Recordsを確認。1周/履歴1/276結晶、Wave36敗北（完了35Wave）、記録7:00。実時間7分の待機検証ではない。360×640で結果・累計・報酬が読める。証拠records-populated.json/png。InkCheck.Arm→RecordsCheck.Run→停止→Cleanup。操作/表示の限定合格であり、研究初期価格8に対して1周276結晶なので新方針の2〜3周購入目標は未達。初週調整時に検証する。
+
+## UI統合Windows v8
+7cabb5eをビルド、error0/warning0。表示Player実540×960のホーム/戦闘を目視。6武器、自動周回、別プロセス復帰に合格（evidence/*ui-v8*）。追加UIの個別操作はEditorの限定検証であり、このPlayer試験は全操作/実機/完成美術の合格ではない。
