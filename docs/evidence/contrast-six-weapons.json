@@ -13,35 +13,35 @@
       "attackVisible": true,
       "frames": 10,
       "Wave": 17,
-      "activeAttacks": 3
+      "activeAttacks": 1
     },
     {
       "weapon": "Bleed",
       "attackVisible": true,
-      "frames": 10,
+      "frames": 13,
       "Wave": 17,
-      "activeAttacks": 2
+      "activeAttacks": 1
     },
     {
       "weapon": "Sweep",
       "attackVisible": true,
       "frames": 10,
       "Wave": 17,
-      "activeAttacks": 3
+      "activeAttacks": 2
     },
     {
       "weapon": "Enso",
       "attackVisible": true,
       "frames": 10,
       "Wave": 17,
-      "activeAttacks": 6
+      "activeAttacks": 13
     },
     {
       "weapon": "Resonance",
       "attackVisible": true,
       "frames": 10,
       "Wave": 17,
-      "activeAttacks": 2
+      "activeAttacks": 1
     }
   ],
   "method": "Short live samples after accelerated seed42 fixture; not balance/full regression/device test"

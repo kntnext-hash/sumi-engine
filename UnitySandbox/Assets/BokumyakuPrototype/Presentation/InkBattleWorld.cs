@@ -8,7 +8,7 @@ namespace Bokumyaku.Presentation
  public sealed class InkBattleWorld : IDisposable
  {
   sealed class EnemyView { public EnemyState state; public Vector2 previous,current; public double hp; public SpriteRenderer body,eye; public float hit,death; public bool dying,drawn; }
-  sealed class Effect { public SpriteRenderer renderer; public Vector2 a,b; public float age,life,width; public int type; public Color tint; }
+  sealed class Effect { public SpriteRenderer renderer; public Vector2 a,b; public float age,life,width; public int type; public Color tint; public bool flash; }
   readonly GameObject root; readonly Camera camera; readonly Material material; readonly MaterialPropertyBlock block=new MaterialPropertyBlock();
   readonly Dictionary<int,EnemyView> enemies=new Dictionary<int,EnemyView>(); readonly List<int> remove=new List<int>();
   readonly HashSet<int> liveIds=new HashSet<int>(); readonly List<SpriteRenderer> fieldViews=new List<SpriteRenderer>();
@@ -46,7 +46,7 @@ namespace Bokumyaku.Presentation
   Vector2 Project(Vector2 p){float t=.5f-p.y*.48f/512f;t=t<=.5f?t*1.44f:.72f+(t-.5f)*.56f;return new Vector2(p.x/400f*5,(.5f-t)*halfHeight*2);}
   void Properties(SpriteRenderer r,float hit,float dissolve,float wobble,float phase,bool reduced){block.Clear();block.SetFloat("_Hit",hit);block.SetFloat("_Dissolve",dissolve);block.SetFloat("_Wobble",wobble);block.SetFloat("_Phase",phase);block.SetFloat("_ReducedMotion",reduced?1:0);r.SetPropertyBlock(block);}
   void Release(SpriteRenderer r){r.gameObject.SetActive(false);r.SetPropertyBlock(null);r.transform.localRotation=Quaternion.identity;pool.Push(r);}
-  SpriteRenderer Rent(Sprite s,int order){var r=pool.Count>0?pool.Pop():Create(s,order);r.sprite=s;r.sortingOrder=order;r.color=Color.white;r.gameObject.SetActive(true);return r;}
+  SpriteRenderer Rent(Sprite s,int order){var r=pool.Count>0?pool.Pop():Create(s,order);r.sprite=s;r.enabled=true;r.sortingOrder=order;r.color=Color.white;r.gameObject.SetActive(true);return r;}
   public void Reset(RunSimulator run)
   {
    foreach(var e in enemies.Values){Release(e.body);Release(e.eye);}enemies.Clear();foreach(var e in effects)Release(e.renderer);effects.Clear();before.Clear();boundRun=run;freeze=shake=0;Deaths=HitFlashes=EffectsCreated=InterpolatedFrames=0;
@@ -69,16 +69,24 @@ namespace Bokumyaku.Presentation
    }
    remove.Clear();foreach(var pair in enemies)if(!pair.Value.dying&&!liveIds.Contains(pair.Key))remove.Add(pair.Key);
    foreach(int id in remove){Release(enemies[id].body);Release(enemies[id].eye);enemies.Remove(id);}
-   foreach(var hit in run.Attacks)Attack(hit,run);
+   foreach(var hit in run.Attacks)Attack(hit,run,reduced);
   }
 
-  void Spawn(Sprite sprite,Vector2 a,Vector2 b,float life,float width,int type,Color tint)
+  void Spawn(Sprite sprite,Vector2 a,Vector2 b,float life,float width,int type,Color tint,bool flash=false)
   {
-   if(effects.Count>=128){Release(effects[0].renderer);effects.RemoveAt(0);}effects.Add(new Effect{renderer=Rent(sprite,6),a=a,b=b,life=life,width=width,type=type,tint=tint});EffectsCreated++;
+   if(effects.Count>=128){Release(effects[0].renderer);effects.RemoveAt(0);}effects.Add(new Effect{renderer=Rent(sprite,flash?9:6),flash=flash,a=a,b=b,life=life,width=width,type=type,tint=tint});EffectsCreated++;
   }
-  void Attack(AttackEvent hit,RunSimulator run)
+  void Attack(AttackEvent hit,RunSimulator run,bool reduced)
   {
    var a=new Vector2((float)hit.X,(float)hit.Y);var b=new Vector2((float)hit.TargetX,(float)hit.TargetY);var ink=new Color(.025f,.02f,.015f,.95f);
+   if(!reduced)
+   {
+    // Light is a short accent over the ink, not a replacement for the weapon silhouette.
+    Spawn(halo,a,Vector2.zero,.14f,.85f,0,new Color(1,.82f,.35f,.9f),true);
+    Spawn(burst,b,Vector2.zero,.18f,.55f,0,new Color(1,.9f,.5f,.9f),true);
+    if(hit.Weapon==WeaponKind.Point||hit.Weapon==WeaponKind.Pierce||hit.Weapon==WeaponKind.Resonance)
+     Spawn(slash,a,b,.13f,.095f,1,new Color(1,.88f,.46f,.95f),true);
+   }
    switch(hit.Weapon)
    {
     case WeaponKind.Point: Spawn(slash,a,b,.12f,.18f,1,ink);Spawn(burst,b,Vector2.zero,.30f,.65f,0,ink);break;
@@ -123,7 +131,7 @@ namespace Bokumyaku.Presentation
    foreach(int id in remove){Release(enemies[id].body);Release(enemies[id].eye);enemies.Remove(id);}
    for(int i=effects.Count-1;i>=0;i--)
    {
-    var e=effects[i];e.age+=dt;if(e.age>=e.life){Release(e.renderer);effects.RemoveAt(i);continue;}
+    var e=effects[i];e.renderer.enabled=!(reduced&&e.flash);e.age+=dt;if(e.age>=e.life){Release(e.renderer);effects.RemoveAt(i);continue;}
     float t=e.age/e.life;var a=Project(e.a);var color=e.tint;color.a*=1-t;e.renderer.color=color;
     if(e.type==1){var b=Project(e.b);var d=b-a;Size(e.renderer,(a+b)*.5f,d.magnitude/ .75f,e.width);e.renderer.transform.localRotation=Quaternion.Euler(0,0,Mathf.Atan2(d.y,d.x)*Mathf.Rad2Deg);}
     else if(e.type==2){SizeArea(e.renderer,e.a,e.width*(.8f+.2f*t));}
@@ -134,6 +142,7 @@ namespace Bokumyaku.Presentation
   public void Dispose(){foreach(var s in ownedSprites)if(s!=null)UnityEngine.Object.Destroy(s);UnityEngine.Object.Destroy(emberTexture);UnityEngine.Object.Destroy(material);UnityEngine.Object.Destroy(root);}
  }
 }
+
 
 
 
