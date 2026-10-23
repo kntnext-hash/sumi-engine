@@ -200,3 +200,8 @@ Unityコンパイルと1080×2400の同一seed/Wave17前後画像を実見。35�
 ## 強化カードの5アイコン（2026-10-24）
 delivery-v8を既存uGUIのEmblem/Glyphへ統合。白tint/Simple/preserveAspect/非raycast、既存の紙札・円枠・価格・callbackを保持。Resourcesが無い場合は旧手続きglyphへフォールバック。原本1254角を保持しEditor APIでmax512、非readable、mipmapなし、Clamp、非圧縮として取り込む。
 UpgradeIconCheckで360×640/1080×2400、5種mapping/色/アスペクト/サイズ/CPU copyなし、零墨の無効化、1800tick後の購入callbackとレベル増加、TMP overflowなしを確認。upgrade-icons-360/1080.json/png。両画像を目視し払い/渦/滴/樹/太線の識別を確認。静止UI検証であり、撮影は根の描き込み完了前、自然進行や描画性能の証拠ではない。隔離保存を使い終了後にQA設定を復元。全EditMode/Windows再ビルド/実機は今回未実施。
+
+## 戦闘HUDの操作整理（2026-10-24）
+戦場上の強化説明/滲み・採墨を常設から外し、下部の操作ボタンから開くパネルへ集約。保存・ホーム・演出軽減も同パネルへ移す。常設は墨核/速度/自動/操作と5強化札。追加強化と説明は戻るで操作パネルへ戻り、操作ボタンでも閉じる。終了/新周回/ホーム移動でパネル状態を閉じる。シミュレーション/経済/保存形式/Runtime変更なし。
+BattleToolsCheck: 360×640と1080×2400各17回のEventSystem pointer click。実screen位置でRaycastAllの最前面が対象Buttonであることを確認。速度/自動/演出変更と復元、保存ファイル作成、説明/追加強化への遷移、閉じる/再開/ホーム復帰、可視TMPのglyph/overflow、戦闘snapshot不変を確認。フレーム進行314/278。通常/パネル画像をbattle-tools-*.pngへ保存、通常画面を目視。人工停止Wave5であり実機タッチ/動的性能検証ではない。
+初回は同一フレームで非アクティブUIを開閉してRaycast対象が未登録となった。フレームを分けるrunnerへ修正し、新しい隔離Playで再検証。実UIの重なり不具合とは判定していない。旧UpgradeHelpCheckの再クリックで閉じる手順は本変更で廃止、現操作の検証はBattleToolsCheckを使用する。検証後にPlay停止/QA設定復元済み。全EditMode/Windows再ビルド未実施。

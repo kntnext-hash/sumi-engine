@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "width": 1080,
+  "height": 2400,
+  "frames": 278,
+  "raycastClicks": 17,
+  "unchanged": true,
+  "method": "Isolated paused Wave5 fixture. Raycast + EventSystem pointer clicks, visible TMP glyph/overflow checks; desktop Editor only."
+}

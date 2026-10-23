@@ -69,6 +69,8 @@ namespace Bokumyaku.Presentation
         GameObject helpPanel;
         TextMeshProUGUI helpCaption;
         bool helpOpen;
+        GameObject toolsPanel;
+        bool toolsOpen;
         static readonly UpgradeKind[] ExtraKinds = { UpgradeKind.Bleed, UpgradeKind.Harvest };
         static readonly string[] ExtraNames = { "滲み", "採墨" };
         static readonly string[] Names = { "筆撃", "筆速", "流墨", "分岐", "筆幅" };
@@ -104,15 +106,13 @@ namespace Bokumyaku.Presentation
             crystals = Label(top.transform,"Crystals",.57f,.4f,.85f,1,17,gold);
             rank=Label(top.transform,"Brand",.24f,.02f,.84f,.4f,12,gold);
             Button(top.transform,"Pause",.86f,.1f,1,.9f,"Ⅱ",()=>game.SetPaused(!game.IsPaused),out pause);
-            repair=Button(bottom.transform,"Repair",0,.76f,.22f,1,"",()=>game.TryRepair(),out hp);
-            var track = BokumyakuUiParts.Panel(bottom.transform,"CoreTrack",new Vector2(.02f,.74f),new Vector2(.2f,.755f),new Color(.2f,.18f,.13f));
+            repair=Button(bottom.transform,"Repair",0,.76f,.42f,1,"",()=>game.TryRepair(),out hp);
+            var track = BokumyakuUiParts.Panel(bottom.transform,"CoreTrack",new Vector2(.02f,.74f),new Vector2(.40f,.755f),new Color(.2f,.18f,.13f));
             hpFill = BokumyakuUiParts.Panel(track.transform,"Fill",Vector2.zero,Vector2.one,gold);
-            Button(bottom.transform,"Speed",.23f,.75f,.38f,1,"×1",()=>game.SetSpeed(game.Speed==1?2:1),out speed);
-            Button(bottom.transform,"Auto",.38f,.75f,.54f,1,"自動",()=>game.SetAutoRepeat(!game.AutoRepeatEnabled),out auto);
+            Button(bottom.transform,"Speed",.43f,.75f,.60f,1,"×1",()=>game.SetSpeed(game.Speed==1?2:1),out speed);
+            Button(bottom.transform,"Auto",.60f,.75f,.81f,1,"自動",()=>game.SetAutoRepeat(!game.AutoRepeatEnabled),out auto);
             TextMeshProUGUI ignored;
-            Button(bottom.transform,"Save",.54f,.75f,.69f,1,"保存",()=>game.SaveProgress(),out ignored);
-            Button(bottom.transform,"Home",.69f,.75f,.84f,1,"ホーム",()=>game.SetPage(BokumyakuGame.GamePage.Home),out ignored);
-            Button(bottom.transform,"ReducedMotion",.84f,.75f,1,1,"演出",()=>game.SetReducedMotion(!game.ReducedMotion),out motion);
+            Button(bottom.transform,"BattleTools",.81f,.75f,1,1,"操作",()=>{bool open=!(toolsOpen||helpOpen||extraOpen);CloseTools();toolsOpen=open;Refresh();},out ignored);
             for (int i=0;i<5;i++)
             {
                 int slot=i; cards[i]=Button(bottom.transform,"Upgrade"+i,i*.2f,.12f,(i+1)*.2f,.64f,"",()=>game.BuyUpgrade((UpgradeKind)slot),out ignored); ignored.gameObject.SetActive(false);
@@ -158,34 +158,42 @@ namespace Bokumyaku.Presentation
                 cardLevels[i]=Label(bottom.transform,"Level"+i,i*.2f,.65f,(i+1)*.2f,.73f,11,gold);
             }
             notice=Label(bottom.transform,"Notice",.015f,0,.985f,.12f,11,ivory);
-            // A temporary popover keeps the five primary cards and footer controls reachable.
-            extraToggle=Button(safe,"ExtraUpgrades",.66f,.855f,.99f,.915f,"滲み・採墨",()=>{extraOpen=!extraOpen;helpOpen=false;Refresh();},out extraToggleLabel);
-            var extra=Panel(safe,"ExtraUpgradePanel",.39f,.675f,.99f,.85f); extraPanel=extra.gameObject;
+            // Secondary actions are hidden until requested, leaving the battlefield unobstructed.
+            var tools=Panel(safe,"BattleToolsPanel",.06f,.32f,.94f,.68f);toolsPanel=tools.gameObject;tools.raycastTarget=true;
+            Button(tools.transform,"Save",.04f,.69f,.49f,.96f,"保存",()=>game.SaveProgress(),out ignored);
+            Button(tools.transform,"Home",.51f,.69f,.96f,.96f,"ホーム",()=>{CloseTools();game.SetPage(BokumyakuGame.GamePage.Home);},out ignored);
+            Button(tools.transform,"ReducedMotion",.04f,.37f,.49f,.64f,"演出",()=>game.SetReducedMotion(!game.ReducedMotion),out motion);
+            Button(tools.transform,"UpgradeHelp",.51f,.37f,.96f,.64f,"強化説明",()=>{CloseTools();helpOpen=true;Refresh();},out helpCaption);
+            extraToggle=Button(tools.transform,"ExtraUpgrades",.04f,.05f,.62f,.32f,"滲み・採墨",()=>{CloseTools();extraOpen=true;Refresh();},out extraToggleLabel);
+            Button(tools.transform,"CloseTools",.64f,.05f,.96f,.32f,"閉じる",()=>{CloseTools();Refresh();},out ignored);
+            var extra=Panel(safe,"ExtraUpgradePanel",.06f,.32f,.94f,.68f); extraPanel=extra.gameObject;
             extra.raycastTarget=true;
             for(int i=0;i<ExtraKinds.Length;i++)
             {
                 int slot=i;
-                float y=i==0?.51f:.03f;
-                extraCards[i]=Button(extra.transform,"Upgrade"+ExtraKinds[i],.03f,y,.97f,y+.46f,"",()=>{game.BuyUpgrade(ExtraKinds[slot]);Refresh();},out extraLabels[i]);
+                float y=i==0?.65f:.34f;
+                extraCards[i]=Button(extra.transform,"Upgrade"+ExtraKinds[i],.03f,y,.97f,y+.30f,"",()=>{game.BuyUpgrade(ExtraKinds[slot]);Refresh();},out extraLabels[i]);
             }
+            Button(extra.transform,"BackToTools",.03f,.04f,.97f,.30f,"戻る",()=>{CloseTools();toolsOpen=true;Refresh();},out ignored);
             extraPanel.SetActive(false);
-            Button(safe,"UpgradeHelp",.01f,.855f,.35f,.915f,"強化説明",()=>{helpOpen=!helpOpen;extraOpen=false;Refresh();},out helpCaption);
             var help=Panel(safe,"UpgradeHelpPanel",.03f,.32f,.97f,.85f);
             helpPanel=help.gameObject; help.raycastTarget=true;
             for(int i=0;i<7;i++)
             {
-                float y=1-(i+1)/7f;
-                var description=Label(help.transform,"UpgradeDescription"+i,.03f,y,.97f,y+1/7f,17,ivory);
+                float y=1-(i+1)*.85f/7f;
+                var description=Label(help.transform,"UpgradeDescription"+i,.03f,y,.97f,y+.85f/7f,17,ivory);
                 description.text=BokumyakuGame.UpgradeDescription((UpgradeKind)i);
                 description.textWrappingMode=TextWrappingModes.Normal;
             }
             helpPanel.SetActive(false);
+            Button(help.transform,"BackToTools",.03f,.02f,.97f,.14f,"戻る",()=>{CloseTools();toolsOpen=true;Refresh();},out ignored);
             var veil=BokumyakuUiParts.Panel(safe,"ResultVeil",new Vector2(.06f,.42f),new Vector2(.94f,.69f),black); modal=veil.gameObject;
             result=Label(veil.transform,"Result",.04f,.43f,.96f,.96f,22,ivory);
             retry=Button(veil.transform,"Retry",.05f,.07f,.62f,.4f,"再出撃",()=>game.TryStartRun(unchecked(game.Run.Seed+1)),out retryLabel);
             Button(veil.transform,"ResultHome",.65f,.07f,.95f,.4f,"ホーム",()=>game.SetPage(BokumyakuGame.GamePage.Home),out ignored);
             RefreshSafeArea(); Refresh();
         }
+        void CloseTools(){toolsOpen=false;helpOpen=false;extraOpen=false;}
         Sprite SpriteFor(Texture2D texture)
         {
             if(texture==null)return null; var s=Sprite.Create(texture,new Rect(0,0,texture.width,texture.height),new Vector2(.5f,.5f),100); ownedSprites.Add(s);return s;
@@ -215,6 +223,7 @@ namespace Bokumyaku.Presentation
             if(game==null)return;
             if(lastSafe!=Screen.safeArea||lastWidth!=Screen.width||lastHeight!=Screen.height)RefreshSafeArea();
             canvas.enabled=game.Page==BokumyakuGame.GamePage.Battle;
+            if(!canvas.enabled){CloseTools();toolsPanel.SetActive(false);extraPanel.SetActive(false);helpPanel.SetActive(false);}
             if(!canvas.enabled && extraOpen){extraOpen=false;extraPanel.SetActive(false);}
             if(!canvas.enabled && helpOpen){helpOpen=false;helpPanel.SetActive(false);}
             if(canvas.enabled && Time.unscaledTime>=nextRefresh){nextRefresh=Time.unscaledTime+.1f;Refresh();}
@@ -235,7 +244,8 @@ namespace Bokumyaku.Presentation
                 cards[i].interactable=!game.BattleStorageBlocked&&!game.AwaitingStart&&run.State==RunStatus.Running&&!max&&run.RunInk>=cost;
             }
             bool ended=run.State!=RunStatus.Running;
-            if(ended||game.AwaitingStart||run!=extraRun)helpOpen=false;
+            if(ended||game.AwaitingStart||run!=extraRun)CloseTools();
+            toolsPanel.SetActive(toolsOpen);
             helpPanel.SetActive(helpOpen);
             Text(helpCaption,helpOpen?"説明を閉じる":"強化説明");
             if(ended||game.AwaitingStart||run!=extraRun)extraOpen=false;
