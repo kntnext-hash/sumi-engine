@@ -1,0 +1,131 @@
+{
+  "rows": [
+    {
+      "seed": 42,
+      "round": 1,
+      "seconds": 420.8,
+      "CompletedWave": 35,
+      "reward": 276,
+      "bank": 276
+    },
+    {
+      "seed": 43,
+      "round": 2,
+      "seconds": 363.4,
+      "CompletedWave": 30,
+      "reward": 140,
+      "bank": 416
+    },
+    {
+      "seed": 44,
+      "round": 3,
+      "seconds": 363.4,
+      "CompletedWave": 30,
+      "reward": 136,
+      "bank": 552
+    },
+    {
+      "seed": 42,
+      "candidatePrice": 500,
+      "purchaseRound": 3,
+      "target": true
+    },
+    {
+      "seed": 42,
+      "candidatePrice": 650,
+      "purchaseRound": 0,
+      "target": false
+    },
+    {
+      "seed": 42,
+      "candidatePrice": 800,
+      "purchaseRound": 0,
+      "target": false
+    },
+    {
+      "seed": 73,
+      "round": 1,
+      "seconds": 375.66666666666669,
+      "CompletedWave": 31,
+      "reward": 191,
+      "bank": 191
+    },
+    {
+      "seed": 74,
+      "round": 2,
+      "seconds": 386.0,
+      "CompletedWave": 32,
+      "reward": 179,
+      "bank": 370
+    },
+    {
+      "seed": 75,
+      "round": 3,
+      "seconds": 363.4,
+      "CompletedWave": 30,
+      "reward": 145,
+      "bank": 515
+    },
+    {
+      "seed": 73,
+      "candidatePrice": 500,
+      "purchaseRound": 3,
+      "target": true
+    },
+    {
+      "seed": 73,
+      "candidatePrice": 650,
+      "purchaseRound": 0,
+      "target": false
+    },
+    {
+      "seed": 73,
+      "candidatePrice": 800,
+      "purchaseRound": 0,
+      "target": false
+    },
+    {
+      "seed": 101,
+      "round": 1,
+      "seconds": 366.63333333333333,
+      "CompletedWave": 30,
+      "reward": 178,
+      "bank": 178
+    },
+    {
+      "seed": 102,
+      "round": 2,
+      "seconds": 434.53333333333336,
+      "CompletedWave": 36,
+      "reward": 288,
+      "bank": 466
+    },
+    {
+      "seed": 103,
+      "round": 3,
+      "seconds": 402.2,
+      "CompletedWave": 33,
+      "reward": 203,
+      "bank": 669
+    },
+    {
+      "seed": 101,
+      "candidatePrice": 500,
+      "purchaseRound": 3,
+      "target": true
+    },
+    {
+      "seed": 101,
+      "candidatePrice": 650,
+      "purchaseRound": 3,
+      "target": true
+    },
+    {
+      "seed": 101,
+      "candidatePrice": 800,
+      "purchaseRound": 0,
+      "target": false
+    }
+  ],
+  "method": "Three short seed paths, three initial-meta Farming/Point runs each. Candidate prices only; no research purchased, no first-week or full QA claim."
+}
