@@ -8,12 +8,10 @@
 - 山水delivery-v5、敵の紙色細縁、周回/記録の構成ボタンを統合。商品完成は未達。
 
 ## 直近の結果
+- AndroidReadinessCheck: Android/SDK/NDK/JDK未導入、APK未作成。ゲーム起動時のみスマホ縦向き固定を追加、コンパイル合格。実機未検証。MOBILE_READINESS.md。端末種別を質問中。公式モジュール一覧取得session46128が応答待ち、再起動しない。
 - 吸生に墨管6区間＋朱粒3個。1080×2400で目視、移動/軽減静止/撃破消去/リセット返却/snapshot不変を隔離Play確認。drain-flow.json/png。今回コンパイル＋対象Playのみ、実機負荷未検証。
-- root-v16 Windowsビルド成功、警告/エラー0。6武器各900tick/自動周回/別プロセス復帰合格。実寸540×960を目視。初回root-v15は未コンパイル警告で比較に使わず保存。
-- root-v16全区間平均16.92〜17.50ms、最大528.56ms。開始2秒以降の最大32.21〜40.39ms。RootFlourish最大66.62ms、保存27.29ms。500ms級2件は開始直後・GC回数差0、原因未確定。性能未合格。詳細WINDOWS_RANK_CANDIDATE.md。
 - 初期根14組、通常枝1本/フレームへ分散。隔離Playで同フレーム予算と後続全描画、snapshot/全面初期化不変を確認。root-budget/branch-budget.json。1組の処理量はまだ重い。
 - 検証区分: 今回は対象Windows検証。関連EditModeの直近結果265/265（defeat-notifications-editmode.json）、今回再実行なし。
-- 同tick分裂子の撃破通知/飛沫/墨跡を修正済み。人工配置で通知3/飛沫3/部分更新4096px、全面初期化増加なし。
 - 初週3seed: 初回6.11〜7.01分、初研究3周。一日1時間で一日目50〜57/一週85〜89Wave、研究18回。通常点墨/採墨、4周に1回円相/記録。購入54件中51件が2〜3周。二段未解放、二段以降収益/分未評価。
 - HUD墨パネルdelivery-v6を統合。360×640戦闘/ホーム目視、TMP overflowなし、Pause/Homeイベント・snapshot保持合格（hud-panel/home）。今回軽量Editor検証。音8素材統合済み、聴感/実機未検証。
 - 以前の詳細: archive/STATE_before_root_v16_2026-10-24.md。

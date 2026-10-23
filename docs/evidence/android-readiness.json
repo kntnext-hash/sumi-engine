@@ -1,0 +1,17 @@
+{
+  "unity": "6000.3.26f1",
+  "supported": false,
+  "androidModule": false,
+  "sdk": false,
+  "ndk": false,
+  "jdk": false,
+  "activeTarget": "StandaloneWindows64",
+  "orientation": "AutoRotation",
+  "landscapeLeft": true,
+  "landscapeRight": true,
+  "identifier": "com.DefaultCompany.SUMIBrushLab",
+  "minimumSdk": "AndroidApiLevel25",
+  "architectures": "ARM64",
+  "backend": "IL2CPP",
+  "note": "Read-only readiness inspection. Bundled dependency directories only; no APK or device test."
+}

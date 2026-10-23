@@ -126,6 +126,8 @@ namespace Bokumyaku.Presentation
 
         void Start()
         {
+            // Game-scene policy only; the reusable Brush Lab keeps its own orientation.
+            if (Application.isMobilePlatform) Screen.orientation = ScreenOrientation.Portrait;
             if (!progressLoaded) TryReloadProgress();
         }
         void LoadProgress()
