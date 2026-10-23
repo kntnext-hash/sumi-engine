@@ -1,0 +1,425 @@
+{
+    "version": "6000.3.26f1",
+    "error": "",
+    "slowSections": [
+        {
+            "section": "DrawNewBranches",
+            "frame": 1,
+            "milliseconds": 42.4977
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2,
+            "milliseconds": 39.9554
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4,
+            "milliseconds": 41.8148
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 374,
+            "milliseconds": 13.6439
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 591,
+            "milliseconds": 21.0165
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 746,
+            "milliseconds": 24.4299
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 891,
+            "milliseconds": 18.5136
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 893,
+            "milliseconds": 17.1657
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 893,
+            "milliseconds": 20.5007
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 893,
+            "milliseconds": 74.3711
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 893,
+            "milliseconds": 38.822
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 893,
+            "milliseconds": 39.6792
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1260,
+            "milliseconds": 13.0012
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 1466,
+            "milliseconds": 21.9533
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1610,
+            "milliseconds": 23.5047
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 1765,
+            "milliseconds": 20.4522
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 1765,
+            "milliseconds": 14.5825
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1765,
+            "milliseconds": 74.6944
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1765,
+            "milliseconds": 39.7007
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1765,
+            "milliseconds": 39.1372
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2145,
+            "milliseconds": 11.9039
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 2351,
+            "milliseconds": 19.2108
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2500,
+            "milliseconds": 25.2619
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 2651,
+            "milliseconds": 20.1431
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 2651,
+            "milliseconds": 17.2494
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2651,
+            "milliseconds": 73.0969
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2651,
+            "milliseconds": 39.7131
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2651,
+            "milliseconds": 39.3118
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3041,
+            "milliseconds": 11.9854
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 3224,
+            "milliseconds": 24.5082
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3388,
+            "milliseconds": 23.4409
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 3523,
+            "milliseconds": 17.3384
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 3523,
+            "milliseconds": 14.5871
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3523,
+            "milliseconds": 76.0809
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3523,
+            "milliseconds": 38.4749
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3523,
+            "milliseconds": 38.3559
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3918,
+            "milliseconds": 12.9401
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 4096,
+            "milliseconds": 20.3292
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4268,
+            "milliseconds": 23.5069
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 4395,
+            "milliseconds": 19.623
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 4395,
+            "milliseconds": 17.8255
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4395,
+            "milliseconds": 84.4041
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4395,
+            "milliseconds": 43.9782
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4395,
+            "milliseconds": 43.7802
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4755,
+            "milliseconds": 12.092
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 4968,
+            "milliseconds": 16.3678
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5131,
+            "milliseconds": 23.8464
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5267,
+            "milliseconds": 16.3613
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5267,
+            "milliseconds": 14.8785
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5267,
+            "milliseconds": 76.7686
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5267,
+            "milliseconds": 38.6491
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5267,
+            "milliseconds": 42.9787
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5267,
+            "milliseconds": 86.7441
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5267,
+            "milliseconds": 87.0226
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5268,
+            "milliseconds": 20.6497
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5448,
+            "milliseconds": 38.6207
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5448,
+            "milliseconds": 24.7574
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5448,
+            "milliseconds": 15.7182
+        }
+    ],
+    "passed": true,
+    "startFrame": 2,
+    "endFrame": 5448,
+    "runs": [
+        {
+            "requestedWeapon": "Point",
+            "weapon": "Point",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "pigment": 13004.0087890625,
+            "measuredFrames": 887,
+            "averageFrameMs": 16.656381961668435,
+            "maxFrameMs": 41.46970000000039
+        },
+        {
+            "requestedWeapon": "Pierce",
+            "weapon": "Pierce",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "pigment": 12988.4658203125,
+            "measuredFrames": 872,
+            "averageFrameMs": 16.9437246559633,
+            "maxFrameMs": 276.0695999999996
+        },
+        {
+            "requestedWeapon": "Bleed",
+            "weapon": "Bleed",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 4,
+            "peakWeaponFields": 4,
+            "pigment": 12987.8779296875,
+            "measuredFrames": 886,
+            "averageFrameMs": 16.649807674943653,
+            "maxFrameMs": 42.38449999999716
+        },
+        {
+            "requestedWeapon": "Sweep",
+            "weapon": "Sweep",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "pigment": 12967.5205078125,
+            "measuredFrames": 872,
+            "averageFrameMs": 17.095067431192825,
+            "maxFrameMs": 409.0986000000072
+        },
+        {
+            "requestedWeapon": "Enso",
+            "weapon": "Enso",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "pigment": 12949.5107421875,
+            "measuredFrames": 872,
+            "averageFrameMs": 17.179551261468104,
+            "maxFrameMs": 482.5201000000021
+        },
+        {
+            "requestedWeapon": "Resonance",
+            "weapon": "Resonance",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "pigment": 12988.32421875,
+            "measuredFrames": 872,
+            "averageFrameMs": 17.052239220183777,
+            "maxFrameMs": 371.002500000003
+        }
+    ],
+    "autoRepeatPassed": true,
+    "autoRepeatSeed": 43,
+    "completedRuns": 1,
+    "loadedArtCount": 7,
+    "overlayTransparentPixels": 177443,
+    "overlayInkPixels": 19165,
+    "sessionCrystals": 15,
+    "autoRepeatMethod": "Fast-forwarded deterministic pre-defeat fixture; live Update defeat/save/3-second active countdown/restart",
+    "checkpointResumePassed": true,
+    "separateProcessResume": false
+}

@@ -17,6 +17,7 @@ namespace Bokumyaku.Diagnostics
         [Serializable] sealed class Report
         {
             public string version, error;
+            public BattleTiming.Sample[] slowSections;
             public bool passed;
             public int startFrame, endFrame;
             public WeaponReport[] runs;
@@ -57,6 +58,7 @@ namespace Bokumyaku.Diagnostics
             int i = Array.IndexOf(args, "--bokumyaku-smoke-output");
             if (i < 0 || i + 1 >= args.Length) return;
             var probe = new GameObject("Bokumyaku explicit player probe").AddComponent<BokumyakuPlayerProbe>();
+            BattleTiming.Enabled=true;
             probe.output = Path.GetFullPath(args[i + 1]);
             probe.resumeOnly = Array.IndexOf(args, "--bokumyaku-resume-check") >= 0;
             probe.captureScreens = Array.IndexOf(args, "--bokumyaku-capture-screens") >= 0;
@@ -122,7 +124,8 @@ namespace Bokumyaku.Diagnostics
                     }
                     catch (Exception e) { report.error = e.ToString(); report.passed = false; }
                 }
-                report.endFrame = Time.frameCount;
+                report.slowSections=BattleTiming.Capture();
+            report.endFrame = Time.frameCount;
                 File.WriteAllText(Path.Combine(output, "player-resume-report.json"), JsonUtility.ToJson(report, true));
                 Application.Quit(report.passed ? 0 : 1); yield break;
             }
@@ -236,6 +239,7 @@ namespace Bokumyaku.Diagnostics
                 }
                 catch (Exception e) { report.error = e.ToString(); report.passed = false; }
             }
+            report.slowSections=BattleTiming.Capture();
             report.endFrame = Time.frameCount;
             report.passed &= report.endFrame > report.startFrame;
             File.WriteAllText(Path.Combine(output, "player-report.json"), JsonUtility.ToJson(report, true));

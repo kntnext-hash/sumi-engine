@@ -31,7 +31,8 @@ namespace Bokumyaku.Presentation
    var driver=gameObject.AddComponent<BokumyakuBattlePresenter>();driver.Owner=this;
    previousFrameRate=Application.targetFrameRate;Application.targetFrameRate=60;ownsFrameRate=true;
   }
-  public void PresentBattle()
+  public void PresentBattle() { using(BattleTiming.Measure("PresentBattle")) PresentBattleCore(); }
+  void PresentBattleCore()
   {
    if(battleWorld==null||Run==null)return;
    DrawNewBranches();persistentInk.Flush();
@@ -51,5 +52,3 @@ namespace Bokumyaku.Presentation
   public BokumyakuGame Owner;void LateUpdate(){if(Owner!=null)Owner.PresentBattle();}
  }
 }
-
-

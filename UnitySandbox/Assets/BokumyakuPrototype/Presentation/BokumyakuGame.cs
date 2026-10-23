@@ -176,7 +176,8 @@ namespace Bokumyaku.Presentation
             saveWarning = "保存に失敗。停止中です。再試行してください。";
             Debug.LogWarning("Bokumyaku save: " + e.Message);
         }
-        public bool SaveProgress()
+        public bool SaveProgress() { using(BattleTiming.Measure("SaveProgress")) return SaveProgressCore(); }
+        bool SaveProgressCore()
         {
             if (loadBlocked || !progressLoaded || campaign == null) return false;
             try
@@ -395,8 +396,8 @@ namespace Bokumyaku.Presentation
             {
                 tickClock -= 1f / RunSimulator.TickRate;
                 battleWorld.BeforeTick(Run);
-                Run.Tick();
-                battleWorld.AfterTick(Run,ReducedMotion);
+                using(BattleTiming.Measure("SimulationTick")) Run.Tick();
+                using(BattleTiming.Measure("AfterTickVfx")) battleWorld.AfterTick(Run,ReducedMotion);
                 if (Run.Attacks.Count > 0) AudioAttack();
                 foreach (var hit in Run.Attacks)
                 {
@@ -436,7 +437,8 @@ namespace Bokumyaku.Presentation
                 observedLevels[i] = levels[i];
             }
         }
-        void DrawNewBranches()
+        void DrawNewBranches() { using(BattleTiming.Measure("DrawNewBranches")) DrawNewBranchesCore(); }
+        void DrawNewBranchesCore()
         {
             var branches = Run.Branches;
             bool changed = drawnBranches < branches.Count;
@@ -512,6 +514,3 @@ namespace Bokumyaku.Presentation
         }
     }
 }
-
-
-

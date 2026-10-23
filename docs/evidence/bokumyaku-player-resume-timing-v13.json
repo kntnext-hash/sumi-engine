@@ -1,0 +1,50 @@
+{
+    "version": "6000.3.26f1",
+    "error": "",
+    "slowSections": [
+        {
+            "section": "DrawNewBranches",
+            "frame": 1,
+            "milliseconds": 40.4088
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2,
+            "milliseconds": 39.6509
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 365,
+            "milliseconds": 14.1333
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 589,
+            "milliseconds": 28.8702
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 589,
+            "milliseconds": 18.105
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 589,
+            "milliseconds": 14.8519
+        }
+    ],
+    "passed": true,
+    "startFrame": 2,
+    "endFrame": 589,
+    "runs": [],
+    "autoRepeatPassed": false,
+    "autoRepeatSeed": 0,
+    "completedRuns": 0,
+    "loadedArtCount": 0,
+    "overlayTransparentPixels": 0,
+    "overlayInkPixels": 0,
+    "sessionCrystals": 0,
+    "autoRepeatMethod": "",
+    "checkpointResumePassed": true,
+    "separateProcessResume": true
+}
