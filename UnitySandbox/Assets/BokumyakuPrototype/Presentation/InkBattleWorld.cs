@@ -129,7 +129,7 @@ namespace Bokumyaku.Presentation
   {
    root.SetActive(visible);if(!visible)return;if(boundRun!=run)Reset(run);
    camera.rect=viewport;halfHeight=5/(Screen.width*viewport.width/(Screen.height*viewport.height));camera.orthographicSize=halfHeight;
-   float dt=paused?0:Mathf.Min(Time.unscaledDeltaTime,.1f);bool frozen=freeze>0&&!reduced;if(frozen){freeze-=dt;dt=0;}visualTime+=dt;shake=Mathf.Max(0,shake-dt);
+   float dt=paused?0:Mathf.Min(Time.unscaledDeltaTime,.1f);bool frozen=freeze>0&&!reduced;if(frozen){freeze-=dt;dt=0;}visualTime+=dt;material.SetFloat("_InkTime",visualTime);shake=Mathf.Max(0,shake-dt);
    camera.transform.localPosition=new Vector3(reduced?0:Mathf.Sin(visualTime*91)*shake*.35f,reduced?0:Mathf.Cos(visualTime*73)*shake*.3f,-10);
    Size(paper,Vector2.zero,10,halfHeight*2);Size(landscape,Vector2.zero,10,halfHeight*2);landscape.color=new Color(1,1,1,.65f);
    if(boundInk!=persistent)

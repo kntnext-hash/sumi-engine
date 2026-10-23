@@ -8,6 +8,7 @@ Shader "Bokumyaku/InkSprite"
         _Dissolve ("Paper absorption", Range(0,1)) = 0
         _Wobble ("Ink breathing", Range(0,1)) = 0
         _Phase ("Individual phase", Float) = 0
+        _InkTime ("Presentation time", Float) = 0
         _ReducedMotion ("Reduced motion", Float) = 0
     }
     SubShader
@@ -27,6 +28,7 @@ Shader "Bokumyaku/InkSprite"
             float _Dissolve;
             float _Wobble;
             float _Phase;
+            float _InkTime;
             float _ReducedMotion;
         CBUFFER_END
         struct Attributes
@@ -74,7 +76,7 @@ Shader "Bokumyaku/InkSprite"
             UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
             float death = saturate(_Dissolve);
             float motion = 1.0 - step(0.5, _ReducedMotion);
-            float phase = _Time.y * 2.1 + _Phase;
+            float phase = _InkTime * 2.1 + _Phase;
             // Standalone full-rect sprite masks; keep two transparent pixels at their edges.
             float impact = saturate(_Hit) * motion;
             float2 uv = (input.uv - 0.5) * (1.0 + death * 0.7 - impact * 0.06) + 0.5;

@@ -1,0 +1,1 @@
+{"passed":true,"before":25.04041,"after":25.04041,"scope":"Shader material time advances during play and is unchanged across paused frames"}

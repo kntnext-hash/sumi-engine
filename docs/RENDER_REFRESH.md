@@ -83,3 +83,6 @@ Fiberの広い掠れ層を残し、同じ曲線へ半径10のPool層を追加。
 
 ### v4クリーンビルド
 事前Refreshとコンパイル/インポート中拒否、CleanBuildCacheを使用。76.11秒/135720813bytes/error0/warning0。BuildReport警告内容も自動保存。配布対象173ファイル中171はv3同一、boot.config/resources.assets差分。v2の未更新チェックポイントのコピーから別プロセス600tick復帰一致。初回はv3の復帰試験後に更新された保存と旧期待値を混ぜ不一致だったため不採用、製品不具合と判断しない。証拠render-clean-resume.json / render-clean-artifacts.json。v4の全武器再試験や目視は未実施。
+
+### 全EditModeと独立描画QA
+7adaf88時点の全EditMode255/255、41.79秒（render-all-editmode.json）。独立read-only QAで同tick分裂子の演出欠落（残件）と一時停止中の_Time揺らぎを検出。後者を_InkTimeへ変更し表示専用時計をMaterialに設定。実行中に進行後、一時停止した値25.04041が複数フレーム後も一致（ink-clock-check.json）。シミュレーション未変更。修正後は限定Play検証で、v4配布ビルドへの反映は未実施。
