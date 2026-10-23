@@ -9,6 +9,7 @@ public static class BokumyakuRenderBenchmark
  static BokumyakuGame g;static double start;static int lastFrame,count,initialKills,oldFps,oldSync,startFull;static double sum,max;static string label;static bool started;
  public static object Before()=>Begin("before");
  public static object After()=>Begin("after");
+ public static object Current()=>Begin("polish-15a4f40");
  static object Begin(string phase)
  {
   g=UnityEngine.Object.FindFirstObjectByType<BokumyakuGame>();if(g==null||!g.SavePath.Contains("ink-qa-"))throw new Exception("Isolated Play required");

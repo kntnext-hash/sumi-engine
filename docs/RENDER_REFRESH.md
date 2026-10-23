@@ -137,3 +137,6 @@ HUD余白修正: WAVE見出し/数値、強化レベル/修復/ゲージ/カー�
 
 ### 点墨/貫筆の先端移動
 既存の軌跡/着弾へ120ms/180msの墨先端移動を追加。既存128effect上限とプールを共有。演出軽減で生成/表示を抑制。AttackTravelCheckで2武器の注入イベントを使い位置変化、軽減時非表示、シミュレーションsnapshot不変を確認。360×640画像attack-travel.png。限定描画試験、実戦タイミング/性能計測ではない。
+
+### 描画磨き込み後の3分測定とボス停止修正
+15a4f40、Editor360×640/seed42/Farming/1倍、6000tickまで事前進行後に実時間180.04秒。Wave17→32、304撃破。平均16.81ms/最大123.86ms、全面再構築0、dirty upload2338回。計測中CLIによる状態取得を含むEditor値であり、最大値の原因は未特定。実機/カクつき解消の合格ではない。evidence/render-polish-15a4f40-timing.json。独立ソースQAでボス赤輪がヒットストップ中に本体からずれる条件を指摘。中心を本体localPositionへ修正し、BossFreezeCheckの注入位置変更で停止中/再開後の一致を確認（boss-freeze.json）。

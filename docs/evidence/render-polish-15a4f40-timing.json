@@ -1,0 +1,23 @@
+{
+  "phase": "polish-15a4f40",
+  "durationSeconds": 180.03646339999977,
+  "frames": 10707,
+  "averageMs": 16.811493445000622,
+  "maximumMs": 123.85880202054977,
+  "width": 360,
+  "height": 640,
+  "seed": 42,
+  "startWave": 17,
+  "endWave": 32,
+  "kills": 304,
+  "tick": 11400,
+  "branchRebuilds": 0,
+  "dirtyUploads": 2338,
+  "dirtyPixels": 2394112,
+  "fullInitializations": 3,
+  "fullUpdatesDuringSample": 0,
+  "spriteDeaths": 304,
+  "spriteHits": 13932,
+  "interpolatedFrames": 59013,
+  "method": "Editor wall-frame intervals, target60, 5s+shader warmup, 180s; not GPU profiler/device performance"
+}

@@ -172,7 +172,7 @@ namespace Bokumyaku.Presentation
     float size=v.state.Kind==EnemyKind.Boss?1.55f:v.state.Kind==EnemyKind.Heavy?1.1f:v.state.Kind==EnemyKind.Fast?.72f:.85f;
     if(!frozen||!v.drawn){Size(v.body,p,size,size);Size(v.eye,p,size*.38f,size*.38f);
      if(v.state.Kind==EnemyKind.Fast){var direction=Project(v.current)-Project(v.previous);if(direction.sqrMagnitude>.000001f)v.body.transform.localRotation=Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg);}v.drawn=true;}v.body.color=new Color(.025f,.02f,.02f);Properties(v.body,v.hit/.13f,v.death/.45f,reduced?0:.45f,pair.Key*.73f,reduced);
-    if(v.threat!=null){Size(v.threat,p,size*1.35f,size*1.35f);v.threat.color=new Color(.65f,.045f,.025f,.55f*(1-v.death/.45f));Properties(v.threat,0,v.death/.45f,0,0,reduced);}
+    if(v.threat!=null){Size(v.threat,(Vector2)v.body.transform.localPosition,size*1.35f,size*1.35f);v.threat.color=new Color(.65f,.045f,.025f,.55f*(1-v.death/.45f));Properties(v.threat,0,v.death/.45f,0,0,reduced);}
     v.eye.color=new Color(1,1,1,1-v.death/.45f);Properties(v.eye,0,v.death/.45f,0,0,reduced);
     if(v.buds!=null)
     {
