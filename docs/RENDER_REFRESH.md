@@ -77,3 +77,6 @@ Fiberの広い掠れ層を残し、同じ曲線へ半径10のPool層を追加。
 
 ### Windowsビルドと旧検証の移行
 899b702をWindowsビルド、成功。旧probeは旧SumiCanvasのpigment=0で不合格（render-player-legacy-probe.json）。GPUテクスチャ読み戻しを明示QAのみ追加したv2ビルドは135720813bytes/error0/warning0。6武器/保存再読込/自動再出撃/墨領域は通過。全体は素材数期待6/実際7で不合格。LoadArt呼出7件を確認し期待7へ修正、再ビルド検証は残す。render-player-v2.jsonを失敗のまま保存。Unity生成のURP設定も保持。
+
+### v3 Player再検証
+素材7個判定版をビルド。135720813bytes/error0/warning1。6武器900tick、攻撃/購入/保存再読込/GPU墨領域、自動再出撃が全体passed=true。別プロセスから600tick復帰一致もtrue。非表示Player試験で画質/性能は主張しない。警告は未コンパイル変更によるインポート処理等の未反映注意。配布確定前に警告なしで再ビルドが必要。証拠render-build-messages.json / render-player-v3.json / render-player-resume-v3.json。
