@@ -48,3 +48,8 @@ RootFlourish最大66.62ms、DrawNewBranches最大66.63ms、PresentBattle53.50ms�
 ビルド112.68秒、156,374,861bytes、警告/エラー0。実寸540×960で墨枠HUDを目視。6武器各900tick/自動周回/別プロセス復帰合格。全区間平均16.83〜17.41ms、最大536.30ms。開始2秒以降最大35.58〜42.46ms。RootFlourish最大46.54ms、DrawNewBranches46.55ms、保存25.74ms。前回根66.62msより低いが別実行のため厳密な因果比較ではない。Sweep536.30ms/Resonance506.65msはいずれも開始直後、GC差0。性能未合格。
 独立静的確認: probeは前武器末尾でReadPixels/Save/Reload、次武器先頭でAbandon/Startを描画yieldなしで続ける。ResetInkの同期時間はフレームタイマー開始前だが、GPUテクスチャDestroy/Create/Applyの遅延処理は後続へ残り得る。これは通常の1回開始より重いストレス条件。DirtyInkSurface.Clearは毎回GPUテクスチャを再生成し、InkBattleWorldもテクスチャID変更時に2枚のSpriteを作り直す。資源変動はコードで確認、500msの原因と確定はしない。
 次: 既存ストレス試験は保持し、通常Startとリセット回数・時間を別計測。テクスチャIDを保ったクリアを検討し、墨量/保存/部分更新の不変性を確認する。UI Canvasや描画待ちは現計測外。今回対象Windows検証のみ。evidence/*stroke-v17.json/png。
+
+## reuse-v18（2026-10-24）
+GPUテクスチャ再利用版。ビルド64.35秒、156,374,861bytes、警告/エラー0。同じ540×960/6武器連続切替試験で6武器・自動周回・別プロセス復帰合格。Wave3の根/墨枠HUDを目視。
+全区間平均16.81〜16.87ms、最大47.07ms（直前stroke-v17は536.30ms）。6武器ごとの最大47.07/43.98/46.79/37.51/43.12/41.26ms。開始2秒以降最大31.30〜43.98ms。RootFlourish45.29ms、DrawNewBranches45.30ms、保存27.22ms。500ms級停止は今回再現なし。ストレス条件は変えておらず、資源再生成削減の効果を支持する。ただし単回別実行の比較で、全原因の確定や全状況の性能保証ではない。
+残件: 1ストロークの初期根CPU負荷、通常開始の独立計測、密集戦闘、スマホ実機。今回対象Windows検証のみ。証拠evidence/*reuse-v18.json/png。
