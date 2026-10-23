@@ -24,10 +24,8 @@ namespace Bokumyaku.Presentation
                 return;
             }
             Rect field = new Rect(0, 62, 440, height - 260);
-            // Clip branch textures and rotated brush effects before drawing the fixed controls.
-            GUI.BeginGroup(field);
-            try { DrawField(new Rect(0, 0, field.width, field.height), true); }
-            finally { GUI.EndGroup(); }
+            // Draw in the same absolute GUI space as rotated strokes. Opaque HUD panels mask the top/bottom.
+            DrawField(field, true);
             DrawBattleHud(height);
             if (portraitDetails)
             {
