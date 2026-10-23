@@ -702,7 +702,7 @@ namespace Bokumyaku.Presentation
                     GUI.Label(new Rect(0, y, w - 110, 23), MetaNames[i] + "  Lv." + Meta.Level(kind) + "/" + MetaProgress.MaxLevel(kind), body);
                     GUI.Label(new Rect(0, y + 24, w - 110, 24), kind == MetaUpgrade.Damage ? "攻撃×" + Meta.DamageMultiplier.ToString("0.00") + (Meta.Damage < MetaProgress.MaxLevel(kind) ? " → ×" + new MetaProgress { Damage = Meta.Damage + 1 }.DamageMultiplier.ToString("0.00") : "（MAX）") : MetaNotes[i], small);
                     GUI.enabled = !loadBlocked && !storageFailed && campaign != null && !campaign.HasActiveRun && Meta.Crystals >= Meta.Cost(kind) && Meta.Level(kind) < MetaProgress.MaxLevel(kind);
-                    if (Button(new Rect(w - 104, y + 4, 104, 32), Meta.Level(kind) >= MetaProgress.MaxLevel(kind) ? "MAX" : Meta.Cost(kind) + " 結晶", GUI.enabled)) BuyMeta(kind);
+                    if (Button(new Rect(w - 104, y + 2, 104, 44), Meta.Level(kind) >= MetaProgress.MaxLevel(kind) ? "MAX" : Meta.Cost(kind) + " 結晶", GUI.enabled)) BuyMeta(kind);
                     GUI.enabled = true; y += 56;
                 }
             }
@@ -762,7 +762,7 @@ namespace Bokumyaku.Presentation
         {
             GUI.Label(new Rect(0, 0, width, 29), "これまでの墨脈", heading);
             GUI.Label(new Rect(0, 34, width, 62), "最高到達 " + BestWave + " 波\n累計 " + (campaign == null ? 0 : campaign.TotalRuns) + " 周 / " + (campaign == null ? 0 : campaign.TotalCrystals) + " 結晶", body);
-            GUI.Label(new Rect(0, 100, width, 48), "敵: 通常＝丸 / 速い＝尾 / 重い＝輪\n分裂＝双点 / ボス＝菱形と輪", small);
+            GUI.Label(new Rect(0, 100, width, 48), "敵: 通常＝丸 / 速い＝尾 / 重い＝輪\n分裂＝双点 / ボス＝八つの棘", small);
             if (campaign == null || campaign.History.Count == 0) { GUI.Label(new Rect(0, 155, width, 35), "記録はまだありません。", body); return; }
             float y = 154;
             for (int i = campaign.History.Count - 1; i >= 0; i--)

@@ -22,3 +22,7 @@
 |スマホ|縦画面/セーフエリア/タッチ/音/性能を対象端末で確認|実機未検証。PC結果で代替合格にしない|
 
 採用素材・音源の検証、統合と初週調整を順に進め、完成候補ができたら上表を実成果物で監査する。外部公開とストア手続きの前には内容と必要事項を提示する。
+
+## 2026-10-23 研究購入の限定確認
+研究ボタン高を32→44に拡大。360×640の隔離Playで100結晶を試験付与し、GUIのMouseDown/Upで祖墨を8結晶で購入、Lv.1/残92を確認。TryReloadProgressによるディスク再読込後も保持。証拠evidence/research-purchase.json、research-purchased.png。実機指タップ、他研究、上限/不足条件の再試験ではない。Unityコンパイル成功、現在Console error0/warning0（履歴warn5）。Play停止と一時GameView復元済み。
+手順: BokumyakuInkCheck.Arm→BokumyakuResearchPurchaseCheck.Run→JSON完了確認→Play停止→InkCheck.Cleanup。商品全体の合格ではなく、記録あり画面と素材/音統合は残る。
