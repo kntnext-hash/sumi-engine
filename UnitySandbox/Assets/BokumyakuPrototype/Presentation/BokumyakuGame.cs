@@ -429,9 +429,12 @@ namespace Bokumyaku.Presentation
                 float x0 = (float)parent.ViewX, y0 = (float)parent.ViewY;
                 float x1 = (float)b.ViewX, y1 = (float)b.ViewY;
                 float sx = canvas.width / 384f, sy = canvas.height / 512f;
-                persistentInk.Begin(new InkPoint(x0 * sx, y0 * sy, 0, 1f), brush, unchecked(Run.Seed + b.Id * 7919));
                 // A gently bowed centerline gives the growing branch a living brush gesture.
                 var normal = new Vector2(-(y1-y0), x1-x0).normalized;
+                for(int pass=0;pass<2;pass++)
+                {
+                if(pass==1){brush.texture=InkTexture.Pool;brush.radius*=.52f;brush.roughness=.3f;brush.water=.35f;}
+                persistentInk.Begin(new InkPoint(x0 * sx, y0 * sy, 0, 1f), brush, unchecked(Run.Seed + b.Id * 7919));
                 for (int n = 1; n <= 16; n++)
                 {
                     float t = n / 16f, bow = Mathf.Sin(t * Mathf.PI) * (b.Id % 2 == 0 ? 9f : -9f);
@@ -439,6 +442,7 @@ namespace Bokumyaku.Presentation
                         (Mathf.Lerp(y0, y1, t) + normal.y * bow) * sy, t * .35f, Mathf.Lerp(1f, .45f, t)));
                 }
                 persistentInk.End();
+                }
                 DrawBranchFibers(x0,y0,x1,y1,sx,sy,b.Id);
                 growth[b.Id] = Time.unscaledTime;
             }

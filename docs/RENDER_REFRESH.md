@@ -92,3 +92,6 @@ Fiberの広い掠れ層を残し、同じ曲線へ半径10のPool層を追加。
 
 ### 下側の描画間隔
 核位置を戦場上から72→65%へ変更し、下側の投影係数.56→.70（間隔25%増）。上側/下側の墨スプライト配置も共通CoreScreenDepthから計算。人工80体画像を比較、Renderer316固定。15点で墨面/Project一致、最大誤差2.38e-7 world units。dense-battle-before-spacing.pngとdense-battle-check.png、ink-projection-check.json。シミュレーション/射程/保存未変更。密集の完全な判読性や実機性能の合格ではない。
+
+### 成長枝の濃墨層
+新しい枝を描く時のみ、既存Fiberストロークに半径52%のPool層を同じ曲線で重ねる。根との黒さを揃え、掠れた外縁を保持。seed42/6000tick/Wave17で金の枝先と画面を確認。dirty upload313、全面再構築0。card-art-wave17.png更新。成長判定/保存/Runtime変更なし。形状の完成美術と性能再計測は未達。
