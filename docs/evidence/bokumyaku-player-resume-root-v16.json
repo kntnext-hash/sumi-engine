@@ -1,0 +1,135 @@
+{
+    "version": "6000.3.26f1",
+    "error": "",
+    "slowSections": [
+        {
+            "section": "RootFlourish",
+            "frame": 1,
+            "milliseconds": 57.2045
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1,
+            "milliseconds": 57.9175
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2,
+            "milliseconds": 49.1231
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2,
+            "milliseconds": 49.1258
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3,
+            "milliseconds": 51.1358
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3,
+            "milliseconds": 51.1424
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4,
+            "milliseconds": 55.8909
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4,
+            "milliseconds": 55.8948
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5,
+            "milliseconds": 52.0278
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5,
+            "milliseconds": 52.0333
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 6,
+            "milliseconds": 52.0808
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 6,
+            "milliseconds": 52.0834
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 7,
+            "milliseconds": 51.6518
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 7,
+            "milliseconds": 51.6545
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 8,
+            "milliseconds": 50.3451
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 8,
+            "milliseconds": 50.3497
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 16,
+            "milliseconds": 14.7884
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 17,
+            "milliseconds": 13.7562
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 18,
+            "milliseconds": 13.4221
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 360,
+            "milliseconds": 13.2189
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 584,
+            "milliseconds": 31.051
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 584,
+            "milliseconds": 17.0205
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 584,
+            "milliseconds": 17.9447
+        }
+    ],
+    "passed": true,
+    "startFrame": 2,
+    "endFrame": 584,
+    "runs": [],
+    "autoRepeatPassed": false,
+    "autoRepeatSeed": 0,
+    "completedRuns": 0,
+    "loadedArtCount": 0,
+    "overlayTransparentPixels": 0,
+    "overlayInkPixels": 0,
+    "sessionCrystals": 0,
+    "autoRepeatMethod": "",
+    "checkpointResumePassed": true,
+    "separateProcessResume": true
+}

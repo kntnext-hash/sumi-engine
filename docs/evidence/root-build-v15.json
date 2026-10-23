@@ -1,0 +1,16 @@
+{
+  "result": "Succeeded",
+  "bytes": 150023117,
+  "seconds": 65.7242429,
+  "errors": 0,
+  "warnings": 1,
+  "output": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\Builds\\Bokumyaku-root-v15\\Bokumyaku.exe",
+  "unity": "6000.3.26f1",
+  "source": "918894f initial roots spread across frames",
+  "messages": [
+    {
+      "type": "Warning",
+      "content": "You are building a player, but you have uncompiled code changes. This means that any post-processing or importing code you may have changed will not affect this player build."
+    }
+  ]
+}
