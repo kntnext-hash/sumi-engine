@@ -1,0 +1,65 @@
+{
+  "success": true,
+  "command": "command test",
+  "data": {
+    "command": "test",
+    "parameters": {
+      "mode": "editor",
+      "filter": "DirtyInkSurfaceTests",
+      "async_tests": "false",
+      "timeout": "25"
+    },
+    "result": {
+      "Summary": {
+        "Total": 4,
+        "Passed": 4,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "Bokumyaku.Drawing.Tests.DirtyInkSurfaceTests.ConsecutiveFlushesPreserveGpuPigmentAndReuseTileSources",
+          "Status": "Passed",
+          "Duration": 0.1286137,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Bokumyaku.Drawing.Tests.DirtyInkSurfaceTests.RepeatedResetDiscardsPendingStrokeAndAcceptsNewPartialMarks",
+          "Status": "Passed",
+          "Duration": 0.0277268,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Bokumyaku.Drawing.Tests.DirtyInkSurfaceTests.SparseMarksUsePartialUploadsAndPreserveExistingPigment",
+          "Status": "Passed",
+          "Duration": 0.0408475,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Bokumyaku.Drawing.Tests.DirtyInkSurfaceTests.SplatterAndEdgeSegmentsCopyAllNonzeroPixels",
+          "Status": "Passed",
+          "Duration": 0.0125498,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 5.15,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: DirtyInkSurfaceTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\UnitySandbox"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

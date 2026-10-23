@@ -89,6 +89,35 @@ namespace Bokumyaku.Drawing.Tests
             }
         }
 
+        [Test]
+        public void ConsecutiveFlushesPreserveGpuPigmentAndReuseTileSources()
+        {
+            if (!DirtyInkSurface.IsSupported) Assert.Ignore("GPU region copy unavailable.");
+            using (var surface = new DirtyInkSurface(143, 137))
+            {
+                var field = typeof(DirtyInkSurface).GetField("staging", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                var sources = (Texture2D[])field.GetValue(surface);
+                Assert.AreEqual(25, sources.Length);
+                var identities = (Texture2D[])sources.Clone();
+                var brush = InkBrushSettings.Dense; brush.radius = 5;
+                for (int pass = 0; pass < 2; pass++)
+                {
+                    for (int i = 0; i < 8; i++)
+                    {
+                        // Repeated tile, distant tile, and clipped edge; no readback between flushes.
+                        float x = i % 3 == 0 ? 20 : i % 3 == 1 ? 95 : 141;
+                        surface.Begin(new InkPoint(x, 15 + i * 16, 0, .8f), brush, 42 + i);
+                        surface.End(); surface.Flush();
+                    }
+                    AssertGpuMatchesPigment(surface);
+                    surface.Clear();
+                    for (int i = 0; i < sources.Length; i++) Assert.AreSame(identities[i], ((Texture2D[])field.GetValue(surface))[i]);
+                }
+                Assert.AreEqual(1, surface.FullInitializations);
+                AssertGpuMatchesPigment(surface);
+            }
+        }
+
         static void AssertGpuMatchesPigment(DirtyInkSurface surface)
         {
             var previous = RenderTexture.active;

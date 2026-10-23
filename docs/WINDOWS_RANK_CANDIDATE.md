@@ -83,3 +83,8 @@ Enso frame3551→3552: focused前後true、GC差0。frame3551のPostLate.FinishF
 公式Player引数 -force-gfx-direct（単一スレッド描画）でpostlate-v22を再実行。EXEとゲームDLLのSHA-256が対照と一致。ログで両プロセスのkGfxThreadingModeDirectを確認。製品ProjectSettingsは変更なし。参照: https://docs.unity.com/en-us/engine/6000.3/manual/unity-editor/command-line-arguments/player
 6武器/SE/周回/別プロセス復帰合格。540×960、平均16.86〜17.46ms、最大559.00ms（Enso開始直後）。focused前後true・GC差0・ログ欠落0。
 frame3542→3543の559msに対して、frame3543 InkFlush522.93ms、RootFlourish557.10ms、Update557.26ms。同一コードでもスレッド方式を変えると待機が転送API側に現れた。スレッド無効化は解決策ではない。GPU/ドライバー同期等が候補だが確定はせず、次はFlush内のSetPixels32/Apply/CopyTextureを分離する。直前のFinishFrameRendering495.93msとの単回比較であり厳密な再現率や因果の証明ではない。今回は同一Windowsバイナリの対象比較、性能未合格。evidence/*direct-v22.*。
+
+## tile-direct-v23 / タイル別転送候補（2026-10-24）
+白和紙カード入り計測版を67秒未満（66.11秒）、162,852,637bytes、警告/エラー0でビルド。Direct描画をログ確認、6武器/SE/周回/別プロセス復帰合格。540×960で白いカード/戦場を目視。平均16.87〜17.46ms、最大560.94ms、欠落0。InkTile.Applyがframe3544で517.35ms、frame5301で513.10ms。長い同期待機をTexture2D.Apply内に確認。SetPixels/Copyが10ms未満だったことはゼロコストを意味しない。evidence/*tile-direct-v23.*。
+これを受け、1枚を同じFlush内で繰返し上書きする転送元を、宛先タイルごとの固定Texture2Dへ変更する比較候補を実装。384×512で192枚、画素容量CPU/GPU各0.75MiB（管理費別）、従来の各4KiBより増加。構築時だけ確保、Clear時再利用、Disposeで全解放。跨フレーム依存は残るため改善保証なし。
+対象EditMode4/4（5.15秒）合格。連続Flush間にreadbackを挟まず最後にGPU alphaをCPU基準と±1で比較、端のクリップ/部分更新/リセットも合格。RGBA完全一致やWindows性能の合格ではない。tile-staging-editmode.json。次に同じWindows Direct条件で比較し、悪化/改善不明なら候補を再評価する。Runtime/シミュレーション不変。
