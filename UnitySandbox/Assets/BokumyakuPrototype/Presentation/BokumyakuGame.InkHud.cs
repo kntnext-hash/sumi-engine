@@ -29,9 +29,11 @@ namespace Bokumyaku.Presentation
   {
    InkPanel(new Rect(0,0,440,65));
    Dot(new Vector2(48,48),44,hudBlack);InkStamp(coreInk,new Vector2(48,48),106,hudWhite);
-   HudText(new Rect(13,10,70,21),"WAVE",15,hudWhite);
+   Fill(new Rect(20,15,56,20),hudBlack);
+   HudText(new Rect(20,15,56,20),"WAVE",14,hudWhite);
    HudText(new Rect(8,30,80,42),Run.Wave.ToString(),38,new Color(.75f,.10f,.06f));
-   HudText(new Rect(15,72,66,16),"墨 脈",11,hudGold);
+   Fill(new Rect(24,68,48,18),hudBlack);
+   HudText(new Rect(24,68,48,18),"墨 脈",11,hudGold);
    HudText(new Rect(102,10,145,28),"墨 "+Run.RunInk,22,hudWhite);
    HudText(new Rect(250,10,122,28),"結晶 "+Meta.Crystals,17,hudGold);
    HudText(new Rect(102,38,270,20),WeaponNames[(int)Run.Weapon]+" · "+FormatTime(Run.ElapsedSeconds),12,hudWhite);
@@ -39,7 +41,8 @@ namespace Bokumyaku.Presentation
    float y=height-198;
    InkPanel(new Rect(0,y,440,198));
    InkStamp(coreInk,new Vector2(43,y+34),85,hudGold);
-   HudText(new Rect(15,y+8,56,19),"墨核",12,hudWhite);
+   Fill(new Rect(24,y+8,38,19),hudBlack);
+   HudText(new Rect(24,y+8,38,19),"墨核",12,hudWhite);
    HudText(new Rect(10,y+27,66,28),Run.CoreHp+"/10",23,hudWhite);
    Fill(new Rect(88,y+20,112,5),new Color(.23f,.20f,.15f));
    Fill(new Rect(88,y+20,112*Mathf.Clamp01(Run.CoreHp/10f),5),hudGold);
