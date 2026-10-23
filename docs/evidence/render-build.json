@@ -1,10 +1,11 @@
 {
   "result": "Succeeded",
   "bytes": 135720813,
-  "seconds": 14.216721399999999,
+  "seconds": 76.107661499999992,
   "errors": 0,
-  "warnings": 1,
-  "output": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\Builds\\Bokumyaku-render-probe-v3\\Bokumyaku.exe",
+  "warnings": 0,
+  "output": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\Builds\\Bokumyaku-render-clean-v4\\Bokumyaku.exe",
   "unity": "6000.3.26f1",
-  "source": "899b702 plus GPU probe and seven-asset validation"
+  "source": "4430e7e",
+  "messages": []
 }

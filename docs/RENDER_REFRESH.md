@@ -80,3 +80,6 @@ Fiberの広い掠れ層を残し、同じ曲線へ半径10のPool層を追加。
 
 ### v3 Player再検証
 素材7個判定版をビルド。135720813bytes/error0/warning1。6武器900tick、攻撃/購入/保存再読込/GPU墨領域、自動再出撃が全体passed=true。別プロセスから600tick復帰一致もtrue。非表示Player試験で画質/性能は主張しない。警告は未コンパイル変更によるインポート処理等の未反映注意。配布確定前に警告なしで再ビルドが必要。証拠render-build-messages.json / render-player-v3.json / render-player-resume-v3.json。
+
+### v4クリーンビルド
+事前Refreshとコンパイル/インポート中拒否、CleanBuildCacheを使用。76.11秒/135720813bytes/error0/warning0。BuildReport警告内容も自動保存。配布対象173ファイル中171はv3同一、boot.config/resources.assets差分。v2の未更新チェックポイントのコピーから別プロセス600tick復帰一致。初回はv3の復帰試験後に更新された保存と旧期待値を混ぜ不一致だったため不採用、製品不具合と判断しない。証拠render-clean-resume.json / render-clean-artifacts.json。v4の全武器再試験や目視は未実施。

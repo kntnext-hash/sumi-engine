@@ -9,7 +9,7 @@
 
 ## 直近の結果
 - 検証区分: Windows描画移行ビルドとPlayer限定試験（フル検証は未完）。render-build.json / render-player-v3.json / render-player-resume-v3.json。
-- WindowsビルドSucceeded、135720813bytes、error0/warning1。Builds/Bokumyaku-render-probe-v3。配布公開なし。
+- WindowsビルドSucceeded、135720813bytes、error0/warning0。Builds/Bokumyaku-render-clean-v4。配布公開なし。
 - 旧Player検証が旧SumiCanvasを参照し不合格。GPU墨マスクの明示的QA読み戻しへ修正。
 - v3 Player: 6武器900tick/攻撃/保存再読込/墨マスク/素材7個/自動再出撃、全体passed=true。別プロセス復帰後600tickの状態一致も合格。
 - Playerは自動終了。配布版の目視は未実施。非表示Playerのframe数は性能証拠に使わない。
@@ -18,6 +18,6 @@
 - 過去の描画移行EditMode213/213、前後3分計測は後続美術変更前。実機なし。
 
 ## 次の一手
-1. v3ビルド警告は未コンパイル変更によるインポート処理反映の注意。render-build-messages.json。配布確定前に警告なしのクリーンビルドを取り直す。
+1. v4クリーンビルドで警告解消、別プロセス復帰600tick一致。173ファイル中171はv3同一、boot.config/resources.assets差分。画面目視とリソース確認を次に実施。
 2. 完成候補の画面/独立QA/全テスト、配布物の製品名・不要同梱物を確認。美術とメニュー移行を継続。
 3. 音の聴感、初週バランス、スマホ実機は未達。PRODUCT_COMPLETION.md。リポジトリ分割は計画のみ。

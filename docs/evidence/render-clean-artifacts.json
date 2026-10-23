@@ -1,0 +1,1048 @@
+{
+  "files": 173,
+  "identical": 171,
+  "changed": [
+    "Bokumyaku_Data\\boot.config",
+    "Bokumyaku_Data\\resources.assets"
+  ],
+  "artifacts": [
+    {
+      "path": "Bokumyaku.exe",
+      "sha256": "EB143EAD6441B6DD9D7D145ADB85410E9389FB3878899AE537E8C9869CCE38FA",
+      "bytes": 667136,
+      "sameAsV3": true
+    },
+    {
+      "path": "UnityCrashHandler64.exe",
+      "sha256": "40386D1DA003DED4B5BD1D6AFB93426882A01B3C3C53BD3318DF785C331E38A9",
+      "bytes": 1669544,
+      "sameAsV3": true
+    },
+    {
+      "path": "UnityPlayer.dll",
+      "sha256": "851DA827899734E8B3D56F7E4DBBD58210E58E4DAEF504E6B7472B9EE503914B",
+      "bytes": 36784048,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\app.info",
+      "sha256": "CCFF787B5E126839E9F50DB98CCDADE99537BDCB4D374D41EED1B0C5A4DFC5CA",
+      "bytes": 29,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\boot.config",
+      "sha256": "8F45DF6709A45F06C4A5F018B8113CAA36691D201710AF4E131C106AECADCC7E",
+      "bytes": 156,
+      "sameAsV3": false
+    },
+    {
+      "path": "Bokumyaku_Data\\globalgamemanagers",
+      "sha256": "09F40D6D817286A1B3631F67445F613C8FC9C9BD3301FFE0F7E0DD65A79C2B06",
+      "bytes": 170260,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\globalgamemanagers.assets",
+      "sha256": "39ECDCA4B3B9D852061DE3B956A402557441976DB10BA15A9CE9AFF28E995F6C",
+      "bytes": 613880,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\globalgamemanagers.assets.resS",
+      "sha256": "FA17CBFFCBA886C81D7E30FBB839BCB97932CEDB8B38686AB06CC2C1E8CB4C99",
+      "bytes": 2816736,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\level0",
+      "sha256": "6B80F1B4BF854215F6803D51380238A1B5DF656AD62697E2D0A8F59DB0AEEC40",
+      "bytes": 1784,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\resources.assets",
+      "sha256": "4D0DB4C99A083C41B0B371FB84BB02D3F570C8C3BA8AA1718E94E7E477CD7E71",
+      "bytes": 29763400,
+      "sameAsV3": false
+    },
+    {
+      "path": "Bokumyaku_Data\\resources.assets.resS",
+      "sha256": "9F175EED2CD85FCB030BF3192B26BAFD896F4614F25FA58F73680EF3A34A09EF",
+      "bytes": 7173552,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\resources.resource",
+      "sha256": "E9AF31891BB28BA3B071C2031AD8B313A6E4EE90DF945BFA80A8E3D2FF6ABF68",
+      "bytes": 2603616,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\RuntimeInitializeOnLoads.json",
+      "sha256": "A82EE784F92537ACA68F518112EFCBA3D486950E901521580C0AD3825DE28B62",
+      "bytes": 1919,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\ScriptingAssemblies.json",
+      "sha256": "79681BC1A6BD612CD95C2B902D51E890DF30482F3727A2DB20B18C94E24CA942",
+      "bytes": 4247,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\sharedassets0.assets",
+      "sha256": "231C78F4523CB72FD4148F08D4525EAC3E99B194822C8640564345E359F6C156",
+      "bytes": 7936,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\sharedassets0.assets.resS",
+      "sha256": "393EFE6399536384AA91BDFC4E64F244B4D3E1FBB6A4FF145C483FFEE64CCB36",
+      "bytes": 524288,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Bokumyaku.Diagnostics.dll",
+      "sha256": "AD6436DDBF76BC2245FC6243667B8472013BBF696F359AA894BD57760CA141C1",
+      "bytes": 13312,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Bokumyaku.Persistence.dll",
+      "sha256": "6E97799AB2355A8CB141D3470563EA8DAB01EBA7439DDF61CB51080969FF38AA",
+      "bytes": 20480,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Bokumyaku.Presentation.dll",
+      "sha256": "3DB5394472B667C80CE1DE5A2031F76E16AD2786CD132BF90D52DA8B88875429",
+      "bytes": 96256,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Bokumyaku.Simulation.dll",
+      "sha256": "288A0A1C0F25C69DF4E33F529054A1314542763E676DFFFC51690DE2C4B07610",
+      "bytes": 41472,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\ConnectPiece.SumiEngine.dll",
+      "sha256": "4DFBCDA6458AA912E95982E6B3308BA18AFE008EFD3356F75B2C750321F5D0D2",
+      "bytes": 37888,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Mono.Security.dll",
+      "sha256": "82DF31404DEF10FFD69C09E3A8C454E76552F3A37675D1B7B8C743CFD3D1AF6F",
+      "bytes": 241152,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\mscorlib.dll",
+      "sha256": "194417662B72E9FDC29DF44AA07FB693A9CF2194D84E327231F3EEFF1104AE0F",
+      "bytes": 4632064,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\netstandard.dll",
+      "sha256": "6AE62E082DC494A2433984177F60CA4DB5FAE69B1F360A8B33754172B310B8C5",
+      "bytes": 90112,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Newtonsoft.Json.dll",
+      "sha256": "A56146202232958F46BD6A28B5A7DA166AEA123EE0D646735A46E5C341DFBF1F",
+      "bytes": 691712,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Sumi.Automation.dll",
+      "sha256": "E7F251B814BF3EB99302233878B45B93101ED06046C811C8173E5F1EB0928C8A",
+      "bytes": 4096,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Sumi.PlayerProbe.dll",
+      "sha256": "817572C0BFD04EED4A5BCB87C670FDADBBBB6FA118E357BEA2A0B014D1FB86C5",
+      "bytes": 8704,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.ComponentModel.Composition.dll",
+      "sha256": "9373A420101D4C674B9F74BCE93A45C58DDB3548C130D9B65AB87235D0A4ED30",
+      "bytes": 257024,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.Configuration.dll",
+      "sha256": "D3ACB14B8EBAF7482D2D3E26E8C04685299E2B471A513A30508BD0CAB8336354",
+      "bytes": 124928,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.Core.dll",
+      "sha256": "EBF140BF5F8D49CCAC20C14935625B0AE0A46C30AA4F90B2808F3B9678822470",
+      "bytes": 1113088,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.Data.DataSetExtensions.dll",
+      "sha256": "79A01061129709358567A9254684BA52BA66371E01E0354E7FA4852A9F62E59F",
+      "bytes": 29696,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.Data.dll",
+      "sha256": "5D0807269BFCF112AA844951232EF105BBB642ABB1E14C2E78DD70FB9245E98A",
+      "bytes": 2125312,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.dll",
+      "sha256": "9E8A5190797E35428B1AE9BCE6D47D39A1DBC3E974F14239E44678913DC6194A",
+      "bytes": 2641920,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.Drawing.dll",
+      "sha256": "76DCA8FBE098C285B03DE79369F9F2AA141DEC44DE99EBCC0478C7E762024204",
+      "bytes": 489984,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.EnterpriseServices.dll",
+      "sha256": "D8A3D6C1929EC028793FF07DF92781C03EBB38C63005D4C12C35E3116D04FCAF",
+      "bytes": 44544,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.IO.Compression.dll",
+      "sha256": "7370DC2D3A6F02DBDA1A69CA596F2AE96FC464809B3BBCA6071FC1FC1EDFBB2D",
+      "bytes": 114688,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.IO.Compression.FileSystem.dll",
+      "sha256": "40EF91246D44D6C4D8A1505E1210B0C54963A12938BA0458959BB064D62F36F4",
+      "bytes": 18432,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.Net.Http.dll",
+      "sha256": "C46D5B5DC68AF8CE1B34E8ACE4372B157E2E85AB63D6B5EEA938CA71DC7FB064",
+      "bytes": 122880,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.Numerics.dll",
+      "sha256": "74F6771AEDD33262470E8E653FC0F4E04A659BCDADBEB44B2F8826FBA7053F77",
+      "bytes": 119296,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.Runtime.dll",
+      "sha256": "E0A7334B7BA419AAAB6BD3BB6992D693E689341A9178172C9BF99C2AA6A085BD",
+      "bytes": 12288,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.Runtime.Serialization.dll",
+      "sha256": "2AA92FB930200DDB3C9C3FFAAFF39BD6CDC6D689F19614F6C3B84A15060800F0",
+      "bytes": 934400,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.Security.dll",
+      "sha256": "95A29120E164E5BDB7FF5DCB2CB4641E5EA0ACA7C1AD0854B0E9B2B0FF5ABE2D",
+      "bytes": 320000,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.ServiceModel.Internals.dll",
+      "sha256": "6738A31088136D38A50354371FEB83A4FD1558ACCA2A5F8B165C34A859E08C47",
+      "bytes": 215040,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.Transactions.dll",
+      "sha256": "CFAC784408E3B7DA6C6E94EC04C162C6D902372FAB19353C02AEDA3464CE185F",
+      "bytes": 35328,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.Xml.dll",
+      "sha256": "F90799A0C38F3D45E390F9768AB467BF681A052E1B807F4C59FABEF5F7EDAFFA",
+      "bytes": 3160064,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\System.Xml.Linq.dll",
+      "sha256": "ED219710472B837FDDF45CC73C912E04B4D6B8CA833EA074EC1F73BC00157B05",
+      "bytes": 136704,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.Burst.dll",
+      "sha256": "1237D64FF5BEBE51177B09BDABDB8C2D5D50F4708D69F08CE807F3AD799BDA6E",
+      "bytes": 296960,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.Burst.Unsafe.dll",
+      "sha256": "9D9C1FF52411DECBEE5D9F0D1CD61EBEAA222077AA77A52101EA3DEBAFAE98E2",
+      "bytes": 5632,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.Collections.dll",
+      "sha256": "E4E01FC93A752A0CDC0F99F70AC59AA842070B97DA63B04585C7359B828D8D30",
+      "bytes": 432128,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.Collections.LowLevel.ILSupport.dll",
+      "sha256": "FF50383F807F9692E4913B97E47D86FEFCB8FAA33D6D48CD3E3FD6FC7FFB448D",
+      "bytes": 5120,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.InternalAPIEngineBridge.004.dll",
+      "sha256": "26B3B013A5853CF4A15233830CBA03723E4C034677061FF949A1BC3D13DC8279",
+      "bytes": 4096,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.Mathematics.dll",
+      "sha256": "9E64E33231C158AD190C502588C907EEA43DF46BB8E8FD67935FF05EBA0B1380",
+      "bytes": 737280,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.Multiplayer.Center.Common.dll",
+      "sha256": "B0BA79E80DF5CC1CD51DFE9B13005FF89D385CE6B7C184EAB46D6CBE34785CF2",
+      "bytes": 8704,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.Pipeline.Attributes.dll",
+      "sha256": "A1B4ACE07E09AEBFB0EEDA2F63B7036EE3C4E49EC925A8083EBD3BF12C867C34",
+      "bytes": 6656,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.RenderPipeline.Universal.ShaderLibrary.dll",
+      "sha256": "A5F3DC0F5955A1782934120F7A6588E0A45BEE146034A9E67CEDD06C11650601",
+      "bytes": 7680,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.RenderPipelines.Core.Runtime.dll",
+      "sha256": "31A5EDF795D3FC76707A6DE3F7BED78CC55FEC47AF8766B844E6F7D500131F27",
+      "bytes": 1136128,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.RenderPipelines.Core.Runtime.Shared.dll",
+      "sha256": "E9B8DA7F075868BC041D7AA18D60D36872B23653C31B0344DC377D030E82B30A",
+      "bytes": 4608,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.RenderPipelines.Core.ShaderLibrary.dll",
+      "sha256": "72A02095B4BAE2A4B6B816C83BE712FB367A51E0EAE8CCA38636CA336CE54431",
+      "bytes": 3584,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.RenderPipelines.GPUDriven.Runtime.dll",
+      "sha256": "31701AF5B1265FBF22692929FD971B19DE6DFAE10C3064CDB5DABEE9A3D4D28C",
+      "bytes": 220160,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll",
+      "sha256": "9C7B1C69058B80F1E5012C5DC83B08680A4BAE22AEBD594F374815973F40751A",
+      "bytes": 3584,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.RenderPipelines.Universal.2D.Runtime.dll",
+      "sha256": "42EE03C425A0CC67BD328853A864F2E419633DA0D65D5A7FD254C14C584B628D",
+      "bytes": 220672,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.RenderPipelines.Universal.Config.Runtime.dll",
+      "sha256": "F2626610E41CA9E2458674DB65551FC47670D5C7586B18D8FAFBAEB4333A8D5A",
+      "bytes": 4096,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.RenderPipelines.Universal.Runtime.dll",
+      "sha256": "2137B0F0089731C3FA9659F1953597A0D348C4A610EB4C79DE3E7DB9F5371062",
+      "bytes": 714752,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.RenderPipelines.Universal.Shaders.dll",
+      "sha256": "E09E810C8873EB3807E24C713D4FDCB301F4DABDFDCBA2D0661CA4E086BFA992",
+      "bytes": 3584,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.TextMeshPro.dll",
+      "sha256": "44AEFE72140CB0D4441204916582668052FB7FA07A97E1B245C0771618B6B5C6",
+      "bytes": 436736,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\Unity.UnifiedRayTracing.Runtime.dll",
+      "sha256": "BBDD6A7F804699BD5279F2ACC71889D60CD201DBBF4D41FA09ABE57BCB310599",
+      "bytes": 90624,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.AccessibilityModule.dll",
+      "sha256": "9413F549098EBA189F2FDD506FDC65D7EDDE3BBC2866F041E3AD786756DD66C9",
+      "bytes": 51112,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.AdaptivePerformanceModule.dll",
+      "sha256": "A473E505C63CFA4558FD3F553B3A8D57376BDB2B683FC8E37090883051BD2698",
+      "bytes": 125360,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.AIModule.dll",
+      "sha256": "BA39F35F31D89B3D726002DB219FB4F4C75DE24D2DBD31FE5E6EEB5E8FE9404C",
+      "bytes": 77232,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.AMDModule.dll",
+      "sha256": "D618B3CFA47906C136C1DEF44728E69C1D16E264B4EC65A4BF47B419300728B2",
+      "bytes": 21928,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.AndroidJNIModule.dll",
+      "sha256": "22588A69D0E54C5D794C0EAD557F6CD4C5E9EB15C5198B6DBD4B3AAD09B9E031",
+      "bytes": 121768,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.AnimationModule.dll",
+      "sha256": "F1762F5FB06252B4DD5C7DE2BD5748CEE31EDB800A749E5BE88E98CB850E8683",
+      "bytes": 225200,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.ARModule.dll",
+      "sha256": "E292C7B2F67464D1F0E34926A99A35B9B4D1450FDEF7865F8F103657D7A662B7",
+      "bytes": 25512,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.AssetBundleModule.dll",
+      "sha256": "EFC4255FD77F62033BF1CF757D5B4E7D26D08FE2F437678753273898132F4A1B",
+      "bytes": 41896,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.AudioModule.dll",
+      "sha256": "A50256C632695A1A16CE1A81F407A8767C8039D4B641550582E3A4EC5728BA4F",
+      "bytes": 142760,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.ClothModule.dll",
+      "sha256": "A3D741B647415173BDAEDEB611EC6E6FDB863E8D7F31BC1DC937A9B0D08FF721",
+      "bytes": 36264,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.ClusterInputModule.dll",
+      "sha256": "00417D9C78620B833DB40149D67FAAD19C16AC77160E5123719E30E1174BD7E5",
+      "bytes": 28080,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.ClusterRendererModule.dll",
+      "sha256": "EFC5C5909FFD34C979D6EF8C8BA1B3B47B300BB75D5234C5B9D2E49B0AF3D6DA",
+      "bytes": 26544,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.ContentLoadModule.dll",
+      "sha256": "13026B7B91158CFE87EDE96CE98CE3F377549D0D15FB83EFF86286797492E031",
+      "bytes": 32688,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.CoreModule.dll",
+      "sha256": "9E3DE7931374A2C77B09DE567B00A70C69A5AA758F03A7E86F640C28C1E5A9FA",
+      "bytes": 1985968,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.CrashReportingModule.dll",
+      "sha256": "73076AA15F7AB4460B42CF7CFA9DF6929037D8990A0D045D1B094A096A50D57B",
+      "bytes": 26536,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.DirectorModule.dll",
+      "sha256": "798E180FDC62CB3A1EF784D4B8282B45635F94050C2F3DF15B5A01C7DA0087D3",
+      "bytes": 41896,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.dll",
+      "sha256": "58592C4BB7FFEC04593F098C3F88F4E63D961DE730B44091F889ECE9C1B62CCB",
+      "bytes": 197544,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.DSPGraphModule.dll",
+      "sha256": "9E1C9E6F4552A93710FC47AE301C66BA764056781AD3C62DE2AA1D0F050B08A8",
+      "bytes": 31664,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.GameCenterModule.dll",
+      "sha256": "84187B9AA3DDB798ED3D10E98CA31DDE302EBFE0DE9A83CE81AE45E5E1ED2A16",
+      "bytes": 45992,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.GIModule.dll",
+      "sha256": "DFD6575EF5BF41823F0DAF36FFD32BC6A84F23E720066C3F3D0E3E7E22DBB350",
+      "bytes": 24496,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.GraphicsStateCollectionSerializerModule.dll",
+      "sha256": "13799B96205BAC9D5035D0252B6F48A44237EC3591101E1A4A341695414DD796",
+      "bytes": 14248,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.GridModule.dll",
+      "sha256": "AD7549FBA12E92DAB18CFE10809F13ED25A8EB64FE6C2269A6745D05DED1E74E",
+      "bytes": 30640,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.HierarchyCoreModule.dll",
+      "sha256": "FD21DB4B0EB1B4C3BEC203302923D7DC08DA58C95C19BE24B9296FEFED1B51C5",
+      "bytes": 109480,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.HierarchyModule.dll",
+      "sha256": "39AE4C794800FECD274ADA0DB3EF1602B6A0153B7C0BD516FA3B47AE1945B6CA",
+      "bytes": 102312,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.HotReloadModule.dll",
+      "sha256": "75C1DB04E92AC9D5F7D24E78F65C6262BF628384ABC5BEA4A6F771405C49FAA3",
+      "bytes": 24488,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.IdentifiersModule.dll",
+      "sha256": "58E09982007A313C0B70723FB99C582BE84C4D0DA1C5E1C8DB4A90CB2B54E9A6",
+      "bytes": 16816,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.ImageConversionModule.dll",
+      "sha256": "F26022563E96DD347F2EB638F320DDFF0A9285BBCE0B9AC8BD983213BDA8CD6E",
+      "bytes": 31144,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.IMGUIModule.dll",
+      "sha256": "8BA45DBF28D35692AC54AA7C0C29D9844C2F94C7CDD116B50CAAD919C70E924D",
+      "bytes": 214448,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.InputForUIModule.dll",
+      "sha256": "80773FC98DB5DDA31A9E0755F6BE3DBF00FF6E457B04DD954D7B72358DE0838C",
+      "bytes": 57768,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.InputLegacyModule.dll",
+      "sha256": "D1C30E150AF23C16400EF2F6ECE52E2155F8334EB6B2A86EE3CAFB3EB53150CA",
+      "bytes": 45480,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.InputModule.dll",
+      "sha256": "17E0FE1BEC245C1CED0027F592CD45CACE36644310E359742E5D275C2ADCCA19",
+      "bytes": 28584,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.InsightsModule.dll",
+      "sha256": "BBE4D6412954A4B38180F1BD5EB062D5D159E038516717FD4E112E685E417691",
+      "bytes": 14256,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.JSONSerializeModule.dll",
+      "sha256": "D7C70045517FF7AE508C35C2C8BB94229C04D3C6A0E15893F12C08D04F82C093",
+      "bytes": 27048,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.LocalizationModule.dll",
+      "sha256": "C8493E9199AD1B1E60D5A155DF165BB0DF55602982042358A448E2FC203C5AD9",
+      "bytes": 27056,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.MarshallingModule.dll",
+      "sha256": "F82A545B2F05FEAFB08CBFF66DFEB22F578ADCB88A1F198D543E6F614E9AE2D5",
+      "bytes": 83880,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.MultiplayerModule.dll",
+      "sha256": "07365A8BB981493CA3E870F5B2964354E48B41FD4EA6A2F9E8AE4338F34CECC7",
+      "bytes": 17832,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.NVIDIAModule.dll",
+      "sha256": "3018ADEC1B670B25FAE6E9F4FB0AF07252B4186FECE66431D6D6D5276562458A",
+      "bytes": 40880,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.ParticleSystemModule.dll",
+      "sha256": "EF26B7D39E56208595F230DA6FC9F11512299E81A9AA46426B933690490EADFF",
+      "bytes": 171952,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.PerformanceReportingModule.dll",
+      "sha256": "585D98090F0A26AF7A46D46B454A73D4EB23570C0A2452E3988D3B7A4AC9A210",
+      "bytes": 25000,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.Physics2DModule.dll",
+      "sha256": "2A485ECFBAFAD8274361F6AC7D35070F192A283521F01B4639951B5EEE2F39DC",
+      "bytes": 586664,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.PhysicsBackendPhysXModule.dll",
+      "sha256": "2B5E11D24B92D3E8787D39F4D5B4D6C49EA4AF4389FB4D74B91D20A31D1D6000",
+      "bytes": 14256,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.PhysicsModule.dll",
+      "sha256": "E48A765C1693241CFC4DDA50C871CF097872B31D1B9166AA5D721D3E5A69DCCD",
+      "bytes": 183720,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.PropertiesModule.dll",
+      "sha256": "D861EFC231122A370481AB8C43F4010B4E8A2786B321FF426BFE7D075BC35BE6",
+      "bytes": 134056,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.RenderAs2DModule.dll",
+      "sha256": "EC4556D29FE23C471C9D44A53269911A47E7C0E585A56336BDF1AE488D74D145",
+      "bytes": 25520,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll",
+      "sha256": "BDF07783BCBAA6DB1AA258829B5D2C923452225C443A0E3F4B56FA367649EC68",
+      "bytes": 24488,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.ScreenCaptureModule.dll",
+      "sha256": "C27DA2FAA606E13FB2B2D3382FC5C2A81A44A06FF7AAFEB6DBBF4A2311C39526",
+      "bytes": 26544,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.ShaderRuntimeModule.dll",
+      "sha256": "392DB35017695A340AB20E06B420E1C9CA0B78938F7A385E428A4209C9CE7DEC",
+      "bytes": 25520,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.ShaderVariantAnalyticsModule.dll",
+      "sha256": "3A33103C6BC3294E03D1BC379B85C8C1D03DBAA38741C0C3A20238B96AB7ACA1",
+      "bytes": 24496,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.SharedInternalsModule.dll",
+      "sha256": "ADB3643F1C09FE18EDA362CEA402D06C48456B978E61552B8A83E92CD7C69745",
+      "bytes": 38320,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.SpriteMaskModule.dll",
+      "sha256": "67A31F21E1A3DD7FEF9330A4898F1B124BF9CC0CCC2E2A34F469C2BB1AED46CB",
+      "bytes": 28592,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.SpriteShapeModule.dll",
+      "sha256": "AB5CCEC7FACE44492C200EA840AF221699E73D14E66DFD335BC6DF54F9609785",
+      "bytes": 32680,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.StreamingModule.dll",
+      "sha256": "6F11E62F98109666FDB3ABEF6BB9D445492115B87EFB7DAE2E75AD37A13F90F8",
+      "bytes": 26024,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.SubstanceModule.dll",
+      "sha256": "6A296FB26A2072D9DD53EE7B2C65E29B6B1198C8D6ABBF526BF85F74F861418F",
+      "bytes": 29096,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.SubsystemsModule.dll",
+      "sha256": "3E66E3DA74A0BAB864C1CA21ED2113DAFB23548F56FFA625F064B5EBB592B527",
+      "bytes": 41904,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.TerrainModule.dll",
+      "sha256": "B7B7D60E4BA0E0321AC9E7F669FB45BD7C8DDDA4E1545026C2D980F88AAFB4CF",
+      "bytes": 134056,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.TerrainPhysicsModule.dll",
+      "sha256": "7184337244EBF5A50CB17C5FDFEE86F68121A5BD1DFF685BABA4509D20B03384",
+      "bytes": 25512,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.TextCoreFontEngineModule.dll",
+      "sha256": "F27FB10A2C7163DA8DFFC4DC8106354D7C39925B81466560355C4CCF4179A6C7",
+      "bytes": 91568,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.TextCoreTextEngineModule.dll",
+      "sha256": "EE1A223E336E53BC94FFB8B7051B74E0631C14F645DF922C0055872D1B58FE50",
+      "bytes": 334760,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.TextRenderingModule.dll",
+      "sha256": "FA6D3B1167A6A101033DBA62B9B24EFD1AF0BD6CF04E72A93DAAF97F47979FF7",
+      "bytes": 39344,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.TilemapModule.dll",
+      "sha256": "C0F5AAE8B9623A0F0E2ED77DB16230E4CDC49750EEE4C542B64DA167FCFE0192",
+      "bytes": 58792,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.TLSModule.dll",
+      "sha256": "67BF3EACDDE2CDCFD91E8BD643546CCE0FD8001BAD60C5ECD5BBAD049DA1B1C8",
+      "bytes": 32176,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UI.dll",
+      "sha256": "6593915991B26056C86E8C51A5AF6ABCE013F65833CBEBDF41196A58C66F882F",
+      "bytes": 263168,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UIElementsModule.dll",
+      "sha256": "0104EB031AA1C342177D06F8CEB18824A1678F6D9B44523316A533EC5AEF86EA",
+      "bytes": 2453424,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UIModule.dll",
+      "sha256": "72FC11BC7DF760DFEBC17A2A6C256CEC119E339C466AA738C9FAC2AC5243B4E1",
+      "bytes": 50088,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UmbraModule.dll",
+      "sha256": "E0AFC364C4A19F6235D5CFA91D0CAE4DE7257F94F4090379CE497A0D9593A927",
+      "bytes": 24488,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UnityAnalyticsCommonModule.dll",
+      "sha256": "B1BDBF4EA453CA8A09C16326CDBBDAF70C8767EA0AA177C2C98FB08DD5181755",
+      "bytes": 35760,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UnityAnalyticsModule.dll",
+      "sha256": "D341FAAC2E992BFF7882FC85363143D9D4A042AC207AE089FCF03230253F097B",
+      "bytes": 60848,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UnityConnectModule.dll",
+      "sha256": "15F2DCCE0F7815D7594A934FF832007F8A6C5191A57C723F9EB07AEF9BDD5298",
+      "bytes": 27568,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UnityConsentModule.dll",
+      "sha256": "258B2697DA2354DA78154EAADE613800789BAFF3692D161034E46EA7C18F6A59",
+      "bytes": 16304,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UnityCurlModule.dll",
+      "sha256": "E4DCE8FEF34F42D3D53CCD203440E66F438A3A3CD7DEFF73A4F1BC605FFCCA72",
+      "bytes": 26032,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UnityWebRequestAssetBundleModule.dll",
+      "sha256": "3A3B8014AF189D1338B28B2DE21438C36DCF91D7D78758FABEB5F64EC2CA69C4",
+      "bytes": 28592,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UnityWebRequestAudioModule.dll",
+      "sha256": "AF45256B9C06CAEA7A962D1C1F329C945016B606A35C793314062103048EDB8C",
+      "bytes": 28584,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UnityWebRequestModule.dll",
+      "sha256": "392183A43363663FFE7D622BBCEEC1CCE6EFE4FCC3D74F10D777A8883585D494",
+      "bytes": 70064,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UnityWebRequestTextureModule.dll",
+      "sha256": "F17E96A9CBA1D329C189B9337CEF24A7413604EA5AEE241E131F0B90ED8FFA4E",
+      "bytes": 27568,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.UnityWebRequestWWWModule.dll",
+      "sha256": "5BE8FF5A42C94E34D123F40D54D66181565C7780C21C4473AB9B8F845CE7CBB9",
+      "bytes": 36784,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.VectorGraphicsModule.dll",
+      "sha256": "0DE3129E30FFA373FB72DD8DF3B81C2D5E44ADA18CDFD008ED9EC8194ED7A743",
+      "bytes": 254896,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.VehiclesModule.dll",
+      "sha256": "EFF49C1FB43845F3AAA7DD59BA8AF91BD8F2D1495E463F55C4D2995CB41073E4",
+      "bytes": 31664,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.VFXModule.dll",
+      "sha256": "6BA6C7868736DA3D46ED89C48D850757C26C34E57FC7FF27AAE7BA678B80498A",
+      "bytes": 78256,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.VideoModule.dll",
+      "sha256": "31F930DC5A532BB00B3F3F57F279987FAA3DD7CB0C8E9013659B8B0F0D92BC4D",
+      "bytes": 49064,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.VirtualTexturingModule.dll",
+      "sha256": "03BC3FD50942B64894BE32C885EEAA1E59C8C1777461F72F0FD70D168C4F9C7C",
+      "bytes": 42928,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.VRModule.dll",
+      "sha256": "5DF47299A7BDF80C03097C27F4CA535FC1EBDD4DB9228DF4D7B695C79AE8A250",
+      "bytes": 31656,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.WindModule.dll",
+      "sha256": "2AA9FFE8D067F79245AB4B3FDAD6CF3B24C94E4AE9F3D9E641D9AB53BDB188E7",
+      "bytes": 26536,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Managed\\UnityEngine.XRModule.dll",
+      "sha256": "881E556460FB5181A78644D51AF7D4924FA386F1F45B5FFFFBC3D84D6E57BF30",
+      "bytes": 88488,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Plugins\\x86_64\\lib_burst_generated.dll",
+      "sha256": "C6995DEF783E1F52A2825C761C0FDB1254BBEE4F3FCC4695FB43858295281BDD",
+      "bytes": 446464,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Resources\\unity default resources",
+      "sha256": "32B58BDB9CF090212B46A8CA7436DCDAE89E4EF43E9D55A835233C21D1347734",
+      "bytes": 5883716,
+      "sameAsV3": true
+    },
+    {
+      "path": "Bokumyaku_Data\\Resources\\unity_builtin_extra",
+      "sha256": "3847C07CFD7F428A214C2A612502D70AB3F060D500CE6009515F6B81A0DB2A60",
+      "bytes": 400408,
+      "sameAsV3": true
+    },
+    {
+      "path": "D3D12\\D3D12Core.dll",
+      "sha256": "625BD40005B1C3708695D5256ECF230D278E6B8EDBA5A88AF70F3D91324F3052",
+      "bytes": 4725304,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\EmbedRuntime\\mono-2.0-bdwgc.dll",
+      "sha256": "D24DAE84AB5128688D896D65ACD61184056D7A8DF5D0F8C8B6C4651E8E7138DE",
+      "bytes": 7828904,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\EmbedRuntime\\MonoPosixHelper.dll",
+      "sha256": "B152BF0E1B6C31B8250EB7E0A8EAF216E58EFBAA6993F732BE147A89B6CA5F5B",
+      "bytes": 611248,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\browscap.ini",
+      "sha256": "4DDD50F31FB968F30BEDEFC253A46DC3F2890192D05CDAA9E0A64A056EEE807E",
+      "bytes": 311984,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\config",
+      "sha256": "5776169973A26A387B8B3E5C0F2301A7AB9A6DD7C7D3EFA22A96ABC47FBF8662",
+      "bytes": 3815,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\2.0\\DefaultWsdlHelpGenerator.aspx",
+      "sha256": "751861040B69EA63A3827507B7C8DA9C7F549DC181C1C8AF4B7CA78CC97D710A",
+      "bytes": 60575,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\2.0\\machine.config",
+      "sha256": "E91782A27FA39FC6C1D6EE8B08529F5D35052310D0006034B878EB04B8F2AF30",
+      "bytes": 29066,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\2.0\\settings.map",
+      "sha256": "49C6160F9D54AF4270A3B4E997FC4A8301F79B9E2070118FA46DDBCBBC44F9A2",
+      "bytes": 2622,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\2.0\\web.config",
+      "sha256": "CF2B54339E069B9E42F7D6795EECBF562C50C1011F4CA8F65F578FE52D97FF92",
+      "bytes": 11635,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\2.0\\Browsers\\Compat.browser",
+      "sha256": "8A1082057AC5681DCD4E9C227ED7FB8EB42AC1618963B5DE3B65739DD77E2741",
+      "bytes": 1605,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\4.0\\DefaultWsdlHelpGenerator.aspx",
+      "sha256": "751861040B69EA63A3827507B7C8DA9C7F549DC181C1C8AF4B7CA78CC97D710A",
+      "bytes": 60575,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\4.0\\machine.config",
+      "sha256": "E60AEC2C5115D65B3ACB3C55EA21576DBD770F579166C017125571E46AE560ED",
+      "bytes": 33598,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\4.0\\settings.map",
+      "sha256": "CE1DB1AD8A9512073164E3ECCDC193F7EDA036E1A9733CAEC4635DE21B2865C8",
+      "bytes": 2622,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\4.0\\web.config",
+      "sha256": "E38BB8CC68FE5B4EDECDFD288D094B9E8CED7629039B2A347682ABA0D8BD7492",
+      "bytes": 18802,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\4.0\\Browsers\\Compat.browser",
+      "sha256": "8A1082057AC5681DCD4E9C227ED7FB8EB42AC1618963B5DE3B65739DD77E2741",
+      "bytes": 1605,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\4.5\\DefaultWsdlHelpGenerator.aspx",
+      "sha256": "751861040B69EA63A3827507B7C8DA9C7F549DC181C1C8AF4B7CA78CC97D710A",
+      "bytes": 60575,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\4.5\\machine.config",
+      "sha256": "EE950004B576FB28DC85F4B0435ED04BF96612DE2E8B53BE84D07AFE85A0DE6C",
+      "bytes": 34056,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\4.5\\settings.map",
+      "sha256": "CE1DB1AD8A9512073164E3ECCDC193F7EDA036E1A9733CAEC4635DE21B2865C8",
+      "bytes": 2622,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\4.5\\web.config",
+      "sha256": "C4CBDDD4FD9347B58CC5A72B36DC4BA1AD2BB699E65869D05CD3FB9865F0D824",
+      "bytes": 18811,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\4.5\\Browsers\\Compat.browser",
+      "sha256": "8A1082057AC5681DCD4E9C227ED7FB8EB42AC1618963B5DE3B65739DD77E2741",
+      "bytes": 1605,
+      "sameAsV3": true
+    },
+    {
+      "path": "MonoBleedingEdge\\etc\\mono\\mconfig\\config.xml",
+      "sha256": "0C56E34C69124510FA8C19E7B4C2CA6C1C4FF460AE19F798DD0CA035809E396D",
+      "bytes": 25817,
+      "sameAsV3": true
+    }
+  ]
+}
