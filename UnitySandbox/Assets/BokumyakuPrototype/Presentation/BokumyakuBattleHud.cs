@@ -49,6 +49,13 @@ namespace Bokumyaku.Presentation
         BokumyakuGame game; Canvas canvas; RectTransform safe; TMP_FontAsset font; Font sourceFont;
         GameObject ownedEventSystem, modal; TextMeshProUGUI wave, ink, crystals, hp, notice, speed, pause, auto, motion, result, retryLabel;
         UnityEngine.UI.Button retry,repair; UnityEngine.UI.Image hpFill; float nextRefresh; Rect lastSafe; int lastWidth, lastHeight;
+        UnityEngine.UI.Button extraToggle;
+        readonly UnityEngine.UI.Button[] extraCards = new UnityEngine.UI.Button[2];
+        readonly TextMeshProUGUI[] extraLabels = new TextMeshProUGUI[2];
+        GameObject extraPanel; TextMeshProUGUI extraToggleLabel; bool extraOpen;
+        RunSimulator extraRun;
+        static readonly UpgradeKind[] ExtraKinds = { UpgradeKind.Bleed, UpgradeKind.Harvest };
+        static readonly string[] ExtraNames = { "滲み", "採墨" };
         static readonly string[] Names = { "筆撃", "筆速", "流墨", "分岐", "筆幅" };
 
         // Camera rect uses bottom-left normalized coordinates, matching SafeArea anchors.
@@ -111,6 +118,17 @@ namespace Bokumyaku.Presentation
                 cardLevels[i]=Label(bottom.transform,"Level"+i,i*.2f,.67f,(i+1)*.2f,.77f,11,gold);
             }
             notice=Label(bottom.transform,"Notice",.015f,0,.985f,.12f,11,ivory);
+            // A temporary popover keeps the five primary cards and footer controls reachable.
+            extraToggle=Button(safe,"ExtraUpgrades",.66f,.855f,.99f,.915f,"滲み・採墨",()=>{extraOpen=!extraOpen;Refresh();},out extraToggleLabel);
+            var extra=Panel(safe,"ExtraUpgradePanel",.39f,.675f,.99f,.85f); extraPanel=extra.gameObject;
+            extra.raycastTarget=true;
+            for(int i=0;i<ExtraKinds.Length;i++)
+            {
+                int slot=i;
+                float y=i==0?.51f:.03f;
+                extraCards[i]=Button(extra.transform,"Upgrade"+ExtraKinds[i],.03f,y,.97f,y+.46f,"",()=>{game.BuyUpgrade(ExtraKinds[slot]);Refresh();},out extraLabels[i]);
+            }
+            extraPanel.SetActive(false);
             var veil=BokumyakuUiParts.Panel(safe,"ResultVeil",new Vector2(.06f,.42f),new Vector2(.94f,.69f),black); modal=veil.gameObject;
             result=Label(veil.transform,"Result",.04f,.43f,.96f,.96f,22,ivory);
             retry=Button(veil.transform,"Retry",.05f,.07f,.62f,.4f,"再出撃",()=>game.TryStartRun(unchecked(game.Run.Seed+1)),out retryLabel);
@@ -146,6 +164,7 @@ namespace Bokumyaku.Presentation
             if(game==null)return;
             if(lastSafe!=Screen.safeArea||lastWidth!=Screen.width||lastHeight!=Screen.height)RefreshSafeArea();
             canvas.enabled=game.Page==BokumyakuGame.GamePage.Battle;
+            if(!canvas.enabled && extraOpen){extraOpen=false;extraPanel.SetActive(false);}
             if(canvas.enabled && Time.unscaledTime>=nextRefresh){nextRefresh=Time.unscaledTime+.1f;Refresh();}
         }
         static void Text(TextMeshProUGUI target,string value){if(target.text!=value)target.text=value;}
@@ -163,7 +182,21 @@ namespace Bokumyaku.Presentation
                 cardCosts[i].color=run.RunInk>=cost?ivory:new Color(.84f,.79f,.68f);
                 cards[i].interactable=!game.BattleStorageBlocked&&!game.AwaitingStart&&run.State==RunStatus.Running&&!max&&run.RunInk>=cost;
             }
-            bool ended=run.State!=RunStatus.Running;modal.SetActive(ended||game.AwaitingStart);
+            bool ended=run.State!=RunStatus.Running;
+            if(ended||game.AwaitingStart||run!=extraRun)extraOpen=false;
+            extraRun=run;
+            extraToggle.interactable=!ended&&!game.AwaitingStart&&!game.BattleStorageBlocked;
+            if(!extraToggle.interactable)extraOpen=false;
+            Text(extraToggleLabel,extraOpen?"閉じる":"滲み・採墨");
+            extraPanel.SetActive(extraOpen);
+            for(int i=0;i<ExtraKinds.Length;i++)
+            {
+                var kind=ExtraKinds[i];int level=run.UpgradeLevels[(int)kind],cost=run.UpgradeCost(kind);
+                bool max=level>=run.UpgradeMaxLevel(kind);
+                Text(extraLabels[i],ExtraNames[i]+"  Lv."+level+"\n"+(max?"MAX":"墨 "+cost.ToString("N0")));
+                extraCards[i].interactable=extraToggle.interactable&&!max&&run.RunInk>=cost;
+            }
+            modal.SetActive(ended||game.AwaitingStart);
             if(modal.activeSelf)
             {
                 Text(result,game.AwaitingStart?"一滴から、墨脈を育てる。":"WAVE "+run.CompletedWave+"\n撃破 "+run.Kills+"　結晶 "+run.CrystalsReward);
@@ -178,6 +211,7 @@ namespace Bokumyaku.Presentation
         }
     }
 }
+
 
 
 
