@@ -62,6 +62,22 @@ namespace Bokumyaku.Diagnostics
             Application.runInBackground = true;
             Application.targetFrameRate = 60;
         }
+        // The persistent mask is GPU-only after its first upload. Read back only in explicit QA.
+        static Color32[] ReadInkMask(Texture2D source)
+        {
+            if(source==null)throw new InvalidOperationException("Persistent ink mask missing.");
+            var old=RenderTexture.active;
+            var target=RenderTexture.GetTemporary(source.width,source.height,0,RenderTextureFormat.ARGB32);
+            Texture2D copy=null;
+            try
+            {
+                Graphics.Blit(source,target);RenderTexture.active=target;
+                copy=new Texture2D(source.width,source.height,TextureFormat.RGBA32,false);
+                copy.ReadPixels(new Rect(0,0,source.width,source.height),0,0);copy.Apply();
+                return copy.GetPixels32();
+            }
+            finally{RenderTexture.active=old;if(copy!=null)Destroy(copy);RenderTexture.ReleaseTemporary(target);}
+        }
         IEnumerator Start()
         {
             yield return null;
@@ -138,7 +154,8 @@ namespace Bokumyaku.Diagnostics
                     row.build = game.Run.Build.ToString();
                     row.weapon = game.Run.Weapon.ToString();
                     row.weaponMatches = game.Run.Weapon == (WeaponKind)i;
-                    row.pigment = game.GetComponent<SumiCanvas>().Core.Paper.TotalPigment();
+                    game.PresentBattle();
+                    foreach(var pixel in ReadInkMask(game.BranchOverlay)) row.pigment += pixel.a / 255f;
                     string before = JsonUtility.ToJson(game.Run.CaptureState());
                     row.checkpointResumePassed = game.SaveProgress() && game.TryReloadProgress() && game.IsPaused &&
                         game.ResumeAvailable && game.Speed == 2 && JsonUtility.ToJson(game.Run.CaptureState()) == before;
@@ -177,7 +194,7 @@ namespace Bokumyaku.Diagnostics
                     report.completedRuns = game.CompletedRuns;
                     report.sessionCrystals = game.SessionCrystals;
                     report.loadedArtCount = game.LoadedArtCount;
-                    foreach (var pixel in game.BranchOverlay.GetPixels32())
+                    foreach (var pixel in ReadInkMask(game.BranchOverlay))
                     {
                         if (pixel.a == 0) report.overlayTransparentPixels++;
                         else report.overlayInkPixels++;
@@ -185,7 +202,7 @@ namespace Bokumyaku.Diagnostics
                     report.autoRepeatPassed = game.Run.Seed == 43 && game.CompletedRuns == 1 && game.SessionCrystals > 0 &&
                         game.Speed == 2 && game.Run.Policy == GrowthPolicy.Focus && game.Run.Build == BuildPreset.Manual &&
                         game.Run.Weapon == WeaponKind.Point && !game.AutoRepeatPending && game.Meta.Crystals == game.SessionCrystals;
-                    report.passed &= report.autoRepeatPassed && report.loadedArtCount == 6 && report.overlayTransparentPixels > 0 && report.overlayInkPixels > 0;
+                    report.passed &= report.autoRepeatPassed && report.loadedArtCount == 7 && report.overlayTransparentPixels > 0 && report.overlayInkPixels > 0;
                     game.SetAutoRepeat(false);
                     report.checkpointResumePassed = game.SaveProgress();
                     File.WriteAllText(Path.Combine(output, "checkpoint-expected.json"), JsonUtility.ToJson(game.Run.CaptureState()));

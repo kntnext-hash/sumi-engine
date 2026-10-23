@@ -1,0 +1,10 @@
+{
+  "result": "Succeeded",
+  "bytes": 135720813,
+  "seconds": 18.1044782,
+  "errors": 0,
+  "warnings": 0,
+  "output": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\Builds\\Bokumyaku-render-probe-v2\\Bokumyaku.exe",
+  "unity": "6000.3.26f1",
+  "source": "899b702 plus GPU probe migration"
+}

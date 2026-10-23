@@ -74,3 +74,6 @@ Fiberの広い掠れ層を残し、同じ曲線へ半径10のPool層を追加。
 
 ### スマホ操作域の拡大
 下部HUD24→30%、戦場68→62%へ調整（幅100%、高さ60%以上を維持）。360×640で操作列44.7px高、札68.7×104.2px。主要10ボタンの中心raycast到達と画面を確認。hud-size-check.json/png。初回QAはRectのJSON循環参照で出力失敗、数値出力へ直して再実施。実機タッチやノッチ端末の検証ではない。
+
+### Windowsビルドと旧検証の移行
+899b702をWindowsビルド、成功。旧probeは旧SumiCanvasのpigment=0で不合格（render-player-legacy-probe.json）。GPUテクスチャ読み戻しを明示QAのみ追加したv2ビルドは135720813bytes/error0/warning0。6武器/保存再読込/自動再出撃/墨領域は通過。全体は素材数期待6/実際7で不合格。LoadArt呼出7件を確認し期待7へ修正、再ビルド検証は残す。render-player-v2.jsonを失敗のまま保存。Unity生成のURP設定も保持。
