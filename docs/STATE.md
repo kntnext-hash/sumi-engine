@@ -11,7 +11,7 @@
 - v8（7cabb5e）error0/warning0、72.96秒。6武器/自動周回/別プロセス復帰合格。2プロセスexit0（118.11秒/15.62秒）。540×960ホーム/戦闘画像を目視。証拠evidence/*ui-v8*、ui-build-v8.json。
 - 手動出撃で選択速度を保持。結果は通常+初達成=確定合計、未確定は保存待ち。7強化の説明パネル追加。隔離Editor Playで速度/報酬一致/説明開閉/文字収まりを検証。start-speed、result-reward、upgrade-helpのJSON/PNG。
 - メニュー1080×2400操作/文字確認と関連EditMode213/213の既存結果はmenu-migration-check、menu-editmode参照。今回の全テスト結果ではない。
-- 初週500価格案を3系列7時間まで純C#検証。初回購入3周、7時間購入35〜37回、同育成Record50で目標80〜110未達。価格だけでは不足、採用保留。FIRST_WEEK_CANDIDATE.md。ゲーム係数未変更。
+- 初週500価格案を3系列7時間まで純C#検証。初回購入3周、7時間購入35〜37回、同育成Record50で目標80〜110未達。価格だけでは不足、採用保留。FIRST_WEEK_CANDIDATE.md。ゲーム係数未変更。全研究9のRecord診断: 点墨50/円相66〜72。火力だけ20で53〜54、成長だけ20は50。FIRST_WEEK_DIAGNOSIS.md。
 - 過去の詳細はarchive/STATE_ui_fixes_2026-10-23.md。
 
 ## 次の一手

@@ -1,0 +1,592 @@
+{
+  "method": "Equal meta9 in all four research, Record build, six weapons and three seeds; diagnostic capacity, not funded first-week path. Bounded 90000 ticks; unfinished runs explicitly marked.",
+  "rows": [
+    {
+      "seed": 42,
+      "weapon": "Point",
+      "state": "Defeated",
+      "wave": 50,
+      "seconds": 602.36666666666667,
+      "Kills": 1092,
+      "leaks": [
+        0,
+        0,
+        1,
+        0,
+        2
+      ],
+      "peakEnemies": 24,
+      "RunInk": 132,
+      "levels": [
+        22,
+        11,
+        16,
+        8,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 42,
+      "weapon": "Pierce",
+      "state": "Defeated",
+      "wave": 50,
+      "seconds": 602.0,
+      "Kills": 1089,
+      "leaks": [
+        0,
+        0,
+        4,
+        0,
+        1
+      ],
+      "peakEnemies": 25,
+      "RunInk": 138,
+      "levels": [
+        22,
+        11,
+        16,
+        8,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 42,
+      "weapon": "Bleed",
+      "state": "Defeated",
+      "wave": 53,
+      "seconds": 639.83333333333337,
+      "Kills": 1227,
+      "leaks": [
+        0,
+        0,
+        5,
+        0,
+        0
+      ],
+      "peakEnemies": 26,
+      "RunInk": 221,
+      "levels": [
+        22,
+        12,
+        18,
+        9,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 42,
+      "weapon": "Sweep",
+      "state": "Defeated",
+      "wave": 56,
+      "seconds": 683.8,
+      "Kills": 1426,
+      "leaks": [
+        0,
+        0,
+        1,
+        0,
+        2
+      ],
+      "peakEnemies": 31,
+      "RunInk": 703,
+      "levels": [
+        23,
+        12,
+        18,
+        9,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 42,
+      "weapon": "Enso",
+      "state": "Defeated",
+      "wave": 68,
+      "seconds": 827.1,
+      "Kills": 2125,
+      "leaks": [
+        0,
+        1,
+        1,
+        0,
+        2
+      ],
+      "peakEnemies": 32,
+      "RunInk": 121,
+      "levels": [
+        26,
+        13,
+        20,
+        9,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 42,
+      "weapon": "Resonance",
+      "state": "Defeated",
+      "wave": 58,
+      "seconds": 696.66666666666663,
+      "Kills": 1482,
+      "leaks": [
+        0,
+        0,
+        3,
+        0,
+        1
+      ],
+      "peakEnemies": 31,
+      "RunInk": 1311,
+      "levels": [
+        23,
+        12,
+        18,
+        9,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 73,
+      "weapon": "Point",
+      "state": "Defeated",
+      "wave": 50,
+      "seconds": 603.4666666666667,
+      "Kills": 1081,
+      "leaks": [
+        0,
+        0,
+        3,
+        0,
+        1
+      ],
+      "peakEnemies": 22,
+      "RunInk": 39,
+      "levels": [
+        22,
+        11,
+        16,
+        7,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 73,
+      "weapon": "Pierce",
+      "state": "Defeated",
+      "wave": 50,
+      "seconds": 603.4666666666667,
+      "Kills": 1082,
+      "leaks": [
+        0,
+        0,
+        3,
+        0,
+        1
+      ],
+      "peakEnemies": 26,
+      "RunInk": 49,
+      "levels": [
+        22,
+        11,
+        16,
+        7,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 73,
+      "weapon": "Bleed",
+      "state": "Defeated",
+      "wave": 52,
+      "seconds": 632.26666666666665,
+      "Kills": 1180,
+      "leaks": [
+        0,
+        0,
+        5,
+        0,
+        0
+      ],
+      "peakEnemies": 28,
+      "RunInk": 576,
+      "levels": [
+        22,
+        11,
+        17,
+        8,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 73,
+      "weapon": "Sweep",
+      "state": "Defeated",
+      "wave": 60,
+      "seconds": 721.36666666666667,
+      "Kills": 1569,
+      "leaks": [
+        0,
+        0,
+        3,
+        0,
+        1
+      ],
+      "peakEnemies": 33,
+      "RunInk": 710,
+      "levels": [
+        24,
+        12,
+        18,
+        9,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 73,
+      "weapon": "Enso",
+      "state": "Defeated",
+      "wave": 72,
+      "seconds": 874.76666666666665,
+      "Kills": 2387,
+      "leaks": [
+        0,
+        0,
+        1,
+        0,
+        2
+      ],
+      "peakEnemies": 30,
+      "RunInk": 2208,
+      "levels": [
+        26,
+        14,
+        20,
+        9,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 73,
+      "weapon": "Resonance",
+      "state": "Defeated",
+      "wave": 57,
+      "seconds": 689.56666666666672,
+      "Kills": 1419,
+      "leaks": [
+        0,
+        0,
+        5,
+        1,
+        0
+      ],
+      "peakEnemies": 26,
+      "RunInk": 802,
+      "levels": [
+        23,
+        12,
+        18,
+        9,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 101,
+      "weapon": "Point",
+      "state": "Defeated",
+      "wave": 50,
+      "seconds": 604.6,
+      "Kills": 1092,
+      "leaks": [
+        1,
+        0,
+        2,
+        1,
+        1
+      ],
+      "peakEnemies": 21,
+      "RunInk": 166,
+      "levels": [
+        22,
+        11,
+        16,
+        8,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 101,
+      "weapon": "Pierce",
+      "state": "Defeated",
+      "wave": 50,
+      "seconds": 604.3,
+      "Kills": 1092,
+      "leaks": [
+        0,
+        0,
+        3,
+        0,
+        1
+      ],
+      "peakEnemies": 23,
+      "RunInk": 147,
+      "levels": [
+        22,
+        11,
+        16,
+        8,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 101,
+      "weapon": "Bleed",
+      "state": "Defeated",
+      "wave": 53,
+      "seconds": 640.86666666666667,
+      "Kills": 1239,
+      "leaks": [
+        0,
+        0,
+        5,
+        0,
+        0
+      ],
+      "peakEnemies": 24,
+      "RunInk": 195,
+      "levels": [
+        22,
+        12,
+        18,
+        9,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 101,
+      "weapon": "Sweep",
+      "state": "Defeated",
+      "wave": 63,
+      "seconds": 756.06666666666672,
+      "Kills": 1786,
+      "leaks": [
+        0,
+        0,
+        3,
+        0,
+        1
+      ],
+      "peakEnemies": 34,
+      "RunInk": 1666,
+      "levels": [
+        24,
+        13,
+        19,
+        9,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 101,
+      "weapon": "Enso",
+      "state": "Defeated",
+      "wave": 66,
+      "seconds": 793.66666666666663,
+      "Kills": 1989,
+      "leaks": [
+        0,
+        0,
+        3,
+        0,
+        1
+      ],
+      "peakEnemies": 31,
+      "RunInk": 1758,
+      "levels": [
+        25,
+        13,
+        19,
+        9,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "seed": 101,
+      "weapon": "Resonance",
+      "state": "Defeated",
+      "wave": 58,
+      "seconds": 698.0,
+      "Kills": 1482,
+      "leaks": [
+        0,
+        0,
+        5,
+        0,
+        0
+      ],
+      "peakEnemies": 30,
+      "RunInk": 1327,
+      "levels": [
+        23,
+        12,
+        18,
+        9,
+        10,
+        10,
+        0
+      ]
+    }
+  ],
+  "sensitivity": [
+    {
+      "seed": 42,
+      "axis": "Damage",
+      "wave": 53,
+      "state": "Defeated",
+      "leaks": [
+        1,
+        0,
+        5,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 42,
+      "axis": "Supply",
+      "wave": 52,
+      "state": "Defeated",
+      "leaks": [
+        0,
+        0,
+        4,
+        2,
+        0
+      ]
+    },
+    {
+      "seed": 42,
+      "axis": "Growth",
+      "wave": 50,
+      "state": "Defeated",
+      "leaks": [
+        0,
+        0,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "seed": 73,
+      "axis": "Damage",
+      "wave": 53,
+      "state": "Defeated",
+      "leaks": [
+        0,
+        0,
+        5,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 73,
+      "axis": "Supply",
+      "wave": 50,
+      "state": "Defeated",
+      "leaks": [
+        1,
+        0,
+        4,
+        1,
+        0
+      ]
+    },
+    {
+      "seed": 73,
+      "axis": "Growth",
+      "wave": 50,
+      "state": "Defeated",
+      "leaks": [
+        0,
+        0,
+        3,
+        0,
+        1
+      ]
+    },
+    {
+      "seed": 101,
+      "axis": "Damage",
+      "wave": 54,
+      "state": "Defeated",
+      "leaks": [
+        3,
+        1,
+        3,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 101,
+      "axis": "Supply",
+      "wave": 51,
+      "state": "Defeated",
+      "leaks": [
+        2,
+        0,
+        4,
+        0,
+        0
+      ]
+    },
+    {
+      "seed": 101,
+      "axis": "Growth",
+      "wave": 50,
+      "state": "Defeated",
+      "leaks": [
+        2,
+        0,
+        2,
+        0,
+        1
+      ]
+    }
+  ]
+}
