@@ -1,0 +1,2102 @@
+{
+    "version": "6000.3.26f1",
+    "error": "",
+    "slowSections": [
+        {
+            "section": "RootFlourish",
+            "frame": 1,
+            "milliseconds": 37.444
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1,
+            "milliseconds": 38.4538
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2,
+            "milliseconds": 35.5221
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2,
+            "milliseconds": 35.5261
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3,
+            "milliseconds": 16.0017
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3,
+            "milliseconds": 16.0068
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 3,
+            "milliseconds": 16.0095
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4,
+            "milliseconds": 35.5566
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4,
+            "milliseconds": 35.5602
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5,
+            "milliseconds": 16.8136
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5,
+            "milliseconds": 16.8169
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 6,
+            "milliseconds": 36.2742
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 6,
+            "milliseconds": 36.2767
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 7,
+            "milliseconds": 18.5617
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 7,
+            "milliseconds": 18.5651
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 8,
+            "milliseconds": 35.9402
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 8,
+            "milliseconds": 35.9433
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 9,
+            "milliseconds": 18.2508
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 9,
+            "milliseconds": 18.254
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 10,
+            "milliseconds": 36.1862
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 10,
+            "milliseconds": 36.1891
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 11,
+            "milliseconds": 17.6246
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 11,
+            "milliseconds": 17.6273
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 12,
+            "milliseconds": 36.5377
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 12,
+            "milliseconds": 36.5413
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 13,
+            "milliseconds": 19.6208
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 13,
+            "milliseconds": 19.6248
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 14,
+            "milliseconds": 37.6722
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 14,
+            "milliseconds": 37.675
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 15,
+            "milliseconds": 18.6459
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 15,
+            "milliseconds": 18.6506
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 16,
+            "milliseconds": 35.9584
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 16,
+            "milliseconds": 35.9616
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 17,
+            "milliseconds": 16.7053
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 17,
+            "milliseconds": 16.7069
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 39,
+            "milliseconds": 15.2722
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 40,
+            "milliseconds": 13.5288
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 41,
+            "milliseconds": 13.6609
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 359,
+            "milliseconds": 12.634
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 576,
+            "milliseconds": 17.5822
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 731,
+            "milliseconds": 13.6731
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 732,
+            "milliseconds": 12.9392
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 876,
+            "milliseconds": 17.516
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 878,
+            "milliseconds": 20.0171
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 878,
+            "milliseconds": 22.6296
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 879,
+            "milliseconds": 39.3597
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 879,
+            "milliseconds": 39.3624
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 880,
+            "milliseconds": 17.3867
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 880,
+            "milliseconds": 17.39
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 881,
+            "milliseconds": 38.8082
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 881,
+            "milliseconds": 38.8115
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 882,
+            "milliseconds": 19.1559
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 882,
+            "milliseconds": 19.1589
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 883,
+            "milliseconds": 37.12
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 883,
+            "milliseconds": 37.1232
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 884,
+            "milliseconds": 19.1637
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 884,
+            "milliseconds": 19.1676
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 885,
+            "milliseconds": 39.1498
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 885,
+            "milliseconds": 39.153
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 886,
+            "milliseconds": 21.0733
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 886,
+            "milliseconds": 21.077
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 887,
+            "milliseconds": 37.2772
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 887,
+            "milliseconds": 37.2803
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 888,
+            "milliseconds": 18.245
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 888,
+            "milliseconds": 18.2472
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 889,
+            "milliseconds": 35.8315
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 889,
+            "milliseconds": 35.8346
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 890,
+            "milliseconds": 19.4695
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 890,
+            "milliseconds": 19.4736
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 891,
+            "milliseconds": 40.7263
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 891,
+            "milliseconds": 40.7309
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 892,
+            "milliseconds": 17.6325
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 892,
+            "milliseconds": 17.6368
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 914,
+            "milliseconds": 14.3224
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 915,
+            "milliseconds": 14.4658
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 916,
+            "milliseconds": 14.9607
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1258,
+            "milliseconds": 12.0206
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 1464,
+            "milliseconds": 14.4565
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1609,
+            "milliseconds": 12.5699
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1610,
+            "milliseconds": 13.0805
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 1764,
+            "milliseconds": 24.2346
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 1764,
+            "milliseconds": 27.3519
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1765,
+            "milliseconds": 38.2043
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1765,
+            "milliseconds": 38.2069
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1766,
+            "milliseconds": 16.896
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1766,
+            "milliseconds": 16.8991
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1767,
+            "milliseconds": 38.0137
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1767,
+            "milliseconds": 38.0181
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1768,
+            "milliseconds": 19.7658
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1768,
+            "milliseconds": 19.7691
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1769,
+            "milliseconds": 39.269
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1769,
+            "milliseconds": 39.2732
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1770,
+            "milliseconds": 18.734
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1770,
+            "milliseconds": 18.737
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1771,
+            "milliseconds": 35.966
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1771,
+            "milliseconds": 35.9685
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1772,
+            "milliseconds": 20.1284
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1772,
+            "milliseconds": 20.1313
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1773,
+            "milliseconds": 39.3469
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1773,
+            "milliseconds": 39.3523
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1774,
+            "milliseconds": 21.2335
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1774,
+            "milliseconds": 21.2358
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1775,
+            "milliseconds": 37.0176
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1775,
+            "milliseconds": 37.0212
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1776,
+            "milliseconds": 19.9243
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1776,
+            "milliseconds": 19.9275
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1777,
+            "milliseconds": 36.8537
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1777,
+            "milliseconds": 36.8571
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1778,
+            "milliseconds": 18.6596
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1778,
+            "milliseconds": 18.6637
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1800,
+            "milliseconds": 13.8225
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1801,
+            "milliseconds": 13.4526
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1802,
+            "milliseconds": 13.9689
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2144,
+            "milliseconds": 13.4606
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 2350,
+            "milliseconds": 15.5518
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2499,
+            "milliseconds": 13.0738
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2500,
+            "milliseconds": 12.2004
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 2650,
+            "milliseconds": 21.8513
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 2650,
+            "milliseconds": 19.1508
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2651,
+            "milliseconds": 35.7179
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2651,
+            "milliseconds": 35.7209
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2652,
+            "milliseconds": 15.449
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2652,
+            "milliseconds": 15.4512
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2653,
+            "milliseconds": 35.8109
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2653,
+            "milliseconds": 35.8138
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2654,
+            "milliseconds": 16.9526
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2654,
+            "milliseconds": 16.9553
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2655,
+            "milliseconds": 35.8458
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2655,
+            "milliseconds": 35.8483
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2656,
+            "milliseconds": 18.0049
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2656,
+            "milliseconds": 18.0079
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2657,
+            "milliseconds": 35.1383
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2657,
+            "milliseconds": 35.1406
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2658,
+            "milliseconds": 17.8023
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2658,
+            "milliseconds": 17.8056
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2659,
+            "milliseconds": 36.227
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2659,
+            "milliseconds": 36.2301
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2660,
+            "milliseconds": 17.3089
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2660,
+            "milliseconds": 17.3102
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2661,
+            "milliseconds": 36.5175
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2661,
+            "milliseconds": 36.521
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2662,
+            "milliseconds": 18.123
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2662,
+            "milliseconds": 18.1263
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2663,
+            "milliseconds": 35.4125
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2663,
+            "milliseconds": 35.4152
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2664,
+            "milliseconds": 16.4851
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2664,
+            "milliseconds": 16.4885
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2686,
+            "milliseconds": 13.252
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2687,
+            "milliseconds": 13.6378
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2688,
+            "milliseconds": 13.5766
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3042,
+            "milliseconds": 18.1262
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 3225,
+            "milliseconds": 23.8845
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3390,
+            "milliseconds": 12.5182
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3391,
+            "milliseconds": 11.9809
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 3525,
+            "milliseconds": 18.9873
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 3525,
+            "milliseconds": 16.3722
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3526,
+            "milliseconds": 36.3008
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3526,
+            "milliseconds": 36.3034
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3527,
+            "milliseconds": 16.0541
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3527,
+            "milliseconds": 16.0576
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3528,
+            "milliseconds": 35.4775
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3528,
+            "milliseconds": 35.4806
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3529,
+            "milliseconds": 17.5244
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3529,
+            "milliseconds": 17.527
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3530,
+            "milliseconds": 35.7755
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3530,
+            "milliseconds": 35.7783
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3531,
+            "milliseconds": 18.2419
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3531,
+            "milliseconds": 18.2447
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3532,
+            "milliseconds": 37.4651
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3532,
+            "milliseconds": 37.4679
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3533,
+            "milliseconds": 18.5589
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3533,
+            "milliseconds": 18.5629
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3534,
+            "milliseconds": 36.3189
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3534,
+            "milliseconds": 36.3231
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3535,
+            "milliseconds": 19.3025
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3535,
+            "milliseconds": 19.3064
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3536,
+            "milliseconds": 36.492
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3536,
+            "milliseconds": 36.4952
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3537,
+            "milliseconds": 18.3252
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3537,
+            "milliseconds": 18.3278
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3538,
+            "milliseconds": 35.2119
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3538,
+            "milliseconds": 35.2148
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3539,
+            "milliseconds": 16.2822
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3539,
+            "milliseconds": 16.2852
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3561,
+            "milliseconds": 15.1833
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3562,
+            "milliseconds": 14.4145
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3563,
+            "milliseconds": 14.5848
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3935,
+            "milliseconds": 12.7996
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 4113,
+            "milliseconds": 17.0693
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4287,
+            "milliseconds": 12.0464
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4288,
+            "milliseconds": 12.1948
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 4414,
+            "milliseconds": 15.3025
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 4414,
+            "milliseconds": 20.2482
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4415,
+            "milliseconds": 35.6607
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4415,
+            "milliseconds": 35.6633
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4416,
+            "milliseconds": 15.6736
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4416,
+            "milliseconds": 15.6762
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4417,
+            "milliseconds": 35.6179
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4417,
+            "milliseconds": 35.6207
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4418,
+            "milliseconds": 17.0379
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4418,
+            "milliseconds": 17.0409
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4419,
+            "milliseconds": 35.5928
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4419,
+            "milliseconds": 35.5962
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4420,
+            "milliseconds": 18.1514
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4420,
+            "milliseconds": 18.1562
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4421,
+            "milliseconds": 36.0685
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4421,
+            "milliseconds": 36.0736
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4422,
+            "milliseconds": 19.6756
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4422,
+            "milliseconds": 19.6792
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4423,
+            "milliseconds": 39.919
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4423,
+            "milliseconds": 39.9226
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4424,
+            "milliseconds": 20.045
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4424,
+            "milliseconds": 20.0482
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4425,
+            "milliseconds": 38.2784
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4425,
+            "milliseconds": 38.2839
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4426,
+            "milliseconds": 17.8861
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4426,
+            "milliseconds": 17.8887
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4427,
+            "milliseconds": 36.4479
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4427,
+            "milliseconds": 36.4511
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4428,
+            "milliseconds": 16.5276
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4428,
+            "milliseconds": 16.5306
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4450,
+            "milliseconds": 13.388
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4451,
+            "milliseconds": 13.6594
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4452,
+            "milliseconds": 14.2829
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4789,
+            "milliseconds": 12.3553
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5002,
+            "milliseconds": 14.7794
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5166,
+            "milliseconds": 13.567
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5167,
+            "milliseconds": 13.4673
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5303,
+            "milliseconds": 21.7818
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5303,
+            "milliseconds": 16.086
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5304,
+            "milliseconds": 34.9742
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5304,
+            "milliseconds": 34.976
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5304,
+            "milliseconds": 17.767
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5305,
+            "milliseconds": 15.7988
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5305,
+            "milliseconds": 15.8013
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5305,
+            "milliseconds": 15.8732
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5306,
+            "milliseconds": 35.714
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5306,
+            "milliseconds": 35.7167
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5306,
+            "milliseconds": 35.8118
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5307,
+            "milliseconds": 17.1287
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5307,
+            "milliseconds": 17.1318
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5307,
+            "milliseconds": 17.2069
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5308,
+            "milliseconds": 36.6522
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5308,
+            "milliseconds": 36.6562
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5308,
+            "milliseconds": 36.7298
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5309,
+            "milliseconds": 18.9212
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5309,
+            "milliseconds": 18.9245
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5309,
+            "milliseconds": 18.9983
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5310,
+            "milliseconds": 37.9891
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5310,
+            "milliseconds": 37.9922
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5310,
+            "milliseconds": 38.0691
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5311,
+            "milliseconds": 17.1661
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5311,
+            "milliseconds": 17.1685
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5311,
+            "milliseconds": 17.2405
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5312,
+            "milliseconds": 37.3342
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5312,
+            "milliseconds": 37.3373
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5312,
+            "milliseconds": 37.4163
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5313,
+            "milliseconds": 19.5604
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5313,
+            "milliseconds": 19.5675
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5313,
+            "milliseconds": 19.6978
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5314,
+            "milliseconds": 36.3113
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5314,
+            "milliseconds": 36.3142
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5314,
+            "milliseconds": 36.3902
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5315,
+            "milliseconds": 18.1549
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5315,
+            "milliseconds": 18.1582
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5315,
+            "milliseconds": 18.2333
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5316,
+            "milliseconds": 35.6667
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5316,
+            "milliseconds": 35.669
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5316,
+            "milliseconds": 35.7496
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5317,
+            "milliseconds": 16.4235
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5317,
+            "milliseconds": 16.4263
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5317,
+            "milliseconds": 16.53
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5339,
+            "milliseconds": 14.7077
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5339,
+            "milliseconds": 14.8069
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5340,
+            "milliseconds": 14.3182
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5340,
+            "milliseconds": 14.4223
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5341,
+            "milliseconds": 13.6383
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5341,
+            "milliseconds": 13.7283
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5342,
+            "milliseconds": 11.8517
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5342,
+            "milliseconds": 11.9534
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5343,
+            "milliseconds": 12.3224
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5343,
+            "milliseconds": 12.434
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5344,
+            "milliseconds": 11.8939
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5344,
+            "milliseconds": 11.9597
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5345,
+            "milliseconds": 11.4987
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5345,
+            "milliseconds": 11.6114
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5346,
+            "milliseconds": 11.4371
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5346,
+            "milliseconds": 11.5096
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5347,
+            "milliseconds": 11.1751
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5347,
+            "milliseconds": 11.2761
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5348,
+            "milliseconds": 11.2191
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5348,
+            "milliseconds": 11.3301
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5349,
+            "milliseconds": 11.0148
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5349,
+            "milliseconds": 11.1185
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5460,
+            "milliseconds": 35.3022
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5460,
+            "milliseconds": 35.3061
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5460,
+            "milliseconds": 21.508
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5460,
+            "milliseconds": 23.9847
+        }
+    ],
+    "passed": true,
+    "startFrame": 2,
+    "endFrame": 5460,
+    "runs": [
+        {
+            "requestedWeapon": "Point",
+            "weapon": "Point",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "heardWeaponSource": true,
+            "attackClip": "sfx_attack_point",
+            "pigment": 13004.0087890625,
+            "measuredFrames": 872,
+            "averageFrameMs": 17.42609965596331,
+            "maxFrameMs": 518.3941000000018,
+            "startupFrames": 80,
+            "steadyFrames": 792,
+            "startupMaxMs": 518.3941000000018,
+            "steadyAverageMs": 16.651314772727294,
+            "steadyMaxMs": 34.47659999999786,
+            "slowFrames": [
+                {
+                    "startFrame": 4,
+                    "endFrame": 5,
+                    "tick": 5,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 41.584699999999589,
+                    "startup": true
+                },
+                {
+                    "startFrame": 5,
+                    "endFrame": 6,
+                    "tick": 7,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 47.094200000000089,
+                    "startup": true
+                },
+                {
+                    "startFrame": 7,
+                    "endFrame": 8,
+                    "tick": 11,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 37.204100000000298,
+                    "startup": true
+                },
+                {
+                    "startFrame": 9,
+                    "endFrame": 10,
+                    "tick": 14,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 37.33749999999958,
+                    "startup": true
+                },
+                {
+                    "startFrame": 11,
+                    "endFrame": 12,
+                    "tick": 17,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 37.90749999999932,
+                    "startup": true
+                },
+                {
+                    "startFrame": 13,
+                    "endFrame": 14,
+                    "tick": 21,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 38.9917999999998,
+                    "startup": true
+                },
+                {
+                    "startFrame": 15,
+                    "endFrame": 16,
+                    "tick": 24,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 37.03639999999986,
+                    "startup": true
+                },
+                {
+                    "startFrame": 17,
+                    "endFrame": 18,
+                    "tick": 42,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 518.3941000000018,
+                    "startup": true
+                },
+                {
+                    "startFrame": 575,
+                    "endFrame": 576,
+                    "tick": 600,
+                    "pendingBranches": 0,
+                    "collections": 0,
+                    "milliseconds": 34.47659999999786,
+                    "startup": false
+                }
+            ]
+        },
+        {
+            "requestedWeapon": "Pierce",
+            "weapon": "Pierce",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "heardWeaponSource": true,
+            "attackClip": "sfx_attack_pierce",
+            "pigment": 12988.4658203125,
+            "measuredFrames": 886,
+            "averageFrameMs": 16.83986343115121,
+            "maxFrameMs": 41.789500000000149,
+            "startupFrames": 111,
+            "steadyFrames": 775,
+            "startupMaxMs": 41.789500000000149,
+            "steadyAverageMs": 16.65157509677411,
+            "steadyMaxMs": 31.13830000000206,
+            "slowFrames": [
+                {
+                    "startFrame": 878,
+                    "endFrame": 879,
+                    "tick": 4,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 40.65310000000011,
+                    "startup": true
+                },
+                {
+                    "startFrame": 880,
+                    "endFrame": 881,
+                    "tick": 8,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 40.33109999999951,
+                    "startup": true
+                },
+                {
+                    "startFrame": 882,
+                    "endFrame": 883,
+                    "tick": 12,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 38.230799999997348,
+                    "startup": true
+                },
+                {
+                    "startFrame": 884,
+                    "endFrame": 885,
+                    "tick": 15,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 40.341000000001518,
+                    "startup": true
+                },
+                {
+                    "startFrame": 886,
+                    "endFrame": 887,
+                    "tick": 19,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 38.34750000000042,
+                    "startup": true
+                },
+                {
+                    "startFrame": 888,
+                    "endFrame": 889,
+                    "tick": 22,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 37.04529999999906,
+                    "startup": true
+                },
+                {
+                    "startFrame": 890,
+                    "endFrame": 891,
+                    "tick": 26,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 41.789500000000149,
+                    "startup": true
+                }
+            ]
+        },
+        {
+            "requestedWeapon": "Bleed",
+            "weapon": "Bleed",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 4,
+            "peakWeaponFields": 4,
+            "heardWeaponSource": true,
+            "attackClip": "sfx_attack_bleed",
+            "pigment": 12987.8779296875,
+            "measuredFrames": 886,
+            "averageFrameMs": 16.84096433408597,
+            "maxFrameMs": 40.47000000001333,
+            "startupFrames": 110,
+            "steadyFrames": 776,
+            "startupMaxMs": 40.47000000001333,
+            "steadyAverageMs": 16.651402835051664,
+            "steadyMaxMs": 32.26290000000631,
+            "slowFrames": [
+                {
+                    "startFrame": 1764,
+                    "endFrame": 1765,
+                    "tick": 4,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 39.27210000000514,
+                    "startup": true
+                },
+                {
+                    "startFrame": 1766,
+                    "endFrame": 1767,
+                    "tick": 8,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 39.142000000012448,
+                    "startup": true
+                },
+                {
+                    "startFrame": 1768,
+                    "endFrame": 1769,
+                    "tick": 12,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 40.47000000001333,
+                    "startup": true
+                },
+                {
+                    "startFrame": 1770,
+                    "endFrame": 1771,
+                    "tick": 15,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 36.984900000007318,
+                    "startup": true
+                },
+                {
+                    "startFrame": 1772,
+                    "endFrame": 1773,
+                    "tick": 19,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 40.42719999999633,
+                    "startup": true
+                },
+                {
+                    "startFrame": 1774,
+                    "endFrame": 1775,
+                    "tick": 22,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 38.24139999998977,
+                    "startup": true
+                },
+                {
+                    "startFrame": 1776,
+                    "endFrame": 1777,
+                    "tick": 26,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 37.95780000000093,
+                    "startup": true
+                }
+            ]
+        },
+        {
+            "requestedWeapon": "Sweep",
+            "weapon": "Sweep",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "heardWeaponSource": true,
+            "attackClip": "sfx_attack_sweep",
+            "pigment": 12967.5205078125,
+            "measuredFrames": 875,
+            "averageFrameMs": 17.374800457142734,
+            "maxFrameMs": 543.4616999999946,
+            "startupFrames": 83,
+            "steadyFrames": 792,
+            "startupMaxMs": 543.4616999999946,
+            "steadyAverageMs": 16.651801136363397,
+            "steadyMaxMs": 40.64740000001166,
+            "slowFrames": [
+                {
+                    "startFrame": 2650,
+                    "endFrame": 2651,
+                    "tick": 4,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 36.82149999998785,
+                    "startup": true
+                },
+                {
+                    "startFrame": 2652,
+                    "endFrame": 2653,
+                    "tick": 7,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 36.69170000000577,
+                    "startup": true
+                },
+                {
+                    "startFrame": 2654,
+                    "endFrame": 2655,
+                    "tick": 10,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 36.92990000000407,
+                    "startup": true
+                },
+                {
+                    "startFrame": 2656,
+                    "endFrame": 2657,
+                    "tick": 13,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 36.703799999997958,
+                    "startup": true
+                },
+                {
+                    "startFrame": 2658,
+                    "endFrame": 2659,
+                    "tick": 17,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 37.201600000003057,
+                    "startup": true
+                },
+                {
+                    "startFrame": 2660,
+                    "endFrame": 2661,
+                    "tick": 34,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 543.4616999999946,
+                    "startup": true
+                },
+                {
+                    "startFrame": 2662,
+                    "endFrame": 2663,
+                    "tick": 37,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 36.42220000000407,
+                    "startup": true
+                },
+                {
+                    "startFrame": 3041,
+                    "endFrame": 3042,
+                    "tick": 417,
+                    "pendingBranches": 0,
+                    "collections": 0,
+                    "milliseconds": 35.25910000000465,
+                    "startup": false
+                },
+                {
+                    "startFrame": 3224,
+                    "endFrame": 3225,
+                    "tick": 600,
+                    "pendingBranches": 0,
+                    "collections": 1,
+                    "milliseconds": 40.64740000001166,
+                    "startup": false
+                }
+            ]
+        },
+        {
+            "requestedWeapon": "Enso",
+            "weapon": "Enso",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "heardWeaponSource": true,
+            "attackClip": "sfx_attack_enso",
+            "pigment": 12949.5107421875,
+            "measuredFrames": 889,
+            "averageFrameMs": 16.797147469066279,
+            "maxFrameMs": 38.63219999999501,
+            "startupFrames": 113,
+            "steadyFrames": 776,
+            "startupMaxMs": 38.63219999999501,
+            "steadyAverageMs": 16.651455798968926,
+            "steadyMaxMs": 33.799400000006588,
+            "slowFrames": [
+                {
+                    "startFrame": 3525,
+                    "endFrame": 3526,
+                    "tick": 4,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 37.36729999999966,
+                    "startup": true
+                },
+                {
+                    "startFrame": 3527,
+                    "endFrame": 3528,
+                    "tick": 7,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 36.798700000005627,
+                    "startup": true
+                },
+                {
+                    "startFrame": 3529,
+                    "endFrame": 3530,
+                    "tick": 10,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 36.63050000000112,
+                    "startup": true
+                },
+                {
+                    "startFrame": 3531,
+                    "endFrame": 3532,
+                    "tick": 14,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 38.63219999999501,
+                    "startup": true
+                },
+                {
+                    "startFrame": 3533,
+                    "endFrame": 3534,
+                    "tick": 17,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 37.51510000000735,
+                    "startup": true
+                },
+                {
+                    "startFrame": 3535,
+                    "endFrame": 3536,
+                    "tick": 21,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 37.5199000000066,
+                    "startup": true
+                },
+                {
+                    "startFrame": 3537,
+                    "endFrame": 3538,
+                    "tick": 24,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 36.08810000000062,
+                    "startup": true
+                },
+                {
+                    "startFrame": 4112,
+                    "endFrame": 4113,
+                    "tick": 600,
+                    "pendingBranches": 0,
+                    "collections": 0,
+                    "milliseconds": 33.799400000006588,
+                    "startup": false
+                }
+            ]
+        },
+        {
+            "requestedWeapon": "Resonance",
+            "weapon": "Resonance",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "heardWeaponSource": true,
+            "attackClip": "sfx_attack_resonance",
+            "pigment": 12988.32421875,
+            "measuredFrames": 889,
+            "averageFrameMs": 16.80497289088843,
+            "maxFrameMs": 41.00610000000415,
+            "startupFrames": 112,
+            "steadyFrames": 777,
+            "startupMaxMs": 41.00610000000415,
+            "steadyAverageMs": 16.651919562419257,
+            "steadyMaxMs": 31.43759999998963,
+            "slowFrames": [
+                {
+                    "startFrame": 4414,
+                    "endFrame": 4415,
+                    "tick": 3,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 36.715700000002019,
+                    "startup": true
+                },
+                {
+                    "startFrame": 4416,
+                    "endFrame": 4417,
+                    "tick": 7,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 36.98930000000189,
+                    "startup": true
+                },
+                {
+                    "startFrame": 4418,
+                    "endFrame": 4419,
+                    "tick": 10,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 36.48809999999969,
+                    "startup": true
+                },
+                {
+                    "startFrame": 4420,
+                    "endFrame": 4421,
+                    "tick": 13,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 37.03939999999761,
+                    "startup": true
+                },
+                {
+                    "startFrame": 4422,
+                    "endFrame": 4423,
+                    "tick": 17,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 41.00610000000415,
+                    "startup": true
+                },
+                {
+                    "startFrame": 4424,
+                    "endFrame": 4425,
+                    "tick": 20,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 39.25460000000669,
+                    "startup": true
+                },
+                {
+                    "startFrame": 4426,
+                    "endFrame": 4427,
+                    "tick": 24,
+                    "pendingBranches": 4,
+                    "collections": 0,
+                    "milliseconds": 37.50370000000203,
+                    "startup": true
+                }
+            ]
+        }
+    ],
+    "autoRepeatPassed": true,
+    "autoRepeatSeed": 43,
+    "completedRuns": 1,
+    "loadedArtCount": 7,
+    "overlayTransparentPixels": 192985,
+    "overlayInkPixels": 3623,
+    "sessionCrystals": 15,
+    "autoRepeatMethod": "Fast-forwarded deterministic pre-defeat fixture; live Update defeat/save/3-second active countdown/restart",
+    "checkpointResumePassed": true,
+    "separateProcessResume": false
+}

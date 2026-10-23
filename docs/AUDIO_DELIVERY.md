@@ -138,3 +138,6 @@ AudioEventCheckで隔離seed42/Manual/2倍を通常フレーム進行し、1回�
 軽量検証: WeaponAudioCheckで隔離seed42/Manual/2倍速を6武器それぞれ実走。全6種の実攻撃後に対応AudioSourceの再生、48kHz/mono、音量.6×.5×.45=.135を確認。ミュートと再読み込み保持も合格。証拠docs/evidence/weapon-audio-routing.json。観測最大voiceは1であり、今回の検査は4voice飽和や長時間連射の検査ではない。通常保存は未使用。旧AudioEventCheckはPointを明示選択して新clip名を期待するよう更新（全イベントの再実行は今回していない）。
 
 シミュレーション/経済/保存/Runtimeは未変更。Windows reuse-v18は本統合より前のビルド。新SEのWindows収録・主観的な聴き分け/疲労・実機出力は未検証。
+
+### Windows audio-v19確認
+6武器各900tickの実攻撃中に、対応するAudioSourceの再生・非mute・正のvolumeを確認。全6種合格、周回/別プロセス保存復帰も合格。evidence/bokumyaku-player-audio-v19.json（heardWeaponSourceはソース観測を表す）。主観的試聴・実機出力の検証ではない。性能は最大543.46msの停止が再発し未合格。詳細WINDOWS_RANK_CANDIDATE.md。

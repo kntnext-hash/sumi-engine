@@ -1,0 +1,11 @@
+{
+  "result": "Succeeded",
+  "bytes": 156540445,
+  "seconds": 68.3886248,
+  "errors": 0,
+  "warnings": 0,
+  "output": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\Builds\\Bokumyaku-audio-v19\\Bokumyaku.exe",
+  "unity": "6000.3.26f1",
+  "source": "dba3a27 + Player audio routing assertions",
+  "messages": []
+}

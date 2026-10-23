@@ -33,6 +33,8 @@ namespace Bokumyaku.Diagnostics
             public string requestedWeapon, weapon, build;
             public bool passed, sawAttack, weaponMatches, checkpointResumePassed;
             public int ticks, branches, kills, purchases, peakFields, peakWeaponFields;
+            public bool heardWeaponSource;
+            public string attackClip;
             public float pigment;
             public int measuredFrames;
             public double averageFrameMs, maxFrameMs;
@@ -159,11 +161,16 @@ namespace Bokumyaku.Diagnostics
                     game.SetSpeed(2);
                 }
                 catch (Exception e) { report.error = e.ToString(); report.passed = false; break; }
+                var expectedClip = "sfx_attack_" + ((WeaponKind)i).ToString().ToLowerInvariant();
+                var audioSources = game.GetComponents<AudioSource>();
                 float deadline = Time.realtimeSinceStartup + 25;
                 double frameTotalMs = 0;
                 double runStart = Time.realtimeSinceStartupAsDouble, steadyTotalMs = 0;
                 while (game.Run.TickCount < 900 && Time.realtimeSinceStartup < deadline)
                 {
+                    foreach (var source in audioSources)
+                        if (source.isPlaying && source.clip != null && source.clip.name == expectedClip && source.volume > 0 && !source.mute)
+                        { row.heardWeaponSource = true; row.attackClip = source.clip.name; }
                     foreach (var hit in game.Run.Attacks) row.sawAttack |= hit.Weapon == (WeaponKind)i;
                     row.peakFields = Math.Max(row.peakFields, game.Run.Fields.Count);
                     int matchingFields = 0;
@@ -210,6 +217,7 @@ namespace Bokumyaku.Diagnostics
                         game.ResumeAvailable && game.Speed == 2 && JsonUtility.ToJson(game.Run.CaptureState()) == before;
                     row.passed = row.ticks >= 900 && row.branches > 4 && row.purchases > 0 &&
                         row.pigment > 0 && row.sawAttack && row.weaponMatches && row.checkpointResumePassed &&
+                        row.heardWeaponSource && game.LoadedWeaponAudioCount == 6 &&
                         (i != (int)WeaponKind.Bleed || row.peakWeaponFields > 0);
                     report.passed &= row.passed;
                 }
