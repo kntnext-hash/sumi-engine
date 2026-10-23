@@ -93,11 +93,13 @@ namespace Bokumyaku.Presentation
             for (int i=0;i<5;i++)
             {
                 int slot=i; cards[i]=Button(bottom.transform,"Upgrade"+i,i*.2f,.12f,(i+1)*.2f,.68f,"",()=>game.BuyUpgrade((UpgradeKind)slot),out ignored); ignored.gameObject.SetActive(false);
-                var face=(UnityEngine.UI.Image)cards[i].targetGraphic; face.sprite=paperSprite; face.color=new Color(.85f,.79f,.66f);
-                var emblem=BokumyakuUiParts.Panel(cards[i].transform,"Emblem",new Vector2(.15f,.4f),new Vector2(.85f,.98f),black); emblem.sprite=ringSprite; emblem.preserveAspect=true;
-                if(glyphs!=null && i<glyphs.Length) { var glyph=BokumyakuUiParts.Panel(emblem.transform,"Glyph",new Vector2(.15f,.15f),new Vector2(.85f,.85f),black); glyph.sprite=SpriteFor(glyphs[i]); glyph.preserveAspect=true; }
-                Label(cards[i].transform,"Name",0,.2f,1,.44f,16,black).text=Names[i];
-                cardCosts[i]=Label(cards[i].transform,"Cost",0,0,1,.23f,12,black);
+                var face=(UnityEngine.UI.Image)cards[i].targetGraphic; face.sprite=paperSprite; face.color=ivory;
+                var cardColors=cards[i].colors; cardColors.disabledColor=new Color(.86f,.85f,.81f,1); cardColors.highlightedColor=new Color(1,1,.94f); cards[i].colors=cardColors;
+                var emblem=BokumyakuUiParts.Panel(cards[i].transform,"Emblem",new Vector2(.04f,.35f),new Vector2(.96f,.98f),black); emblem.sprite=ringSprite; emblem.preserveAspect=true;
+                if(glyphs!=null && i<glyphs.Length) { var glyph=BokumyakuUiParts.Panel(emblem.transform,"Glyph",new Vector2(.12f,.12f),new Vector2(.88f,.88f),black); glyph.sprite=SpriteFor(glyphs[i]); glyph.preserveAspect=true; }
+                Label(cards[i].transform,"Name",0,.18f,1,.39f,17,black).text=Names[i];
+                var price=BokumyakuUiParts.Panel(cards[i].transform,"PricePlate",new Vector2(.07f,.025f),new Vector2(.93f,.20f),black);
+                cardCosts[i]=Label(price.transform,"Cost",0,0,1,1,13,ivory);
                 cardLevels[i]=Label(bottom.transform,"Level"+i,i*.2f,.67f,(i+1)*.2f,.77f,11,gold);
             }
             notice=Label(bottom.transform,"Notice",.015f,0,.985f,.12f,11,ivory);
@@ -141,6 +143,7 @@ namespace Bokumyaku.Presentation
             {
                 var kind=(UpgradeKind)i;int level=run.UpgradeLevels[i],cost=run.UpgradeCost(kind);bool max=level>=run.UpgradeMaxLevel(kind);
                 Text(cardLevels[i],"Lv."+level);Text(cardCosts[i],max?"MAX":"墨 "+cost);
+                cardCosts[i].color=run.RunInk>=cost?ivory:new Color(.72f,.67f,.57f);
                 cards[i].interactable=!game.BattleStorageBlocked&&!game.AwaitingStart&&run.State==RunStatus.Running&&!max&&run.RunInk>=cost;
             }
             bool ended=run.State!=RunStatus.Running;modal.SetActive(ended||game.AwaitingStart);
@@ -158,3 +161,4 @@ namespace Bokumyaku.Presentation
         }
     }
 }
+
