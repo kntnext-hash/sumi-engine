@@ -48,3 +48,7 @@ Recordは時点の研究を用いた時間枠外の能力診断。60000tickで�
 
 証拠: evidence/rank-price-probe.json、rank-mixed-build-probe.json、rank-adopted-week.json、first-week-adoption-editmode.json。
 価格/混合候補スクリプトは採用前7f76f5aのSimulationソースを入力として再現する（採用後ソースに候補置換をかけない）。採用後はMeasure-BokumyakuAdoptedWeek.ps1で実コードを測定する。adopted証拠のsourceCommitは作業開始HEADであり、実入力はsourceHashesに記録した未コミットrules9ソース。
+
+## 研究画面の確認
+2026-10-24、1080×2400隔離Editor Play。人工的に500結晶を持つv10保存を作成し、uGUIのMenuResearch0コールバックで購入。表示500→740、Damage1/結晶0/倍率1.18、ディスク再読込後も保持。v10原本バイト不変、音量.25/ミュート引継ぎ。画像を目視し、表示中の研究名/倍率/価格の文字を確認。下の豊穣カードはスクロール領域内で画面下に続く。自然周回収益/物理タップ/実機の検証ではない。Play終了・検証用GameView解除済み。
+証拠: evidence/first-week-research-ui.json/png。手順: scripts/UnityAutomation~/FirstWeekUiCheck.cs（隔離QA保存のみ）。
