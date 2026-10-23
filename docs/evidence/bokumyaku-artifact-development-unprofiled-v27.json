@@ -1,0 +1,30 @@
+{
+  "path": "Builds/Bokumyaku-profile-v27/Bokumyaku.exe",
+  "bytes": 667136,
+  "sha256": "B7CCA8B82003185F22644D0EE1C23B3640DE1B996802D4F5D0501E287011AFA6",
+  "unity": "6000.3.26f1",
+  "scene": "Assets/BokumyakuPrototype/Scenes/Bokumyaku.unity",
+  "note": "Keep accompanying Data, UnityPlayer and MonoBleedingEdge files. Windows Mono evidence; not mobile.",
+  "gameAssemblies": [
+    {
+      "name": "Bokumyaku.Diagnostics.dll",
+      "bytes": 19968,
+      "sha256": "A18B989FE88CE210F5F32A6A4AE8E4DB1BDA754908EE23BA69BF2DFA5ADD3B02"
+    },
+    {
+      "name": "Bokumyaku.Persistence.dll",
+      "bytes": 26624,
+      "sha256": "0C7DE9FACA27D526226DC538746A6A641E65CD407399723BE0CADE9A03592096"
+    },
+    {
+      "name": "Bokumyaku.Presentation.dll",
+      "bytes": 108032,
+      "sha256": "A836DC85E2C5ED9DE7339659F49843AA18CCAEB8C90CC9D374C3E93DC34A65EE"
+    },
+    {
+      "name": "Bokumyaku.Simulation.dll",
+      "bytes": 47616,
+      "sha256": "D8ED0B939A55A3AF289A159AFB86AA62C49B6B7C5712912608CBE68D73A260B1"
+    }
+  ]
+}

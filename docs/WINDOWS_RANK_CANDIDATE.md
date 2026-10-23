@@ -110,3 +110,6 @@ Windowsビルド64.80秒、162,853,149bytes、警告/エラー0。CLIは30秒で
 初回-profiler-enable併用はrawを3frameしかロードできず、戦闘停止の証拠として不十分（*-first.jsonに保持）。自動接続引数を外し-profiler-log-file / -profiler-capture-frame-count 700で再実行。ProfilerDriver.LoadProfileで0〜700の701frameを実ロード、Main/Render Threadの40ms以上sampleを抽出（94件、遅いframe8件）。既存Profiler記録はlogsへ退避し、active recording中はロード拒否。raw本体はlogsに保持し、パス/サイズ/SHA256をmanifestに記録。
 Point900tick/購入/枝/墨/SEソース/同一プロセス保存復帰合格。2回目の戦闘計測は平均16.87ms/最大52.61msで約500msは非再現。Profiler frame294の開始Coroutine72.79msを記録したが、入れ子sampleは加算しない。前の非開発版495.25msとは構成が異なり、解消・改善・原因確定の根拠にしない。取得経路は確立、問題再現captureは未取得。次は同じ開発バイナリをProfiler無効で実行し、開発/計測条件の差を切り分ける。今回は対象Windows＋Profiler取得、性能未合格。
 公式参照: https://docs.unity3d.com/kr/6000.0/ScriptReference/Profiling.Profiler-enableBinaryLog.html / https://docs.unity.cn/6000.1/Documentation/Manual/profiler-command-line-arguments.html / https://docs.unity3d.com/ja/current/ScriptReference/Profiling.RawFrameDataView.html 。証拠: evidence/profile-*-v27.json。rawは巨大生成物扱いでコミット対象外。
+
+## development-unprofiled-v27（2026-10-24）
+profile-v27と同一開発バイナリをProfiler引数なし・通常描画・settled-startで1回実行。Point/購入/枝/墨/SEソース/同一プロセス保存復帰合格、平均16.87ms/最大52.58ms/定常最大39.40ms。非開発v26最大495.25msとの差はあるが、開発版ではProfilerなしでも非再現。Profilerによる負荷だけで隠れたとは説明できない。開発/非開発構成差の原因は未特定。性能未合格のまま保留し、次は画面品質改善を進める。証拠evidence/*development-unprofiled-v27.*。

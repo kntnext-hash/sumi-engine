@@ -1,0 +1,13 @@
+{
+  "phase": "after",
+  "seed": 42,
+  "Wave": 3,
+  "TickCount": 900,
+  "width": 1080,
+  "height": 2400,
+  "slices": 35,
+  "painted": 7,
+  "unchanged": true,
+  "frames": 930,
+  "note": "Paused 900tick fixture; all root strokes and branches complete. Visual comparison, not runtime performance."
+}

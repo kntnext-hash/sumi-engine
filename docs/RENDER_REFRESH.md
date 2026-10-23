@@ -179,3 +179,7 @@ DirtyInkSurface.Clearは透明GPUテンプレートから同形式CopyTextureで
 主強化カード5枚を白和紙の塗り面付きSpriteへ差替え。Sliced/Fill Center/白tint、border180/220/180/220、PPU multiplier12.25。従来のBrushEdgeは新素材がある場合生成しない。素材がない場合は旧表示へfallback。既存アイコン/名称/価格/ボタン領域・購入処理を保持。
 隔離Editorで360×640と1080×2400を目視、5枚の素材と二重枠なし、零墨で無効、1800tickの収益後に購入callbackでレベル+1、TMP overflowなしを確認。evidence/paper-card-360/1080.json/png。撮影は描画開始直後なので枝全体の完成画像としては使わない。UI検証でありスマホ物理タップ・Windows収録・性能未確認。旧CardFrameCheck/HudPanelCheckの枠枚数検査は旧素材向けであり現行カードにはPaperCardCheckを使用。
 生成元/alpha/原本はart-source/delivery-v7/README.md。紙面の白さは改善したが、参考画像の装飾/アイコン/戦場密度への改善は継続。
+
+## 根の曲線・分岐の改善（2026-10-24）
+BokumyakuGame.BranchFibersの装飾根を均等角の扇形から7本の非対称cubic曲線へ変更。親曲線上の接点と局所接線から曲がる側根を生成。初案は細く迫力を失ったため不採用画像を保存し、中腹の筆圧/太さと分岐長を再調整。35stroke・1stroke/frame・dirty更新を維持。シミュレーション/Runtime/当たり判定/実際の攻撃枝は不変。
+Unity Editorコンパイル後、隔離seed42/Farming/900tick/Wave3、1080×2400で前後比較。根35strokeと7枝の描画完了を確認、描画待ち中のCaptureState不変。before/afterを実見し、非対称な曲がりと太さの回復を確認。参考画像の密集した樹状構造/陰影/攻撃の迫力にはまだ差があり、完成美術ではない。初案はthin-rejectedとして保存。Editor終了後QA解像度/設定を復元。検証用スクリプトのSessionState.GetInt引数不足1件を修正して実行。今回は対象Editor画面確認、全EditMode/Windows再ビルド/実機性能は未実施。evidence/root-silhouette-*.png/json。
