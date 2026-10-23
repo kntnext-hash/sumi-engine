@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using Bokumyaku.Presentation;
 using Bokumyaku.Simulation;
@@ -35,6 +36,15 @@ namespace Bokumyaku.Diagnostics
             public float pigment;
             public int measuredFrames;
             public double averageFrameMs, maxFrameMs;
+            public int startupFrames, steadyFrames;
+            public double startupMaxMs, steadyAverageMs, steadyMaxMs;
+            public List<SlowFrame> slowFrames = new List<SlowFrame>();
+        }
+        [Serializable] sealed class SlowFrame
+        {
+            public int startFrame, endFrame, tick, pendingBranches, collections;
+            public double milliseconds;
+            public bool startup;
         }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Boot()
@@ -151,6 +161,7 @@ namespace Bokumyaku.Diagnostics
                 catch (Exception e) { report.error = e.ToString(); report.passed = false; break; }
                 float deadline = Time.realtimeSinceStartup + 25;
                 double frameTotalMs = 0;
+                double runStart = Time.realtimeSinceStartupAsDouble, steadyTotalMs = 0;
                 while (game.Run.TickCount < 900 && Time.realtimeSinceStartup < deadline)
                 {
                     foreach (var hit in game.Run.Attacks) row.sawAttack |= hit.Weapon == (WeaponKind)i;
@@ -159,12 +170,21 @@ namespace Bokumyaku.Diagnostics
                     foreach (var field in game.Run.Fields) if (field.Weapon == (WeaponKind)i) matchingFields++;
                     row.peakWeaponFields = Math.Max(row.peakWeaponFields, matchingFields);
                     double frameStart = Time.realtimeSinceStartupAsDouble;
+                    int startFrame = Time.frameCount, collections = GC.CollectionCount(0);
+                    bool startup = frameStart - runStart < 2;
                     yield return null;
                     double elapsedMs = (Time.realtimeSinceStartupAsDouble - frameStart) * 1000;
                     frameTotalMs += elapsedMs; row.measuredFrames++;
                     row.maxFrameMs = Math.Max(row.maxFrameMs, elapsedMs);
+                    if(startup){row.startupFrames++;row.startupMaxMs=Math.Max(row.startupMaxMs,elapsedMs);}
+                    else {row.steadyFrames++;steadyTotalMs+=elapsedMs;row.steadyMaxMs=Math.Max(row.steadyMaxMs,elapsedMs);}
+                    if(elapsedMs>33.333 && row.slowFrames.Count<64)
+                        row.slowFrames.Add(new SlowFrame{startFrame=startFrame,endFrame=Time.frameCount,tick=game.Run.TickCount,
+                            pendingBranches=game.Run.Branches.Count-game.PaintedBranchCount,collections=GC.CollectionCount(0)-collections,
+                            milliseconds=elapsedMs,startup=startup});
                 }
                 row.averageFrameMs = row.measuredFrames == 0 ? 0 : frameTotalMs / row.measuredFrames;
+                row.steadyAverageMs = row.steadyFrames == 0 ? 0 : steadyTotalMs / row.steadyFrames;
                 if (captureScreens && i == 0)
                 {
                     game.SetPaused(true);

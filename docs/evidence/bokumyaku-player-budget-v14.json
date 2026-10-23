@@ -1,0 +1,683 @@
+{
+    "version": "6000.3.26f1",
+    "error": "",
+    "slowSections": [
+        {
+            "section": "DrawNewBranches",
+            "frame": 1,
+            "milliseconds": 15.0718
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2,
+            "milliseconds": 14.9583
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3,
+            "milliseconds": 14.8684
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 3,
+            "milliseconds": 14.8745
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4,
+            "milliseconds": 13.092
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5,
+            "milliseconds": 13.2976
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 6,
+            "milliseconds": 13.4903
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 373,
+            "milliseconds": 12.292
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 590,
+            "milliseconds": 22.2398
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 745,
+            "milliseconds": 14.1956
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 746,
+            "milliseconds": 14.0728
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 890,
+            "milliseconds": 18.0926
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 892,
+            "milliseconds": 17.1497
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 892,
+            "milliseconds": 16.5069
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 893,
+            "milliseconds": 13.137
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 894,
+            "milliseconds": 14.9996
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 895,
+            "milliseconds": 15.1224
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 895,
+            "milliseconds": 15.1825
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1259,
+            "milliseconds": 13.4741
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 1465,
+            "milliseconds": 18.0972
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1610,
+            "milliseconds": 12.4583
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1611,
+            "milliseconds": 12.1105
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 1765,
+            "milliseconds": 15.5872
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 1765,
+            "milliseconds": 14.9788
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1766,
+            "milliseconds": 13.4807
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1767,
+            "milliseconds": 13.4988
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1768,
+            "milliseconds": 13.8627
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2145,
+            "milliseconds": 12.8705
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 2351,
+            "milliseconds": 16.6919
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2500,
+            "milliseconds": 13.1387
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2501,
+            "milliseconds": 12.2484
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 2651,
+            "milliseconds": 16.0559
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 2651,
+            "milliseconds": 16.5274
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2652,
+            "milliseconds": 13.9718
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2653,
+            "milliseconds": 14.5194
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 2653,
+            "milliseconds": 14.5596
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2654,
+            "milliseconds": 13.819
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3055,
+            "milliseconds": 11.8382
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 3238,
+            "milliseconds": 17.617
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3403,
+            "milliseconds": 12.3246
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3404,
+            "milliseconds": 12.2777
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 3538,
+            "milliseconds": 15.8061
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 3538,
+            "milliseconds": 13.7389
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3539,
+            "milliseconds": 14.5572
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3540,
+            "milliseconds": 14.3695
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3541,
+            "milliseconds": 13.5842
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3932,
+            "milliseconds": 12.1331
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 4111,
+            "milliseconds": 18.1834
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4284,
+            "milliseconds": 12.9611
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4285,
+            "milliseconds": 12.2181
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 4411,
+            "milliseconds": 15.427
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 4411,
+            "milliseconds": 16.1201
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4412,
+            "milliseconds": 14.3877
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4413,
+            "milliseconds": 13.9879
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 4413,
+            "milliseconds": 14.0289
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4414,
+            "milliseconds": 13.6717
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4785,
+            "milliseconds": 12.8662
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 4998,
+            "milliseconds": 20.4551
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5161,
+            "milliseconds": 12.2061
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5162,
+            "milliseconds": 12.4649
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5298,
+            "milliseconds": 22.2422
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5298,
+            "milliseconds": 19.074
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5299,
+            "milliseconds": 15.2815
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5299,
+            "milliseconds": 22.5249
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5300,
+            "milliseconds": 14.3202
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5300,
+            "milliseconds": 14.3872
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5301,
+            "milliseconds": 13.7479
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5301,
+            "milliseconds": 13.8565
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5302,
+            "milliseconds": 12.8003
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5302,
+            "milliseconds": 12.8759
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5303,
+            "milliseconds": 12.9357
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5303,
+            "milliseconds": 13.0322
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5304,
+            "milliseconds": 11.9686
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5304,
+            "milliseconds": 12.0384
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5305,
+            "milliseconds": 11.3736
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5305,
+            "milliseconds": 11.4827
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5306,
+            "milliseconds": 11.288
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5306,
+            "milliseconds": 11.3636
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5307,
+            "milliseconds": 10.7571
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5307,
+            "milliseconds": 10.8285
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5308,
+            "milliseconds": 10.9775
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5308,
+            "milliseconds": 11.0913
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5309,
+            "milliseconds": 11.6654
+        },
+        {
+            "section": "PresentBattle",
+            "frame": 5309,
+            "milliseconds": 11.7624
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5464,
+            "milliseconds": 13.1243
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5464,
+            "milliseconds": 18.6382
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 5464,
+            "milliseconds": 16.2288
+        }
+    ],
+    "passed": true,
+    "startFrame": 2,
+    "endFrame": 5464,
+    "runs": [
+        {
+            "requestedWeapon": "Point",
+            "weapon": "Point",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "pigment": 13004.0087890625,
+            "measuredFrames": 886,
+            "averageFrameMs": 16.822653160270968,
+            "maxFrameMs": 175.13730000000295,
+            "startupFrames": 112,
+            "steadyFrames": 774,
+            "startupMaxMs": 175.13730000000295,
+            "steadyAverageMs": 16.663409560723623,
+            "steadyMaxMs": 39.174699999996679,
+            "slowFrames": [
+                {
+                    "startFrame": 4,
+                    "endFrame": 5,
+                    "tick": 15,
+                    "pendingBranches": 1,
+                    "collections": 0,
+                    "milliseconds": 175.13730000000295,
+                    "startup": true
+                },
+                {
+                    "startFrame": 589,
+                    "endFrame": 590,
+                    "tick": 600,
+                    "pendingBranches": 0,
+                    "collections": 1,
+                    "milliseconds": 39.174699999996679,
+                    "startup": false
+                }
+            ]
+        },
+        {
+            "requestedWeapon": "Pierce",
+            "weapon": "Pierce",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "pigment": 12988.4658203125,
+            "measuredFrames": 873,
+            "averageFrameMs": 17.081460137457186,
+            "maxFrameMs": 399.74860000000236,
+            "startupFrames": 99,
+            "steadyFrames": 774,
+            "startupMaxMs": 399.74860000000236,
+            "steadyAverageMs": 16.662794315245625,
+            "steadyMaxMs": 34.73829999999367,
+            "slowFrames": [
+                {
+                    "startFrame": 893,
+                    "endFrame": 894,
+                    "tick": 30,
+                    "pendingBranches": 1,
+                    "collections": 0,
+                    "milliseconds": 399.74860000000236,
+                    "startup": true
+                },
+                {
+                    "startFrame": 1464,
+                    "endFrame": 1465,
+                    "tick": 600,
+                    "pendingBranches": 0,
+                    "collections": 0,
+                    "milliseconds": 34.73829999999367,
+                    "startup": false
+                }
+            ]
+        },
+        {
+            "requestedWeapon": "Bleed",
+            "weapon": "Bleed",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 4,
+            "peakWeaponFields": 4,
+            "pigment": 12987.8779296875,
+            "measuredFrames": 886,
+            "averageFrameMs": 16.64858747178319,
+            "maxFrameMs": 33.264699999996597,
+            "startupFrames": 121,
+            "steadyFrames": 765,
+            "startupMaxMs": 19.4834000000057,
+            "steadyAverageMs": 16.662941830065216,
+            "steadyMaxMs": 33.264699999996597,
+            "slowFrames": []
+        },
+        {
+            "requestedWeapon": "Sweep",
+            "weapon": "Sweep",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "pigment": 12967.5205078125,
+            "measuredFrames": 887,
+            "averageFrameMs": 16.636685118376556,
+            "maxFrameMs": 34.3088999999992,
+            "startupFrames": 122,
+            "steadyFrames": 765,
+            "startupMaxMs": 29.410099999992668,
+            "steadyAverageMs": 16.6629788235294,
+            "steadyMaxMs": 34.3088999999992,
+            "slowFrames": [
+                {
+                    "startFrame": 3237,
+                    "endFrame": 3238,
+                    "tick": 600,
+                    "pendingBranches": 0,
+                    "collections": 0,
+                    "milliseconds": 34.3088999999992,
+                    "startup": false
+                }
+            ]
+        },
+        {
+            "requestedWeapon": "Enso",
+            "weapon": "Enso",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "pigment": 12949.5107421875,
+            "measuredFrames": 873,
+            "averageFrameMs": 17.184096449026155,
+            "maxFrameMs": 486.8905000000012,
+            "startupFrames": 93,
+            "steadyFrames": 780,
+            "startupMaxMs": 486.8905000000012,
+            "steadyAverageMs": 16.66292999999979,
+            "steadyMaxMs": 34.85820000000217,
+            "slowFrames": [
+                {
+                    "startFrame": 3539,
+                    "endFrame": 3540,
+                    "tick": 30,
+                    "pendingBranches": 1,
+                    "collections": 0,
+                    "milliseconds": 486.8905000000012,
+                    "startup": true
+                },
+                {
+                    "startFrame": 4110,
+                    "endFrame": 4111,
+                    "tick": 600,
+                    "pendingBranches": 0,
+                    "collections": 0,
+                    "milliseconds": 34.85820000000217,
+                    "startup": false
+                }
+            ]
+        },
+        {
+            "requestedWeapon": "Resonance",
+            "weapon": "Resonance",
+            "build": "Farming",
+            "passed": true,
+            "sawAttack": true,
+            "weaponMatches": true,
+            "checkpointResumePassed": true,
+            "ticks": 900,
+            "branches": 7,
+            "kills": 9,
+            "purchases": 2,
+            "peakFields": 0,
+            "peakWeaponFields": 0,
+            "pigment": 12988.32421875,
+            "measuredFrames": 887,
+            "averageFrameMs": 16.63919199549033,
+            "maxFrameMs": 37.10740000001067,
+            "startupFrames": 122,
+            "steadyFrames": 765,
+            "startupMaxMs": 28.60270000000753,
+            "steadyAverageMs": 16.66326287581705,
+            "steadyMaxMs": 37.10740000001067,
+            "slowFrames": [
+                {
+                    "startFrame": 4997,
+                    "endFrame": 4998,
+                    "tick": 600,
+                    "pendingBranches": 0,
+                    "collections": 0,
+                    "milliseconds": 37.10740000001067,
+                    "startup": false
+                }
+            ]
+        }
+    ],
+    "autoRepeatPassed": true,
+    "autoRepeatSeed": 43,
+    "completedRuns": 1,
+    "loadedArtCount": 7,
+    "overlayTransparentPixels": 178083,
+    "overlayInkPixels": 18525,
+    "sessionCrystals": 15,
+    "autoRepeatMethod": "Fast-forwarded deterministic pre-defeat fixture; live Update defeat/save/3-second active countdown/restart",
+    "checkpointResumePassed": true,
+    "separateProcessResume": false
+}
