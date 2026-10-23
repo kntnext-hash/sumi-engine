@@ -579,17 +579,17 @@ namespace Bokumyaku.Presentation
             }
             foreach (var flash in flashes)
             {
-                float alpha = Mathf.Clamp01(flash.Life / .20f);
+                float alpha = Mathf.Sqrt(Mathf.Clamp01(flash.Life / .20f));
                 Vector2 from = Logical(field, flash.A), to = Logical(field, flash.B);
                 if (flash.Weapon == WeaponKind.Pierce)
                 {
                     // A broad tapered stroke distinguishes the slower piercing brush.
-                    BrushBeam(from, to, 38, alpha);
+                    BrushBeam(from, to, 60, alpha);
 
                 }
                 else if (flash.Weapon == WeaponKind.Point)
                 {
-                    BrushBeam(from, to, 14, alpha * .65f);
+                    BrushBeam(from, to, 30, alpha);
                     Dot(to, 3 + 3 * alpha, new Color(ink.r, ink.g, ink.b, alpha));
                     Ring(to, 3 + 8 * (1 - alpha), new Color(gold.r, gold.g, gold.b, alpha));
                 }
@@ -600,17 +600,17 @@ namespace Bokumyaku.Presentation
                     {
                         float angle = i * .18f;
                         Vector2 turned = new Vector2(direction.x * Mathf.Cos(angle) - direction.y * Mathf.Sin(angle), direction.x * Mathf.Sin(angle) + direction.y * Mathf.Cos(angle));
-                        BrushBeam(from, from + turned * Vector2.Distance(from, to), 24, alpha * .5f);
+                        BrushBeam(from, from + turned * Vector2.Distance(from, to), 38, alpha * .8f);
                     }
                 }
                 else if (flash.Weapon == WeaponKind.Enso)
                     InkStamp(coreInk, from, 28 + 65 * (1-alpha), new Color(ink.r, ink.g, ink.b, alpha));
                 else if (flash.Weapon == WeaponKind.Resonance)
                 {
-                    BrushBeam(from, to, 20, alpha);
+                    BrushBeam(from, to, 38, alpha);
                     Ring(to, 5 + 8 * (1 - alpha), new Color(ink.r, ink.g, ink.b, alpha));
                 }
-                else InkStamp(burstInk, to, 26 + 16 * (1-alpha), new Color(ink.r, ink.g, ink.b, alpha * .4f));
+                else InkStamp(burstInk, to, 26 + 16 * (1-alpha), new Color(ink.r, ink.g, ink.b, alpha * .8f));
             }
             DrawInkBursts(field);
             DrawInkCore(center);

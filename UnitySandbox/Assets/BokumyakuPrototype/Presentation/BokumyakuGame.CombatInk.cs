@@ -14,7 +14,7 @@ namespace Bokumyaku.Presentation
         sealed class InkBurst { public Vector2 Position; public float Life; public float Angle; }
         void EnsureCombatInk()
         {
-            var style=InkBrushSettings.Dense;style.radius=7;style.roughness=.5f;style.water=.2f;style.depletion=.002f;
+            var style=InkBrushSettings.Dense;style.radius=10;style.roughness=.5f;style.water=.2f;style.depletion=.002f;
             var path=new InkPoint[20];
             for(int i=0;i<20;i++){float t=i/19f;path[i]=new InkPoint(12+72*t,48+7*Mathf.Sin(t*Mathf.PI),t*.3f,1-.9f*t);}
             slashInk=InkTextureBaker.Bake(96,new[]{path},style,8231);

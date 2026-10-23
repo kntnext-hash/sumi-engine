@@ -22,16 +22,18 @@ namespace Bokumyaku.Presentation
         }
         void DrawInkEnemy(EnemyKind kind,Vector2 point,float radius)
         {
-            float size=kind==EnemyKind.Boss?56:kind==EnemyKind.Heavy?42:kind==EnemyKind.Fast?30:34;
+            float size=kind==EnemyKind.Boss?66:kind==EnemyKind.Heavy?48:kind==EnemyKind.Fast?36:40;
             Dot(point,radius+4,new Color(red.r,red.g,red.b,.12f));
             InkStamp(enemyInk[(int)kind],point,size,ink);
-            Dot(point,kind==EnemyKind.Boss?4:2.4f,red);
+            Dot(point,kind==EnemyKind.Boss?5:3.2f,red);
+            Dot(point,1.2f,new Color(1f,.72f,.45f));
         }
         void DrawInkCore(Vector2 center)
         {
-            Dot(center,22,new Color(gold.r,gold.g,gold.b,.13f));
+            Dot(center,27,new Color(gold.r,gold.g,gold.b,.22f));
             InkStamp(coreInk,center,64,ink);
-            Ring(center,11,gold);Dot(center,5,gold);
+            InkStamp(coreInk,center,44,gold);
+            Dot(center,9,gold);Dot(center,4,new Color(1f,.95f,.72f));
         }
         void ReleaseInkMotifs()
         {
