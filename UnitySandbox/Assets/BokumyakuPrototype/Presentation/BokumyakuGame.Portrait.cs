@@ -23,34 +23,15 @@ namespace Bokumyaku.Presentation
                 DrawPanel(new Rect(16, 76, 408, height - 88), true);
                 return;
             }
-            Rect field = new Rect(8, 88, 424, height - 258);
+            Rect field = new Rect(0, 62, 440, height - 260);
             // Clip branch textures and rotated brush effects before drawing the fixed controls.
             GUI.BeginGroup(field);
             try { DrawField(new Rect(0, 0, field.width, field.height), true); }
             finally { GUI.EndGroup(); }
-            Fill(new Rect(0, 0, 440, 86), new Color(.96f, .94f, .88f, .97f));
-            GUI.Label(new Rect(16, 8, 210, 34), "WAVE " + Run.Wave, number);
-            GUI.Label(new Rect(16, 43, 292, 30), "墨 " + Run.RunInk + "   結晶 " + Meta.Crystals, heading);
-            if (Button(new Rect(318, 14, 106, 54), IsPaused ? "再開" : "一時停止", IsPaused)) SetPaused(!IsPaused);
-            float controls = height - 162;
-            GUI.Label(new Rect(16, controls, 138, 26), "墨核 " + Run.CoreHp + " / 10", heading);
-            GUI.Label(new Rect(16, controls + 27, 138, 22), FormatTime(Run.ElapsedSeconds) + " · " + WeaponNames[(int)Run.Weapon], small);
-            if (Button(new Rect(156, controls, 72, 48), "×" + Speed, Speed == 2)) SetSpeed(Speed == 1 ? 2 : 1);
-            if (Button(new Rect(236, controls, 108, 48), AutoRepeatEnabled ? "周回 ON" : "周回 OFF", AutoRepeatEnabled)) SetAutoRepeat(!AutoRepeatEnabled);
-            if (Button(new Rect(352, controls, 72, 48), portraitDetails ? "閉じる" : "詳細", portraitDetails)) portraitDetails = !portraitDetails;
-            for (int i = 0; i < 4; i++)
-            {
-                var kind = (UpgradeKind)i;
-                int level = Run.UpgradeLevels[i], cap = Run.UpgradeMaxLevel(kind), cost = Run.UpgradeCost(kind);
-                GUI.enabled = !loadBlocked && !storageFailed && !AwaitingStart && Run.State == RunStatus.Running && level < cap && Run.RunInk >= cost;
-                string label = UpgradeNames[i] + "  Lv." + level + "\n" + (level >= cap ? "MAX" : "墨 " + cost);
-                if (Button(new Rect(12 + i * 107, height - 102, 101, 70), label, false)) BuyUpgrade(kind);
-                GUI.enabled = true;
-            }
-            GUI.Label(new Rect(16, height - 29, 408, 24), string.IsNullOrEmpty(saveWarning) ? notice : "保存待ち：" + saveWarning, small);
+            DrawBattleHud(height);
             if (portraitDetails)
             {
-                Rect sheet = new Rect(8, 88, 424, height - 258);
+                Rect sheet = new Rect(0, 62, 440, height - 260);
                 Fill(sheet, new Color(.96f, .95f, .91f, .98f));
                 DrawPanel(new Rect(20, 100, 400, sheet.height - 24), true);
             }

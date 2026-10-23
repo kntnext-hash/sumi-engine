@@ -1,0 +1,22 @@
+[
+  {
+    "name": "speed",
+    "passed": true
+  },
+  {
+    "name": "auto",
+    "passed": true
+  },
+  {
+    "name": "details",
+    "passed": true
+  },
+  {
+    "name": "close",
+    "passed": true
+  },
+  {
+    "name": "pause",
+    "passed": true
+  }
+]
