@@ -11,7 +11,7 @@ namespace Bokumyaku.Presentation
         void EnsureInkMotifs()
         {
             if(enemyInk!=null)return;
-            enemyInk=new Texture2D[5];
+            enemyInk=new Texture2D[7];
             for(int i=0;i<enemyInk.Length;i++)enemyInk[i]=ProceduralInkMotifs.CreateEnemy((EnemyKind)i);
             coreInk=ProceduralInkMotifs.CreateCore();
             hudRing=ProceduralInkMotifs.CreateHudRing();

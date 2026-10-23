@@ -66,10 +66,12 @@ namespace Bokumyaku.Presentation
             audioSettingsPath = path; audioPreferences = new AudioPreferences(); AudioSettingsWarning = "";
             try
             {
-                if (!File.Exists(path) && File.Exists(PreviousV8CampaignPath + ".audio.json"))
+                foreach (var previous in new[] { PreviousV9CampaignPath, PreviousV8CampaignPath })
                 {
+                    if (File.Exists(path)) break;
+                    if (!File.Exists(previous + ".audio.json")) continue;
                     Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(path)));
-                    File.Copy(PreviousV8CampaignPath + ".audio.json", path, false);
+                    File.Copy(previous + ".audio.json", path, false);
                 }
                 if (File.Exists(path)) audioPreferences = JsonUtility.FromJson<AudioPreferences>(File.ReadAllText(path)) ?? new AudioPreferences();
                 ClampAudioSettings();

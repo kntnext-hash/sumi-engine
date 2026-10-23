@@ -109,6 +109,7 @@ namespace Bokumyaku.Presentation
                     caption.text=d.DisplayName+"  結晶 ×"+d.CrystalMultiplier.ToString("0.0")+"\n"+(unlocked?"最高 "+snapshot.BestWaveByTier[tier-1]+" 波":"前の段位で100波突破すると解放");
                     Tint(b,game.SelectedTier==tier);b.interactable=unlocked&&!snapshot.HasActiveRun&&!game.BattleStorageBlocked;});y+=84;
             }
+            Text(p,"TierEnemies",0,y,1,78,15,"二段以降：吸生種は核に取りついて生命を吸う。\n護輪種は金の輪が薄れる間が攻撃の好機。");y+=86;
             Text(p,"WeaponsTitle",0,y,1,34,21,"六つの武器");y+=40;
             for(int i=0;i<6;i++){int n=i;var b=Button(p,"MenuWeapon"+i,(i%3)/3f,y+(i/3)*62,(i%3+1)/3f,58,Weapons[i],()=>game.SetWeapon((WeaponKind)n));bindings.Add(()=>{Tint(b,(int)game.SelectedWeapon==n);b.interactable=!game.BattleStorageBlocked;});}y+=128;
             var weaponNote=Text(p,"WeaponDescription",0,y,1,66,16,"");bindings.Add(()=>weaponNote.text=WeaponNotes[(int)game.SelectedWeapon]);y+=76;

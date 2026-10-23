@@ -66,13 +66,16 @@ namespace Bokumyaku.Simulation
             Check(s.meta!=null,"meta"); s.meta.Snapshot(); Check(rules>=6 || s.meta.Damage<=20,"legacy meta Damage cap");
             Check(s.levels!=null && s.levels.Length==(rules==1?6:7),"levels"); int[] caps={rules>=6?100:30,25,25,9,10,10,HarvestMaxLevel}; for(int i=0;i<s.levels.Length;i++)Range(s.levels[i],0,caps[i],"level");
             Check(s.enemies!=null&&s.enemies.Length<=EnemyLimit&&s.branches!=null&&s.branches.Length>=4&&s.branches.Length<=64&&s.fields!=null&&s.fields.Length<=FieldLimit&&s.attacks!=null&&s.attacks.Length<=96,"array bounds");
-            Check(s.spawnedByType!=null&&s.spawnedByType.Length==5&&s.killedByType!=null&&s.killedByType.Length==5&&s.leakedByType!=null&&s.leakedByType.Length==5,"type counters");
-            int sk=0,sl=0,ss=0; var active=new int[5]; var ids=new HashSet<int>();
-            foreach(var e in s.enemies) { Check(e!=null,"enemy null"); Range(e.id,1,s.nextEnemyId,"enemy id"); Check(ids.Add(e.id),"duplicate enemy"); Check(Enum.IsDefined(typeof(EnemyKind),e.kind),"enemy kind");
+            int typeCount=rules>=8?7:5;
+            Check(s.spawnedByType!=null&&s.spawnedByType.Length==typeCount&&s.killedByType!=null&&s.killedByType.Length==typeCount&&s.leakedByType!=null&&s.leakedByType.Length==typeCount,"type counters");
+            if(rules>=8 && tier==1)
+                for(int i=5;i<typeCount;i++)Check(s.spawnedByType[i]==0&&s.killedByType[i]==0&&s.leakedByType[i]==0,"new enemy counters in Tier 1");
+            int sk=0,sl=0,ss=0; var active=new int[typeCount]; var ids=new HashSet<int>();
+            foreach(var e in s.enemies) { Check(e!=null,"enemy null"); Range(e.id,1,s.nextEnemyId,"enemy id"); Check(ids.Add(e.id),"duplicate enemy"); Check(Enum.IsDefined(typeof(EnemyKind),e.kind) && ((int)e.kind<5 || (rules>=8 && tier>=2)),"enemy kind");
                 Number(e.x,-1024,1024,"enemy x"); Number(e.y,-1024,1024,"enemy y"); Number(e.maxHp,double.Epsilon,rules>=7?TierBalance.EnemyBaseHp(TierBalance.Count,LongRunWaveLimit)*12:1e12,"maxHP"); Number(e.hp,double.Epsilon,e.maxHp,"hp"); Number(e.speed,double.Epsilon,10000,"speed"); Range(e.spawnWave,1,s.wave,"spawnWave"); Check(!e.isSplitChild||e.kind==EnemyKind.Splitter,"split child kind"); active[(int)e.kind]++; }
-            for(int i=0;i<5;i++) { Range(s.spawnedByType[i],0,maxCounter,"spawn count"); Range(s.killedByType[i],0,maxCounter,"kill count"); Range(s.leakedByType[i],0,maxCounter,"leak count"); Check(s.spawnedByType[i]==s.killedByType[i]+s.leakedByType[i]+active[i],"type counter balance"); ss+=s.spawnedByType[i];sk+=s.killedByType[i];sl+=s.leakedByType[i]; }
+            for(int i=0;i<typeCount;i++) { Range(s.spawnedByType[i],0,maxCounter,"spawn count"); Range(s.killedByType[i],0,maxCounter,"kill count"); Range(s.leakedByType[i],0,maxCounter,"leak count"); Check(s.spawnedByType[i]==s.killedByType[i]+s.leakedByType[i]+active[i],"type counter balance"); ss+=s.spawnedByType[i];sk+=s.killedByType[i];sl+=s.leakedByType[i]; }
             Check(ss==s.nextEnemyId&&sk==s.kills&&sl==s.leaks,"total counters");
-            double minimumPoints=s.killedByType[0]+1.1*s.killedByType[1]+2.0*s.killedByType[2]+12.0*s.killedByType[4];
+            double minimumPoints=(rules>=8?2.0*(s.killedByType[5]+s.killedByType[6]):0)+s.killedByType[0]+1.1*s.killedByType[1]+2.0*s.killedByType[2]+12.0*s.killedByType[4];
             // Long sums can accumulate floating-point error; legacy tolerance stays unchanged.
             double pointsTolerance=rules>=5?Math.Max(1e-6,s.kills*1e-7):1e-6;
             Number(s.rewardPoints,Math.Max(0,minimumPoints-pointsTolerance),(minimumPoints+1.4*s.killedByType[3])*(rules==1?1:1+HarvestGainPerLevel*s.levels[6])+pointsTolerance,"reward point counters");
@@ -99,7 +102,7 @@ namespace Bokumyaku.Simulation
             r.Weapon = s.weapon;
             r.EffectiveDamage = s.effectiveDamage;
             r.nextEnemyId = s.nextEnemyId; r.growthCount = s.growthCount; r.repairCount = s.repairCount; r.lastBossWave = s.lastBossWave; r.spawnRng = s.spawnRng; r.growthRng = s.growthRng; r.spawnCredit = s.spawnCredit; r.growthCharge = s.growthCharge; r.rewardPoints = s.rewardPoints; r.rewardClaimed = s.rewardClaimed;
-            Array.Copy(s.levels,r.levels,s.levels.Length);Array.Copy(s.spawnedByType,r.spawnedByType,5);Array.Copy(s.killedByType,r.killedByType,5);Array.Copy(s.leakedByType,r.leakedByType,5);
+            Array.Copy(s.levels,r.levels,s.levels.Length);r.spawnedByType=(int[])s.spawnedByType.Clone();r.killedByType=(int[])s.killedByType.Clone();r.leakedByType=(int[])s.leakedByType.Clone();
             r.enemies.Clear();foreach(var e in s.enemies)r.enemies.Add(new EnemyState{Id=e.id,Kind=e.kind,X=e.x,Y=e.y,Hp=e.hp,MaxHp=e.maxHp,Speed=e.speed,SpawnWave=e.spawnWave,IsSplitChild=e.isSplitChild});
             r.branches.Clear();foreach(var b in s.branches)r.branches.Add(new BranchState{Id=b.id,ParentId=b.parentId,X=b.x,Y=b.y,PathLength=b.pathLength,IsTip=b.isTip,NextAttack=b.nextAttack});
             foreach(var f in s.fields)r.fields.Add(new InkFieldState{X=f.x,Y=f.y,Radius=f.radius,DamagePerTick=f.damagePerTick,UntilTick=f.untilTick,Weapon=f.weapon});

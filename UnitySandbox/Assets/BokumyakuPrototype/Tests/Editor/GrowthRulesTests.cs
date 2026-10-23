@@ -20,7 +20,7 @@ namespace Bokumyaku.Tests
         {
             for(int rules=1;rules<=5;rules++)
             {
-                var s=new RunSimulator(1).CaptureState();s.rulesVersion=rules;if(rules==1)Array.Resize(ref s.levels,6);
+                var s=new RunSimulator(1).CaptureState();s.rulesVersion=rules;Array.Resize(ref s.spawnedByType,5);Array.Resize(ref s.killedByType,5);Array.Resize(ref s.leakedByType,5);if(rules==1)Array.Resize(ref s.levels,6);
                 s.meta.Damage=21;Assert.Throws<ArgumentException>(()=>RunSimulator.Restore(s));
                 s.meta.Damage=20;s.levels[0]=31;Assert.Throws<ArgumentException>(()=>RunSimulator.Restore(s));
                 s.levels[0]=30;var r=RunSimulator.Restore(s);Assert.AreEqual(30,r.UpgradeMaxLevel(UpgradeKind.Damage));Assert.IsFalse(r.TryBuy(UpgradeKind.Damage));

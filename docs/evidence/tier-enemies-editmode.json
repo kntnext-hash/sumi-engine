@@ -1,0 +1,1756 @@
+{
+  "status": "completed",
+  "duration": 39.94,
+  "summary": {
+    "total": 249,
+    "passed": 249,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.DefaultOffCannotScheduleEvenSavedDefeat",
+      "Status": "Passed",
+      "Duration": 0.030535,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.IdleStillRejectsInvalidDelta",
+      "Status": "Passed",
+      "Duration": 0.0209352,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.InvalidDeltaRejectsWithoutChangingPendingState(False)",
+      "Status": "Passed",
+      "Duration": 0.0026251,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.InvalidDeltaRejectsWithoutChangingPendingState(True)",
+      "Status": "Passed",
+      "Duration": 0.0002371,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.LargeDeltaTriggersOnceWithoutResidualReservation",
+      "Status": "Passed",
+      "Duration": 0.0005255,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.ManualCancelKeepsPreferenceButPreventsStart",
+      "Status": "Passed",
+      "Duration": 0.0004831,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.OffCancelsAndTurningOnDoesNotReserve",
+      "Status": "Passed",
+      "Duration": 0.0005219,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.OtherStatusCannotReserveAndCancelsOldReservation(Running)",
+      "Status": "Passed",
+      "Duration": 0.0007055,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.OtherStatusCannotReserveAndCancelsOldReservation(CapacityExceeded)",
+      "Status": "Passed",
+      "Duration": 0.0001503,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.OtherStatusCannotReserveAndCancelsOldReservation(TestCompleted)",
+      "Status": "Passed",
+      "Duration": 0.0001138,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.OtherStatusCannotReserveAndCancelsOldReservation(999)",
+      "Status": "Passed",
+      "Duration": 0.0001136,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.PausedCountdownDoesNotConsumeTime",
+      "Status": "Passed",
+      "Duration": 0.00041,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.ReapplyingEnabledPreferenceAlsoCancelsPending",
+      "Status": "Passed",
+      "Duration": 0.0002979,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.RescheduleRequiresFreshThreeSeconds",
+      "Status": "Passed",
+      "Duration": 0.0003328,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.ThreeRealSecondsTriggerExactlyOnce",
+      "Status": "Passed",
+      "Duration": 0.0005605,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.AutoRepeatControllerTests.UnsavedRewardCannotReserveAndCancelsOldReservation",
+      "Status": "Passed",
+      "Duration": 0.0002844,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.ActiveCheckpointRestoresSameTickAndContinuesDeterministically",
+      "Status": "Passed",
+      "Duration": 0.1613445,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.CapacityFailureCannotSetBestWaveOrGrantMilestone",
+      "Status": "Passed",
+      "Duration": 0.0454869,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.CorruptLegacyIsNotSilentlyMigratedAsZero",
+      "Status": "Passed",
+      "Duration": 0.0075761,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.CorruptPrimaryRecoversBackupAndKeepsCorruptOriginalOnNextSave",
+      "Status": "Passed",
+      "Duration": 0.0365438,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.DiscardAndThreeSlotsPersistWithoutGrantingRewards",
+      "Status": "Passed",
+      "Duration": 0.1129531,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.HistoryRetainsOnlyNewestTwentyWithoutRegrantingMilestones",
+      "Status": "Passed",
+      "Duration": 1.0849687,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.InvalidSchemaAndSlotAndSnapshotAreRejectedBeforeWrite",
+      "Status": "Passed",
+      "Duration": 0.0199702,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.LegacyMigrationPreservesOriginalAndAllMetaFields",
+      "Status": "Passed",
+      "Duration": 0.0160756,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.SaveFailureDoesNotMutateMemoryOrConsumeReward",
+      "Status": "Passed",
+      "Duration": 0.0534774,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.SettlementAndReplayCreditExactlyOnceAcrossReload",
+      "Status": "Passed",
+      "Duration": 0.0364034,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.StaleWriterCannotReplaceNewerCheckpoint",
+      "Status": "Passed",
+      "Duration": 0.0506214,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.ThreeRunsRetainHistoryAndMilestoneDoesNotPayTwice",
+      "Status": "Passed",
+      "Duration": 0.1577183,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.WaveCapCompletionCanClaimFirstMilestones",
+      "Status": "Passed",
+      "Duration": 0.0484884,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.CampaignTests.WrongRunIdAndUnfinishedRunCannotSettle",
+      "Status": "Passed",
+      "Duration": 0.034869699999999997,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.AdditionalWeaponsHaveBoundedHits(Sweep,5)",
+      "Status": "Passed",
+      "Duration": 0.0071667,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.AdditionalWeaponsHaveBoundedHits(Enso,6)",
+      "Status": "Passed",
+      "Duration": 0.0007524,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.AdditionalWeaponsHaveBoundedHits(Resonance,4)",
+      "Status": "Passed",
+      "Duration": 0.0018425,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.CapacityStopSnapshotRestoresWithoutReward",
+      "Status": "Passed",
+      "Duration": 0.0128659,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.ClaimedRewardRemainsClaimedAfterRestore",
+      "Status": "Passed",
+      "Duration": 0.0053468,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.ExactPayloadPreservesSignedZero",
+      "Status": "Passed",
+      "Duration": 0.0009422,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.ExactPayloadRejectsChangedNumbersOrCorruptBits",
+      "Status": "Passed",
+      "Duration": 0.0017907,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.ExactPayloadRestoresAdjacentDoubleWithoutMutatingInput",
+      "Status": "Passed",
+      "Duration": 0.0010598,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.FiveEnemiesCountAndBossScheduleBalance",
+      "Status": "Passed",
+      "Duration": 0.0499223,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.InitialSnapshotIsIndependentAndRestores",
+      "Status": "Passed",
+      "Duration": 0.0016502,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.InvalidSnapshotsAreRejected",
+      "Status": "Passed",
+      "Duration": 0.0025255,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.JsonSnapshotRestoresExactFuture(Point)",
+      "Status": "Passed",
+      "Duration": 0.1797114,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.JsonSnapshotRestoresExactFuture(Pierce)",
+      "Status": "Passed",
+      "Duration": 0.1168143,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.JsonSnapshotRestoresExactFuture(Bleed)",
+      "Status": "Passed",
+      "Duration": 0.2033253,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.JsonSnapshotRestoresExactFuture(Sweep)",
+      "Status": "Passed",
+      "Duration": 0.0695483,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.JsonSnapshotRestoresExactFuture(Enso)",
+      "Status": "Passed",
+      "Duration": 0.1911244,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.JsonSnapshotRestoresExactFuture(Resonance)",
+      "Status": "Passed",
+      "Duration": 0.2228782,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.NewWeaponSwitchPreservesCooldown",
+      "Status": "Passed",
+      "Duration": 0.0007909,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.RepairHasAtomicCostAndCaps",
+      "Status": "Passed",
+      "Duration": 0.0009624,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.SplitChildrenNeverSplitOrRewardAgain",
+      "Status": "Passed",
+      "Duration": 0.0007907,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyAndSystemTests.TerminalBoundarySnapshotsRestore",
+      "Status": "Passed",
+      "Duration": 0.0017772,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyGenerationMigrationTests.AbsentV9FallsBackToSchemaThreeV8",
+      "Status": "Passed",
+      "Duration": 0.01106,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyGenerationMigrationTests.CorruptV10CannotRollBackToV9",
+      "Status": "Passed",
+      "Duration": 0.0101013,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyGenerationMigrationTests.CorruptV9DoesNotFallBackToV8",
+      "Status": "Passed",
+      "Duration": 0.0092682,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyGenerationMigrationTests.MigrationDestinationCannotAliasV9",
+      "Status": "Passed",
+      "Duration": 0.0013899,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyGenerationMigrationTests.RulesSevenActiveTierTwoKeepsFutureAndOriginalFiles",
+      "Status": "Passed",
+      "Duration": 0.101759,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyGenerationMigrationTests.V9BackupIsRecoveredWithoutRewritingSources",
+      "Status": "Passed",
+      "Duration": 0.0162254,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.EnemyGenerationMigrationTests.V9WinsOverOlderV8",
+      "Status": "Passed",
+      "Duration": 0.0115683,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.GrowthRulesTests.ActualRules5DllRetainsExactFutureAndTerminal(\"v9-point\")",
+      "Status": "Passed",
+      "Duration": 0.117489,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.GrowthRulesTests.ActualRules5DllRetainsExactFutureAndTerminal(\"v9-enso\")",
+      "Status": "Passed",
+      "Duration": 0.2365559,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.GrowthRulesTests.ConservativeFullHorizonDamageFitsExplicitBounds",
+      "Status": "Passed",
+      "Duration": 0.0007825,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.GrowthRulesTests.ExpandedMetaMultiplierIsContinuousFiniteAndOtherCapsUnchanged",
+      "Status": "Passed",
+      "Duration": 0.0019601,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.GrowthRulesTests.ExpandedStateJsonRoundTripHasIdenticalFuture",
+      "Status": "Passed",
+      "Duration": 0.5488043,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.GrowthRulesTests.LegacySnapshotsRejectExpandedMetaAndRunDamage",
+      "Status": "Passed",
+      "Duration": 0.0164021,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.GrowthRulesTests.PaidRunDamagePurchasesKeepLegacyCostsAndStopAt100",
+      "Status": "Passed",
+      "Duration": 0.0052074,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.BrokenLatestNeverFallsBackAndSamePathIsRejected",
+      "Status": "Passed",
+      "Duration": 0.0160873,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.LongResultRoundTripsLargeWaveAndReward(30000)",
+      "Status": "Passed",
+      "Duration": 0.0190126,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.LongResultRoundTripsLargeWaveAndReward(100000)",
+      "Status": "Passed",
+      "Duration": 0.0138564,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.MissingV5FallsBackToExistingV4Migration",
+      "Status": "Passed",
+      "Duration": 0.0178679,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.OldRulesStillEndAtSixtyAfterFileGenerationMigration",
+      "Status": "Passed",
+      "Duration": 0.2167323,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.RepeatedLoadSaveKeepsExactActiveStateWithoutRelaxingValidation(\"v8-point-tick6000.json\")",
+      "Status": "Passed",
+      "Duration": 0.4338777,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.RepeatedLoadSaveKeepsExactActiveStateWithoutRelaxingValidation(\"v8-enso-tick21599.json\")",
+      "Status": "Passed",
+      "Duration": 0.4576496,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.SettlementOverflowLeavesDiskAndMemoryUnchanged(False)",
+      "Status": "Passed",
+      "Duration": 0.0806128,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.SettlementOverflowLeavesDiskAndMemoryUnchanged(True)",
+      "Status": "Passed",
+      "Duration": 0.1069941,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(5,100001,36000000,1)",
+      "Status": "Passed",
+      "Duration": 0.0019927,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(5,100000,36000001,1)",
+      "Status": "Passed",
+      "Duration": 0.0009767,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(5,100000,36000000,12000001)",
+      "Status": "Passed",
+      "Duration": 0.0012366,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(4,61,21600,1)",
+      "Status": "Passed",
+      "Duration": 0.0006909,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(4,60,21601,1)",
+      "Status": "Passed",
+      "Duration": 0.0006483,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(4,60,21600,80001)",
+      "Status": "Passed",
+      "Duration": 0.0006683,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunPersistenceTests.UnsupportedResultBoundsFailBeforeWrite(9,60,21600,1)",
+      "Status": "Passed",
+      "Duration": 0.001623,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunTests.ActualRules4DllFixtureRetainsFutureAndTerminal(\"v8-point\")",
+      "Status": "Passed",
+      "Duration": 0.157741,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunTests.ActualRules4DllFixtureRetainsFutureAndTerminal(\"v8-enso\")",
+      "Status": "Passed",
+      "Duration": 0.1874215,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunTests.AllSupportedWavesAreFiniteMonotoneAndEarlyFormulaExact",
+      "Status": "Passed",
+      "Duration": 2.0614433,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunTests.ExplicitCurrencyAndCounterBoundsFitIntWithoutSaturation",
+      "Status": "Passed",
+      "Duration": 0.0028153,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunTests.HighWaveJsonRoundTripRetainsEveryFollowingTick(60)",
+      "Status": "Passed",
+      "Duration": 0.345682,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunTests.HighWaveJsonRoundTripRetainsEveryFollowingTick(999)",
+      "Status": "Passed",
+      "Duration": 0.3463762,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunTests.HighWaveJsonRoundTripRetainsEveryFollowingTick(9999)",
+      "Status": "Passed",
+      "Duration": 0.3818525,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunTests.HighWaveJsonRoundTripRetainsEveryFollowingTick(99999)",
+      "Status": "Passed",
+      "Duration": 0.3972855,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunTests.HundredThousandWaveBoundaryIsFiniteAndRestorable",
+      "Status": "Passed",
+      "Duration": 0.0027725,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunTests.Rules4StopsAt60AndRules5ContinuesSameState",
+      "Status": "Passed",
+      "Duration": 0.0192243,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.LongRunTests.RulesHaveExplicitDifferentLimits",
+      "Status": "Passed",
+      "Duration": 0.0006551,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MetaSaveStoreTests.CorruptCurrentRecoversBackupAndPreservesOriginal",
+      "Status": "Passed",
+      "Duration": 0.0408242,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MetaSaveStoreTests.InvalidMetaSaveRejectsWithoutOverwritingGoodData",
+      "Status": "Passed",
+      "Duration": 0.0069946,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MetaSaveStoreTests.MissingSaveCreatesZeroProgressWithoutWarning",
+      "Status": "Passed",
+      "Duration": 0.002222,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MetaSaveStoreTests.SaveRoundTripsAllProgressAndKeepsPreviousVersion",
+      "Status": "Passed",
+      "Duration": 0.0134782,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MetaSaveStoreTests.UnsupportedOrInvalidDataDoesNotBecomePlayableProgress(\"{\\\"schema\\\":99,\\\"config\\\":\\\"prototype-3enemy-v1\\\",\\\"meta\\\":{\\\"Crystals\\\":100}}\")",
+      "Status": "Passed",
+      "Duration": 0.0047625,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MetaSaveStoreTests.UnsupportedOrInvalidDataDoesNotBecomePlayableProgress(\"{\\\"schema\\\":1,\\\"config\\\":\\\"future\\\",\\\"meta\\\":{\\\"Crystals\\\":100}}\")",
+      "Status": "Passed",
+      "Duration": 0.0050312,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MetaSaveStoreTests.UnsupportedOrInvalidDataDoesNotBecomePlayableProgress(\"{\\\"schema\\\":1,\\\"config\\\":\\\"prototype-3enemy-v1\\\",\\\"meta\\\":{\\\"Crystals\\\":100,\\\"Damage\\\":21}}\")",
+      "Status": "Passed",
+      "Duration": 0.0047742,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.ActiveRunRejectsDifferentRulesWithoutChangingSave",
+      "Status": "Passed",
+      "Duration": 0.0328368,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.CorruptNewSaveNeverRollsBackToPrevious",
+      "Status": "Passed",
+      "Duration": 0.0084973,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.CorruptPreviousRecoversBackupWithoutChangingEitherSource",
+      "Status": "Passed",
+      "Duration": 0.0118385,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.ExistingNewProgressWinsOverPrevious",
+      "Status": "Passed",
+      "Duration": 0.0097753,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.FailedMigrationWriteDoesNotModifyPrevious",
+      "Status": "Passed",
+      "Duration": 0.0093687,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.FullCampaignMigrationPreservesProgressSlotsHistoryAndSourceBytes",
+      "Status": "Passed",
+      "Duration": 0.2492129,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.NewCampaignRejectsMissingOrUnknownResultRules(0)",
+      "Status": "Passed",
+      "Duration": 0.0024915,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.NewCampaignRejectsMissingOrUnknownResultRules(99)",
+      "Status": "Passed",
+      "Duration": 0.0008059,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.NewRulesSnapshotCannotMasqueradeAsPreviousCampaign",
+      "Status": "Passed",
+      "Duration": 0.0108096,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.OldActiveSnapshotKeepsIdentityAndFutureAfterMigration",
+      "Status": "Passed",
+      "Duration": 0.0702007,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.PreviousCampaignDoesNotNormalizeUnknownRules",
+      "Status": "Passed",
+      "Duration": 0.0194692,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.PreviousHeaderMustBeExactlyV2(1,\"bokumyaku-campaign-v2\")",
+      "Status": "Passed",
+      "Duration": 0.0055465,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.PreviousHeaderMustBeExactlyV2(3,\"bokumyaku-campaign-v2\")",
+      "Status": "Passed",
+      "Duration": 0.0045708,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.MigrationTests.PreviousHeaderMustBeExactlyV2(2,\"unknown\")",
+      "Status": "Passed",
+      "Duration": 0.0039525,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ProgressionPersistenceTests.CorruptNewGenerationDoesNotRollBackAndSamePathRejects",
+      "Status": "Passed",
+      "Duration": 0.0125655,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ProgressionPersistenceTests.Damage101RejectsWithoutChangingExistingSave",
+      "Status": "Passed",
+      "Duration": 0.0135291,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ProgressionPersistenceTests.ExpandedDamageSavesAndStartsNewRun(21)",
+      "Status": "Passed",
+      "Duration": 0.0268887,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ProgressionPersistenceTests.ExpandedDamageSavesAndStartsNewRun(100)",
+      "Status": "Passed",
+      "Duration": 0.0303086,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ProgressionPersistenceTests.FailedMetaWriteKeepsBalanceAndExistingData",
+      "Status": "Passed",
+      "Duration": 0.0121612,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ProgressionPersistenceTests.MetaPurchaseIsAppliedToNextRunOnlyAndActiveSaveRejectsChanges",
+      "Status": "Passed",
+      "Duration": 0.0550186,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ProgressionPersistenceTests.OldRules5CannotImportExpandedMeta",
+      "Status": "Passed",
+      "Duration": 0.0068729,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ProgressionPersistenceTests.PreviousRules5MigrationPreservesExactFutureTerminalAndOriginal(\"v9-point\")",
+      "Status": "Passed",
+      "Duration": 0.3084545,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ProgressionPersistenceTests.PreviousRules5MigrationPreservesExactFutureTerminalAndOriginal(\"v9-enso\")",
+      "Status": "Passed",
+      "Duration": 0.42478,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RecordSupplyTests.ActualV7MatureRunPreservesFutureAndTerminal(\"farming\")",
+      "Status": "Passed",
+      "Duration": 0.1195858,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RecordSupplyTests.ActualV7MatureRunPreservesFutureAndTerminal(\"record\")",
+      "Status": "Passed",
+      "Duration": 0.1391014,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RecordSupplyTests.DamageRequirementStillGatesSupplyPriority",
+      "Status": "Passed",
+      "Duration": 0.0006996,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RecordSupplyTests.InsufficientSupplyBudgetCannotBuyCheaperFallback",
+      "Status": "Passed",
+      "Duration": 0.0005399,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RecordSupplyTests.LateSupplyIsPaidAndBranchWaitsForIt",
+      "Status": "Passed",
+      "Duration": 0.0004449,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RecordSupplyTests.Rules3BuildSwitchCannotEnableNewPriority",
+      "Status": "Passed",
+      "Duration": 0.0002861,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResearchPricingPersistenceTests.CorruptLatestNeverRollsBackAndAliasRejects",
+      "Status": "Passed",
+      "Duration": 0.0122763,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResearchPricingPersistenceTests.MissingV7FallsBackToV6WithoutChangingItsBytes",
+      "Status": "Passed",
+      "Duration": 0.0129281,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResearchPricingPersistenceTests.PriceChangeDoesNotPermitActiveResearchOrMutateBalanceOnFailure",
+      "Status": "Passed",
+      "Duration": 0.0377334,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResearchPricingPersistenceTests.PriceMigrationDoesNotRefundOrChangeProgressHistoryOrActiveFuture(\"v10-point\")",
+      "Status": "Passed",
+      "Duration": 0.4147166,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResearchPricingPersistenceTests.PriceMigrationDoesNotRefundOrChangeProgressHistoryOrActiveFuture(\"v10-enso\")",
+      "Status": "Passed",
+      "Duration": 0.689883,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResearchPricingPersistenceTests.PurchasedLevelsAndRemainingCrystalsAreCopiedWithoutRepricing",
+      "Status": "Passed",
+      "Duration": 0.0152584,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResearchPricingTests.PriceCurvePreservesEarlyCostsAndUsesRoundedAnchor(Damage,8)",
+      "Status": "Passed",
+      "Duration": 0.0020386,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResearchPricingTests.PriceCurvePreservesEarlyCostsAndUsesRoundedAnchor(Supply,10)",
+      "Status": "Passed",
+      "Duration": 0.0004379,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResearchPricingTests.PriceCurvePreservesEarlyCostsAndUsesRoundedAnchor(Growth,8)",
+      "Status": "Passed",
+      "Duration": 0.0003765,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResearchPricingTests.PriceCurvePreservesEarlyCostsAndUsesRoundedAnchor(Harvest,12)",
+      "Status": "Passed",
+      "Duration": 0.0003708,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResearchPricingTests.PurchaseAtNewBoundaryIsAtomicAndDoesNotChangeBattleGeneration",
+      "Status": "Passed",
+      "Duration": 0.0005804,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResultPresentationTests.InvasionCountsBodiesNotCoreDamage",
+      "Status": "Passed",
+      "Duration": 0.0014889,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResultPresentationTests.NoInvasionHasNoMostCommonType",
+      "Status": "Passed",
+      "Duration": 0.0001823,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResultPresentationTests.NormalRateUsesOnlyNormalRewardAndBattleTime(30,120,15)",
+      "Status": "Passed",
+      "Duration": 0.000645,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResultPresentationTests.NormalRateUsesOnlyNormalRewardAndBattleTime(30,0,0)",
+      "Status": "Passed",
+      "Duration": 6.46E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResultPresentationTests.NormalRateUsesOnlyNormalRewardAndBattleTime(0,120,0)",
+      "Status": "Passed",
+      "Duration": 4.8E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.ResultPresentationTests.TieUsesFirstEnemyKindAndDoesNotMutateCounts",
+      "Status": "Passed",
+      "Duration": 0.0004406,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules3MigrationTests.BrokenLatestDoesNotRollBackToPrevious",
+      "Status": "Passed",
+      "Duration": 0.0184085,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules3MigrationTests.CorruptPreviousUsesItsBackupAndPreservesOriginal",
+      "Status": "Passed",
+      "Duration": 0.0230813,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules3MigrationTests.OldV2FallbackStillMigratesWithoutChangingSource",
+      "Status": "Passed",
+      "Duration": 0.0112555,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules3MigrationTests.PreviousRules2ActivePreservesFutureAndAllSourceBytes(\"v6-run\")",
+      "Status": "Passed",
+      "Duration": 0.1994737,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules3MigrationTests.PreviousRules2ActivePreservesFutureAndAllSourceBytes(\"v6-record\")",
+      "Status": "Passed",
+      "Duration": 0.1479166,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules3MigrationTests.ResultRulesHaveExplicitSupportedRange(3,True)",
+      "Status": "Passed",
+      "Duration": 0.0241026,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules3MigrationTests.ResultRulesHaveExplicitSupportedRange(7,True)",
+      "Status": "Passed",
+      "Duration": 0.0229019,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules3MigrationTests.ResultRulesHaveExplicitSupportedRange(8,True)",
+      "Status": "Passed",
+      "Duration": 0.0324028,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules3MigrationTests.ResultRulesHaveExplicitSupportedRange(9,False)",
+      "Status": "Passed",
+      "Duration": 0.0020696,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules3MigrationTests.SameSourceAndDestinationIsRejected",
+      "Status": "Passed",
+      "Duration": 0.003614,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules4MigrationTests.BrokenLatestDoesNotRollBackToPrevious",
+      "Status": "Passed",
+      "Duration": 0.0104226,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules4MigrationTests.CorruptPreviousUsesItsBackupAndPreservesOriginal",
+      "Status": "Passed",
+      "Duration": 0.0149438,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules4MigrationTests.CorruptV4DoesNotFallBackToOlderV3",
+      "Status": "Passed",
+      "Duration": 0.0074695,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules4MigrationTests.MissingV4FallsBackToV3WithoutChangingItsBytes",
+      "Status": "Passed",
+      "Duration": 0.0118242,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules4MigrationTests.OldV2FallbackStillMigratesWithoutChangingSource",
+      "Status": "Passed",
+      "Duration": 0.0079054,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules4MigrationTests.PreviousRules3ActivePreservesFutureAndAllSourceBytes(\"v7-farming\")",
+      "Status": "Passed",
+      "Duration": 0.2182471,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules4MigrationTests.PreviousRules3ActivePreservesFutureAndAllSourceBytes(\"v7-record\")",
+      "Status": "Passed",
+      "Duration": 0.161961,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules4MigrationTests.ResultRulesHaveExplicitSupportedRange(4,True)",
+      "Status": "Passed",
+      "Duration": 0.0186173,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules4MigrationTests.ResultRulesHaveExplicitSupportedRange(7,True)",
+      "Status": "Passed",
+      "Duration": 0.0161956,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules4MigrationTests.ResultRulesHaveExplicitSupportedRange(8,True)",
+      "Status": "Passed",
+      "Duration": 0.0156162,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules4MigrationTests.ResultRulesHaveExplicitSupportedRange(9,False)",
+      "Status": "Passed",
+      "Duration": 0.0015584,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.Rules4MigrationTests.SameSourceAndDestinationIsRejected",
+      "Status": "Passed",
+      "Duration": 0.0022183,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RulesVersionTests.ActualV5AssemblyFixtureRetainsExactFuture",
+      "Status": "Passed",
+      "Duration": 0.0942511,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RulesVersionTests.ActualV6AssemblyFixtureRetainsExactFuture(\"v6-run\")",
+      "Status": "Passed",
+      "Duration": 0.0469436,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RulesVersionTests.ActualV6AssemblyFixtureRetainsExactFuture(\"v6-record\")",
+      "Status": "Passed",
+      "Duration": 0.0736073,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RulesVersionTests.FullyCappedPurchaseLoopKeepsRestorableBoundedCursor",
+      "Status": "Passed",
+      "Duration": 0.0242304,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RulesVersionTests.HarvestMultipliesOnlyFutureEligibleKillsNotInkOrChildren",
+      "Status": "Passed",
+      "Duration": 0.001347,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RulesVersionTests.HarvestPurchaseIsPaidCappedAndNeverRetroactive",
+      "Status": "Passed",
+      "Duration": 0.0003881,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RulesVersionTests.InvalidRulesAndLevelShapeAreRejected",
+      "Status": "Passed",
+      "Duration": 0.0012295,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RulesVersionTests.LegacyCannotPurchaseHarvestOrUpgradeItsRules",
+      "Status": "Passed",
+      "Duration": 0.0015277,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RulesVersionTests.NewRulesJsonRoundTripPreservesPurchaseCursorAndFuture(Farming)",
+      "Status": "Passed",
+      "Duration": 1.1619872,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RulesVersionTests.NewRulesJsonRoundTripPreservesPurchaseCursorAndFuture(Record)",
+      "Status": "Passed",
+      "Duration": 0.9064295,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RulesVersionTests.SwitchingBuildDoesNotUpgradeV6Rules",
+      "Status": "Passed",
+      "Duration": 0.0041052,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildReplaysPurchasesAndCombatWithSameSeed(Farming)",
+      "Status": "Passed",
+      "Duration": 4.4653731,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildReplaysPurchasesAndCombatWithSameSeed(Record)",
+      "Status": "Passed",
+      "Duration": 3.6927129,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildRetainsGraphLimitsAndTerminates(Farming)",
+      "Status": "Passed",
+      "Duration": 2.2262048,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildRetainsGraphLimitsAndTerminates(Record)",
+      "Status": "Passed",
+      "Duration": 2.7609951,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildSavesForBranchAndProducesAdditionalTips(Farming)",
+      "Status": "Passed",
+      "Duration": 0.0792092,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.AutomaticBuildSavesForBranchAndProducesAdditionalTips(Record)",
+      "Status": "Passed",
+      "Duration": 0.0558326,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.BranchPurchaseDilutesPressureAtTheSamePathLength",
+      "Status": "Passed",
+      "Duration": 0.0012216,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.DifferentSeedsProduceDifferentEnemyPositions",
+      "Status": "Passed",
+      "Duration": 0.0006999,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.GraphAndEnemyCapsHoldThroughoutRun",
+      "Status": "Passed",
+      "Duration": 1.8520526,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.InvalidBuildIsRejectedWithoutMutation",
+      "Status": "Passed",
+      "Duration": 0.0012175,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.InvalidMetaIsRejectedAtRunStart",
+      "Status": "Passed",
+      "Duration": 0.0012756,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.ManualBuildNeverSpendsAutomatically",
+      "Status": "Passed",
+      "Duration": 0.0090038,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.MetaIsSnapshottedAtRunStart",
+      "Status": "Passed",
+      "Duration": 0.0007363,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.MetaPurchaseCostsCapsAndInsufficientFunds(Damage,8)",
+      "Status": "Passed",
+      "Duration": 0.0012148,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.MetaPurchaseCostsCapsAndInsufficientFunds(Supply,10)",
+      "Status": "Passed",
+      "Duration": 0.0004469,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.MetaPurchaseCostsCapsAndInsufficientFunds(Growth,8)",
+      "Status": "Passed",
+      "Duration": 0.0004151,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.MetaPurchaseCostsCapsAndInsufficientFunds(Harvest,12)",
+      "Status": "Passed",
+      "Duration": 0.0008074,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.NaturalDefeatIsBoundedAndStopsAllEconomy(1)",
+      "Status": "Passed",
+      "Duration": 0.0059467,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.NaturalDefeatIsBoundedAndStopsAllEconomy(42)",
+      "Status": "Passed",
+      "Duration": 0.0047474,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.NaturalDefeatIsBoundedAndStopsAllEconomy(-17)",
+      "Status": "Passed",
+      "Duration": 0.0026247,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.RewardOverflowRejectsWithoutConsumingClaim",
+      "Status": "Passed",
+      "Duration": 0.0035167,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.RunningRunCannotClaimAndFinishedRunCannotClaimTwice",
+      "Status": "Passed",
+      "Duration": 0.0037443,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.SameSeedAndCommandsReplayEveryTick(0)",
+      "Status": "Passed",
+      "Duration": 1.9437535,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.SameSeedAndCommandsReplayEveryTick(42)",
+      "Status": "Passed",
+      "Duration": 1.7396185,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.SameSeedAndCommandsReplayEveryTick(-17)",
+      "Status": "Passed",
+      "Duration": 1.7076747,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.SameSeedAndCommandsReplayEveryTick(int.MaxValue)",
+      "Status": "Passed",
+      "Duration": 1.3429308,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.SuccessfulPurchaseChargesExactCostAndOnlyOneLevel",
+      "Status": "Passed",
+      "Duration": 0.0008113,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.SwitchingBuildDuringRunIsDeterministicAndManualStopsPurchases",
+      "Status": "Passed",
+      "Duration": 0.6629597,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.ThreeRunsRetainMetaAndResetRunCurrency",
+      "Status": "Passed",
+      "Duration": 0.0075859,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.TwoTicksPerFrameMatchesOneTickPerFrame",
+      "Status": "Passed",
+      "Duration": 0.2001246,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.UnaffordableOrInvalidPurchaseDoesNotMutateState",
+      "Status": "Passed",
+      "Duration": 0.0014256,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.RunSimulatorTests.UpgradeLevelArrayCannotMutateSimulation",
+      "Status": "Passed",
+      "Duration": 0.0004988,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierEnemyTests.AbilityPhaseAndCountersSurviveSaveExactly",
+      "Status": "Passed",
+      "Duration": 0.0060217,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierEnemyTests.HaloReducesDamageOnlyDuringShieldPhase",
+      "Status": "Passed",
+      "Duration": 0.0014379,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierEnemyTests.HigherTierCompositionRetainsEveryExistingAndNewKind",
+      "Status": "Passed",
+      "Duration": 0.0074578,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierEnemyTests.LeechAttachesDrainsHealsAndStopsAfterDeath",
+      "Status": "Passed",
+      "Duration": 0.0015377,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierEnemyTests.LeechDrainAtZeroCoreHpEndsRunWithoutCountingLeak",
+      "Status": "Passed",
+      "Duration": 0.0050686,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierEnemyTests.NewEnemyCompositionIsLimitedToHigherTiers(1,False)",
+      "Status": "Passed",
+      "Duration": 0.0012152,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierEnemyTests.NewEnemyCompositionIsLimitedToHigherTiers(2,True)",
+      "Status": "Passed",
+      "Duration": 0.0003409,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierEnemyTests.NewEnemyCompositionIsLimitedToHigherTiers(3,True)",
+      "Status": "Passed",
+      "Duration": 0.0004146,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierEnemyTests.RulesSevenContinuationKeepsFiveTypesAndNoNewEnemies",
+      "Status": "Passed",
+      "Duration": 0.0073705,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierEnemyTests.TierOneRejectsNewEnemyHistoricalCounters",
+      "Status": "Passed",
+      "Duration": 0.0013767,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierPersistenceTests.ExistingMalformedCurrentNeverFallsBackToOldCampaign",
+      "Status": "Passed",
+      "Duration": 0.0056364,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierPersistenceTests.LegacyActiveRunRemainsTier1AndKeepsItsDeterministicFuture",
+      "Status": "Passed",
+      "Duration": 0.1385336,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierPersistenceTests.LegacyMigrationPreservesRecordsOutsideHistoryAndDoesNotPayAgain",
+      "Status": "Passed",
+      "Duration": 0.0572176,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierPersistenceTests.OldSchemaAtAuthoritativePathRequiresExplicitMigration",
+      "Status": "Passed",
+      "Duration": 0.0035216,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierPersistenceTests.Tier1MirrorsAndLockedRecordsCannotDiverge",
+      "Status": "Passed",
+      "Duration": 0.001566,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierPersistenceTests.TierSettlementCreditsIndependentMilestonesAndCannotReplay",
+      "Status": "Passed",
+      "Duration": 0.0810517,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierPersistenceTests.UnlockBoundaryAndSelectionAreEnforced",
+      "Status": "Passed",
+      "Duration": 0.0247427,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierSimulationTests.HigherTierScalesFirstEnemyHpWithoutChangingInk",
+      "Status": "Passed",
+      "Duration": 0.0005678,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierSimulationTests.InvalidTierRejected(0)",
+      "Status": "Passed",
+      "Duration": 0.0007882,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierSimulationTests.InvalidTierRejected(-1)",
+      "Status": "Passed",
+      "Duration": 0.0003905,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierSimulationTests.InvalidTierRejected(4)",
+      "Status": "Passed",
+      "Duration": 0.0003598,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierSimulationTests.LegacyRulesCannotEnterHigherTierOrNewRulesUseOldSchema",
+      "Status": "Passed",
+      "Duration": 0.0009888,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierSimulationTests.TierOneRetainsRulesSixExactBattleAndIncome",
+      "Status": "Passed",
+      "Duration": 0.0783212,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierSimulationTests.TierRoundTripPreservesExactFutureAndReward(1)",
+      "Status": "Passed",
+      "Duration": 0.1300968,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierSimulationTests.TierRoundTripPreservesExactFutureAndReward(2)",
+      "Status": "Passed",
+      "Duration": 0.0111641,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierSimulationTests.TierRoundTripPreservesExactFutureAndReward(3)",
+      "Status": "Passed",
+      "Duration": 0.0050248,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.TierSimulationTests.TierThreeLongRunHpRoundTripsBeyondLegacyBound",
+      "Status": "Passed",
+      "Duration": 0.0023407,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.WeaponTests.BleedCreatesOnlyOneFieldAndExpiresAtItsDeclaredTick",
+      "Status": "Passed",
+      "Duration": 0.002076,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.WeaponTests.BleedDamageTracksTipPressureAndDoesNotDoubleSpawnLegacyField",
+      "Status": "Passed",
+      "Duration": 0.0012179,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.WeaponTests.ExistingFieldPersistsAfterSwitchAndOnlyOldestTwoOverlap",
+      "Status": "Passed",
+      "Duration": 0.0004566,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.WeaponTests.FieldCapacityDropsNewFieldsWithoutUnboundedGrowth",
+      "Status": "Passed",
+      "Duration": 0.0010681,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.WeaponTests.IsolatedFastGeometryRewardsPointAtEqualUpgradeCost",
+      "Status": "Passed",
+      "Duration": 0.0004732,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.WeaponTests.PierceEqualProjectionUsesIdRatherThanInsertionOrder",
+      "Status": "Passed",
+      "Duration": 0.000278,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.WeaponTests.PierceHitsFirstThreeOnForwardLineButNotBehindSidewaysOrBeyondRange",
+      "Status": "Passed",
+      "Duration": 0.0006778,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.WeaponTests.PierceTradesSingleTargetDamageAndCooldownForRange",
+      "Status": "Passed",
+      "Duration": 0.0006807,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.WeaponTests.PiercingKillAwardsEachEnemyOnlyOnce",
+      "Status": "Passed",
+      "Duration": 0.0003254,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.WeaponTests.PointRemainsDefaultAndHitsOnlyOneTarget",
+      "Status": "Passed",
+      "Duration": 0.0003418,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.WeaponTests.SlowDenseGeometryRewardsPierceAndBleedAtEqualUpgradeCost",
+      "Status": "Passed",
+      "Duration": 0.0007089,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Bokumyaku.Tests.WeaponTests.WeaponChangesCannotResetCooldownOrChangeFinishedRun",
+      "Status": "Passed",
+      "Duration": 0.0008579,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

@@ -23,7 +23,7 @@ namespace Bokumyaku.Tests
         [Test] public void PurchaseAtNewBoundaryIsAtomicAndDoesNotChangeBattleGeneration()
         {
             Assert.AreEqual(2,MetaProgress.ResearchPriceVersion);
-            Assert.AreEqual(7,RunSimulator.CurrentRulesVersion);
+            Assert.AreEqual(8,RunSimulator.CurrentRulesVersion);
             var m=new MetaProgress{Damage=20,Crystals=2951};
             Assert.IsFalse(m.TryBuy(MetaUpgrade.Damage));Assert.AreEqual(20,m.Damage);Assert.AreEqual(2951,m.Crystals);
             m.Crystals++;Assert.IsTrue(m.TryBuy(MetaUpgrade.Damage));Assert.AreEqual(21,m.Damage);Assert.AreEqual(0,m.Crystals);Assert.AreEqual(3255,m.Cost(MetaUpgrade.Damage));

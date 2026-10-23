@@ -23,11 +23,11 @@ namespace Bokumyaku.Tests
         [Test] public void TierOneRetainsRulesSixExactBattleAndIncome()
         {
             var a=new RunSimulator(73); a.SetBuild(BuildPreset.Farming);
-            var old=a.CaptureState(); old.schemaVersion=2; old.rulesVersion=6; old.tier=0;
+            var old=a.CaptureState(); old.schemaVersion=2; old.rulesVersion=6; old.tier=0; Array.Resize(ref old.spawnedByType,5); Array.Resize(ref old.killedByType,5); Array.Resize(ref old.leakedByType,5);
             var b=RunSimulator.Restore(old);
             Assert.AreEqual(1,b.Tier); Assert.AreEqual(6,b.RulesVersion);
             for(int i=0;i<30000 && a.State==RunStatus.Running;i++) { a.Tick(); b.Tick(); }
-            var sa=a.CaptureState(); var sb=b.CaptureState(); sb.rulesVersion=7;
+            var sa=a.CaptureState(); var sb=b.CaptureState(); sb.rulesVersion=8; Array.Resize(ref sb.spawnedByType,7); Array.Resize(ref sb.killedByType,7); Array.Resize(ref sb.leakedByType,7);
             Assert.AreEqual(JsonUtility.ToJson(sa),JsonUtility.ToJson(sb));
         }
         [Test] public void HigherTierScalesFirstEnemyHpWithoutChangingInk()
@@ -48,7 +48,7 @@ namespace Bokumyaku.Tests
             typeof(EnemyState).GetProperty("Hp").SetValue(e,hp);
             typeof(EnemyState).GetProperty("MaxHp").SetValue(e,hp);
             Assert.AreEqual(hp,RunSimulator.Restore(r.CaptureState()).Enemies[0].Hp);
-            var old=r.CaptureState(); old.tier=1; old.rulesVersion=6;
+            var old=r.CaptureState(); old.tier=1; old.rulesVersion=6; Array.Resize(ref old.spawnedByType,5); Array.Resize(ref old.killedByType,5); Array.Resize(ref old.leakedByType,5);
             Assert.Throws<ArgumentException>(()=>RunSimulator.Restore(old));
         }
         [TestCase(0)] [TestCase(-1)] [TestCase(4)]

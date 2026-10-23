@@ -134,6 +134,23 @@ namespace Bokumyaku.Persistence
                 { throw new InvalidDataException("Campaign and backup are unreadable; no data was replaced.", new AggregateException(e, backup)); }
             }
         }
+        /// <summary>Generation 10 isolates rules8 enemy counters from older executables; schema4 stays unchanged.</summary>
+        public static CampaignProgress LoadTierLatest(string path, string previousV9, string previousV8, string previousV7, string previousV6, string previousV5, string previousV4, string previousV3, string olderV2, string legacyMetaPath, out string warning)
+        {
+            lock (Gate)
+            {
+                foreach (var source in new[] { previousV9, previousV8, previousV7, previousV6, previousV5, previousV4, previousV3, olderV2, legacyMetaPath })
+                    if (!string.IsNullOrEmpty(source)) Require(!string.Equals(Path.GetFullPath(path), Path.GetFullPath(source), StringComparison.OrdinalIgnoreCase), "Migration destination must differ from every source.");
+                if (File.Exists(path) || File.Exists(path + ".bak")) return ReadRecover(path, out warning);
+                if (!string.IsNullOrEmpty(previousV9) && (File.Exists(previousV9) || File.Exists(previousV9 + ".bak")))
+                {
+                    var c = ReadRecover(previousV9, out warning); Write(path, c);
+                    warning = "Previous campaign copied to generation10; old rules and all source files preserved. " + warning;
+                    return c;
+                }
+                return LoadTierLatest(path, previousV8, previousV7, previousV6, previousV5, previousV4, previousV3, olderV2, legacyMetaPath, out warning);
+            }
+        }
         /// <summary>Generation 9 is the only writable Tier campaign; all previous files stay untouched.</summary>
         public static CampaignProgress LoadTierLatest(string path, string previousV8, string previousV7, string previousV6, string previousV5, string previousV4, string previousV3, string olderV2, string legacyMetaPath, out string warning)
         {

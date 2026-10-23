@@ -66,6 +66,24 @@ namespace Bokumyaku.Presentation
                     }
                     radius=3;
                     break;
+                case EnemyKind.Leech:
+                    strokes.Add(Arc(48,48,13,17,0,360,24));
+                    for(int i=0;i<6;i++)
+                    {
+                        float a=i*Mathf.PI/3;
+                        var points=new Vector2[15];
+                        for(int j=0;j<points.Length;j++){float t=j/14f,angle=a+t*1.25f;float r=10+29*t;points[j]=new Vector2(48+Mathf.Cos(angle)*r,48+Mathf.Sin(angle)*r);}
+                        strokes.Add(Polyline(points,32));
+                    }
+                    radius=2.8f;break;
+                case EnemyKind.ShieldHalo:
+                    strokes.Add(Arc(48,48,13,16,0,360,24));
+                    for(int i=0;i<4;i++)
+                    {
+                        strokes.Add(Arc(48,48,31,31,i*90+8,i*90+76,18));
+                        float a=i*Mathf.PI/2;strokes.Add(Line(48+Mathf.Cos(a)*19,48+Mathf.Sin(a)*19,48+Mathf.Cos(a)*39,48+Mathf.Sin(a)*39,12));
+                    }
+                    radius=3.8f;break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(kind));
             }

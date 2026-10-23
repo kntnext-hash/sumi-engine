@@ -16,7 +16,7 @@ namespace Bokumyaku.Tests
         public void ExpandedDamageSavesAndStartsNewRun(int damage)
         {
             var c=CampaignSaveStore.Save(path,new CampaignProgress { Meta=new MetaProgress { Damage=damage } });string w;c=CampaignSaveStore.Load(path,out w);
-            Assert.AreEqual(damage,c.Meta.Damage);var live=new RunSimulator(42,c.Meta);Assert.AreEqual(7,live.RulesVersion);
+            Assert.AreEqual(damage,c.Meta.Damage);var live=new RunSimulator(42,c.Meta);Assert.AreEqual(8,live.RulesVersion);
             c=CampaignSaveStore.BeginRun(path,c,live);Assert.AreEqual(damage,c.ActiveRun.meta.Damage);
         }
         [Test] public void Damage101RejectsWithoutChangingExistingSave()

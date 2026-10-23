@@ -8,7 +8,7 @@ namespace Bokumyaku.Simulation
     public enum RunStatus { Running, Defeated, TestCompleted, CapacityExceeded }
     public enum UpgradeKind { Damage, Speed, Supply, Branch, Width, Bleed, Harvest }
     public enum GrowthPolicy { Balanced, Intercept, Focus }
-    public enum EnemyKind { Normal, Fast, Heavy, Splitter, Boss }
+    public enum EnemyKind { Normal, Fast, Heavy, Splitter, Boss, Leech, ShieldHalo }
     public enum MetaUpgrade { Damage, Supply, Growth, Harvest }
 
     [Serializable]
@@ -99,7 +99,7 @@ namespace Bokumyaku.Simulation
     public sealed partial class RunSimulator
     {
         public const int LegacyRulesVersion = 1;
-        public const int CurrentRulesVersion = 7;
+        public const int CurrentRulesVersion = 8;
         // Rounded legacy run cost at Damage30: ceil(10*1.16^30*(1+.008*30^2)).
         public const int DamageCostAt30 = 7040;
         public const int HarvestMaxLevel = 10;
@@ -127,7 +127,7 @@ namespace Bokumyaku.Simulation
         uint spawnRng, growthRng;
         int nextEnemyId, growthCount, repairCount, lastBossWave;
         double rewardPoints;
-        readonly int[] spawnedByType = new int[5], killedByType = new int[5], leakedByType = new int[5];
+        int[] spawnedByType = new int[7], killedByType = new int[7], leakedByType = new int[7];
         public int[] SpawnedByType { get { return (int[])spawnedByType.Clone(); } }
         public int[] KilledByType { get { return (int[])killedByType.Clone(); } }
         public int[] LeakedByType { get { return (int[])leakedByType.Clone(); } }
@@ -289,6 +289,12 @@ namespace Bokumyaku.Simulation
             {
                 var e = enemies[i]; double distance = Math.Sqrt(e.X * e.X + e.Y * e.Y);
                 double step = e.Speed / TickRate;
+                if (RulesVersion >= 8 && e.Kind == EnemyKind.Leech && distance <= 36 + step)
+                {
+                    if (distance > 36) { e.X *= 36 / distance; e.Y *= 36 / distance; }
+                    if (EnemyAbilityPhase(e) == 0) { CoreHp = Math.Max(0, CoreHp - 1); e.Hp = Math.Min(e.MaxHp, e.Hp + e.MaxHp * .10); }
+                    continue;
+                }
                 if (distance <= 12 + step) { CoreHp = Math.Max(0, CoreHp - (e.Kind == EnemyKind.Boss ? 4 : e.Kind == EnemyKind.Heavy ? 2 : 1)); Leaks++; leakedByType[(int)e.Kind]++; enemies.RemoveAt(i); }
                 else { e.X *= (distance - step) / distance; e.Y *= (distance - step) / distance; }
             }
@@ -351,20 +357,32 @@ namespace Bokumyaku.Simulation
             // Initial hypothesis: fast 25% from wave4, heavy 20% from wave8; otherwise normal.
             double roll = Random01(ref spawnRng), angle = Random01(ref spawnRng) * 2 * Math.PI;
             var kind = forced ?? (Wave >= 15 && roll >= .80 ? EnemyKind.Splitter : Wave >= 8 && roll < .20 ? EnemyKind.Heavy : Wave >= 4 && roll < (Wave >= 8 ? .45 : .25) ? EnemyKind.Fast : EnemyKind.Normal);
-            double hp = (RulesVersion >= 7 ? TierBalance.EnemyBaseHp(Tier, Wave) : BaseHp(Wave)) * (kind == EnemyKind.Boss ? 12 : kind == EnemyKind.Splitter ? .9 : kind == EnemyKind.Heavy ? 3.2 : kind == EnemyKind.Fast ? .65 : 1);
-            enemies.Add(new EnemyState { Id = ++nextEnemyId, Kind = kind, X = 360 * Math.Cos(angle), Y = 360 * Math.Sin(angle), Hp = hp, MaxHp = hp, SpawnWave = Wave, Speed = 35 * (RulesVersion>=5?EnemySpeedFactor(Wave):(1 + .006 * (Wave - 1))) * (kind == EnemyKind.Boss ? .55 : kind == EnemyKind.Heavy ? .65 : kind == EnemyKind.Fast ? 1.8 : 1) });
+            if (!forced.HasValue && RulesVersion >= 8 && Tier >= 2)
+            {
+                if (Wave >= 10 && roll >= .70 && roll < .80) kind = EnemyKind.ShieldHalo;
+                else if (Wave >= 6 && roll >= .60 && roll < .70) kind = EnemyKind.Leech;
+            }
+            double hp = (RulesVersion >= 7 ? TierBalance.EnemyBaseHp(Tier, Wave) : BaseHp(Wave)) * (kind == EnemyKind.Leech ? 1.4 : kind == EnemyKind.ShieldHalo ? 1.8 : kind == EnemyKind.Boss ? 12 : kind == EnemyKind.Splitter ? .9 : kind == EnemyKind.Heavy ? 3.2 : kind == EnemyKind.Fast ? .65 : 1);
+            enemies.Add(new EnemyState { Id = ++nextEnemyId, Kind = kind, X = 360 * Math.Cos(angle), Y = 360 * Math.Sin(angle), Hp = hp, MaxHp = hp, SpawnWave = Wave, Speed = 35 * (RulesVersion>=5?EnemySpeedFactor(Wave):(1 + .006 * (Wave - 1))) * (kind == EnemyKind.Leech ? .7 : kind == EnemyKind.ShieldHalo ? .8 : kind == EnemyKind.Boss ? .55 : kind == EnemyKind.Heavy ? .65 : kind == EnemyKind.Fast ? 1.8 : 1) });
             spawnedByType[(int)kind]++;
             return true;
         }
+        public int EnemyAbilityPhase(EnemyState enemy)
+        { return (int)((TickCount + enemy.Id * 17L) % (enemy.Kind == EnemyKind.Leech ? 90 : 120)); }
+        public bool IsShieldActive(EnemyState enemy)
+        { return enemy != null && RulesVersion >= 8 && enemy.Kind == EnemyKind.ShieldHalo && EnemyAbilityPhase(enemy) < 75; }
+        public bool IsLeechAttached(EnemyState enemy)
+        { return enemy != null && RulesVersion >= 8 && enemy.Kind == EnemyKind.Leech && enemy.X * enemy.X + enemy.Y * enemy.Y <= 36 * 36 + 1e-6; }
         void Hurt(EnemyState enemy, double damage)
         {
             if (enemy == null || enemy.Hp <= 0 || !enemies.Contains(enemy) || damage <= 0) return;
+            if (IsShieldActive(enemy)) damage *= .35;
             EffectiveDamage += Math.Min(enemy.Hp, damage); enemy.Hp -= damage;
             if (enemy.Hp > 0) return;
             Kills++; killedByType[(int)enemy.Kind]++; enemies.Remove(enemy);
             if (enemy.IsSplitChild) return;
             growthCharge++;
-            double yield = enemy.Kind == EnemyKind.Boss ? 12 : enemy.Kind == EnemyKind.Splitter ? 1.4 : enemy.Kind == EnemyKind.Heavy ? 2 : enemy.Kind == EnemyKind.Fast ? 1.1 : 1;
+            double yield = enemy.Kind == EnemyKind.Leech || enemy.Kind == EnemyKind.ShieldHalo ? 2 : enemy.Kind == EnemyKind.Boss ? 12 : enemy.Kind == EnemyKind.Splitter ? 1.4 : enemy.Kind == EnemyKind.Heavy ? 2 : enemy.Kind == EnemyKind.Fast ? 1.1 : 1;
             rewardPoints += yield * HarvestMultiplier;
             int reward = (int)Math.Round(4 * yield * (RulesVersion>=5?RewardWaveFactor(enemy.SpawnWave):(1 + .018 * enemy.SpawnWave)) * (1 + .03 * meta.Harvest), MidpointRounding.ToEven);
             RunInk += reward; IncomeEarned += reward;
