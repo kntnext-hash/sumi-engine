@@ -88,6 +88,7 @@ namespace Bokumyaku.Presentation
         readonly Color paper = new Color(.95f, .94f, .90f);
         static readonly string[] UpgradeNames = { "筆撃", "筆速", "流墨", "分岐", "筆幅", "滲み", "採墨" };
         static readonly string[] UpgradeNotes = { "一撃の威力を高める", "攻撃間隔を短くする", "末端へ分配する墨量を増やす", "成長できる末端数を増やす", "敵へ届く範囲を広げる", "着弾後も墨が敵を削る", "購入後の有効撃破で通常結晶を増やす" };
+        public static string UpgradeDescription(UpgradeKind kind) => UpgradeNames[(int)kind] + "\n" + UpgradeNotes[(int)kind];
         static readonly string[] MetaNames = { "祖墨", "深根", "生脈", "豊穣" };
         static readonly string[] MetaNotes = { "基礎攻撃力を永続強化", "基礎流墨を永続強化", "枝の成長を早める", "撃破で得る墨を増やす" };
         static readonly string[] BuildNames = { "手動", "採墨・周回", "供給・記録" };

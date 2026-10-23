@@ -54,6 +54,9 @@ namespace Bokumyaku.Presentation
         readonly TextMeshProUGUI[] extraLabels = new TextMeshProUGUI[2];
         GameObject extraPanel; TextMeshProUGUI extraToggleLabel; bool extraOpen;
         RunSimulator extraRun;
+        GameObject helpPanel;
+        TextMeshProUGUI helpCaption;
+        bool helpOpen;
         static readonly UpgradeKind[] ExtraKinds = { UpgradeKind.Bleed, UpgradeKind.Harvest };
         static readonly string[] ExtraNames = { "滲み", "採墨" };
         static readonly string[] Names = { "筆撃", "筆速", "流墨", "分岐", "筆幅" };
@@ -119,7 +122,7 @@ namespace Bokumyaku.Presentation
             }
             notice=Label(bottom.transform,"Notice",.015f,0,.985f,.12f,11,ivory);
             // A temporary popover keeps the five primary cards and footer controls reachable.
-            extraToggle=Button(safe,"ExtraUpgrades",.66f,.855f,.99f,.915f,"滲み・採墨",()=>{extraOpen=!extraOpen;Refresh();},out extraToggleLabel);
+            extraToggle=Button(safe,"ExtraUpgrades",.66f,.855f,.99f,.915f,"滲み・採墨",()=>{extraOpen=!extraOpen;helpOpen=false;Refresh();},out extraToggleLabel);
             var extra=Panel(safe,"ExtraUpgradePanel",.39f,.675f,.99f,.85f); extraPanel=extra.gameObject;
             extra.raycastTarget=true;
             for(int i=0;i<ExtraKinds.Length;i++)
@@ -129,6 +132,17 @@ namespace Bokumyaku.Presentation
                 extraCards[i]=Button(extra.transform,"Upgrade"+ExtraKinds[i],.03f,y,.97f,y+.46f,"",()=>{game.BuyUpgrade(ExtraKinds[slot]);Refresh();},out extraLabels[i]);
             }
             extraPanel.SetActive(false);
+            Button(safe,"UpgradeHelp",.01f,.855f,.35f,.915f,"強化説明",()=>{helpOpen=!helpOpen;extraOpen=false;Refresh();},out helpCaption);
+            var help=Panel(safe,"UpgradeHelpPanel",.03f,.32f,.97f,.85f);
+            helpPanel=help.gameObject; help.raycastTarget=true;
+            for(int i=0;i<7;i++)
+            {
+                float y=1-(i+1)/7f;
+                var description=Label(help.transform,"UpgradeDescription"+i,.03f,y,.97f,y+1/7f,17,ivory);
+                description.text=BokumyakuGame.UpgradeDescription((UpgradeKind)i);
+                description.textWrappingMode=TextWrappingModes.Normal;
+            }
+            helpPanel.SetActive(false);
             var veil=BokumyakuUiParts.Panel(safe,"ResultVeil",new Vector2(.06f,.42f),new Vector2(.94f,.69f),black); modal=veil.gameObject;
             result=Label(veil.transform,"Result",.04f,.43f,.96f,.96f,22,ivory);
             retry=Button(veil.transform,"Retry",.05f,.07f,.62f,.4f,"再出撃",()=>game.TryStartRun(unchecked(game.Run.Seed+1)),out retryLabel);
@@ -165,6 +179,7 @@ namespace Bokumyaku.Presentation
             if(lastSafe!=Screen.safeArea||lastWidth!=Screen.width||lastHeight!=Screen.height)RefreshSafeArea();
             canvas.enabled=game.Page==BokumyakuGame.GamePage.Battle;
             if(!canvas.enabled && extraOpen){extraOpen=false;extraPanel.SetActive(false);}
+            if(!canvas.enabled && helpOpen){helpOpen=false;helpPanel.SetActive(false);}
             if(canvas.enabled && Time.unscaledTime>=nextRefresh){nextRefresh=Time.unscaledTime+.1f;Refresh();}
         }
         static void Text(TextMeshProUGUI target,string value){if(target.text!=value)target.text=value;}
@@ -183,6 +198,9 @@ namespace Bokumyaku.Presentation
                 cards[i].interactable=!game.BattleStorageBlocked&&!game.AwaitingStart&&run.State==RunStatus.Running&&!max&&run.RunInk>=cost;
             }
             bool ended=run.State!=RunStatus.Running;
+            if(ended||game.AwaitingStart||run!=extraRun)helpOpen=false;
+            helpPanel.SetActive(helpOpen);
+            Text(helpCaption,helpOpen?"説明を閉じる":"強化説明");
             if(ended||game.AwaitingStart||run!=extraRun)extraOpen=false;
             extraRun=run;
             extraToggle.interactable=!ended&&!game.AwaitingStart&&!game.BattleStorageBlocked;
