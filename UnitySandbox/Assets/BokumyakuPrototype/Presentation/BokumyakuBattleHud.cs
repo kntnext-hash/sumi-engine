@@ -71,6 +71,7 @@ namespace Bokumyaku.Presentation
         bool helpOpen;
         GameObject toolsPanel;
         bool toolsOpen;
+        TextMeshProUGUI repairStatus;
         static readonly UpgradeKind[] ExtraKinds = { UpgradeKind.Bleed, UpgradeKind.Harvest };
         static readonly string[] ExtraNames = { "滲み", "採墨" };
         static readonly string[] Names = { "筆撃", "筆速", "流墨", "分岐", "筆幅" };
@@ -106,13 +107,25 @@ namespace Bokumyaku.Presentation
             crystals = Label(top.transform,"Crystals",.57f,.4f,.85f,1,17,gold);
             rank=Label(top.transform,"Brand",.24f,.02f,.84f,.4f,12,gold);
             Button(top.transform,"Pause",.86f,.1f,1,.9f,"Ⅱ",()=>game.SetPaused(!game.IsPaused),out pause);
-            repair=Button(bottom.transform,"Repair",0,.76f,.42f,1,"",()=>game.TryRepair(),out hp);
-            var track = BokumyakuUiParts.Panel(bottom.transform,"CoreTrack",new Vector2(.02f,.74f),new Vector2(.40f,.755f),new Color(.2f,.18f,.13f));
-            hpFill = BokumyakuUiParts.Panel(track.transform,"Fill",Vector2.zero,Vector2.one,gold);
-            Button(bottom.transform,"Speed",.43f,.75f,.60f,1,"×1",()=>game.SetSpeed(game.Speed==1?2:1),out speed);
-            Button(bottom.transform,"Auto",.60f,.75f,.81f,1,"自動",()=>game.SetAutoRepeat(!game.AutoRepeatEnabled),out auto);
             TextMeshProUGUI ignored;
-            Button(bottom.transform,"BattleTools",.81f,.75f,1,1,"操作",()=>{bool open=!(toolsOpen||helpOpen||extraOpen);CloseTools();toolsOpen=open;Refresh();},out ignored);
+            var gaugeArea=BokumyakuUiParts.Rect(bottom.transform,"CoreGaugeArea",new Vector2(0,.74f),new Vector2(.28f,1.16f));
+            repair=Button(gaugeArea,"Repair",0,0,1,1,"",()=>game.TryRepair(),out ignored);ignored.gameObject.SetActive(false);
+            var aspect=repair.gameObject.AddComponent<UnityEngine.UI.AspectRatioFitter>();
+            aspect.aspectMode=UnityEngine.UI.AspectRatioFitter.AspectMode.FitInParent;aspect.aspectRatio=1;
+            var gaugeFace=(UnityEngine.UI.Image)repair.targetGraphic;
+            gaugeFace.sprite=ringSprite;gaugeFace.type=UnityEngine.UI.Image.Type.Simple;gaugeFace.preserveAspect=true;gaugeFace.color=new Color(.32f,.25f,.14f);
+            var disc=BokumyakuUiParts.Rect(repair.transform,"InkBacking",new Vector2(.09f,.09f),new Vector2(.91f,.91f)).gameObject.AddComponent<Drawing.UiDiscGraphic>();
+            disc.color=black;disc.raycastTarget=false;
+            hpFill=BokumyakuUiParts.Panel(repair.transform,"CoreRingFill",Vector2.zero,Vector2.one,gold);
+            hpFill.sprite=ringSprite;hpFill.type=UnityEngine.UI.Image.Type.Filled;hpFill.fillMethod=UnityEngine.UI.Image.FillMethod.Radial360;
+            hpFill.fillOrigin=(int)UnityEngine.UI.Image.Origin360.Top;hpFill.fillClockwise=true;hpFill.preserveAspect=true;
+            Label(repair.transform,"CoreTitle",.18f,.74f,.82f,.92f,12,ivory).text="墨核";
+            hp=Label(repair.transform,"CoreValue",.14f,.24f,.86f,.76f,34,ivory);
+            Label(repair.transform,"CoreMaximum",.22f,.08f,.78f,.28f,13,ivory).text="/ 10";
+            repairStatus=Label(bottom.transform,"RepairStatus",.30f,.74f,.99f,.85f,12,ivory);
+            Button(bottom.transform,"Speed",.30f,.87f,.51f,1.10f,"×1",()=>game.SetSpeed(game.Speed==1?2:1),out speed);
+            Button(bottom.transform,"Auto",.51f,.87f,.77f,1.10f,"自動",()=>game.SetAutoRepeat(!game.AutoRepeatEnabled),out auto);
+            Button(bottom.transform,"BattleTools",.77f,.87f,1,1.10f,"操作",()=>{bool open=!(toolsOpen||helpOpen||extraOpen);CloseTools();toolsOpen=open;Refresh();},out ignored);
             for (int i=0;i<5;i++)
             {
                 int slot=i; cards[i]=Button(bottom.transform,"Upgrade"+i,i*.2f,.12f,(i+1)*.2f,.64f,"",()=>game.BuyUpgrade((UpgradeKind)slot),out ignored); ignored.gameObject.SetActive(false);
@@ -232,9 +245,13 @@ namespace Bokumyaku.Presentation
         void Refresh()
         {
             var run=game.Run;if(run==null)return;Text(rank,TierBalance.Get(run.Tier).DisplayName);
-            Text(wave,run.Wave.ToString());Text(ink,"墨 "+run.RunInk);Text(crystals,"結晶 "+game.Meta.Crystals);Text(hp,"墨核 "+run.CoreHp+" / 10\n"+(run.CoreHp>=10?"満タン":run.RepairCount>=5?"修復上限":"修復 墨 "+run.RepairCost));
+            Text(wave,run.Wave.ToString());Text(ink,"墨 "+run.RunInk);Text(crystals,"結晶 "+game.Meta.Crystals);Text(hp,run.CoreHp.ToString());
+            Text(repairStatus,run.CoreHp>=10?"墨核 満タン":run.RepairCount>=5?"修復上限":"核を押して修復  墨 "+run.RepairCost);
             repair.interactable=!game.BattleStorageBlocked&&!game.AwaitingStart&&run.State==RunStatus.Running&&run.CoreHp<10&&run.RepairCount<5&&run.RunInk>=run.RepairCost;
-            hpFill.rectTransform.anchorMax=new Vector2(Mathf.Clamp01(run.CoreHp/10f),1);
+            hpFill.fillAmount=Mathf.Clamp01(run.CoreHp/10f);
+            hp.color=run.CoreHp<=3?new Color(.95f,.36f,.24f):ivory;
+            hpFill.color=run.CoreHp<=3?new Color(.83f,.25f,.12f):gold;
+            repairStatus.color=repair.interactable?gold:ivory;
             Text(pause,game.IsPaused?"▶":"Ⅱ");Text(speed,"×"+game.Speed);Text(auto,game.AutoRepeatEnabled?"自動 入":"自動 切");Text(motion,game.ReducedMotion?"演出 弱":"演出 通常");Text(notice,game.BattleNotice);
             for(int i=0;i<5;i++)
             {

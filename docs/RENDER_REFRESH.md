@@ -205,3 +205,8 @@ UpgradeIconCheckで360×640/1080×2400、5種mapping/色/アスペクト/サイ�
 戦場上の強化説明/滲み・採墨を常設から外し、下部の操作ボタンから開くパネルへ集約。保存・ホーム・演出軽減も同パネルへ移す。常設は墨核/速度/自動/操作と5強化札。追加強化と説明は戻るで操作パネルへ戻り、操作ボタンでも閉じる。終了/新周回/ホーム移動でパネル状態を閉じる。シミュレーション/経済/保存形式/Runtime変更なし。
 BattleToolsCheck: 360×640と1080×2400各17回のEventSystem pointer click。実screen位置でRaycastAllの最前面が対象Buttonであることを確認。速度/自動/演出変更と復元、保存ファイル作成、説明/追加強化への遷移、閉じる/再開/ホーム復帰、可視TMPのglyph/overflow、戦闘snapshot不変を確認。フレーム進行314/278。通常/パネル画像をbattle-tools-*.pngへ保存、通常画面を目視。人工停止Wave5であり実機タッチ/動的性能検証ではない。
 初回は同一フレームで非アクティブUIを開閉してRaycast対象が未登録となった。フレームを分けるrunnerへ修正し、新しい隔離Playで再検証。実UIの重なり不具合とは判定していない。旧UpgradeHelpCheckの再クリックで閉じる手順は本変更で廃止、現操作の検証はBattleToolsCheckを使用する。検証後にPlay停止/QA設定復元済み。全EditMode/Windows再ビルド未実施。
+
+## 円形の墨核メーター（2026-10-24）
+長方形のHP表示を黒い円/大きな現在値/上限/金の残量リングへ変更。円を押す既存修復callbackは維持し、修復費用と案内は右側へ分離。HP3以下は数値とリングを朱へ変更。SUMI生成の既存ringをRadial360で再利用し、黒い下地はUiDiscGraphicの96分割meshで描く（追加Textureなし、Runtime変更なし）。
+CoreGaugeCheckで360×640/1080×2400を確認。隔離Play・停止Wave5にreflectionでHP/墨/修復回数の条件を作成。満タン/墨不足/5回上限は無効、HP3と墨103から画面座標raycast→pointerClickで修復しHP5/墨78/回数1。円形aspect、数値、残量、低HP色、可視TMP glyph/overflowを確認。core-gauge-*.json/png。両画像を目視。初案の数字overflowを領域修正、下地CanvasRenderer不足をRequireComponentで修正して再確認。
+1080でBattleToolsCheckを出力名gauge-toolsに替えた同内容のrunnerを再実行し、17入力・設定復元・保存・ホーム復帰・snapshot不変合格。gauge-tools-1080.json/png。ゲームの経済/保存形式/シミュレーションは変更していない。全EditMode/Windowsビルド/実機は今回未実施。Play停止とQA設定復元済み。
