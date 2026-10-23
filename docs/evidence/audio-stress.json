@@ -1,0 +1,10 @@
+{
+  "calls": 73200,
+  "emitted": 37,
+  "maximum": 4,
+  "wraps": 1,
+  "peak": 0.0387081355,
+  "playing": true,
+  "passed": true,
+  "method": "Seek to last second then sample loop wrap and mixer output; 100 attack requests per editor update. Not full 80s listening or real combat-event coverage."
+}
