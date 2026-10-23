@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "error": null,
+  "seen": [
+    "bgm_sumi_no_ma_80s",
+    "sfx_attack",
+    "sfx_click",
+    "sfx_core_hit",
+    "sfx_defeat",
+    "sfx_kill",
+    "sfx_purchase",
+    "sfx_research_complete"
+  ],
+  "missing": [],
+  "bought": true,
+  "researched": true,
+  "seconds": 69.536783799994737,
+  "tick": 4176,
+  "wave": 12,
+  "method": "Live 2x seed42 Manual run, one real upgrade, defeat settlement and research APIs; observe playing non-muted sources. Not subjective listening or physical touch."
+}
