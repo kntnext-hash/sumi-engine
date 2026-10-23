@@ -1,0 +1,11 @@
+{
+  "result": "Succeeded",
+  "bytes": 156374861,
+  "seconds": 112.67531659999999,
+  "errors": 0,
+  "warnings": 0,
+  "output": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\Builds\\Bokumyaku-stroke-v17\\Bokumyaku.exe",
+  "unity": "6000.3.26f1",
+  "source": "c84d9d8 one root stroke per frame plus HUD and leech flow",
+  "messages": []
+}

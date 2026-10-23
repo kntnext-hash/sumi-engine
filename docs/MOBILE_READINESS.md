@@ -15,3 +15,5 @@ AndroidReadinessCheckをUnity6000.3.26f1のEditorで実行。BuildPipeline.IsBui
 6. iPhone向けはmacOS/Xcodeのビルド・署名環境も確認する。Windowsの検証だけでiOS合格にしない。
 
 実機環境が整うまではPCで描画/操作/保存の改善を続ける。新リポジトリ作成やストア提出は行わない。
+
+追記: module refreshの照会は長時間無応答。PID30948のコマンド一致を確認して当該CLIのみ中止し、session46128の終了を確認。Editorには触れていない。モジュール取得/インストール成功ではない。端末種別の回答待ちとPC作業継続。

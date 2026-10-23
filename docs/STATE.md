@@ -8,15 +8,14 @@
 - 山水delivery-v5、敵の紙色細縁、周回/記録の構成ボタンを統合。商品完成は未達。
 
 ## 直近の結果
-- AndroidReadinessCheck: Android/SDK/NDK/JDK未導入、APK未作成。ゲーム起動時のみスマホ縦向き固定を追加、コンパイル合格。実機未検証。MOBILE_READINESS.md。端末種別を質問中。公式モジュール一覧取得session46128が応答待ち、再起動しない。
+- Windows stroke-v17: ビルド警告/エラー0、実寸540×960目視、6武器/自動周回/別プロセス復帰合格。根区間最大46.54ms、フレーム最大536.30msで性能未合格。通常Startとprobeの同フレーム複数Resetを切り分ける。詳細WINDOWS_RANK_CANDIDATE.md。
+- AndroidReadinessCheck: Android/SDK/NDK/JDK未導入、APK未作成。ゲーム起動時のみスマホ縦向き固定を追加、コンパイル合格。実機未検証。MOBILE_READINESS.md。端末種別を質問中。公式モジュール一覧取得は長時間無応答で照会プロセスのみ中止。インストール未開始。
 - 吸生に墨管6区間＋朱粒3個。1080×2400で目視、移動/軽減静止/撃破消去/リセット返却/snapshot不変を隔離Play確認。drain-flow.json/png。今回コンパイル＋対象Playのみ、実機負荷未検証。
 - 初期根35ストローク、通常枝1本/フレームへ分散。隔離Playで同フレーム予算と後続全描画、snapshot/全面初期化不変を確認。root-stroke-budget/branch-budget.json。seed42/900tickで変更前後の全画素墨量ハッシュ一致。root-pigment-before/after.json。細分化後の時間は未計測。
-- 検証区分: 今回は対象Windows検証。関連EditModeの直近結果265/265（defeat-notifications-editmode.json）、今回再実行なし。
-- 初週3seed: 初回6.11〜7.01分、初研究3周。一日1時間で一日目50〜57/一週85〜89Wave、研究18回。通常点墨/採墨、4周に1回円相/記録。購入54件中51件が2〜3周。二段未解放、二段以降収益/分未評価。
 - HUD墨パネルdelivery-v6を統合。360×640戦闘/ホーム目視、TMP overflowなし、Pause/Homeイベント・snapshot保持合格（hud-panel/home）。今回軽量Editor検証。音8素材統合済み、聴感/実機未検証。
 - 以前の詳細: archive/STATE_before_root_v16_2026-10-24.md。
 
 ## 次の一手
-1. 根1組の重さと開始直後の未説明停止を切り分け。初期描画を軽くしつつ筆跡を維持する。
+1. 通常Start/複数Resetの区別、墨テクスチャ再生成の削減。ストレス試験を保持して原因を切り分ける。
 2. 敵造形と演出の美術改善、HUDは1080×2400でも目視済み。スマホ実機タッチ/性能、音の聴感、二段以降収益/分も残件。
 3. 別リポジトリ化は計画のみ、実行はユーザー判断待ち。

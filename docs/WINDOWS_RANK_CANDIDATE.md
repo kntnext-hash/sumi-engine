@@ -43,3 +43,8 @@ root-v15はBuildPlayer成功だが未コンパイル変更警告1件。比較対
 表示Player540×960で6武器各900tick、自動周回、別プロセス復帰が合格。同Wave3の画像で根・HUDを確認。全区間平均16.92〜17.50ms、最大528.56ms。開始2秒以降の最大32.21〜40.39ms。
 RootFlourish最大66.62ms、DrawNewBranches最大66.63ms、PresentBattle53.50ms、SaveProgress27.29ms。入れ子なので加算禁止。Sweep528.56msとResonance493.39msは開始直後、GC回数差0、未描画枝4。GC停止と断定できず、初期根の分散で停止解消とは言えない。1組のCPU描画も依然重い。
 次は根の処理単位をさらに細かくする方法と初回GPU/リソース処理の切分けを検討。単に計測から開始直後を除いて合格にしない。今回対象Windows検証のみ。evidence/*root-v16.json/png、root-build-v15.jsonは警告記録として保管。
+
+## stroke-v17（2026-10-24）
+ビルド112.68秒、156,374,861bytes、警告/エラー0。実寸540×960で墨枠HUDを目視。6武器各900tick/自動周回/別プロセス復帰合格。全区間平均16.83〜17.41ms、最大536.30ms。開始2秒以降最大35.58〜42.46ms。RootFlourish最大46.54ms、DrawNewBranches46.55ms、保存25.74ms。前回根66.62msより低いが別実行のため厳密な因果比較ではない。Sweep536.30ms/Resonance506.65msはいずれも開始直後、GC差0。性能未合格。
+独立静的確認: probeは前武器末尾でReadPixels/Save/Reload、次武器先頭でAbandon/Startを描画yieldなしで続ける。ResetInkの同期時間はフレームタイマー開始前だが、GPUテクスチャDestroy/Create/Applyの遅延処理は後続へ残り得る。これは通常の1回開始より重いストレス条件。DirtyInkSurface.Clearは毎回GPUテクスチャを再生成し、InkBattleWorldもテクスチャID変更時に2枚のSpriteを作り直す。資源変動はコードで確認、500msの原因と確定はしない。
+次: 既存ストレス試験は保持し、通常Startとリセット回数・時間を別計測。テクスチャIDを保ったクリアを検討し、墨量/保存/部分更新の不変性を確認する。UI Canvasや描画待ちは現計測外。今回対象Windows検証のみ。evidence/*stroke-v17.json/png。
