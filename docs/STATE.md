@@ -13,6 +13,7 @@
 - 隔離セーブに試験結晶を付与して検証。Play停止、GameView復元済み。旧IMGUI用QAは使わずMenuMigrationCheck/ MenuInteractionCheckを使用。
 - 関連EditMode（Bokumyaku）213/213合格。evidence/menu-editmode.json。
 - ボスへ朱の筆輪を追加。人工5種80体/20描画でRenderer340固定、画像確認。軽量検証、自然Wave/実機性能ではない。
+- 初期体験27周を読み取り専用測定。Farming初回367〜421秒、祖墨は全構成1周購入で目標未達。OPENING_BASELINE.md。係数未変更。
 - 共通スクロールバー追加。軽量Playで1080×2400のScroll入力→研究最下段到達を確認。menu-scroll-check.json/png。実機ドラッグは未検証。
 
 ## 次の一手
