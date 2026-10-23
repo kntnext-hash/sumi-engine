@@ -1,0 +1,16 @@
+{
+  "result": "Succeeded",
+  "bytes": 135715213,
+  "seconds": 93.8767797,
+  "errors": 0,
+  "warnings": 1,
+  "output": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\Builds\\Bokumyaku-menu-v5\\Bokumyaku.exe",
+  "unity": "6000.3.26f1",
+  "source": "9a60b58",
+  "messages": [
+    {
+      "type": "Warning",
+      "content": "Assets\\BokumyakuPrototype\\Presentation\\BokumyakuGame.cs(79,27): warning CS0414: The field 'BokumyakuGame.abandonConfirmation' is assigned but its value is never used"
+    }
+  ]
+}

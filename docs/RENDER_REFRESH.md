@@ -104,3 +104,7 @@ Fiberの広い掠れ層を残し、同じ曲線へ半径10のPool層を追加。
 手順: 停止したclean sceneでMenuMigrationCheck.Font（必要時のみ）→Arm→MenuInteractionCheck.Run→evidence/menu-migration-check.jsonの完了確認→Play停止→BokumyakuInkCheck.Cleanup。旧PortraitCheck等のIMGUI reflection手順は今回のメニューには非対応。
 初期検証ではタイトル領域不足を修正。QA側もダイアログの描画フレームを待つよう修正した。フル検証・Windows再ビルド・スマホ実機はこの限定結果に含めない。
 関連EditModeフィルターBokumyakuは213/213合格（menu-editmode.json）。
+
+## Windowsメニュー統合ビルド v5
+source9a60b58。Builds/Bokumyaku-menu-v5/Bokumyaku.exe。成功/135715213bytes/93.88秒。CLIの30秒timeout後も同じEditorが完了したことをmenu-build-v5.jsonとEditor.logで確認し、重複起動しなかった。旧IMGUI用abandonConfirmation fieldのCS0414警告1件をソースから除去。ビルドは除去前、次回ビルドでwarning0を再確認する。
+Test-BokumyakuMenuPlayer.ps1による隔離Player試験: 6武器900tick/保存/自動周回passed=true、別プロセス復帰600tick一致passed=true。終了コードともに0、118.75秒/15.63秒。証拠bokumyaku-player[-resume/-launch]-menu-v5.jsonとartifact JSON。非表示起動のため画面目視/フレーム性能の証拠にしない。Editorの1080×2400画像は前節の限定証拠。配布Playerの目視とスマホ実機は引き続き未検証。

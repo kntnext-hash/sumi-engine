@@ -76,7 +76,7 @@ namespace Bokumyaku.Presentation
         int drawnBranches;
         bool rewarded;
         bool endHandled, rewardSaved;
-        bool loadBlocked, abandonConfirmation, storageFailed;
+        bool loadBlocked, storageFailed;
         float checkpointClock;
         readonly int[] observedLevels = new int[7];
         readonly float[] levelChangedAt = new float[7];
@@ -263,7 +263,7 @@ namespace Bokumyaku.Presentation
             try { ApplyCampaign(CampaignSaveStore.DiscardRun(SavePath, campaign)); }
             catch (Exception e) when (IsSaveException(e)) { SaveFailed(e); return false; }
             Run = new RunSimulator(InitialSeed, Meta); Run.SetBuild(SelectedBuild); Run.SetPolicy(SelectedPolicy); Run.SetWeapon(SelectedWeapon);
-            AwaitingStart = true; IsPaused = true; rewarded = endHandled = rewardSaved = false; abandonConfirmation = false;
+            AwaitingStart = true; IsPaused = true; rewarded = endHandled = rewardSaved = false;
             Page = GamePage.Home; ResetInk(); notice = "途中の周回を終了しました。報酬はありません。"; return true;
         }
         public bool BuyUpgrade(UpgradeKind kind)
