@@ -78,6 +78,40 @@ namespace Bokumyaku.Presentation
             return InkTextureBaker.Bake(Size, strokes, style, 4799);
         }
 
+        public static Texture2D CreateHudRing()
+        {
+            var style = Style(2.8f);
+            style.roughness = .55f;
+            return InkTextureBaker.Bake(Size, new List<InkPoint[]> {
+                Arc(48,48,39,38,12,350,56)
+            }, style, 5800);
+        }
+
+        public static Texture2D CreateUpgradeGlyph(int kind)
+        {
+            var strokes = new List<InkPoint[]>();
+            switch(kind)
+            {
+                case 0: // Three forceful strikes.
+                    for(int i=0;i<3;i++)strokes.Add(Line(18+i*20,20,34+i*20,76,18));
+                    break;
+                case 1: // Flowing acceleration spiral.
+                    var spiral=new InkPoint[64];
+                    for(int i=0;i<64;i++) { float t=i/63f,a=t*Mathf.PI*4,r=32*(1-t)+3; spiral[i]=Point(48+Mathf.Cos(a)*r,48+Mathf.Sin(a)*r,i,64); }
+                    strokes.Add(spiral);break;
+                case 2: // Supply flows down toward a reservoir.
+                    for(int i=0;i<3;i++)strokes.Add(Line(24+i*24,22,30+i*18,62,18));
+                    strokes.Add(Arc(48,58,27,16,0,180,24));break;
+                case 3: // A branching tree.
+                    strokes.Add(Line(48,80,48,20,24));
+                    for(int i=0;i<3;i++) { strokes.Add(Line(48,65-i*15,22-i*3,46-i*12,14)); strokes.Add(Line(48,65-i*15,74+i*3,46-i*12,14)); }break;
+                default: // Breadth, a broad sweeping brush.
+                    for(int i=0;i<3;i++)strokes.Add(Arc(48,52,27+i*5,16+i*7,20,220,24));break;
+            }
+            var style=Style(4);style.roughness=.45f;
+            return InkTextureBaker.Bake(Size,strokes,style,5810+kind);
+        }
+
         static InkBrushSettings Style(float radius)
         {
             var style = InkBrushSettings.Dense;

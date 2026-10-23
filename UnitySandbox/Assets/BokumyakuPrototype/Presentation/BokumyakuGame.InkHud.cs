@@ -20,15 +20,31 @@ namespace Bokumyaku.Presentation
    Fill(r,hudBlack);Fill(new Rect(r.x,r.y,r.width,1),hudGold);
    Fill(new Rect(r.x,r.yMax-1,r.width,1),hudGold);DrawArt(r,paperArt,.04f,ScaleMode.ScaleAndCrop);
   }
+  // Deterministic dry edges: no random state or per-frame texture allocations.
+  void DryEdge(Rect r,Color color,int seed)
+  {
+   int count=Mathf.CeilToInt(r.width/5);
+   for(int i=0;i<count;i++)
+   {
+    float x=r.x+r.width*i/count;
+    float size=5+(i*13+seed)%8;
+    InkStamp(burstInk,new Vector2(x,r.y+1),size,color);
+    InkStamp(burstInk,new Vector2(x,r.yMax-1),size,color);
+   }
+  }
   bool InkControl(Rect r,string value,bool selected=false)
   {
-   InkPanel(r);HudText(r,value,17,selected?hudGold:hudWhite);
+   Dot(r.center,22,hudBlack);
+   if(selected)InkStamp(lightHalo,r.center,65,new Color(1,.65f,.15f,.45f));
+   InkStamp(hudRing,r.center,53,selected?hudGold:new Color(.63f,.58f,.46f));
+   HudText(r,value,16,selected?hudGold:hudWhite);
    bool hit=GUI.Button(r,GUIContent.none,GUIStyle.none);if(hit)AudioClick();return hit;
   }
   void DrawBattleHud(float height)
   {
    InkPanel(new Rect(0,0,440,65));
-   Dot(new Vector2(48,48),44,hudBlack);InkStamp(coreInk,new Vector2(48,48),106,hudWhite);
+   DryEdge(new Rect(0,0,440,65),hudBlack,3);
+   Dot(new Vector2(48,48),44,hudBlack);InkStamp(hudRing,new Vector2(48,48),106,hudWhite);
    Fill(new Rect(20,15,56,20),hudBlack);
    HudText(new Rect(20,15,56,20),"WAVE",14,hudWhite);
    HudText(new Rect(8,30,80,42),Run.Wave.ToString(),38,new Color(.75f,.10f,.06f));
@@ -40,7 +56,10 @@ namespace Bokumyaku.Presentation
    if(InkControl(new Rect(385,9,47,46),IsPaused?"▶":"Ⅱ"))SetPaused(!IsPaused);
    float y=height-198;
    InkPanel(new Rect(0,y,440,198));
-   InkStamp(coreInk,new Vector2(43,y+34),85,hudGold);
+   DryEdge(new Rect(0,y,440,198),hudBlack,9);
+   InkStamp(lightHalo,new Vector2(43,y+34),100,new Color(1,.6f,.12f,.35f));
+   Dot(new Vector2(43,y+34),36,hudBlack);
+   InkStamp(hudRing,new Vector2(43,y+34),85,hudGold);
    Fill(new Rect(24,y+8,38,19),hudBlack);
    HudText(new Rect(24,y+8,38,19),"墨核",12,hudWhite);
    HudText(new Rect(10,y+27,66,28),Run.CoreHp+"/10",23,hudWhite);
@@ -56,12 +75,16 @@ namespace Bokumyaku.Presentation
     int level=Run.UpgradeLevels[i],cap=Run.UpgradeMaxLevel(kind),cost=Run.UpgradeCost(kind);
     bool available=!loadBlocked&&!storageFailed&&!AwaitingStart&&Run.State==Bokumyaku.Simulation.RunStatus.Running&&level<cap&&Run.RunInk>=cost;
     Rect card=new Rect(7+i*86,y+72,82,103);
-    Fill(card,new Color(.9f,.86f,.76f));DrawArt(card,paperArt,.9f,ScaleMode.ScaleAndCrop);
-    Fill(new Rect(card.x,card.y,82,2),hudGold);
+    Fill(new Rect(card.x+3,card.y+4,card.width,card.height),Color.black);
+    Fill(card,new Color(.83f,.78f,.65f));DrawArt(card,paperArt,.9f,ScaleMode.ScaleAndCrop);
+    Fill(new Rect(card.x+3,card.y+3,76,1),new Color(.98f,.91f,.73f,.7f));
+    DryEdge(card,new Color(.09f,.07f,.04f,.9f),i*7);
+    Fill(new Rect(card.x,card.y+3,2,97),new Color(.24f,.19f,.11f,.6f));
+    Fill(new Rect(card.xMax-2,card.y+3,2,97),new Color(.24f,.19f,.11f,.6f));
     Vector2 center=new Vector2(card.center.x,card.y+30);
-    Dot(center,27,hudBlack);InkStamp(coreInk,center,65,available?hudGold:hudWhite);
-    var symbol=i==0?slashInk:i==1?burstInk:i==2?coreInk:i==3?enemyInk[3]:slashInk;
-    InkStamp(symbol,center,43,hudWhite);
+    Dot(center,27,hudBlack);InkStamp(hudRing,center,65,available?hudGold:hudWhite);
+    if(available)InkStamp(lightHalo,center,62,new Color(1,.65f,.12f,.5f));
+    InkStamp(upgradeGlyphs[i],center,49,hudWhite);
     HudText(new Rect(card.x,card.y-17,82,16),"Lv."+level,11,hudGold);
     HudText(new Rect(card.x,card.y+58,82,22),UpgradeNames[i],15,ink);
     Fill(new Rect(card.x+5,card.y+82,72,18),hudBlack);
