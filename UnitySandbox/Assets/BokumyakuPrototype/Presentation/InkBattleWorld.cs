@@ -23,6 +23,7 @@ namespace Bokumyaku.Presentation
   readonly Texture2D coreLightTexture;
   readonly SpriteRenderer paper,landscape,upperInk,lowerInk,core,coreGlow,coreHeart,coreOrbit;
   readonly List<SpriteRenderer> tips=new List<SpriteRenderer>(),tipRings=new List<SpriteRenderer>();
+  int landscapeTier;
   Texture2D boundInk; RunSimulator boundRun; float halfHeight=7,freeze,shake,visualTime,nextStop;
   public int Deaths {get;private set;} public int HitFlashes {get;private set;} public int EffectsCreated {get;private set;}
   public int InterpolatedFrames {get;private set;} public int ActiveEnemies=>enemies.Count;
@@ -145,13 +146,23 @@ namespace Bokumyaku.Presentation
     case WeaponKind.Resonance: Spawn(slash,a,b,.24f,.3f,1,new Color(.22f,.12f,.025f,.95f));Spawn(ring,b,Vector2.zero,.3f,.6f,0,ink);break;
    }
   }
+  void ApplyLandscapeTier(int tier)
+  {
+   if(landscapeTier==tier)return;
+   landscapeTier=tier;
+   // Grade only static paper and scenery; keep black silhouettes and red/gold signals unchanged.
+   Color top=tier==2?new Color(.24f,.34f,.52f):tier==3?new Color(.78f,.32f,.23f):Color.white;
+   Color bottom=tier==2?new Color(.77f,.84f,.95f):tier==3?new Color(1f,.89f,.72f):Color.white;
+   block.Clear();block.SetColor("_WashTop",top);block.SetColor("_WashBottom",bottom);
+   paper.SetPropertyBlock(block);landscape.SetPropertyBlock(block);
+  }
   public void Render(RunSimulator run,Texture2D persistent,float alpha,bool paused,bool reduced,bool visible,Rect viewport)
   {
    root.SetActive(visible);if(!visible)return;if(boundRun!=run)Reset(run);
    camera.rect=viewport;halfHeight=5/(Screen.width*viewport.width/(Screen.height*viewport.height));camera.orthographicSize=halfHeight;
    float dt=paused?0:Mathf.Min(Time.unscaledDeltaTime,.1f);bool frozen=freeze>0&&!reduced;if(frozen){freeze-=dt;dt=0;}visualTime+=dt;material.SetFloat("_InkTime",visualTime);shake=Mathf.Max(0,shake-dt);
    camera.transform.localPosition=new Vector3(reduced?0:Mathf.Sin(visualTime*91)*shake*.35f,reduced?0:Mathf.Cos(visualTime*73)*shake*.3f,-10);
-   Size(paper,Vector2.zero,10,halfHeight*2);Size(landscape,Vector2.zero,10,halfHeight*2);landscape.color=new Color(1,1,1,.65f);
+   Size(paper,Vector2.zero,10,halfHeight*2);Size(landscape,Vector2.zero,10,halfHeight*2);landscape.color=new Color(1,1,1,.65f);ApplyLandscapeTier(run.Tier);
    if(boundInk!=persistent)
    {
     if(upperInk.sprite!=null){ownedSprites.Remove(upperInk.sprite);UnityEngine.Object.Destroy(upperInk.sprite);ownedSprites.Remove(lowerInk.sprite);UnityEngine.Object.Destroy(lowerInk.sprite);}

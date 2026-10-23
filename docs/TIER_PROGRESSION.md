@@ -35,3 +35,7 @@ TierBalanceCheck: 全3段位×Wave1〜100000で有限/単調増加、一段HPの
 - 関連EditMode230/230。旧rules6途中保存の900tick継続一致、各段位roundtrip、解放99/100、別段位への途中変更拒否、独立精算と二重受取防止を確認。
 - TierUiCheck: 1080×2400のuGUI callback、glyph/overflow、旧v8データ/音設定保持、二段出撃と保存復帰。tier-ui.json/png。人工解放fixtureであり収益/到達の評価ではない。
 - 新規ラベルを同梱TMPフォントへ追加。背景/新敵と段位別初週バランス、Windows/実機確認は後続。
+
+### 背景色調の実装
+2026-10-24: 紙/山水の2スプライトだけに上下グラデーション色調を適用。一段は白倍率で従来色、二段は青灰、三段は朱。低い位置は明るく保ち黒い枝の視認性を確保。背景画像の再生成/CPU全面更新は行わず、段位が変わる時だけPropertyBlockを設定する。
+TierLandscapeCheckで1080×2400/Wave10/seed42を3段位比較、shader errorなし、停止中snapshot不変。人工解放/研究20fixture、実機性能や自然育成到達は未評価。証拠tier-landscape-1〜3.json/png。

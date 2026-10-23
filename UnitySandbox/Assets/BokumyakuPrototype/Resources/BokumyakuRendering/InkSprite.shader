@@ -4,6 +4,8 @@ Shader "Bokumyaku/InkSprite"
     {
         [PerRendererData] _MainTex ("Ink silhouette", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
+        _WashTop ("Upper paper wash", Color) = (1,1,1,1)
+        _WashBottom ("Lower paper wash", Color) = (1,1,1,1)
         _Hit ("Impact flash", Range(0,1)) = 0
         _Dissolve ("Paper absorption", Range(0,1)) = 0
         _Wobble ("Ink breathing", Range(0,1)) = 0
@@ -24,6 +26,7 @@ Shader "Bokumyaku/InkSprite"
         SAMPLER(sampler_MainTex);
         CBUFFER_START(UnityPerMaterial)
             float4 _Color;
+            float4 _WashTop, _WashBottom;
             float _Hit;
             float _Dissolve;
             float _Wobble;
@@ -88,6 +91,7 @@ Shader "Bokumyaku/InkSprite"
             float coverage = lerp(1.0, erosion, saturate(death * 4.0));
             float inBounds = step(0.0, uv.x) * step(uv.x, 1.0) * step(0.0, uv.y) * step(uv.y, 1.0);
             ink *= input.color;
+            ink.rgb *= lerp(_WashBottom.rgb, _WashTop.rgb, smoothstep(0.30, 1.0, input.uv.y));
             ink.rgb = lerp(ink.rgb, half3(1,1,1), saturate(_Hit) * motion);
             ink.a *= coverage * (1.0 - death) * inBounds;
             return ink;
