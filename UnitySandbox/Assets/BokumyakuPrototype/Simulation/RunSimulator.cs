@@ -118,6 +118,8 @@ namespace Bokumyaku.Simulation
         readonly List<EnemyState> enemies = new List<EnemyState>();
         readonly List<BranchState> branches = new List<BranchState>();
         readonly List<AttackEvent> attacks = new List<AttackEvent>();
+        // Transient presentation notifications; excluded from saves and all battle decisions.
+        readonly List<EnemyState> defeatedThisTick = new List<EnemyState>();
         public const int FieldLimit = 96;
         readonly List<InkFieldState> fields = new List<InkFieldState>();
         uint spawnRng, growthRng;
@@ -155,6 +157,7 @@ namespace Bokumyaku.Simulation
         public IReadOnlyList<EnemyState> Enemies { get { return enemies.AsReadOnly(); } }
         public IReadOnlyList<BranchState> Branches { get { return branches.AsReadOnly(); } }
         public IReadOnlyList<AttackEvent> Attacks { get { return attacks.AsReadOnly(); } }
+        public IReadOnlyList<EnemyState> DefeatedThisTick { get { return defeatedThisTick.AsReadOnly(); } }
         public int TipCount { get { int count = 0; foreach (var b in branches) if (b.IsTip) count++; return count; } }
         public double RootSupply { get { return 12 * Math.Pow(1.09, levels[2]) * (1 + .035 * meta.Supply); } }
         public int Tier { get; }
@@ -268,7 +271,7 @@ namespace Bokumyaku.Simulation
         }
         public void Tick()
         {
-            attacks.Clear(); if (State != RunStatus.Running) return;
+            attacks.Clear(); defeatedThisTick.Clear(); if (State != RunStatus.Running) return;
             TickCount++; if (TickCount % 30 == 0) AutoBuy(); Wave = Math.Min(RunWaveLimit, (TickCount - 1) / 360 + 1);
             int phase = (TickCount - 1) % 360;
             if (phase == 0 && Wave % 10 == 0 && lastBossWave != Wave)
@@ -376,6 +379,7 @@ namespace Bokumyaku.Simulation
             EffectiveDamage += Math.Min(enemy.Hp, damage); enemy.Hp -= damage;
             if (enemy.Hp > 0) return;
             Kills++; killedByType[(int)enemy.Kind]++; enemies.Remove(enemy);
+            defeatedThisTick.Add(enemy);
             if (enemy.IsSplitChild) return;
             growthCharge++;
             double yield = enemy.Kind == EnemyKind.Leech || enemy.Kind == EnemyKind.ShieldHalo ? 2 : enemy.Kind == EnemyKind.Boss ? 12 : enemy.Kind == EnemyKind.Splitter ? 1.4 : enemy.Kind == EnemyKind.Heavy ? 2 : enemy.Kind == EnemyKind.Fast ? 1.1 : 1;

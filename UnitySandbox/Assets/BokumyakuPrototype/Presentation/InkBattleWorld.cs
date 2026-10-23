@@ -82,7 +82,7 @@ namespace Bokumyaku.Presentation
   public void AfterTick(RunSimulator run,bool reduced)
   {
    foreach(var old in before)if(beforeHp.TryGetValue(old.Id,out var hp)&&hp>old.Hp)ShowDamage(old,Math.Min(hp,hp-old.Hp));
-   foreach(var old in before)if(old.Hp<=0)
+   foreach(var old in run.DefeatedThisTick)
    {
     Deaths++;DeathMark?.Invoke(old);if(!reduced&&Time.unscaledTime>=nextStop){freeze=.045f;shake=.12f;nextStop=Time.unscaledTime+.18f;}
     if(enemies.TryGetValue(old.Id,out var v)){v.dying=true;v.death=0;v.current=new Vector2((float)old.X,(float)old.Y);}

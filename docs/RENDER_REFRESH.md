@@ -145,3 +145,8 @@ HUD余白修正: WAVE見出し/数値、強化レベル/修復/ゲージ/カー�
 InkSpriteに既定0の_PaperEdgeを追加。敵本体だけ.65を設定し、四近傍alpha差から1.25texel幅の淡い紙色の縁を作る。形状の穴/掠れを残し、既存UV揺らぎと消失coverageを共有する。追加SpriteやCPUテクスチャ更新はない。背景/攻撃/核の設定は0を維持。
 同じ夜Wave10・7種×3列＋ボス22体で前画像landscape-depth-2-denseと後画像enemy-edge-2-denseを目視比較。太い墨枝に重なる分裂種/ボスの外形が追いやすくなった。1080×2400、停止snapshot不変、シェーダーエラーなし。演出軽減ONで22敵のedge=.65、他Spriteのedge=0を確認（enemy-edge-properties.json）。
 検証は静止した人工配置と設定の検査。通常密集戦闘、消失アニメの実画面比較、GPU性能/スマホは未検証。四近傍サンプル追加の負荷は次の統合計測で確認する。シミュレーション/Runtimeは未変更、フルテストは再実行していない。
+
+## 分裂子の同tick撃破通知（2026-10-24）
+tick開始前にいた敵の差分だけでは、そのtick中に生成・撃破された分裂子の墨跡/飛沫を拾えなかった。RunSimulatorに保存対象外のDefeatedThisTickを追加し、Hurtで撃破確定時だけ記録、Tick冒頭で消去。描画AfterTickはこの通知を消費する。HP/報酬/乱数/保存形式/ルール版は変更なし。残HPの表示は従来差分方式。
+関連EditMode265/265合格。親と子2体の通知、再打撃の二重通知なし、次tick消去、Restoreで通知再生なしを追加。旧rules継続試験も合格。
+隔離Editor PlayでBeforeTickの後に分裂親を生成し、production Hurtで親と子2体を撃破。AfterTick後の撃破3/飛沫3、墨跡4096pxの部分更新、全面初期化増加なし。人工操作による接続検査で、自然プレイの遭遇動画や性能計測ではない。evidence/defeat-notifications-editmode.json、split-death-presentation.json、scripts/UnityAutomation~/SplitDeathCheck.cs。
