@@ -77,3 +77,6 @@ TheTowerSDKのREADME/LICENSE/NOTICEを読取。MIT表記に加えて由来別の
 
 ## 2026-10-24 武器別SE audio-v2
 art-source/audio-v2/generate_weapon_audio.pyで独自数値合成した6WAVをゲームResourcesへ統合。外部音源・旋律・サンプルは不使用。生成条件/検証値/SHA-256は同フォルダvalidation.json、詳細docs/AUDIO_DELIVERY.md。原本と配置先6ファイルのSHA-256一致を確認。NumPyは制作環境のみで製品には同梱しない。
+
+## delivery-v7 紙札
+art-source/delivery-v7/washi_card_07.pngをResources/BokumyakuArtへ同一SHA-256で統合。独自imagegen生成、参考画像の切抜きなし。プロンプト/修正版/alpha検査/由来は同README。1024×1536、主紙面alpha252〜254。SHA256 38EBF4C9BA45069E7BB74006A2C14C3434FD6E9BEC80585493A166274AF60D7C。

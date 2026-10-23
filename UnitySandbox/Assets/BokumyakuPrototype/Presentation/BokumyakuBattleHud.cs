@@ -95,6 +95,7 @@ namespace Bokumyaku.Presentation
             var ringSprite = SpriteFor(ring); var paperSprite = SpriteFor(paper);
             var brushFrameSprite = FrameSpriteFor(ring);
             var cardFrameSprite = Resources.Load<Sprite>("BokumyakuArt/card_ink_gold_04");
+            var filledCardSprite = Resources.Load<Sprite>("BokumyakuArt/washi_card_07");
             if (ringSprite != null) { var image = BokumyakuUiParts.Panel(top.transform,"WaveRing",new Vector2(0,-.2f),new Vector2(.22f,1),ivory); image.sprite = ringSprite; image.preserveAspect = true; }
             Label(top.transform,"WaveTitle",0,.59f,.22f,.88f,11,ivory).text = "WAVE";
             wave = Label(top.transform,"Wave",0,.02f,.22f,.60f,29,new Color(.8f,.12f,.08f));
@@ -114,15 +115,27 @@ namespace Bokumyaku.Presentation
             for (int i=0;i<5;i++)
             {
                 int slot=i; cards[i]=Button(bottom.transform,"Upgrade"+i,i*.2f,.12f,(i+1)*.2f,.64f,"",()=>game.BuyUpgrade((UpgradeKind)slot),out ignored); ignored.gameObject.SetActive(false);
-                var face=(UnityEngine.UI.Image)cards[i].targetGraphic; face.sprite=paperSprite; face.color=ivory;
+                var face=(UnityEngine.UI.Image)cards[i].targetGraphic;
+                face.sprite=filledCardSprite!=null?filledCardSprite:paperSprite;
+                face.color=filledCardSprite!=null?Color.white:ivory;
+                if(filledCardSprite!=null)
+                {
+                    face.type=UnityEngine.UI.Image.Type.Sliced;
+                    face.fillCenter=true;
+                    // At 360px wide, the 440px reference canvas gives approximately 12px side corners.
+                    face.pixelsPerUnitMultiplier=12.25f;
+                }
                 var cardColors=cards[i].colors; cardColors.disabledColor=new Color(.86f,.85f,.81f,1); cardColors.highlightedColor=new Color(1,1,.94f); cards[i].colors=cardColors;
                 // Keep the rectangular button hit area; the non-raycast brush frame is purely visual.
-                var edge=BokumyakuUiParts.Panel(cards[i].transform,"BrushEdge",Vector2.zero,Vector2.one,black);
-                edge.sprite=cardFrameSprite!=null?cardFrameSprite:brushFrameSprite;
-                edge.color=cardFrameSprite!=null?Color.white:black;
-                edge.type=UnityEngine.UI.Image.Type.Sliced;
-                edge.fillCenter=false;
-                edge.pixelsPerUnitMultiplier=cardFrameSprite!=null?13f:3.5f;
+                if(filledCardSprite==null)
+                {
+                    var edge=BokumyakuUiParts.Panel(cards[i].transform,"BrushEdge",Vector2.zero,Vector2.one,black);
+                    edge.sprite=cardFrameSprite!=null?cardFrameSprite:brushFrameSprite;
+                    edge.color=cardFrameSprite!=null?Color.white:black;
+                    edge.type=UnityEngine.UI.Image.Type.Sliced;
+                    edge.fillCenter=false;
+                    edge.pixelsPerUnitMultiplier=cardFrameSprite!=null?13f:3.5f;
+                }
                 var rim=BokumyakuUiParts.Panel(cards[i].transform,"GoldEmblemRim",new Vector2(.015f,.345f),new Vector2(.985f,.99f),new Color(.7f,.52f,.22f,.7f));
                 rim.sprite=ringSprite; rim.preserveAspect=true;
                 var emblem=BokumyakuUiParts.Panel(cards[i].transform,"Emblem",new Vector2(.04f,.35f),new Vector2(.96f,.98f),black); emblem.sprite=ringSprite; emblem.preserveAspect=true;

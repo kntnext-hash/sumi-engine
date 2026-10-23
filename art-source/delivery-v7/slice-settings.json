@@ -1,0 +1,12 @@
+{
+  "file": "washi_card_07.png",
+  "sourceSize": [1024,1536],
+  "borderLeftBottomRightTop": [180,220,180,220],
+  "imageType": "Sliced",
+  "fillCenter": true,
+  "tint": "white alpha 1; avoid inherited beige tint",
+  "previewCornerSize": [12,15],
+  "previewCanvasWidth": 360,
+  "previewSizes": [[68,96],[68,120],[136,160]],
+  "note": "Source-pixel borders; rescale after importer resizing. Paper is filled. Existing border-only overlay is not required."
+}

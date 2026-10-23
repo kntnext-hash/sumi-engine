@@ -174,3 +174,8 @@ root-stroke-budget.jsonで35/35と枝7/7完了、snapshot/全面初期化不変�
 DirtyInkSurface.Clearは透明GPUテンプレートから同形式CopyTextureで消去。目的テクスチャの破棄/再生成/全CPU配列アップロードを除去し、InkBattleWorldの墨Sprite再生成も避ける。テンプレートは初期化時1回作成、Disposeで解放。384×512 RGBA32でGPUメモリ約0.75MiB追加（管理上のサイズ、実機計測ではない）。通常筆描画は従来のdirty tile更新。ClearCountとFullInitializationsを分離。
 対象EditMode3/3合格。GPU全画素alphaをCPU墨量と比較し、非32倍寸法の端、未flush/未Endのストローク消去、3回の再利用、再描画後の部分更新と旧墨なしを確認。ink-reset-reuse-editmode.json。最初の非同期要求は結果なし・実TestRunner inactiveを確認し、同期1回で結果取得。ツールのrunning表示だけを実行証拠にしない。
 隔離Playの実AbandonRun/TryStartRunを3回実行し、テクスチャ/上下墨Spriteのidentity保持、FullInitializations=1を確認。ink-reset-reuse-play.json。今回対象EditMode＋隔離Play、Windowsフレーム時間は次回。500ms級停止が解消したとはまだ言わない。Runtime本体/シミュレーション/保存形式変更なし。
+
+## 白和紙カードdelivery-v7（2026-10-24）
+主強化カード5枚を白和紙の塗り面付きSpriteへ差替え。Sliced/Fill Center/白tint、border180/220/180/220、PPU multiplier12.25。従来のBrushEdgeは新素材がある場合生成しない。素材がない場合は旧表示へfallback。既存アイコン/名称/価格/ボタン領域・購入処理を保持。
+隔離Editorで360×640と1080×2400を目視、5枚の素材と二重枠なし、零墨で無効、1800tickの収益後に購入callbackでレベル+1、TMP overflowなしを確認。evidence/paper-card-360/1080.json/png。撮影は描画開始直後なので枝全体の完成画像としては使わない。UI検証でありスマホ物理タップ・Windows収録・性能未確認。旧CardFrameCheck/HudPanelCheckの枠枚数検査は旧素材向けであり現行カードにはPaperCardCheckを使用。
+生成元/alpha/原本はart-source/delivery-v7/README.md。紙面の白さは改善したが、参考画像の装飾/アイコン/戦場密度への改善は継続。

@@ -1,0 +1,22 @@
+{
+  "file": "washi_card_07.png",
+  "width": 1024,
+  "height": 1536,
+  "format": "Format32bppArgb",
+  "bytes": 2501859,
+  "alphaZero": 200061,
+  "alphaPartial": 1372803,
+  "alphaOpaque": 0,
+  "bounds": [
+    0,
+    2,
+    1013,
+    1519
+  ],
+  "centerAlpha": 253,
+  "sliceCenterNonzeroAlpha": 727744,
+  "sliceCenterMinAlpha": 250,
+  "sliceCenterMaxAlpha": 254,
+  "sliceCenterMaxRgbChannel": 253,
+  "sha256": "41561A8F115A084F71C9AC4038A96EE5E5B1D6A61952B0BB03BF90916D2AD242"
+}
