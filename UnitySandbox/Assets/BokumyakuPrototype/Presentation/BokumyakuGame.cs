@@ -224,7 +224,7 @@ namespace Bokumyaku.Presentation
             return texture;
         }
         public void StartRun(int seed) { TryStartRun(seed); }
-        public bool TryStartRun(int seed) { return BeginRun(seed, 1); }
+        public bool TryStartRun(int seed) { return BeginRun(seed, Speed); }
         bool BeginRun(int seed, int speed)
         {
             autoRepeat.Cancel();

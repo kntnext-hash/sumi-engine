@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "slotSpeed": 2,
+  "startSpeed": 2,
+  "reloadSpeed": 2,
+  "normalStartSpeed": 1,
+  "method": "Isolated Editor Play API check; not physical input or Player build"
+}
