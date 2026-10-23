@@ -53,3 +53,7 @@ python art-source/audio/generate_audio.py
 2. BGMを3周（4分）連続再生。80秒/160秒の継ぎ目にクリック・音量段差・空白がないか確認。
 3. 実戦で攻撃/撃破を密集発音させ、通知が聞こえるか、ミックスが割れないか確認。音量・同時数を調整。
 4. ヘッドホンとスマホスピーカーの両方で低音依存、mono合成、ミュート復帰を確認。長時間疲労評価は別途30分以上の周回で行う。
+
+## ゲーム統合 2026-10-23
+Resources/BokumyakuAudioに8WAVを導入。BGM loopと音量ランプ、クリック/購入/研究/攻撃/撃破/核被弾/敗北を接続。攻撃80ms/撃破100ms、共有4voice。ホーム上部に全体/BGM/効果音の段階音量と消音を追加。設定はキャンペーンとは別のSavePath.audio.jsonへ一時ファイル経由で保存。既存Listenerがなければ自身が所有するListenerを追加し終了時破棄。
+限定検証: Unityコンパイル、360×640設定画面、8clip読込、BGM再生sample進行、全sourceの消音状態、音量/消音の保存再読込、Listener1を確認。初回はListener0で不合格、修正後合格。evidence/audio-integration.json、audio-settings.png。実スピーカー聴感、BGM3周、全SE発火、高負荷同時音、実機/圧縮後ループは未検証。Play停止/GameView復元済み。再現はInkCheck.Arm→AudioCheck.Run→結果JSON→停止→InkCheck.Cleanup。

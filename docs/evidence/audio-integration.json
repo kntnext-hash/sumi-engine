@@ -1,0 +1,10 @@
+{
+  "loaded": 8,
+  "advancing": true,
+  "silent": true,
+  "stored": true,
+  "listeners": 1,
+  "MusicPlaying": true,
+  "passed": true,
+  "method": "Unity playback state/sample clock and mute/settings inspection, not audible speaker or subjective listening test"
+}

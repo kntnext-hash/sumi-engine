@@ -269,7 +269,7 @@ namespace Bokumyaku.Presentation
             if (Run == null || AwaitingStart || loadBlocked || storageFailed) return false;
             bool bought = Run.TryBuy(kind);
             notice = bought ? UpgradeNames[(int)kind] + "を強化しました。" : "墨が不足、または強化上限に達しています。";
-            if (bought) ObserveUpgrades();
+            if (bought) { ObserveUpgrades(); AudioPurchase(); }
             return bought;
         }
         public bool TryRepair()
@@ -277,7 +277,7 @@ namespace Bokumyaku.Presentation
             if (Run == null || AwaitingStart || Run.State != RunStatus.Running || loadBlocked || storageFailed) return false;
             bool repaired = Run.TryRepair();
             notice = repaired ? "核を修復しました。" : "墨不足・修復上限・核の状態を確認してください。";
-            if (repaired) SaveProgress();
+            if (repaired) { SaveProgress(); AudioPurchase(); }
             return repaired;
         }
         public bool BuyMeta(MetaUpgrade kind)
@@ -287,7 +287,7 @@ namespace Bokumyaku.Presentation
             if (!proposed.TryBuy(kind)) { notice = "結晶が不足、または研究上限に達しています。"; return false; }
             try { ApplyCampaign(CampaignSaveStore.SaveMeta(SavePath, campaign, proposed)); }
             catch (Exception e) when (IsSaveException(e)) { SaveFailed(e); return false; }
-            notice = "研究完了。次の周回から反映します。"; ProgressChanged?.Invoke(); return true;
+            AudioResearch(); notice = "研究完了。次の周回から反映します。"; ProgressChanged?.Invoke(); return true;
         }
         public void SetSpeed(int speed) { Speed = Mathf.Clamp(speed, 1, 2); }
         public void SetPaused(bool paused)
@@ -369,6 +369,7 @@ namespace Bokumyaku.Presentation
                 tickClock -= 1f / RunSimulator.TickRate;
                 WatchEnemies();
                 Run.Tick();
+                if (Run.Attacks.Count > 0) AudioAttack();
                 ObserveDefeats();
                 foreach (var hit in Run.Attacks)
                 {
@@ -678,7 +679,7 @@ namespace Bokumyaku.Presentation
             Rect viewport = new Rect(x, y, w, panel.yMax - y - footerHeight);
             float contentWidth = w - 20;
             // The battlefield and pause/speed controls stay visible while the upgrade list scrolls.
-            float contentHeight = Page == GamePage.Research ? 348 : Page == GamePage.Records ? 180 + (campaign == null ? 0 : campaign.History.Count) * 62 : 1182;
+            float contentHeight = Page == GamePage.Research ? 348 : Page == GamePage.Records ? 180 + (campaign == null ? 0 : campaign.History.Count) * 62 : 1402;
             panelScroll = GUI.BeginScrollView(viewport, panelScroll, new Rect(0, 0, contentWidth, contentHeight), false, true);
             try { if (Page == GamePage.Records) DrawRecords(contentWidth); else DrawUpgradeContent(contentWidth); }
             finally { GUI.EndScrollView(); }
@@ -709,6 +710,7 @@ namespace Bokumyaku.Presentation
             }
             else
             {
+                DrawAudioControls(w); y += 220;
                 GUI.Label(new Rect(0, y, w, 26), "武器  ／  投資方針とは独立", heading); y += 30;
                 for (int i = 0; i < 6; i++)
                     if (WeaponButton(new Rect((bw + 8) * (i % 3), y + 78 * (i / 3), bw, 74), i)) SetWeapon((WeaponKind)i);
@@ -790,6 +792,7 @@ namespace Bokumyaku.Presentation
             Color before = GUI.backgroundColor;
             GUI.backgroundColor = selected ? new Color(.82f, .72f, .51f) : new Color(.89f, .88f, .83f);
             bool clicked = GUI.Button(rect, label, button);
+            if (clicked) AudioClick();
             GUI.backgroundColor = before;
             return clicked;
         }
@@ -846,6 +849,7 @@ namespace Bokumyaku.Presentation
         }
         void OnDestroy()
         {
+            ReleaseAudio();
             ReleaseInkMotifs();
             autoRepeat.Cancel();
             if (disc != null) Destroy(disc);
