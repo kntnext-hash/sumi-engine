@@ -32,3 +32,10 @@ Unity6000.3.26f1コンパイル、360×640の実表示、フレームとtick進�
 - 研究/記録からボタンによる復帰2/2でBattle・再開・詳細非表示を確認。記録は空、研究購入は対象外。現在Console error0/warning0、compilationFailed=false（CLI履歴には古いwarn2あり）。全テスト/ビルド/実機は対象外。
 - 証拠: evidence/readability-{Point,Pierce,Bleed,Sweep,Enso,Resonance}.png、readability-six-weapons.json、portrait-{Research,Records}.png、portrait-return-check.json。
 - 再現: 停止した保存済みBokumyakuシーンでInkCheck.Arm→ReadabilityCheck.Run（JSON完了を待つ）→PortraitReturnCheck.Run（JSON完了を待つ）→Play停止→InkCheck.Cleanup。各クラスのスクリプトはscripts/UnityAutomation~/。通常の保存先を使わない。
+
+## 2026-10-23 コントラスト改善
+- 攻撃マスクの筆半径7→10、表示枠を点墨14→30/貫筆38→60/払い24→38/共鳴20→38へ変更。透明余白込みの表示寸法であり実線幅ではない。寿命0.2秒は維持し、alphaを平方根減衰にして序盤の濃さを保つ。払い/滲墨の不透明度も強化。
+- 敵の形を拡大し朱の中心に明点を追加。核は墨輪の内側に金の筆輪と明点。SUMI生成画像の再利用を維持。戦闘判定/数値/保存/Runtimeは変更なし。
+- 限定確認: Unity6000.3.26f1のコンパイル、360×640、seed42を6000tickに加速後の全6武器で10フレーム進行と攻撃発生。contrast-six-weapons.jsonとcontrast-{武器名}.png。現在Console error0/warning0、コンパイル失敗なし（CLI履歴warn3）。全テスト/ビルド/実機性能は対象外。
+- 別途5種計40体を隔離セーブの停止中ランへ人工配置し目視（contrast-density.png/json）。核の金と敵の朱、種類の形は区別できるが、敵とHP線が重なる箇所あり。性能や自然プレイの密集到達を証明する試験ではない。
+- 再現: InkCheck.Arm→ContrastCheck.Run完了→DensityCheck.Run→Play停止→InkCheck.Cleanup。スクリプトはscripts/UnityAutomation~/。通常セーブには触れない。旧readability画像は比較用に保持。

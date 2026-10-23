@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "weapon": "Point",
+      "attackVisible": true,
+      "frames": 10,
+      "Wave": 17,
+      "activeAttacks": 5
+    },
+    {
+      "weapon": "Pierce",
+      "attackVisible": true,
+      "frames": 10,
+      "Wave": 17,
+      "activeAttacks": 3
+    },
+    {
+      "weapon": "Bleed",
+      "attackVisible": true,
+      "frames": 10,
+      "Wave": 17,
+      "activeAttacks": 1
+    },
+    {
+      "weapon": "Sweep",
+      "attackVisible": true,
+      "frames": 10,
+      "Wave": 17,
+      "activeAttacks": 5
+    },
+    {
+      "weapon": "Enso",
+      "attackVisible": true,
+      "frames": 10,
+      "Wave": 17,
+      "activeAttacks": 6
+    },
+    {
+      "weapon": "Resonance",
+      "attackVisible": true,
+      "frames": 10,
+      "Wave": 17,
+      "activeAttacks": 2
+    }
+  ],
+  "method": "Short live samples after accelerated seed42 fixture; not balance/full regression/device test"
+}
