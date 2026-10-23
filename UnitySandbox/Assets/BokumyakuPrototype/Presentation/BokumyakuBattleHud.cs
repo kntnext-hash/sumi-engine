@@ -80,14 +80,14 @@ namespace Bokumyaku.Presentation
             var ringSprite = SpriteFor(ring); var paperSprite = SpriteFor(paper);
             var brushFrameSprite = FrameSpriteFor(ring);
             if (ringSprite != null) { var image = BokumyakuUiParts.Panel(top.transform,"WaveRing",new Vector2(0,-.2f),new Vector2(.22f,1),ivory); image.sprite = ringSprite; image.preserveAspect = true; }
-            Label(top.transform,"WaveTitle",0,.64f,.22f,1,12,ivory).text = "WAVE";
-            wave = Label(top.transform,"Wave",0,.02f,.22f,.72f,32,new Color(.8f,.12f,.08f));
+            Label(top.transform,"WaveTitle",0,.59f,.22f,.88f,11,ivory).text = "WAVE";
+            wave = Label(top.transform,"Wave",0,.02f,.22f,.60f,29,new Color(.8f,.12f,.08f));
             ink = Label(top.transform,"Ink",.23f,.4f,.57f,1,21,ivory);
             crystals = Label(top.transform,"Crystals",.57f,.4f,.85f,1,17,gold);
             Label(top.transform,"Brand",.24f,.02f,.84f,.4f,12,gold).text = "墨脈 — BOKUMYAKU";
             Button(top.transform,"Pause",.86f,.1f,1,.9f,"Ⅱ",()=>game.SetPaused(!game.IsPaused),out pause);
-            repair=Button(bottom.transform,"Repair",0,.73f,.22f,1,"",()=>game.TryRepair(),out hp);
-            var track = BokumyakuUiParts.Panel(bottom.transform,"CoreTrack",new Vector2(.02f,.7f),new Vector2(.2f,.73f),new Color(.2f,.18f,.13f));
+            repair=Button(bottom.transform,"Repair",0,.76f,.22f,1,"",()=>game.TryRepair(),out hp);
+            var track = BokumyakuUiParts.Panel(bottom.transform,"CoreTrack",new Vector2(.02f,.74f),new Vector2(.2f,.755f),new Color(.2f,.18f,.13f));
             hpFill = BokumyakuUiParts.Panel(track.transform,"Fill",Vector2.zero,Vector2.one,gold);
             Button(bottom.transform,"Speed",.23f,.75f,.38f,1,"×1",()=>game.SetSpeed(game.Speed==1?2:1),out speed);
             Button(bottom.transform,"Auto",.38f,.75f,.54f,1,"自動",()=>game.SetAutoRepeat(!game.AutoRepeatEnabled),out auto);
@@ -97,7 +97,7 @@ namespace Bokumyaku.Presentation
             Button(bottom.transform,"ReducedMotion",.84f,.75f,1,1,"演出",()=>game.SetReducedMotion(!game.ReducedMotion),out motion);
             for (int i=0;i<5;i++)
             {
-                int slot=i; cards[i]=Button(bottom.transform,"Upgrade"+i,i*.2f,.12f,(i+1)*.2f,.68f,"",()=>game.BuyUpgrade((UpgradeKind)slot),out ignored); ignored.gameObject.SetActive(false);
+                int slot=i; cards[i]=Button(bottom.transform,"Upgrade"+i,i*.2f,.12f,(i+1)*.2f,.64f,"",()=>game.BuyUpgrade((UpgradeKind)slot),out ignored); ignored.gameObject.SetActive(false);
                 var face=(UnityEngine.UI.Image)cards[i].targetGraphic; face.sprite=paperSprite; face.color=ivory;
                 var cardColors=cards[i].colors; cardColors.disabledColor=new Color(.86f,.85f,.81f,1); cardColors.highlightedColor=new Color(1,1,.94f); cards[i].colors=cardColors;
                 // Keep the rectangular button hit area; the non-raycast brush frame is purely visual.
@@ -115,7 +115,7 @@ namespace Bokumyaku.Presentation
                 cardCosts[i].rectTransform.offsetMax=new Vector2(-1,0);
                 cardCosts[i].fontSizeMin=11;
                 cardCosts[i].fontStyle=FontStyles.Bold;
-                cardLevels[i]=Label(bottom.transform,"Level"+i,i*.2f,.67f,(i+1)*.2f,.77f,11,gold);
+                cardLevels[i]=Label(bottom.transform,"Level"+i,i*.2f,.65f,(i+1)*.2f,.73f,11,gold);
             }
             notice=Label(bottom.transform,"Notice",.015f,0,.985f,.12f,11,ivory);
             // A temporary popover keeps the five primary cards and footer controls reachable.
