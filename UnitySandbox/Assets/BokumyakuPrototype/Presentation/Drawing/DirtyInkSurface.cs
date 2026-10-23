@@ -12,7 +12,7 @@ namespace Bokumyaku.Presentation.Drawing
     {
         public const int TileSize = 32;
         readonly SumiEngineCore core;
-        readonly Texture2D[] staging;
+        readonly Texture2D staging;
         readonly Texture2D clearTemplate;
         readonly bool[] dirty;
         readonly Color32[] tilePixels = new Color32[TileSize * TileSize];
@@ -39,15 +39,7 @@ namespace Bokumyaku.Presentation.Drawing
             columns = (width + TileSize - 1) / TileSize;
             rows = (height + TileSize - 1) / TileSize;
             dirty = new bool[columns * rows];
-            // Each destination tile owns a source: avoid rewriting a source immediately
-            // after CopyTexture has queued a read of it within the same Flush.
-            staging = new Texture2D[columns * rows];
-            for (int i = 0; i < staging.Length; i++)
-            {
-                staging[i] = NewTexture(TileSize, TileSize, "SUMI dirty tile staging " + i);
-                staging[i].SetPixels32(tilePixels);
-                staging[i].Apply(false, false);
-            }
+            staging = NewTexture(TileSize, TileSize, "SUMI dirty tile staging");
             clearTemplate = NewTexture(width, height, "SUMI transparent reset template");
             clearTemplate.SetPixels32(new Color32[width * height]);
             clearTemplate.Apply(false, true);
@@ -138,10 +130,9 @@ namespace Bokumyaku.Presentation.Drawing
                     byte alpha = (byte)Mathf.RoundToInt(255f * (1f - Mathf.Exp(-2.5f * pigment)));
                     tilePixels[y * TileSize + x] = new Color32(255, 255, 255, alpha);
                 }
-                var source = staging[index];
-                using (BattleTiming.Measure("InkTile.SetPixels")) source.SetPixels32(tilePixels);
-                using (BattleTiming.Measure("InkTile.Apply")) source.Apply(false, false);
-                using (BattleTiming.Measure("InkTile.Copy")) Graphics.CopyTexture(source, 0, 0, 0, 0, w, h, Texture, 0, 0, px, py);
+                using (BattleTiming.Measure("InkTile.SetPixels")) staging.SetPixels32(tilePixels);
+                using (BattleTiming.Measure("InkTile.Apply")) staging.Apply(false, false);
+                using (BattleTiming.Measure("InkTile.Copy")) Graphics.CopyTexture(staging, 0, 0, 0, 0, w, h, Texture, 0, 0, px, py);
                 dirty[index] = false;
                 PendingTiles--;
                 DirtyUploads++;
@@ -181,7 +172,7 @@ namespace Bokumyaku.Presentation.Drawing
         {
             if (disposed) return;
             disposed = true;
-            Destroy(Texture); foreach (var source in staging) Destroy(source); Destroy(clearTemplate);
+            Destroy(Texture); Destroy(staging); Destroy(clearTemplate);
         }
     }
 }

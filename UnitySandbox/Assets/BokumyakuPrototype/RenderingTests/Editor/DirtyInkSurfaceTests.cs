@@ -90,15 +90,13 @@ namespace Bokumyaku.Drawing.Tests
         }
 
         [Test]
-        public void ConsecutiveFlushesPreserveGpuPigmentAndReuseTileSources()
+        public void ConsecutiveFlushesPreserveGpuPigmentAndReuseStagingSource()
         {
             if (!DirtyInkSurface.IsSupported) Assert.Ignore("GPU region copy unavailable.");
             using (var surface = new DirtyInkSurface(143, 137))
             {
                 var field = typeof(DirtyInkSurface).GetField("staging", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-                var sources = (Texture2D[])field.GetValue(surface);
-                Assert.AreEqual(25, sources.Length);
-                var identities = (Texture2D[])sources.Clone();
+                var source = (Texture2D)field.GetValue(surface);
                 var brush = InkBrushSettings.Dense; brush.radius = 5;
                 for (int pass = 0; pass < 2; pass++)
                 {
@@ -111,7 +109,7 @@ namespace Bokumyaku.Drawing.Tests
                     }
                     AssertGpuMatchesPigment(surface);
                     surface.Clear();
-                    for (int i = 0; i < sources.Length; i++) Assert.AreSame(identities[i], ((Texture2D[])field.GetValue(surface))[i]);
+                    Assert.AreSame(source, field.GetValue(surface));
                 }
                 Assert.AreEqual(1, surface.FullInitializations);
                 AssertGpuMatchesPigment(surface);

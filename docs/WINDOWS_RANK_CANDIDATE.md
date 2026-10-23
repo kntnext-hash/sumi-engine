@@ -88,3 +88,9 @@ frame3542→3543の559msに対して、frame3543 InkFlush522.93ms、RootFlourish
 白和紙カード入り計測版を67秒未満（66.11秒）、162,852,637bytes、警告/エラー0でビルド。Direct描画をログ確認、6武器/SE/周回/別プロセス復帰合格。540×960で白いカード/戦場を目視。平均16.87〜17.46ms、最大560.94ms、欠落0。InkTile.Applyがframe3544で517.35ms、frame5301で513.10ms。長い同期待機をTexture2D.Apply内に確認。SetPixels/Copyが10ms未満だったことはゼロコストを意味しない。evidence/*tile-direct-v23.*。
 これを受け、1枚を同じFlush内で繰返し上書きする転送元を、宛先タイルごとの固定Texture2Dへ変更する比較候補を実装。384×512で192枚、画素容量CPU/GPU各0.75MiB（管理費別）、従来の各4KiBより増加。構築時だけ確保、Clear時再利用、Disposeで全解放。跨フレーム依存は残るため改善保証なし。
 対象EditMode4/4（5.15秒）合格。連続Flush間にreadbackを挟まず最後にGPU alphaをCPU基準と±1で比較、端のクリップ/部分更新/リセットも合格。RGBA完全一致やWindows性能の合格ではない。tile-staging-editmode.json。次に同じWindows Direct条件で比較し、悪化/改善不明なら候補を再評価する。Runtime/シミュレーション不変。
+
+## staging-direct-v24: 候補不採用（2026-10-24）
+タイル別固定転送元の比較。ビルド62.77秒、162,853,149bytes、警告/エラー0。Direct描画、6武器/SE/周回/別プロセス復帰合格、欠落0。平均16.88〜17.51ms、最大561.31ms。Point frame14のInkTile.Apply517.37ms。直前v23最大560.94ms/Apply517.35msと同程度の停止が残り、メモリ増加に見合う改善を確認できなかった。
+タイル別192枚案は不採用として1枚の転送元へ戻した。API別計測とreadbackを挟まない連続Flushテストは保持。戻した状態で関連EditMode4/4（5.32秒）合格。GPU alpha±1、部分更新、端コピー、Clear後source再利用を確認。Runtime/シミュレーション不変。evidence/staging-rejection-editmode.json。
+次候補は、固定サイズの小さな転送アトラスへ複数dirty tileを詰め、Apply呼出し回数を減らす方式。宛先は部分コピーを維持し、全キャンバスCPU再生成はしない。まだ未実装。Unity公式はApplyの前に更新をまとめることを推奨するが、500ms問題を解消する保証ではない: https://docs.unity3d.com/jp/2019.1/ScriptReference/Texture2D.Apply.html 。SetPixelData等もApplyが必要で単純な置換では転送待機を回避できない: https://docs.unity3d.com/cn/6000.0/ScriptReference/Texture2D.SetPixelData.html 。
+今回対象Windows比較＋関連EditMode。性能未合格。evidence/*staging-direct-v24.*。
