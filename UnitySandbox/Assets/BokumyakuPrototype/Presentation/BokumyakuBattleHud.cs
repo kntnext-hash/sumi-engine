@@ -33,6 +33,17 @@ namespace Bokumyaku.Presentation
             var image = Rect(parent, name, min, max, inset).gameObject.AddComponent<UnityEngine.UI.Image>();
             image.color = color; image.raycastTarget = false; return image;
         }
+        public static RectTransform RoundPlate(Transform parent,string name,Vector2 min,Vector2 max,Sprite rim,Color rimColor)
+        {
+            var area=Rect(parent,name+"Area",min,max);
+            var plate=Panel(area,name,Vector2.zero,Vector2.one,rimColor);
+            plate.sprite=rim;plate.preserveAspect=true;
+            var aspect=plate.gameObject.AddComponent<UnityEngine.UI.AspectRatioFitter>();
+            aspect.aspectMode=UnityEngine.UI.AspectRatioFitter.AspectMode.FitInParent;aspect.aspectRatio=1;
+            var disc=Rect(plate.transform,"InkBacking",new Vector2(.09f,.09f),new Vector2(.91f,.91f)).gameObject.AddComponent<Drawing.UiDiscGraphic>();
+            disc.color=new Color(.025f,.023f,.02f,1);disc.raycastTarget=false;
+            return plate.rectTransform;
+        }
         public static TextMeshProUGUI Label(Transform parent, string name, TMP_FontAsset font, Vector2 min, Vector2 max, float size, Color color)
         {
             var t = Rect(parent, name, min, max, 2).gameObject.AddComponent<TextMeshProUGUI>();
@@ -95,18 +106,30 @@ namespace Bokumyaku.Presentation
             font=Resources.Load<TMP_FontAsset>("BokumyakuFonts/BattleJapanese");
             if(font==null)throw new InvalidOperationException("Bundled Japanese font is missing.");
             safe = BokumyakuUiParts.Rect(transform,"SafeArea",Vector2.zero,Vector2.one);
-            var top = Panel(safe,"Header",0,.92f,1,1); var bottom = Panel(safe,"Footer",0,0,1,.30f);
+            var top = BokumyakuUiParts.Rect(safe,"Header",new Vector2(0,.92f),Vector2.one); var bottom = Panel(safe,"Footer",0,0,1,.30f);
             var ringSprite = SpriteFor(ring); var paperSprite = SpriteFor(paper);
             var brushFrameSprite = FrameSpriteFor(ring);
             var cardFrameSprite = Resources.Load<Sprite>("BokumyakuArt/card_ink_gold_04");
             var filledCardSprite = Resources.Load<Sprite>("BokumyakuArt/washi_card_07");
-            if (ringSprite != null) { var image = BokumyakuUiParts.Panel(top.transform,"WaveRing",new Vector2(0,-.2f),new Vector2(.22f,1),ivory); image.sprite = ringSprite; image.preserveAspect = true; }
-            Label(top.transform,"WaveTitle",0,.59f,.22f,.88f,11,ivory).text = "WAVE";
-            wave = Label(top.transform,"Wave",0,.02f,.22f,.60f,29,new Color(.8f,.12f,.08f));
-            ink = Label(top.transform,"Ink",.23f,.4f,.57f,1,21,ivory);
-            crystals = Label(top.transform,"Crystals",.57f,.4f,.85f,1,17,gold);
-            rank=Label(top.transform,"Brand",.24f,.02f,.84f,.4f,12,gold);
-            Button(top.transform,"Pause",.86f,.1f,1,.9f,"Ⅱ",()=>game.SetPaused(!game.IsPaused),out pause);
+            var wavePlate=BokumyakuUiParts.RoundPlate(top,"WaveRing",new Vector2(0,-.35f),new Vector2(.24f,1),ringSprite,ivory);
+            Label(wavePlate,"WaveTitle",.16f,.68f,.84f,.90f,11,ivory).text="WAVE";
+            wave=Label(wavePlate,"Wave",.10f,.16f,.90f,.72f,34,new Color(.85f,.14f,.09f));wave.fontSizeMin=12;
+            var resources=Panel(top,"ResourcePlate",.25f,.38f,.85f,.98f);
+            BokumyakuUiParts.Panel(resources.transform,"InkBacking",Vector2.zero,Vector2.one,black,1);
+            var inkTitle=Label(resources.transform,"InkTitle",.02f,.60f,.49f,.98f,10,gold);inkTitle.text="墨";
+            var crystalTitle=Label(resources.transform,"CrystalTitle",.51f,.60f,.98f,.98f,10,gold);crystalTitle.text="結晶";
+            inkTitle.rectTransform.offsetMin=inkTitle.rectTransform.offsetMax=Vector2.zero;
+            crystalTitle.rectTransform.offsetMin=crystalTitle.rectTransform.offsetMax=Vector2.zero;
+            ink=Label(resources.transform,"Ink",.02f,.03f,.49f,.67f,21,ivory);ink.fontSizeMin=10;
+            crystals=Label(resources.transform,"Crystals",.51f,.03f,.98f,.67f,21,ivory);crystals.fontSizeMin=10;
+            var rankPlate=Panel(top,"RankPlate",.25f,.01f,.85f,.37f);
+            BokumyakuUiParts.Panel(rankPlate.transform,"InkBacking",Vector2.zero,Vector2.one,black,1);
+            rank=Label(rankPlate.transform,"Brand",.02f,0,.98f,1,12,gold);
+            var pausePlate=BokumyakuUiParts.RoundPlate(top,"Pause",new Vector2(.86f,.06f),new Vector2(1,.98f),ringSprite,ivory);
+            var pauseImage=pausePlate.GetComponent<UnityEngine.UI.Image>();pauseImage.raycastTarget=true;
+            var pauseButton=pausePlate.gameObject.AddComponent<UnityEngine.UI.Button>();pauseButton.targetGraphic=pauseImage;
+            pauseButton.onClick.AddListener(()=>game.SetPaused(!game.IsPaused));
+            pause=Label(pausePlate,"Caption",.14f,.12f,.86f,.88f,24,ivory);pause.text="Ⅱ";
             TextMeshProUGUI ignored;
             var gaugeArea=BokumyakuUiParts.Rect(bottom.transform,"CoreGaugeArea",new Vector2(0,.74f),new Vector2(.28f,1.16f));
             repair=Button(gaugeArea,"Repair",0,0,1,1,"",()=>game.TryRepair(),out ignored);ignored.gameObject.SetActive(false);
@@ -245,7 +268,7 @@ namespace Bokumyaku.Presentation
         void Refresh()
         {
             var run=game.Run;if(run==null)return;Text(rank,TierBalance.Get(run.Tier).DisplayName);
-            Text(wave,run.Wave.ToString());Text(ink,"墨 "+run.RunInk);Text(crystals,"結晶 "+game.Meta.Crystals);Text(hp,run.CoreHp.ToString());
+            Text(wave,run.Wave.ToString());Text(ink,run.RunInk.ToString("N0"));Text(crystals,game.Meta.Crystals.ToString("N0"));Text(hp,run.CoreHp.ToString());
             Text(repairStatus,run.CoreHp>=10?"墨核 満タン":run.RepairCount>=5?"修復上限":"核を押して修復  墨 "+run.RepairCost);
             repair.interactable=!game.BattleStorageBlocked&&!game.AwaitingStart&&run.State==RunStatus.Running&&run.CoreHp<10&&run.RepairCount<5&&run.RunInk>=run.RepairCost;
             hpFill.fillAmount=Mathf.Clamp01(run.CoreHp/10f);

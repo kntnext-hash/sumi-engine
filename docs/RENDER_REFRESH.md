@@ -210,3 +210,8 @@ BattleToolsCheck: 360×640と1080×2400各17回のEventSystem pointer click。�
 長方形のHP表示を黒い円/大きな現在値/上限/金の残量リングへ変更。円を押す既存修復callbackは維持し、修復費用と案内は右側へ分離。HP3以下は数値とリングを朱へ変更。SUMI生成の既存ringをRadial360で再利用し、黒い下地はUiDiscGraphicの96分割meshで描く（追加Textureなし、Runtime変更なし）。
 CoreGaugeCheckで360×640/1080×2400を確認。隔離Play・停止Wave5にreflectionでHP/墨/修復回数の条件を作成。満タン/墨不足/5回上限は無効、HP3と墨103から画面座標raycast→pointerClickで修復しHP5/墨78/回数1。円形aspect、数値、残量、低HP色、可視TMP glyph/overflowを確認。core-gauge-*.json/png。両画像を目視。初案の数字overflowを領域修正、下地CanvasRenderer不足をRequireComponentで修正して再確認。
 1080でBattleToolsCheckを出力名gauge-toolsに替えた同内容のrunnerを再実行し、17入力・設定復元・保存・ホーム復帰・snapshot不変合格。gauge-tools-1080.json/png。ゲームの経済/保存形式/シミュレーションは変更していない。全EditMode/Windowsビルド/実機は今回未実施。Play停止とQA設定復元済み。
+
+## 上部HUDの情報分離（2026-10-24）
+全面の横長黒帯を外し、Waveと一時停止を円形部品、墨/結晶を見出しと数値、段位を別帯へ分離。数値はN0で桁区切りし、省略なし。RoundPlateは共通部品で黒円にUiDiscGraphicを再利用。薄いサイズで筆枠の透明部分へ文字が出たため、資源/段位の墨下地を補った。現時点では円の筆縁と長方形帯が参考より単調で、質感完成とはしない。
+HeaderCheckで360×640/1080×2400の通常Wave5と人工Wave100000/墨・結晶2147483647を表示。全可視TMPのglyph/overflow、実座標raycastによるPause/Resume callbackを確認。人工数値は元値へ戻しsnapshot一致を検証。通常/最大値のheader-*.png、結果header-normal-*.json。360の最大値/1080通常画像を目視。長期バランス/自然到達を検証したものではない。初回はInkTitleの縦余白によるoverflowを修正。全テスト/Windows/実機は未実施、Play停止と隔離QA設定復元済み。
+素材室へdelivery-v9（金/墨の透明円相枠1案）を依頼済み。共有コードを触らせずart-source内で制作する。
