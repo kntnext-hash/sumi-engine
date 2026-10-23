@@ -1,0 +1,11 @@
+{
+  "result": "Succeeded",
+  "bytes": 150020397,
+  "seconds": 110.4710186,
+  "errors": 0,
+  "warnings": 0,
+  "output": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\Builds\\Bokumyaku-rank-v12\\Bokumyaku.exe",
+  "unity": "6000.3.26f1",
+  "source": "8babca2 plus frame measurement diagnostics",
+  "messages": []
+}
