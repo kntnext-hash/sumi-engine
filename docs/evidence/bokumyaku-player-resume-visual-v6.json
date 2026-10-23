@@ -1,0 +1,18 @@
+{
+    "version": "6000.3.26f1",
+    "error": "",
+    "passed": true,
+    "startFrame": 2,
+    "endFrame": 56490,
+    "runs": [],
+    "autoRepeatPassed": false,
+    "autoRepeatSeed": 0,
+    "completedRuns": 0,
+    "loadedArtCount": 0,
+    "overlayTransparentPixels": 0,
+    "overlayInkPixels": 0,
+    "sessionCrystals": 0,
+    "autoRepeatMethod": "",
+    "checkpointResumePassed": true,
+    "separateProcessResume": true
+}

@@ -1,0 +1,19 @@
+{
+  "file": "button_ink_frame_03.png",
+  "width": 2172,
+  "height": 724,
+  "format": "Format32bppArgb",
+  "bytes": 328912,
+  "alphaZero": 1392042,
+  "alphaPartial": 180418,
+  "alphaOpaque": 68,
+  "bounds": [
+    62,
+    37,
+    2109,
+    651
+  ],
+  "centerAlpha": 0,
+  "sliceCenterNonzeroAlpha": 164,
+  "sha256": "E2B77E2D7688A8D255EA53A17FFD935DFB3090F454C373B134C8A1C6A44BE1A5"
+}

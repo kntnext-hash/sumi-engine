@@ -111,3 +111,9 @@ Test-BokumyakuMenuPlayer.ps1による隔離Player試験: 6武器900tick/保存/�
 
 ## メニュースクロール表示
 ホーム/研究/記録の共通ScrollRectに金色のScrollbarを追加。内容が収まる場合はAutoHide、本文と重ならない専用幅を確保。1080×2400の隔離PlayでscrollHandler入力を送信し、normalizedPosition 1→0、研究4番目の購入ボタンがViewport内に入ることを確認。menu-scroll-check.json、menu-scroll-research.pngを目視。軽量検証であり実機タッチ/指ドラッグ・フル検証ではない。手順MenuMigrationCheck.Arm→MenuScrollCheck.Run→停止→BokumyakuInkCheck.Cleanup。
+
+## 2026-10-23 分業の追加納品・Player画像取得
+素材室からdelivery-v3/button_ink_frame_03.png（透明横長筆枠）を受領。九分割previewを本室でも確認。未統合。音室のmobile_auditでmono合成と30分40秒のPCM反復を検査し、既存WAVハッシュ不変。BGM全体mono低下0.045dB、聴感/実機は未検証。各納品書参照。
+PlayerProbeに明示的 --bokumyaku-capture-screens を追加。通常起動は変わらず、QAセーブでのみホーム/戦闘を撮影。v6ビルドは67.98秒/135716237bytes/error0/warning0。予約delayCallは開始されず、idleを確認して直接Runで実行した。CLIは30秒timeout、Editor側の完成レポートで成功を確認。
+非表示Playerのキャプチャは黒一色で不合格。ファイル生成だけで画面表示成功とは扱わない。player-home-v6.png / player-battle-v6.pngは失敗証拠。表示可能な環境での配布画面検証が必要。
+v6機能試験は両プロセスexit0/passed=true（116.83秒/15.65秒）。6武器/自動周回/別プロセス復帰は合格、画像は別判定で不合格。

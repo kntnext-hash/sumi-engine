@@ -35,3 +35,37 @@
 
 ## 統合担当の採用確認（2026-10-23）
 縦戦場用として採用。Resources/BokumyakuArt/へ原本をコピーし、TextureImporterでmipmap無効/readable無効/Clamp/最大2048に設定。横画面とホームは既存背景を維持。360×640の隔離Play、seed42を7000tickへ加速してWave20の実画面を確認。中央の余白が広がり黒墨/朱/金を識別。証拠docs/evidence/portrait-background-v2.png。複数画面比率・実機・性能は未検証。攻撃筆跡の位置整合は別途精査する。
+
+# 素材納品 — delivery-v3 / 横長ボタン筆枠
+
+2026-10-23 JST。候補1点、新規生成1回、修正0回。既存素材の置換なし。
+
+## 原本と由来
+
+- [button_ink_frame_03.png](../art-source/delivery-v3/button_ink_frame_03.png): **2172×724、3:1、PNG RGBA、328,912 bytes**。目標1536×512とは寸法不一致、比率一致。原本はリサイズ/画素編集せず保持。
+- SHA256: `E2B77E2D7688A8D255EA53A17FFD935DFB3090F454C373B134C8A1C6A44BE1A5`
+- imagegenスキル、built-in image_gen.imagegen、transparent_background=true。モデル番号はツール非公開。[全文プロンプト](../art-source/delivery-v3/PROMPT.txt)。
+- 生成元 `$CODEX_HOME/generated_images/01a16134-e305-7543-954d-eb9c2c8c17c7/exec-1db98a5d-f4a9-4c49-a106-85aa90985d78.png`。
+- menu-home-1080x2400.pngとmenu-scroll-research.pngを目視。以前の参考ビジュアルの掠れ・筆端を方向として、新規の横長構図を生成。画像を生成ツールへ入力していない。写真/ロゴ/文字/ゲーム素材の切抜きなし、第三者素材の直接取込みなし。
+
+## 形と検査
+
+円相を引き伸ばす構造から、近水平の上下線と短い左右線、筆の入り/払いを持つ柔らかな四隅へ変更。文字・アイコン・和紙・塗り背景なし。主な掠れは長辺に沿い、筆端の変化は端へ集めた。黒/炭色の枠で、金色への着色結果は未検証。
+
+[検査JSON](../art-source/delivery-v3/inspection-final.json)、[再実行スクリプト](../art-source/delivery-v3/Inspect-Asset.ps1)。全画素走査: alpha=0が1,392,042、半透明180,418、不透明68。中央1画素alpha=0。a>0の外接範囲x62..2109/y37..651で原本端に接触なし。
+
+九分割の中央領域x300..1871/y240..483は383,568画素中164画素に微小なalphaが残るため、中央全域が完全透明とは扱わない。**uGUI Image.fillCenter=false**を推奨し、中央セルを描画しない。文字用の中央を透明として使う場合はこの設定が必要。
+
+[九分割検査表示](../art-source/delivery-v3/nine-slice-preview.png): 生成原本を明るい背景に重ね、原比率と240×80、560×80、800×64を目視。四隅の形と辺の接続は維持、不要文字/紙背景は認めず。800×64では内側が狭くなる。これはSystem.Drawingの検査合成でUnity実表示ではない。初回プレビュー生成はPathInfoの型変換で失敗、文字だけの画像を不合格とし、文字列パスへ修正して再生成した。
+
+## 統合用の初期値
+
+[設定JSON](../art-source/delivery-v3/slice-settings.json)。原本ピクセルで **Border L=300 / B=240 / R=300 / T=240**、Image.Type=Sliced、Fill Center=false。import時に縮小する場合はBorderも同率に換算する。検査表示の固定隅幅36px/高さ29px、通常ボタンはこの隅尺度で高さ80px以上を推奨。実際のCanvas尺度・Pixels Per Unitに合わせて調整が必要。
+
+枠は装飾用でありタップ判定/ラベル余白を定義しない。元画像に外余白があるため実線はRectTransform端から内側へ入る。背景色面を別に置く場合、元の不透明な矩形色面が残ると矩形感も残るため、枠だけの差替えではその問題は解消しない。ボタンの色面と文字位置は統合側で合わせる。
+
+## 限界・受渡し
+
+候補納品。Unity import/実9-slice/1080×2400のホーム・研究操作/実機は未実施。黒背景上の黒枠は識別できないため色の組合せは統合時に確認。最終採用・商用権利の保証はしていない。
+
+書込みはart-source/delivery-v3/と本書への追記のみ。ゲームコード・STATE/TASKS・Runtime・Unity・Git操作なし。統合担当が枠とボタン色面を合わせ、ホームと研究で判読性を確認する。

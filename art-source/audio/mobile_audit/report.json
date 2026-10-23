@@ -1,0 +1,311 @@
+{
+  "date": "2026-10-23",
+  "source_wavs_unchanged": true,
+  "listening": "NOT PERFORMED; no auditory input tool available",
+  "thresholds": "Project screening only: mean mono change >= -1 dB, active 100 ms >= -3 dB (reference >= -60 dBFS). Not a listening or device standard.",
+  "mono_definition": "(L+R)/2; reference RMS sqrt(mean of all channel squared samples); mono files identity",
+  "results": [
+    {
+      "file": "bgm_sumi_no_ma_80s.wav",
+      "sha256": "d14a5dfe257aa7aefea3ae9b2b5e2d0de242532c572b15d738bfd8e6455b9373",
+      "matches_delivery_hash": true,
+      "seconds": 80.0,
+      "channels": 2,
+      "reference_rms_dbfs": -24.57592728635158,
+      "mono_rms_dbfs": -24.620544256019265,
+      "mono_change_db": -0.04461696966768263,
+      "worst_active_100ms_change_db": -0.10047716401400847,
+      "active_windows": 800,
+      "mono_peak_dbfs": -10.804959454037311,
+      "mono_dc": -7.947285970052083e-11,
+      "stereo_correlation": 0.9795589627864304,
+      "sample_clip_count": 0,
+      "mono_screen_pass": true,
+      "loop_audit": {
+        "cycles": 23,
+        "seconds": 1840.0,
+        "frames": 88320000,
+        "boundaries": [
+          {
+            "cycle": 1,
+            "frame": 3840000,
+            "seconds": 80.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 2,
+            "frame": 7680000,
+            "seconds": 160.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 3,
+            "frame": 11520000,
+            "seconds": 240.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 4,
+            "frame": 15360000,
+            "seconds": 320.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 5,
+            "frame": 19200000,
+            "seconds": 400.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 6,
+            "frame": 23040000,
+            "seconds": 480.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 7,
+            "frame": 26880000,
+            "seconds": 560.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 8,
+            "frame": 30720000,
+            "seconds": 640.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 9,
+            "frame": 34560000,
+            "seconds": 720.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 10,
+            "frame": 38400000,
+            "seconds": 800.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 11,
+            "frame": 42240000,
+            "seconds": 880.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 12,
+            "frame": 46080000,
+            "seconds": 960.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 13,
+            "frame": 49920000,
+            "seconds": 1040.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 14,
+            "frame": 53760000,
+            "seconds": 1120.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 15,
+            "frame": 57600000,
+            "seconds": 1200.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 16,
+            "frame": 61440000,
+            "seconds": 1280.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 17,
+            "frame": 65280000,
+            "seconds": 1360.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 18,
+            "frame": 69120000,
+            "seconds": 1440.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 19,
+            "frame": 72960000,
+            "seconds": 1520.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 20,
+            "frame": 76800000,
+            "seconds": 1600.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 21,
+            "frame": 80640000,
+            "seconds": 1680.0,
+            "step_fs": 0.00164794921875
+          },
+          {
+            "cycle": 22,
+            "frame": 84480000,
+            "seconds": 1760.0,
+            "step_fs": 0.00164794921875
+          }
+        ],
+        "seam_metrics": {
+          "stereo": {
+            "seam_step_fs": 0.00164794921875,
+            "seam_step_dbfs": -55.66112350273499,
+            "interior_max_step_fs": 0.02716064453125,
+            "seam_curvature_fs": 3.0517578125e-05,
+            "interior_max_curvature_fs": 0.003173828125,
+            "numerical_screen_pass": true
+          },
+          "mono": {
+            "seam_step_fs": 0.0015869140625,
+            "seam_step_dbfs": -55.98893182649838,
+            "interior_max_step_fs": 0.025909423828125,
+            "seam_curvature_fs": 3.0517578125e-05,
+            "interior_max_curvature_fs": 0.003021240234375,
+            "numerical_screen_pass": true
+          }
+        },
+        "repeated_dc_per_channel": [
+          3.846486409505208e-09,
+          -4.00543212890625e-09
+        ],
+        "repeated_rms_dbfs_per_channel": [
+          -24.570913093279223,
+          -24.580947275306148
+        ],
+        "method": "Offline decoded PCM streaming concatenation, 4093-frame blocks; no real-time playback"
+      }
+    },
+    {
+      "file": "sfx_attack.wav",
+      "sha256": "d184f865fe882de2217d64d58df0fe37944645dc71a9a9622050633b13ce3703",
+      "matches_delivery_hash": true,
+      "seconds": 0.23,
+      "channels": 1,
+      "reference_rms_dbfs": -35.426671098344286,
+      "mono_rms_dbfs": -35.426671098344286,
+      "mono_change_db": 0.0,
+      "worst_active_100ms_change_db": 0.0,
+      "active_windows": 2,
+      "mono_peak_dbfs": -16.000632247293233,
+      "mono_dc": 2.487846042798913e-08,
+      "stereo_correlation": null,
+      "sample_clip_count": 0,
+      "mono_screen_pass": true
+    },
+    {
+      "file": "sfx_click.wav",
+      "sha256": "d96cd70faf2d1d928c9856080e783c1b4d692ae3ea7deda2c79f4e89269e823b",
+      "matches_delivery_hash": true,
+      "seconds": 0.12,
+      "channels": 1,
+      "reference_rms_dbfs": -31.453983315917192,
+      "mono_rms_dbfs": -31.453983315917192,
+      "mono_change_db": 0.0,
+      "worst_active_100ms_change_db": 0.0,
+      "active_windows": 2,
+      "mono_peak_dbfs": -12.999812245955065,
+      "mono_dc": -1.5894571940104166e-08,
+      "stereo_correlation": null,
+      "sample_clip_count": 0,
+      "mono_screen_pass": true
+    },
+    {
+      "file": "sfx_core_hit.wav",
+      "sha256": "333214157c7ec997f91b1c07d28266d9c908189a55b5d37844a3582de2596684",
+      "matches_delivery_hash": true,
+      "seconds": 0.75,
+      "channels": 1,
+      "reference_rms_dbfs": -23.762432830731512,
+      "mono_rms_dbfs": -23.762432830731512,
+      "mono_change_db": 0.0,
+      "worst_active_100ms_change_db": 0.0,
+      "active_windows": 8,
+      "mono_peak_dbfs": -8.000117030469568,
+      "mono_dc": -8.477105034722222e-09,
+      "stereo_correlation": null,
+      "sample_clip_count": 0,
+      "mono_screen_pass": true
+    },
+    {
+      "file": "sfx_defeat.wav",
+      "sha256": "cf3b87e5020c00e66e2cdf204b3ed07c1c984ef6b3b6c5fdd2f3d182bcc7fb77",
+      "matches_delivery_hash": true,
+      "seconds": 3.6,
+      "channels": 1,
+      "reference_rms_dbfs": -23.13312735333462,
+      "mono_rms_dbfs": -23.13312735333462,
+      "mono_change_db": 0.0,
+      "worst_active_100ms_change_db": 0.0,
+      "active_windows": 36,
+      "mono_peak_dbfs": -9.000392326786972,
+      "mono_dc": 1.2009232132523148e-08,
+      "stereo_correlation": null,
+      "sample_clip_count": 0,
+      "mono_screen_pass": true
+    },
+    {
+      "file": "sfx_kill.wav",
+      "sha256": "839563ddd04c57458f13744f6b128d84ef78500047acc35edb4b3db7a1da5497",
+      "matches_delivery_hash": true,
+      "seconds": 0.38,
+      "channels": 1,
+      "reference_rms_dbfs": -30.839439888460998,
+      "mono_rms_dbfs": -30.839439888460998,
+      "mono_change_db": 0.0,
+      "worst_active_100ms_change_db": 0.0,
+      "active_windows": 3,
+      "mono_peak_dbfs": -14.000100374307355,
+      "mono_dc": -1.6731128358004386e-09,
+      "stereo_correlation": null,
+      "sample_clip_count": 0,
+      "mono_screen_pass": true
+    },
+    {
+      "file": "sfx_purchase.wav",
+      "sha256": "29ad27ecf12a7596fcab582e4b9b03a0b0af9046d9398b4f773d4e1069721f2a",
+      "matches_delivery_hash": true,
+      "seconds": 0.85,
+      "channels": 1,
+      "reference_rms_dbfs": -23.520309040925337,
+      "mono_rms_dbfs": -23.520309040925337,
+      "mono_change_db": 0.0,
+      "worst_active_100ms_change_db": 0.0,
+      "active_windows": 8,
+      "mono_peak_dbfs": -10.000126940172311,
+      "mono_dc": -4.2634851792279414e-08,
+      "stereo_correlation": null,
+      "sample_clip_count": 0,
+      "mono_screen_pass": true
+    },
+    {
+      "file": "sfx_research_complete.wav",
+      "sha256": "0fc8714ffddaaac6328208ecfaf84947711b2165f53bb0a91058068317dc94cf",
+      "matches_delivery_hash": true,
+      "seconds": 3.2,
+      "channels": 1,
+      "reference_rms_dbfs": -23.687638405534134,
+      "mono_rms_dbfs": -23.687638405534134,
+      "mono_change_db": 0.0,
+      "worst_active_100ms_change_db": 0.0,
+      "active_windows": 32,
+      "mono_peak_dbfs": -10.000126940172311,
+      "mono_dc": 4.5100847880045575e-08,
+      "stereo_correlation": null,
+      "sample_clip_count": 0,
+      "mono_screen_pass": true
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "file": "button_ink_frame_03.png",
+  "sourceSize": [2172,724],
+  "suggestedSpriteBorderLTRB": [300,240,300,240],
+  "imageType": "Sliced",
+  "fillCenter": false,
+  "previewCornerSize": [36,29],
+  "previewSizes": [[240,80],[560,80],[800,64]],
+  "note": "Borders are source pixels; adjust after import scaling. Preview uses System.Drawing, not Unity. Prefer 80px or taller at preview corner scale."
+}

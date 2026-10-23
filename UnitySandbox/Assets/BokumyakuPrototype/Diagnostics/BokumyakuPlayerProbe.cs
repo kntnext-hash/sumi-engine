@@ -13,6 +13,7 @@ namespace Bokumyaku.Diagnostics
     {
         string output;
         bool resumeOnly;
+        bool captureScreens;
         [Serializable] sealed class Report
         {
             public string version, error;
@@ -56,6 +57,7 @@ namespace Bokumyaku.Diagnostics
             var probe = new GameObject("Bokumyaku explicit player probe").AddComponent<BokumyakuPlayerProbe>();
             probe.output = Path.GetFullPath(args[i + 1]);
             probe.resumeOnly = Array.IndexOf(args, "--bokumyaku-resume-check") >= 0;
+            probe.captureScreens = Array.IndexOf(args, "--bokumyaku-capture-screens") >= 0;
             // Set the isolated save before the scene's Start can load normal progress.
             var game = FindFirstObjectByType<BokumyakuGame>();
             if (game != null) game.SavePathOverride = Path.Combine(probe.output, "qa-campaign.json");
@@ -122,6 +124,14 @@ namespace Bokumyaku.Diagnostics
                 File.WriteAllText(Path.Combine(output, "player-resume-report.json"), JsonUtility.ToJson(report, true));
                 Application.Quit(report.passed ? 0 : 1); yield break;
             }
+            if (captureScreens && report.error == null)
+            {
+                game.SetPage(BokumyakuGame.GamePage.Home);
+                yield return null;
+                yield return new WaitForEndOfFrame();
+                ScreenCapture.CaptureScreenshot(Path.Combine(output, "player-home.png"));
+                yield return null;
+            }
             for (int i = 0; i < report.runs.Length && report.error == null; i++)
             {
                 var row = new WeaponReport { requestedWeapon = ((WeaponKind)i).ToString() };
@@ -142,6 +152,14 @@ namespace Bokumyaku.Diagnostics
                     int matchingFields = 0;
                     foreach (var field in game.Run.Fields) if (field.Weapon == (WeaponKind)i) matchingFields++;
                     row.peakWeaponFields = Math.Max(row.peakWeaponFields, matchingFields);
+                    yield return null;
+                }
+                if (captureScreens && i == 0)
+                {
+                    game.SetPaused(true);
+                    yield return null;
+                    yield return new WaitForEndOfFrame();
+                    ScreenCapture.CaptureScreenshot(Path.Combine(output, "player-battle.png"));
                     yield return null;
                 }
                 try
