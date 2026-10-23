@@ -86,3 +86,6 @@ Fiberの広い掠れ層を残し、同じ曲線へ半径10のPool層を追加。
 
 ### 全EditModeと独立描画QA
 7adaf88時点の全EditMode255/255、41.79秒（render-all-editmode.json）。独立read-only QAで同tick分裂子の演出欠落（残件）と一時停止中の_Time揺らぎを検出。後者を_InkTimeへ変更し表示専用時計をMaterialに設定。実行中に進行後、一時停止した値25.04041が複数フレーム後も一致（ink-clock-check.json）。シミュレーション未変更。修正後は限定Play検証で、v4配布ビルドへの反映は未実施。
+
+### 密集人工配置と同tick撃破の調査
+80体/5種を隔離状態で格子配置し、描画20呼び出しでRenderer316→316。自然Wave・経済・性能の証拠ではない。画面下側の座標圧縮で輪郭重なりが強いため改善対象。dense-battle-check.json/png。AttackEventはフィールド撃破の一覧を持たず、同tick消失子を描画だけで正確に復元できない。シミュレーション変更禁止を維持し、演出欠落は未解決とする。
