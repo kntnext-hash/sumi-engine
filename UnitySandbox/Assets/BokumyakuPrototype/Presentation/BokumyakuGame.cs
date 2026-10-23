@@ -224,6 +224,18 @@ namespace Bokumyaku.Presentation
             return texture;
         }
         public void StartRun(int seed) { TryStartRun(seed); }
+        public string BattleResultText
+        {
+            get
+            {
+                if (AwaitingStart || Run == null) return "一滴から、墨脈を育てる。";
+                string title = "WAVE " + Run.CompletedWave + "　撃破 " + Run.Kills;
+                var settled = rewarded && rewardSaved ? campaign?.LastResult : null;
+                if (settled == null) return title + "\n結晶：保存待ち";
+                return title + "\n結晶 " + (settled.Crystals + settled.MilestoneCrystals).ToString("N0")
+                    + "\n通常 " + settled.Crystals.ToString("N0") + " ＋ 初達成 " + settled.MilestoneCrystals.ToString("N0");
+            }
+        }
         public bool TryStartRun(int seed) { return BeginRun(seed, Speed); }
         bool BeginRun(int seed, int speed)
         {

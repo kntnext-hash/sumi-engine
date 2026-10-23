@@ -199,7 +199,7 @@ namespace Bokumyaku.Presentation
             modal.SetActive(ended||game.AwaitingStart);
             if(modal.activeSelf)
             {
-                Text(result,game.AwaitingStart?"一滴から、墨脈を育てる。":"WAVE "+run.CompletedWave+"\n撃破 "+run.Kills+"　結晶 "+run.CrystalsReward);
+                Text(result,game.BattleResultText);
                 Text(retryLabel,game.AwaitingStart?"出撃":"再出撃");retry.interactable=!game.BattleStorageBlocked;
             }
         }
