@@ -5,11 +5,13 @@ namespace Bokumyaku.Presentation
  public sealed partial class BokumyakuGame
  {
   // Root flourishes belong to the paper, not the simulation: no attack tips or gold nodes.
-  void DrawRootFlourishes()
+  void DrawRootFlourish(int slice)
   {
    float sx=canvas.width/384f,sy=canvas.height/512f;
-   for(int i=0;i<7;i++)
+   // Seven main roots, then seven groups of side roots: preserve the original layering.
+   if(slice<7)
    {
+    int i=slice;
     float angle=Mathf.Lerp(-1.25f,1.25f,i/6f);
     var start=new Vector2(192,256);
     var end=start+new Vector2(Mathf.Sin(angle)*172,-Mathf.Cos(angle)*210);
@@ -30,8 +32,9 @@ namespace Bokumyaku.Presentation
     }
    }
    // Short side roots anchor the core without adding gameplay nodes.
-   for(int i=0;i<7;i++)
+   else
    {
+    int i=slice-7;
     float angle=Mathf.Lerp(-1.25f,1.25f,i/6f);
     var start=new Vector2(192,256);var end=start+new Vector2(Mathf.Sin(angle)*172,-Mathf.Cos(angle)*210);
     var control=start+new Vector2(Mathf.Sin(angle)*45,-115);

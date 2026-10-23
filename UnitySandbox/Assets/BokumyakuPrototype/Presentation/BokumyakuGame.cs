@@ -78,6 +78,8 @@ namespace Bokumyaku.Presentation
         readonly Dictionary<int, float> growth = new Dictionary<int, float>();
         float tickClock;
         int drawnBranches;
+        int drawnRootSlices;
+        public int PaintedRootSlices => drawnRootSlices;
         int branchDrawFrame = -1;
         public int PaintedBranchCount => drawnBranches;
         bool rewarded;
@@ -264,10 +266,9 @@ namespace Bokumyaku.Presentation
         }
         void ResetInk()
         {
-            drawnBranches = 0; inkBursts.Clear(); watchedEnemies.Clear(); ObservedInkBursts = 0; flashes.Clear(); growth.Clear(); persistentInk.Clear();battleWorld.Reset(Run);
+            drawnBranches = 0; drawnRootSlices = 0; inkBursts.Clear(); watchedEnemies.Clear(); ObservedInkBursts = 0; flashes.Clear(); growth.Clear(); persistentInk.Clear();battleWorld.Reset(Run);
             Array.Clear(observedLevels, 0, observedLevels.Length);
             Array.Clear(levelChangedAt, 0, levelChangedAt.Length);
-            DrawRootFlourishes();
             DrawNewBranches();
         }
         public bool ResumeRun()
@@ -446,6 +447,12 @@ namespace Bokumyaku.Presentation
             // complete branch per rendered frame; never interrupt an active SUMI stroke.
             if (branchDrawFrame == Time.frameCount) return;
             branchDrawFrame = Time.frameCount;
+            // Complete strokes before yielding: death marks may begin another SUMI stroke.
+            if (drawnRootSlices < 14)
+            {
+                using (BattleTiming.Measure("RootFlourish")) DrawRootFlourish(drawnRootSlices++);
+                return;
+            }
             var branches = Run.Branches;
             bool changed = drawnBranches < branches.Count;
             for (; drawnBranches < branches.Count; drawnBranches++)
