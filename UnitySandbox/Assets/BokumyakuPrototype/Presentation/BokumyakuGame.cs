@@ -423,7 +423,7 @@ namespace Bokumyaku.Presentation
                 var brush = InkBrushSettings.Dense;
                 brush.radius = Mathf.Lerp(8f, 4f, Mathf.Clamp01((float)b.PathLength / 400f));
                 brush.pigment = 1f; brush.water = .15f; brush.depletion = .002f;
-                brush.roughness = .12f;
+                brush.roughness = .42f;
                 float x0 = (float)parent.ViewX, y0 = (float)parent.ViewY;
                 float x1 = (float)b.ViewX, y1 = (float)b.ViewY;
                 float sx = canvas.width / 384f, sy = canvas.height / 512f;
@@ -431,11 +431,13 @@ namespace Bokumyaku.Presentation
                 // A gently bowed centerline gives the growing branch a living brush gesture.
                 for (int n = 1; n <= 8; n++)
                 {
-                    float t = n / 8f, bow = Mathf.Sin(t * Mathf.PI) * (b.Id % 2 == 0 ? 1.4f : -1.4f);
+                    float t = n / 8f, bow = Mathf.Sin(t * Mathf.PI) * (b.Id % 2 == 0 ? 3.4f : -3.4f);
                     canvas.Move(new InkPoint((Mathf.Lerp(x0, x1, t) + bow) * sx,
                         Mathf.Lerp(y0, y1, t) * sy, t * .35f, Mathf.Lerp(1f, .7f, t)));
                 }
-                canvas.End(); growth[b.Id] = Time.unscaledTime;
+                canvas.End();
+                DrawBranchFibers(x0,y0,x1,y1,sx,sy,b.Id);
+                growth[b.Id] = Time.unscaledTime;
             }
             if (changed) RebuildBranchOverlay();
         }
