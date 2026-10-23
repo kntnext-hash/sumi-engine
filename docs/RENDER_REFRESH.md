@@ -140,3 +140,8 @@ HUD余白修正: WAVE見出し/数値、強化レベル/修復/ゲージ/カー�
 
 ### 描画磨き込み後の3分測定とボス停止修正
 15a4f40、Editor360×640/seed42/Farming/1倍、6000tickまで事前進行後に実時間180.04秒。Wave17→32、304撃破。平均16.81ms/最大123.86ms、全面再構築0、dirty upload2338回。計測中CLIによる状態取得を含むEditor値であり、最大値の原因は未特定。実機/カクつき解消の合格ではない。evidence/render-polish-15a4f40-timing.json。独立ソースQAでボス赤輪がヒットストップ中に本体からずれる条件を指摘。中心を本体localPositionへ修正し、BossFreezeCheckの注入位置変更で停止中/再開後の一致を確認（boss-freeze.json）。
+
+## 敵と墨枝の輪郭分離（2026-10-24）
+InkSpriteに既定0の_PaperEdgeを追加。敵本体だけ.65を設定し、四近傍alpha差から1.25texel幅の淡い紙色の縁を作る。形状の穴/掠れを残し、既存UV揺らぎと消失coverageを共有する。追加SpriteやCPUテクスチャ更新はない。背景/攻撃/核の設定は0を維持。
+同じ夜Wave10・7種×3列＋ボス22体で前画像landscape-depth-2-denseと後画像enemy-edge-2-denseを目視比較。太い墨枝に重なる分裂種/ボスの外形が追いやすくなった。1080×2400、停止snapshot不変、シェーダーエラーなし。演出軽減ONで22敵のedge=.65、他Spriteのedge=0を確認（enemy-edge-properties.json）。
+検証は静止した人工配置と設定の検査。通常密集戦闘、消失アニメの実画面比較、GPU性能/スマホは未検証。四近傍サンプル追加の負荷は次の統合計測で確認する。シミュレーション/Runtimeは未変更、フルテストは再実行していない。

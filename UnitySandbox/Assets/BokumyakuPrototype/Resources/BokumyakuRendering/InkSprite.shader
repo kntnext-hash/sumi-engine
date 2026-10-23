@@ -12,6 +12,7 @@ Shader "Bokumyaku/InkSprite"
         _Phase ("Individual phase", Float) = 0
         _InkTime ("Presentation time", Float) = 0
         _ReducedMotion ("Reduced motion", Float) = 0
+        _PaperEdge ("Silhouette paper separation", Range(0,1)) = 0
     }
     SubShader
     {
@@ -24,6 +25,7 @@ Shader "Bokumyaku/InkSprite"
         #include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/Core2D.hlsl"
         TEXTURE2D(_MainTex);
         SAMPLER(sampler_MainTex);
+        float4 _MainTex_TexelSize;
         CBUFFER_START(UnityPerMaterial)
             float4 _Color;
             float4 _WashTop, _WashBottom;
@@ -33,6 +35,7 @@ Shader "Bokumyaku/InkSprite"
             float _Phase;
             float _InkTime;
             float _ReducedMotion;
+            float _PaperEdge;
         CBUFFER_END
         struct Attributes
         {
@@ -86,6 +89,17 @@ Shader "Bokumyaku/InkSprite"
             float2 ripple = float2(sin(phase + uv.y * 15.0), cos(phase * 0.83 + uv.x * 13.0));
             uv += ripple * (0.0035 * _Wobble * motion * (1.0 - death));
             half4 ink = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv);
+            float edge = 0;
+            // Only moving enemy bodies opt in. Follow the same UV/death clock as their ink.
+            if (_PaperEdge > 0.001)
+            {
+                float2 d = _MainTex_TexelSize.xy * 1.25;
+                float nearby = max(max(SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv + float2(d.x,0)).a,
+                                       SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv - float2(d.x,0)).a),
+                                   max(SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv + float2(0,d.y)).a,
+                                       SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv - float2(0,d.y)).a));
+                edge = saturate(nearby - ink.a) * _PaperEdge;
+            }
             float grain = InkNoise(input.uv * 62.0 + _Phase);
             float erosion = smoothstep(death - 0.10, death + 0.16, grain);
             float coverage = lerp(1.0, erosion, saturate(death * 4.0));
@@ -94,6 +108,10 @@ Shader "Bokumyaku/InkSprite"
             ink.rgb *= lerp(_WashBottom.rgb, _WashTop.rgb, smoothstep(0.30, 1.0, input.uv.y));
             ink.rgb = lerp(ink.rgb, half3(1,1,1), saturate(_Hit) * motion);
             ink.a *= coverage * (1.0 - death) * inBounds;
+            float paperAlpha = edge * input.color.a * coverage * (1.0 - death) * inBounds * (1.0 - ink.a);
+            float totalAlpha = ink.a + paperAlpha;
+            ink.rgb = (ink.rgb * ink.a + half3(.91,.86,.75) * paperAlpha) / max(totalAlpha, 0.0001);
+            ink.a = totalAlpha;
             return ink;
         }
         ENDHLSL

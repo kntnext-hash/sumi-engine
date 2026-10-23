@@ -69,7 +69,7 @@ namespace Bokumyaku.Presentation
   }
   const float CoreScreenDepth=.65f;
   Vector2 Project(Vector2 p){float t=.5f-p.y*.48f/512f;t=t<=.5f?t*(2*CoreScreenDepth):CoreScreenDepth+(t-.5f)*(2*(1-CoreScreenDepth));return new Vector2(p.x/400f*5,(.5f-t)*halfHeight*2);}
-  void Properties(SpriteRenderer r,float hit,float dissolve,float wobble,float phase,bool reduced){block.Clear();block.SetFloat("_Hit",hit);block.SetFloat("_Dissolve",dissolve);block.SetFloat("_Wobble",wobble);block.SetFloat("_Phase",phase);block.SetFloat("_ReducedMotion",reduced?1:0);r.SetPropertyBlock(block);}
+  void Properties(SpriteRenderer r,float hit,float dissolve,float wobble,float phase,bool reduced,float paperEdge=0){block.Clear();block.SetFloat("_PaperEdge",paperEdge);block.SetFloat("_Hit",hit);block.SetFloat("_Dissolve",dissolve);block.SetFloat("_Wobble",wobble);block.SetFloat("_Phase",phase);block.SetFloat("_ReducedMotion",reduced?1:0);r.SetPropertyBlock(block);}
   void Release(SpriteRenderer r){r.gameObject.SetActive(false);r.SetPropertyBlock(null);r.transform.localRotation=Quaternion.identity;pool.Push(r);}
   SpriteRenderer Rent(Sprite s,int order){var r=pool.Count>0?pool.Pop():Create(s,order);r.sprite=s;r.enabled=true;r.sortingOrder=order;r.color=Color.white;r.gameObject.SetActive(true);return r;}
   void ReleaseEnemy(EnemyView v){Release(v.body);Release(v.eye);if(v.threat!=null)Release(v.threat);if(v.buds!=null)foreach(var bud in v.buds)Release(bud);}
@@ -184,7 +184,7 @@ namespace Bokumyaku.Presentation
     if(v.state.Kind==EnemyKind.Leech){var radial=p-center;if(radial.magnitude<1.15f)p=center+(radial.sqrMagnitude>0?radial.normalized:Vector2.right)*1.15f;}
     float size=v.state.Kind==EnemyKind.Boss?1.55f:v.state.Kind==EnemyKind.Heavy||v.state.Kind==EnemyKind.Leech||v.state.Kind==EnemyKind.ShieldHalo?1.1f:v.state.Kind==EnemyKind.Fast?.72f:.85f;
     if(!frozen||!v.drawn){Size(v.body,p,size,size);Size(v.eye,p,size*.38f,size*.38f);
-     if(v.state.Kind==EnemyKind.Fast){var direction=Project(v.current)-Project(v.previous);if(direction.sqrMagnitude>.000001f)v.body.transform.localRotation=Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg);}v.drawn=true;}v.body.color=new Color(.025f,.02f,.02f);Properties(v.body,v.hit/.13f,v.death/.45f,reduced?0:.45f,pair.Key*.73f,reduced);
+     if(v.state.Kind==EnemyKind.Fast){var direction=Project(v.current)-Project(v.previous);if(direction.sqrMagnitude>.000001f)v.body.transform.localRotation=Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg);}v.drawn=true;}v.body.color=new Color(.025f,.02f,.02f);Properties(v.body,v.hit/.13f,v.death/.45f,reduced?0:.45f,pair.Key*.73f,reduced,.65f);
     if(v.threat!=null)
     {
      var body=(Vector2)v.body.transform.localPosition;
