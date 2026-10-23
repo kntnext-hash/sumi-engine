@@ -68,3 +68,8 @@ BattleTimingに任意の記録下限を追加し、InkFlushだけ0.01ms以上を
 転送分離/フォーカス観測版。ビルド64.32秒、156,540,957bytes、警告/エラー0。540×960/Wave3のHUDと戦場を目視。6武器/実攻撃SE/自動周回/別プロセス復帰合格。
 平均16.81〜17.40ms、最大504.74ms（Sweep frame2682→2683、開始直後）。前後ともisFocused=true、GC差0。frame2682のInkFlush1.16ms、RootFlourish15.70ms、DrawNewBranches15.70ms（入れ子、加算不可）、frame2683のInkFlush0.42ms。これらの同期処理だけでは504.74msを説明できない。フォーカス喪失による停止はこの標本では支持されないが、GPU同期/描画待機など原因は未確定。
 注意: BattleTimingは512件上限に達し、後半の区間サンプルが欠ける。記録範囲のInkFlush最大4.10ms、RootFlourish最大46.93msを全実行の最大と扱わない。該当504msフレームの記録は上限前に残っている。次は全フレームの処理段階を取得する方式と上限/欠落の明示を追加する。今回対象Windows検証、性能未合格。evidence/*flush-v20.*。
+
+## phase-v21（2026-10-24）
+明示QA起動だけでトップレベルPlayerLoopを前後計測。ゲーム進行/通常起動は変更なし。ログ容量8192、欠落件数を明示。Editor隔離60frameで構造/デリゲートの完全復元、重複Install/Restore、8193サンプル投入時8192保持＋欠落1、無効時非記録を検証。phase-timing-check.json。
+Windowsビルド69.02秒、156,542,685bytes、警告/エラー0。6武器/SE/周回/別プロセス復帰合格。平均16.80〜17.43ms、最大521.18ms（Point frame17→18）。focused前後true、GC差0、droppedTimingSamples=0。
+該当frame17: InkFlush1.15ms、RootFlourish15.84ms、Loop.Update15.97ms、Loop.PostLateUpdate500.93ms。入れ子は加算しない。長い停止は今回PostLateUpdate内に局在した。GPU待機/Present/描画完了など個別原因はまだ未特定。次はこの段階の子処理を計測する。TimeUpdateはframe番号増加境界を含み得るので単純な同番号合算禁止。今回対象Windows＋診断Editor検証、性能未合格。evidence/*phase-v21.*。

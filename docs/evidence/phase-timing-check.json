@@ -1,0 +1,538 @@
+{
+  "passed": true,
+  "restored": true,
+  "phase": true,
+  "capacity": 8192,
+  "overflowCheck": true,
+  "disabledCheck": true,
+  "dropped": 0,
+  "frames": 60,
+  "samples": [
+    {
+      "section": "SaveProgress",
+      "frame": 524,
+      "milliseconds": 21.4779
+    },
+    {
+      "section": "InkFlush",
+      "frame": 525,
+      "milliseconds": 2.3983
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 525,
+      "milliseconds": 39.2946
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 525,
+      "milliseconds": 39.2955
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 525,
+      "milliseconds": 43.6925
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 525,
+      "milliseconds": 43.7479
+    },
+    {
+      "section": "Loop.PostLateUpdate",
+      "frame": 525,
+      "milliseconds": 12.7863
+    },
+    {
+      "section": "InkFlush",
+      "frame": 526,
+      "milliseconds": 1.9463
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 526,
+      "milliseconds": 17.4536
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 526,
+      "milliseconds": 17.4546
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 526,
+      "milliseconds": 17.5418
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 526,
+      "milliseconds": 17.6229
+    },
+    {
+      "section": "InkFlush",
+      "frame": 527,
+      "milliseconds": 2.5447
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 527,
+      "milliseconds": 38.4984
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 527,
+      "milliseconds": 38.4996
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 527,
+      "milliseconds": 38.5792
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 527,
+      "milliseconds": 38.623
+    },
+    {
+      "section": "InkFlush",
+      "frame": 528,
+      "milliseconds": 2.2036
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 528,
+      "milliseconds": 18.5644
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 528,
+      "milliseconds": 18.5653
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 528,
+      "milliseconds": 18.6706
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 528,
+      "milliseconds": 18.7441
+    },
+    {
+      "section": "InkFlush",
+      "frame": 529,
+      "milliseconds": 2.0658
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 529,
+      "milliseconds": 38.858
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 529,
+      "milliseconds": 38.8588
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 529,
+      "milliseconds": 38.9237
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 529,
+      "milliseconds": 38.9696
+    },
+    {
+      "section": "InkFlush",
+      "frame": 530,
+      "milliseconds": 1.9928
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 530,
+      "milliseconds": 18.4683
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 530,
+      "milliseconds": 18.469
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 530,
+      "milliseconds": 18.5461
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 530,
+      "milliseconds": 18.5826
+    },
+    {
+      "section": "InkFlush",
+      "frame": 531,
+      "milliseconds": 2.2001
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 531,
+      "milliseconds": 36.7074
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 531,
+      "milliseconds": 36.7085
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 531,
+      "milliseconds": 36.811
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 531,
+      "milliseconds": 36.8576
+    },
+    {
+      "section": "InkFlush",
+      "frame": 532,
+      "milliseconds": 1.8179
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 532,
+      "milliseconds": 17.9189
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 532,
+      "milliseconds": 17.9198
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 532,
+      "milliseconds": 17.9888
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 532,
+      "milliseconds": 18.0693
+    },
+    {
+      "section": "InkFlush",
+      "frame": 533,
+      "milliseconds": 2.4348
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 533,
+      "milliseconds": 36.6601
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 533,
+      "milliseconds": 36.6611
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 533,
+      "milliseconds": 36.7438
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 533,
+      "milliseconds": 36.7832
+    },
+    {
+      "section": "InkFlush",
+      "frame": 534,
+      "milliseconds": 2.0417
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 534,
+      "milliseconds": 18.7881
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 534,
+      "milliseconds": 18.789
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 534,
+      "milliseconds": 18.8652
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 534,
+      "milliseconds": 18.9111
+    },
+    {
+      "section": "InkFlush",
+      "frame": 535,
+      "milliseconds": 2.3585
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 535,
+      "milliseconds": 37.0963
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 535,
+      "milliseconds": 37.097
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 535,
+      "milliseconds": 37.1784
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 535,
+      "milliseconds": 37.2191
+    },
+    {
+      "section": "InkFlush",
+      "frame": 536,
+      "milliseconds": 2.4755
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 536,
+      "milliseconds": 20.6586
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 536,
+      "milliseconds": 20.6593
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 536,
+      "milliseconds": 20.7483
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 536,
+      "milliseconds": 20.8271
+    },
+    {
+      "section": "InkFlush",
+      "frame": 537,
+      "milliseconds": 2.6425
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 537,
+      "milliseconds": 37.925
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 537,
+      "milliseconds": 37.926
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 537,
+      "milliseconds": 38.0323
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 537,
+      "milliseconds": 38.0876
+    },
+    {
+      "section": "InkFlush",
+      "frame": 538,
+      "milliseconds": 1.5277
+    },
+    {
+      "section": "RootFlourish",
+      "frame": 538,
+      "milliseconds": 17.7632
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 538,
+      "milliseconds": 17.7642
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 538,
+      "milliseconds": 17.8273
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 538,
+      "milliseconds": 17.8666
+    },
+    {
+      "section": "InkFlush",
+      "frame": 539,
+      "milliseconds": 0.4739
+    },
+    {
+      "section": "InkFlush",
+      "frame": 540,
+      "milliseconds": 0.6251
+    },
+    {
+      "section": "InkFlush",
+      "frame": 541,
+      "milliseconds": 0.3688
+    },
+    {
+      "section": "InkFlush",
+      "frame": 542,
+      "milliseconds": 0.3045
+    },
+    {
+      "section": "InkFlush",
+      "frame": 543,
+      "milliseconds": 0.5199
+    },
+    {
+      "section": "InkFlush",
+      "frame": 544,
+      "milliseconds": 0.4206
+    },
+    {
+      "section": "InkFlush",
+      "frame": 545,
+      "milliseconds": 0.5718
+    },
+    {
+      "section": "InkFlush",
+      "frame": 546,
+      "milliseconds": 0.4426
+    },
+    {
+      "section": "InkFlush",
+      "frame": 547,
+      "milliseconds": 0.291
+    },
+    {
+      "section": "InkFlush",
+      "frame": 548,
+      "milliseconds": 0.5171
+    },
+    {
+      "section": "InkFlush",
+      "frame": 549,
+      "milliseconds": 0.3851
+    },
+    {
+      "section": "InkFlush",
+      "frame": 550,
+      "milliseconds": 0.3899
+    },
+    {
+      "section": "InkFlush",
+      "frame": 551,
+      "milliseconds": 0.7813
+    },
+    {
+      "section": "InkFlush",
+      "frame": 552,
+      "milliseconds": 0.4491
+    },
+    {
+      "section": "InkFlush",
+      "frame": 553,
+      "milliseconds": 0.4087
+    },
+    {
+      "section": "InkFlush",
+      "frame": 554,
+      "milliseconds": 0.5959
+    },
+    {
+      "section": "InkFlush",
+      "frame": 555,
+      "milliseconds": 0.534
+    },
+    {
+      "section": "InkFlush",
+      "frame": 556,
+      "milliseconds": 1.4127
+    },
+    {
+      "section": "InkFlush",
+      "frame": 557,
+      "milliseconds": 0.6067
+    },
+    {
+      "section": "InkFlush",
+      "frame": 558,
+      "milliseconds": 0.6649
+    },
+    {
+      "section": "InkFlush",
+      "frame": 559,
+      "milliseconds": 0.3849
+    },
+    {
+      "section": "InkFlush",
+      "frame": 560,
+      "milliseconds": 2.3176
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 560,
+      "milliseconds": 16.8163
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 560,
+      "milliseconds": 16.9072
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 560,
+      "milliseconds": 16.9982
+    },
+    {
+      "section": "InkFlush",
+      "frame": 561,
+      "milliseconds": 1.1164
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 561,
+      "milliseconds": 15.7748
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 561,
+      "milliseconds": 15.8692
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 561,
+      "milliseconds": 15.9243
+    },
+    {
+      "section": "InkFlush",
+      "frame": 562,
+      "milliseconds": 0.9256
+    },
+    {
+      "section": "DrawNewBranches",
+      "frame": 562,
+      "milliseconds": 14.7878
+    },
+    {
+      "section": "PresentBattle",
+      "frame": 562,
+      "milliseconds": 14.8655
+    },
+    {
+      "section": "Loop.PreLateUpdate",
+      "frame": 562,
+      "milliseconds": 14.9147
+    }
+  ],
+  "method": "Isolated Editor Play; bounded overflow/disabled assertions, duplicate installation/restoration, live top-level PlayerLoop phase timing; exact loop hierarchy/delegates restored."
+}
