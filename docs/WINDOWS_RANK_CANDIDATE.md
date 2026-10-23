@@ -73,3 +73,8 @@ BattleTimingに任意の記録下限を追加し、InkFlushだけ0.01ms以上を
 明示QA起動だけでトップレベルPlayerLoopを前後計測。ゲーム進行/通常起動は変更なし。ログ容量8192、欠落件数を明示。Editor隔離60frameで構造/デリゲートの完全復元、重複Install/Restore、8193サンプル投入時8192保持＋欠落1、無効時非記録を検証。phase-timing-check.json。
 Windowsビルド69.02秒、156,542,685bytes、警告/エラー0。6武器/SE/周回/別プロセス復帰合格。平均16.80〜17.43ms、最大521.18ms（Point frame17→18）。focused前後true、GC差0、droppedTimingSamples=0。
 該当frame17: InkFlush1.15ms、RootFlourish15.84ms、Loop.Update15.97ms、Loop.PostLateUpdate500.93ms。入れ子は加算しない。長い停止は今回PostLateUpdate内に局在した。GPU待機/Present/描画完了など個別原因はまだ未特定。次はこの段階の子処理を計測する。TimeUpdateはframe番号増加境界を含み得るので単純な同番号合算禁止。今回対象Windows＋診断Editor検証、性能未合格。evidence/*phase-v21.*。
+
+## postlate-v22（2026-10-24）
+PostLateUpdateの各子処理の前後にQA専用計測を追加。処理順/内容は保持、Editor60frameの復元/上限確認合格。ビルド67.22秒、156,543,197bytes、警告/エラー0。6武器/SE/周回/別プロセス復帰合格。平均16.80〜17.39ms、最大544.09ms、欠落0。
+Enso frame3551→3552: focused前後true、GC差0。frame3551のPostLate.FinishFrameRendering495.93ms、PostLateUpdate496.05ms、Update15.82ms、InkFlush1.09ms。長い停止は描画完了処理内へ局在。GPU/描画スレッド/ドライバー等のどれかはまだ確定していない。性能未合格。次はUnity Profiler等でこの処理内の待機を区別する。
+検証中に別担当が紙札UIのソース/PNGを作成したが、当該Playerは差替え前にビルド済みの固定バイナリ。Editorの背景処理による外部負荷は統制しておらず、CPU/GPU絶対性能の厳密比較には用いない。紙札はこのWindowsビルドに未収録。evidence/*postlate-v22.*。

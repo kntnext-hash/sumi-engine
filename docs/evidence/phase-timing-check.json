@@ -10,528 +10,528 @@
   "samples": [
     {
       "section": "SaveProgress",
-      "frame": 524,
-      "milliseconds": 21.4779
+      "frame": 1,
+      "milliseconds": 20.5597
+    },
+    {
+      "section": "Loop.Update",
+      "frame": 2,
+      "milliseconds": 40.6491
     },
     {
       "section": "InkFlush",
-      "frame": 525,
-      "milliseconds": 2.3983
+      "frame": 2,
+      "milliseconds": 1.7387
     },
     {
       "section": "RootFlourish",
-      "frame": 525,
-      "milliseconds": 39.2946
+      "frame": 2,
+      "milliseconds": 35.2731
     },
     {
       "section": "DrawNewBranches",
-      "frame": 525,
-      "milliseconds": 39.2955
+      "frame": 2,
+      "milliseconds": 35.2741
     },
     {
       "section": "PresentBattle",
-      "frame": 525,
-      "milliseconds": 43.6925
+      "frame": 2,
+      "milliseconds": 39.2651
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 525,
-      "milliseconds": 43.7479
-    },
-    {
-      "section": "Loop.PostLateUpdate",
-      "frame": 525,
-      "milliseconds": 12.7863
+      "frame": 2,
+      "milliseconds": 39.3392
     },
     {
       "section": "InkFlush",
-      "frame": 526,
-      "milliseconds": 1.9463
+      "frame": 3,
+      "milliseconds": 1.2595
     },
     {
       "section": "RootFlourish",
-      "frame": 526,
-      "milliseconds": 17.4536
+      "frame": 3,
+      "milliseconds": 15.4566
     },
     {
       "section": "DrawNewBranches",
-      "frame": 526,
-      "milliseconds": 17.4546
+      "frame": 3,
+      "milliseconds": 15.4575
     },
     {
       "section": "PresentBattle",
-      "frame": 526,
-      "milliseconds": 17.5418
+      "frame": 3,
+      "milliseconds": 15.5175
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 526,
-      "milliseconds": 17.6229
+      "frame": 3,
+      "milliseconds": 15.5572
     },
     {
       "section": "InkFlush",
-      "frame": 527,
-      "milliseconds": 2.5447
+      "frame": 4,
+      "milliseconds": 2.1154
     },
     {
       "section": "RootFlourish",
-      "frame": 527,
-      "milliseconds": 38.4984
+      "frame": 4,
+      "milliseconds": 35.8719
     },
     {
       "section": "DrawNewBranches",
-      "frame": 527,
-      "milliseconds": 38.4996
+      "frame": 4,
+      "milliseconds": 35.8726
     },
     {
       "section": "PresentBattle",
-      "frame": 527,
-      "milliseconds": 38.5792
+      "frame": 4,
+      "milliseconds": 35.9465
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 527,
-      "milliseconds": 38.623
+      "frame": 4,
+      "milliseconds": 35.9874
     },
     {
       "section": "InkFlush",
-      "frame": 528,
-      "milliseconds": 2.2036
+      "frame": 5,
+      "milliseconds": 1.5309
     },
     {
       "section": "RootFlourish",
-      "frame": 528,
-      "milliseconds": 18.5644
+      "frame": 5,
+      "milliseconds": 17.0226
     },
     {
       "section": "DrawNewBranches",
-      "frame": 528,
-      "milliseconds": 18.5653
+      "frame": 5,
+      "milliseconds": 17.0232
     },
     {
       "section": "PresentBattle",
-      "frame": 528,
-      "milliseconds": 18.6706
+      "frame": 5,
+      "milliseconds": 17.0838
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 528,
-      "milliseconds": 18.7441
+      "frame": 5,
+      "milliseconds": 17.1173
     },
     {
       "section": "InkFlush",
-      "frame": 529,
-      "milliseconds": 2.0658
+      "frame": 6,
+      "milliseconds": 2.1328
     },
     {
       "section": "RootFlourish",
-      "frame": 529,
-      "milliseconds": 38.858
+      "frame": 6,
+      "milliseconds": 36.3815
     },
     {
       "section": "DrawNewBranches",
-      "frame": 529,
-      "milliseconds": 38.8588
+      "frame": 6,
+      "milliseconds": 36.3824
     },
     {
       "section": "PresentBattle",
-      "frame": 529,
-      "milliseconds": 38.9237
+      "frame": 6,
+      "milliseconds": 36.4505
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 529,
-      "milliseconds": 38.9696
+      "frame": 6,
+      "milliseconds": 36.504
     },
     {
       "section": "InkFlush",
-      "frame": 530,
-      "milliseconds": 1.9928
+      "frame": 7,
+      "milliseconds": 1.7438
     },
     {
       "section": "RootFlourish",
-      "frame": 530,
-      "milliseconds": 18.4683
+      "frame": 7,
+      "milliseconds": 18.0459
     },
     {
       "section": "DrawNewBranches",
-      "frame": 530,
-      "milliseconds": 18.469
+      "frame": 7,
+      "milliseconds": 18.0467
     },
     {
       "section": "PresentBattle",
-      "frame": 530,
-      "milliseconds": 18.5461
+      "frame": 7,
+      "milliseconds": 18.1116
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 530,
-      "milliseconds": 18.5826
+      "frame": 7,
+      "milliseconds": 18.1519
     },
     {
       "section": "InkFlush",
-      "frame": 531,
-      "milliseconds": 2.2001
+      "frame": 8,
+      "milliseconds": 2.1468
     },
     {
       "section": "RootFlourish",
-      "frame": 531,
-      "milliseconds": 36.7074
+      "frame": 8,
+      "milliseconds": 36.2214
     },
     {
       "section": "DrawNewBranches",
-      "frame": 531,
-      "milliseconds": 36.7085
+      "frame": 8,
+      "milliseconds": 36.2223
     },
     {
       "section": "PresentBattle",
-      "frame": 531,
-      "milliseconds": 36.811
+      "frame": 8,
+      "milliseconds": 36.3152
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 531,
-      "milliseconds": 36.8576
+      "frame": 8,
+      "milliseconds": 36.3732
     },
     {
       "section": "InkFlush",
-      "frame": 532,
-      "milliseconds": 1.8179
+      "frame": 9,
+      "milliseconds": 1.8363
     },
     {
       "section": "RootFlourish",
-      "frame": 532,
-      "milliseconds": 17.9189
+      "frame": 9,
+      "milliseconds": 18.0272
     },
     {
       "section": "DrawNewBranches",
-      "frame": 532,
-      "milliseconds": 17.9198
+      "frame": 9,
+      "milliseconds": 18.0282
     },
     {
       "section": "PresentBattle",
-      "frame": 532,
-      "milliseconds": 17.9888
+      "frame": 9,
+      "milliseconds": 18.0889
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 532,
-      "milliseconds": 18.0693
+      "frame": 9,
+      "milliseconds": 18.1269
     },
     {
       "section": "InkFlush",
-      "frame": 533,
-      "milliseconds": 2.4348
+      "frame": 10,
+      "milliseconds": 2.825
     },
     {
       "section": "RootFlourish",
-      "frame": 533,
-      "milliseconds": 36.6601
+      "frame": 10,
+      "milliseconds": 36.7539
     },
     {
       "section": "DrawNewBranches",
-      "frame": 533,
-      "milliseconds": 36.6611
+      "frame": 10,
+      "milliseconds": 36.7552
     },
     {
       "section": "PresentBattle",
-      "frame": 533,
-      "milliseconds": 36.7438
+      "frame": 10,
+      "milliseconds": 36.8564
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 533,
-      "milliseconds": 36.7832
+      "frame": 10,
+      "milliseconds": 36.9021
     },
     {
       "section": "InkFlush",
-      "frame": 534,
-      "milliseconds": 2.0417
+      "frame": 11,
+      "milliseconds": 2.1728
     },
     {
       "section": "RootFlourish",
-      "frame": 534,
-      "milliseconds": 18.7881
+      "frame": 11,
+      "milliseconds": 19.3053
     },
     {
       "section": "DrawNewBranches",
-      "frame": 534,
-      "milliseconds": 18.789
+      "frame": 11,
+      "milliseconds": 19.3071
     },
     {
       "section": "PresentBattle",
-      "frame": 534,
-      "milliseconds": 18.8652
+      "frame": 11,
+      "milliseconds": 19.3976
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 534,
-      "milliseconds": 18.9111
+      "frame": 11,
+      "milliseconds": 19.4869
     },
     {
       "section": "InkFlush",
-      "frame": 535,
-      "milliseconds": 2.3585
+      "frame": 12,
+      "milliseconds": 2.1189
     },
     {
       "section": "RootFlourish",
-      "frame": 535,
-      "milliseconds": 37.0963
+      "frame": 12,
+      "milliseconds": 36.3529
     },
     {
       "section": "DrawNewBranches",
-      "frame": 535,
-      "milliseconds": 37.097
+      "frame": 12,
+      "milliseconds": 36.3538
     },
     {
       "section": "PresentBattle",
-      "frame": 535,
-      "milliseconds": 37.1784
+      "frame": 12,
+      "milliseconds": 36.4192
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 535,
-      "milliseconds": 37.2191
+      "frame": 12,
+      "milliseconds": 36.4613
     },
     {
       "section": "InkFlush",
-      "frame": 536,
-      "milliseconds": 2.4755
+      "frame": 13,
+      "milliseconds": 1.6535
     },
     {
       "section": "RootFlourish",
-      "frame": 536,
-      "milliseconds": 20.6586
+      "frame": 13,
+      "milliseconds": 18.357
     },
     {
       "section": "DrawNewBranches",
-      "frame": 536,
-      "milliseconds": 20.6593
+      "frame": 13,
+      "milliseconds": 18.3578
     },
     {
       "section": "PresentBattle",
-      "frame": 536,
-      "milliseconds": 20.7483
+      "frame": 13,
+      "milliseconds": 18.4232
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 536,
-      "milliseconds": 20.8271
+      "frame": 13,
+      "milliseconds": 18.4648
     },
     {
       "section": "InkFlush",
-      "frame": 537,
-      "milliseconds": 2.6425
+      "frame": 14,
+      "milliseconds": 2.1622
     },
     {
       "section": "RootFlourish",
-      "frame": 537,
-      "milliseconds": 37.925
+      "frame": 14,
+      "milliseconds": 36.6056
     },
     {
       "section": "DrawNewBranches",
-      "frame": 537,
-      "milliseconds": 37.926
+      "frame": 14,
+      "milliseconds": 36.6065
     },
     {
       "section": "PresentBattle",
-      "frame": 537,
-      "milliseconds": 38.0323
+      "frame": 14,
+      "milliseconds": 36.6787
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 537,
-      "milliseconds": 38.0876
+      "frame": 14,
+      "milliseconds": 36.7408
     },
     {
       "section": "InkFlush",
-      "frame": 538,
-      "milliseconds": 1.5277
+      "frame": 15,
+      "milliseconds": 1.27
     },
     {
       "section": "RootFlourish",
-      "frame": 538,
-      "milliseconds": 17.7632
+      "frame": 15,
+      "milliseconds": 16.338
     },
     {
       "section": "DrawNewBranches",
-      "frame": 538,
-      "milliseconds": 17.7642
+      "frame": 15,
+      "milliseconds": 16.3389
     },
     {
       "section": "PresentBattle",
-      "frame": 538,
-      "milliseconds": 17.8273
+      "frame": 15,
+      "milliseconds": 16.4011
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 538,
-      "milliseconds": 17.8666
+      "frame": 15,
+      "milliseconds": 16.452
     },
     {
       "section": "InkFlush",
-      "frame": 539,
-      "milliseconds": 0.4739
+      "frame": 16,
+      "milliseconds": 0.5321
     },
     {
       "section": "InkFlush",
-      "frame": 540,
-      "milliseconds": 0.6251
+      "frame": 17,
+      "milliseconds": 0.4343
     },
     {
       "section": "InkFlush",
-      "frame": 541,
-      "milliseconds": 0.3688
+      "frame": 18,
+      "milliseconds": 0.3616
     },
     {
       "section": "InkFlush",
-      "frame": 542,
-      "milliseconds": 0.3045
+      "frame": 19,
+      "milliseconds": 0.319
     },
     {
       "section": "InkFlush",
-      "frame": 543,
-      "milliseconds": 0.5199
+      "frame": 20,
+      "milliseconds": 0.3999
     },
     {
       "section": "InkFlush",
-      "frame": 544,
-      "milliseconds": 0.4206
+      "frame": 21,
+      "milliseconds": 0.3771
     },
     {
       "section": "InkFlush",
-      "frame": 545,
-      "milliseconds": 0.5718
+      "frame": 22,
+      "milliseconds": 0.5232
     },
     {
       "section": "InkFlush",
-      "frame": 546,
-      "milliseconds": 0.4426
+      "frame": 23,
+      "milliseconds": 0.3887
     },
     {
       "section": "InkFlush",
-      "frame": 547,
-      "milliseconds": 0.291
+      "frame": 24,
+      "milliseconds": 0.2698
     },
     {
       "section": "InkFlush",
-      "frame": 548,
-      "milliseconds": 0.5171
+      "frame": 25,
+      "milliseconds": 0.5442
     },
     {
       "section": "InkFlush",
-      "frame": 549,
-      "milliseconds": 0.3851
+      "frame": 26,
+      "milliseconds": 0.3682
     },
     {
       "section": "InkFlush",
-      "frame": 550,
-      "milliseconds": 0.3899
+      "frame": 27,
+      "milliseconds": 0.3418
     },
     {
       "section": "InkFlush",
-      "frame": 551,
-      "milliseconds": 0.7813
+      "frame": 28,
+      "milliseconds": 0.5536
     },
     {
       "section": "InkFlush",
-      "frame": 552,
-      "milliseconds": 0.4491
+      "frame": 29,
+      "milliseconds": 0.2821
     },
     {
       "section": "InkFlush",
-      "frame": 553,
-      "milliseconds": 0.4087
+      "frame": 30,
+      "milliseconds": 0.2646
     },
     {
       "section": "InkFlush",
-      "frame": 554,
-      "milliseconds": 0.5959
+      "frame": 31,
+      "milliseconds": 0.4451
     },
     {
       "section": "InkFlush",
-      "frame": 555,
-      "milliseconds": 0.534
+      "frame": 32,
+      "milliseconds": 0.3803
     },
     {
       "section": "InkFlush",
-      "frame": 556,
-      "milliseconds": 1.4127
+      "frame": 33,
+      "milliseconds": 0.4627
     },
     {
       "section": "InkFlush",
-      "frame": 557,
-      "milliseconds": 0.6067
+      "frame": 34,
+      "milliseconds": 0.485
     },
     {
       "section": "InkFlush",
-      "frame": 558,
-      "milliseconds": 0.6649
+      "frame": 35,
+      "milliseconds": 0.5605
     },
     {
       "section": "InkFlush",
-      "frame": 559,
-      "milliseconds": 0.3849
+      "frame": 36,
+      "milliseconds": 0.3592
     },
     {
       "section": "InkFlush",
-      "frame": 560,
-      "milliseconds": 2.3176
+      "frame": 37,
+      "milliseconds": 0.8032
     },
     {
       "section": "DrawNewBranches",
-      "frame": 560,
-      "milliseconds": 16.8163
+      "frame": 37,
+      "milliseconds": 15.4337
     },
     {
       "section": "PresentBattle",
-      "frame": 560,
-      "milliseconds": 16.9072
+      "frame": 37,
+      "milliseconds": 15.4999
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 560,
-      "milliseconds": 16.9982
+      "frame": 37,
+      "milliseconds": 15.56
     },
     {
       "section": "InkFlush",
-      "frame": 561,
-      "milliseconds": 1.1164
+      "frame": 38,
+      "milliseconds": 0.9186
     },
     {
       "section": "DrawNewBranches",
-      "frame": 561,
-      "milliseconds": 15.7748
+      "frame": 38,
+      "milliseconds": 14.7271
     },
     {
       "section": "PresentBattle",
-      "frame": 561,
-      "milliseconds": 15.8692
+      "frame": 38,
+      "milliseconds": 14.8152
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 561,
-      "milliseconds": 15.9243
+      "frame": 38,
+      "milliseconds": 14.8809
     },
     {
       "section": "InkFlush",
-      "frame": 562,
-      "milliseconds": 0.9256
+      "frame": 39,
+      "milliseconds": 1.0128
     },
     {
       "section": "DrawNewBranches",
-      "frame": 562,
-      "milliseconds": 14.7878
+      "frame": 39,
+      "milliseconds": 16.4014
     },
     {
       "section": "PresentBattle",
-      "frame": 562,
-      "milliseconds": 14.8655
+      "frame": 39,
+      "milliseconds": 16.4695
     },
     {
       "section": "Loop.PreLateUpdate",
-      "frame": 562,
-      "milliseconds": 14.9147
+      "frame": 39,
+      "milliseconds": 16.5194
     }
   ],
   "method": "Isolated Editor Play; bounded overflow/disabled assertions, duplicate installation/restoration, live top-level PlayerLoop phase timing; exact loop hierarchy/delegates restored."

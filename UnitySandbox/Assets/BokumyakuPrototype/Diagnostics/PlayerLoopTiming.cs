@@ -29,6 +29,18 @@ namespace Bokumyaku.Diagnostics
                 var system = loop.subSystemList[i];
                 var children = system.subSystemList;
                 if (children == null || children.Length == 0) continue;
+                if (system.type.Name == "PostLateUpdate")
+                {
+                    var detailed = new PlayerLoopSystem[children.Length * 3];
+                    for (int j = 0; j < children.Length; j++)
+                    {
+                        var childPhase = new Phase("PostLate." + children[j].type.Name);
+                        detailed[j * 3] = new PlayerLoopSystem { type = typeof(StartMarker), updateDelegate = childPhase.Begin };
+                        detailed[j * 3 + 1] = children[j];
+                        detailed[j * 3 + 2] = new PlayerLoopSystem { type = typeof(EndMarker), updateDelegate = childPhase.End };
+                    }
+                    children = detailed;
+                }
                 var phase = new Phase("Loop." + system.type.Name);
                 var wrapped = new PlayerLoopSystem[children.Length + 2];
                 wrapped[0] = new PlayerLoopSystem { type = typeof(StartMarker), updateDelegate = phase.Begin };
