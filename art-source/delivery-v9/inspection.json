@@ -1,0 +1,23 @@
+{
+  "file": "core_enso_09.png",
+  "width": 1254.0,
+  "height": 1254.0,
+  "bytes": 796122,
+  "sha256": "5260E9BD244434C5436020FDF7EFC2C158F894918590DCC28BD50401D112CAA1",
+  "alphaZero": 1310592.0,
+  "alphaPartial": 261619.0,
+  "alphaOpaque": 305.0,
+  "bounds": [
+    0.0,
+    55.0,
+    1223.0,
+    1253.0
+  ],
+  "innerDiskRadius36PercentNonzeroAlpha": 175106.0,
+  "outer5PercentNonzeroAlpha": 97.0,
+  "alphaAtLeast32Pixels": 225017.0,
+  "inRadius38To45Percent": 4516.0,
+  "visibleMinRadius": 0.30374977545739545,
+  "visibleMaxRadius": 0.40150426267606165,
+  "innerDiskRadius25PercentNonzeroAlpha": 220.0
+}

@@ -215,3 +215,7 @@ CoreGaugeCheckで360×640/1080×2400を確認。隔離Play・停止Wave5にrefle
 全面の横長黒帯を外し、Waveと一時停止を円形部品、墨/結晶を見出しと数値、段位を別帯へ分離。数値はN0で桁区切りし、省略なし。RoundPlateは共通部品で黒円にUiDiscGraphicを再利用。薄いサイズで筆枠の透明部分へ文字が出たため、資源/段位の墨下地を補った。現時点では円の筆縁と長方形帯が参考より単調で、質感完成とはしない。
 HeaderCheckで360×640/1080×2400の通常Wave5と人工Wave100000/墨・結晶2147483647を表示。全可視TMPのglyph/overflow、実座標raycastによるPause/Resume callbackを確認。人工数値は元値へ戻しsnapshot一致を検証。通常/最大値のheader-*.png、結果header-normal-*.json。360の最大値/1080通常画像を目視。長期バランス/自然到達を検証したものではない。初回はInkTitleの縦余白によるoverflowを修正。全テスト/Windows/実機は未実施、Play停止と隔離QA設定復元済み。
 素材室へdelivery-v9（金/墨の透明円相枠1案）を依頼済み。共有コードを触らせずart-source内で制作する。
+
+## 円枠の描画順とWindows統合（2026-10-24）
+RoundPlateの旧構造は親Imageの筆枠を子の黒円が覆っていた。透明な親Imageを入力領域とし、黒円→BrushRim→文字へ描画順を修正。一時停止の色遷移対象はBrushRimへ変更。HeaderCheckを出力名rimへ替えた同一検証を1080×2400で再実行、通常/最大値・raycast・snapshot復元合格。rim-normal-1080.json/png、rim-large-1080.png。通常画像で筆縁を確認。
+Windows release v28へこれまでのカードv8/操作パネル/墨核/上部HUDを統合。BuildHudCandidateとTest-BokumyakuVisiblePlayerで確認。詳細WINDOWS_RANK_CANDIDATE.md。新しい生成円相枠v9は未統合であり当該ビルドに含まれない。

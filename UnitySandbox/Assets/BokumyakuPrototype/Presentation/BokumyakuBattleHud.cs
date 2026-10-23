@@ -36,12 +36,13 @@ namespace Bokumyaku.Presentation
         public static RectTransform RoundPlate(Transform parent,string name,Vector2 min,Vector2 max,Sprite rim,Color rimColor)
         {
             var area=Rect(parent,name+"Area",min,max);
-            var plate=Panel(area,name,Vector2.zero,Vector2.one,rimColor);
-            plate.sprite=rim;plate.preserveAspect=true;
+            var plate=Panel(area,name,Vector2.zero,Vector2.one,Color.clear);
             var aspect=plate.gameObject.AddComponent<UnityEngine.UI.AspectRatioFitter>();
             aspect.aspectMode=UnityEngine.UI.AspectRatioFitter.AspectMode.FitInParent;aspect.aspectRatio=1;
             var disc=Rect(plate.transform,"InkBacking",new Vector2(.09f,.09f),new Vector2(.91f,.91f)).gameObject.AddComponent<Drawing.UiDiscGraphic>();
             disc.color=new Color(.025f,.023f,.02f,1);disc.raycastTarget=false;
+            var brush=Panel(plate.transform,"BrushRim",Vector2.zero,Vector2.one,rimColor);
+            brush.sprite=rim;brush.preserveAspect=true;
             return plate.rectTransform;
         }
         public static TextMeshProUGUI Label(Transform parent, string name, TMP_FontAsset font, Vector2 min, Vector2 max, float size, Color color)
@@ -127,7 +128,7 @@ namespace Bokumyaku.Presentation
             rank=Label(rankPlate.transform,"Brand",.02f,0,.98f,1,12,gold);
             var pausePlate=BokumyakuUiParts.RoundPlate(top,"Pause",new Vector2(.86f,.06f),new Vector2(1,.98f),ringSprite,ivory);
             var pauseImage=pausePlate.GetComponent<UnityEngine.UI.Image>();pauseImage.raycastTarget=true;
-            var pauseButton=pausePlate.gameObject.AddComponent<UnityEngine.UI.Button>();pauseButton.targetGraphic=pauseImage;
+            var pauseButton=pausePlate.gameObject.AddComponent<UnityEngine.UI.Button>();pauseButton.targetGraphic=pausePlate.Find("BrushRim").GetComponent<UnityEngine.UI.Image>();
             pauseButton.onClick.AddListener(()=>game.SetPaused(!game.IsPaused));
             pause=Label(pausePlate,"Caption",.14f,.12f,.86f,.88f,24,ivory);pause.text="Ⅱ";
             TextMeshProUGUI ignored;

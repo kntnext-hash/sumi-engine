@@ -113,3 +113,9 @@ Point900tick/購入/枝/墨/SEソース/同一プロセス保存復帰合格。2
 
 ## development-unprofiled-v27（2026-10-24）
 profile-v27と同一開発バイナリをProfiler引数なし・通常描画・settled-startで1回実行。Point/購入/枝/墨/SEソース/同一プロセス保存復帰合格、平均16.87ms/最大52.58ms/定常最大39.40ms。非開発v26最大495.25msとの差はあるが、開発版ではProfilerなしでも非再現。Profilerによる負荷だけで隠れたとは説明できない。開発/非開発構成差の原因は未特定。性能未合格のまま保留し、次は画面品質改善を進める。証拠evidence/*development-unprofiled-v27.*。
+
+## hud-v28（2026-10-24）
+非Development/CleanBuildCacheで150.15秒、168141101bytes、警告/エラー0。ソースb1875d6＋RoundPlate描画順修正。CLI30秒timeout後も同じEditor/beeプロセスの進行を確認し、完了reportを待機。重複buildなし。
+明示許可済みの表示Player、隔離保存で6武器各900tick/購入/攻撃/SEソース/同一プロセス保存復帰、自動周回と別プロセス再開が合格。通常109.54秒、再開16.65秒。平均/max ms: Point16.81/50.76、Pierce16.82/49.07、Bleed16.80/47.74、Sweep16.77/43.51、Enso17.35/528.75、Resonance16.77/43.23。Ensoの528.75msは起動期、定常最大34.31ms。約500ms停止は未解決。聴感の評価はしていない。
+OSが要求1080×2400を1080×1080へ制限、画像でUI縦領域が縮み一部文字が枠から出る。縦画面合格としない。同一バイナリで450×1000/SettledStartのPointだけ追加確認し、実寸450×1000、表示を目視、平均16.83/max55.37/定常max35.72ms。6武器結果とこの単一武器結果を混同しない。Windowsの横/正方形時レイアウトは残件。実機/全EditMode/独立QAは今回未実施。
+証拠evidence/*hud-v28.*、*hud-portrait-v28.*、hud-build-v28.json。実行物Builds/Bokumyaku-hud-v28/Bokumyaku.exe、同梱Data/UnityPlayer/MonoBleedingEdge必須。通常セーブは変更せず、プローブは終了済み。

@@ -83,3 +83,6 @@ art-source/delivery-v7/washi_card_07.pngをResources/BokumyakuArtへ同一SHA-25
 
 ## 強化アイコン delivery-v8（2026-10-24）
 素材室の新規imagegen生成5点を統合。原本、実プロンプト、SHA256、alpha検査はart-source/delivery-v8/README.md・PROMPTS.md・inspection-final.json。参照画像の切抜きや他ゲーム素材は使用していない。upgrade_attack/speed/flow/branch/width_08.pngを同名でResources/BokumyakuArtへコピー。筆撃/筆速/流墨/分岐/筆幅へ対応。原本1254×1254を変更せずUnity importのみmax512に設定。微小alpha端接触と縮小時の金細部の消失は納品書に記録。48px素材比較に加え360×640/1080×2400実UI確認済み。
+
+## 円相枠候補 delivery-v9（2026-10-24・未採用）
+素材室で新規imagegen1案＋同案修正1回。原本/初稿/実プロンプト/alpha検査/SHA256はart-source/delivery-v9に保持。core_enso_09.pngは1254角、中心/外周に微小alpha、主線半径30.37〜40.15%で指定38〜45%より内寄り。64pxで金/墨の輪は見えるが、位置合わせと透明条件が未達のためResourcesへ未導入。第三者画像の切抜き・素材流用なし、参考の目視のみ。詳細README.mdを参照。
