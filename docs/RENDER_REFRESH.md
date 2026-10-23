@@ -164,3 +164,8 @@ RootBudgetCheckの隔離Playで同フレーム0→1→1、後続14/14組・枝7/
 吸生種が核へ接続したとき、湾曲した墨管6区間と核→敵へ流れる朱粒3個を表示。既存の手続きslash/emberを再利用、1体あたりSpriteRenderer9個を追加しプールへ返す。毎フレームのテクスチャ生成なし。幾何計算InkFlowPathはゲーム判定に依存しない。戦闘HP/吸収量/保存/Runtime変更なし。
 演出時計は停止/ヒットストップに従い、reduced motionでは粒位置を固定。撃破中は全9個を即無効化、Resetで全返却。DrainFlowCheckで人工配置した二段の吸生種を検証し、移動/軽減静止/撃破無効化/返却/snapshot不変が合格。1080×2400で核右の管と朱粒を目視。死亡状態と描画時刻は検証コードが直接設定するため自然遭遇の実戦確認ではない。PlayerPrefs変更なし。
 証拠evidence/drain-flow.json/png。今回コンパイル＋隔離Editor Playのみ。密集時の追加描画コストと実機可読性は未検証。
+
+## 初期根を1ストローク/フレームへ細分化（2026-10-24）
+14組の分割でもRootFlourish最大66.62msだったため、主根のDense/Poolを各1回、側根を各1本として35ストロークへ変更。1フレーム1本で完結し、次フレームへ開いたストロークを持ち越さない。元の順番、座標、seed、筆設定を維持。
+変更前/後を別Playのseed42・900tick・一時停止で比較。根と枝の完了後、384×512全画素のPigmentAt floatバイトのSHA256がBA771C9CF01993E7CF1A2344DF727AEB0DB17DDB4C65D49FFA672FD4EB7453FEで完全一致。root-pigment-before/after.json。一般の全seedや死体跡が交錯する動的状況の一致保証ではない。
+root-stroke-budget.jsonで35/35と枝7/7完了、snapshot/全面初期化不変。同フレーム0→1→1。今回はコンパイル＋隔離Editor Playのみ。実フレーム停止の改善は未計測。60fpsなら描画完了は最低約0.58秒、実時間は処理負荷に依存する。

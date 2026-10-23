@@ -450,7 +450,7 @@ namespace Bokumyaku.Presentation
             if (branchDrawFrame == Time.frameCount) return;
             branchDrawFrame = Time.frameCount;
             // Complete strokes before yielding: death marks may begin another SUMI stroke.
-            if (drawnRootSlices < 14)
+            if (drawnRootSlices < 35)
             {
                 using (BattleTiming.Measure("RootFlourish")) DrawRootFlourish(drawnRootSlices++);
                 return;

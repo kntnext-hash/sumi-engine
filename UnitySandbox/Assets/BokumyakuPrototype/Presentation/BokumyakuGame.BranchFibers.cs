@@ -8,18 +8,16 @@ namespace Bokumyaku.Presentation
   void DrawRootFlourish(int slice)
   {
    float sx=canvas.width/384f,sy=canvas.height/512f;
-   // Seven main roots, then seven groups of side roots: preserve the original layering.
-   if(slice<7)
+   // Fourteen main-root strokes, then twenty-one forks; preserve the exact layering.
+   if(slice<14)
    {
-    int i=slice;
+    int i=slice/2,pass=slice%2;
     float angle=Mathf.Lerp(-1.25f,1.25f,i/6f);
     var start=new Vector2(192,256);
     var end=start+new Vector2(Mathf.Sin(angle)*172,-Mathf.Cos(angle)*210);
     var control=start+new Vector2(Mathf.Sin(angle)*45,-115);
     var brush=InkBrushSettings.Dense;brush.radius=18;brush.pigment=.8f;brush.water=.12f;brush.roughness=.65f;brush.depletion=.003f;
     // Keep the fiber edge, then lay a narrower wet core over the same path.
-    for(int pass=0;pass<2;pass++)
-    {
     if(pass==1){brush.texture=InkTexture.Pool;brush.radius=10;brush.roughness=.3f;brush.pigment=1;brush.water=.35f;}
     persistentInk.Begin(new InkPoint(start.x*sx,start.y*sy,0,.9f),brush,unchecked(Run.Seed+i*487));
     for(int n=1;n<=32;n++)
@@ -29,17 +27,14 @@ namespace Bokumyaku.Presentation
      persistentInk.Move(new InkPoint(p.x*sx,p.y*sy,t*.6f,Mathf.Lerp(.9f,.04f,t*t)));
     }
     persistentInk.End();
-    }
    }
    // Short side roots anchor the core without adding gameplay nodes.
    else
    {
-    int i=slice-7;
+    int i=(slice-14)/3,fork=(slice-14)%3;
     float angle=Mathf.Lerp(-1.25f,1.25f,i/6f);
     var start=new Vector2(192,256);var end=start+new Vector2(Mathf.Sin(angle)*172,-Mathf.Cos(angle)*210);
     var control=start+new Vector2(Mathf.Sin(angle)*45,-115);
-    for(int fork=0;fork<3;fork++)
-    {
      float t=.38f+fork*.17f;var junction=(1-t)*(1-t)*start+2*(1-t)*t*control+t*t*end;
      junction.x+=Mathf.Sin(t*Mathf.PI*2+i)*Mathf.Sin(t*Mathf.PI)*7;
      var direction=(end-control).normalized;var side=new Vector2(-direction.y,direction.x)*((i+fork)%2==0?1:-1);
@@ -48,7 +43,6 @@ namespace Bokumyaku.Presentation
      persistentInk.Begin(new InkPoint(junction.x*sx,junction.y*sy,0,.8f),brush,unchecked(Run.Seed+i*487+fork+71));
      for(int n=1;n<=12;n++){float u=n/12f;var p=Vector2.Lerp(junction,tip,u)+side*Mathf.Sin(u*Mathf.PI)*8;persistentInk.Move(new InkPoint(p.x*sx,p.y*sy,u*.4f,Mathf.Lerp(.8f,.03f,u)));}
      persistentInk.End();
-    }
    }
    persistentInk.Flush();
   }

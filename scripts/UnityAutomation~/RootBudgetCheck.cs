@@ -10,9 +10,9 @@ return new{before,first,second,total=g.Run.Branches.Count};
 }
 public static object Verify(){
 var g=UnityEngine.Object.FindFirstObjectByType<BokumyakuGame>();
-if(g.PaintedRootSlices!=14 || g.PaintedBranchCount!=g.Run.Branches.Count)throw new Exception("Painting did not finish");
+if(g.PaintedRootSlices!=35 || g.PaintedBranchCount!=g.Run.Branches.Count)throw new Exception("Painting did not finish");
 if(SessionState.GetString("RootBudget.snapshot","")!=JsonUtility.ToJson(g.Run.CaptureState()))throw new Exception("Simulation changed");
 if(g.InkFullInitializations!=SessionState.GetInt("RootBudget.full",0))throw new Exception("Full initialization changed");
 var r=new{rootSlices=g.PaintedRootSlices,painted=g.PaintedBranchCount,total=g.Run.Branches.Count,snapshotUnchanged=true,fullInitializationUnchanged=true,method="Paused 900tick fixture; repeated calls within one frame and completion across subsequent frames"};
-File.WriteAllText(Path.GetFullPath("../docs/evidence/root-budget.json"),Newtonsoft.Json.JsonConvert.SerializeObject(r));return r;
+File.WriteAllText(Path.GetFullPath("../docs/evidence/root-stroke-budget.json"),Newtonsoft.Json.JsonConvert.SerializeObject(r));return r;
 }}
