@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using Bokumyaku.Simulation;
 using UnityEngine;
+using TMPro;
 namespace Bokumyaku.Presentation
 {
  // Presentation owns interpolation and VFX clocks; never writes simulation state.
  public sealed class InkBattleWorld : IDisposable
  {
   sealed class EnemyView { public EnemyState state; public Vector2 previous,current; public double hp; public SpriteRenderer body,eye; public SpriteRenderer[] buds; public float hit,death; public bool dying,drawn; }
+  sealed class DamageLabel { public TextMeshPro text; public int enemyId; public Vector2 point; public double damage; public float age; }
+  readonly List<DamageLabel> damageLabels=new List<DamageLabel>();
+  readonly Dictionary<int,double> beforeHp=new Dictionary<int,double>();
   sealed class Effect { public SpriteRenderer renderer; public Vector2 a,b; public float age,life,width; public int type; public Color tint; public bool flash; }
   readonly GameObject root; readonly Camera camera; readonly Material material; readonly MaterialPropertyBlock block=new MaterialPropertyBlock();
   readonly Dictionary<int,EnemyView> enemies=new Dictionary<int,EnemyView>(); readonly List<int> remove=new List<int>();
@@ -50,11 +54,13 @@ namespace Bokumyaku.Presentation
   void ReleaseEnemy(EnemyView v){Release(v.body);Release(v.eye);if(v.buds!=null)foreach(var bud in v.buds)Release(bud);}
   public void Reset(RunSimulator run)
   {
+   foreach(var label in damageLabels){label.age=1;label.text.gameObject.SetActive(false);}
    foreach(var e in enemies.Values)ReleaseEnemy(e);enemies.Clear();foreach(var e in effects)Release(e.renderer);effects.Clear();before.Clear();boundRun=run;freeze=shake=0;Deaths=HitFlashes=EffectsCreated=InterpolatedFrames=0;
   }
-  public void BeforeTick(RunSimulator run){if(boundRun!=run)Reset(run);before.Clear();foreach(var e in run.Enemies)before.Add(e);foreach(var v in enemies.Values)if(!v.dying)v.previous=v.current;}
+  public void BeforeTick(RunSimulator run){if(boundRun!=run)Reset(run);before.Clear();beforeHp.Clear();foreach(var e in run.Enemies){before.Add(e);beforeHp[e.Id]=e.Hp;}foreach(var v in enemies.Values)if(!v.dying)v.previous=v.current;}
   public void AfterTick(RunSimulator run,bool reduced)
   {
+   foreach(var old in before)if(beforeHp.TryGetValue(old.Id,out var hp)&&hp>old.Hp)ShowDamage(old,Math.Min(hp,hp-old.Hp));
    foreach(var old in before)if(old.Hp<=0)
    {
     Deaths++;DeathMark?.Invoke(old);if(!reduced&&Time.unscaledTime>=nextStop){freeze=.045f;shake=.12f;nextStop=Time.unscaledTime+.18f;}
@@ -73,6 +79,26 @@ namespace Bokumyaku.Presentation
    foreach(var hit in run.Attacks)Attack(hit,run,reduced);
   }
 
+  void ShowDamage(EnemyState enemy,double amount)
+  {
+   if(amount<=0)return;
+   DamageLabel label=null;
+   foreach(var item in damageLabels)if(item.age<.65f&&item.enemyId==enemy.Id){label=item;break;}
+   if(label==null)
+   {
+    foreach(var item in damageLabels)if(item.age>=.65f){label=item;break;}
+    if(label==null&&damageLabels.Count<24)
+    {
+     var go=new GameObject("Damage number");go.layer=31;go.transform.SetParent(root.transform,false);
+     var text=go.AddComponent<TextMeshPro>();text.font=Resources.Load<TMP_FontAsset>("BokumyakuFonts/BattleJapanese");text.fontSize=3.4f;text.alignment=TextAlignmentOptions.Center;text.textWrappingMode=TextWrappingModes.NoWrap;text.rectTransform.sizeDelta=new Vector2(3,.7f);text.renderer.sortingOrder=30;
+     label=new DamageLabel{text=text};damageLabels.Add(label);
+    }
+    if(label==null)return; // Readability cap: do not flood dense fights with numbers.
+    label.enemyId=enemy.Id;label.age=0;label.damage=0;label.point=new Vector2((float)enemy.X,(float)enemy.Y);label.text.gameObject.SetActive(true);
+   }
+   label.damage+=amount;
+   label.text.text=label.damage<.1?"<0.1":label.damage>=1000000?label.damage.ToString("0.#E+0",System.Globalization.CultureInfo.InvariantCulture):label.damage.ToString("0.#",System.Globalization.CultureInfo.InvariantCulture);
+  }
   void Spawn(Sprite sprite,Vector2 a,Vector2 b,float life,float width,int type,Color tint,bool flash=false)
   {
    if(effects.Count>=128){Release(effects[0].renderer);effects.RemoveAt(0);}effects.Add(new Effect{renderer=Rent(sprite,flash?9:6),flash=flash,a=a,b=b,life=life,width=width,type=type,tint=tint});EffectsCreated++;
@@ -142,6 +168,14 @@ namespace Bokumyaku.Presentation
     if(!paused&&!v.dying&&alpha>0&&alpha<1&&v.previous!=v.current)InterpolatedFrames++;
    }
    foreach(int id in remove){ReleaseEnemy(enemies[id]);enemies.Remove(id);}
+   foreach(var label in damageLabels)
+   {
+    if(label.age>=.65f)continue;label.age+=dt;
+    if(label.age>=.65f){label.text.gameObject.SetActive(false);continue;}
+    var position=Project(label.point)+Vector2.up*(.5f+(reduced?0:label.age*.7f));
+    label.text.transform.localPosition=new Vector3(position.x,position.y,-.1f);
+    label.text.color=new Color(.22f,.045f,.025f,1-Mathf.Clamp01((label.age-.4f)/.25f));
+   }
    for(int i=effects.Count-1;i>=0;i--)
    {
     var e=effects[i];e.renderer.enabled=!(reduced&&e.flash);e.age+=dt;if(e.age>=e.life){Release(e.renderer);effects.RemoveAt(i);continue;}
@@ -155,11 +189,3 @@ namespace Bokumyaku.Presentation
   public void Dispose(){foreach(var s in ownedSprites)if(s!=null)UnityEngine.Object.Destroy(s);UnityEngine.Object.Destroy(emberTexture);UnityEngine.Object.Destroy(material);UnityEngine.Object.Destroy(root);}
  }
 }
-
-
-
-
-
-
-
-
