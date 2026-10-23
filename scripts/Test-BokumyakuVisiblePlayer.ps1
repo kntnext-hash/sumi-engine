@@ -1,6 +1,6 @@
 # Visible Player QA: requires explicit user authorization to show windows. Two real processes share only an isolated QA save.
 [CmdletBinding()]
-param([string]$BuildFolder='Builds/Bokumyaku-visual-v6', [int]$Width=1080, [int]$Height=2400, [string]$EvidenceTag='visible-v6')
+param([string]$BuildFolder='Builds/Bokumyaku-visual-v6', [int]$Width=1080, [int]$Height=2400, [string]$EvidenceTag='visible-v6', [switch]$SingleThreadRendering)
 $ErrorActionPreference='Stop'
 $repo=Split-Path -Parent $PSScriptRoot
 $folder=[IO.Path]::GetFullPath((Join-Path $repo $BuildFolder))
@@ -13,6 +13,7 @@ foreach($resume in @($false,$true)){
     $name=if($resume){'player-resume'}else{'player'}
     $arguments=@('--bokumyaku-capture-screens','--bokumyaku-smoke-output',('"'+$out+'"'),'-logFile',('"'+(Join-Path $out ($name+'.log'))+'"'),'-screen-width',$Width,'-screen-height',$Height,'-screen-fullscreen','0')
     if($resume){$arguments+='--bokumyaku-resume-check'}
+    if($SingleThreadRendering){$arguments+='-force-gfx-direct'}
     $timer=[Diagnostics.Stopwatch]::StartNew()
     $process=Start-Process -FilePath $exe -WorkingDirectory $folder -ArgumentList $arguments -PassThru -WindowStyle Normal
     $timeout=if($resume){40}else{165}
@@ -24,7 +25,7 @@ foreach($resume in @($false,$true)){
     if(!(Test-Path -LiteralPath $report)){throw "Report missing: $report / exit $($process.ExitCode)"}
     $result=Get-Content -LiteralPath $report -Raw | ConvertFrom-Json
     Copy-Item -LiteralPath $report -Destination (Join-Path $repo ('docs/evidence/bokumyaku-'+$name+('-'+$EvidenceTag+'.json')))
-    $launches += [pscustomobject]@{name=$name;exitCode=$process.ExitCode;elapsedSeconds=[Math]::Round($timer.Elapsed.TotalSeconds,3);passed=$result.passed}
+    $launches += [pscustomobject]@{name=$name;exitCode=$process.ExitCode;elapsedSeconds=[Math]::Round($timer.Elapsed.TotalSeconds,3);passed=$result.passed;singleThreadRenderingRequested=[bool]$SingleThreadRendering;graphicsMode=@(Select-String -LiteralPath (Join-Path $out ($name+'.log')) -Pattern 'GfxDevice:|kGfxThreadingMode' | ForEach-Object {$_.Line})}
     $launches | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $repo ('docs/evidence/bokumyaku-player-launch-'+$EvidenceTag+'.json')) -Encoding UTF8
     if($process.ExitCode -ne 0 -or !$result.passed){throw "Probe failed: $name. Evidence copied; logs=$out"}
 }

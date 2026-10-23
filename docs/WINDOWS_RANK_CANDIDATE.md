@@ -78,3 +78,8 @@ Windowsビルド69.02秒、156,542,685bytes、警告/エラー0。6武器/SE/周
 PostLateUpdateの各子処理の前後にQA専用計測を追加。処理順/内容は保持、Editor60frameの復元/上限確認合格。ビルド67.22秒、156,543,197bytes、警告/エラー0。6武器/SE/周回/別プロセス復帰合格。平均16.80〜17.39ms、最大544.09ms、欠落0。
 Enso frame3551→3552: focused前後true、GC差0。frame3551のPostLate.FinishFrameRendering495.93ms、PostLateUpdate496.05ms、Update15.82ms、InkFlush1.09ms。長い停止は描画完了処理内へ局在。GPU/描画スレッド/ドライバー等のどれかはまだ確定していない。性能未合格。次はUnity Profiler等でこの処理内の待機を区別する。
 検証中に別担当が紙札UIのソース/PNGを作成したが、当該Playerは差替え前にビルド済みの固定バイナリ。Editorの背景処理による外部負荷は統制しておらず、CPU/GPU絶対性能の厳密比較には用いない。紙札はこのWindowsビルドに未収録。evidence/*postlate-v22.*。
+
+## direct-v22 同一バイナリの描画スレッド比較（2026-10-24）
+公式Player引数 -force-gfx-direct（単一スレッド描画）でpostlate-v22を再実行。EXEとゲームDLLのSHA-256が対照と一致。ログで両プロセスのkGfxThreadingModeDirectを確認。製品ProjectSettingsは変更なし。参照: https://docs.unity.com/en-us/engine/6000.3/manual/unity-editor/command-line-arguments/player
+6武器/SE/周回/別プロセス復帰合格。540×960、平均16.86〜17.46ms、最大559.00ms（Enso開始直後）。focused前後true・GC差0・ログ欠落0。
+frame3542→3543の559msに対して、frame3543 InkFlush522.93ms、RootFlourish557.10ms、Update557.26ms。同一コードでもスレッド方式を変えると待機が転送API側に現れた。スレッド無効化は解決策ではない。GPU/ドライバー同期等が候補だが確定はせず、次はFlush内のSetPixels32/Apply/CopyTextureを分離する。直前のFinishFrameRendering495.93msとの単回比較であり厳密な再現率や因果の証明ではない。今回は同一Windowsバイナリの対象比較、性能未合格。evidence/*direct-v22.*。
