@@ -16,7 +16,7 @@ namespace Bokumyaku.Tests
         static CampaignProgress Result(int rules,int wave,int ticks,int reward)
         {
             var r=new CampaignResult { RunId=Guid.NewGuid().ToString("N"),RulesVersion=rules,CompletedWave=wave,Ticks=ticks,Crystals=reward,Status=RunStatus.TestCompleted };
-            var c=new CampaignProgress { TotalRuns=1,LastSettledRunId=r.RunId,LastResult=r,BestWave=wave,TotalCrystals=reward,Meta=new MetaProgress { Crystals=reward } };c.History.Add(r);return c;
+            var c=new CampaignProgress { TotalRuns=1,LastSettledRunId=r.RunId,LastResult=r,BestWave=wave,BestWaveByTier=new[] { wave,0,0 },TotalCrystals=reward,Meta=new MetaProgress { Crystals=reward } };c.History.Add(r);return c;
         }
         [TestCase(30000)] [TestCase(100000)]
         public void LongResultRoundTripsLargeWaveAndReward(int wave)
@@ -25,7 +25,7 @@ namespace Bokumyaku.Tests
             var read=CampaignSaveStore.Load(path,out warning);Assert.AreEqual(wave,read.BestWave);Assert.AreEqual(12000000,read.LastResult.Crystals);Assert.AreEqual(wave*360,read.LastResult.Ticks);
         }
         [TestCase(5,100001,36000000,1)] [TestCase(5,100000,36000001,1)] [TestCase(5,100000,36000000,12000001)]
-        [TestCase(4,61,21600,1)] [TestCase(4,60,21601,1)] [TestCase(4,60,21600,80001)] [TestCase(7,60,21600,1)]
+        [TestCase(4,61,21600,1)] [TestCase(4,60,21601,1)] [TestCase(4,60,21600,80001)] [TestCase(8,60,21600,1)]
         public void UnsupportedResultBoundsFailBeforeWrite(int rules,int wave,int ticks,int reward)
         {Assert.Throws<InvalidDataException>(()=>CampaignSaveStore.Save(path,Result(rules,wave,ticks,reward)));Assert.IsFalse(File.Exists(path));}
         [Test] public void OldRulesStillEndAtSixtyAfterFileGenerationMigration()

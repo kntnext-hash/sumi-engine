@@ -47,7 +47,7 @@ namespace Bokumyaku.Presentation
         readonly UnityEngine.UI.Button[] cards = new UnityEngine.UI.Button[5];
         readonly TextMeshProUGUI[] cardLevels = new TextMeshProUGUI[5], cardCosts = new TextMeshProUGUI[5];
         BokumyakuGame game; Canvas canvas; RectTransform safe; TMP_FontAsset font; Font sourceFont;
-        GameObject ownedEventSystem, modal; TextMeshProUGUI wave, ink, crystals, hp, notice, speed, pause, auto, motion, result, retryLabel;
+        GameObject ownedEventSystem, modal; TextMeshProUGUI rank, wave, ink, crystals, hp, notice, speed, pause, auto, motion, result, retryLabel;
         UnityEngine.UI.Button retry,repair; UnityEngine.UI.Image hpFill; float nextRefresh; Rect lastSafe; int lastWidth, lastHeight;
         UnityEngine.UI.Button extraToggle;
         readonly UnityEngine.UI.Button[] extraCards = new UnityEngine.UI.Button[2];
@@ -88,7 +88,7 @@ namespace Bokumyaku.Presentation
             wave = Label(top.transform,"Wave",0,.02f,.22f,.60f,29,new Color(.8f,.12f,.08f));
             ink = Label(top.transform,"Ink",.23f,.4f,.57f,1,21,ivory);
             crystals = Label(top.transform,"Crystals",.57f,.4f,.85f,1,17,gold);
-            Label(top.transform,"Brand",.24f,.02f,.84f,.4f,12,gold).text = "墨脈 — BOKUMYAKU";
+            rank=Label(top.transform,"Brand",.24f,.02f,.84f,.4f,12,gold);
             Button(top.transform,"Pause",.86f,.1f,1,.9f,"Ⅱ",()=>game.SetPaused(!game.IsPaused),out pause);
             repair=Button(bottom.transform,"Repair",0,.76f,.22f,1,"",()=>game.TryRepair(),out hp);
             var track = BokumyakuUiParts.Panel(bottom.transform,"CoreTrack",new Vector2(.02f,.74f),new Vector2(.2f,.755f),new Color(.2f,.18f,.13f));
@@ -189,7 +189,7 @@ namespace Bokumyaku.Presentation
         static void Text(TextMeshProUGUI target,string value){if(target.text!=value)target.text=value;}
         void Refresh()
         {
-            var run=game.Run;if(run==null)return;
+            var run=game.Run;if(run==null)return;Text(rank,TierBalance.Get(run.Tier).DisplayName);
             Text(wave,run.Wave.ToString());Text(ink,"墨 "+run.RunInk);Text(crystals,"結晶 "+game.Meta.Crystals);Text(hp,"墨核 "+run.CoreHp+" / 10\n"+(run.CoreHp>=10?"満タン":run.RepairCount>=5?"修復上限":"修復 墨 "+run.RepairCost));
             repair.interactable=!game.BattleStorageBlocked&&!game.AwaitingStart&&run.State==RunStatus.Running&&run.CoreHp<10&&run.RepairCount<5&&run.RunInk>=run.RepairCost;
             hpFill.rectTransform.anchorMax=new Vector2(Mathf.Clamp01(run.CoreHp/10f),1);

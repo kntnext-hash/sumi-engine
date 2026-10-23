@@ -27,7 +27,9 @@ namespace Bokumyaku.Simulation
             return rules>=5?LongRunWaveLimit:LegacyWaveLimit;
         }
         public static int TickLimitForRules(int rules) { return WaveLimitForRules(rules)*360; }
-        public static int CrystalLimitForRules(int rules) { WaveLimitForRules(rules); return rules>=5?LongRunCrystalLimit:80000; }
+        public static int CrystalLimitForRules(int rules) { WaveLimitForRules(rules); return rules>=7?(int)(LongRunCrystalLimit*TierBalance.Get(TierBalance.Count).CrystalMultiplier):rules>=5?LongRunCrystalLimit:80000; }
+        static int CalculateCrystalsReward(double points, int rules, int tier)
+        { return (int)Math.Floor(points * .08 * (rules >= 7 ? TierBalance.Get(tier).CrystalMultiplier : 1)); }
         public static double RewardWaveFactor(int wave)
         {
             ValidateLongWave(wave);

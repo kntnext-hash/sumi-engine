@@ -29,7 +29,7 @@ namespace Bokumyaku.Tests
             var bytes=File.ReadAllBytes(previous);var backup=File.ReadAllBytes(previous+".bak");
             string warning;var migrated=CampaignSaveStore.LoadLatest(latest,previous,previousV3,older,null,out warning);
             Assert.AreEqual(c.ActiveRun.exactDoubleBits,migrated.ActiveRun.exactDoubleBits);
-            Assert.AreEqual(CanonicalCampaignJson(c),CanonicalCampaignJson(migrated));Assert.AreEqual(3,migrated.SchemaVersion);Assert.AreEqual("bokumyaku-campaign-v3",migrated.Config);
+            Assert.AreEqual(CanonicalCampaignJson(c),CanonicalCampaignJson(migrated));Assert.AreEqual(4,migrated.SchemaVersion);Assert.AreEqual("bokumyaku-campaign-v4",migrated.Config);
             var live=RunSimulator.Restore(migrated.ActiveRun);for(int i=0;i<900;i++)live.Tick();
             Assert.AreEqual(JsonUtility.ToJson(RunSimulator.Restore(Fixture(prefix+"-tick6900.json")).CaptureState()),JsonUtility.ToJson(live.CaptureState()));
             CampaignSaveStore.SaveActive(latest,migrated,live,2);
@@ -43,7 +43,7 @@ namespace Bokumyaku.Tests
         [Test] public void OldV2FallbackStillMigratesWithoutChangingSource()
         {
             var c=new CampaignProgress { SchemaVersion=2,Config="bokumyaku-campaign-v2",Meta=new MetaProgress { Crystals=39 } };var bytes=JsonUtility.ToJson(c);File.WriteAllText(older,bytes);
-            string w;var migrated=CampaignSaveStore.LoadLatest(latest,previous,previousV3,older,null,out w);Assert.AreEqual(39,migrated.Meta.Crystals);Assert.AreEqual(3,migrated.SchemaVersion);Assert.AreEqual(bytes,File.ReadAllText(older));
+            string w;var migrated=CampaignSaveStore.LoadLatest(latest,previous,previousV3,older,null,out w);Assert.AreEqual(39,migrated.Meta.Crystals);Assert.AreEqual(4,migrated.SchemaVersion);Assert.AreEqual(bytes,File.ReadAllText(older));
         }
         [Test] public void BrokenLatestDoesNotRollBackToPrevious()
         {
@@ -65,7 +65,7 @@ namespace Bokumyaku.Tests
             CampaignSaveStore.Save(previousV3,new CampaignProgress());File.WriteAllText(previous,"broken-v4");
             Assert.Throws<InvalidDataException>(()=>{string w;CampaignSaveStore.LoadLatest(latest,previous,previousV3,older,null,out w);});Assert.IsFalse(File.Exists(latest));Assert.AreEqual("broken-v4",File.ReadAllText(previous));
         }
-        [TestCase(4,true)] [TestCase(7,false)]
+        [TestCase(4,true)] [TestCase(7,true)] [TestCase(8,false)]
         public void ResultRulesHaveExplicitSupportedRange(int rules,bool valid)
         {
             var id=Guid.NewGuid().ToString("N");var r=new CampaignResult { RunId=id,RulesVersion=rules,Status=RunStatus.Defeated };

@@ -1,21 +1,20 @@
 # 現状 — 墨脈
-更新: 2026-10-23
+更新: 2026-10-24
 
 ## 現状
-- Unity6000.3.26f1 / URP17.3.0 2D。Brush Lab表示/PNG互換確認済み。
-- 戦場SpriteRenderer、戦闘/ホーム/研究/記録uGUI+TMP。同梱日本語フォント共有、ゲームIMGUI撤去。
-- 今回シミュレーション・経済・保存ロジック・Runtime未変更。価格500案はstash保護。
+- Unity6000.3.26f1 / URP17.3.0 2D。戦場SpriteRenderer、全ゲームUI uGUI+TMP。Brush Lab互換は確認済み。
+- Waveと段位を分離。初墨・一段/幽墨・二段/朱天・三段。HP・通常結晶倍率、段位別最高Wave/初達成、ホーム選択と戦闘HUD/記録を接続。
+- rules7 / snapshot schema3 / campaign schema4 / 保存ファイルv9。旧v8は一段へ移行し元データを保持、旧rules1〜6の途中戦闘は維持。研究価格版2、価格500案はstash保護。Runtime未変更。
 
 ## 直近の結果
-- 検証区分: UI修正統合のWindowsビルド/表示Player限定試験。全テスト・実機検証ではない。
-- v8（7cabb5e）error0/warning0、72.96秒。6武器/自動周回/別プロセス復帰合格。2プロセスexit0（118.11秒/15.62秒）。540×960ホーム/戦闘画像を目視。証拠evidence/*ui-v8*、ui-build-v8.json。
-- 速度引継ぎ/確定報酬内訳/強化説明を隔離Play検証。start-speed、result-reward、upgrade-helpのJSON/PNG。
-- 既存UI/テスト証拠はmenu-migration-check、menu-editmode参照。
-- 初週500価格案を3系列7時間まで純C#検証。初回購入3周、7時間購入35〜37回、同育成Record50で目標80〜110未達。価格だけでは不足、採用保留。FIRST_WEEK_CANDIDATE.md。ゲーム係数未変更。全研究9のRecord診断: 点墨50/円相66〜72。火力だけ20で53〜54、成長だけ20は50。FIRST_WEEK_DIAGNOSIS.md。
-- 過去の詳細はarchive/STATE_ui_fixes_2026-10-23.md。
+- 検証区分: 関連EditModeと隔離Editor Playの軽量検証。Bokumyaku.Tests 230/230合格（tier-editmode.json）。初回226/230から旧期待値/初敵待機fixtureを修正。
+- 1080×2400で段位選択・ロック・二段出撃・保存復帰・旧音設定引継ぎ・文字glyph/overflow合格。tier-ui.json、tier-home.png、tier-battle.pngを確認。解放には人工100波fixtureを使用、実際の到達バランスは未評価。復帰UI確認はtick0、非ゼロtickの同一継続はEditModeで検証。
+- 新段位に対するWindowsビルド/実機確認は未実施。従来v8 Playerは6武器/自動周回/別プロセス復帰確認済み。
+- 仮倍率は通常結晶1/1.6/2.5、初達成報酬は従来の5波ごと5結晶。高段位の結晶/分が必ず上がるとは未確認。
+- 既存描画3分試験は平均16.81ms/最大123.86ms、全面更新0。音8種類のイベント再生確認済み、聴感/実機は未検証。詳細はarchive/STATE_before_tier_integration_2026-10-24.md。
 
 ## 次の一手
-0. 最新指示: Waveと段位を分離。初墨/幽墨/朱天の3段位データ表とHP/解放計算を実装、30万点検証。ライブ戦闘/保存/UIへは未接続。最優先はTIER_PROGRESSION.mdのrules7/旧セーブ保護/段位選択。二段の吸生/護輪と夜背景は後続。初週単一曲線調整は中断して段位別へ再編。
-1. 素材室delivery-v4の墨縁/金縁を5強化カードへ統合。中央非描画、360×640の文字収まり/無効状態/実画像を軽量Play確認（card-frame.json/png）。新枠のPlayerビルド/実機は未検証。横長筆枠v3はメニュー採用済み。
-2. 墨核を細い金輪/金脈/白い中心へ変更。Wave1/360×640/演出軽減の限定Play画像確認（core-light.json/png）。点墨/貫筆の墨先端移動追加。注入描画試験で移動/演出軽減/戦闘状態不変を確認（attack-travel.json/png）。3分実戦Wave17→32/304撃破、平均16.81ms/最大123.86ms、全面更新0（render-polish-15a4f40-timing.json）。最大フレーム原因未特定。独立QA指摘のボス赤輪ヒットストップずれを修正、停止/再開位置一致を限定検証（boss-freeze.json）。同tick生成/撃破の分裂子演出欠落は残る。
-3. 音8素材は統合済み。今回の軽量実戦検証でBGM/7SE全種類の再生を確認（audio-event-routing.json、seed42/2倍/69.54秒、購入→敗北→研究）。mono/PCMループ検査済み、聴感/実機は未達。初週バランス・スマホ実機も未達（PRODUCT_COMPLETION.md）。リポジトリ分割は計画のみ。
+1. 段位ごとの昼/夜/朱の背景、二段の吸生種/護輪種を実装。TIER_PROGRESSION.md参照。
+2. 段位別に初週進行と結晶/分、研究購入頻度を調整。従来の7時間Point50波診断では育成不足、段位追加だけで解消した扱いにしない。
+3. 参考画像へ描画を磨く。分裂子の同tick生成/撃破演出欠落、Windows統合再検証、スマホ実機、音の聴感が残る。商品完成は未達。
+4. 別リポジトリ化は計画のみ、実行はユーザー判断待ち。

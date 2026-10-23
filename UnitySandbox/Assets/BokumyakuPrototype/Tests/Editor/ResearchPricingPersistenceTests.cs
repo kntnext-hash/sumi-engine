@@ -17,7 +17,7 @@ namespace Bokumyaku.Tests
         {
             var s=Fixture(prefix+"-tick6000.json");Assert.AreEqual(6,s.rulesVersion);Assert.AreEqual(21,s.meta.Damage);var id=Guid.NewGuid().ToString("N");
             var result=new CampaignResult { RunId=id,RulesVersion=5,Status=RunStatus.Defeated,CompletedWave=10,Ticks=3601,Crystals=12 };
-            var c=new CampaignProgress { Meta=s.meta,HasActiveRun=true,ActiveRun=s,ActiveRunId=Guid.NewGuid().ToString("N"),ActiveSpeed=2,BestWave=10,TotalRuns=1,TotalCrystals=12,LastSettledRunId=id,LastResult=result };
+            var c=new CampaignProgress { Meta=s.meta,HasActiveRun=true,ActiveRun=s,ActiveRunId=Guid.NewGuid().ToString("N"),ActiveSpeed=2,BestWave=10,BestWaveByTier=new[] { 10,0,0 },TotalRuns=1,TotalCrystals=12,LastSettledRunId=id,LastResult=result };
             c.History.Add(result);c.Slots[1].Name="preserved";
             c=CampaignSaveStore.Save(old,c);c=CampaignSaveStore.Save(old,c);var bytes=File.ReadAllBytes(old);var backup=File.ReadAllBytes(old+".bak");var expected=Canonical(c);string w;
             var migrated=CampaignSaveStore.LoadLatest(path,old,null,null,null,null,null,null,out w);

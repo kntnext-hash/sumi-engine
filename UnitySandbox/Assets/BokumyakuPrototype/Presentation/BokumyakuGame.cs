@@ -22,7 +22,8 @@ namespace Bokumyaku.Presentation
         public string MenuSaveWarning => saveWarning;
         public void MenuClick() => AudioClick();
         public string SelectedBuildDescription => BuildDescription(SelectedBuild);
-        public int BestWave => campaign == null ? 0 : campaign.BestWave;
+        public int SelectedTier => campaign == null ? 1 : campaign.SelectedTier;
+        public int BestWave => campaign == null ? 0 : campaign.BestWaveByTier[SelectedTier - 1];
         public CampaignResult LastResult => campaign == null || campaign.LastResult == null ? null : JsonUtility.FromJson<CampaignResult>(JsonUtility.ToJson(campaign.LastResult));
         public MetaProgress Meta = new MetaProgress();
         public RunSimulator Run { get; private set; }
@@ -59,7 +60,8 @@ namespace Bokumyaku.Presentation
                 Page = GamePage.Home; saveWarning = "";
             }
         }
-        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v8.json");
+        public string SavePath => SavePathOverride ?? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v9.json");
+        public string PreviousV8CampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v8.json") : SavePathOverride + ".v8";
         public string LatestPreviousCampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v7.json") : SavePathOverride + ".v7";
         public string PreviousV6CampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v6.json") : SavePathOverride + ".v6";
         public string PreviousV5CampaignPath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-campaign-v5.json") : SavePathOverride + ".v5";
@@ -138,11 +140,11 @@ namespace Bokumyaku.Presentation
             EnsureCanvas();
             try
             {
-                bool firstNewCampaign = !progressLoaded && !SaveFamilyExists(SavePath) && !SaveFamilyExists(LatestPreviousCampaignPath) && !SaveFamilyExists(PreviousV6CampaignPath) && !SaveFamilyExists(PreviousV5CampaignPath) && !SaveFamilyExists(PreviousV4CampaignPath) && !SaveFamilyExists(PreviousCampaignPath) && !SaveFamilyExists(OlderCampaignPath) && !SaveFamilyExists(LegacySavePath);
+                bool firstNewCampaign = !progressLoaded && !SaveFamilyExists(SavePath) && !SaveFamilyExists(PreviousV8CampaignPath) && !SaveFamilyExists(LatestPreviousCampaignPath) && !SaveFamilyExists(PreviousV6CampaignPath) && !SaveFamilyExists(PreviousV5CampaignPath) && !SaveFamilyExists(PreviousV4CampaignPath) && !SaveFamilyExists(PreviousCampaignPath) && !SaveFamilyExists(OlderCampaignPath) && !SaveFamilyExists(LegacySavePath);
                 string warning;
-                var loaded = CampaignSaveStore.LoadLatest(SavePath, LatestPreviousCampaignPath, PreviousV6CampaignPath, PreviousV5CampaignPath, PreviousV4CampaignPath, PreviousCampaignPath, OlderCampaignPath, LegacySavePath, out warning);
+                var loaded = CampaignSaveStore.LoadTierLatest(SavePath, PreviousV8CampaignPath, LatestPreviousCampaignPath, PreviousV6CampaignPath, PreviousV5CampaignPath, PreviousV4CampaignPath, PreviousCampaignPath, OlderCampaignPath, LegacySavePath, out warning);
                 if (firstNewCampaign) SelectedBuild = BuildPreset.Farming;
-                var restored = loaded.HasActiveRun ? RunSimulator.Restore(loaded.ActiveRun) : new RunSimulator(InitialSeed, loaded.Meta);
+                var restored = loaded.HasActiveRun ? RunSimulator.Restore(loaded.ActiveRun) : new RunSimulator(InitialSeed, loaded.Meta, loaded.SelectedTier);
                 ApplyCampaign(loaded); Run = restored; progressLoaded = true; loadBlocked = false;
                 saveWarning = warning; AwaitingStart = !loaded.HasActiveRun; IsPaused = true;
                 if (loaded.HasActiveRun)
@@ -245,7 +247,7 @@ namespace Bokumyaku.Presentation
             LoadProgress();
             if (loadBlocked || campaign == null) return false;
             if (Run != null && !AwaitingStart && Run.State != RunStatus.Running && !rewarded && !SaveProgress()) return false;
-            var nextRun = new RunSimulator(seed, campaign.Meta);
+            var nextRun = new RunSimulator(seed, campaign.Meta, SelectedTier);
             nextRun.SetBuild(SelectedBuild); nextRun.SetPolicy(SelectedPolicy); nextRun.SetWeapon(SelectedWeapon);
             try { ApplyCampaign(CampaignSaveStore.BeginRun(SavePath, campaign, nextRun, speed)); }
             catch (Exception e) when (IsSaveException(e)) { SaveFailed(e); return false; }
@@ -275,7 +277,7 @@ namespace Bokumyaku.Presentation
             if (Run != null && !AwaitingStart && Run.State != RunStatus.Running) return false;
             try { ApplyCampaign(CampaignSaveStore.DiscardRun(SavePath, campaign)); }
             catch (Exception e) when (IsSaveException(e)) { SaveFailed(e); return false; }
-            Run = new RunSimulator(InitialSeed, Meta); Run.SetBuild(SelectedBuild); Run.SetPolicy(SelectedPolicy); Run.SetWeapon(SelectedWeapon);
+            Run = new RunSimulator(InitialSeed, Meta, SelectedTier); Run.SetBuild(SelectedBuild); Run.SetPolicy(SelectedPolicy); Run.SetWeapon(SelectedWeapon);
             AwaitingStart = true; IsPaused = true; rewarded = endHandled = rewardSaved = false;
             Page = GamePage.Home; ResetInk(); notice = "途中の周回を終了しました。報酬はありません。"; return true;
         }
@@ -303,6 +305,14 @@ namespace Bokumyaku.Presentation
             try { ApplyCampaign(CampaignSaveStore.SaveMeta(SavePath, campaign, proposed)); }
             catch (Exception e) when (IsSaveException(e)) { SaveFailed(e); return false; }
             AudioResearch(); notice = "研究完了。次の周回から反映します。"; ProgressChanged?.Invoke(); return true;
+        }
+        public bool SelectTier(int tier)
+        {
+            if (tier < 1 || tier > TierBalance.Count || campaign == null || campaign.HasActiveRun || loadBlocked || storageFailed || !TierBalance.IsUnlocked(tier, campaign.BestWaveByTier)) return false;
+            try { ApplyCampaign(CampaignSaveStore.SelectTier(SavePath, campaign, tier)); }
+            catch (Exception e) when (IsSaveException(e)) { SaveFailed(e); return false; }
+            notice = TierBalance.Get(tier).DisplayName + "を選びました。";
+            ProgressChanged?.Invoke(); return true;
         }
         public void SetSpeed(int speed) { Speed = Mathf.Clamp(speed, 1, 2); }
         public void SetPaused(bool paused)

@@ -99,7 +99,7 @@ namespace Bokumyaku.Simulation
     public sealed partial class RunSimulator
     {
         public const int LegacyRulesVersion = 1;
-        public const int CurrentRulesVersion = 6;
+        public const int CurrentRulesVersion = 7;
         // Rounded legacy run cost at Damage30: ceil(10*1.16^30*(1+.008*30^2)).
         public const int DamageCostAt30 = 7040;
         public const int HarvestMaxLevel = 10;
@@ -161,8 +161,10 @@ namespace Bokumyaku.Simulation
         public IReadOnlyList<AttackEvent> Attacks { get { return attacks.AsReadOnly(); } }
         public int TipCount { get { int count = 0; foreach (var b in branches) if (b.IsTip) count++; return count; } }
         public double RootSupply { get { return 12 * Math.Pow(1.09, levels[2]) * (1 + .035 * meta.Supply); } }
-        public RunSimulator(int seed, MetaProgress meta = null)
+        public int Tier { get; }
+        public RunSimulator(int seed, MetaProgress meta = null, int tier = 1)
         {
+            TierBalance.Get(tier); Tier = tier;
             Seed = seed; this.meta = (meta ?? new MetaProgress()).Snapshot();
             spawnRng = unchecked((uint)seed) ^ 0xa341316cu; growthRng = unchecked((uint)seed) ^ 0xc8013ea4u;
             State = RunStatus.Running; CoreHp = 10; Wave = 1;
@@ -341,7 +343,7 @@ namespace Bokumyaku.Simulation
         void Finish(RunStatus status)
         {
             State = status; CompletedWave = (TickCount - (status == RunStatus.Defeated ? 1 : 0)) / 360;
-            CrystalsReward = (int)Math.Floor(rewardPoints * .08);
+            CrystalsReward = CalculateCrystalsReward(rewardPoints, RulesVersion, Tier);
         }
         bool Spawn(EnemyKind? forced = null)
         {
@@ -349,7 +351,7 @@ namespace Bokumyaku.Simulation
             // Initial hypothesis: fast 25% from wave4, heavy 20% from wave8; otherwise normal.
             double roll = Random01(ref spawnRng), angle = Random01(ref spawnRng) * 2 * Math.PI;
             var kind = forced ?? (Wave >= 15 && roll >= .80 ? EnemyKind.Splitter : Wave >= 8 && roll < .20 ? EnemyKind.Heavy : Wave >= 4 && roll < (Wave >= 8 ? .45 : .25) ? EnemyKind.Fast : EnemyKind.Normal);
-            double hp = BaseHp(Wave) * (kind == EnemyKind.Boss ? 12 : kind == EnemyKind.Splitter ? .9 : kind == EnemyKind.Heavy ? 3.2 : kind == EnemyKind.Fast ? .65 : 1);
+            double hp = (RulesVersion >= 7 ? TierBalance.EnemyBaseHp(Tier, Wave) : BaseHp(Wave)) * (kind == EnemyKind.Boss ? 12 : kind == EnemyKind.Splitter ? .9 : kind == EnemyKind.Heavy ? 3.2 : kind == EnemyKind.Fast ? .65 : 1);
             enemies.Add(new EnemyState { Id = ++nextEnemyId, Kind = kind, X = 360 * Math.Cos(angle), Y = 360 * Math.Sin(angle), Hp = hp, MaxHp = hp, SpawnWave = Wave, Speed = 35 * (RulesVersion>=5?EnemySpeedFactor(Wave):(1 + .006 * (Wave - 1))) * (kind == EnemyKind.Boss ? .55 : kind == EnemyKind.Heavy ? .65 : kind == EnemyKind.Fast ? 1.8 : 1) });
             spawnedByType[(int)kind]++;
             return true;

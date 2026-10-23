@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "width": 1080,
+  "height": 2400,
+  "tier": 2,
+  "rules": 7,
+  "tick": 0,
+  "initialLocks": true,
+  "selection": true,
+  "activeSwitchRejected": true,
+  "saveResume": true,
+  "oldAudioPreserved": true,
+  "method": "Editor uGUI callbacks at1080x2400; synthetic100-wave migration fixture; no real touch or progression balance claim"
+}

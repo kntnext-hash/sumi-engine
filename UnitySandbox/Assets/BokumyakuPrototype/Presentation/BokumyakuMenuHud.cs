@@ -100,6 +100,15 @@ namespace Bokumyaku.Presentation
             var start=Button(hero,"MenuStart",.04f,60,.96f,56,"出撃する",()=>{if(game.ResumeAvailable)game.ResumeRun();else game.TryStartRun(game.AwaitingStart||game.Run==null?game.InitialSeed:unchecked(game.Run.Seed+1));});
             var startCaption=start.GetComponentInChildren<TextMeshProUGUI>();bindings.Add(()=>{startCaption.text=game.ResumeAvailable?"戦場へ戻る":"出撃する";start.interactable=!game.BattleStorageBlocked;});
             var abandon=Button(hero,"MenuAbandon",.04f,119,.96f,44,"途中終了・帰還",()=>confirmation.SetActive(true));bindings.Add(()=>abandon.gameObject.SetActive(game.ResumeAvailable));y+=180;
+            Text(p,"TierTitle",0,y,1,34,21,"挑む段位");y+=40;
+            for(int i=1;i<=TierBalance.Count;i++)
+            {
+                int tier=i;var b=Button(p,"MenuTier"+tier,0,y,1,76,"",()=>game.SelectTier(tier));
+                var caption=b.GetComponentInChildren<TextMeshProUGUI>();caption.fontSize=18;
+                bindings.Add(()=>{bool unlocked=snapshot!=null&&TierBalance.IsUnlocked(tier,snapshot.BestWaveByTier);var d=TierBalance.Get(tier);
+                    caption.text=d.DisplayName+"  結晶 ×"+d.CrystalMultiplier.ToString("0.0")+"\n"+(unlocked?"最高 "+snapshot.BestWaveByTier[tier-1]+" 波":"前の段位で100波突破すると解放");
+                    Tint(b,game.SelectedTier==tier);b.interactable=unlocked&&!snapshot.HasActiveRun&&!game.BattleStorageBlocked;});y+=84;
+            }
             Text(p,"WeaponsTitle",0,y,1,34,21,"六つの武器");y+=40;
             for(int i=0;i<6;i++){int n=i;var b=Button(p,"MenuWeapon"+i,(i%3)/3f,y+(i/3)*62,(i%3+1)/3f,58,Weapons[i],()=>game.SetWeapon((WeaponKind)n));bindings.Add(()=>{Tint(b,(int)game.SelectedWeapon==n);b.interactable=!game.BattleStorageBlocked;});}y+=128;
             var weaponNote=Text(p,"WeaponDescription",0,y,1,66,16,"");bindings.Add(()=>weaponNote.text=WeaponNotes[(int)game.SelectedWeapon]);y+=76;
@@ -125,16 +134,17 @@ namespace Bokumyaku.Presentation
             var p=scrolls[1].content;Text(p,"ResearchTitle",0,0,1,42,25,"命をつなぐ研究");var note=Text(p,"ResearchNote",0,48,1,70,16,"");bindings.Add(()=>note.text=game.ResumeAvailable?"途中の周回があります。研究は周回を終えてから購入できます。":"周回の合間に購入。次の出撃から永続的に働く。");
             for(int i=0;i<4;i++){int n=i;var row=Box(p,"ResearchCard"+i,0,130+i*170,1,158);var title=Text(row,"Name",.04f,8,.96f,35,22,"");var detail=Text(row,"Description",.04f,47,.96f,40,15,"");var b=Button(row,"MenuResearch"+i,.04f,96,.96f,52,"",()=>game.BuyMeta((MetaUpgrade)n));var price=b.GetComponentInChildren<TextMeshProUGUI>();bindings.Add(()=>{var k=(MetaUpgrade)n;bool capped=game.Meta.Level(k)>=MetaProgress.MaxLevel(k);title.text=MetaNames[n]+"  Lv."+game.Meta.Level(k)+" / "+MetaProgress.MaxLevel(k);detail.text=n==0?"攻撃 ×"+game.Meta.DamageMultiplier.ToString("0.00")+(capped?"":" → ×"+new MetaProgress{Damage=game.Meta.Damage+1}.DamageMultiplier.ToString("0.00")):MetaNotes[n];price.text=capped?"MAX":game.Meta.Cost(k)+" 結晶";b.interactable=snapshot!=null&&!snapshot.HasActiveRun&&!game.BattleStorageBlocked&&!capped&&game.Meta.Crystals>=game.Meta.Cost(k);});}p.sizeDelta=new Vector2(0,820);
         }
-        void BuildRecords(){recordsContent=scrolls[2].content;Text(recordsContent,"RecordsTitle",0,0,1,42,25,"これまでの墨脈");recordsSummary=Text(recordsContent,"RecordsSummary",0,48,1,122,17,"");}
+        void BuildRecords(){recordsContent=scrolls[2].content;Text(recordsContent,"RecordsTitle",0,0,1,42,25,"これまでの墨脈");recordsSummary=Text(recordsContent,"RecordsSummary",0,48,1,190,17,"");}
         public void Refresh()
         {
             if(game==null)return;snapshot=game.Campaign;summary.text="結晶 "+game.Meta.Crystals+"   ／   最高 "+game.BestWave+" 波";
             notice.text=game.BattleNotice;warning.text=game.MenuSaveWarning;foreach(var bind in bindings)bind();
             var history=snapshot?.History;int count=history==null?0:history.Count;
-            recordsSummary.text="最高到達 "+game.BestWave+" 波\n累計 "+(snapshot?.TotalRuns??0)+" 周 / "+(snapshot?.TotalCrystals??0)+" 結晶\n初達成報酬済み "+(snapshot?.ClaimedMilestoneWave??0)+" 波"+(count==0?"\n記録はまだありません。":"");
-            for(int i=historyLabels.Count;i<count;i++){var box=Box(recordsContent,"HistoryCard"+i,0,184+i*112,1,104);historyLabels.Add(Text(box,"Result",.03f,4,.97f,96,15,""));}
-            for(int i=0;i<historyLabels.Count;i++){historyLabels[i].transform.parent.parent.gameObject.SetActive(i<count);if(i>=count)continue;var r=history[count-1-i];historyLabels[i].text=r.CompletedWave+" 波 / "+Weapons[(int)r.Weapon]+" / "+Builds[(int)r.Build]+"\n結晶 "+r.Crystals+" + 初達成 "+r.MilestoneCrystals+"\n"+(r.Ticks/1800)+":"+((r.Ticks/30)%60).ToString("00")+" / Seed "+r.Seed+" / 規則"+r.RulesVersion;}
-            recordsContent.sizeDelta=new Vector2(0,190+count*112);RefreshPage();
+            recordsSummary.text="累計 "+(snapshot?.TotalRuns??0)+" 周 / "+(snapshot?.TotalCrystals??0)+" 結晶";
+            for(int tier=1;tier<=TierBalance.Count;tier++)recordsSummary.text+="\n"+TierBalance.Get(tier).DisplayName+"：最高 "+(snapshot?.BestWaveByTier[tier-1]??0)+" 波";
+            for(int i=historyLabels.Count;i<count;i++){var box=Box(recordsContent,"HistoryCard"+i,0,252+i*112,1,104);historyLabels.Add(Text(box,"Result",.03f,4,.97f,96,15,""));}
+            for(int i=0;i<historyLabels.Count;i++){historyLabels[i].transform.parent.parent.gameObject.SetActive(i<count);if(i>=count)continue;var r=history[count-1-i];historyLabels[i].text=TierBalance.Get(r.Tier).DisplayName+" / "+r.CompletedWave+" 波 / "+Weapons[(int)r.Weapon]+" / "+Builds[(int)r.Build]+"\n結晶 "+r.Crystals+" + 初達成 "+r.MilestoneCrystals+"\n"+(r.Ticks/1800)+":"+((r.Ticks/30)%60).ToString("00")+" / Seed "+r.Seed+" / 規則"+r.RulesVersion;}
+            recordsContent.sizeDelta=new Vector2(0,258+count*112);RefreshPage();
         }
         void RefreshPage(){bool visible=game.Page!=BokumyakuGame.GamePage.Battle;canvas.enabled=visible;int page=PageIndex();for(int i=0;i<pages.Length;i++)pages[i].SetActive(visible&&i==page);if(lastPage!=game.Page){confirmation.SetActive(false);if(visible){scrolls[page].StopMovement();scrolls[page].content.anchoredPosition=Vector2.zero;scrolls[page].verticalNormalizedPosition=1;}lastPage=game.Page;}}
         void BuildConfirmation(){var veil=BokumyakuUiParts.Panel(safe,"AbandonConfirmation",Vector2.zero,Vector2.one,new Color(0,0,0,.88f));veil.raycastTarget=true;confirmation=veil.gameObject;var panel=BokumyakuUiParts.Panel(veil.transform,"Paper",new Vector2(.04f,.32f),new Vector2(.96f,.69f),ivory);panel.sprite=paperSprite;var text=BokumyakuUiParts.Label(panel.transform,"Question",font,new Vector2(.06f,.48f),new Vector2(.94f,.94f),22,ink);text.text="途中の周回を終了しますか？\n報酬はありません。";text.textWrappingMode=TextWrappingModes.Normal;BokumyakuUiParts.Button(panel.transform,"ConfirmAbandon",font,new Vector2(.04f,.08f),new Vector2(.49f,.38f),"終了する",()=>Act(()=>{game.AbandonRun();confirmation.SetActive(false);}),out _);BokumyakuUiParts.Button(panel.transform,"CancelAbandon",font,new Vector2(.51f,.08f),new Vector2(.96f,.38f),"戻る",()=>confirmation.SetActive(false),out _);confirmation.SetActive(false);}

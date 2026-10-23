@@ -5,8 +5,8 @@ namespace Bokumyaku.Simulation
     // not authenticated competitive results. Restore validates before accepting them.
     [Serializable] public sealed class RunSnapshot
     {
-        public int schemaVersion = 2;
-        public int rulesVersion, autoPurchaseCursor;
+        public int schemaVersion = 3;
+        public int rulesVersion, autoPurchaseCursor, tier;
         public string exactDoubleBits;
         public int seed, tickCount, wave, completedWave, coreHp, runInk, kills, leaks, crystalsReward, incomeEarned;
         public int nextEnemyId, growthCount, repairCount, lastBossWave;

@@ -12,6 +12,8 @@ namespace Bokumyaku.Persistence
         static readonly object Gate = new object();
         const int MaxFileBytes = 4 * 1024 * 1024;
         [Serializable] sealed class Header { public int SchemaVersion = 0; public string Config = null; }
+        [Serializable] sealed class TierFields { public int SelectedTier = 0; public int[] BestWaveByTier = null; public int[] ClaimedMilestoneWaveByTier = null; public TierResult LastResult = null; public TierResult[] History = null; }
+        [Serializable] sealed class TierResult { public int Tier = 0; }
         static void Require(bool ok, string message) { if (!ok) throw new InvalidDataException(message); }
         static bool Id(string value) { Guid parsed; return !string.IsNullOrEmpty(value) && Guid.TryParseExact(value, "N", out parsed); }
         static bool MetaValid(MetaProgress m) => m != null && m.Crystals >= 0 && m.Damage >= 0 && m.Damage <= MetaProgress.MaxLevel(MetaUpgrade.Damage) && m.Supply >= 0 && m.Supply <= MetaProgress.MaxLevel(MetaUpgrade.Supply) && m.Growth >= 0 && m.Growth <= MetaProgress.MaxLevel(MetaUpgrade.Growth) && m.Harvest >= 0 && m.Harvest <= MetaProgress.MaxLevel(MetaUpgrade.Harvest);
@@ -23,7 +25,8 @@ namespace Bokumyaku.Persistence
         }
         static void ResultValid(CampaignResult r)
         {
-            Require(r != null && r.RulesVersion >= 1 && r.RulesVersion <= 6, "Unsupported result rules.");
+            Require(r != null && r.RulesVersion >= 1 && r.RulesVersion <= RunSimulator.CurrentRulesVersion, "Unsupported result rules.");
+            Require(r.Tier >= 1 && r.Tier <= TierBalance.Count && (r.RulesVersion >= 7 || r.Tier == 1), "Invalid result Tier.");
             int waveLimit = RunSimulator.WaveLimitForRules(r.RulesVersion), tickLimit = RunSimulator.TickLimitForRules(r.RulesVersion);
             Require(Id(r.RunId) && r.Ticks >= 0 && r.Ticks <= tickLimit && r.CompletedWave >= 0 && r.CompletedWave <= waveLimit && r.Crystals >= 0 && r.Crystals <= RunSimulator.CrystalLimitForRules(r.RulesVersion) && r.MilestoneCrystals >= 0 && r.MilestoneCrystals <= waveLimit, "Invalid result.");
             Require(r.Status == RunStatus.Defeated || r.Status == RunStatus.TestCompleted || r.Status == RunStatus.CapacityExceeded, "Result must be terminal.");
@@ -31,18 +34,26 @@ namespace Bokumyaku.Persistence
         }
         public static void Validate(CampaignProgress c)
         {
-            Require(c != null && c.SchemaVersion == 3 && c.Config == "bokumyaku-campaign-v3", "Unsupported campaign schema/config.");
+            Require(c != null && c.SchemaVersion == 4 && c.Config == "bokumyaku-campaign-v4", "Unsupported campaign schema/config.");
             Require(c.Revision >= 0 && c.Revision < long.MaxValue && MetaValid(c.Meta), "Invalid campaign progress.");
             Require(c.ActiveSpeed == 1 || c.ActiveSpeed == 2, "Invalid active speed.");
             Require(c.BestWave >= 0 && c.BestWave <= RunSimulator.LongRunWaveLimit && c.TotalRuns >= 0 && c.TotalCrystals >= 0 && c.ClaimedMilestoneWave >= 0 && c.ClaimedMilestoneWave <= c.BestWave && c.ClaimedMilestoneWave % 5 == 0, "Invalid cumulative progress.");
+            Require(c.BestWaveByTier != null && c.BestWaveByTier.Length == TierBalance.Count && c.ClaimedMilestoneWaveByTier != null && c.ClaimedMilestoneWaveByTier.Length == TierBalance.Count, "Invalid Tier progress arrays.");
+            for (int i = 0; i < TierBalance.Count; i++)
+            {
+                Require(c.BestWaveByTier[i] >= 0 && c.BestWaveByTier[i] <= RunSimulator.LongRunWaveLimit && c.ClaimedMilestoneWaveByTier[i] >= 0 && c.ClaimedMilestoneWaveByTier[i] <= c.BestWaveByTier[i] && c.ClaimedMilestoneWaveByTier[i] % 5 == 0, "Invalid Tier progress.");
+                Require(c.BestWaveByTier[i] == 0 || TierBalance.IsUnlocked(i + 1, c.BestWaveByTier), "Progress in locked Tier.");
+            }
+            Require(c.BestWave == c.BestWaveByTier[0] && c.ClaimedMilestoneWave == c.ClaimedMilestoneWaveByTier[0], "Tier 1 legacy mirrors differ.");
+            Require(c.SelectedTier >= 1 && c.SelectedTier <= TierBalance.Count && TierBalance.IsUnlocked(c.SelectedTier, c.BestWaveByTier), "Selected Tier is locked or invalid.");
             Require(c.History != null && c.History.Count <= 20 && c.History.Count <= c.TotalRuns && c.Slots != null && c.Slots.Length == 3, "Invalid history/slots.");
             var ids = new HashSet<string>();
             long historyCrystals = 0;
             foreach (var r in c.History)
             {
-                ResultValid(r); Require(ids.Add(r.RunId), "Duplicate history run ID.");
+                ResultValid(r); Require(TierBalance.IsUnlocked(r.Tier, c.BestWaveByTier), "History contains locked Tier."); Require(ids.Add(r.RunId), "Duplicate history run ID.");
                 if (r.Status == RunStatus.CapacityExceeded) Require(r.Crystals == 0 && r.MilestoneCrystals == 0, "Invalid capacity reward.");
-                else Require(c.BestWave >= r.CompletedWave, "Best wave below recorded result.");
+                else Require(c.BestWaveByTier[r.Tier - 1] >= r.CompletedWave, "Best wave below recorded result.");
                 historyCrystals += (long)r.Crystals + r.MilestoneCrystals;
             }
             Require(historyCrystals <= c.TotalCrystals, "Cumulative rewards below history.");
@@ -58,7 +69,7 @@ namespace Bokumyaku.Persistence
             {
                 Require(Id(c.ActiveRunId) && c.ActiveRunId != c.LastSettledRunId && !ids.Contains(c.ActiveRunId) && c.ActiveRun != null, "Invalid active run ID/snapshot.");
                 Require(SameMeta(c.Meta, c.ActiveRun.meta) && !c.ActiveRun.rewardClaimed, "Active run meta differs or reward already claimed outside campaign.");
-                try { RunSimulator.Restore(c.ActiveRun); }
+                try { var active = RunSimulator.Restore(c.ActiveRun); Require(TierBalance.IsUnlocked(active.Tier, c.BestWaveByTier) && active.Tier == c.SelectedTier, "Active Tier differs or is locked."); }
                 catch (ArgumentException e) { throw new InvalidDataException("Invalid active run snapshot.", e); }
             }
             else Require(string.IsNullOrEmpty(c.ActiveRunId), "Inactive run has an ID.");
@@ -75,7 +86,7 @@ namespace Bokumyaku.Persistence
             if (c.HasActiveRun) copy.ActiveRun = active;
             return copy;
         }
-        static CampaignProgress Read(string path, bool previous = false)
+        static CampaignProgress Read(string path, bool previous = false, bool migration = false)
         {
             Require(new FileInfo(path).Length <= MaxFileBytes, "Campaign exceeds size limit.");
             CampaignProgress c;
@@ -83,28 +94,60 @@ namespace Bokumyaku.Persistence
             {
                 string json = File.ReadAllText(path);
                 var header = JsonUtility.FromJson<Header>(json);
-                Require(header != null && header.SchemaVersion == (previous ? 2 : 3) && header.Config == (previous ? "bokumyaku-campaign-v2" : "bokumyaku-campaign-v3"), "Missing or unsupported campaign header.");
+                Require(header != null && (previous ? header.SchemaVersion == 2 && header.Config == "bokumyaku-campaign-v2" : (header.SchemaVersion == 4 && header.Config == "bokumyaku-campaign-v4") || (migration && header.SchemaVersion == 3 && header.Config == "bokumyaku-campaign-v3")), "Missing or unsupported campaign header.");
                 c = JsonUtility.FromJson<CampaignProgress>(json);
+                if (header.SchemaVersion == 4)
+                {
+                    var fields = JsonUtility.FromJson<TierFields>(json);
+                    Require(fields != null && fields.SelectedTier >= 1 && fields.BestWaveByTier != null && fields.ClaimedMilestoneWaveByTier != null && fields.History != null, "Missing Tier campaign fields.");
+                    Require(fields.LastResult == null || fields.LastResult.Tier >= 1, "Missing result Tier.");
+                    foreach (var result in fields.History) Require(result != null && result.Tier >= 1, "Missing history Tier.");
+                }
                 if (previous)
                 {
-                    c.SchemaVersion = 3; c.Config = "bokumyaku-campaign-v3";
+
                     if (c.HasActiveRun) Require(c.ActiveRun != null && c.ActiveRun.schemaVersion == 1 && c.ActiveRun.rulesVersion == 0 && c.ActiveRun.autoPurchaseCursor == 0 && c.ActiveRun.levels != null && c.ActiveRun.levels.Length == 6, "Previous campaign requires an original v5 snapshot.");
                     if (c.LastResult != null) { Require(c.LastResult.RulesVersion == 0 || c.LastResult.RulesVersion == 1, "Invalid previous result rules."); c.LastResult.RulesVersion = 1; }
                     if (c.History != null) foreach (var result in c.History) if (result != null) { Require(result.RulesVersion == 0 || result.RulesVersion == 1, "Invalid previous history rules."); result.RulesVersion = 1; }
+                }
+                if (header.SchemaVersion < 4)
+                {
+                    c.SchemaVersion = 4; c.Config = "bokumyaku-campaign-v4"; c.SelectedTier = 1;
+                    c.BestWaveByTier = new[] { c.BestWave, 0, 0 };
+                    c.ClaimedMilestoneWaveByTier = new[] { c.ClaimedMilestoneWave, 0, 0 };
+                    if (c.LastResult != null) { Require(c.LastResult.RulesVersion <= 6, "Legacy result contains new Tier rules."); c.LastResult.Tier = 1; }
+                    if (c.History != null) foreach (var result in c.History) if (result != null) { Require(result.RulesVersion <= 6, "Legacy history contains new Tier rules."); result.Tier = 1; }
+                    if (c.HasActiveRun) Require(c.ActiveRun != null && c.ActiveRun.schemaVersion <= 2 && c.ActiveRun.rulesVersion <= 6, "Legacy campaign cannot contain new Tier rules.");
                 }
             }
             catch (ArgumentException e) { throw new InvalidDataException("Malformed campaign JSON.", e); }
             Validate(c); return c;
         }
-        static CampaignProgress ReadRecover(string path, out string warning, bool previous = false)
+        static CampaignProgress ReadRecover(string path, out string warning, bool previous = false, bool migration = false)
         {
             warning = "";
-            try { return Read(path, previous); }
+            try { return Read(path, previous, migration); }
             catch (Exception e) when (e is IOException || e is InvalidDataException)
             {
-                try { var c = Read(path + ".bak", previous); warning = "Campaign recovered from backup; original preserved."; return c; }
+                try { var c = Read(path + ".bak", previous, migration); warning = "Campaign recovered from backup; original preserved."; return c; }
                 catch (Exception backup) when (backup is IOException || backup is InvalidDataException)
                 { throw new InvalidDataException("Campaign and backup are unreadable; no data was replaced.", new AggregateException(e, backup)); }
+            }
+        }
+        /// <summary>Generation 9 is the only writable Tier campaign; all previous files stay untouched.</summary>
+        public static CampaignProgress LoadTierLatest(string path, string previousV8, string previousV7, string previousV6, string previousV5, string previousV4, string previousV3, string olderV2, string legacyMetaPath, out string warning)
+        {
+            lock (Gate)
+            {
+                foreach (var source in new[] { previousV8, previousV7, previousV6, previousV5, previousV4, previousV3, olderV2, legacyMetaPath })
+                    if (!string.IsNullOrEmpty(source)) Require(!string.Equals(Path.GetFullPath(path), Path.GetFullPath(source), StringComparison.OrdinalIgnoreCase), "Migration destination must differ from every source.");
+                if (File.Exists(path) || File.Exists(path + ".bak")) return ReadRecover(path, out warning);
+                if (!string.IsNullOrEmpty(previousV8) && (File.Exists(previousV8) || File.Exists(previousV8 + ".bak")))
+                {
+                    var c = ReadRecover(previousV8, out warning, migration: true); Write(path, c);
+                    warning = "Previous campaign migrated to Tier generation9; original and backup preserved. " + warning; return c;
+                }
+                return LoadLatest(path, previousV7, previousV6, previousV5, previousV4, previousV3, olderV2, legacyMetaPath, out warning);
             }
         }
         /// <summary>File generation 8 isolates research price generation 2; combat rules and schema remain unchanged.</summary>
@@ -117,7 +160,7 @@ namespace Bokumyaku.Persistence
                 if (File.Exists(path) || File.Exists(path + ".bak")) return ReadRecover(path, out warning);
                 if (!string.IsNullOrEmpty(previousV7) && (File.Exists(previousV7) || File.Exists(previousV7 + ".bak")))
                 {
-                    var c = ReadRecover(previousV7, out warning);
+                    var c = ReadRecover(previousV7, out warning, migration: true);
                     Write(path, c);
                     warning = "Previous campaign copied to file generation8 without repricing existing progress; original and backup preserved. " + warning;
                     return c;
@@ -135,7 +178,7 @@ namespace Bokumyaku.Persistence
                 if (File.Exists(path) || File.Exists(path + ".bak")) return ReadRecover(path, out warning);
                 if (!string.IsNullOrEmpty(previousV6) && (File.Exists(previousV6) || File.Exists(previousV6 + ".bak")))
                 {
-                    var c = ReadRecover(previousV6, out warning);
+                    var c = ReadRecover(previousV6, out warning, migration: true);
                     Write(path, c);
                     warning = "Previous schema3 campaign copied to file generation7; original and backup preserved. " + warning;
                     return c;
@@ -153,7 +196,7 @@ namespace Bokumyaku.Persistence
                 if (File.Exists(path) || File.Exists(path + ".bak")) return ReadRecover(path, out warning);
                 if (!string.IsNullOrEmpty(previousV5) && (File.Exists(previousV5) || File.Exists(previousV5 + ".bak")))
                 {
-                    var c = ReadRecover(previousV5, out warning);
+                    var c = ReadRecover(previousV5, out warning, migration: true);
                     Write(path, c);
                     warning = "Previous schema3 campaign copied to file generation6; original and backup preserved. " + warning;
                     return c;
@@ -171,7 +214,7 @@ namespace Bokumyaku.Persistence
                 if (File.Exists(path) || File.Exists(path + ".bak")) return ReadRecover(path, out warning);
                 if (!string.IsNullOrEmpty(previousV4) && (File.Exists(previousV4) || File.Exists(previousV4 + ".bak")))
                 {
-                    var c = ReadRecover(previousV4, out warning);
+                    var c = ReadRecover(previousV4, out warning, migration: true);
                     Write(path, c);
                     warning = "Previous schema3 campaign copied to file generation5; original and backup preserved. " + warning;
                     return c;
@@ -189,7 +232,7 @@ namespace Bokumyaku.Persistence
                 if (File.Exists(path) || File.Exists(path + ".bak")) return ReadRecover(path, out warning);
                 if (!string.IsNullOrEmpty(previousCurrentPath) && (File.Exists(previousCurrentPath) || File.Exists(previousCurrentPath + ".bak")))
                 {
-                    var c = ReadRecover(previousCurrentPath, out warning);
+                    var c = ReadRecover(previousCurrentPath, out warning, migration: true);
                     Write(path, c);
                     warning = "Previous schema3 campaign copied to file generation4; original and backup preserved. " + warning;
                     return c;
@@ -267,6 +310,8 @@ namespace Bokumyaku.Persistence
             lock (Gate)
             {
                 var current = Current(path, campaign); var next = Clone(current);
+                Require(!current.HasActiveRun && TierBalance.IsUnlocked(run.Tier, current.BestWaveByTier), "Active run exists or Tier is locked.");
+                next.SelectedTier = run.Tier;
                 Require(SameMeta(current.Meta, run.CaptureState().meta), "Run must use current campaign meta.");
                 next.HasActiveRun = true; next.ActiveRunId = Guid.NewGuid().ToString("N"); next.ActiveRun = run.CaptureState(); next.ActiveSpeed = speed;
                 return Commit(path, current, next);
@@ -275,7 +320,8 @@ namespace Bokumyaku.Persistence
         static void MatchRun(CampaignProgress c, RunSimulator run)
         {
             Require(c.HasActiveRun && c.ActiveRun != null && run != null, "No active run to update.");
-            Require(RunSimulator.Restore(c.ActiveRun).RulesVersion == run.RulesVersion, "Active run rules changed.");
+            var active = RunSimulator.Restore(c.ActiveRun);
+            Require(active.RulesVersion == run.RulesVersion && active.Tier == run.Tier, "Active run rules or Tier changed.");
             Require(c.ActiveRun.seed == run.Seed && run.TickCount >= c.ActiveRun.tickCount, "Run identity or tick regressed.");
             Require(SameMeta(c.Meta, run.CaptureState().meta) && !run.CaptureState().rewardClaimed, "Run meta changed or reward already claimed.");
         }
@@ -302,16 +348,26 @@ namespace Bokumyaku.Persistence
                 int baseReward = settled.State == RunStatus.CapacityExceeded ? 0 : settled.CrystalsReward;
                 bool validResult = settled.State == RunStatus.Defeated || settled.State == RunStatus.TestCompleted;
                 int milestone = validResult ? (settled.CompletedWave / 5 * 5) : 0;
-                int bonus = Math.Max(0, milestone - current.ClaimedMilestoneWave);
+                int bonus = Math.Max(0, milestone - current.ClaimedMilestoneWaveByTier[settled.Tier - 1]);
                 next.Meta.Crystals = checked(next.Meta.Crystals + baseReward + bonus);
-                if (validResult) next.BestWave = Math.Max(next.BestWave, settled.CompletedWave);
-                next.ClaimedMilestoneWave = Math.Max(next.ClaimedMilestoneWave, milestone);
+                if (validResult) next.BestWaveByTier[settled.Tier - 1] = Math.Max(next.BestWaveByTier[settled.Tier - 1], settled.CompletedWave);
+                next.ClaimedMilestoneWaveByTier[settled.Tier - 1] = Math.Max(next.ClaimedMilestoneWaveByTier[settled.Tier - 1], milestone);
+                next.BestWave = next.BestWaveByTier[0]; next.ClaimedMilestoneWave = next.ClaimedMilestoneWaveByTier[0];
                 next.TotalRuns = checked(next.TotalRuns + 1); next.TotalCrystals = checked(next.TotalCrystals + baseReward + bonus);
                 next.LastSettledRunId = runId;
-                next.LastResult = new CampaignResult { RunId = runId, RulesVersion = settled.RulesVersion, Seed = settled.Seed, CompletedWave = settled.CompletedWave, Ticks = settled.TickCount, Status = settled.State, Crystals = baseReward, MilestoneCrystals = bonus, Weapon = settled.Weapon, Build = settled.Build, Policy = settled.Policy };
+                next.LastResult = new CampaignResult { RunId = runId, Tier = settled.Tier, RulesVersion = settled.RulesVersion, Seed = settled.Seed, CompletedWave = settled.CompletedWave, Ticks = settled.TickCount, Status = settled.State, Crystals = baseReward, MilestoneCrystals = bonus, Weapon = settled.Weapon, Build = settled.Build, Policy = settled.Policy };
                 next.History.Add(next.LastResult); if (next.History.Count > 20) next.History.RemoveAt(0);
                 next.HasActiveRun = false; next.ActiveRun = null; next.ActiveRunId = "";
                 return Commit(path, current, next);
+            }
+        }
+        public static CampaignProgress SelectTier(string path, CampaignProgress campaign, int tier)
+        {
+            lock (Gate)
+            {
+                var current = Current(path, campaign);
+                Require(!current.HasActiveRun && tier >= 1 && tier <= TierBalance.Count && TierBalance.IsUnlocked(tier, current.BestWaveByTier), "Cannot select locked Tier or change Tier during a run.");
+                var next = Clone(current); next.SelectedTier = tier; return Commit(path, current, next);
             }
         }
         public static CampaignProgress SaveMeta(string path, CampaignProgress campaign, MetaProgress meta)
