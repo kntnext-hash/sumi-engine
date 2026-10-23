@@ -1,0 +1,11 @@
+{
+  "result": "Succeeded",
+  "bytes": 162852637,
+  "seconds": 61.3458481,
+  "errors": 0,
+  "warnings": 0,
+  "output": "C:\\Users\\che22\\Desktop\\SUMI_ENGINE_Codex_Starter\\Builds\\Bokumyaku-settled-v26\\Bokumyaku.exe",
+  "unity": "6000.3.26f1",
+  "source": "43a3908 + settled-start diagnostic",
+  "messages": []
+}

@@ -1,0 +1,10 @@
+{
+  "name": "player",
+  "exitCode": 0,
+  "elapsedSeconds": 27.239,
+  "passed": true,
+  "singleThreadRenderingRequested": false,
+  "graphicsMode": [
+    "GfxDevice: creating device client; kGfxThreadingModeClientWorkerJobs"
+  ]
+}

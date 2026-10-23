@@ -15,9 +15,10 @@ namespace Bokumyaku.Diagnostics
         string output;
         bool resumeOnly;
         bool captureScreens;
+        bool settledStart;
         [Serializable] sealed class Report
         {
-            public string version, error;
+            public string version, error, scenario;
             public BattleTiming.Sample[] slowSections;
             public int droppedTimingSamples;
             public bool passed;
@@ -75,6 +76,7 @@ namespace Bokumyaku.Diagnostics
             probe.output = Path.GetFullPath(args[i + 1]);
             probe.resumeOnly = Array.IndexOf(args, "--bokumyaku-resume-check") >= 0;
             probe.captureScreens = Array.IndexOf(args, "--bokumyaku-capture-screens") >= 0;
+            probe.settledStart = !probe.resumeOnly && Array.IndexOf(args, "--bokumyaku-settled-start") >= 0;
             // Set the isolated save before the scene's Start can load normal progress.
             var game = FindFirstObjectByType<BokumyakuGame>();
             if (game != null) game.SavePathOverride = Path.Combine(probe.output, "qa-campaign.json");
@@ -100,14 +102,14 @@ namespace Bokumyaku.Diagnostics
         IEnumerator Start()
         {
             yield return null;
-            var report = new Report { version = Application.unityVersion, startFrame = Time.frameCount, passed = true, runs = new WeaponReport[resumeOnly ? 0 : 6], separateProcessResume = resumeOnly };
+            var report = new Report { version = Application.unityVersion, scenario = settledStart ? "settled-single-point" : "six-weapon-regression", startFrame = Time.frameCount, passed = true, runs = new WeaponReport[resumeOnly ? 0 : settledStart ? 1 : 6], separateProcessResume = resumeOnly };
             BokumyakuGame game = null;
             try
             {
                 Directory.CreateDirectory(output);
                 game = FindFirstObjectByType<BokumyakuGame>();
                 if (game == null) throw new InvalidOperationException("Game scene missing.");
-                if (!game.TryReloadProgress()) throw new InvalidOperationException("Isolated campaign load failed.");
+                if (!settledStart && !game.TryReloadProgress()) throw new InvalidOperationException("Isolated campaign load failed.");
             }
             catch (Exception e) { report.error = e.ToString(); report.passed = false; }
             if (resumeOnly && report.error == null)
@@ -159,6 +161,13 @@ namespace Bokumyaku.Diagnostics
                 {
                     if (game.ResumeAvailable && !game.AbandonRun()) throw new InvalidOperationException("Could not discard previous QA run.");
                     game.SetBuild(BuildPreset.Farming); game.SetWeapon((WeaponKind)i);
+                }
+                catch (Exception e) { report.error = e.ToString(); report.passed = false; break; }
+                // Explicit comparison only: allow home/configuration rendering to settle before
+                // starting one run. This is not an ordinary-launch performance certification.
+                if (settledStart) yield return new WaitForSecondsRealtime(5);
+                try
+                {
                     if (!game.TryStartRun(42)) throw new InvalidOperationException("Could not persist new run.");
                     game.SetSpeed(2);
                 }
@@ -226,7 +235,7 @@ namespace Bokumyaku.Diagnostics
                 }
                 catch (Exception e) { report.error = e.ToString(); report.passed = false; }
             }
-            if (report.error == null && report.passed)
+            if (!settledStart && report.error == null && report.passed)
             {
                 try
                 {

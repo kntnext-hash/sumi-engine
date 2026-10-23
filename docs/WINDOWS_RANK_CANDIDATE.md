@@ -99,3 +99,8 @@ frame3542→3543の559msに対して、frame3543 InkFlush522.93ms、RootFlourish
 32×256の固定stagingへ最大8タイルを詰め、17タイルを3 Applyで転送。関連EditMode5/5（4.96秒）、GPU alpha±1、部分更新/端コピー/Clear後の未使用スロット非混入を確認。候補ソース差分はevidence/batch-v25-candidate.patch（基点5f54b4a）に保存。
 Windowsビルド64.80秒、162,853,149bytes、警告/エラー0。CLIは30秒でタイムアウトしたがEditorの同一ビルドが完了したため再実行なし。6武器/SEソース/自動周回/別プロセス復帰合格。Direct描画、540×960、平均16.81〜17.45ms、最大554.57ms、計測欠落0。Point frame16のInkTile.Apply515.40ms、focused前後true/GC差0。直前v23/v24と同じ約0.5秒の停止が残った。起動前frame1のLoop計測は戦闘フレーム集計外。
 呼出し数削減は確認できたが停止解消にはならず、少数タイルでも32KiBを転送する増加分もあるため不採用。製品ソースとテストは5f54b4aの1枚32×32 stagingへ復元。候補ビルド/証拠は保存。今回は対象Windows比較＋関連EditMode、性能未合格。次は通常起動の負荷とGPU待機を切り分ける。タイル転送方式の同種候補を際限なく追加しない。evidence/*batch-direct-v25.* / batch-staging-editmode.json。
+
+## settled-v26: 起動条件の切り分け（2026-10-24）
+明示QA引数 --bokumyaku-settled-start を追加。Start直後の追加TryReloadProgressを省き、構成選択後ホームを5秒描画してからPoint/Farming/seed42/速度2を900tickだけ実行。6武器連続リセット・自動周回・別プロセス復帰はこのモードの対象外。通常起動にはprobeを生成せず、保存はQA専用。これは通常起動そのものの性能保証ではない。既存6武器モードは保持。
+ビルド61.35秒、162,852,637bytes、警告/エラー0。同一バイナリ540×960でDirectと通常ClientWorkerJobsを各1回測定。Direct平均16.88ms/最大50.62ms/定常最大37.10ms、通常平均17.35ms/最大495.25ms/定常最大36.24ms。両方Point/購入/枝/墨/SEソース/同一プロセス保存復帰合格、欠落0。通常frame298 FinishFrameRendering467.54ms。Directで非再現でも通常側は再現したため、待機追加を製品の解決策として採用しない。リセット集中だけが原因とは言えず、描画完了待機の追跡が必要。
+今回対象Windows比較（2回）、全EditModeの再実行なし。製品設定/Runtime/シミュレーション不変。次はUnity Profilerの描画スレッド/GPU待機資料を取得できる環境を確認する。evidence/*settled*-v26.*。ビルド時の一時Pipeline切断は同一Editorのready確認後1回再試行。ビルド命令30秒タイムアウト後は同一ビルドの成功レポートで完了確認、二重起動なし。

@@ -1,6 +1,6 @@
 # Visible Player QA: requires explicit user authorization to show windows. Two real processes share only an isolated QA save.
 [CmdletBinding()]
-param([string]$BuildFolder='Builds/Bokumyaku-visual-v6', [int]$Width=1080, [int]$Height=2400, [string]$EvidenceTag='visible-v6', [switch]$SingleThreadRendering)
+param([string]$BuildFolder='Builds/Bokumyaku-visual-v6', [int]$Width=1080, [int]$Height=2400, [string]$EvidenceTag='visible-v6', [switch]$SingleThreadRendering, [switch]$SettledStart)
 $ErrorActionPreference='Stop'
 $repo=Split-Path -Parent $PSScriptRoot
 $folder=[IO.Path]::GetFullPath((Join-Path $repo $BuildFolder))
@@ -9,11 +9,13 @@ if(!(Test-Path -LiteralPath $exe)){throw "Build missing: $exe"}
 $out=Join-Path $repo ('logs/bokumyaku-player-visible-v6-'+[Guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $out | Out-Null
 $launches=@()
-foreach($resume in @($false,$true)){
+$resumeCases=if($SettledStart){@($false)}else{@($false,$true)}
+foreach($resume in $resumeCases){
     $name=if($resume){'player-resume'}else{'player'}
     $arguments=@('--bokumyaku-capture-screens','--bokumyaku-smoke-output',('"'+$out+'"'),'-logFile',('"'+(Join-Path $out ($name+'.log'))+'"'),'-screen-width',$Width,'-screen-height',$Height,'-screen-fullscreen','0')
     if($resume){$arguments+='--bokumyaku-resume-check'}
     if($SingleThreadRendering){$arguments+='-force-gfx-direct'}
+    if($SettledStart){$arguments+='--bokumyaku-settled-start'}
     $timer=[Diagnostics.Stopwatch]::StartNew()
     $process=Start-Process -FilePath $exe -WorkingDirectory $folder -ArgumentList $arguments -PassThru -WindowStyle Normal
     $timeout=if($resume){40}else{165}
