@@ -20,6 +20,7 @@ namespace Bokumyaku.Presentation
   readonly List<Sprite> ownedSprites=new List<Sprite>(); readonly List<EnemyState> before=new List<EnemyState>();
   readonly Sprite[] enemySprites=new Sprite[5]; readonly Sprite slash,burst,ring,halo,ember;
   readonly Texture2D emberTexture;
+  readonly Texture2D coreLightTexture;
   readonly SpriteRenderer paper,landscape,upperInk,lowerInk,core,coreGlow,coreHeart,coreOrbit;
   readonly List<SpriteRenderer> tips=new List<SpriteRenderer>(),tipRings=new List<SpriteRenderer>();
   Texture2D boundInk; RunSimulator boundRun; float halfHeight=7,freeze,shake,visualTime,nextStop;
@@ -36,7 +37,25 @@ namespace Bokumyaku.Presentation
    var emberPixels=new Color[1024];for(int y=0;y<32;y++)for(int x=0;x<32;x++){float r=Vector2.Distance(new Vector2(x+.5f,y+.5f),new Vector2(16,16))/16;float heart=1-Mathf.SmoothStep(0,1,r/.24f);float opacity=1-Mathf.SmoothStep(0,1,(r-.25f)/.75f);emberPixels[y*32+x]=new Color(1,.035f+heart*.9f,.01f+heart*.65f,opacity);}
    emberTexture.SetPixels(emberPixels);emberTexture.Apply(false,true);ember=MakeSprite(emberTexture);
    paper=Create(MakeSprite(paperTexture),-100);landscape=Create(MakeSprite(landscapeTexture),-99);upperInk=Create(null,-80);lowerInk=Create(null,-80);
-   coreGlow=Create(halo,8);coreGlow.color=new Color(1,.55f,.08f,.8f);core=Create(ring,10);core.color=new Color(1,.88f,.52f);coreHeart=Create(halo,11);coreHeart.color=new Color(1,.98f,.84f);coreOrbit=Create(ring,9);coreOrbit.color=new Color(1,.72f,.22f,.85f);
+   coreLightTexture=CreateCoreLight();
+   coreGlow=Create(halo,8);coreGlow.color=new Color(1,.55f,.08f,.45f);core=Create(ring,10);core.color=new Color(1,.88f,.52f);coreHeart=Create(MakeSprite(coreLightTexture),11);coreHeart.color=Color.white;coreOrbit=Create(ring,9);coreOrbit.color=new Color(1,.72f,.22f,.85f);
+  }
+  static Texture2D CreateCoreLight()
+  {
+   const int size=96;
+   var texture=new Texture2D(size,size,TextureFormat.RGBA32,false){name="Golden core veins",wrapMode=TextureWrapMode.Clamp};
+   var pixels=new Color[size*size];
+   for(int y=0;y<size;y++)for(int x=0;x<size;x++)
+   {
+    var p=new Vector2((x+.5f-size*.5f)/(size*.5f),(y+.5f-size*.5f)/(size*.5f));
+    float r=p.magnitude,a=Mathf.Atan2(p.y,p.x);
+    float heart=1-Mathf.SmoothStep(0,1,(r-.04f)/.21f);
+    float orbit=Mathf.Exp(-Mathf.Pow((r-.57f)/.025f,2));
+    float veins=Mathf.Pow(Mathf.Abs(Mathf.Cos(a*3+r*2)),36)*(1-Mathf.SmoothStep(0,1,(r-.28f)/.66f));
+    float opacity=Mathf.Clamp01(heart+orbit*.85f+veins);
+    pixels[y*size+x]=new Color(1,Mathf.Lerp(.65f,.99f,heart),Mathf.Lerp(.16f,.87f,heart),opacity);
+   }
+   texture.SetPixels(pixels);texture.Apply(false,true);return texture;
   }
   Sprite MakeSprite(Texture2D texture,Rect? area=null){if(texture==null)return null;var s=Sprite.Create(texture,area??new Rect(0,0,texture.width,texture.height),new Vector2(.5f,.5f),100,0,SpriteMeshType.FullRect);ownedSprites.Add(s);return s;}
   SpriteRenderer Create(Sprite sprite,int order){var o=new GameObject("Ink sprite");o.layer=31;o.transform.SetParent(root.transform,false);var r=o.AddComponent<SpriteRenderer>();r.sharedMaterial=material;r.sprite=sprite;r.sortingOrder=order;return r;}
@@ -139,7 +158,7 @@ namespace Bokumyaku.Presentation
     boundInk=persistent;upperInk.sprite=MakeSprite(persistent,new Rect(0,persistent.height/2,persistent.width,persistent.height/2));lowerInk.sprite=MakeSprite(persistent,new Rect(0,0,persistent.width,persistent.height/2));
    }
    upperInk.color=lowerInk.color=new Color(.035f,.03f,.025f);Size(upperInk,new Vector2(0,halfHeight*(1-CoreScreenDepth)),10,halfHeight*2*CoreScreenDepth);Size(lowerInk,new Vector2(0,-halfHeight*CoreScreenDepth),10,halfHeight*2*(1-CoreScreenDepth));
-   var center=Project(Vector2.zero);Size(coreGlow,center,2.5f,2.5f);Size(core,center,1.05f,1.05f);Size(coreHeart,center,.72f,.72f);Size(coreOrbit,center,1.5f,1.5f);coreOrbit.transform.localRotation=Quaternion.Euler(0,0,31);
+   var center=Project(Vector2.zero);Size(coreGlow,center,1.9f,1.9f);Size(core,center,1.05f,1.05f);Size(coreHeart,center,1.5f,1.5f);Size(coreOrbit,center,1.5f,1.5f);coreOrbit.transform.localRotation=Quaternion.Euler(0,0,31);
    var branches=run.Branches;while(tips.Count<branches.Count){tips.Add(Create(halo,7));tipRings.Add(Create(ring,8));}for(int i=0;i<tips.Count;i++){bool enabled=i<branches.Count&&branches[i].IsTip;tips[i].enabled=enabled;tipRings[i].enabled=enabled;if(enabled){var b=branches[i];Size(tips[i],Project(new Vector2((float)b.X,(float)b.Y)),.6f,.6f);tips[i].color=new Color(1,.94f,.65f,1);Size(tipRings[i],Project(new Vector2((float)b.X,(float)b.Y)),.43f,.43f);tipRings[i].color=new Color(1,.72f,.24f);}}
    // The first render after a fast-forward QA or loaded run also gets current actors.
    if(enemies.Count==0&&run.Enemies.Count>0){before.Clear();AfterTick(run,reduced);}
@@ -188,6 +207,6 @@ namespace Bokumyaku.Presentation
     Properties(e.renderer,0,e.type==0?t*.6f:0,0,0,reduced);
    }
   }
-  public void Dispose(){foreach(var s in ownedSprites)if(s!=null)UnityEngine.Object.Destroy(s);UnityEngine.Object.Destroy(emberTexture);UnityEngine.Object.Destroy(material);UnityEngine.Object.Destroy(root);}
+  public void Dispose(){foreach(var s in ownedSprites)if(s!=null)UnityEngine.Object.Destroy(s);UnityEngine.Object.Destroy(emberTexture);UnityEngine.Object.Destroy(coreLightTexture);UnityEngine.Object.Destroy(material);UnityEngine.Object.Destroy(root);}
  }
 }

@@ -131,3 +131,6 @@ button_ink_frame_03.pngをResources/BokumyakuArtへ導入。Sprite Single、bord
 source62ca6e4、Bokumyaku-portrait-v7、142052557bytes、66.36秒、error0/warning0。ユーザー許可済みの表示起動で540×960を指定し、実PNGも同寸。ホームの新筆枠、戦闘の描画を目視。画像はWave3でありボス朱輪自体のPlayer確認は含まない。上部WAVEと下部レベル表示が窮屈なためUI改善残件。スマホ実機・完成美術合格ではない。VisiblePlayerスクリプトにBuildFolder/Width/Height/EvidenceTag引数を追加し、今後は既存証拠を上書きせず再利用可能。
 v7表示Player: 機能試験116.89秒/復帰15.73秒、両exit0/passed=true。ウィンドウ自動終了。実寸JSON: player-visible-dimensions-portrait-v7.json。
 HUD余白修正: WAVE見出し/数値、強化レベル/修復/ゲージ/カードの領域を分離。360×640の限定PlayでRect非重複、レベルとゲージ間3.56px、修復ボタン高42.81px、画像を目視。hud-spacing.json/png。InkCheck.Arm→Run→HudSpacingCheck.Run→停止→Cleanup。実機/最新版ビルド確認は含まない。
+
+### 墨核の金脈表示
+球状の光を細い金輪/放射状の金脈/白い中心へ変更。96pxテクスチャを初期化時に1回生成しDisposeで解放。シミュレーション/Runtime変更なし。初稿は透明度のSmoothStep引数誤りで四角く表示、修正後Wave1/360×640/演出軽減で目視確認（core-light.json/png、比較card-frame.png）。限定Play確認であり実機性能ではない。
