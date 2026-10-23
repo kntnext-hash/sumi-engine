@@ -24,3 +24,11 @@ Unity6000.3.26f1コンパイル、360×640の実表示、フレームとtick進�
 - 限定確認: Unity実コンパイル、360×640の自然Updateで2撃破/2飛沫と5攻撃を観測、66フレーム進行。待機後飛沫0を確認。撮影用寿命を通常範囲内へ戻して撮り直した。証拠combat-ink.json/png。全テスト/全6武器実走/Windows/実機は未実施。
 - 確認手順: 払いで出撃し、攻撃方向の扇状筆跡と敵撃破位置の飛沫を確認。停止後に短い演出が消え、再出撃で持ち越さないことを確認。自動確認はInkCheck.Arm→CombatInkCheck.Run→Play停止→InkCheck.Cleanup。
 - 次は密集時の見やすさ、縦UI詳細操作、音。全武器の完成演出や高負荷実機性能の合格ではない。
+
+## 2026-10-23 6武器表示・縦画面復帰
+- 戦場をGUI領域でクリップし、線/払い/飛沫の回転をローカル行列合成に統一。拡縮された縦画面で円形線が崩れ、操作領域にはみ出す問題を修正。
+- 研究/記録の「戦場へ戻る」で詳細パネルを閉じて再開。
+- 限定確認: Unity6000.3.26f1、360×640、隔離セーブseed42を6000tickへ加速後、各武器10フレーム以上の実Updateと攻撃発生を確認。readability-six-weapons.jsonはイベント確認結果であり、美術評価の自動合格ではない。6枚を目視し下部UIへのはみ出しがないことを確認。線の淡さと密集時可読性は残件。
+- 研究/記録からボタンによる復帰2/2でBattle・再開・詳細非表示を確認。記録は空、研究購入は対象外。現在Console error0/warning0、compilationFailed=false（CLI履歴には古いwarn2あり）。全テスト/ビルド/実機は対象外。
+- 証拠: evidence/readability-{Point,Pierce,Bleed,Sweep,Enso,Resonance}.png、readability-six-weapons.json、portrait-{Research,Records}.png、portrait-return-check.json。
+- 再現: 停止した保存済みBokumyakuシーンでInkCheck.Arm→ReadabilityCheck.Run（JSON完了を待つ）→PortraitReturnCheck.Run（JSON完了を待つ）→Play停止→InkCheck.Cleanup。各クラスのスクリプトはscripts/UnityAutomation~/。通常の保存先を使わない。
