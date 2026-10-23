@@ -1,0 +1,425 @@
+{
+    "version": "6000.3.26f1",
+    "error": "",
+    "slowSections": [
+        {
+            "section": "InkFlush",
+            "frame": 1,
+            "milliseconds": 2.7797
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 1,
+            "milliseconds": 39.7841
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 1,
+            "milliseconds": 40.3659
+        },
+        {
+            "section": "InkFlush",
+            "frame": 2,
+            "milliseconds": 1.8725
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 2,
+            "milliseconds": 39.2516
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 2,
+            "milliseconds": 39.2563
+        },
+        {
+            "section": "InkFlush",
+            "frame": 3,
+            "milliseconds": 1.5506
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 3,
+            "milliseconds": 17.4615
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 3,
+            "milliseconds": 17.4635
+        },
+        {
+            "section": "InkFlush",
+            "frame": 4,
+            "milliseconds": 2.7084
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 4,
+            "milliseconds": 40.3516
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 4,
+            "milliseconds": 40.3527
+        },
+        {
+            "section": "InkFlush",
+            "frame": 5,
+            "milliseconds": 1.8407
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 5,
+            "milliseconds": 18.5526
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 5,
+            "milliseconds": 18.5534
+        },
+        {
+            "section": "InkFlush",
+            "frame": 6,
+            "milliseconds": 2.1355
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 6,
+            "milliseconds": 38.4861
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 6,
+            "milliseconds": 38.4917
+        },
+        {
+            "section": "InkFlush",
+            "frame": 7,
+            "milliseconds": 2.2559
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 7,
+            "milliseconds": 19.942
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 7,
+            "milliseconds": 19.9427
+        },
+        {
+            "section": "InkFlush",
+            "frame": 8,
+            "milliseconds": 1.9391
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 8,
+            "milliseconds": 37.2538
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 8,
+            "milliseconds": 37.255
+        },
+        {
+            "section": "InkFlush",
+            "frame": 9,
+            "milliseconds": 1.8477
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 9,
+            "milliseconds": 19.9591
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 9,
+            "milliseconds": 19.9603
+        },
+        {
+            "section": "InkFlush",
+            "frame": 10,
+            "milliseconds": 2.024
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 10,
+            "milliseconds": 37.5279
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 10,
+            "milliseconds": 37.5287
+        },
+        {
+            "section": "InkFlush",
+            "frame": 11,
+            "milliseconds": 1.925
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 11,
+            "milliseconds": 19.4355
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 11,
+            "milliseconds": 19.4361
+        },
+        {
+            "section": "InkFlush",
+            "frame": 12,
+            "milliseconds": 2.3585
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 12,
+            "milliseconds": 36.9902
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 12,
+            "milliseconds": 36.9911
+        },
+        {
+            "section": "InkFlush",
+            "frame": 13,
+            "milliseconds": 2.0355
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 13,
+            "milliseconds": 18.525
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 13,
+            "milliseconds": 18.5257
+        },
+        {
+            "section": "InkFlush",
+            "frame": 14,
+            "milliseconds": 1.9832
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 14,
+            "milliseconds": 35.6072
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 14,
+            "milliseconds": 35.608
+        },
+        {
+            "section": "InkFlush",
+            "frame": 15,
+            "milliseconds": 1.704
+        },
+        {
+            "section": "RootFlourish",
+            "frame": 15,
+            "milliseconds": 16.3884
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 15,
+            "milliseconds": 16.3892
+        },
+        {
+            "section": "InkFlush",
+            "frame": 16,
+            "milliseconds": 0.6113
+        },
+        {
+            "section": "InkFlush",
+            "frame": 17,
+            "milliseconds": 0.5059
+        },
+        {
+            "section": "InkFlush",
+            "frame": 18,
+            "milliseconds": 0.4536
+        },
+        {
+            "section": "InkFlush",
+            "frame": 19,
+            "milliseconds": 0.2792
+        },
+        {
+            "section": "InkFlush",
+            "frame": 20,
+            "milliseconds": 0.3305
+        },
+        {
+            "section": "InkFlush",
+            "frame": 21,
+            "milliseconds": 0.3372
+        },
+        {
+            "section": "InkFlush",
+            "frame": 22,
+            "milliseconds": 0.5215
+        },
+        {
+            "section": "InkFlush",
+            "frame": 23,
+            "milliseconds": 0.3296
+        },
+        {
+            "section": "InkFlush",
+            "frame": 24,
+            "milliseconds": 0.235
+        },
+        {
+            "section": "InkFlush",
+            "frame": 25,
+            "milliseconds": 0.5219
+        },
+        {
+            "section": "InkFlush",
+            "frame": 26,
+            "milliseconds": 0.3411
+        },
+        {
+            "section": "InkFlush",
+            "frame": 27,
+            "milliseconds": 0.3332
+        },
+        {
+            "section": "InkFlush",
+            "frame": 28,
+            "milliseconds": 0.6138
+        },
+        {
+            "section": "InkFlush",
+            "frame": 29,
+            "milliseconds": 0.2658
+        },
+        {
+            "section": "InkFlush",
+            "frame": 30,
+            "milliseconds": 0.2568
+        },
+        {
+            "section": "InkFlush",
+            "frame": 31,
+            "milliseconds": 0.4317
+        },
+        {
+            "section": "InkFlush",
+            "frame": 32,
+            "milliseconds": 0.3546
+        },
+        {
+            "section": "InkFlush",
+            "frame": 33,
+            "milliseconds": 0.4397
+        },
+        {
+            "section": "InkFlush",
+            "frame": 34,
+            "milliseconds": 0.3847
+        },
+        {
+            "section": "InkFlush",
+            "frame": 35,
+            "milliseconds": 0.4946
+        },
+        {
+            "section": "InkFlush",
+            "frame": 36,
+            "milliseconds": 0.3192
+        },
+        {
+            "section": "InkFlush",
+            "frame": 37,
+            "milliseconds": 0.8709
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 37,
+            "milliseconds": 15.3625
+        },
+        {
+            "section": "InkFlush",
+            "frame": 38,
+            "milliseconds": 0.7229
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 38,
+            "milliseconds": 14.1022
+        },
+        {
+            "section": "InkFlush",
+            "frame": 39,
+            "milliseconds": 0.8726
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 39,
+            "milliseconds": 14.0722
+        },
+        {
+            "section": "InkFlush",
+            "frame": 202,
+            "milliseconds": 0.3792
+        },
+        {
+            "section": "InkFlush",
+            "frame": 253,
+            "milliseconds": 0.2351
+        },
+        {
+            "section": "InkFlush",
+            "frame": 323,
+            "milliseconds": 0.2363
+        },
+        {
+            "section": "InkFlush",
+            "frame": 364,
+            "milliseconds": 1.2475
+        },
+        {
+            "section": "DrawNewBranches",
+            "frame": 364,
+            "milliseconds": 15.122
+        },
+        {
+            "section": "InkFlush",
+            "frame": 542,
+            "milliseconds": 0.2386
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 589,
+            "milliseconds": 21.9996
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 589,
+            "milliseconds": 19.4312
+        },
+        {
+            "section": "SaveProgress",
+            "frame": 589,
+            "milliseconds": 20.775
+        }
+    ],
+    "passed": true,
+    "startFrame": 2,
+    "endFrame": 589,
+    "runs": [],
+    "autoRepeatPassed": false,
+    "autoRepeatSeed": 0,
+    "completedRuns": 0,
+    "loadedArtCount": 0,
+    "overlayTransparentPixels": 0,
+    "overlayInkPixels": 0,
+    "sessionCrystals": 0,
+    "autoRepeatMethod": "",
+    "checkpointResumePassed": true,
+    "separateProcessResume": true
+}

@@ -46,7 +46,7 @@ namespace Bokumyaku.Diagnostics
         {
             public int startFrame, endFrame, tick, pendingBranches, collections;
             public double milliseconds;
-            public bool startup;
+            public bool startup, focusedBefore, focusedAfter;
         }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Boot()
@@ -179,6 +179,7 @@ namespace Bokumyaku.Diagnostics
                     double frameStart = Time.realtimeSinceStartupAsDouble;
                     int startFrame = Time.frameCount, collections = GC.CollectionCount(0);
                     bool startup = frameStart - runStart < 2;
+                    bool focusedBefore = Application.isFocused;
                     yield return null;
                     double elapsedMs = (Time.realtimeSinceStartupAsDouble - frameStart) * 1000;
                     frameTotalMs += elapsedMs; row.measuredFrames++;
@@ -188,7 +189,7 @@ namespace Bokumyaku.Diagnostics
                     if(elapsedMs>33.333 && row.slowFrames.Count<64)
                         row.slowFrames.Add(new SlowFrame{startFrame=startFrame,endFrame=Time.frameCount,tick=game.Run.TickCount,
                             pendingBranches=game.Run.Branches.Count-game.PaintedBranchCount,collections=GC.CollectionCount(0)-collections,
-                            milliseconds=elapsedMs,startup=startup});
+                            milliseconds=elapsedMs,startup=startup,focusedBefore=focusedBefore,focusedAfter=Application.isFocused});
                 }
                 row.averageFrameMs = row.measuredFrames == 0 ? 0 : frameTotalMs / row.measuredFrames;
                 row.steadyAverageMs = row.steadyFrames == 0 ? 0 : steadyTotalMs / row.steadyFrames;

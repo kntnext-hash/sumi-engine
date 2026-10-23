@@ -63,3 +63,8 @@ GPUテクスチャ再利用版。ビルド64.35秒、156,374,861bytes、警告/�
 BattleTimingに任意の記録下限を追加し、InkFlushだけ0.01ms以上を記録する。明示QA以外はタイマー/サンプルを作らず、既存の上限512件を維持。墨処理・転送方式・シミュレーションは変更なし。
 隔離Editor Playのseed42、進行を停止して35本の初期根を描画。35回のFlushを取得、最大2.5254ms。RootFlourish記録最大41.7762ms。35本完了とシミュレーションsnapshot不変を確認。evidence/ink-flush-timing.json、再現scripts/UnityAutomation~/InkFlushTimingCheck.cs。
 この条件では根のCPU描画負荷が転送API呼出し時間より大きい。GPU完了時間は測っておらず、Windows audio-v19の500ms停止の原因を確定するものではない。次はWindowsで同じ分離計測とフレーム内外の待機を調べる。今回軽量Editor検証のみ。
+
+## flush-v20（2026-10-24）
+転送分離/フォーカス観測版。ビルド64.32秒、156,540,957bytes、警告/エラー0。540×960/Wave3のHUDと戦場を目視。6武器/実攻撃SE/自動周回/別プロセス復帰合格。
+平均16.81〜17.40ms、最大504.74ms（Sweep frame2682→2683、開始直後）。前後ともisFocused=true、GC差0。frame2682のInkFlush1.16ms、RootFlourish15.70ms、DrawNewBranches15.70ms（入れ子、加算不可）、frame2683のInkFlush0.42ms。これらの同期処理だけでは504.74msを説明できない。フォーカス喪失による停止はこの標本では支持されないが、GPU同期/描画待機など原因は未確定。
+注意: BattleTimingは512件上限に達し、後半の区間サンプルが欠ける。記録範囲のInkFlush最大4.10ms、RootFlourish最大46.93msを全実行の最大と扱わない。該当504msフレームの記録は上限前に残っている。次は全フレームの処理段階を取得する方式と上限/欠落の明示を追加する。今回対象Windows検証、性能未合格。evidence/*flush-v20.*。
