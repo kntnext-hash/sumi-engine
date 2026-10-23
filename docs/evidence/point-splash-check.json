@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "droplets": 5,
+  "normalTravel": true,
+  "reducedStaticVisible": true,
+  "boundedEffects": 128,
+  "snapshotUnchanged": true,
+  "width": 1080,
+  "height": 2400,
+  "note": "Injected presentation event; not natural combat timing/performance."
+}

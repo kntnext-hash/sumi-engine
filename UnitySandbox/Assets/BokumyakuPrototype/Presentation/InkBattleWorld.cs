@@ -137,13 +137,30 @@ namespace Bokumyaku.Presentation
    }
    switch(hit.Weapon)
    {
-    case WeaponKind.Point: Spawn(slash,a,b,.12f,.18f,1,ink);Spawn(burst,b,Vector2.zero,.30f,.65f,0,ink);if(!reduced)Spawn(burst,a,b,.12f,.3f,3,ink);break;
+    case WeaponKind.Point:
+     Spawn(slash,a,b,.18f,.30f,1,ink);Spawn(burst,b,Vector2.zero,.30f,.8f,0,ink);
+     PointSplashes(a,b,ink);
+     if(!reduced)Spawn(burst,a,b,.12f,.3f,3,ink);break;
     case WeaponKind.Pierce: Spawn(slash,a,b,.28f,.7f,1,ink);Spawn(burst,b,Vector2.zero,.32f,.9f,0,ink);if(!reduced)Spawn(slash,a,b,.18f,.5f,3,ink);break;
     case WeaponKind.Bleed: Spawn(burst,b,Vector2.zero,.7f,1.3f,0,new Color(.05f,.035f,.03f,.5f));break;
     case WeaponKind.Sweep:
      for(int i=-2;i<=2;i++){var d=(b-a).normalized*(float)(RunSimulator.BaseAttackRange+4*run.UpgradeLevels[4]);float angle=i*Mathf.PI/8;var end=a+new Vector2(d.x*Mathf.Cos(angle)-d.y*Mathf.Sin(angle),d.x*Mathf.Sin(angle)+d.y*Mathf.Cos(angle));Spawn(slash,a,end,.24f,.38f,1,ink);}break;
     case WeaponKind.Enso: Spawn(ring,a,Vector2.zero,.4f,150+4*run.UpgradeLevels[4],2,ink);break;
     case WeaponKind.Resonance: Spawn(slash,a,b,.24f,.3f,1,new Color(.22f,.12f,.025f,.95f));Spawn(ring,b,Vector2.zero,.3f,.6f,0,ink);break;
+   }
+  }
+  void PointSplashes(Vector2 origin,Vector2 impact,Color ink)
+  {
+   var forward=(impact-origin).normalized;
+   if(forward.sqrMagnitude<.01f)forward=Vector2.up;
+   var side=new Vector2(-forward.y,forward.x);
+   // Fixed presentation geometry: no simulation RNG or extra damage events.
+   for(int i=-2;i<=2;i++)
+   {
+    var direction=(forward*.7f+side*i*.65f).normalized;
+    var start=impact+direction*5;
+    Spawn(burst,start,impact+direction*(19+Mathf.Abs(i)*7),.26f+Mathf.Abs(i)*.025f,
+     i==0?.30f:.22f,4,ink);
    }
   }
   void ApplyLandscapeTier(int tier)
@@ -235,6 +252,7 @@ namespace Bokumyaku.Presentation
     if(e.type==1){var b=Project(e.b);var d=b-a;Size(e.renderer,(a+b)*.5f,d.magnitude/ .75f,e.width);e.renderer.transform.localRotation=Quaternion.Euler(0,0,Mathf.Atan2(d.y,d.x)*Mathf.Rad2Deg);}
     else if(e.type==2){SizeArea(e.renderer,e.a,e.width*(.8f+.2f*t));}
     else if(e.type==3){var b=Project(e.b);var d=b-a;Size(e.renderer,Vector2.Lerp(a,b,Mathf.Clamp01(t*1.4f)),e.width*1.8f,e.width);e.renderer.transform.localRotation=Quaternion.Euler(0,0,Mathf.Atan2(d.y,d.x)*Mathf.Rad2Deg);e.renderer.enabled=!reduced;}
+    else if(e.type==4){var b=Project(e.b);float travel=reduced?0:1-(1-t)*(1-t);float width=e.width*(1-.45f*t);Size(e.renderer,Vector2.Lerp(a,b,travel),width,width);}
     else{float size=e.width*(.6f+t*.8f);Size(e.renderer,a,size,size);}
     Properties(e.renderer,0,e.type==0?t*.6f:0,0,0,reduced);
    }

@@ -187,3 +187,7 @@ Unity Editorコンパイル後、隔離seed42/Farming/900tick/Wave3、1080×2400
 ## 攻撃枝の筆幅と小枝接続（2026-10-24）
 Wave3だけでなく初期育成seed42/Farming/6000tick/Wave17の22枝を確認し、攻撃枝が太い墨塊になる問題を修正。筆幅を核からの累積距離に応じ8.5→2.5へ減衰（従来14→4.5）。区間長基準の初案は幹より枝先が太くなるため撤回。親のbow曲線をBranchStrokePointへ共通化し、小枝の開始点と接線をその曲線から取得。枝先/攻撃判定/経済/シミュレーション/Runtime不変。部分更新と1枝/frameも維持。
 Unityコンパイルと1080×2400の同一seed/Wave17前後画像を実見。35根stroke/22枝描画完了、待機中snapshot不変。分岐間の余白と接続が読めるようになった。参考画像の密度/樹冠/演出は未完成。QA終了後設定復元。今回は対象Editor画面検証、全EditMode/Windows再ビルド/性能再測定なし。evidence/root-silhouette-mature-before/after.png/json。RootSilhouetteCheckに6000tickfixtureを追加。
+
+## 点墨の着弾飛沫（2026-10-24）
+点墨の射線幅.18→.30/寿命.12→.18秒、着弾burst幅.65→.8へ調整し、射線方向を基準に5つの墨滴を追加。0.26〜0.31秒で減速して散り、演出軽減時は着弾近傍で位置を固定。既存burstスプライト/プールを再利用。乱数/ダメージ/シミュレーション/保存/Runtime不変。
+隔離Editor1080×2400で注入Pointイベントを検証。5滴の座標移動、reduced時の位置不変と表示維持、50連続注入でもeffects<=128、snapshot不変を確認。0.10秒時点の画面を実見。広がりは出たが墨滴はまだ小さく淡く、参考画像の迫力の完成判定にはしない。通常戦闘密集時の可読性/性能は次段階。今回対象Editor検証のみ、全EditMode/Windows再ビルドなし。point-splash-check.json/png、再現PointSplashCheck.cs。QA設定復元済み。
