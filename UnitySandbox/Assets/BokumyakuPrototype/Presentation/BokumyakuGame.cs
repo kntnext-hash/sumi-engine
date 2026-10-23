@@ -78,6 +78,8 @@ namespace Bokumyaku.Presentation
         readonly Dictionary<int, float> growth = new Dictionary<int, float>();
         float tickClock;
         int drawnBranches;
+        int branchDrawFrame = -1;
+        public int PaintedBranchCount => drawnBranches;
         bool rewarded;
         bool endHandled, rewardSaved;
         bool loadBlocked, storageFailed;
@@ -440,6 +442,10 @@ namespace Bokumyaku.Presentation
         void DrawNewBranches() { using(BattleTiming.Measure("DrawNewBranches")) DrawNewBranchesCore(); }
         void DrawNewBranchesCore()
         {
+            // Update and LateUpdate can both request paint. Bound the shared work to one
+            // complete branch per rendered frame; never interrupt an active SUMI stroke.
+            if (branchDrawFrame == Time.frameCount) return;
+            branchDrawFrame = Time.frameCount;
             var branches = Run.Branches;
             bool changed = drawnBranches < branches.Count;
             for (; drawnBranches < branches.Count; drawnBranches++)
@@ -472,6 +478,8 @@ namespace Bokumyaku.Presentation
                 }
                 DrawBranchFibers(x0,y0,x1,y1,sx,sy,b.Id);
                 growth[b.Id] = Time.unscaledTime;
+                drawnBranches++;
+                break;
             }
             if (changed) persistentInk.Flush();
         }

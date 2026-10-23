@@ -150,3 +150,8 @@ InkSpriteに既定0の_PaperEdgeを追加。敵本体だけ.65を設定し、四
 tick開始前にいた敵の差分だけでは、そのtick中に生成・撃破された分裂子の墨跡/飛沫を拾えなかった。RunSimulatorに保存対象外のDefeatedThisTickを追加し、Hurtで撃破確定時だけ記録、Tick冒頭で消去。描画AfterTickはこの通知を消費する。HP/報酬/乱数/保存形式/ルール版は変更なし。残HPの表示は従来差分方式。
 関連EditMode265/265合格。親と子2体の通知、再打撃の二重通知なし、次tick消去、Restoreで通知再生なしを追加。旧rules継続試験も合格。
 隔離Editor PlayでBeforeTickの後に分裂親を生成し、production Hurtで親と子2体を撃破。AfterTick後の撃破3/飛沫3、墨跡4096pxの部分更新、全面初期化増加なし。人工操作による接続検査で、自然プレイの遭遇動画や性能計測ではない。evidence/defeat-notifications-editmode.json、split-death-presentation.json、scripts/UnityAutomation~/SplitDeathCheck.cs。
+
+## 枝描画のフレーム分散
+2026-10-24。Update/PresentBattleからの重複要求をTime.frameCountでまとめ、1フレーム1本の枝を完成させる。根のスキップは描画本数に含めない。既存2パス/16点/繊維の筆致を変更せず、途中のSUMIストロークを次フレームへ持ち越さない（撃破跡のBeginによる中断を防ぐ）。
+隔離Editorで900tickの7ノード構成を準備。フレームガードを検証開始のため-1へ戻し、同フレームでPresentBattleを2回呼ぶとpaintedが0→2→2（根＋1枝）。後続フレームで7/7まで完了。停止中snapshotと全面初期化回数は不変。branch-budget.json / BranchBudgetCheck.cs。
+これは分散と完了の接続確認で、Windowsの停止時間改善はまだ未測定。最大規模の復帰では段階的に枝が現れる。1枝自体の処理時間も再測定が必要。
