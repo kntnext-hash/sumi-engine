@@ -821,10 +821,15 @@ namespace Bokumyaku.Presentation
         }
         void Fill(Rect rect, Color color) { var old = GUI.color; GUI.color = color; GUI.DrawTexture(rect, Texture2D.whiteTexture); GUI.color = old; }
         void Dot(Vector2 center, float radius, Color color) { var old = GUI.color; GUI.color = color; GUI.DrawTexture(new Rect(center.x - radius, center.y - radius, radius * 2, radius * 2), disc); GUI.color = old; }
+        // Compose in local GUI coordinates so portrait scaling and field groups share the same pivot.
+        static void RotateLocal(float angle, Vector2 pivot)
+        {
+            GUI.matrix = GUI.matrix * Matrix4x4.Translate(pivot) * Matrix4x4.Rotate(Quaternion.Euler(0, 0, angle)) * Matrix4x4.Translate(-pivot);
+        }
         void Line(Vector2 a, Vector2 b, float width, Color color)
         {
             var matrix = GUI.matrix;
-            GUIUtility.RotateAroundPivot(Mathf.Atan2(b.y - a.y, b.x - a.x) * Mathf.Rad2Deg, a);
+            RotateLocal(Mathf.Atan2(b.y - a.y, b.x - a.x) * Mathf.Rad2Deg, a);
             Fill(new Rect(a.x, a.y - width * .5f, Vector2.Distance(a, b), width), color);
             GUI.matrix = matrix;
         }

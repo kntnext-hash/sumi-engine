@@ -16,6 +16,7 @@ namespace Bokumyaku.Presentation
                 GUI.Label(new Rect(16, 12, 220, 42), "墨 脈", title);
                 if (Button(new Rect(272, 12, 152, 46), ResumeAvailable ? "戦場へ戻る" : "出撃する", true))
                 {
+                    portraitDetails = false;
                     if (ResumeAvailable) { SetPage(GamePage.Battle); ResumeRun(); }
                     else TryStartRun(AwaitingStart ? InitialSeed : unchecked(Run.Seed + 1));
                 }
@@ -23,7 +24,10 @@ namespace Bokumyaku.Presentation
                 return;
             }
             Rect field = new Rect(8, 88, 424, height - 258);
-            DrawField(field, true);
+            // Clip branch textures and rotated brush effects before drawing the fixed controls.
+            GUI.BeginGroup(field);
+            try { DrawField(new Rect(0, 0, field.width, field.height), true); }
+            finally { GUI.EndGroup(); }
             Fill(new Rect(0, 0, 440, 86), new Color(.96f, .94f, .88f, .97f));
             GUI.Label(new Rect(16, 8, 210, 34), "WAVE " + Run.Wave, number);
             GUI.Label(new Rect(16, 43, 292, 30), "墨 " + Run.RunInk + "   結晶 " + Meta.Crystals, heading);

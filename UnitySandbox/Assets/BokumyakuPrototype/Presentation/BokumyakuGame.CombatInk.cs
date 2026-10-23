@@ -53,7 +53,7 @@ namespace Bokumyaku.Presentation
             var matrix=GUI.matrix;var color=GUI.color;
             try
             {
-                GUIUtility.RotateAroundPivot(Mathf.Atan2(to.y-from.y,to.x-from.x)*Mathf.Rad2Deg,from);
+                RotateLocal(Mathf.Atan2(to.y-from.y,to.x-from.x)*Mathf.Rad2Deg,from);
                 GUI.color=new Color(ink.r,ink.g,ink.b,alpha);
                 // The source stroke occupies x=12..84 of the 96px mask.
                 float length=Vector2.Distance(from,to)/.75f;
@@ -66,7 +66,7 @@ namespace Bokumyaku.Presentation
             foreach(var burst in inkBursts)
             {
                 float age=1-burst.Life/.55f;var center=Logical(field,burst.Position);var matrix=GUI.matrix;
-                try{GUIUtility.RotateAroundPivot(burst.Angle,center);InkStamp(burstInk,center,25+age*30,new Color(ink.r,ink.g,ink.b,(1-age)*.8f));}
+                try{RotateLocal(burst.Angle,center);InkStamp(burstInk,center,25+age*30,new Color(ink.r,ink.g,ink.b,(1-age)*.8f));}
                 finally{GUI.matrix=matrix;}
             }
         }
