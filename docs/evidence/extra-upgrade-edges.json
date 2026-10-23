@@ -1,0 +1,26 @@
+[
+  {
+    "name": "cap 5",
+    "passed": true
+  },
+  {
+    "name": "cap 6",
+    "passed": true
+  },
+  {
+    "name": "close",
+    "passed": true
+  },
+  {
+    "name": "reopen",
+    "passed": true
+  },
+  {
+    "name": "same seed restart closes",
+    "passed": true
+  },
+  {
+    "name": "home closes",
+    "passed": true
+  }
+]
