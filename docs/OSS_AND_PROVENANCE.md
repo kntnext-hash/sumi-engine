@@ -80,3 +80,6 @@ art-source/audio-v2/generate_weapon_audio.pyで独自数値合成した6WAVを�
 
 ## delivery-v7 紙札
 art-source/delivery-v7/washi_card_07.pngをResources/BokumyakuArtへ同一SHA-256で統合。独自imagegen生成、参考画像の切抜きなし。プロンプト/修正版/alpha検査/由来は同README。1024×1536、主紙面alpha252〜254。SHA256 38EBF4C9BA45069E7BB74006A2C14C3434FD6E9BEC80585493A166274AF60D7C。
+
+## 強化アイコン delivery-v8（2026-10-24）
+素材室の新規imagegen生成5点を統合。原本、実プロンプト、SHA256、alpha検査はart-source/delivery-v8/README.md・PROMPTS.md・inspection-final.json。参照画像の切抜きや他ゲーム素材は使用していない。upgrade_attack/speed/flow/branch/width_08.pngを同名でResources/BokumyakuArtへコピー。筆撃/筆速/流墨/分岐/筆幅へ対応。原本1254×1254を変更せずUnity importのみmax512に設定。微小alpha端接触と縮小時の金細部の消失は納品書に記録。48px素材比較に加え360×640/1080×2400実UI確認済み。

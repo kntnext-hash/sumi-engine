@@ -1,0 +1,97 @@
+[
+  {
+    "file": "upgrade_attack_08.png",
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "bytes": 703984,
+    "alphaZero": 1261248,
+    "alphaPartial": 310958,
+    "alphaOpaque": 310,
+    "bounds": [
+      31,
+      31,
+      1239,
+      1221
+    ],
+    "centerAlpha": 0,
+    "redDominantPixelsAlphaAtLeast32": 172,
+    "sha256": "487197A3D5CDC083A6DC5C592394E1DA4BDA58EBB57051E35B494B745A84C7CB"
+  },
+  {
+    "file": "upgrade_branch_08.png",
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "bytes": 995154,
+    "alphaZero": 1140451,
+    "alphaPartial": 431307,
+    "alphaOpaque": 758,
+    "bounds": [
+      15,
+      21,
+      1250,
+      1253
+    ],
+    "centerAlpha": 0,
+    "redDominantPixelsAlphaAtLeast32": 39,
+    "sha256": "BC1ADB041FF162A0792BBC44A403698EC2B9C5983F2F0DC9C882238198798BB3"
+  },
+  {
+    "file": "upgrade_flow_08.png",
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "bytes": 1005161,
+    "alphaZero": 1026041,
+    "alphaPartial": 546099,
+    "alphaOpaque": 376,
+    "bounds": [
+      0,
+      23,
+      1231,
+      1253
+    ],
+    "centerAlpha": 253,
+    "redDominantPixelsAlphaAtLeast32": 451,
+    "sha256": "400DF370506FA1914D0F10A463FA13E977AE9D7E36100AC72FC5E74554A1F5E5"
+  },
+  {
+    "file": "upgrade_speed_08.png",
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "bytes": 1395682,
+    "alphaZero": 785837,
+    "alphaPartial": 786072,
+    "alphaOpaque": 607,
+    "bounds": [
+      0,
+      0,
+      1245,
+      1253
+    ],
+    "centerAlpha": 252,
+    "redDominantPixelsAlphaAtLeast32": 727,
+    "sha256": "28C3C4D981380D797DF83950B1121E6B6BDBE19803454CB3AC1609673CE084D3"
+  },
+  {
+    "file": "upgrade_width_08.png",
+    "width": 1254,
+    "height": 1254,
+    "format": "Format32bppArgb",
+    "bytes": 722277,
+    "alphaZero": 1199066,
+    "alphaPartial": 373247,
+    "alphaOpaque": 203,
+    "bounds": [
+      0,
+      37,
+      1224,
+      1227
+    ],
+    "centerAlpha": 253,
+    "redDominantPixelsAlphaAtLeast32": 249,
+    "sha256": "C8B7E9EF398B3A10FDBFAECF1CF6E5B3FB499297ECD9E09C17A1BAC1A6687829"
+  }
+]

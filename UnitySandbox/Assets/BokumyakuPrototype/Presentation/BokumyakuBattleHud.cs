@@ -72,6 +72,7 @@ namespace Bokumyaku.Presentation
         static readonly UpgradeKind[] ExtraKinds = { UpgradeKind.Bleed, UpgradeKind.Harvest };
         static readonly string[] ExtraNames = { "滲み", "採墨" };
         static readonly string[] Names = { "筆撃", "筆速", "流墨", "分岐", "筆幅" };
+        static readonly string[] IconNames = { "attack", "speed", "flow", "branch", "width" };
 
         // Camera rect uses bottom-left normalized coordinates, matching SafeArea anchors.
         public static Rect GetBattleViewport()
@@ -139,7 +140,14 @@ namespace Bokumyaku.Presentation
                 var rim=BokumyakuUiParts.Panel(cards[i].transform,"GoldEmblemRim",new Vector2(.015f,.345f),new Vector2(.985f,.99f),new Color(.7f,.52f,.22f,.7f));
                 rim.sprite=ringSprite; rim.preserveAspect=true;
                 var emblem=BokumyakuUiParts.Panel(cards[i].transform,"Emblem",new Vector2(.04f,.35f),new Vector2(.96f,.98f),black); emblem.sprite=ringSprite; emblem.preserveAspect=true;
-                if(glyphs!=null && i<glyphs.Length) { var glyph=BokumyakuUiParts.Panel(emblem.transform,"Glyph",new Vector2(.12f,.12f),new Vector2(.88f,.88f),black); glyph.sprite=SpriteFor(glyphs[i]); glyph.preserveAspect=true; }
+                var icon=Resources.Load<Sprite>("BokumyakuArt/upgrade_"+IconNames[i]+"_08");
+                if(icon!=null || (glyphs!=null && i<glyphs.Length))
+                {
+                    var glyph=BokumyakuUiParts.Panel(emblem.transform,"Glyph",new Vector2(.12f,.12f),new Vector2(.88f,.88f),icon!=null?Color.white:black);
+                    glyph.sprite=icon!=null?icon:SpriteFor(glyphs[i]);
+                    glyph.type=UnityEngine.UI.Image.Type.Simple;
+                    glyph.preserveAspect=true;
+                }
                 Label(cards[i].transform,"Name",0,.205f,1,.40f,17,black).text=Names[i];
                 var price=BokumyakuUiParts.Panel(cards[i].transform,"PricePlate",new Vector2(.065f,.035f),new Vector2(.935f,.225f),black);
                 cardCosts[i]=Label(price.transform,"Cost",0,0,1,1,17,ivory);

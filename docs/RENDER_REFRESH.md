@@ -196,3 +196,7 @@ Unityコンパイルと1080×2400の同一seed/Wave17前後画像を実見。35�
 7種80体＋点墨8イベントの人工静止配置を作成。既存9本放射線だけのburstは薄い星に見えたため、SUMIで中央へ40点の渦を描き込む形を追加。起動時に96×96を一度生成し再利用、毎frameのテクスチャ再生成なし。共通burstのため撃破/滲墨/飛沫にも適用される。
 1080×2400の前後を実見。マスクalpha>=200は469pixel。80体を20回描画してrenderer374→374、8発でeffects88、snapshot不変。取得時の根は描き始めであり完成した枝の密集評価ではない。点墨飛沫の中心は濃くなったが攻撃は敵の強い赤に比べ弱く、最終可読性合格ではない。人工静止配置であり自然Wave/数分実戦/動的密集性能の証拠ではない。今回対象Editorのみ。dense-impact-before/check.json/png、impact-mask.png、DenseImpactCheck.cs。QA設定復元。
 グラフィック素材制作室へdelivery-v8を依頼、5強化アイコンを48px識別可能な黒墨＋少量金で制作中。書込所有art-source/delivery-v8のみ、Unity/Gitは統合担当。納品後に実UI統合する。
+
+## 強化カードの5アイコン（2026-10-24）
+delivery-v8を既存uGUIのEmblem/Glyphへ統合。白tint/Simple/preserveAspect/非raycast、既存の紙札・円枠・価格・callbackを保持。Resourcesが無い場合は旧手続きglyphへフォールバック。原本1254角を保持しEditor APIでmax512、非readable、mipmapなし、Clamp、非圧縮として取り込む。
+UpgradeIconCheckで360×640/1080×2400、5種mapping/色/アスペクト/サイズ/CPU copyなし、零墨の無効化、1800tick後の購入callbackとレベル増加、TMP overflowなしを確認。upgrade-icons-360/1080.json/png。両画像を目視し払い/渦/滴/樹/太線の識別を確認。静止UI検証であり、撮影は根の描き込み完了前、自然進行や描画性能の証拠ではない。隔離保存を使い終了後にQA設定を復元。全EditMode/Windows再ビルド/実機は今回未実施。
