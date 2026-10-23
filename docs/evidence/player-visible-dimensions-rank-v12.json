@@ -1,0 +1,8 @@
+{
+  "requestedWidth": 1080,
+  "requestedHeight": 2400,
+  "actualWidth": 1080,
+  "actualHeight": 1080,
+  "visible": true,
+  "note": "Compare actual dimensions; OS may clamp the window. Visual inspection required."
+}

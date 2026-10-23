@@ -32,6 +32,8 @@ namespace Bokumyaku.Diagnostics
             public bool passed, sawAttack, weaponMatches, checkpointResumePassed;
             public int ticks, branches, kills, purchases, peakFields, peakWeaponFields;
             public float pigment;
+            public int measuredFrames;
+            public double averageFrameMs, maxFrameMs;
         }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Boot()
@@ -145,6 +147,7 @@ namespace Bokumyaku.Diagnostics
                 }
                 catch (Exception e) { report.error = e.ToString(); report.passed = false; break; }
                 float deadline = Time.realtimeSinceStartup + 25;
+                double frameTotalMs = 0;
                 while (game.Run.TickCount < 900 && Time.realtimeSinceStartup < deadline)
                 {
                     foreach (var hit in game.Run.Attacks) row.sawAttack |= hit.Weapon == (WeaponKind)i;
@@ -152,8 +155,13 @@ namespace Bokumyaku.Diagnostics
                     int matchingFields = 0;
                     foreach (var field in game.Run.Fields) if (field.Weapon == (WeaponKind)i) matchingFields++;
                     row.peakWeaponFields = Math.Max(row.peakWeaponFields, matchingFields);
+                    double frameStart = Time.realtimeSinceStartupAsDouble;
                     yield return null;
+                    double elapsedMs = (Time.realtimeSinceStartupAsDouble - frameStart) * 1000;
+                    frameTotalMs += elapsedMs; row.measuredFrames++;
+                    row.maxFrameMs = Math.Max(row.maxFrameMs, elapsedMs);
                 }
+                row.averageFrameMs = row.measuredFrames == 0 ? 0 : frameTotalMs / row.measuredFrames;
                 if (captureScreens && i == 0)
                 {
                     game.SetPaused(true);
