@@ -15,8 +15,8 @@ namespace Bokumyaku.Presentation
   readonly List<Effect> effects=new List<Effect>(); readonly Stack<SpriteRenderer> pool=new Stack<SpriteRenderer>();
   readonly List<Sprite> ownedSprites=new List<Sprite>(); readonly List<EnemyState> before=new List<EnemyState>();
   readonly Sprite[] enemySprites=new Sprite[5]; readonly Sprite slash,burst,ring,halo;
-  readonly SpriteRenderer paper,landscape,upperInk,lowerInk,core,coreGlow;
-  readonly List<SpriteRenderer> tips=new List<SpriteRenderer>();
+  readonly SpriteRenderer paper,landscape,upperInk,lowerInk,core,coreGlow,coreHeart,coreOrbit;
+  readonly List<SpriteRenderer> tips=new List<SpriteRenderer>(),tipRings=new List<SpriteRenderer>();
   Texture2D boundInk; RunSimulator boundRun; float halfHeight=7,freeze,shake,visualTime,nextStop;
   public int Deaths {get;private set;} public int HitFlashes {get;private set;} public int EffectsCreated {get;private set;}
   public int InterpolatedFrames {get;private set;} public int ActiveEnemies=>enemies.Count;
@@ -28,7 +28,7 @@ namespace Bokumyaku.Presentation
    var shader=Resources.Load<Shader>("BokumyakuRendering/InkSprite");if(shader==null)throw new InvalidOperationException("InkSprite shader missing");material=new Material(shader){name="Shared moving ink"};
    for(int i=0;i<5;i++)enemySprites[i]=MakeSprite(masks[i]);slash=MakeSprite(slashMask);burst=MakeSprite(burstMask);ring=MakeSprite(ringMask);halo=MakeSprite(haloMask);
    paper=Create(MakeSprite(paperTexture),-100);landscape=Create(MakeSprite(landscapeTexture),-99);upperInk=Create(null,-80);lowerInk=Create(null,-80);
-   coreGlow=Create(halo,8);coreGlow.color=new Color(1,.55f,.08f,.8f);core=Create(ring,10);core.color=new Color(1,.76f,.30f);
+   coreGlow=Create(halo,8);coreGlow.color=new Color(1,.55f,.08f,.8f);core=Create(ring,10);core.color=new Color(1,.88f,.52f);coreHeart=Create(halo,11);coreHeart.color=new Color(1,.98f,.84f);coreOrbit=Create(ring,9);coreOrbit.color=new Color(1,.72f,.22f,.85f);
   }
   Sprite MakeSprite(Texture2D texture,Rect? area=null){if(texture==null)return null;var s=Sprite.Create(texture,area??new Rect(0,0,texture.width,texture.height),new Vector2(.5f,.5f),100,0,SpriteMeshType.FullRect);ownedSprites.Add(s);return s;}
   SpriteRenderer Create(Sprite sprite,int order){var o=new GameObject("Ink sprite");o.layer=31;o.transform.SetParent(root.transform,false);var r=o.AddComponent<SpriteRenderer>();r.sharedMaterial=material;r.sprite=sprite;r.sortingOrder=order;return r;}
@@ -99,8 +99,8 @@ namespace Bokumyaku.Presentation
     boundInk=persistent;upperInk.sprite=MakeSprite(persistent,new Rect(0,persistent.height/2,persistent.width,persistent.height/2));lowerInk.sprite=MakeSprite(persistent,new Rect(0,0,persistent.width,persistent.height/2));
    }
    upperInk.color=lowerInk.color=new Color(.035f,.03f,.025f);Size(upperInk,new Vector2(0,halfHeight*.28f),10,halfHeight*1.44f);Size(lowerInk,new Vector2(0,-halfHeight*.72f),10,halfHeight*.56f);
-   var center=Project(Vector2.zero);Size(coreGlow,center,2.5f,2.5f);Size(core,center,1.05f,1.05f);
-   var branches=run.Branches;while(tips.Count<branches.Count)tips.Add(Create(halo,7));for(int i=0;i<tips.Count;i++){bool enabled=i<branches.Count&&branches[i].IsTip;tips[i].enabled=enabled;if(enabled){var b=branches[i];Size(tips[i],Project(new Vector2((float)b.X,(float)b.Y)),.6f,.6f);tips[i].color=new Color(1,.62f,.12f,.9f);}}
+   var center=Project(Vector2.zero);Size(coreGlow,center,2.5f,2.5f);Size(core,center,1.05f,1.05f);Size(coreHeart,center,.72f,.72f);Size(coreOrbit,center,1.5f,1.5f);coreOrbit.transform.localRotation=Quaternion.Euler(0,0,31);
+   var branches=run.Branches;while(tips.Count<branches.Count){tips.Add(Create(halo,7));tipRings.Add(Create(ring,8));}for(int i=0;i<tips.Count;i++){bool enabled=i<branches.Count&&branches[i].IsTip;tips[i].enabled=enabled;tipRings[i].enabled=enabled;if(enabled){var b=branches[i];Size(tips[i],Project(new Vector2((float)b.X,(float)b.Y)),.6f,.6f);tips[i].color=new Color(1,.94f,.65f,1);Size(tipRings[i],Project(new Vector2((float)b.X,(float)b.Y)),.43f,.43f);tipRings[i].color=new Color(1,.72f,.24f);}}
    // The first render after a fast-forward QA or loaded run also gets current actors.
    if(enemies.Count==0&&run.Enemies.Count>0){before.Clear();AfterTick(run,reduced);}
    var fields=run.Fields;
@@ -129,6 +129,7 @@ namespace Bokumyaku.Presentation
   public void Dispose(){foreach(var s in ownedSprites)if(s!=null)UnityEngine.Object.Destroy(s);UnityEngine.Object.Destroy(material);UnityEngine.Object.Destroy(root);}
  }
 }
+
 
 
 

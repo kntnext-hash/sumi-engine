@@ -74,6 +74,7 @@ namespace Bokumyaku.Presentation
             safe = BokumyakuUiParts.Rect(transform,"SafeArea",Vector2.zero,Vector2.one);
             var top = Panel(safe,"Header",0,.92f,1,1); var bottom = Panel(safe,"Footer",0,0,1,.24f);
             var ringSprite = SpriteFor(ring); var paperSprite = SpriteFor(paper);
+            var brushFrameSprite = FrameSpriteFor(ring);
             if (ringSprite != null) { var image = BokumyakuUiParts.Panel(top.transform,"WaveRing",new Vector2(0,-.2f),new Vector2(.22f,1),ivory); image.sprite = ringSprite; image.preserveAspect = true; }
             Label(top.transform,"WaveTitle",0,.64f,.22f,1,12,ivory).text = "WAVE";
             wave = Label(top.transform,"Wave",0,.02f,.22f,.72f,32,new Color(.8f,.12f,.08f));
@@ -95,11 +96,21 @@ namespace Bokumyaku.Presentation
                 int slot=i; cards[i]=Button(bottom.transform,"Upgrade"+i,i*.2f,.12f,(i+1)*.2f,.68f,"",()=>game.BuyUpgrade((UpgradeKind)slot),out ignored); ignored.gameObject.SetActive(false);
                 var face=(UnityEngine.UI.Image)cards[i].targetGraphic; face.sprite=paperSprite; face.color=ivory;
                 var cardColors=cards[i].colors; cardColors.disabledColor=new Color(.86f,.85f,.81f,1); cardColors.highlightedColor=new Color(1,1,.94f); cards[i].colors=cardColors;
+                // Keep the rectangular button hit area; the non-raycast brush frame is purely visual.
+                var edge=BokumyakuUiParts.Panel(cards[i].transform,"BrushEdge",Vector2.zero,Vector2.one,black);
+                edge.sprite=brushFrameSprite; edge.type=UnityEngine.UI.Image.Type.Sliced;
+                edge.pixelsPerUnitMultiplier=3.5f;
+                var rim=BokumyakuUiParts.Panel(cards[i].transform,"GoldEmblemRim",new Vector2(.015f,.345f),new Vector2(.985f,.99f),new Color(.7f,.52f,.22f,.7f));
+                rim.sprite=ringSprite; rim.preserveAspect=true;
                 var emblem=BokumyakuUiParts.Panel(cards[i].transform,"Emblem",new Vector2(.04f,.35f),new Vector2(.96f,.98f),black); emblem.sprite=ringSprite; emblem.preserveAspect=true;
                 if(glyphs!=null && i<glyphs.Length) { var glyph=BokumyakuUiParts.Panel(emblem.transform,"Glyph",new Vector2(.12f,.12f),new Vector2(.88f,.88f),black); glyph.sprite=SpriteFor(glyphs[i]); glyph.preserveAspect=true; }
-                Label(cards[i].transform,"Name",0,.18f,1,.39f,17,black).text=Names[i];
-                var price=BokumyakuUiParts.Panel(cards[i].transform,"PricePlate",new Vector2(.07f,.025f),new Vector2(.93f,.20f),black);
-                cardCosts[i]=Label(price.transform,"Cost",0,0,1,1,13,ivory);
+                Label(cards[i].transform,"Name",0,.205f,1,.40f,17,black).text=Names[i];
+                var price=BokumyakuUiParts.Panel(cards[i].transform,"PricePlate",new Vector2(.065f,.035f),new Vector2(.935f,.225f),black);
+                cardCosts[i]=Label(price.transform,"Cost",0,0,1,1,17,ivory);
+                cardCosts[i].rectTransform.offsetMin=new Vector2(1,0);
+                cardCosts[i].rectTransform.offsetMax=new Vector2(-1,0);
+                cardCosts[i].fontSizeMin=11;
+                cardCosts[i].fontStyle=FontStyles.Bold;
                 cardLevels[i]=Label(bottom.transform,"Level"+i,i*.2f,.67f,(i+1)*.2f,.77f,11,gold);
             }
             notice=Label(bottom.transform,"Notice",.015f,0,.985f,.12f,11,ivory);
@@ -112,6 +123,14 @@ namespace Bokumyaku.Presentation
         Sprite SpriteFor(Texture2D texture)
         {
             if(texture==null)return null; var s=Sprite.Create(texture,new Rect(0,0,texture.width,texture.height),new Vector2(.5f,.5f),100); ownedSprites.Add(s);return s;
+        }
+        Sprite FrameSpriteFor(Texture2D texture)
+        {
+            if(texture==null)return null;
+            // Nine-slicing reuses the SUMI stroke's broken edge without stretching its corners.
+            var border=new Vector4(texture.width*.24f,texture.height*.24f,texture.width*.24f,texture.height*.24f);
+            var sprite=Sprite.Create(texture,new Rect(0,0,texture.width,texture.height),new Vector2(.5f,.5f),100,0,SpriteMeshType.FullRect,border);
+            ownedSprites.Add(sprite);return sprite;
         }
         UnityEngine.UI.Image Panel(Transform p,string n,float x,float y,float xx,float yy)
         {
@@ -142,8 +161,8 @@ namespace Bokumyaku.Presentation
             for(int i=0;i<5;i++)
             {
                 var kind=(UpgradeKind)i;int level=run.UpgradeLevels[i],cost=run.UpgradeCost(kind);bool max=level>=run.UpgradeMaxLevel(kind);
-                Text(cardLevels[i],"Lv."+level);Text(cardCosts[i],max?"MAX":"墨 "+cost);
-                cardCosts[i].color=run.RunInk>=cost?ivory:new Color(.72f,.67f,.57f);
+                Text(cardLevels[i],"Lv."+level);Text(cardCosts[i],max?"MAX":"<size=70%>墨</size> "+cost.ToString("N0"));
+                cardCosts[i].color=run.RunInk>=cost?ivory:new Color(.84f,.79f,.68f);
                 cards[i].interactable=!game.BattleStorageBlocked&&!game.AwaitingStart&&run.State==RunStatus.Running&&!max&&run.RunInk>=cost;
             }
             bool ended=run.State!=RunStatus.Running;modal.SetActive(ended||game.AwaitingStart);
