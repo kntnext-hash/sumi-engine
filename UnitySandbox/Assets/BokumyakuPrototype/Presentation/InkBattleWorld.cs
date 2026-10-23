@@ -136,8 +136,8 @@ namespace Bokumyaku.Presentation
    }
    switch(hit.Weapon)
    {
-    case WeaponKind.Point: Spawn(slash,a,b,.12f,.18f,1,ink);Spawn(burst,b,Vector2.zero,.30f,.65f,0,ink);break;
-    case WeaponKind.Pierce: Spawn(slash,a,b,.28f,.7f,1,ink);Spawn(burst,b,Vector2.zero,.32f,.9f,0,ink);break;
+    case WeaponKind.Point: Spawn(slash,a,b,.12f,.18f,1,ink);Spawn(burst,b,Vector2.zero,.30f,.65f,0,ink);if(!reduced)Spawn(burst,a,b,.12f,.3f,3,ink);break;
+    case WeaponKind.Pierce: Spawn(slash,a,b,.28f,.7f,1,ink);Spawn(burst,b,Vector2.zero,.32f,.9f,0,ink);if(!reduced)Spawn(slash,a,b,.18f,.5f,3,ink);break;
     case WeaponKind.Bleed: Spawn(burst,b,Vector2.zero,.7f,1.3f,0,new Color(.05f,.035f,.03f,.5f));break;
     case WeaponKind.Sweep:
      for(int i=-2;i<=2;i++){var d=(b-a).normalized*(float)(RunSimulator.BaseAttackRange+4*run.UpgradeLevels[4]);float angle=i*Mathf.PI/8;var end=a+new Vector2(d.x*Mathf.Cos(angle)-d.y*Mathf.Sin(angle),d.x*Mathf.Sin(angle)+d.y*Mathf.Cos(angle));Spawn(slash,a,end,.24f,.38f,1,ink);}break;
@@ -203,6 +203,7 @@ namespace Bokumyaku.Presentation
     float t=e.age/e.life;var a=Project(e.a);var color=e.tint;color.a*=1-t;e.renderer.color=color;
     if(e.type==1){var b=Project(e.b);var d=b-a;Size(e.renderer,(a+b)*.5f,d.magnitude/ .75f,e.width);e.renderer.transform.localRotation=Quaternion.Euler(0,0,Mathf.Atan2(d.y,d.x)*Mathf.Rad2Deg);}
     else if(e.type==2){SizeArea(e.renderer,e.a,e.width*(.8f+.2f*t));}
+    else if(e.type==3){var b=Project(e.b);var d=b-a;Size(e.renderer,Vector2.Lerp(a,b,Mathf.Clamp01(t*1.4f)),e.width*1.8f,e.width);e.renderer.transform.localRotation=Quaternion.Euler(0,0,Mathf.Atan2(d.y,d.x)*Mathf.Rad2Deg);e.renderer.enabled=!reduced;}
     else{float size=e.width*(.6f+t*.8f);Size(e.renderer,a,size,size);}
     Properties(e.renderer,0,e.type==0?t*.6f:0,0,0,reduced);
    }
