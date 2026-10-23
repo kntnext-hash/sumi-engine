@@ -7,6 +7,7 @@ namespace Bokumyaku.Presentation
  public sealed partial class BokumyakuGame
  {
   DirtyInkSurface persistentInk;InkBattleWorld battleWorld;BokumyakuBattleHud battleHud;
+  BokumyakuMenuHud menuHud;
   int previousFrameRate; bool ownsFrameRate;
   public bool ReducedMotion {get;private set;}
   public string BattleNotice=>string.IsNullOrEmpty(saveWarning)?notice:"保存待ち: "+saveWarning;
@@ -26,6 +27,7 @@ namespace Bokumyaku.Presentation
    battleWorld=new InkBattleWorld(transform,enemyInk,slashInk,burstInk,hudRing,lightHalo,paperArt,portraitLandscapeArt??landscapeArt);
    battleWorld.DeathMark=DrawDeathMark;
    var hudObject=new GameObject("Battle HUD",typeof(RectTransform));hudObject.transform.SetParent(transform,false);battleHud=hudObject.AddComponent<BokumyakuBattleHud>();battleHud.Initialize(this,hudRing,upgradeGlyphs,paperArt);
+   var menuObject=new GameObject("Menu HUD",typeof(RectTransform));menuObject.transform.SetParent(transform,false);menuHud=menuObject.AddComponent<BokumyakuMenuHud>();menuHud.Initialize(this,paperArt,hudRing,portraitLandscapeArt??landscapeArt);
    var driver=gameObject.AddComponent<BokumyakuBattlePresenter>();driver.Owner=this;
    previousFrameRate=Application.targetFrameRate;Application.targetFrameRate=60;ownsFrameRate=true;
   }

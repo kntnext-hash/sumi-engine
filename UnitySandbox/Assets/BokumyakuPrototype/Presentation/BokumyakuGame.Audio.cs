@@ -152,16 +152,6 @@ namespace Bokumyaku.Presentation
         }
         void AudioPurchase() { EnsureAudio(); PlayAudio(uiSource, 1, .65f); }
         void AudioResearch() { EnsureAudio(); PlayAudio(notificationSource, 6, .65f); }
-        void DrawAudioControls(float width)
-        {
-            var a = AudioSettings;
-            GUI.Label(new Rect(0, 0, width, 26), "音の設定", heading);
-            if (Button(new Rect(0, 30, width, 40), a.Muted ? "消音中 · 音を戻す" : "音あり · 消音する", a.Muted)) SetAudioSettings(a.Master, a.Music, a.Effects, !a.Muted);
-            if (Button(new Rect(0, 76, width, 36), "全体 " + Mathf.RoundToInt(a.Master * 100) + "%  ↻", false)) SetAudioSettings(NextVolume(a.Master), a.Music, a.Effects, a.Muted);
-            if (Button(new Rect(0, 118, width, 36), "BGM " + Mathf.RoundToInt(a.Music * 100) + "%  ↻", false)) SetAudioSettings(a.Master, NextVolume(a.Music), a.Effects, a.Muted);
-            if (Button(new Rect(0, 160, width, 36), "効果音 " + Mathf.RoundToInt(a.Effects * 100) + "%  ↻", false)) SetAudioSettings(a.Master, a.Music, NextVolume(a.Effects), a.Muted);
-            GUI.Label(new Rect(0, 198, width, 22), AudioSettingsWarning, small);
-        }
         static float NextVolume(float value) => value >= .99f ? 0 : Mathf.Min(1, (Mathf.Floor(value * 4) + 1) / 4);
         void ReleaseAudio()
         {

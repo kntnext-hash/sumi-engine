@@ -95,3 +95,12 @@ Fiberの広い掠れ層を残し、同じ曲線へ半径10のPool層を追加。
 
 ### 成長枝の濃墨層
 新しい枝を描く時のみ、既存Fiberストロークに半径52%のPool層を同じ曲線で重ねる。根との黒さを揃え、掠れた外縁を保持。seed42/6000tick/Wave17で金の枝先と画面を確認。dirty upload313、全面再構築0。card-art-wave17.png更新。成長判定/保存/Runtime変更なし。形状の完成美術と性能再計測は未達。
+
+## 2026-10-23 メニューuGUI/TMP移行
+ホーム・研究・記録をBokumyakuMenuHudへ移行。BokumyakuUiPartsのボタン/数値/パネルと、戦闘用の紙/筆枠テクスチャ/同梱Noto Serif CJK JPを共有。固定タブ/通知とScrollRectを分離し、安全領域へ配置。本文は指定サイズの85〜100%で調整。旧GameのOnGUI、Portrait/InkHud、GUI補助メソッドを撤去。エンジンBrush LabのIMGUIは対象外。
+
+軽量検証: Unityコンパイル、1080×2400の3画面目視、同梱フォント一致/文字収録/テキスト領域の検査。menu-migration-check.json のpass=true。武器/構成/方針、枠保存・呼出、音の消音切替、研究購入、出撃、終了取消・確定、履歴生成、保存再読込を確認。画面外ボタンはScrollRect位置を移動してからraycast到達とpointerClickを検査。実指によるドラッグや実機検証ではない。画像の大量結晶は隔離QA用付与。
+
+手順: 停止したclean sceneでMenuMigrationCheck.Font（必要時のみ）→Arm→MenuInteractionCheck.Run→evidence/menu-migration-check.jsonの完了確認→Play停止→BokumyakuInkCheck.Cleanup。旧PortraitCheck等のIMGUI reflection手順は今回のメニューには非対応。
+初期検証ではタイトル領域不足を修正。QA側もダイアログの描画フレームを待つよう修正した。フル検証・Windows再ビルド・スマホ実機はこの限定結果に含めない。
+関連EditModeフィルターBokumyakuは213/213合格（menu-editmode.json）。

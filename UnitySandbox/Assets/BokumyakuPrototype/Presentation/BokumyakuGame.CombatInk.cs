@@ -47,28 +47,5 @@ namespace Bokumyaku.Presentation
         {
             for(int i=inkBursts.Count-1;i>=0;i--){inkBursts[i].Life-=Time.unscaledDeltaTime;if(inkBursts[i].Life<=0)inkBursts.RemoveAt(i);}
         }
-        void BrushBeam(Vector2 from,Vector2 to,float thickness,float alpha)
-        {
-            if(slashInk==null)return;
-            var matrix=GUI.matrix;var color=GUI.color;
-            try
-            {
-                RotateLocal(Mathf.Atan2(to.y-from.y,to.x-from.x)*Mathf.Rad2Deg,from);
-                GUI.color=new Color(ink.r,ink.g,ink.b,alpha);
-                // The source stroke occupies x=12..84 of the 96px mask.
-                float length=Vector2.Distance(from,to)/.75f;
-                GUI.DrawTexture(new Rect(from.x-length*.125f,from.y-thickness*.5f,length,thickness),slashInk);
-            }
-            finally{GUI.matrix=matrix;GUI.color=color;}
-        }
-        void DrawInkBursts(Rect field)
-        {
-            foreach(var burst in inkBursts)
-            {
-                float age=1-burst.Life/.55f;var center=Logical(field,burst.Position);var matrix=GUI.matrix;
-                try{RotateLocal(burst.Angle,center);InkStamp(burstInk,center,25+age*30,new Color(ink.r,ink.g,ink.b,(1-age)*.8f));}
-                finally{GUI.matrix=matrix;}
-            }
-        }
     }
 }
