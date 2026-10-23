@@ -15,6 +15,10 @@ namespace Bokumyaku.Presentation
     var end=start+new Vector2(Mathf.Sin(angle)*172,-Mathf.Cos(angle)*210);
     var control=start+new Vector2(Mathf.Sin(angle)*45,-115);
     var brush=InkBrushSettings.Dense;brush.radius=18;brush.pigment=.8f;brush.water=.12f;brush.roughness=.65f;brush.depletion=.003f;
+    // Keep the fiber edge, then lay a narrower wet core over the same path.
+    for(int pass=0;pass<2;pass++)
+    {
+    if(pass==1){brush.texture=InkTexture.Pool;brush.radius=10;brush.roughness=.3f;brush.pigment=1;brush.water=.35f;}
     persistentInk.Begin(new InkPoint(start.x*sx,start.y*sy,0,.9f),brush,unchecked(Run.Seed+i*487));
     for(int n=1;n<=32;n++)
     {
@@ -23,6 +27,7 @@ namespace Bokumyaku.Presentation
      persistentInk.Move(new InkPoint(p.x*sx,p.y*sy,t*.6f,Mathf.Lerp(.9f,.04f,t*t)));
     }
     persistentInk.End();
+    }
    }
    // Short side roots anchor the core without adding gameplay nodes.
    for(int i=0;i<7;i++)
