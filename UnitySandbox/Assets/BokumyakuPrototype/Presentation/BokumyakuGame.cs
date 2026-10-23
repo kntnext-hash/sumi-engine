@@ -66,7 +66,7 @@ namespace Bokumyaku.Presentation
         string LegacySavePath => SavePathOverride == null ? System.IO.Path.Combine(Application.persistentDataPath, "bokumyaku-prototype-v1.json") : SavePathOverride + ".legacy";
         SumiCanvas canvas;
         Texture2D disc;
-        Texture2D paperArt, landscapeArt, ensoArt, branchOverlay;
+        Texture2D paperArt, landscapeArt, portraitLandscapeArt, ensoArt, branchOverlay;
         readonly Texture2D[] weaponArt = new Texture2D[6];
         Color32[] branchPixels;
         GUIStyle title, heading, body, small, button, number, iconLabel;
@@ -210,6 +210,7 @@ namespace Bokumyaku.Presentation
             canvas.displayDensity = 7f;
             paperArt = LoadArt("paper_ivory_01");
             landscapeArt = LoadArt("landscape_mist_01");
+            portraitLandscapeArt = LoadArt("landscape_portrait_quiet_02");
             ensoArt = LoadArt("enso_frame_01");
             weaponArt[0] = LoadArt("weapon_point_01");
             weaponArt[1] = LoadArt("weapon_pierce_01");
@@ -546,7 +547,7 @@ namespace Bokumyaku.Presentation
         {
             Fill(field, paper);
             DrawArt(field, paperArt, 1f, ScaleMode.ScaleAndCrop);
-            DrawArt(field, landscapeArt, .62f, ScaleMode.ScaleAndCrop);
+            DrawArt(field, minimalHud && portraitLandscapeArt != null ? portraitLandscapeArt : landscapeArt, .62f, ScaleMode.ScaleAndCrop);
             GUI.DrawTexture(field, branchOverlay != null ? branchOverlay : canvas.Texture, ScaleMode.StretchToFill);
             var center = View(field, 192, 256);
             Ring(center, field.width * .45f, new Color(.58f, .53f, .42f, .17f));
