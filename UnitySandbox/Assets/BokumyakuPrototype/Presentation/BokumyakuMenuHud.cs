@@ -100,6 +100,17 @@ namespace Bokumyaku.Presentation
             var start=Button(hero,"MenuStart",.04f,60,.96f,56,"出撃する",()=>{if(game.ResumeAvailable)game.ResumeRun();else game.TryStartRun(game.AwaitingStart||game.Run==null?game.InitialSeed:unchecked(game.Run.Seed+1));});
             var startCaption=start.GetComponentInChildren<TextMeshProUGUI>();bindings.Add(()=>{startCaption.text=game.ResumeAvailable?"戦場へ戻る":"出撃する";start.interactable=!game.BattleStorageBlocked;});
             var abandon=Button(hero,"MenuAbandon",.04f,119,.96f,44,"途中終了・帰還",()=>confirmation.SetActive(true));bindings.Add(()=>abandon.gameObject.SetActive(game.ResumeAvailable));y+=180;
+            Text(p,"PlayStyleTitle",0,y,1,34,21,"今回の目的");y+=40;
+            for(int i=0;i<2;i++)
+            {
+                bool record=i==1;
+                var b=Button(p,record?"MenuRecordStyle":"MenuFarmStyle",0,y,1,68,
+                    record?"記録に挑む  ―  円相・供給\n最高Waveと次の段位を目指す":"周回して育てる  ―  点墨・採墨\n結晶を集めて恒久研究へ",()=>SelectPlayStyle(record));
+                b.GetComponentInChildren<TextMeshProUGUI>().fontSize=17;
+                bindings.Add(()=>{b.interactable=snapshot!=null&&!game.ResumeAvailable&&!game.BattleStorageBlocked;
+                    Tint(b,game.SelectedWeapon==(record?WeaponKind.Enso:WeaponKind.Point)&&game.SelectedBuild==(record?BuildPreset.Record:BuildPreset.Farming));});y+=76;
+            }
+            Text(p,"PlayStyleNote",0,y,1,62,14,"武器と投資方針をまとめて選択。\n枝の成長方針や自動周回は下で調整できます。");y+=70;
             Text(p,"TierTitle",0,y,1,34,21,"挑む段位");y+=40;
             for(int i=1;i<=TierBalance.Count;i++)
             {
@@ -130,6 +141,12 @@ namespace Bokumyaku.Presentation
             Button(p,"MenuSave",0,y,1,54,"保存する",()=>game.SaveProgress());y+=66;p.sizeDelta=new Vector2(0,y);
         }
         void ChangeAudio(int channel){var a=game.AudioSettings;float Next(float v)=>v>=.99f?0:Mathf.Min(1,(Mathf.Floor(v*4)+1)/4);game.SetAudioSettings(channel==1?Next(a.Master):a.Master,channel==2?Next(a.Music):a.Music,channel==3?Next(a.Effects):a.Effects,channel==0?!a.Muted:a.Muted);}
+        void SelectPlayStyle(bool record)
+        {
+            if(game.ResumeAvailable||game.BattleStorageBlocked)return;
+            game.SetWeapon(record?WeaponKind.Enso:WeaponKind.Point);
+            game.SetBuild(record?BuildPreset.Record:BuildPreset.Farming);
+        }
         void BuildResearch()
         {
             var p=scrolls[1].content;Text(p,"ResearchTitle",0,0,1,42,25,"命をつなぐ研究");var note=Text(p,"ResearchNote",0,48,1,70,16,"");bindings.Add(()=>note.text=game.ResumeAvailable?"途中の周回があります。研究は周回を終えてから購入できます。":"周回の合間に購入。次の出撃から永続的に働く。");
