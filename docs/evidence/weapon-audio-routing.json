@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "error": null,
+  "results": [
+    {
+      "weapon": "Point",
+      "clip": "sfx_attack_point",
+      "tick": 186,
+      "volume": 0.135,
+      "frequency": 48000,
+      "channels": 1,
+      "seconds": 0.14
+    },
+    {
+      "weapon": "Pierce",
+      "clip": "sfx_attack_pierce",
+      "tick": 160,
+      "volume": 0.135,
+      "frequency": 48000,
+      "channels": 1,
+      "seconds": 0.23
+    },
+    {
+      "weapon": "Bleed",
+      "clip": "sfx_attack_bleed",
+      "tick": 186,
+      "volume": 0.135,
+      "frequency": 48000,
+      "channels": 1,
+      "seconds": 0.34
+    },
+    {
+      "weapon": "Sweep",
+      "clip": "sfx_attack_sweep",
+      "tick": 186,
+      "volume": 0.135,
+      "frequency": 48000,
+      "channels": 1,
+      "seconds": 0.28
+    },
+    {
+      "weapon": "Enso",
+      "clip": "sfx_attack_enso",
+      "tick": 186,
+      "volume": 0.135,
+      "frequency": 48000,
+      "channels": 1,
+      "seconds": 0.32
+    },
+    {
+      "weapon": "Resonance",
+      "clip": "sfx_attack_resonance",
+      "tick": 186,
+      "volume": 0.135,
+      "frequency": 48000,
+      "channels": 1,
+      "seconds": 0.38
+    }
+  ],
+  "maxVoices": 1,
+  "muted": true,
+  "persisted": true,
+  "method": "Six actual seed42 Manual 2x runs; observe live audible AudioSources after simulation attacks. Isolated saves. Not subjective listening or device output verification."
+}

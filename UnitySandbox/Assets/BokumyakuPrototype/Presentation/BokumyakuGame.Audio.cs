@@ -19,6 +19,9 @@ namespace Bokumyaku.Presentation
         AudioSource musicSource, uiSource, coreSource, notificationSource;
         readonly AudioSource[] combatSources = new AudioSource[4];
         readonly AudioClip[] audioClips = new AudioClip[8];
+        readonly AudioClip[] weaponAudioClips = new AudioClip[6];
+        static readonly string[] WeaponAudioNames = { "point", "pierce", "bleed", "sweep", "enso", "resonance" };
+        public int LoadedWeaponAudioCount { get; private set; }
         readonly System.Collections.Generic.Dictionary<AudioSource, float> audioGains = new System.Collections.Generic.Dictionary<AudioSource, float>();
         static readonly string[] AudioNames = { "sfx_click", "sfx_purchase", "sfx_attack", "sfx_kill", "sfx_core_hit", "sfx_defeat", "sfx_research_complete", "bgm_sumi_no_ma_80s" };
         RunSimulator audioRun;
@@ -56,6 +59,11 @@ namespace Bokumyaku.Presentation
                     if (audioClips[i] != null) LoadedAudioCount++;
                 }
                 musicSource.clip = audioClips[7];
+                for (int i = 0; i < weaponAudioClips.Length; i++)
+                {
+                    weaponAudioClips[i] = Resources.Load<AudioClip>("BokumyakuAudio/sfx_attack_" + WeaponAudioNames[i]);
+                    if (weaponAudioClips[i] != null) LoadedWeaponAudioCount++;
+                }
                 if (musicSource.clip != null) musicSource.Play();
             }
             string path = SavePath + ".audio.json";
@@ -134,22 +142,26 @@ namespace Bokumyaku.Presentation
             if (Run.State == RunStatus.Defeated && audioRunState != RunStatus.Defeated) PlayAudio(notificationSource, 5, .65f);
             audioKills = Run.Kills; audioCoreHp = Run.CoreHp; audioRunState = Run.State;
         }
-        void PlayAudio(AudioSource source, int clip, float gain)
+        void PlayAudio(AudioSource source, int clip, float gain, AudioClip variant = null)
         {
-            if (source == null || audioClips[clip] == null || audioPreferences.Muted) return;
-            source.clip = audioClips[clip]; audioGains[source] = gain;
+            var selected = variant != null ? variant : audioClips[clip];
+            if (source == null || selected == null || audioPreferences.Muted) return;
+            source.clip = selected; audioGains[source] = gain;
             source.volume = audioPreferences.Master * audioPreferences.Effects * gain;
             source.Play(); PlayedAudioEvents++;
         }
-        void CombatAudio(int clip, float gain, ref float next, float interval)
+        void CombatAudio(int clip, float gain, ref float next, float interval, AudioClip variant = null)
         {
             if (Time.unscaledTime < next) return;
             next = Time.unscaledTime + interval;
-            foreach (var source in combatSources) if (!source.isPlaying) { PlayAudio(source, clip, gain); return; }
+            foreach (var source in combatSources) if (!source.isPlaying) { PlayAudio(source, clip, gain, variant); return; }
         }
         void AudioAttack()
         {
-            EnsureAudio(); CombatAudio(2, .45f, ref nextAttackAudio, .08f);
+            EnsureAudio();
+            int weapon = Run == null ? -1 : (int)Run.Weapon;
+            var variant = weapon >= 0 && weapon < weaponAudioClips.Length ? weaponAudioClips[weapon] : null;
+            CombatAudio(2, .45f, ref nextAttackAudio, .08f, variant);
         }
         void AudioClick()
         {

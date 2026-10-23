@@ -74,3 +74,6 @@ TheTowerSDKのREADME/LICENSE/NOTICEを読取。MIT表記に加えて由来別の
 
 ## 黒墨HUDパネル delivery-v6
 2026-10-24。素材制作室でimagegen新規生成1回。参考は目視のみ、他作品画像の切抜きなし。原本SHA256 BFA3D1E60B8B986B0B5BC0246DA31C50D897C90DDDD62FD686529A8966EE50D7、Resourcesへ同一バイトコピー。プロンプトと検査はart-source/delivery-v6/に保持。詳細と未検証範囲はART_DELIVERY.md。
+
+## 2026-10-24 武器別SE audio-v2
+art-source/audio-v2/generate_weapon_audio.pyで独自数値合成した6WAVをゲームResourcesへ統合。外部音源・旋律・サンプルは不使用。生成条件/検証値/SHA-256は同フォルダvalidation.json、詳細docs/AUDIO_DELIVERY.md。原本と配置先6ファイルのSHA-256一致を確認。NumPyは制作環境のみで製品には同梱しない。

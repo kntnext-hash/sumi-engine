@@ -1,5 +1,38 @@
 # 墨脈 音源納品 v1
 
+## 6武器攻撃SE追加納品（2026-10-24）
+
+`art-source/audio-v2/` に6音1セットを追加。既存 `art-source/audio/sfx_attack.wav` を含む旧音源は変更していない。Unity/ゲームコード/git操作なし。正式名と対応は `Simulation/RunSimulator.cs` のWeaponKind、および `Presentation/BokumyakuGame.cs` / `BokumyakuMenuHud.cs` の表示名で確認。
+
+全音源48kHz PCM16 mono、非ループ。以下は単体peakと、80msごとに10秒発音・最大4voiceで最古を置換するモデルの実測peak。単位dBFS。
+
+|WeaponKind / 表示名|ファイル（audio-v2/）|秒|単体peak|連射peak|設計した特徴|
+|---|---|---:|---:|---:|---|
+|Point / 点墨|sfx_attack_point.wav|0.14|-21|-20.84|短く乾いた紙点と低い滴|
+|Pierce / 貫筆|sfx_attack_pierce.wav|0.23|-20|-19.99|細い擦れと急速に下降する滴|
+|Bleed / 滲墨|sfx_attack_bleed.wav|0.34|-22|-22.00|柔らかく立ち上がる湿った微振動|
+|Sweep / 払い|sfx_attack_sweep.wav|0.28|-21|-19.58|広がって引く一回の紙擦れ|
+|Enso / 円相|sfx_attack_enso.wav|0.32|-21|-18.24|二つの弧を描く低い摩擦パルス|
+|Resonance / 共鳴|sfx_attack_resonance.wav|0.38|-22|-21.79|短い低域の三連反復、段階減衰|
+
+通知の上昇チャイムと区別するため、攻撃には明るい長い金属倍音や上昇音列を使わない。平滑ノイズと低い短音、低めの単体peak、3ms開始/25ms終了フェードで頻発時の刺激を抑える意図。疲労軽減・聞き分けを聴感で保証したものではない。既存攻撃より控えめな音量なので、ゲーム統合時の初期gainは0.7（最大1）を提案し、BGM・通知との実聴で決定する。
+
+### ソース・再現・由来
+
+`audio-v2/generate_weapon_audio.py` をPython 3 + NumPyで実行。seed=20261024+武器番号、使用NumPy=2.3.5。外部音源・旋律・素材・契約なし。この作業で書いた正弦波/指数減衰/平滑化乱数/窓関数だけから合成。NumPy本体は同梱しない。実行例: `python art-source/audio-v2/generate_weapon_audio.py`。同じaudio-v2内の6WAVとvalidation.jsonだけ再生成する。
+
+同一プロセス内の再計算一致に加え、別プロセスで2回生成し6WAVのSHA-256が全て一致。異なるNumPy/CPUでのビット一致は未保証。ハッシュ、RMS、隣接差分、個別DCは `audio-v2/validation.json` に保存。
+
+### 数値検査と限界
+
+- 書出WAVを再読込し、全6音クリップ0、先頭/末尾サンプル0。DC絶対値最大0.000000232 FS（検査閾値0.00001）。
+- 同一音4コピーの同時重畳、および上表の80ms連射モデルでクリップ0。連射モデルは最古voiceを打ち切る計算で、実エンジンのフェードやクリックを検証していない。
+- 三角不等式による任意の4攻撃voiceの上限は約0.4000 FS＝-7.96dBFS。6種類の混在・任意の開始位置でも各gain<=1で成立。BGM/通知/他SE、マスター増幅、圧縮後true peakは含まない。voice数を増やす場合は再検査する。
+- mono素材のため左右平均合成による位相相殺なし。スマホの周波数応答・低域の聞こえ方は未検証。
+- 聴ける入力ツールがなく、聴感・6音の聞き分け・長時間疲労・実機・Unity統合は未検証。音源単体の有限納品は完了。
+
+本室の確認手順: 各音を単発→80ms連射→BGM込みで再生し、点墨/貫筆の差、滲墨/払いの立上がり、円相の二連と共鳴の三連を確認。小型スピーカーで識別できるか、4voice時に通知を隠さないかを判定して採用する。旧sfx_attackはフォールバック用として保持。
+
 制作日: 2026-10-23。担当範囲: `art-source/audio/` と本資料。Unity組み込み・操作、STATE/TASKS編集、コミット/pushは実施していない。
 
 ## 納品物と意図
@@ -98,3 +131,10 @@ BGMのmono RMSは約-24.62dBFS、peakは約-10.80dBFS。大きな位相相殺に
 
 ### 実戦イベント経路確認（本室）
 AudioEventCheckで隔離seed42/Manual/2倍を通常フレーム進行し、1回の強化購入、撃破/被弾/敗北、報酬保存後の研究購入まで69.54秒。BGM/クリック/購入/攻撃/撃破/被弾/敗北/研究の8クリップ全てをisPlayingかつ非消音/volume>0のAudioSourceで検出。音再生関数を直接呼ぶ試験ではない（UI操作はゲームAPI呼出）。証拠evidence/audio-event-routing.json。聴感、全武器、実機、スピーカー出力保証は対象外。
+
+## ゲーム統合 audio-v2（2026-10-24）
+6WAVをResources/BokumyakuAudioへ同一SHA-256で配置し、Unity AudioImporterでPCM/DecompressOnLoad/元の48kHz monoを保持。Run.Weaponにより攻撃SEを選択し、未ロード時は既存sfx_attackへフォールバックする。既存gain .45、80ms間隔、戦闘4voice上限を維持。提案gain .7は聴感比較前なので未採用。
+
+軽量検証: WeaponAudioCheckで隔離seed42/Manual/2倍速を6武器それぞれ実走。全6種の実攻撃後に対応AudioSourceの再生、48kHz/mono、音量.6×.5×.45=.135を確認。ミュートと再読み込み保持も合格。証拠docs/evidence/weapon-audio-routing.json。観測最大voiceは1であり、今回の検査は4voice飽和や長時間連射の検査ではない。通常保存は未使用。旧AudioEventCheckはPointを明示選択して新clip名を期待するよう更新（全イベントの再実行は今回していない）。
+
+シミュレーション/経済/保存/Runtimeは未変更。Windows reuse-v18は本統合より前のビルド。新SEのWindows収録・主観的な聴き分け/疲労・実機出力は未検証。
