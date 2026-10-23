@@ -1,6 +1,6 @@
 # Visible Player QA: requires explicit user authorization to show windows. Two real processes share only an isolated QA save.
 [CmdletBinding()]
-param([string]$BuildFolder='Builds/Bokumyaku-visual-v6')
+param([string]$BuildFolder='Builds/Bokumyaku-visual-v6', [int]$Width=1080, [int]$Height=2400, [string]$EvidenceTag='visible-v6')
 $ErrorActionPreference='Stop'
 $repo=Split-Path -Parent $PSScriptRoot
 $folder=[IO.Path]::GetFullPath((Join-Path $repo $BuildFolder))
@@ -11,7 +11,7 @@ New-Item -ItemType Directory -Path $out | Out-Null
 $launches=@()
 foreach($resume in @($false,$true)){
     $name=if($resume){'player-resume'}else{'player'}
-    $arguments=@('--bokumyaku-capture-screens','--bokumyaku-smoke-output',('"'+$out+'"'),'-logFile',('"'+(Join-Path $out ($name+'.log'))+'"'),'-screen-width','1080','-screen-height','2400','-screen-fullscreen','0')
+    $arguments=@('--bokumyaku-capture-screens','--bokumyaku-smoke-output',('"'+$out+'"'),'-logFile',('"'+(Join-Path $out ($name+'.log'))+'"'),'-screen-width',$Width,'-screen-height',$Height,'-screen-fullscreen','0')
     if($resume){$arguments+='--bokumyaku-resume-check'}
     $timer=[Diagnostics.Stopwatch]::StartNew()
     $process=Start-Process -FilePath $exe -WorkingDirectory $folder -ArgumentList $arguments -PassThru -WindowStyle Normal
@@ -23,21 +23,22 @@ foreach($resume in @($false,$true)){
     $report=Join-Path $out ($name+'-report.json')
     if(!(Test-Path -LiteralPath $report)){throw "Report missing: $report / exit $($process.ExitCode)"}
     $result=Get-Content -LiteralPath $report -Raw | ConvertFrom-Json
-    Copy-Item -LiteralPath $report -Destination (Join-Path $repo ('docs/evidence/bokumyaku-'+$name+'-visible-v6.json'))
+    Copy-Item -LiteralPath $report -Destination (Join-Path $repo ('docs/evidence/bokumyaku-'+$name+('-'+$EvidenceTag+'.json')))
     $launches += [pscustomobject]@{name=$name;exitCode=$process.ExitCode;elapsedSeconds=[Math]::Round($timer.Elapsed.TotalSeconds,3);passed=$result.passed}
-    $launches | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $repo 'docs/evidence/bokumyaku-player-launch-visible-v6.json') -Encoding UTF8
+    $launches | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $repo ('docs/evidence/bokumyaku-player-launch-'+$EvidenceTag+'.json')) -Encoding UTF8
     if($process.ExitCode -ne 0 -or !$result.passed){throw "Probe failed: $name. Evidence copied; logs=$out"}
 }
-Copy-Item -LiteralPath (Join-Path $out 'player-home.png') -Destination (Join-Path $repo 'docs/evidence/player-home-visible-v6.png')
-Copy-Item -LiteralPath (Join-Path $out 'player-battle.png') -Destination (Join-Path $repo 'docs/evidence/player-battle-visible-v6.png')
+Copy-Item -LiteralPath (Join-Path $out 'player-home.png') -Destination (Join-Path $repo ('docs/evidence/player-home-'+$EvidenceTag+'.png'))
+Copy-Item -LiteralPath (Join-Path $out 'player-battle.png') -Destination (Join-Path $repo ('docs/evidence/player-battle-'+$EvidenceTag+'.png'))
 Add-Type -AssemblyName System.Drawing
 $png=[Drawing.Image]::FromFile((Join-Path $out 'player-home.png'))
-[pscustomobject]@{requestedWidth=1080;requestedHeight=2400;actualWidth=$png.Width;actualHeight=$png.Height;visible=$true;note='Compare actual dimensions; OS may clamp the window. Visual inspection required.'} | ConvertTo-Json | Set-Content (Join-Path $repo 'docs/evidence/player-visible-dimensions-v6.json')
+[pscustomobject]@{requestedWidth=$Width;requestedHeight=$Height;actualWidth=$png.Width;actualHeight=$png.Height;visible=$true;note='Compare actual dimensions; OS may clamp the window. Visual inspection required.'} | ConvertTo-Json | Set-Content (Join-Path $repo ('docs/evidence/player-visible-dimensions-'+$EvidenceTag+'.json'))
 $png.Dispose()
 $assemblies=Get-ChildItem -LiteralPath (Join-Path $folder 'Bokumyaku_Data/Managed') -Filter 'Bokumyaku.*.dll' | ForEach-Object {[pscustomobject]@{name=$_.Name;bytes=$_.Length;sha256=(Get-FileHash -LiteralPath $_.FullName).Hash}}
-[pscustomobject]@{path=$BuildFolder+'/Bokumyaku.exe';bytes=(Get-Item -LiteralPath $exe).Length;sha256=(Get-FileHash -LiteralPath $exe).Hash;unity='6000.3.26f1';scene='Assets/BokumyakuPrototype/Scenes/Bokumyaku.unity';note='Keep accompanying Data, UnityPlayer and MonoBleedingEdge files. Windows Mono evidence; not mobile.';gameAssemblies=@($assemblies)} | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $repo 'docs/evidence/bokumyaku-artifact-visible-v6.json') -Encoding UTF8
+[pscustomobject]@{path=$BuildFolder+'/Bokumyaku.exe';bytes=(Get-Item -LiteralPath $exe).Length;sha256=(Get-FileHash -LiteralPath $exe).Hash;unity='6000.3.26f1';scene='Assets/BokumyakuPrototype/Scenes/Bokumyaku.unity';note='Keep accompanying Data, UnityPlayer and MonoBleedingEdge files. Windows Mono evidence; not mobile.';gameAssemblies=@($assemblies)} | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $repo ('docs/evidence/bokumyaku-artifact-'+$EvidenceTag+'.json')) -Encoding UTF8
 $launches | Format-Table
 Write-Output "Logs: $out"
+
 
 
 

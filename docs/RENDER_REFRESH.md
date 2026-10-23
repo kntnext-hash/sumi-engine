@@ -126,3 +126,7 @@ button_ink_frame_03.pngをResources/BokumyakuArtへ導入。Sprite Single、bord
 ユーザーの明示的な表示起動許可を受け、v6をWindowStyle Normalで起動。隔離QAセーブを使用。取得したホーム/戦闘画像に実描画があり、本室で目視した。非表示時の黒一色と区別する。
 要求1080×2400に対して実PNGは1080×1080だったため、縦スマホ解像度合格とは扱わない。PC正方形表示でのメニュー/戦闘描画確認。v6は新筆枠/ボス朱輪より前のビルド。最新美術を含むビルドと画面に収まる縦寸法での再確認が残る。
 表示起動の機能試験/別プロセス復帰もpassed=true、exit0（107.65秒/15.67秒）。自動終了済み。player-visible-dimensions-v6.jsonに実寸を記録。
+
+## v7 縦Windows Player
+source62ca6e4、Bokumyaku-portrait-v7、142052557bytes、66.36秒、error0/warning0。ユーザー許可済みの表示起動で540×960を指定し、実PNGも同寸。ホームの新筆枠、戦闘の描画を目視。画像はWave3でありボス朱輪自体のPlayer確認は含まない。上部WAVEと下部レベル表示が窮屈なためUI改善残件。スマホ実機・完成美術合格ではない。VisiblePlayerスクリプトにBuildFolder/Width/Height/EvidenceTag引数を追加し、今後は既存証拠を上書きせず再利用可能。
+v7表示Player: 機能試験116.89秒/復帰15.73秒、両exit0/passed=true。ウィンドウ自動終了。実寸JSON: player-visible-dimensions-portrait-v7.json。
