@@ -62,6 +62,26 @@ namespace Bokumyaku.Presentation
                 default:
                     throw new ArgumentOutOfRangeException(nameof(kind));
             }
+            // Opaque ink bodies with broken radial strokes read as creatures, not UI rings.
+            if(kind==EnemyKind.Normal||kind==EnemyKind.Heavy||kind==EnemyKind.Boss)
+            {
+                int count=kind==EnemyKind.Boss?12:kind==EnemyKind.Heavy?8:6;
+                for(int i=0;i<count;i++)
+                {
+                    float a=i*Mathf.PI*2/count+.21f;
+                    float reach=(i%3==0?40:34);
+                    strokes.Add(Polyline(new[]{new Vector2(48+Mathf.Cos(a)*8,48+Mathf.Sin(a)*8),
+                        new Vector2(48+Mathf.Cos(a+.15f)*23,48+Mathf.Sin(a+.15f)*23),
+                        new Vector2(48+Mathf.Cos(a)*reach,48+Mathf.Sin(a)*reach)},16));
+                }
+                strokes.Add(Arc(48,48,8,8,0,360,20));
+            }
+            else if(kind==EnemyKind.Fast)
+            {
+                strokes.Add(Line(36,48,72,48,18));
+                strokes.Add(Line(23,32,61,45,18));
+                strokes.Add(Line(23,64,61,51,18));
+            }
             return InkTextureBaker.Bake(Size, strokes, Style(radius), 4700 + (int)kind);
         }
 
@@ -159,3 +179,4 @@ namespace Bokumyaku.Presentation
         }
     }
 }
+

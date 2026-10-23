@@ -1,0 +1,32 @@
+[
+  {
+    "kind": "Normal",
+    "opaque": 2432,
+    "clear": 6370,
+    "passed": true
+  },
+  {
+    "kind": "Fast",
+    "opaque": 1435,
+    "clear": 7427,
+    "passed": true
+  },
+  {
+    "kind": "Heavy",
+    "opaque": 3050,
+    "clear": 5647,
+    "passed": true
+  },
+  {
+    "kind": "Splitter",
+    "opaque": 1395,
+    "clear": 7340,
+    "passed": true
+  },
+  {
+    "kind": "Boss",
+    "opaque": 3158,
+    "clear": 5473,
+    "passed": true
+  }
+]
