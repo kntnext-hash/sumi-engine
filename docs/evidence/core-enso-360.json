@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "width": 360,
+  "height": 640,
+  "fullDisabled": true,
+  "lowEmptyDisabled": true,
+  "radialAmounts": true,
+  "repairRaycast": true,
+  "hpAfter": 5,
+  "cost": 25,
+  "limitDisabled": true,
+  "method": "Isolated paused fixture; reflection creates damaged/empty/capped conditions. Repair invoked through screen raycast and EventSystem. No simulation code changes."
+}

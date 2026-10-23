@@ -140,12 +140,22 @@ namespace Bokumyaku.Presentation
             gaugeFace.sprite=ringSprite;gaugeFace.type=UnityEngine.UI.Image.Type.Simple;gaugeFace.preserveAspect=true;gaugeFace.color=new Color(.32f,.25f,.14f);
             var disc=BokumyakuUiParts.Rect(repair.transform,"InkBacking",new Vector2(.09f,.09f),new Vector2(.91f,.91f)).gameObject.AddComponent<Drawing.UiDiscGraphic>();
             disc.color=black;disc.raycastTarget=false;
+            var coreEnso=Resources.Load<Sprite>("BokumyakuArt/core_enso_09");
+            if(coreEnso!=null)
+            {
+                // The delivered brush occupies 30–40% of its source width in radius.
+                // Fit the artwork independently of the circular button and HP indicator.
+                var brush=BokumyakuUiParts.Panel(repair.transform,"CoreBrushRim",new Vector2(-.075f,-.075f),new Vector2(1.075f,1.075f),Color.white);
+                brush.sprite=coreEnso;brush.type=UnityEngine.UI.Image.Type.Simple;brush.preserveAspect=true;brush.raycastTarget=false;
+            }
             hpFill=BokumyakuUiParts.Panel(repair.transform,"CoreRingFill",Vector2.zero,Vector2.one,gold);
             hpFill.sprite=ringSprite;hpFill.type=UnityEngine.UI.Image.Type.Filled;hpFill.fillMethod=UnityEngine.UI.Image.FillMethod.Radial360;
             hpFill.fillOrigin=(int)UnityEngine.UI.Image.Origin360.Top;hpFill.fillClockwise=true;hpFill.preserveAspect=true;
-            Label(repair.transform,"CoreTitle",.18f,.74f,.82f,.92f,12,ivory).text="墨核";
-            hp=Label(repair.transform,"CoreValue",.14f,.24f,.86f,.76f,34,ivory);
-            Label(repair.transform,"CoreMaximum",.22f,.08f,.78f,.28f,13,ivory).text="/ 10";
+            var coreTitle=Label(repair.transform,"CoreTitle",.22f,.66f,.78f,.82f,12,ivory);coreTitle.text="墨核";
+            coreTitle.rectTransform.offsetMin=coreTitle.rectTransform.offsetMax=Vector2.zero;
+            hp=Label(repair.transform,"CoreValue",.18f,.28f,.82f,.70f,34,ivory);
+            var coreMaximum=Label(repair.transform,"CoreMaximum",.26f,.16f,.74f,.32f,13,ivory);coreMaximum.text="/ 10";
+            coreMaximum.rectTransform.offsetMin=coreMaximum.rectTransform.offsetMax=Vector2.zero;
             repairStatus=Label(bottom.transform,"RepairStatus",.30f,.74f,.99f,.85f,12,ivory);
             Button(bottom.transform,"Speed",.30f,.87f,.51f,1.10f,"×1",()=>game.SetSpeed(game.Speed==1?2:1),out speed);
             Button(bottom.transform,"Auto",.51f,.87f,.77f,1.10f,"自動",()=>game.SetAutoRepeat(!game.AutoRepeatEnabled),out auto);

@@ -224,3 +224,10 @@ Windows release v28へこれまでのカードv8/操作パネル/墨核/上部HU
 v28で正方形化したWindows UIが縦につぶれたため、BokumyakuViewportを導入。safe area幅を最大で高さ×9/16へ中央寄せし、戦場camera rectと戦闘/メニューsafe rectへ共有。CanvasScalerの基準横幅を表示領域基準で補正し、内部440単位を維持。縦長360×800の矩形を変えず、safe inset内に収める計算を確認。
 Editor1080×1080/1920×1080で両HUDの実world cornerが領域と0.6px以内に一致、論理幅440、cameraの横位置/幅一致をViewportLayoutCheckで確認。HeaderCheckの出力名viewport版で通常/最大数値、Pause/Resume raycast、snapshot復元一致。viewport-layout/normal/large-*.json/png。通常画像を目視。横長でMenuViewportCheckの3タブraycast/ページ切替/文字overflowなし、ホーム画像を確認。価格/セーブ/戦闘判定変更なし。
 Windows実行物はまだv28のまま。この修正をWindows実行確認済みとはしない。今回全テスト/再buildなし、Play停止/QA設定復元済み。動的なウィンドウドラッグ中の追従と実機safe areaは未確認。
+
+### 2026-10-24 墨核の金墨円相 v9
+- core_enso_09.png原本をResourcesへ複製。Editor APIでSprite/最大512/mipmapなし/CPU読取なし/非圧縮/Clamp。画像画素加工なし。
+- CoreBrushRimを1.15倍で独立配置。ボタンの当たり判定とHP radial量は保持。タイトルと最大HPを内側へ移動。360幅で共通Labelのinsetが縦overflowを起こしたため、この2ラベルのみinsetを0へ修正。
+- CoreEnsoCheck: seed42/1800tick停止fixture、360×640・1080×2400でリソース/設定/文字/満タン無効/墨不足無効/HP3→修復5/費用25/5回上限を確認。修復は画面raycast経由。core-enso-360/1080.json/png。
+- 画像目視で筆輪と文字の干渉解消。原本の透明余白/半径条件が合格した意味ではなく、ゲーム内配置として採用。通常保存は未使用、Editor終了後検証設定復元。
+- 軽量UI検証。Windows再ビルド・性能・全EditMode・実機は今回未実施。

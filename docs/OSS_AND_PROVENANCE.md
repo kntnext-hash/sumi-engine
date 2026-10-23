@@ -86,3 +86,6 @@ art-source/delivery-v7/washi_card_07.pngをResources/BokumyakuArtへ同一SHA-25
 
 ## 円相枠候補 delivery-v9（2026-10-24・未採用）
 素材室で新規imagegen1案＋同案修正1回。原本/初稿/実プロンプト/alpha検査/SHA256はart-source/delivery-v9に保持。core_enso_09.pngは1254角、中心/外周に微小alpha、主線半径30.37〜40.15%で指定38〜45%より内寄り。64pxで金/墨の輪は見えるが、位置合わせと透明条件が未達のためResourcesへ未導入。第三者画像の切抜き・素材流用なし、参考の目視のみ。詳細README.mdを参照。
+
+### 2026-10-24 delivery-v9 ゲーム内装飾への採用
+core_enso_09.pngを同一原本のままResources/BokumyakuArtへ統合。生成由来とSHAはart-source/delivery-v9/README.md。Unity最大512で読み込み、UIの装飾だけ1.15倍配置。原本の完全透明/半径仕様は未達のまま。ゲーム画面で文字位置を調整し360×640/1080×2400の表示・修復操作を確認して採用した。原本検査を合格へ変更していない。
