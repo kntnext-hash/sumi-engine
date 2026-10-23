@@ -29,3 +29,13 @@
 ## 再開と記録
 
 開始時は実ソース・Git状態・利用可能なUnity操作を確認し、既存変更を保護する。最新状況は [STATE](STATE.md)、直近3版の実施記録は [WORK_LOG](WORK_LOG.md) と [QA_AND_EVIDENCE](QA_AND_EVIDENCE.md)。過去の記録は [archive](archive/README.md) から参照する。
+
+## 2026-10-23 描画刷新
+- [x] URP 2D移行とBrush Lab表示/PNG互換。
+- [x] 戦場スプライト化、再利用uGUI戦闘HUD、縦戦場68%。
+- [x] 位置補間、敵/6武器/撃破演出、SUMI撃破跡、dirty tile更新。
+- [x] 関連EditMode213件、戦闘HUD操作8項目。
+- [x] 前後Wave17画像・3分計測。平均16.83→16.72ms、最大112.87→53.05ms（Editor）。
+- [ ] 参考画像へ美術改善、スマホ実機。
+詳細: [描画刷新](RENDER_REFRESH.md)。
+

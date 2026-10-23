@@ -1,0 +1,23 @@
+{
+  "phase": "after",
+  "durationSeconds": 180.03674859999956,
+  "frames": 10765,
+  "averageMs": 16.721638741232958,
+  "maximumMs": 53.045805543661118,
+  "width": 360,
+  "height": 640,
+  "seed": 42,
+  "startWave": 17,
+  "endWave": 32,
+  "kills": 304,
+  "tick": 11400,
+  "branchRebuilds": 0,
+  "dirtyUploads": 2564,
+  "dirtyPixels": 2625536,
+  "fullInitializations": 15,
+  "fullUpdatesDuringSample": 0,
+  "spriteDeaths": 304,
+  "spriteHits": 13932,
+  "interpolatedFrames": 59396,
+  "method": "Editor wall-frame intervals, target60, 5s+shader warmup, 180s; not GPU profiler/device performance"
+}

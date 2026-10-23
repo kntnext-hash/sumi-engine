@@ -13,14 +13,15 @@ namespace Bokumyaku.Presentation
    {
     float t=.25f+twig*.24f,sign=(id+twig)%2==0?1:-1;
     Vector2 start=Vector2.Lerp(a,b,t),end=start+d*(8+(id+twig)%4*3)+normal*sign*(11+(id*7+twig)%5*3);
-    canvas.Begin(new InkPoint(start.x*sx,start.y*sy,0,.8f),brush,unchecked(Run.Seed+id*193+twig));
+    persistentInk.Begin(new InkPoint(start.x*sx,start.y*sy,0,.8f),brush,unchecked(Run.Seed+id*193+twig));
     for(int n=1;n<=10;n++)
     {
      float u=n/10f;Vector2 p=Vector2.Lerp(start,end,u)+normal*Mathf.Sin(u*Mathf.PI)*sign*4;
-     canvas.Move(new InkPoint(p.x*sx,p.y*sy,u*.3f,Mathf.Lerp(.8f,.06f,u)));
+     persistentInk.Move(new InkPoint(p.x*sx,p.y*sy,u*.3f,Mathf.Lerp(.8f,.06f,u)));
     }
-    canvas.End();
+    persistentInk.End();
    }
   }
  }
 }
+

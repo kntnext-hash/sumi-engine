@@ -37,7 +37,7 @@ namespace Bokumyaku.Presentation
         public long SessionCrystals { get; private set; }
         public int LoadedArtCount { get; private set; }
         public int BranchOverlayRebuilds { get; private set; }
-        public Texture2D BranchOverlay => branchOverlay;
+        public Texture2D BranchOverlay => persistentInk?.Texture;
         public event Action ProgressChanged;
         string saveWarning = "";
         bool progressLoaded;
@@ -68,7 +68,6 @@ namespace Bokumyaku.Presentation
         Texture2D disc;
         Texture2D paperArt, landscapeArt, portraitLandscapeArt, ensoArt, branchOverlay;
         readonly Texture2D[] weaponArt = new Texture2D[6];
-        Color32[] branchPixels;
         GUIStyle title, heading, body, small, button, number, iconLabel;
         readonly List<Flash> flashes = new List<Flash>();
         readonly Dictionary<int, float> growth = new Dictionary<int, float>();
@@ -203,6 +202,7 @@ namespace Bokumyaku.Presentation
             if (canvas != null) return;
             canvas = GetComponent<SumiCanvas>();
             canvas.Initialize();
+            canvas.enabled = false; // Game uses dirty-tile SUMI surface; Brush Lab keeps its original adapter.
             canvas.paperColor = paper;
             canvas.inkColor = ink;
             canvas.diffusionFps = 0; // Persistent branches are fixed. Combat effects are transient overlays.
@@ -215,6 +215,7 @@ namespace Bokumyaku.Presentation
             weaponArt[0] = LoadArt("weapon_point_01");
             weaponArt[1] = LoadArt("weapon_pierce_01");
             weaponArt[2] = LoadArt("weapon_bleed_01");
+            EnsureBattlePresentation();
         }
         Texture2D LoadArt(string name)
         {
@@ -243,7 +244,7 @@ namespace Bokumyaku.Presentation
         }
         void ResetInk()
         {
-            drawnBranches = 0; inkBursts.Clear(); watchedEnemies.Clear(); ObservedInkBursts = 0; flashes.Clear(); growth.Clear(); canvas.Clear();
+            drawnBranches = 0; inkBursts.Clear(); watchedEnemies.Clear(); ObservedInkBursts = 0; flashes.Clear(); growth.Clear(); persistentInk.Clear();battleWorld.Reset(Run);
             Array.Clear(observedLevels, 0, observedLevels.Length);
             Array.Clear(levelChangedAt, 0, levelChangedAt.Length);
             DrawNewBranches();
@@ -367,10 +368,10 @@ namespace Bokumyaku.Presentation
             while (tickClock >= 1f / RunSimulator.TickRate && budget-- > 0 && Run.State == RunStatus.Running)
             {
                 tickClock -= 1f / RunSimulator.TickRate;
-                WatchEnemies();
+                battleWorld.BeforeTick(Run);
                 Run.Tick();
+                battleWorld.AfterTick(Run,ReducedMotion);
                 if (Run.Attacks.Count > 0) AudioAttack();
-                ObserveDefeats();
                 foreach (var hit in Run.Attacks)
                 {
                     if (flashes.Count >= 96) flashes.RemoveAt(0);
@@ -427,39 +428,19 @@ namespace Bokumyaku.Presentation
                 float x0 = (float)parent.ViewX, y0 = (float)parent.ViewY;
                 float x1 = (float)b.ViewX, y1 = (float)b.ViewY;
                 float sx = canvas.width / 384f, sy = canvas.height / 512f;
-                canvas.Begin(new InkPoint(x0 * sx, y0 * sy, 0, 1f), brush, unchecked(Run.Seed + b.Id * 7919));
+                persistentInk.Begin(new InkPoint(x0 * sx, y0 * sy, 0, 1f), brush, unchecked(Run.Seed + b.Id * 7919));
                 // A gently bowed centerline gives the growing branch a living brush gesture.
                 for (int n = 1; n <= 8; n++)
                 {
                     float t = n / 8f, bow = Mathf.Sin(t * Mathf.PI) * (b.Id % 2 == 0 ? 3.4f : -3.4f);
-                    canvas.Move(new InkPoint((Mathf.Lerp(x0, x1, t) + bow) * sx,
+                    persistentInk.Move(new InkPoint((Mathf.Lerp(x0, x1, t) + bow) * sx,
                         Mathf.Lerp(y0, y1, t) * sy, t * .35f, Mathf.Lerp(1f, .7f, t)));
                 }
-                canvas.End();
+                persistentInk.End();
                 DrawBranchFibers(x0,y0,x1,y1,sx,sy,b.Id);
                 growth[b.Id] = Time.unscaledTime;
             }
-            if (changed) RebuildBranchOverlay();
-        }
-        void RebuildBranchOverlay()
-        {
-            // Game-only adapter: same optical density as RenderRgba, without its opaque paper.
-            // Called only when branches change, never from OnGUI or a per-frame pixel loop.
-            int width = canvas.Core.Paper.Width, height = canvas.Core.Paper.Height;
-            if (branchOverlay == null)
-            {
-                branchOverlay = new Texture2D(width, height, TextureFormat.RGBA32, false, false)
-                { name = "Bokumyaku transparent ink", filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.DontSave };
-                branchPixels = new Color32[width * height];
-            }
-            Color32 color = canvas.inkColor;
-            for (int y = 0; y < height; y++) for (int x = 0; x < width; x++)
-            {
-                float alpha = 1f - Mathf.Exp(-canvas.displayDensity * canvas.Core.Paper.PigmentAt(x, y));
-                branchPixels[y * width + x] = new Color32(color.r, color.g, color.b, (byte)Mathf.RoundToInt(Mathf.Clamp01(alpha) * 255f));
-            }
-            branchOverlay.SetPixels32(branchPixels); branchOverlay.Apply(false, false);
-            BranchOverlayRebuilds++;
+            if (changed) persistentInk.Flush();
         }
         void InitStyles()
         {
@@ -489,6 +470,7 @@ namespace Bokumyaku.Presentation
         }
         void OnGUI()
         {
+            if (Page == GamePage.Battle) return; // Entire battle and HUD are rendered by URP sprites/uGUI.
             if (Run == null || canvas == null) return;
             InitStyles();
             var oldMatrix = GUI.matrix; var oldColor = GUI.color; var oldBackground = GUI.backgroundColor; bool oldEnabled = GUI.enabled;
@@ -512,7 +494,7 @@ namespace Bokumyaku.Presentation
                 GUI.Label(new Rect(25, 55, 330, 20), "B O K U M Y A K U   /   墨が生きる防衛", small);
                 Fill(new Rect(24, 85, width - 48, 1), new Color(.75f, .72f, .64f));
                 Rect field = portrait ? new Rect(52, 111, 336, 448) : new Rect(55, 116, 432, 576);
-                if (Page == GamePage.Home) DrawHome(field); else DrawField(field);
+                DrawHome(field);
                 if (portrait) DrawPanel(new Rect(24, 584, 392, 452), true);
                 else DrawPanel(new Rect(558, 110, 494, 616), false);
                 GUI.Label(new Rect(field.x, field.yMax + 7, field.width, 18), "墨の枝  ／  金の末端  ／  朱の敵", small);
@@ -520,7 +502,31 @@ namespace Bokumyaku.Presentation
             }
             finally { GUI.matrix = oldMatrix; GUI.color = oldColor; GUI.backgroundColor = oldBackground; GUI.enabled = oldEnabled; }
         }
-        Vector2 View(Rect field, double x, double y) { return new Vector2(field.x + (float)x / 384f * field.width, field.yMax - (float)y / 512f * field.height); }
+        // Portrait gives the approaching upper half more room while retaining the
+        // entire lower approach. The same projection is used for actors and ink.
+        Vector2 View(Rect field, double x, double y)
+        {
+            float t=1-(float)y/512f;
+            if(field.height>field.width)t=t<=.5f?t*1.44f:.72f+(t-.5f)*.56f;
+            return new Vector2(field.x+(float)x/384f*field.width,field.y+t*field.height);
+        }
+        void DrawBranchSurface(Rect field)
+        {
+            var texture=branchOverlay!=null?branchOverlay:canvas.Texture;
+            if(field.height<=field.width){GUI.DrawTexture(field,texture,ScaleMode.StretchToFill);return;}
+            GUI.DrawTextureWithTexCoords(new Rect(field.x,field.y,field.width,field.height*.72f),texture,new Rect(0,.5f,1,.5f));
+            GUI.DrawTextureWithTexCoords(new Rect(field.x,field.y+field.height*.72f,field.width,field.height*.28f),texture,new Rect(0,0,1,.5f));
+        }
+        void FieldBoundary(Rect field,Vector2 origin,float radius,Color tint)
+        {
+            Vector2 previous=Logical(field,origin+Vector2.right*radius);
+            for(int i=1;i<=48;i++)
+            {
+                float angle=i*Mathf.PI*2/48;
+                Vector2 next=Logical(field,origin+new Vector2(Mathf.Cos(angle),Mathf.Sin(angle))*radius);
+                Line(previous,next,.8f,tint);previous=next;
+            }
+        }
         Vector2 Logical(Rect field, Vector2 point) { return View(field, 192 + point.x * .48, 256 + point.y * .48); }
         void DrawHome(Rect field)
         {
@@ -551,10 +557,13 @@ namespace Bokumyaku.Presentation
             Fill(field, paper);
             DrawArt(field, paperArt, 1f, ScaleMode.ScaleAndCrop);
             DrawArt(field, minimalHud && portraitLandscapeArt != null ? portraitLandscapeArt : landscapeArt, .62f, ScaleMode.ScaleAndCrop);
-            GUI.DrawTexture(field, branchOverlay != null ? branchOverlay : canvas.Texture, ScaleMode.StretchToFill);
+            DrawBranchSurface(field);
             var center = View(field, 192, 256);
-            Ring(center, field.width * .45f, new Color(.58f, .53f, .42f, .17f));
-            Ring(center, field.width * .25f, new Color(.58f, .53f, .42f, .10f));
+            if(!minimalHud)
+            {
+                Ring(center, field.width * .45f, new Color(.58f, .53f, .42f, .17f));
+                Ring(center, field.width * .25f, new Color(.58f, .53f, .42f, .10f));
+            }
             // Read the simulation's active fields; visual rings never create gameplay damage.
             foreach (var area in Run.Fields)
             {
@@ -562,9 +571,18 @@ namespace Bokumyaku.Presentation
                 float radius = (float)area.Radius * .48f * field.width / 384f;
                 bool bleed = area.Weapon == WeaponKind.Bleed;
                 Color tint = bleed ? ink : gold;
-                Dot(position, radius, new Color(tint.r, tint.g, tint.b, bleed ? .16f : .09f));
-                Ring(position, radius, new Color(tint.r, tint.g, tint.b, .35f));
-                if (bleed) Ring(position, radius * .78f, new Color(tint.r, tint.g, tint.b, .12f));
+                if(minimalHud)
+                {
+                    var origin=new Vector2((float)area.X,(float)area.Y);
+                    FieldBoundary(field,origin,(float)area.Radius,new Color(tint.r,tint.g,tint.b,.35f));
+                    if(bleed)FieldBoundary(field,origin,(float)area.Radius*.78f,new Color(tint.r,tint.g,tint.b,.18f));
+                }
+                else
+                {
+                    Dot(position, radius, new Color(tint.r, tint.g, tint.b, bleed ? .16f : .09f));
+                    Ring(position, radius, new Color(tint.r, tint.g, tint.b, .35f));
+                    if (bleed) Ring(position, radius * .78f, new Color(tint.r, tint.g, tint.b, .12f));
+                }
             }
             foreach (var b in Run.Branches)
             {
@@ -853,6 +871,7 @@ namespace Bokumyaku.Presentation
         }
         void OnDestroy()
         {
+            ReleaseBattlePresentation();
             ReleaseAudio();
             ReleaseInkMotifs();
             autoRepeat.Cancel();
@@ -887,3 +906,4 @@ namespace Bokumyaku.Presentation
         }
     }
 }
+

@@ -1,0 +1,36 @@
+[
+  {
+    "name": "speed raycast",
+    "passed": true
+  },
+  {
+    "name": "pause raycast",
+    "passed": true
+  },
+  {
+    "name": "auto raycast",
+    "passed": true
+  },
+  {
+    "name": "reduced motion raycast",
+    "passed": true
+  },
+  {
+    "name": "save raycast",
+    "passed": true
+  },
+  {
+    "name": "portrait field >=60percent",
+    "passed": true,
+    "width": 1.0,
+    "height": 0.68
+  },
+  {
+    "name": "one EventSystem",
+    "passed": true
+  },
+  {
+    "name": "home raycast",
+    "passed": true
+  }
+]

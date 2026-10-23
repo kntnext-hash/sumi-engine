@@ -1,0 +1,1 @@
+{"name":"Bokumyaku.Rendering.Tests","references":["Bokumyaku.Presentation","ConnectPiece.SumiEngine"],"optionalUnityReferences":["TestAssemblies"],"includePlatforms":["Editor"],"defineConstraints":["UNITY_INCLUDE_TESTS"],"overrideReferences":true,"precompiledReferences":["nunit.framework.dll"]}

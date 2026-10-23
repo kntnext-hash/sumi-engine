@@ -1,7 +1,8 @@
 {
   "name": "Bokumyaku.Presentation",
   "rootNamespace": "Bokumyaku.Presentation",
-  "references": ["Bokumyaku.Simulation", "Bokumyaku.Persistence", "ConnectPiece.SumiEngine"],
+  "references": ["Bokumyaku.Simulation", "Bokumyaku.Persistence", "ConnectPiece.SumiEngine", "Unity.ugui", "Unity.TextMeshPro"],
   "autoReferenced": true
 }
+
 

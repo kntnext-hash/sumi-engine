@@ -1,0 +1,16 @@
+{
+  "phase": "before",
+  "durationSeconds": 180.02821790000053,
+  "frames": 10694,
+  "averageMs": 16.831644133450258,
+  "maximumMs": 112.86850273609161,
+  "width": 360,
+  "height": 640,
+  "seed": 42,
+  "startWave": 17,
+  "endWave": 32,
+  "kills": 304,
+  "tick": 11399,
+  "branchRebuilds": 7,
+  "method": "Editor wall-frame intervals, target60, 2s warmup, 180s; not GPU profiler/device performance"
+}

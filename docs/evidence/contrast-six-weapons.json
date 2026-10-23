@@ -6,28 +6,28 @@
       "attackVisible": true,
       "frames": 10,
       "Wave": 17,
-      "activeAttacks": 5
+      "activeAttacks": 1
     },
     {
       "weapon": "Pierce",
       "attackVisible": true,
       "frames": 10,
       "Wave": 17,
-      "activeAttacks": 1
+      "activeAttacks": 3
     },
     {
       "weapon": "Bleed",
       "attackVisible": true,
       "frames": 10,
       "Wave": 17,
-      "activeAttacks": 1
+      "activeAttacks": 2
     },
     {
       "weapon": "Sweep",
       "attackVisible": true,
       "frames": 10,
       "Wave": 17,
-      "activeAttacks": 5
+      "activeAttacks": 3
     },
     {
       "weapon": "Enso",

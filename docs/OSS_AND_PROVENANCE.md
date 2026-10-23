@@ -59,3 +59,7 @@ TheTowerSDKのREADME/LICENSE/NOTICEを読取。MIT表記に加えて由来別の
 - TheTowerSDK README/公開デモ/NOTICE（https://github.com/TmRxJD/TheTowerSDK 、https://tmrxjd.github.io/TheTowerSDK/ 、https://github.com/TmRxJD/TheTowerSDK/blob/main/NOTICE）をweb読取。敵成長の複合曲線と時間当たり収益の評価方法を参考。デモのSample履歴を日数別の実測と扱わない。
 - Towerstats.orgのTier/Workshop/Labsガイド（https://towerstats.org/guide/tiers/ 、https://towerstats.org/guide/workshop/ 、https://towerstats.org/guide/labs/）をweb読取。相対伸びの逓減と周回/恒久育成の区別を参考。towerstats.comは別サービスのため対象外。
 - BOKUMYAKU_FIRST_WEEK_TARGETS.mdのWave値・平方根モデル・プレイ時間は独自提案。外部の検証済み日数別到達値ではない。コード・表・画像・SDK依存・個人セーブの直接取り込みゼロ。既存の由来別ライセンス確認方針を維持する。
+
+## 2026-10-23 URP/uGUI
+- Unity Package ManagerからURP 17.3.0とuGUI 2.0.0を追加。TMP Essential Resourcesを公式インポーターで展開し、付属ライセンスを保持。
+- 日本語フォントはWindowsのYu Mincho等を実行時参照し、OSフォントファイルを再配布しない。InkSpriteシェーダーは独自実装でURP Core2D APIを使用。

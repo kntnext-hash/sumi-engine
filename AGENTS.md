@@ -1,3 +1,8 @@
+## 2026-10-23 戦闘描画刷新（今回の作業を優先）
+- シミュレーション・経済・保存・音は変更しない。Built-inからURP 2Dへ移行し、Brush Lab表示/PNGの互換確認を先に行う。問題があれば別シーン/別プロジェクト案を提示して停止する。
+- 戦場はSpriteRenderer/シェーダー、戦闘HUDはuGUIの再利用部品へ移す。ホーム/研究/記録はIMGUI維持。縦戦場は幅いっぱい・高さ60%以上。
+- SUMIは枝と残る撃破跡を担当。位置補間、被弾/撃破/6武器演出、演出軽減設定、dirty rect部分更新を実装。Runtime本体は変更しない。
+- 同一Waveの前後画像、前後フレーム平均/最大、数分の実戦、シミュレーション関連EditModeを記録。完了は証拠で判断する。
 ## 2026-10-22 開発方針（既存記述より優先）
 - 開始時はAGENTS.md、docs/STATE.md、TASKS.mdの該当ゲートだけ読む。GDD係数は初期値であり唯一の基準ではない。
 - TheTowerSDK (https://github.com/TmRxJD/TheTowerSDK) とTowerstatsの数値を成長の形・伸び率・比率の参考として使用可。表・コード・画像をコピーせず独自係数を決める。初回敗北5〜8分、恒久研究2〜3周に1回。1日目/1週間のWave目標は参照比率と仮定を明記して提案する。候補最大3案、目標内で採用し終了。
@@ -45,3 +50,4 @@
 - 接続前に `unity status` / `unity pipeline list`、操作前に `unity list` で実コマンドを発見する。対象はUnitySandboxの絶対パスで指定する。
 - Scene/PrefabはEditor APIで編集し、既存の未保存Sceneを保護する。操作試験用Assetは `Assets/CodexAutomation/` に隔離する。
 - 修正は最大3回。実コンパイル、テストXML、フレーム進行、Console、画面確認を別々に記録する。管理者操作/認証で停止し、合格を捏造しない。
+
