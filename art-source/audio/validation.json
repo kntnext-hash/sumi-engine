@@ -1,0 +1,182 @@
+{
+  "generator": "generate_audio.py",
+  "seed": 20261023,
+  "numpy_version": "2.3.5",
+  "format": "PCM16 little-endian WAV",
+  "listening": "Not performed; signal validation only",
+  "results": [
+    {
+      "file": "sfx_click.wav",
+      "seconds": 0.12,
+      "sample_rate": 48000,
+      "channels": 1,
+      "peak_dbfs": -12.999812245955065,
+      "rms_dbfs": -31.453983315917192,
+      "dc_per_channel": [
+        -1.5894571940104166e-08
+      ],
+      "clipped_samples": 0,
+      "seam_step": 0.0,
+      "max_interior_step": 0.066009521484375,
+      "first_samples": [
+        0.0
+      ],
+      "last_samples": [
+        0.0
+      ],
+      "sha256": "d96cd70faf2d1d928c9856080e783c1b4d692ae3ea7deda2c79f4e89269e823b"
+    },
+    {
+      "file": "sfx_purchase.wav",
+      "seconds": 0.85,
+      "sample_rate": 48000,
+      "channels": 1,
+      "peak_dbfs": -10.000126940172311,
+      "rms_dbfs": -23.520309040925337,
+      "dc_per_channel": [
+        -4.2634851792279414e-08
+      ],
+      "clipped_samples": 0,
+      "seam_step": 0.0,
+      "max_interior_step": 0.03204345703125,
+      "first_samples": [
+        0.0
+      ],
+      "last_samples": [
+        0.0
+      ],
+      "sha256": "29ad27ecf12a7596fcab582e4b9b03a0b0af9046d9398b4f773d4e1069721f2a"
+    },
+    {
+      "file": "sfx_attack.wav",
+      "seconds": 0.23,
+      "sample_rate": 48000,
+      "channels": 1,
+      "peak_dbfs": -16.000632247293233,
+      "rms_dbfs": -35.426671098344286,
+      "dc_per_channel": [
+        2.487846042798913e-08
+      ],
+      "clipped_samples": 0,
+      "seam_step": 0.0,
+      "max_interior_step": 0.051849365234375,
+      "first_samples": [
+        0.0
+      ],
+      "last_samples": [
+        0.0
+      ],
+      "sha256": "d184f865fe882de2217d64d58df0fe37944645dc71a9a9622050633b13ce3703"
+    },
+    {
+      "file": "sfx_kill.wav",
+      "seconds": 0.38,
+      "sample_rate": 48000,
+      "channels": 1,
+      "peak_dbfs": -14.000100374307355,
+      "rms_dbfs": -30.839439888460998,
+      "dc_per_channel": [
+        -1.6731128358004386e-09
+      ],
+      "clipped_samples": 0,
+      "seam_step": 0.0,
+      "max_interior_step": 0.066864013671875,
+      "first_samples": [
+        0.0
+      ],
+      "last_samples": [
+        0.0
+      ],
+      "sha256": "839563ddd04c57458f13744f6b128d84ef78500047acc35edb4b3db7a1da5497"
+    },
+    {
+      "file": "sfx_core_hit.wav",
+      "seconds": 0.75,
+      "sample_rate": 48000,
+      "channels": 1,
+      "peak_dbfs": -8.000117030469568,
+      "rms_dbfs": -23.762432830731512,
+      "dc_per_channel": [
+        -8.477105034722222e-09
+      ],
+      "clipped_samples": 0,
+      "seam_step": 0.0,
+      "max_interior_step": 0.069610595703125,
+      "first_samples": [
+        0.0
+      ],
+      "last_samples": [
+        0.0
+      ],
+      "sha256": "333214157c7ec997f91b1c07d28266d9c908189a55b5d37844a3582de2596684"
+    },
+    {
+      "file": "sfx_defeat.wav",
+      "seconds": 3.6,
+      "sample_rate": 48000,
+      "channels": 1,
+      "peak_dbfs": -9.000392326786972,
+      "rms_dbfs": -23.13312735333462,
+      "dc_per_channel": [
+        1.2009232132523148e-08
+      ],
+      "clipped_samples": 0,
+      "seam_step": 0.0,
+      "max_interior_step": 0.011505126953125,
+      "first_samples": [
+        0.0
+      ],
+      "last_samples": [
+        0.0
+      ],
+      "sha256": "cf3b87e5020c00e66e2cdf204b3ed07c1c984ef6b3b6c5fdd2f3d182bcc7fb77"
+    },
+    {
+      "file": "sfx_research_complete.wav",
+      "seconds": 3.2,
+      "sample_rate": 48000,
+      "channels": 1,
+      "peak_dbfs": -10.000126940172311,
+      "rms_dbfs": -23.687638405534134,
+      "dc_per_channel": [
+        4.5100847880045575e-08
+      ],
+      "clipped_samples": 0,
+      "seam_step": 0.0,
+      "max_interior_step": 0.02471923828125,
+      "first_samples": [
+        0.0
+      ],
+      "last_samples": [
+        0.0
+      ],
+      "sha256": "0fc8714ffddaaac6328208ecfaf84947711b2165f53bb0a91058068317dc94cf"
+    },
+    {
+      "file": "bgm_sumi_no_ma_80s.wav",
+      "seconds": 80.0,
+      "sample_rate": 48000,
+      "channels": 2,
+      "peak_dbfs": -10.000126940172311,
+      "rms_dbfs": -24.57592728635158,
+      "dc_per_channel": [
+        3.846486409505208e-09,
+        -4.00543212890625e-09
+      ],
+      "clipped_samples": 0,
+      "seam_step": 0.00164794921875,
+      "max_interior_step": 0.02716064453125,
+      "first_samples": [
+        -0.007293701171875,
+        0.002532958984375
+      ],
+      "last_samples": [
+        -0.008941650390625,
+        0.001007080078125
+      ],
+      "sha256": "d14a5dfe257aa7aefea3ae9b2b5e2d0de242532c572b15d738bfd8e6455b9373",
+      "seam_curvature": 3.0517578125e-05,
+      "max_interior_curvature": 0.003173828125
+    }
+  ]
+}
