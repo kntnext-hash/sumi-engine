@@ -26,3 +26,6 @@
 ## 2026-10-23 研究購入の限定確認
 研究ボタン高を32→44に拡大。360×640の隔離Playで100結晶を試験付与し、GUIのMouseDown/Upで祖墨を8結晶で購入、Lv.1/残92を確認。TryReloadProgressによるディスク再読込後も保持。証拠evidence/research-purchase.json、research-purchased.png。実機指タップ、他研究、上限/不足条件の再試験ではない。Unityコンパイル成功、現在Console error0/warning0（履歴warn5）。Play停止と一時GameView復元済み。
 手順: BokumyakuInkCheck.Arm→BokumyakuResearchPurchaseCheck.Run→JSON完了確認→Play停止→InkCheck.Cleanup。商品全体の合格ではなく、記録あり画面と素材/音統合は残る。
+
+## 記録あり画面（2026-10-23）
+隔離seed42/Farming/初期研究で通常Tickを敗北まで進め、SaveProgress→TryReloadProgress→Recordsを確認。1周/履歴1/276結晶、Wave36敗北（完了35Wave）、記録7:00。実時間7分の待機検証ではない。360×640で結果・累計・報酬が読める。証拠records-populated.json/png。InkCheck.Arm→RecordsCheck.Run→停止→Cleanup。操作/表示の限定合格であり、研究初期価格8に対して1周276結晶なので新方針の2〜3周購入目標は未達。初週調整時に検証する。

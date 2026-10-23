@@ -1,0 +1,8 @@
+{
+  "runs": 1,
+  "history": 1,
+  "crystals": 276,
+  "wave": 36,
+  "passed": true,
+  "method": "Bounded normal simulation ticks to defeat, SaveProgress, disk reload, portrait records display; not real-time duration test"
+}
